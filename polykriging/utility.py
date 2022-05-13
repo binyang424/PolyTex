@@ -47,6 +47,7 @@ def create_csv(path, filename, coordinate, csv_head = ["line","x", "y", "z"]):
         csv_write.writerow(csv_head)
         for element in coordinate:
             csv_write.writerow(element)
+    return 1
 
 
 ######################################################
