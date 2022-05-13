@@ -10,7 +10,8 @@ setup(
     license='BSD 2-clause',
     packages=['polykriging'],
     install_requires=['numpy>=0.5',
-                      'sympy',                     
+                      'sympy',
+                      'tk',             #tkinter
                       ],
 
     classifiers=[

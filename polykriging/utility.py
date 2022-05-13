@@ -3,7 +3,7 @@ import sys, os
 ######################################################
 #                               Current work directory                                   #
 ######################################################
-def cwd_chdir():
+def cwd_chdir(path = ""):
     '''
     Set current folder (where the code file is) as working directory
 
@@ -12,10 +12,11 @@ def cwd_chdir():
     cwd : path of current working directory 
     '''
     import sys, os
-
-    global cwd
-    cwd = str(sys.argv[0])
-    cwd, pyname = os.path.split(cwd)
+    if path == "":
+        cwd = str(sys.argv[0])
+        cwd, pyname = os.path.split(path)
+    else:
+        cwd = path
     os.chdir(cwd)
     return cwd
 
@@ -54,11 +55,12 @@ def create_csv(path, filename, coordinate, csv_head = ["line","x", "y", "z"]):
 from tkinter import Tk, filedialog
 import time, os
 
-def choose_directory(title ='Selecti a folder'):
+def choose_directory(title ='Select the directory of selections in ".csv" format:'):
+    print(title)
     directory_root = Tk()                    # pointing root to Tk() to use it as Tk() in program.
     directory_root.withdraw()           # Hides small tkinter window.
     directory_root.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
-    path_work = filedialog.askdirectory(title) # Returns opened path as str
+    path_work = filedialog.askdirectory() # Returns opened path as str
     if path_work == '':
         print('You did not select any folder! Please select again.')
         time.sleep(2)
