@@ -1,21 +1,7 @@
 import pandas as pd
-import os
-import shutil
+import os, shutil
 import numpy as np
-#from sympy import *
 import matplotlib.pyplot as plt
-import csv
-from mpl_toolkits.mplot3d import Axes3D
-
-def bubbleSort(nums):
-    """
-    气泡排序
-    """
-    for i in range(len(nums) - 1): # 遍历 len(nums)-1 次
-        for j in range(len(nums) - i - 1): # 已排好序的部分不用再次遍历
-            if nums[j] < nums[j+1]:
-                nums[j], nums[j+1] = nums[j+1], nums[j] # Python 交换两个数不用中间变量
-    return nums
 
 
 def buildKrigFunc(x,xKnown,B,deriveFuncs,covFuncs):
@@ -296,31 +282,3 @@ def bd_Deriv_kriging_func(x,y,x_deriv,y_deriv,choixDerive,choixCov,plot_x_pts,nu
     sum_ave=sum_ave/h(min(x), max(x))
     plt.plot(x_krig,y_krig,linestyle='--',lw=1,label='Nugget effect = '+str(nugg))
     return sum_ave
-
-
-def airDens(p,T):
-    res=p/(287.05*T)
-    return res
-
-def muAir(T):
-    airMu_ref = 1.716e-5
-    T_ref = 273.15
-    S_ref = 110.4
-    T_cal = T/T_ref
-    airMu = airMu_ref*pow(T_cal,1.5)*(T_ref+S_ref)/(T+S_ref)
-    return airMu
-
-def nuAir(p,T):
-    airnu=muAir(T)/airDens(p,T)
-    return airnu
-
-def conductAir(T):
-    kair = -0.00000003679*pow(T,2.)+ 0.00009789*T - 0.0001
-    return kair
-
-def UnitConv (x,unit_name):
-    if unit_name=='scfm_to_m3/s':
-        val=x*0.00047194745
-    if unit_name=='inch_to_m':
-        val=x*0.0254
-    return val

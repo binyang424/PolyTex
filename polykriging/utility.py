@@ -5,7 +5,7 @@ import sys, os
 ######################################################
 def cwd_chdir(path = ""):
     '''
-    Set current folder (where the code file is) as working directory
+    Set given directory or the folder where the code file is as working directory
 
     Returns
     -------
@@ -23,9 +23,9 @@ def cwd_chdir(path = ""):
 ######################################################
 #                                File list in the given folder                             #
 ######################################################
-def filenames(cwd, condition = "csv"):
+def filenames(path, condition = "csv"):
     # Creat a filenames list for all test data.
-    filenamels = os.listdir(cwd)
+    filenamels = os.listdir(path)
     flst=[];   # file list
     flst = [x for x in filenamels if (condition in x)]
     flst.sort();
@@ -51,14 +51,16 @@ def create_csv(path, filename, coordinate, csv_head = ["line","x", "y", "z"]):
 
 
 ######################################################
-#                            Create csv file with given info.                         #
+#          Choose a directory with GUI  and return its path              #
 ######################################################
 from tkinter import Tk, filedialog
 import time, os
 
 def choose_directory(title ='Select the directory of selections in ".csv" format:'):
     print(title)
-    directory_root = Tk()                    # pointing root to Tk() to use it as Tk() in program.
+    # pointing root to Tk() to use it as Tk() in program.
+    # like a window (container) where we can put widgets.
+    directory_root = Tk()                    
     directory_root.withdraw()           # Hides small tkinter window.
     directory_root.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
     path_work = filedialog.askdirectory() # Returns opened path as str
@@ -69,9 +71,6 @@ def choose_directory(title ='Select the directory of selections in ".csv" format
     else:
         # askdirectory 获得是 正斜杠 路径C:/，所以下面要把 / 换成 反斜杠\
         return path_work.replace('/', os.sep)
-
-#path_work = choose_directory()
-#print(path_work) 
 
 ######################################################
 #                       Export and import expression                               #
