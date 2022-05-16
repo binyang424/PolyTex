@@ -17,25 +17,33 @@ def angularSort(localCo, centroid):
 
     minIndex = np.where(angle == np.min(angle))[0][0]
     maxIndex = np.where(angle == np.max(angle))[0][0]
-    # print(localCo[minIndex], localCo[maxIndex])
+    print(angle[minIndex], angle[maxIndex])
+    print(minIndex, maxIndex)
+    print(angle)
 
-    xp = np.squeeze(localCo[[minIndex,maxIndex], 0])
-    yp = np.squeeze(localCo[[minIndex,maxIndex], 1])
-
-    # y is known.
-    origin = [np.interp(0, yp, xp), 0, 0] + centroid
+    coordinate = localCo + centroid[:2]  
     
-    coordinate = localCo + centroid[:2]
     coorSort = np.zeros([localCo.shape[0], 3])
-    coorSort[:, :2] = np.append(coordinate[maxIndex:], coordinate[:maxIndex], axis=0)
+    coorSort[:, :2] = np.append(coordinate[maxIndex:],
+                                coordinate[:maxIndex], axis=0)
     coorSort[:, 2] = centroid[2]
     angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
-    if np.min(angle) == angle[-1]:
+    
+    if np.max(angle) == angle[0]:
         coorSort = np.flip(coorSort,axis=0)
         angle = np.flip(angle,axis=0)
 
-    angle = np.hstack((0, angle))
+    # origin
+    xp = np.squeeze(localCo[[minIndex,maxIndex], 0])
+    yp = np.squeeze(localCo[[minIndex,maxIndex], 1])
+    # y is known.
+    origin = [np.interp(0, yp, xp), 0, 0] + centroid
     coorSort = np.vstack((origin, coorSort))
+
+    angle = np.hstack((0, angle))
+
+    print(angle.shape)
+    print(angle)
     
     return coorSort, angle
 
@@ -114,7 +122,7 @@ def geom(coordinate, message = "OFF"):
     properties: area... ... 
     
     '''
-    ## global localCo, centroid, coordinateSorted, anglePosition, width, height, angleRotated
+    global localCo, centroid
     
     polygon = Polygon(coordinate[:, [0, 1]])
 
@@ -163,5 +171,6 @@ def geom(coordinate, message = "OFF"):
 
 if __name__ == "__main__":
     resolution = 0.022
-    coordinate = np.load("arr_0.npy")[:,1:] * resolution
+    coordinate = np.load("arr_1.npy")[:,1:] * resolution
     geomFeature, coordinateSorted = geom(coordinate)
+    #coorSort, angle = angularSort(localCo, centroid)
