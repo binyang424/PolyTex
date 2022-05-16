@@ -1,4 +1,19 @@
 import sys, os
+from zipfile import ZipFile
+
+
+######################################################
+#            Add multiple files to the zip               #
+######################################################
+def zipFilelist(path, fileList, filename, removeFile = "True"):
+    with ZipFile(filename + '.zip', 'w') as zipObj:
+        for i in range(len(fileList)):
+            zipObj.write(path + fileList[i])
+
+            if removeFile == "True":
+                os.remove(path + fileList[i])         
+
+
 
 ######################################################
 #                               Current work directory                                   #

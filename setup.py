@@ -10,8 +10,10 @@ setup(
     license='BSD 2-clause',
     packages=['polykriging'],
     install_requires=['numpy>=0.5',
+                      'matplotlib',
                       'sympy',
                       'tk',             #tkinter
+                      'shapely',
                       ],
 
     classifiers=[

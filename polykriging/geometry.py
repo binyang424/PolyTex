@@ -114,7 +114,7 @@ def geom(coordinate, message = "OFF"):
     properties: area... ... 
     
     '''
-    global localCo, centroid, coordinateSorted, anglePosition, width, height, angleRotated
+    ## global localCo, centroid, coordinateSorted, anglePosition, width, height, angleRotated
     
     polygon = Polygon(coordinate[:, [0, 1]])
 

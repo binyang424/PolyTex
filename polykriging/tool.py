@@ -1,5 +1,5 @@
 ######################################################
-#                                       Data Normalization                                #
+#                      Data Normalization                                #
 ######################################################
 
 def norm(data_krig, norm_type='axial'):
@@ -28,7 +28,7 @@ def norm(data_krig, norm_type='axial'):
 
 
 ######################################################
-#                                    Data Compression                                     #
+#              Data Compression                                     #
 ######################################################
 def data_compr(matXC, data_norm, max_err, skip_comp):
     '''
@@ -126,7 +126,7 @@ def data_compr(matXC, data_norm, max_err, skip_comp):
 
 #%%
 ######################################################
-#                              Kriging & Cross Validation                               #
+#                  Kriging & Cross Validation                      #
 ######################################################
 def fun_crva(data_norm, drift_para,cov_para):
     '''
