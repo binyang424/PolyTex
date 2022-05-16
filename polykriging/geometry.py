@@ -86,6 +86,17 @@ def edgeLen(localCo, boundType = "rotated"):
     
     return width, height, angleRotated
 
+def normDist(localCo):
+    '''
+    The normalized distance of the vertices of a polygon
+    '''
+    distance = np.zeros( [ len(localCo) ] )
+    for i in np.arange( localCo.shape[0] -1 ):
+        distance[i + 1] = np.linalg.norm(localCo[i + 1] - localCo[i]) + distance[i]
+
+    # normalization
+    normDistance = distance / np.max(distance)
+    return distance, normDistance
 
 # 分析2D的截面信息
 def geom(coordinate, message = "OFF"):
@@ -103,12 +114,14 @@ def geom(coordinate, message = "OFF"):
     properties: area... ... 
     
     '''
-    #global localCo, centroid, coordinateSorted, anglePosition, width, height, angleRotated
+    global localCo, centroid, coordinateSorted, anglePosition, width, height, angleRotated
     
     polygon = Polygon(coordinate[:, [0, 1]])
-    
+
+    # Area, Perimeter and Circularity.
     area = polygon.area    # Area 
     perimeter = polygon.length   # Perimeter
+    Circularity = 4 * np.pi * area / np.square(perimeter) # Circularity
 
     # Centroid 2D in string format
     centroid_wkt = polygon.centroid.wkt
@@ -122,7 +135,19 @@ def geom(coordinate, message = "OFF"):
     width, height, angleRotated = edgeLen(localCo, boundType = "rotated")
     coordinateSorted, anglePosition = angularSort(localCo, centroid)
 
-    Circularity = 4 * np.pi * area / np.square(perimeter)
+    # To close the polygon:
+    coordinateSorted = np.vstack((coordinateSorted, coordinateSorted[0,:]))
+    anglePosition = np.append(anglePosition, 360)
+
+    localCo = coordinateSorted[:, [0, 1]] - centroid.take([0, 1])
+    distance, normDistance = normDist(localCo)
+
+    # [distance, normalized distance, angular position (degree), coordinateSorted(X, Y, Z)]
+    coordinateSorted = np.hstack( (distance.reshape([-1,1]),
+                                  normDistance.reshape([-1,1]),
+                                 anglePosition.reshape([-1,1]),
+                                 coordinateSorted) )
+    
     # [Area, Perimeter, Width, Height, AngleRotated, Circularity,
     #   centroidX, centroidY, centroidZ]
     geomFeature = np.hstack((area, perimeter, width, height, angleRotated, Circularity, centroid))
@@ -133,10 +158,10 @@ def geom(coordinate, message = "OFF"):
 
         print(geomFeature)
     
-    return  geomFeature, coordinateSorted, anglePosition
+    return  geomFeature, coordinateSorted
 
 
 if __name__ == "__main__":
     resolution = 0.022
-    coordinate = np.load("coordinate.npy")[:,1:] * resolution
-    geomFeature, coordinateSorted, anglePosition = geom(coordinate)
+    coordinate = np.load("arr_0.npy")[:,1:] * resolution
+    geomFeature, coordinateSorted = geom(coordinate)
