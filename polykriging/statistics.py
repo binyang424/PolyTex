@@ -5,28 +5,60 @@ from matplotlib.ticker import NullFormatter, MaxNLocator
 from numpy import linspace
 import matplotlib.pyplot as plt
 
+from sklearn.neighbors import KernelDensity
+from sklearn.model_selection import GridSearchCV
+
+def optBandwidth(variable, x_test, bw):
+    '''
+    Find the optimal bandwidth by tuning of the `bandwidth` parameter via cross-validation and returns
+    the parameter value that maximizes the log-likelihood of data.
+    '''
+    
+    kde = KernelDensity(kernel='gaussian')
+    grid = GridSearchCV(kde, {'bandwidth': bw})
+    grid.fit(variable)
+    
+    kde = grid.best_estimator_
+    log_dens = kde.score_samples(x_test)
+    print("optimal bandwidth: " + "{:.4f}".format(kde.bandwidth))
+
+    return kde.bandwidth
 
 
-def movingKDE(variable, bandwidth, windowIndex, extremaNum=50):
-    """
-    # Plot univariate or bivariate distributions using kernel density estimation.
-    :param variable:
-    :param bandwidth:
-    :param extremaNum:
+def kdeScreen(variable, x_test, bw, kernels = 'gaussian', plot = "False"):
+
+    model = KernelDensity(kernel = kernels, bandwidth=bw)
+    model.fit(variable)
+    log_dens = model.score_samples(x_test)       
+    kde = plt.plot(x_test, np.exp(log_dens), c='cyan')
+    # xkde: normalized distance; ykde: density
+    xkde, ykde = kde[0].get_data()
+    if plot != "False":
+        plt.show()
+        
+    # mask for the local maxima of density
+    extremaIndex = argrelextrema(ykde, np.greater)[0]
+    # print(extremaIndex.size, "\n", extremaIndex)
+    
+    return xkde, ykde, extremaIndex
+
+
+def movingKDE(variable, bandwidth, windowIndex = 1, extremaNum=20):
+    '''
+    Plot univariate or bivariate distributions using kernel density estimation.
+    :param
+        variable: a [1,] numpy array
+    :param bandwidth: it can be a list or an array of float numbers.
+    :param extremaNum: How many points are supposed to be used to decribe each cross-section
     :return:
-    """
-    import seaborn as sns
-
-    fig = plt.figure(1, figsize=(12, 9))
-
-    plt.close("all")
-    plt.clf()
-    sns.set_style('whitegrid')
-    plt.rcParams.update({'font.size': 16})
+        xextrema:
+        yextrema:
+    '''
 
     Count = 0  # get the curve data (index of kde curves)
     for h in bandwidth:
-        kde = sns.kdeplot(variable, cut=3, clip=None, bw_adjust=h, label='h = ' + str(h))  # Gaussian kernel
+        kde = sns.kdeplot(variable, cut=3, clip=None,
+                          bw_adjust=h, label='h = ' + str(h))  # Gaussian kernel
         xkde, ykde = kde.get_lines()[Count].get_data()
 
         # local maxima
@@ -46,22 +78,38 @@ def movingKDE(variable, bandwidth, windowIndex, extremaNum=50):
                 extremaNum, len(lstmax[0]), round(h, 4)))
         Count += 1
 
+
+
+    return xextrema, yextrema
+
+
+def kdePlot():
+
+
+    fig = plt.figure(1, figsize=(12, 9))
+
+    plt.close("all")
+    plt.clf()
+    sns.set_style('whitegrid')
+    plt.rcParams.update({'font.size': 16})
+
+
     plt.scatter(xkde[lstmax], ykde[lstmax])
 
     # Median
     cdf = scipy.integrate.cumtrapz(ykde, xkde, initial=0)
-    nearest_05 = np.abs(cdf - 0.5).argmin()
+    nearest_05 = np.abs(cdf - cdf/2).argmin()
     x_median, y_median = xkde[nearest_05], ykde[nearest_05]
-    # plt.vlines(x_median, 0, y_median, 'r')
+    # Plot the median value as vertical line
+    plt.vlines(x_median, 0, y_median, 'r')
 
     plt.legend()
     plt.xlabel('Normalized distance')
     plt.ylabel('Distribution density')
 
-    plt.savefig(str(windowIndex)+'.tiff')
-    # plt.show()
+    #plt.savefig(str(windowIndex)+'.tiff')
+    plt.show()
 
-    return xextrema, yextrema
 
 
 if __name__ == "__main__":
@@ -70,20 +118,80 @@ if __name__ == "__main__":
         r"C:\BinY\DMT\Code\processedData\Vf60\warp\yarn_1.npz")
     fileList = list(pcdRaw.keys())
     yarn = 1
-    for i in range(2):
-##    for i in range(len(fileList) - 1):
+    
+##    for i in range(2):
+    for i in range(len(fileList) - 1):
         slicedata = "yarn_" + str(yarn) + "_coordinateSorted_" + str(i) + ".npy"
         try:
             pcd = np.vstack((pcd,pcdRaw[slicedata]))
         except NameError:
             pcd = pcdRaw[slicedata]
-        
-        plt.scatter(pcdRaw[slicedata][:,1], pcdRaw[slicedata][:, 2], alpha = 0.8, s = 1 )
-        
+##        if i == 0:
+##            fig = plt.figure()
+##            ax = fig.add_subplot(projection='polar')
+##            # ax.set_ylabel('Normalized distance')
+##        # The following angle positions should be in radians.
+##        ax.scatter(pcdRaw[slicedata][:, 2]/360*2*np.pi, pcdRaw[slicedata][:,1],
+##                   alpha = 0.7, s = 1.5 )
+##    # reference line for a circle:
+##    ax.plot(np.arange(0, 2*np.pi, 2*np.pi/360), np.arange(0,1,1/360), linestyle='--', color = 'red' )      
+##    # reference line for a square:
+##    
+##    #plt.show()
+
     # geomFeature = [Area, Perimeter, Width, Height, AngleRotated, Circularity,
     #       centroidX, centroidY, centroidZ]
-    # coordinateSorted = [distance, normalized distance, angular position (degree),
+    pcd = pcd    
+    # [distance, normalized distance, angular position (degree),
     #       coordinateSorted(X, Y, Z)]
     geomFeatures = pcdRaw["yarn_1_geomFeatures.npy"]
+
+
+    #############################################################
+    #                 KDE analysis
+    #############################################################   
+
+    ### 分段：
+    windows = 10
+    winLen = int( ( len(fileList) - 1 )/ windows + 1 )
+    
+    for win in np.arange(1, windows):
+    
+        maskMax = pcd[:,-1] < (win + 1) * winLen * 0.022
+        variable = pcd[:,1][maskMax]
+        maskMin = pcd[:,-1][maskMax] > win * winLen * 0.022
+        variable = variable[maskMin].reshape(-1, 1)
+
+        bw = np.arange(0.005, 0.009, 0.0003)
+        extremaNum = 20
         
-    plt.show()
+        x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
+
+        optBw = optBandwidth(variable, x_test, bw)
+        ############## Find the specified number of extrema ########
+        # 判断：如果最佳kde的点个数过少，则采取减少kde的方式增加细节 
+        
+        xkde, ykde, extremaIndex = kdeScreen(variable, x_test, optBw)
+
+
+
+##
+##        if len(lstmax[0]) > extremaNum:
+##            print("The required number of points ({}) was reached at h = {}.".format(
+##                extremaNum, round(h, 4)))
+##
+##            maskSort = np.argsort(ykde[lstmax]) < extremaNum
+##            xextrema = xkde[lstmax][maskSort]
+##            yextrema = ykde[lstmax][maskSort]
+##
+##            break
+##        elif h == bandwidth[-1]:
+##            print("Cannot reach the targeted {} points.There are {} points for h = {}.".format(
+##                extremaNum, len(lstmax[0]), round(h, 4)))
+##        Count += 1
+    
+##    plt.close("all")
+##    plt.clf()
+##    plt.plot(xkde, ykde)
+##    plt.show()
+

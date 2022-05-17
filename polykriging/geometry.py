@@ -17,9 +17,9 @@ def angularSort(localCo, centroid):
 
     minIndex = np.where(angle == np.min(angle))[0][0]
     maxIndex = np.where(angle == np.max(angle))[0][0]
-    print(angle[minIndex], angle[maxIndex])
-    print(minIndex, maxIndex)
-    print(angle)
+##    print(angle[minIndex], angle[maxIndex])
+##    print(minIndex, maxIndex)
+##    print(angle)
 
     coordinate = localCo + centroid[:2]  
     
@@ -42,8 +42,8 @@ def angularSort(localCo, centroid):
 
     angle = np.hstack((0, angle))
 
-    print(angle.shape)
-    print(angle)
+##    print(angle.shape)
+##    print(angle)
     
     return coorSort, angle
 
