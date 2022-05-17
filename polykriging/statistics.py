@@ -1,12 +1,23 @@
 import numpy as np
 import scipy
 from scipy.signal import argrelextrema
-from matplotlib.ticker import NullFormatter, MaxNLocator
-from numpy import linspace
 import matplotlib.pyplot as plt
 
 from sklearn.neighbors import KernelDensity
 from sklearn.model_selection import GridSearchCV
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 def optBandwidth(variable, x_test, bw):
     '''
@@ -26,7 +37,33 @@ def optBandwidth(variable, x_test, bw):
 
 
 def kdeScreen(variable, x_test, bw, kernels = 'gaussian', plot = "False"):
+    '''
+    
 
+    Parameters
+    ----------
+    variable : Numpy array
+        A N x 1 dimension numpy array.
+    x_test : Numpy array 
+        Test data to get the density distribution. 
+        It has the same shape as the given variable.
+    bw : float
+        DESCRIPTION.
+    kernels : TYPE, optional
+        DESCRIPTION. The default is 'gaussian'.
+    plot : TYPE, optional
+        DESCRIPTION. The default is "False".
+
+    Returns
+    -------
+    xkde : TYPE
+        DESCRIPTION.
+    ykde : TYPE
+        DESCRIPTION.
+    extremaIndex : TYPE
+        DESCRIPTION.
+
+    '''
     model = KernelDensity(kernel = kernels, bandwidth=bw)
     model.fit(variable)
     log_dens = model.score_samples(x_test)       
@@ -43,43 +80,111 @@ def kdeScreen(variable, x_test, bw, kernels = 'gaussian', plot = "False"):
     return xkde, ykde, extremaIndex
 
 
-def movingKDE(variable, bandwidth, windowIndex = 1, extremaNum=20):
+def movingKDE(pcd, bw = 0.002, windows = 1, extremaNum=20):
     '''
-    Plot univariate or bivariate distributions using kernel density estimation.
-    :param
+    Parameters
+    ----------
+    pcd : Numpy array
+        A N x 2 dimension numpy array for kernel density estimation.
+        The first colum should be the variable under analysis, the second
+        is the tag of cross-sections for windows separation.
+    bw : Numpy array or a number
+        - A range of bandwidth values for kde operation usually generated with np.arange().
+        The optimal bandwidth will be identified within this range and be used for kernel
+        density estimation.
+        - If a number is given, the number will be used as the bandwidth for kernel estimation.
+    windows : int, The number of windows (segmentations) for KDE analysis
+        DESCRIPTION. The default is 1.
+    extremaNum : int, The target number of extrema
+        DESCRIPTION. The default is 20.
+
+    Returns
+    -------
+    xkde : TYPE
+        DESCRIPTION.
+    ykde : TYPE
+        DESCRIPTION.
+    extremaIndex : TYPE
+        DESCRIPTION.
 
     '''
-    for win in np.arange(1, windows):
+    kdeOutput = np.zeros([pcd.shape[0],3])
+    extrema = np.zeros([windows, extremaNum + 1])
+    anchor = 0
+    for win in np.arange(0, windows):
         # Point cloud in a window
         maskMax = pcd[:,-1] < (win + 1) * winLen * 0.022
         variable = pcd[:,1][maskMax]
-        maskMin = pcd[:,-1][maskMax] > win * winLen * 0.022
+        # Do not miss "=".
+        maskMin = pcd[:,-1][maskMax] >= win * winLen * 0.022
         variable = variable[maskMin].reshape(-1, 1)
 
         # Generate test data to get the density distribution
         x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
-
-        print("Window: ", win)
-        #optBw = optBandwidth(variable, x_test, bw)
-
-        optBw = 0.002
+      
+        if type(bw).__module__ == "numpy":
+            optBw = optBandwidth(variable, x_test, bw)
+        elif str(int(bw*1e20)).isdigit():
+            optBw = bw
+        else:
+            print("Please check if a bandwidth is given correctly!!!")
+        
+        
+        # Call function kdeScreen() to get the variable-density curve
+        # the index for extrema.
         xkde, ykde, extremaIndex = kdeScreen(variable, x_test, optBw)
+        
+        upperLimit = anchor + variable.size
+        
+        print(anchor, upperLimit, upperLimit - anchor)
+        
+        if len(extremaIndex) > extremaNum:
+            print("Window: {}:".format(win) )
+            print("√ The required number of points {} was reached at h = {}. \
+                  \nThe number of actual extrema is [{}]. \
+                  --------------------".format(
+                extremaNum, round(optBw, 4), len(extremaIndex)) )
+            
+            # sort the data from minimum to maximun and return the index
+            maskSort = np.argsort(ykde[extremaIndex])
+            
+            # kdeOutput
+            kdeOutput[anchor:upperLimit, 0] =  win
+            kdeOutput[anchor:upperLimit, 1] =  xkde
+            kdeOutput[anchor:upperLimit, 2] =  ykde
+            
+            # extrema
+            extrema[win, 0] = upperLimit
+            extrema[win, 1:] = extremaIndex[maskSort][
+                len(extremaIndex)-extremaNum:]
+            anchor = upperLimit
+        else:
+            print(f"{bcolors.WARNING}Window: {bcolors.ENDC}", (win) )
+            print(" --> Cannot reach the targeted {} points. \
+                  There are [{}] points for h = {}. \
+                  Please reduce bandwidth.\n--------------------".format(
+                    extremaNum, len(extremaIndex), round(optBw, 4)))
+    
+            kdeOutput[anchor:upperLimit, 0] =  win
+            extrema[win, 0] = upperLimit
+            
+            anchor = upperLimit
+            continue
+    return kdeOutput, extrema
 
-    return xkde, ykde, extremaIndex
 
-
-def kdePlot():
+def kdePlot(xkde, ykde, extremaIndex):
 
 
     fig = plt.figure(1, figsize=(12, 9))
 
     plt.close("all")
     plt.clf()
-    sns.set_style('whitegrid')
     plt.rcParams.update({'font.size': 16})
 
 
     plt.scatter(xkde[extremaIndex], ykde[extremaIndex])
+    plt.plot(xkde, ykde)
 
     # Median
     cdf = scipy.integrate.cumtrapz(ykde, xkde, initial=0)
@@ -99,7 +204,7 @@ def kdePlot():
 
 if __name__ == "__main__":
     path = r"C:\BinY\DMT\Code\processedData\Vf60\warp\yarn_1.npz"
-    path = r"C:\Users\palme\Desktop\Code\processedData\Vf60\warp\yarn_1.npz"
+    #path = r"C:\Users\palme\Desktop\Code\processedData\Vf60\warp\yarn_1.npz"
     pcdRaw = np.load(path)
     fileList = list(pcdRaw.keys())
     yarn = 1
@@ -131,51 +236,15 @@ if __name__ == "__main__":
     #       coordinateSorted(X, Y, Z)]
     geomFeatures = pcdRaw["yarn_1_geomFeatures.npy"]
 
+    # KDE analysis
 
-    #############################################################
-    #                 KDE analysis
-    #############################################################   
-
-    ### 分段：
-    windows = 18
+    windows = 10
     winLen = int( ( len(fileList) - 1 )/ windows + 1 )
-    bw = np.arange(0.005, 0.009, 0.0003)
+    bw = 0.002
+    # bw = np.arange(0.002, 0.01, 0.001)
     extremaNum = 15
 
+    kdeOutput, extrema = movingKDE(pcd, bw, windows, extremaNum=35)
 
-    movingKDE
-##    for win in np.arange(1, windows):
-##        # Point cloud in a window
-##        maskMax = pcd[:,-1] < (win + 1) * winLen * 0.022
-##        variable = pcd[:,1][maskMax]
-##        maskMin = pcd[:,-1][maskMax] > win * winLen * 0.022
-##        variable = variable[maskMin].reshape(-1, 1)
-##
-##        # Generate test data to get the density distribution
-##        x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
-##
-##        print("Window: ", win)
-##        #optBw = optBandwidth(variable, x_test, bw)
-##
-##        optBw = 0.002
-##        xkde, ykde, extremaIndex = kdeScreen(variable, x_test, optBw)
-
-        if len(extremaIndex) > extremaNum:
-            print("The required number of points ({}) was reached at h = {}. \
-                  \nThe number of actual extrema is {}. \
-                  --------------------".format(
-                extremaNum, round(optBw, 4), len(extremaIndex)) )
-
-            maskSort = np.argsort(ykde[extremaIndex]) < extremaNum
-            xextrema = xkde[extremaIndex][maskSort]
-            yextrema = ykde[extremaIndex][maskSort]
-        else:
-            print("Cannot reach the targeted {} points.There are {} points for h = {}. \
-                  --------------------".format(
-                extremaNum, len(extremaIndex), round(optBw, 4)))
-
+    del i, winLen, yarn, slicedata, pcdRaw, path, bw
     
-##    plt.close("all")
-##    plt.clf()
-##    plt.plot(xkde, ykde)
-##    plt.show()
