@@ -147,6 +147,7 @@ def movingKDE(pcd, bw = 0.002, windows = 1, extremaNum=20):
             
             # sort the data from minimum to maximun and return the index
             maskSort = np.argsort(ykde[extremaIndex])
+            extrDisordered = extremaIndex[maskSort][len(extremaIndex)-extremaNum:]
             
             # kdeOutput
             kdeOutput[anchor:upperLimit, 0] =  win
@@ -155,8 +156,7 @@ def movingKDE(pcd, bw = 0.002, windows = 1, extremaNum=20):
             
             # extrema
             extrema[win, 0] = upperLimit
-            extrema[win, 1:] = extremaIndex[maskSort][
-                len(extremaIndex)-extremaNum:]
+            extrema[win, 1:] = extrDisordered[np.argsort(extrDisordered)]
             anchor = upperLimit
         else:
             print(f"{bcolors.WARNING}Window: {bcolors.ENDC}", (win) )
@@ -209,7 +209,6 @@ if __name__ == "__main__":
     fileList = list(pcdRaw.keys())
     yarn = 1
     
-##    for i in range(2):
     for i in range(len(fileList) - 1):
         slicedata = "yarn_" + str(yarn) + "_coordinateSorted_" + str(i) + ".npy"
         try:
@@ -244,7 +243,7 @@ if __name__ == "__main__":
     # bw = np.arange(0.002, 0.01, 0.001)
     extremaNum = 15
 
-    kdeOutput, extrema = movingKDE(pcd, bw, windows, extremaNum=35)
+    kdeOutput, extrema = movingKDE(pcd, bw, windows, extremaNum=10)
 
     del i, winLen, yarn, slicedata, pcdRaw, path, bw
     
