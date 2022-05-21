@@ -41,27 +41,6 @@ class kriging_class:
                 self.js_tow_data = json.load(f)
             self.krig_data["Info"] = copy.deepcopy(self.js_tow_data["Info"])
 
-    def func_select(self, drift_name, cov_name):
-        # Definitions of drift functions
-        drift_funcs = {
-            'Constant': lambda x, a: [a[0]],
-            'Linear': lambda x, a: [np.array(a[0]), np.array(a[1]) * np.array(x)],
-            'Quadratic': lambda x, a: [a[0], a[1] * x, a[2] * (x ** 2.0)],
-            'Trigonometric': lambda x, a: [a[0], a[1] * np.cos(x * a[3]), a[2] * np.sin(x * a[3])]
-        }
-        # Definitions of covariance functions
-        # Maybe here will be changed, because here the 'b' is not the parameter.
-        cov_funcs = {
-            'Linear': lambda x, b=0.0: x,
-            'Cubic': lambda x, b=0.0: x ** 3.0,
-            'Logarithmic': lambda x, b=0.0: x ** 2.0 * np.log(x),
-            'Sinusoidal': lambda x, b: np.sin(b * x)
-        }
-        # Int number of 'a', which is based on the drift function.
-        a_len = len(drift_funcs[drift_name](0, [1, 1, 1, 1]))
-
-        return drift_funcs[drift_name], cov_funcs[cov_name], a_len
-
 
     def parameterization(self, process_data):
         # This function should be used before np.mat?
@@ -186,46 +165,6 @@ class kriging_class:
         # return inter_mat, vector_ba[1][:len_b], vector_ba[1][len_b:]
 
     def one_dimensional_krig(self, process_data, name_drift, name_cov):
-        # Here is the one dimensional kriging, not the parametric kriging. 
-        # Use theta and distance to have the curve function of the boundary.
-        func_drift, func_cov, len_a = self.func_select(name_drift, name_cov)
-        len_b = process_data.shape[0]
-        krig_len = len_a + len_b
-        mat_krig = np.zeros([krig_len, krig_len])
-        adef=[1,1,1,1]
-        krig_a = func_drift(process_data[:,0],adef)  # Here should be para_data[x,:,0] x for slice?????
-        # print("krig_a = {:s}".format(str(krig_a)))
-        # print("shape = {:g}".format(krig_a.shape))
-        for i in range(len_b):
-            krig_b = func_cov(abs(process_data[:,0]-process_data[i,0]))
-            for j in range(len_b):
-                mat_krig[i,j] = krig_b[j]
-            for j in range(len_a):
-                # if a[0] could be changed to a[0][len(x)], then this condition can
-                # be removed.
-                if j == 0:
-                    mat_krig[i,j+len_b] = krig_a[j]
-                    mat_krig[j+len_b,i] = krig_a[j]
-                else:
-                    mat_krig[i,j+len_b] = krig_a[j][i]
-                    mat_krig[j+len_b,i] = krig_a[j][i]
-                    # print("aj = {:s}, shape = {:s}".format(str(krig_a[j]), str(krig_a[j].shape)))
-                    # print("aji = {:g}".format(krig_a[j][i]))
-
-        # print(mat_krig)
-        mat_krig_inv = np.linalg.inv(mat_krig)
-
-        # Vector [x1, y1; x2, y2; .......; xN, yN; 0, 0; 0, 0; .....]
-        Q_para = np.zeros([krig_len ,1]) #Q_para[0,:,0] -- X, Q_para[1,:,0] -- Y
-        Q_para[:len_b, 0] = process_data[:,1]
-
-        # Calculate the vector of [ai,bi...]
-        vector_ba = mat_krig_inv.dot(Q_para)
-        # print(vector_ba[:len_b])
-        # print('/////////////////////////////')
-        # print(vector_ba[len_b:])
-        # print('++++++++++++++++++++++++++++++++')
-
         return vector_ba[:len_b], vector_ba[len_b:]
 
     def surf_parameterization(self, process_data):
@@ -403,40 +342,3 @@ class kriging_class:
     #     inter_out = pd.DataFrame(np.stack((inter_x.reshape(-1), inter_y.reshape(-1)),axis = 1), columns = ['theta','dis'])
     #
     #     return inter_out
-
-    # def main(self, controller):
-    #     # path = './Single/tow_2.csv'
-    #     self.read_data()
-    #     func_para_drift = 'quad' # Drift function: 'const','lin','quad','trig' (trig might have some problem now????????????????/)
-    #     func_para_cov = 'cub' # Cov function: 'lin', 'cub', 'log', 'sin'
-    #     interpolate_mat = parametric_krig(a,func_para_drift,func_para_cov,100)
-    #     img_test = cv2.imread('./Single/single_test_1.tif',0)
-    #     img_bin = cv2.threshold(img_test, 26, 255, cv2.THRESH_BINARY)
-    #     img_frame = pd.DataFrame(np.copy(img_bin[1]))
-    #     fig=plt.figure(figsize=(16/2.54,9.5/2.54))
-    #     ax = fig.add_axes([0.12,0.1,0.85,0.83])
-    #     ax.imshow(img_frame)
-    #     ax.plot(interpolate_mat[0,:,0], interpolate_mat[0,:,1], '-*')
-
-
-# def read_data(file_path):
-#     input_data = pd.read_csv(file_path, index_col=0)
-#     return input_data
-
-
-#plot_y = krig_b.T.dot(func_b_para)
-
-#plot_list = 
-
-#
-#fig=plt.figure(figsize=(16/2.54,9.5/2.54))
-#ax = fig.add_axes([0.12,0.1,0.85,0.83])
-#ax.scatter(plot_x,plot_y,'-*')
-
-#function_para[]
-
-
-#ax.scatter(center_point[0],center_point[1])
-#    
-# if __name__ == '__main__':
-#     main()
