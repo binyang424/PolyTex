@@ -1,6 +1,44 @@
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import matplotlib as mpl
+
+
+def vSubPlots(numSubs, vspace, xVariable, yVariable, labels ):
+    
+    plt.style.use( ['science', 'high-vis', 'grid'])
+    params = {
+       'axes.labelsize': 12,
+       'font.size': 12,
+       'legend.fontsize': 10,
+       'xtick.labelsize': 12,
+       'ytick.labelsize': 12,
+       'text.usetex': False,
+       'figure.figsize': [6.4, 4.8]
+       }
+    mpl.rcParams.update(params)
+
+    fig, axs = plt.subplots(1, numSubs, sharey=True)
+    
+    # Remove horizontal space between axes
+    fig.subplots_adjust( wspace = vspace )
+    
+    for i in range(numSubs):
+    
+        axs[i].plot(t[:,i], s[:,i], label=labels[i], linewidth = 2)
+        axs[i].set_yticks(np.arange(0, 1.0, 0.2))
+        axs[i].set_xticks(np.arange(0, 2.0, 0.5))
+        axs[i].set_ylim(0, 1)
+        axs[i].tick_params(axis ='both', which ='both', length = 0)
+        
+        
+    axs[0].set_ylabel("Normalized distance")
+    #axs[1].set_xlabel("Density")
+    
+    plt.title('Density', x = -0.65, y=- 0.15, fontsize=12)
+    
+    return fig
+
 
 def imagePlot(x, y, backgroundImg, labels = [], save = False):
     '''
@@ -36,3 +74,20 @@ if __name__ == '__main__':
     coordinate = np.loadtxt(open(data, "rb"), delimiter=",",
                             skiprows=1, usecols=(0,1))
     imagePlot(coordinate[:,0], coordinate[:,1], img)
+
+
+    # vSubPlots()
+    t = np.arange(0.0, 2.0, 0.01).reshape(-1,1)
+
+    s1 = np.sin(2 * np.pi * t).reshape(-1,1)
+    s2 = np.exp(-t).reshape(-1,1)
+    s3 = s1 * s2.reshape(-1,1)
+    
+    s= np.hstack((s1,s2,s3))
+    t= np.hstack((t,t,t))
+    
+    labels = ["Global KDE", 'MW-KDE (5)', 'MW-KDE (10)']
+    
+    fig = vSubPlots(3, 0, t, s, labels  )
+    
+    fig.savefig("image.jpg", dpi = 600)

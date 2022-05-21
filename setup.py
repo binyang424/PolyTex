@@ -14,6 +14,7 @@ setup(
                       'sympy',
                       'tk',             #tkinter
                       'shapely',
+                      'SciencePlots',  # matplotlib styles
                       ],
 
     classifiers=[
