@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import sympy as sym
 from polykriging import curve2D, utility, statistics
 '''
 Statistical analysis of points on a yarn surface
 '''
-resolution = 0.022
+resolution = 1
 
-windows = 25
+windows = 1
 bw = 0.0025  # specify a bandwidth
 # bw = np.arange(0.002, 0.01, 0.001) # specify a range for bandwidth optimization
 extremaNum = 40  # number of extrema (control points) for contour description

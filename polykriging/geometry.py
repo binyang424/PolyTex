@@ -4,7 +4,7 @@ import numpy as np
 from shapely.geometry import Polygon, Point
 
 # used in geom() function.
-def angularSort(localCo, centroid):
+def angularSort(localCo, centroid, sort = True):
     '''
     input: local coordinate of polygon vertices for angular sorting
     output: angle position and sorted coordinate according angle position
@@ -23,24 +23,30 @@ def angularSort(localCo, centroid):
 
     coordinate = localCo + centroid[:2]  
     
-    coorSort = np.zeros([localCo.shape[0], 3])
-    coorSort[:, :2] = np.append(coordinate[maxIndex:],
-                                coordinate[:maxIndex], axis=0)
-    coorSort[:, 2] = centroid[2]
-    angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
+    if sort:
     
-    if np.max(angle) == angle[0]:
-        coorSort = np.flip(coorSort,axis=0)
-        angle = np.flip(angle,axis=0)
-
-    # origin
-    xp = np.squeeze(localCo[[minIndex,maxIndex], 0])
-    yp = np.squeeze(localCo[[minIndex,maxIndex], 1])
-    # y is known.
-    origin = [np.interp(0, yp, xp), 0, 0] + centroid
-    coorSort = np.vstack((origin, coorSort))
-
-    angle = np.hstack((0, angle))
+        coorSort = np.zeros([localCo.shape[0], 3])
+        coorSort[:, :2] = np.append(coordinate[maxIndex:],
+                                    coordinate[:maxIndex], axis=0)
+        coorSort[:, 2] = centroid[2]
+        angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
+        
+        if np.max(angle) == angle[0]:
+            coorSort = np.flip(coorSort,axis=0)
+            angle = np.flip(angle,axis=0)
+    
+        # origin
+        xp = np.squeeze(localCo[[minIndex,maxIndex], 0])
+        yp = np.squeeze(localCo[[minIndex,maxIndex], 1])
+        # y is known.
+        origin = [np.interp(0, yp, xp), 0, 0] + centroid
+        coorSort = np.vstack((origin, coorSort))
+    
+        angle = np.hstack((0, angle))
+    else:
+        coorSort = np.zeros([coordinate.shape[0], 3])
+        coorSort[:,:2] = coordinate
+        coorSort[:,-1] = centroid[2]
 
 ##    print(angle.shape)
 ##    print(angle)
@@ -107,7 +113,7 @@ def normDist(localCo):
     return distance, normDistance
 
 # 分析2D的截面信息
-def geom(coordinate, message = "OFF", sort = "True"):
+def geom(coordinate, message = "OFF", sort=True):
     '''
     Parameters
     ----------
@@ -142,8 +148,8 @@ def geom(coordinate, message = "OFF", sort = "True"):
     # width, height, angleRotated
     width, height, angleRotated = edgeLen(localCo, boundType = "rotated")
 
-    if sort == "True":
-        coordinateSorted, anglePosition = angularSort(localCo, centroid)
+    coordinateSorted, anglePosition = angularSort(localCo, centroid, sort)
+
 
     # To close the polygon:
     coordinateSorted = np.vstack((coordinateSorted, coordinateSorted[0,:]))

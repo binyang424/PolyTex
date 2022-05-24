@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from shapely.geometry import Polygon, Point
 from polykriging.utility import cwd_chdir, filenames, choose_directory
 from polykriging.geometry import geom
 import matplotlib.pyplot as plt
@@ -21,26 +20,27 @@ path = choose_directory(titl =
 cwd_chdir(path)  #set the path as current work directory
 filelist = filenames(path, "npy")
 
-resolution = 0.022  # mm/pixel
+resolution = 1  # mm/pixel
 
 fig = plt.figure()
 for yarn in np.arange(1,2):
-    surfPoints = np.load("weft_" + str(yarn) + ".npy")
+    # surfPoints = np.load("weft_" + str(yarn) + ".npy")
+    surfPoints = np.load("PointsWithError0.0Percent.npy")
     # load contour described by point cloud
 
     slices = np.unique(surfPoints[:, -1])
     nslice = slices.size
     centerline = np.zeros([nslice, 3])
     
-    for iSlice in slices:
-        iSlice = int(iSlice)
-        coordinate = surfPoints[surfPoints[:, -1] == iSlice, 1:] * resolution
+    for iSlice in range(slices.size):
+
+        coordinate = surfPoints[surfPoints[:, -1] == slices[iSlice], -3:] * resolution
 
         # geomFeature = [Area, Perimeter, Width, Height, AngleRotated, Circularity,
         #       centroidX, centroidY, centroidZ]
         # coordinateSorted = [distance, normalized distance, angular position (degree),
         #       coordinateSorted(X, Y, Z)]
-        geomFeature, coordinateSorted = geom(coordinate)
+        geomFeature, coordinateSorted = geom(coordinate, sort = False)
         centerline[iSlice-1, :] = geomFeature[-3:]
 
         try:
@@ -52,7 +52,7 @@ for yarn in np.arange(1,2):
     
         # plot the contours and rotated boxes
         if iSlice % 10 == 0:
-            ax = fig.add_subplot(10, 6, int(iSlice / 15+ 1))
+            ax = fig.add_subplot(10, 6, int(iSlice / 1 + 1))
             ax.set_axis_off()
             plt.fill(coordinateSorted[:, 3], coordinateSorted[:,4], facecolor='pink', alpha=0.5)
             #plt.plot(xb,yb)   # plt.plot(*polygon.exterior.xy)  # Error on the last iSlice
