@@ -1,6 +1,0 @@
-numpy>=0.5
-matplotlib
-sympy
-tk
-shapely
-SciencePlots
