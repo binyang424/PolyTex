@@ -4,13 +4,13 @@ from polykriging import curve2D, utility, statistics
 '''
 Statistical analysis of points on a yarn surface
 '''
-resolution = 1
+resolution = 0.022
 
-windows = 1
-bw = 0.0025  # specify a bandwidth
+windows = 10
+bw = 0.004  # specify a bandwidth
 # bw = np.arange(0.002, 0.01, 0.001) # specify a range for bandwidth optimization
-extremaNum = 40  # number of extrema (control points) for contour description
-nuggets = np.array([200, 250])  * resolution
+extremaNum = 35  # number of extrema (control points) for contour description
+nuggets = [1e-2]
 
 
 ''' Data loading '''
@@ -24,6 +24,9 @@ pcdRaw = np.load(path)
 #       coordinateSorted(X, Y, Z)]
 coordinatesSorted = pcdRaw["coordinatesSorted.npy"]
 geomFeatures = pcdRaw["geomFeatures.npy"]
+
+##coordinatesSorted[:,-3] += 4
+##coordinatesSorted[:,-2] += 2
 
 ''' Polar plot: angular position - normalized distance '''
 ##fig = plt.figure()
@@ -45,8 +48,11 @@ pcd = np.vstack((pcd, coordinatesSorted[:, -1]/ resolution)).T
 kdeOutput, extrema = statistics.movingKDE(pcd, bw, windows, extremaNum)
     
 '''   Overfitting test    '''
+ii = 0
 for iSlice in [250 * 0.022]:
-##for iSlice in slices:
+# for iSlice in slices[0:6]:
+    print(ii)
+    ii += 1
     index = np.where(coordinatesSorted[:,-1] == iSlice)
     indexAvg = int(np.average(index))
 
@@ -61,29 +67,32 @@ for iSlice in [250 * 0.022]:
     
     plt.close('all')
     ax1 = plt.subplot(1,1,1)
-    
-    nuggets = [1e-6]
+
     for nugget in nuggets:
         # Split the data to improve interpolation quality
         mask1 = coordinate[:, 0] < 0.5
         mask2 = coordinate[:, 0] >= 0.5
 
-        xinter = curve2D.curve1Dinter(coordinate[:, [0, 1] ][mask1],
-                                      'lin', "lin", nugget, interp[interp<0.5] )
-        yinter = curve2D.curve1Dinter(coordinate[:, [0, 2] ][mask1],
-                                      'lin', "lin", nugget, interp[interp<0.5]  )
-
-        xinterSplit = curve2D.curve1Dinter(coordinate[:, [0, 1] ][mask2],
+##        xinter, xexpr = curve2D.curve1Dinter(coordinate[:, [0, 1] ],
+##                                      'lin', "lin", nugget, interp )
+##        yinter, yexpr = curve2D.curve1Dinter(coordinate[:, [0, 2] ],
+##                                      'lin', "lin", nugget, interp )
+        xinter, xexpr  = curve2D.curve1Dinter(coordinate[:, [0, 1] ][mask1],
+                                  'lin', "lin", nugget, interp[interp<0.5] )
+        yinter, yexpr = curve2D.curve1Dinter(coordinate[:, [0, 2] ][mask1],
+                                  'lin', "lin", nugget, interp[interp<0.5]  )
+        xinterSplit, _ = curve2D.curve1Dinter(coordinate[:, [0, 1] ][mask2],
                                   'lin', "lin", nugget, interp[interp>=0.5] )
-        yinterSplit = curve2D.curve1Dinter(coordinate[:, [0, 2] ][mask2],
+        yinterSplit, _ = curve2D.curve1Dinter(coordinate[:, [0, 2] ][mask2],
                                   'lin', "lin", nugget, interp[interp>=0.5]  )
         xinter = np.hstack((xinter, xinterSplit))
         yinter = np.hstack((yinter, yinterSplit))
         
-        ax1.plot(xinter, yinter, '--', label = str(nugget))
-        ax1.scatter(xinter, yinter, s = 60, marker = '+', color = 'red')
+        #ax1.plot(xinter, yinter, '--', label = str(nugget), linewidth = 1)
+        ax1.scatter(xinter, yinter, s = 40, marker = '+', color = 'red')
         ax1.set_xlabel('X (mm)')
         ax1.set_ylabel('Y (mm)')
+        ax1.invert_yaxis()  #y轴反向
         
     ax1.fill(coordinate[:, 1], coordinate[:, 2], alpha = 0.3, color = 'pink')
     

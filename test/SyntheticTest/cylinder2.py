@@ -45,10 +45,10 @@ for z in t:
 
 
 '''  Introduce error  '''
-percent = 0.15  # percentage of control points with error
+percent = 0.03  # percentage of control points with error
 
 # ± percentage maxDisplacement
-maxDisplace = 0.05 # percent
+maxDisplace = 0.15 # percent
 
 # random error in X and Y direction
 rng = default_rng()

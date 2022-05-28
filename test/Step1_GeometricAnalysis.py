@@ -25,7 +25,7 @@ resolution = 1  # mm/pixel
 fig = plt.figure()
 for yarn in np.arange(1,2):
     # surfPoints = np.load("weft_" + str(yarn) + ".npy")
-    surfPoints = np.load("PointsWithError0.0Percent.npy")
+    surfPoints = np.load("PointsWithError3.0Percent.npy")
     # load contour described by point cloud
 
     slices = np.unique(surfPoints[:, -1])
