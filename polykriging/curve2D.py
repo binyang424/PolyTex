@@ -8,6 +8,7 @@ Bin Yang  2021-9-2
 """
 import numpy as np
 import sympy as sym
+import matplotlib.pyplot as plt
 
 
 def addPoints(coordinate, threshold=0.03):
@@ -231,6 +232,184 @@ def curve1Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' '):
     return yinter, expr
 
 
+# ---------------------Derivative Kriging--------------
+# Initially programed by: Yixun Sun
+# Modified by Bin Yang
+# -----------------------------------------------------
+def solveB(M, U):
+    B = np.linalg.solve(M, U)
+    print('solution Matrix b writes:')
+    print(B)
+    return B
+
+
+def h(x1, x2):
+    return np.abs(x1 - x2)
+
+
+def buildKrigFunc_deriv(x, xKnown, xKnown_deriv, B, deriveFuncs, covFuncs, covFuncs_deriv):
+    funcKrig = 0
+    for i in range(len(xKnown)):
+        funcKrig = covFuncs(h(x, xKnown[i])) * B[i] + funcKrig
+
+    for i in range(len(xKnown), len(xKnown) + len(xKnown_deriv)):
+        funcKrig = covFuncs_deriv(h(x, xKnown_deriv[i - len(xKnown)])) * B[i] * np.sign(
+            xKnown_deriv[i - len(xKnown)] - x) + funcKrig
+
+    for i in range(len(xKnown) + len(xKnown_deriv), len(B)):
+        funcKrig = funcKrig + B[i] * deriveFuncs(x)[i - (len(xKnown) + len(xKnown_deriv))]
+    return funcKrig
+
+
+def buildM_deriv(x, x_deriv, name_drift, name_cov, covFuncs_deriv, covFuncs_deriv2, nugg):
+    """
+    Build the matrix M for the derivative kriging system
+
+    Parameter
+    ----------
+    x: array
+        x points
+    xDeriv: array
+        x points for derivative
+    name_drift: function
+        derivative functions
+    name_cov: function
+        covariance functions
+    covFuncs_deriv: function
+        derivative of covariance functions
+    covFuncs_deriv2: function
+        second derivative of covariance functions
+    nugg: float
+        nugget effect (variance)
+    """
+
+    # Initialization of matrix M
+    xlen, xlen_deriv, driftLen = len(x), len(x_deriv), len(name_drift(x[0]))
+    lenMatM = driftLen + xlen + xlen_deriv
+    M = np.zeros((lenMatM, lenMatM))
+
+    """
+    Build the matrix M for the derivative kriging system
+    """
+
+    for i in range(xlen):
+        for j in range(xlen):
+            if i == j:
+                M[i, j] = 0 + nugg
+            else:
+                M[i, j] = name_cov(h(x[i], x[j]))
+
+    for i in range(xlen):
+        for j in range(xlen_deriv):
+            # TODO: replace the np.sign with np.sign()
+            M[i, j + xlen] = covFuncs_deriv(x[i] - x_deriv[j]) * np.sign(-x[i] + x_deriv[j])
+            M[j + xlen, i] = covFuncs_deriv(x[i] - x_deriv[j]) * np.sign(-x[i] + x_deriv[j])
+
+    for i in range(xlen_deriv):
+        for j in range(xlen_deriv):
+            # TODO: replace the np.sign with np.sign()
+            M[i + xlen, j + xlen] = covFuncs_deriv2(x_deriv[i] - x_deriv[j]) * np.sign(-x_deriv[i] + x_deriv[j])
+            M[j + xlen, i + xlen] = covFuncs_deriv2(x_deriv[i] - x_deriv[j]) * np.sign(-x_deriv[i] + x_deriv[j])
+
+    for i in range(xlen):
+        for j in range(driftLen):
+            M[i, j + xlen + xlen_deriv] = name_drift(x[i])[j]
+            M[j + xlen + xlen_deriv, i] = name_drift(x[i])[j]
+
+    print('Matrix M writes:')
+    print(M)
+    print('Solve M*b=u to obtain Kriging function')
+
+    return M
+
+
+def buildU_deriv(y, y_deriv, deriveFuncs):
+    ylen, ylen_deriv, deriveFuncLen = len(y), len(y_deriv), len(deriveFuncs(y[0]))
+    lenMatU = deriveFuncLen + ylen + ylen_deriv
+    U = np.zeros(lenMatU)
+    U[:ylen] = y
+    U[ylen:ylen + ylen_deriv] = y_deriv
+    print('Matrix u writes:')
+    print(U)
+    return U
+
+def bd_Deriv_kriging_func(x, y, xDeriv, yDeriv, choixDerive, choixCov, plot_x_pts, nugg):
+    """
+    Derivative kriging function.
+
+    Parameters:
+    ----------
+    x: array
+        x points
+    y: array
+        y points
+    xDeriv: array
+        x points for derivative
+    yDeriv: array
+        the derivative of xDeriv points
+    choixDerive: string
+        'cst', 'lin' or 'quad'
+    choixCov: string
+        'lin' or 'cub'
+    plot_x_pts: int
+        number of points for plot
+    nugg: float
+        nugget effect
+
+    Returns:
+    --------
+    kringFunctionStr: string
+        string of the kriging function
+    x_var_sym: string
+        string of the x variable
+    """
+
+    # plot the original dataset using scatter
+    plt.scatter(x, y, color='k', marker='x', alpha=0.7, s=12, label='')
+
+    # ---------------Choice of drift -----------------------
+    deriveFuncs = {'cst': lambda x: [1], 'lin': lambda x: [1, x]}
+    # -------------------Choice of covariance---------------
+    covFuncs = {'cub': lambda x: x ** 3., 'lin': lambda x: x}
+
+    # ------------------Derivative of covariance-------------
+    covFuncs_deriv = {'cub': lambda x: 3 * x ** 2., 'lin': lambda x: x ** 0}
+    covFuncs_deriv2 = {'cub': lambda x: 6 * x ** 1., 'lin': lambda x: x * 0}
+
+    # ---------------------Build matrix M---------------------
+    M = buildM_deriv(x, xDeriv, deriveFuncs[choixDerive], covFuncs[choixCov], covFuncs_deriv[choixCov],
+                     covFuncs_deriv2[choixCov], nugg)
+
+    # ---------------------Build matrix u--------------
+    U1 = buildU_deriv(y, yDeriv, deriveFuncs[choixDerive])
+
+    # ----------------------solve b--------------------
+    B1 = solveB(M, U1)
+
+    # ----------------build string function------------
+    lowerX, upperX = min(x), max(x)
+    intervalX = (upperX - lowerX) / plot_x_pts
+    x_krig = [i * intervalX for i in range(int(lowerX / intervalX), int((upperX) / intervalX) + 1)]
+    y_krig = [buildKrigFunc_deriv(x_krig[i], x, xDeriv, B1, deriveFuncs[choixDerive], covFuncs[choixCov],
+                                  covFuncs_deriv[choixCov]) for i in range(len(x_krig))]
+    sum_ave = 0
+    for i in range(1, len(x_krig)):
+        hh = x_krig[i] - x_krig[i - 1]
+        a_b = y_krig[i] + y_krig[i - 1]
+        sum_ave = sum_ave + 0.5 * hh * a_b
+
+    sum_ave = sum_ave / h(min(x), max(x))
+    plt.plot(x_krig, y_krig, linestyle='--', lw=1, label='Nugget effect = ' + str(nugg))
+
+    plt.ylabel('y')
+    plt.xlabel('x')
+    plt.legend(loc='upper left', ncol=1)
+
+    plt.show()
+
+    return sum_ave
+
+
 if __name__ == "__main__":
     dataset = np.array([[0, 0],
                         [0.25, -1],
@@ -249,7 +428,6 @@ if __name__ == "__main__":
     print("the kriging matrix:\n", mat_krig)
     print("the kriged y values:\n", yinter)
     print("vector_ba:\n", vector_ba)
-
 
 '''
 the final mat_krig for checking purpose:
