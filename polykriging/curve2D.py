@@ -56,7 +56,7 @@ def func_select(drift_name, cov_name):
     cov_funcs = {
         'lin': lambda h: h,
         'cub': lambda h: h ** 3.0,
-        # Natural logarithm, element-wise. Do not work in this version!!!
+        # Natural logarithm, element-wise. Does not work in this version!!!
         'log': lambda h: h ** 2.0 * sym.log(h) if h != 0 else 0,
     }
     # Int number of 'a_len', which is based on the drift function, will be used in building of kriging matrix.
@@ -68,27 +68,16 @@ def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
     '''
     Solve the kriging equation: [Matrix_kriging] [b_a] = [u.. 0..]
 
-    Parameters
-    ----------
-    dataset: numpy array
-        X-Y.
-    krig_len: int
-        The length of the kriging vector: shape of kriging vector b_a.
-    mat_krig: numpy array
-        The kriging matrix.
-    inverseType: String
-        The type of inverse matrix.
+    :param dataset: numpy array. The sample points. X-Y.
+    :param krig_len: int. The length of the kriging vector.
+    :param mat_krig: numpy array. The kriging matrix.
+    :param inverseType: String. The type of the inverse matrix.
         "inverse" : inverse matrix
         "pseudoinverse" : generalized inverse/pseudoinverse
-
-    Returns
-    -------
-    mat_krig_inv: numpy array
-        The inverse matrix of the kriging matrix.
-    b_a: numpy array
-        The kriging vector.
+    :return b_a: numpy array. The kriging vector.
+    :return mat_krig_inv: numpy array. The inverse matrix of the kriging matrix.
     '''
-
+    # TODO: seperate the build of U vector and the solve of the kriging equation
     len_b = dataset.shape[0]
     u = np.zeros((krig_len, 1))
     u[:len_b, 0] = dataset[:, 1]
@@ -175,9 +164,6 @@ def curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0):
 
     for i in np.arange(len_a):
         mat_krig[:len_b, len_b + i] = a[i]
-
-    ##    print("the half mat_krig:\n", mat_krig)
-    ##    print('The value of the half determinant is {} '.format(np.linalg.det(mat_krig)))
 
     mat_krig = mat_krig + mat_krig.T - np.diag(mat_krig.diagonal()) + nugget * nuggetEffect
 
@@ -336,32 +322,16 @@ def buildU_deriv(y, y_deriv, deriveFuncs):
 def bd_Deriv_kriging_func(x, y, xDeriv, yDeriv, choixDerive, choixCov, plot_x_pts, nugg):
     """
     Derivative kriging function.
-
-    Parameters:
-    ----------
-    x: array
-        x points
-    y: array
-        y points
-    xDeriv: array
-        x points for derivative
-    yDeriv: array
-        the derivative of xDeriv points
-    choixDerive: string
-        'cst', 'lin' or 'quad'
-    choixCov: string
-        'lin' or 'cub'
-    plot_x_pts: int
-        number of points for plot
-    nugg: float
-        nugget effect
-
-    Returns:
-    --------
-    kringFunctionStr: string
-        string of the kriging function
-    x_var_sym: string
-        string of the x variable
+    :param x: array, x points
+    :param y: array, y points
+    :param xDeriv: array, x points for derivative
+    :param yDeriv: array, the derivative of xDeriv points
+    :param choixDerive: string, 'cst', 'lin' or 'quad'
+    :param choixCov: string, 'lin' or 'cub'
+    :param plot_x_pts: array, number of points for plot
+    :param nugg: float, nugget effect (variance)
+    :return kringFunctionStr: string, string of the kriging function
+    :return x_var_sym: string, string of the x variable
     """
 
     # plot the original dataset using scatter
