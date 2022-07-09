@@ -29,6 +29,6 @@ x_deriv = [0.5]
 y_deriv = [1]
 
 # bd_Deriv_kriging_func(x, y, xDeriv, yDeriv, choixDerive, choixCov, plot_x_pts, nugg)
-sum_ave = curve2D.bd_Deriv_kriging_func(x, y, x_deriv, y_deriv, 'cst', 'cub', 100, 0.05)
+sum_ave = curve2D.bd_Deriv_kriging_func(x, y, x_deriv, y_deriv, 'cst', 'cub', 100, 0.005)
 
 
