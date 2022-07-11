@@ -74,8 +74,13 @@ def buildM(xy, drift_name, cov_name):
     """
     Build the kriging matrix.
     :param xy: The coordinates of the points. The shape is (m, 2).
-    :param func_drift: The drift function.
-    :param a_len: The length of the drift function.
+    :param drift_name: str. The name of the drift function.
+        Possible values are: "const", "lin", "quad".
+    :param cov_name: str. The name of the covariance function.
+        Possible values are: "lin", "cub", "log".
+    :return drift_func: The drift function.
+    :return cov_func: The covariance function.
+    :return a_len: The length of the drift function.
     :return: The matrix of the kriging system. The shape is (n,n).
     """
     # ------------drift and covariance function selection------------
@@ -158,8 +163,6 @@ def buildKriging(xy, z, drift_name, cov_name, nugg=0):
     :param nugg: float. The nugget effect (variance).
     :return: The expression of kriging function in string format.
     """
-    global M, drift_func, cov_func, a_len,U, B, doc_krig
-
     # ------- build the kriging matrix -------
     M, drift_func, cov_func, a_len = buildM(xy, drift_name, cov_name)
 
