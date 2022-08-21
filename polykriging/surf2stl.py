@@ -1,5 +1,6 @@
 ### surf2stl.py --- Write a surface to a STL format file ---
-
+### The code in this file is developed by: asahidari and post on:
+### https://github.com/asahidari/surf2stl-python
 ### Copyright (c) 2020 asahidari
 
 ### This software is released under the MIT License.
