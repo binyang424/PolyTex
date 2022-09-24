@@ -17,7 +17,7 @@ if __name__ == '__main__':
     s = [0, 0.5, 1]
     t = [0, 1]
 
-    nugg = [0, 0.2]
+    nugg = [0, 0.]
 
     xexpr = buildKriging(s, t, x, ['lin', 'const'], ['cub', 'lin'], nugg)
     yexpr = buildKriging(s, t, y, ['lin', 'const'], ['cub', 'lin'], nugg)

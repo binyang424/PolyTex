@@ -175,10 +175,50 @@ def curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0):
     # get the kriging function expression 
     expr = curve1Dexpression(len_b, func_drift, func_cov, adef, dataset, vector_ba)
 
-    return mat_krig, mat_krig_inv, vector_ba, expr
+    return mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov
 
 
-def curve1Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' '):
+def lambda_weight(X, X_train, func_drift, func_cov, mat_krig):
+    """
+    Calculate the weight of the lambda matrix
+    :param X: the locations where function values are unknown.
+    :param X_train: the training data
+    :param func_drift:
+    :param func_cov:
+    :param mat_krig: the kriging matrix
+    """
+    len_a = len(func_drift(1, [1, 1, 1, 1, 1, 1]))
+    len_b = len(X_train)
+
+    K_h = np.zeros((len_a + len_b, X.shape[0]))
+
+    for i, x_i in enumerate(X):
+        K_h[:len_b, i] = func_cov(np.squeeze(abs(X_train - x_i)))
+
+    K_h[len_b:, :] = np.array([func_drift(x, [1, 1, 1, 1, 1, 1, 1]) for x in np.squeeze(X)]).transpose()
+
+    lambda_ = np.linalg.solve(mat_krig, K_h)
+    return K_h, lambda_
+
+
+def func_var(X, K_h, lambda_, nuggetEffect=0):
+    """
+    Calculate the variance of the prediction
+    :param X:
+    :param K_h:
+    :param lambda_: the weight of gloabl combination.
+        Note that it is different from the vector_ba in dual Kriging formulation.
+    :return std_prediction: the standard deviation of the prediction
+    """
+    var = np.zeros(X.shape[0])
+    for i in np.arange(X.shape[0]):
+        var[i] = np.abs(nuggetEffect - np.dot(K_h[:, i], lambda_[:, i]))
+    std_prediction = np.sqrt(var)
+
+    return std_prediction
+
+
+def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', return_std=False):
     '''
     Parameters
     ----------
@@ -199,21 +239,29 @@ def curve1Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' '):
         The kriging expression.
     '''
 
-    mat_krig, mat_krig_inv, vector_ba, expr = \
+    mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov= \
         curveKrig1D(dataset, name_drift, name_cov, nuggetEffect)
 
     x = sym.symbols('x')
 
     if type(interp) is np.ndarray:
-        yinter = np.empty(interp.shape[0])
-        for pts in range(interp.shape[0]):
-            yinter[pts] = expr.subs({x: interp[pts]})
+        X_predict = interp
     else:
-        yinter = np.empty(dataset.shape[0])
-        for pts in range(dataset.shape[0]):
-            yinter[pts] = expr.subs({x: dataset[pts, 0]})
+        X_predict = dataset[:,0]
+
+    yinter = np.empty(X_predict.shape[0])
+    for pts in range(X_predict.shape[0]):
+        yinter[pts] = expr.subs({x: interp[pts]})
 
     yinter[np.abs(yinter) < 1e-15] = 0.
+
+    X_train = dataset[:,0]
+    
+    if return_std:
+        K_h, lambda_ = lambda_weight(X_predict, X_train, func_drift, func_cov, mat_krig)
+        std_prediction = func_var(X_predict, K_h, lambda_, nuggetEffect=nuggetEffect)
+
+        return yinter, expr, std_prediction
 
     return yinter, expr
 
@@ -393,7 +441,7 @@ if __name__ == "__main__":
     mat_krig, mat_krig_inv, vector_ba, expr = \
         curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0.0)
 
-    yinter = curve1Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ')
+    yinter = curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ')
 
     print("the kriging matrix:\n", mat_krig)
     print("the kriged y values:\n", yinter)

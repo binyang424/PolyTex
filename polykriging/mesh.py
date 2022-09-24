@@ -1,6 +1,4 @@
-from polykriging import utility
 import numpy as np
-from shapely.geometry import Polygon, Point
 import pyvista as pv
 from pyvista import _vtk
 
@@ -103,34 +101,6 @@ def label_mask(mesh_background, mesh_tri, tolerance=0.0000001):
     mask = select['SelectedPoints'] == 1
     label_yarn = select['SelectedPoints']
     return mask, label_yarn
-
-
-def save_nrrd(cell_label, mesh_shape, file_path_name):
-    """
-    Save a mesh to a nrrd file.
-    :param cell_label: the cell label of the mesh, type: 1d numpy.ndarray
-    :param mesh_shape: number of elements in x, y, and z direction, type: numpy array(int, int, int)
-    :param file_path_name: the path and name of the nrrd file, without extension, type: str
-    :return: None
-    """
-    import nrrd
-
-    yarnIndex = cell_label
-
-    nx, ny, nz = mesh_shape
-
-    yarnIndex = yarnIndex.reshape((nz, ny, nx))
-
-    data = yarnIndex + 1
-    data = np.int32(data)
-
-    header = {'space origin': [0, 0, 0],
-              "space directions": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-              'space': 'left-anterior-superior'}
-
-    # Write to a NRRD file with pynrrd
-    nrrd.write(file_path_name + ".nrrd", data, header)
-    return None
 
 
 def intersection_detect(label_set_dict):
@@ -241,7 +211,9 @@ def to_meshio_data(mesh, theta_res, correction=True):
     """
     Convert PyVista flavor data structure to meshio.
     :param mesh: PyVista.DataSet - Any PyVista mesh/spatial data type.
-
+    :param theta_res: number of points in the radial direction
+    :param correction: boolean, if True, tubular mesh will be closed
+            at the ends with triangles.
     """
     try:
         import meshio
@@ -333,20 +305,24 @@ def mesh_correction(cells, points, theta_res):
     # get index of boundary points
     first_boundary_ind = np.arange(theta_res)
     second_boundary_ind = np.arange(points.shape[0] - 1 - theta_res, points.shape[0] - 1)
+
     # coordinates of boundary points
     first_boundary = points[first_boundary_ind]
     second_boundary = points[second_boundary_ind]
+
     # calculate the centroids of the boundaries
     centroid_first_boundary = np.mean(first_boundary, axis=0)
     centroid_second_boundary = np.mean(second_boundary, axis=0)
+
     # add the centroids to the points
     points = np.vstack((points, centroid_first_boundary, centroid_second_boundary))
 
     # new cells
-    first_boundary_new_cell = [np.array([points.shape[0] - 2, i, i + 1]) for i in first_boundary_ind[:-1]]
+    first_boundary_new_cell = [np.array([points.shape[0] - 2, i + 1, i]) for i in first_boundary_ind[:-1]]
     first_boundary_new_cell.append(np.array([points.shape[0] - 2, first_boundary_ind[0], first_boundary_ind[-1]]))
+
     second_boundary_new_cell = [np.array([points.shape[0] - 1, i, i + 1]) for i in second_boundary_ind[:-1]]
-    second_boundary_new_cell.append(np.array([points.shape[0] - 1, second_boundary_ind[0], second_boundary_ind[-1]]))
+    second_boundary_new_cell.append(np.array([points.shape[0] - 1, second_boundary_ind[-1], second_boundary_ind[0]]))
     new_cells = first_boundary_new_cell + second_boundary_new_cell
 
     cells = [('quad', list(cells_connectivity)), ('triangle', new_cells)]

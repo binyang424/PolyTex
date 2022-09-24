@@ -8,7 +8,7 @@ setup(
     author='Bin Yang',
     author_email='bin.yang@polymtl.ca',
     license='BSD 2-clause',
-    packages=['polykriging'],
+    packages=['polykriging', 'polykriging.fileio', 'polykriging.thirdparty'],
     install_requires=['numpy>=0.5',
                       'matplotlib',
                       'sympy',
