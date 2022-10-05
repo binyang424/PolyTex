@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from polykriging import curve2D, utility, statistics
+import polykriging as pk
+
+
 '''
 Statistical analysis of points on a yarn surface
 '''
@@ -14,16 +17,20 @@ nuggets = [1e-2]
 
 
 ''' Data loading '''
-path = utility.choose_file(titl =
-                                "Directory for .npz file containing GeometryFeatures and CoordinatesSorted")
+path = utility.choose_file(titl = "Directory for .npz file containing "
+                                  "GeometryFeatures and CoordinatesSorted")
 pcdRaw = np.load(path)
 
-# geomFeature = [Area, Perimeter, Width, Height, AngleRotated, Circularity,
-#       centroidX, centroidY, centroidZ]
-# coordinateSorted = [distance, normalized distance, angular position (degree),
-#       coordinateSorted(X, Y, Z)]
+
+column_coo = ["distance", "normalized distance", "angular position (degree)",
+              "coordinateSorted(X, Y, Z)"]
 coordinatesSorted = pcdRaw["coordinatesSorted.npy"]
+
+column_geom = ["Area", "Perimeter", "Width", "Height", "AngleRotated",
+               "Circularity", "centroidX", "centroidY", "centroidZ"]
 geomFeatures = pcdRaw["geomFeatures.npy"]
+
+variance = np.var(coordinatesSorted[:, 1])
 
 ##coordinatesSorted[:,-3] += 4
 ##coordinatesSorted[:,-2] += 2

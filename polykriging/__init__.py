@@ -9,4 +9,5 @@ __author__ = 'Bin Yang'
 __credits__ = 'Polytechnique Montreal & Wuhan University of Technology'
 
 
-from . import fileio
+from .fileio import *
+from . import stats

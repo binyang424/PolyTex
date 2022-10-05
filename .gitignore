@@ -1,4 +1,3 @@
-./polykriging.egg-info
-./build
-
 *.pyc
+/build/
+/polykriging.egg-info/
