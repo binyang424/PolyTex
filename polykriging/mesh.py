@@ -1,3 +1,6 @@
+# ！/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import pyvista as pv
 from pyvista import _vtk
@@ -23,14 +26,22 @@ def isInbBox(bbox, point):
 def background_mesh_generator(bbox, voxel_size=None):
     """
     Generate a voxel background mesh.
-    :param bbox: bounding box of the background mesh specified through a numpy array
+
+    Parameters
+    ----------
+    bbox: bounding box of the background mesh specified through a numpy array
         contains the minimum and maximum coordinates of the bounding box
         [xmin, xmax, ymin, ymax, zmin, zmax]
-    :param voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray
+    voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray
         if None, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
         if float, the voxel size is set to the float value in x, y, z directions;
         if numpy.ndarray, the voxel size is set to the values in the numpy.ndarray for corresponding directions.
-    :return: pyvista mesh object (UnstructuredGrid)
+
+    Returns
+    -------
+    grid : pyvista mesh object (UnstructuredGrid)
+    mesh_shape : tuple
+        shape of the mesh
     """
     # get the size of the bounding box
     size = np.array([bbox[1] - bbox[0], bbox[3] - bbox[2], bbox[5] - bbox[4]])

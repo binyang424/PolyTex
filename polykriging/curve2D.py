@@ -12,10 +12,23 @@ import matplotlib.pyplot as plt
 
 
 def addPoints(coordinate, threshold=0.03):
-    '''
-    coordinate: [normalized distance, X, Y, Z]
-    threshold: the maximum delta normalized distance 
-    '''
+    """
+    Linearly interpolate the points between each of two points that
+    further than the threshold.
+
+    Parameters
+    ----------
+    coordinate : numpy array
+        The coordinates of the points. [normalized distance, X, Y, Z]
+    threshold : float, optional
+        The distance between two points. The default is 0.03.
+
+    Returns
+    -------
+    coordinate : numpy array
+        The coordinates of the points after linear interpolation.
+        [normalized distance, X, Y, Z]
+    """
     deltaD = np.diff(coordinate[:, 0])
 
     for iDelta in np.arange(deltaD.size):
@@ -40,10 +53,10 @@ def addPoints(coordinate, threshold=0.03):
 
 #  Drift and Covariance
 def func_select(drift_name, cov_name):
-    '''
-    This is the function for definition of drift function and covariance function 
+    """
+    This is the function for definition of drift function and covariance function
     in dictionary drif_funcs and cov_funcs.
-    '''
+    """
     # Definitions of drift functions by dictionary
     import sympy as sym
 
@@ -65,7 +78,7 @@ def func_select(drift_name, cov_name):
 
 
 def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
-    '''
+    """
     Solve the kriging equation: [Matrix_kriging] [b_a] = [u.. 0..]
 
     :param dataset: numpy array. The sample points. X-Y.
@@ -76,7 +89,7 @@ def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
         "pseudoinverse" : generalized inverse/pseudoinverse
     :return b_a: numpy array. The kriging vector.
     :return mat_krig_inv: numpy array. The inverse matrix of the kriging matrix.
-    '''
+    """
     # TODO: seperate the build of U vector and the solve of the kriging equation
     len_b = dataset.shape[0]
     u = np.zeros((krig_len, 1))
@@ -94,9 +107,9 @@ def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
 
 
 def curve1Dexpression(len_b, func_drift, func_cov, adef, dataset, vector_ba):
-    '''
+    """
     return the Kriging function expression.
-    '''
+    """
     x = sym.symbols('x')
 
     # drift: func_drift(x, adef)
@@ -122,7 +135,7 @@ def curve1Dexpression(len_b, func_drift, func_cov, adef, dataset, vector_ba):
 
 # Curve Kriging
 def curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0):
-    '''
+    """
     Parameters
     ----------
     dataset: numpy array
@@ -137,7 +150,7 @@ def curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0):
     -------
     expr : Expression
         The kriging expression.
-    '''
+    """
 
     # Read the drift and covariance type.
     func_drift, func_cov, len_a = func_select(name_drift, name_cov)
@@ -181,11 +194,27 @@ def curveKrig1D(dataset, name_drift, name_cov, nuggetEffect=0):
 def lambda_weight(X, X_train, func_drift, func_cov, mat_krig):
     """
     Calculate the weight of the lambda matrix
-    :param X: the locations where function values are unknown.
-    :param X_train: the training data
-    :param func_drift:
-    :param func_cov:
-    :param mat_krig: the kriging matrix
+
+    Parameters
+    ----------
+    X : numpy array
+        The locations where function values are unknown and to be predicted.
+    X_train : numpy array
+        The training data. The locations where function values are known.
+    func_drift : function
+        The drift function.
+    func_cov : function
+        The covariance function.
+    mat_krig : numpy array
+        The kriging matrix.
+
+    Returns
+    -------
+    K_h : numpy array
+        The kriging matrix.
+    lambda_ : numpy array
+        The weight of gloabl combination. Note that it is different from
+        the vector_ba in dual Kriging formulation.
     """
     len_a = len(func_drift(1, [1, 1, 1, 1, 1, 1]))
     len_b = len(X_train)
@@ -203,12 +232,24 @@ def lambda_weight(X, X_train, func_drift, func_cov, mat_krig):
 
 def func_var(X, K_h, lambda_, nuggetEffect=0):
     """
-    Calculate the variance of the prediction
-    :param X:
-    :param K_h:
-    :param lambda_: the weight of gloabl combination.
-        Note that it is different from the vector_ba in dual Kriging formulation.
-    :return std_prediction: the standard deviation of the prediction
+    Calculate the variance of the prediction.
+
+    Parameters
+    ----------
+    X : numpy array
+        The locations where function values are unknown and to be predicted.
+    K_h : numpy array
+        The kriging matrix.
+    lambda_ : numpy array
+        The weight of gloabl combination. Note that it is different from
+        the vector_ba in dual Kriging formulation.
+    nuggetEffect : float
+        The nugget effect. Default is 0.
+
+    Returns
+    -------
+    std_prediction : numpy array
+        the standard deviation of the prediction
     """
     var = np.zeros(X.shape[0])
     for i in np.arange(X.shape[0]):
@@ -219,10 +260,10 @@ def func_var(X, K_h, lambda_, nuggetEffect=0):
 
 
 def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', return_std=False):
-    '''
+    """
     Parameters
     ----------
-    dataset: numpy array
+    dataset : numpy array
         X-Y.
     name_drift : String
         Name of drift.
@@ -233,11 +274,12 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
     interp: Numpy array
         The points that need to be interpolated, 1D numpy array.
         If interp is not given, the x-coordinate of the sample points is used.
+
     Returns
     -------
     expr : Expression
         The kriging expression.
-    '''
+    """
 
     mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov= \
         curveKrig1D(dataset, name_drift, name_cov, nuggetEffect)
@@ -301,19 +343,19 @@ def buildM_deriv(x, x_deriv, name_drift, name_cov, covFuncs_deriv, covFuncs_deri
 
     Parameter
     ----------
-    x: array
+    x : array
         x points
-    xDeriv: array
+    xDeriv : array
         x points for derivative
-    name_drift: function
+    name_drift : function
         derivative functions
-    name_cov: function
+    name_cov : function
         covariance functions
-    covFuncs_deriv: function
+    covFuncs_deriv : function
         derivative of covariance functions
-    covFuncs_deriv2: function
+    covFuncs_deriv2 : function
         second derivative of covariance functions
-    nugg: float
+    nugg : float
         nugget effect (variance)
     """
 
@@ -447,17 +489,17 @@ if __name__ == "__main__":
     print("the kriged y values:\n", yinter)
     print("vector_ba:\n", vector_ba)
 
-'''
-the final mat_krig for checking purpose:
- [[0.       0.015625 0.421875 1.       1.      ]
- [0.015625 0.       0.125    0.421875 1.      ]
- [0.421875 0.125    0.       0.015625 1.      ]
- [1.       0.421875 0.015625 0.       1.      ]
- [1.       1.       1.       1.       0.      ]]
- 
-[[0.   0.25 0.75 1.   1.  ]
- [0.25 0.   0.5  0.75 1.  ]
- [0.75 0.5  0.   0.25 1.  ]
- [1.   0.75 0.25 0.   1.  ]
- [1.   1.   1.   1.   0.  ]]
- '''
+    '''
+    the final mat_krig for checking purpose:
+     [[0.       0.015625 0.421875 1.       1.      ]
+     [0.015625 0.       0.125    0.421875 1.      ]
+     [0.421875 0.125    0.       0.015625 1.      ]
+     [1.       0.421875 0.015625 0.       1.      ]
+     [1.       1.       1.       1.       0.      ]]
+     
+    [[0.   0.25 0.75 1.   1.  ]
+     [0.25 0.   0.5  0.75 1.  ]
+     [0.75 0.5  0.   0.25 1.  ]
+     [1.   0.75 0.25 0.   1.  ]
+     [1.   1.   1.   1.   0.  ]]
+     '''

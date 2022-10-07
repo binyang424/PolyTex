@@ -7,27 +7,35 @@ def voxelize(mesh, density=None, check_surface=True, density_type='cell_number',
     Voxelize surface mesh to UnstructuredGrid. The bounding box of the voxelized mesh possibly smaller
     than the bounding box of the surface mesh when cell_size type of density is used.
 
-    :param mesh: surface mesh
-    :param density: float, int or list
+    Parameters
+    ----------
+    mesh : pyvista.PolyData
+        Surface mesh to be voxelized.
+    density : float, int, or list of float or int
         Uniform size of the voxels when single float passed. A list of densities along
         x,y,z directions. Defaults to 1/100th of the mesh length for cell_size (float or list)
         flavor density and 50 cells in each direction for cell_number density (int or list).
-    :param check_surface: bool
+    check_surface : bool
         Specify whether to check the surface for closure. If on, then the algorithm
         first checks to see if the surface is closed and manifold. If the surface is
         not closed and manifold, a runtime error is raised.
-    :param density_type: str
+    density_type : str
         Specify the type of density to use. Options are 'cell_number' or 'cell_size'.
         When 'cell_number' is used, the density is the number of cells in each direction.
         When 'cell_size' is used, the density is the size of cells in each direction.
-    :param contained_cells: bool
+    contained_cells : bool
         If True, only cells that fully are contained in the surface mesh will be selected.
         If False, extract the cells that contain at least one of the extracted points.
-    :return: pyvista.UnstructuredGrid
+
+    Returns
+    -------
+    vox : pyvista.UnstructuredGrid
         Voxelized unstructured grid of the original mesh.
-    :return ugrid: pyvista.UnstructuredGrid    
+    ugrid : pyvista.UnstructuredGrid
         The backgrond mesh for voxelization
-    Examples: Create an equal density voxelized mesh using cell_size density.
+
+    Examples:
+    Create an equal density voxelized mesh using cell_size density.
 
     >>> import pyvista as pv
     >>> from pyvista import examples

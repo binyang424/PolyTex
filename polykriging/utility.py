@@ -1,3 +1,6 @@
+# ！/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 def zipFilelist(path, fileList, filename, removeFile="True"):
     """
     Add multiple files to the zip file.
@@ -54,6 +57,8 @@ def filenames(path, condition="csv"):
 def create_csv(path, filename, coordinate, csv_head=["line", "x", "y", "z"]):
     """
     coordinate: [[x,y,z]]
+    
+    TODO: 不定参数个数作为每列的标题存储在第一行，需要实现
     
     """
     path = path + filename + ".csv"

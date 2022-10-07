@@ -1,3 +1,6 @@
+# ！/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import pyvista as pv
 import numpy as np
 import itertools, time, vtk, multiprocessing
@@ -60,14 +63,17 @@ def get_edge_length(points, edges):
 
 def adjacent_from_edge(cells, edges, cell_idx=None, return_dict={}):
     """
-    Get the adjacent cells of the edges to be collapsed.
-    :param cells: (n, 4) array
+    Returns the adjacent cells of the edges with the index of the edge as key.
+
+    Parameters
+    ----------
+    cells: (n, 4) array
         cell list of the mesh expressed in node connectivity
-    :param edges: (m, 2) array
+    edges: (m, 2) array
         edge list to be collapsed
-    :param cell_idx: (n,) array
+    cell_idx: (n,) array
         cell index. If None, it will be generated as np.arange(n). (default: None)
-    :param return_dict: a dictionary of adjacent cells with key as the edge
+    return_dict: a dictionary of adjacent cells with key as the edge
     """
     if cell_idx is None:
         cell_idx = np.arange(cells.shape[0])
@@ -115,8 +121,11 @@ def adjacent_from_edge_parallel(cells, edge_collapse, n_cores=4):
 def get_boundary_points(mesh):
     """
     Returns a list of boundary points from this mesh.
-    :param mesh: A pyvista mesh object
-    :return boundary_points: A list of boundary points
+
+    Parameters
+    ----------
+    mesh: pyvista mesh object
+    boundary_points: A list of boundary points
     """
     pts_boundary_idx = []
     points = mesh.points
