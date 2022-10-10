@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Curve Kriging
+Implementation of 2D Curve Kriging.
 
 Bin Yang  2021-9-2
 """
@@ -30,6 +30,8 @@ def addPoints(coordinate, threshold=0.03):
         [normalized distance, X, Y, Z]
     """
     deltaD = np.diff(coordinate[:, 0])
+    # print(deltaD[:3])
+    deltaD[abs(deltaD) == 1] = 0
 
     for iDelta in np.arange(deltaD.size):
         if deltaD[iDelta] < threshold:
@@ -38,14 +40,16 @@ def addPoints(coordinate, threshold=0.03):
             except NameError:
                 temp = coordinate[iDelta, :]
         else:
-            dtemp = np.linspace(coordinate[iDelta, 0], coordinate[iDelta + 1, 0], int(deltaD[iDelta] / 0.05) + 1,
+            dtemp = np.linspace(coordinate[iDelta, 0], coordinate[iDelta + 1, 0], int(deltaD[iDelta] / threshold) + 1,
                                 endpoint=True)
             xtemp = np.interp(dtemp, coordinate[[iDelta, iDelta + 1], 0], coordinate[[iDelta, iDelta + 1], 1])
             ytemp = np.interp(dtemp, coordinate[[iDelta, iDelta + 1], 0], coordinate[[iDelta, iDelta + 1], 2])
-            ztemp = np.empty(xtemp.shape)
-            ztemp[:] = coordinate[0, -1]
+            ztemp = np.interp(dtemp, coordinate[[iDelta, iDelta + 1], 0], coordinate[[iDelta, iDelta + 1], 3])
 
-            temp = np.vstack((temp, np.vstack((dtemp.T, xtemp.T, ytemp.T, ztemp.T)).T))
+            try:
+                temp = np.vstack((temp, np.vstack((dtemp.T, xtemp.T, ytemp.T, ztemp.T)).T))
+            except NameError:
+                temp = np.vstack((dtemp.T, xtemp.T, ytemp.T, ztemp.T)).T
     coordinate = np.vstack((temp, coordinate[-1, :]))
 
     return coordinate
@@ -56,6 +60,22 @@ def func_select(drift_name, cov_name):
     """
     This is the function for definition of drift function and covariance function
     in dictionary drif_funcs and cov_funcs.
+
+    Parameters
+    ----------
+    drift_name : string
+        The name of the drift function. Possible values are: "const", "lin", and
+        "quad" for "constant", "linear", "quadratic", respectively.
+    cov_name : string
+        The name of the covariance function. Possible values are: "lin", "cub", and "log"
+        for "linear", "cubic", "logarithmic", respectively.
+
+    Returns
+    -------
+    drift_func : function
+        The drift function.
+    cov_func : function
+        The covariance function.
     """
     # Definitions of drift functions by dictionary
     import sympy as sym
@@ -81,14 +101,23 @@ def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
     """
     Solve the kriging equation: [Matrix_kriging] [b_a] = [u.. 0..]
 
-    :param dataset: numpy array. The sample points. X-Y.
-    :param krig_len: int. The length of the kriging vector.
-    :param mat_krig: numpy array. The kriging matrix.
-    :param inverseType: String. The type of the inverse matrix.
+    dataset: numpy array.
+        The sample points. X-Y.
+    krig_len: int.
+        The length of the kriging vector.
+    mat_krig: numpy array.
+        The kriging matrix.
+    inverseType: String.
+        The type of the inverse matrix. "inverse" or "pseudoinverse".
         "inverse" : inverse matrix
         "pseudoinverse" : generalized inverse/pseudoinverse
-    :return b_a: numpy array. The kriging vector.
-    :return mat_krig_inv: numpy array. The inverse matrix of the kriging matrix.
+
+    Returns
+    -------
+    b_a: numpy array.
+        The kriging vector.
+    mat_krig_inv: numpy array.
+        The inverse matrix of the kriging matrix.
     """
     # TODO: seperate the build of U vector and the solve of the kriging equation
     len_b = dataset.shape[0]
@@ -109,6 +138,26 @@ def curve1Dsolve(dataset, krig_len, mat_krig, inverseType="inverse"):
 def curve1Dexpression(len_b, func_drift, func_cov, adef, dataset, vector_ba):
     """
     return the Kriging function expression.
+
+    Parameters
+    ----------
+    len_b : int
+        The length of the b vector (the coefficient of linear combination).
+    func_drift : function
+        The drift function.
+    func_cov : function
+        The covariance function.
+    adef : numpy array
+        The coefficients of the drift function.
+    dataset : numpy array
+        The sample points. X-Y.
+    vector_ba : numpy array
+        The kriging vector.
+
+    Returns
+    -------
+    expr : sympy expression
+        The analytical expression of the function created by kriging.
     """
     x = sym.symbols('x')
 
@@ -281,7 +330,7 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
         The kriging expression.
     """
 
-    mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov= \
+    mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
         curveKrig1D(dataset, name_drift, name_cov, nuggetEffect)
 
     x = sym.symbols('x')
@@ -289,7 +338,7 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
     if type(interp) is np.ndarray:
         X_predict = interp
     else:
-        X_predict = dataset[:,0]
+        X_predict = dataset[:, 0]
 
     yinter = np.empty(X_predict.shape[0])
     for pts in range(X_predict.shape[0]):
@@ -297,8 +346,8 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
 
     yinter[np.abs(yinter) < 1e-15] = 0.
 
-    X_train = dataset[:,0]
-    
+    X_train = dataset[:, 0]
+
     if return_std:
         K_h, lambda_ = lambda_weight(X_predict, X_train, func_drift, func_cov, mat_krig)
         std_prediction = func_var(X_predict, K_h, lambda_, nuggetEffect=nuggetEffect)
@@ -313,6 +362,22 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
 # Modified by Bin Yang
 # -----------------------------------------------------
 def solveB(M, U):
+    """
+    Solve the linear equation system M * B = U
+    TODO: check the comments
+
+    Parameters
+    ----------
+    M : numpy array
+        The kriging matrix.
+    U : numpy array
+        The vector of the right hand side of the linear equation system.
+
+    Returns
+    -------
+    B : numpy array
+        The solution of the linear equation system.
+    """
     B = np.linalg.solve(M, U)
     print('solution Matrix b writes:')
     print(B)
@@ -320,6 +385,20 @@ def solveB(M, U):
 
 
 def h(x1, x2):
+    """
+    The function h(x1, x2) = abs(x1 - x2).
+
+    Parameters
+    ----------
+    x1 : float
+        The first point.
+    x2 : float
+        The second point.
+
+    Returns
+    -------
+    h : float
+    """
     return np.abs(x1 - x2)
 
 
@@ -409,19 +488,36 @@ def buildU_deriv(y, y_deriv, deriveFuncs):
     print(U)
     return U
 
+
 def bd_Deriv_kriging_func(x, y, xDeriv, yDeriv, choixDerive, choixCov, plot_x_pts, nugg):
     """
     Derivative kriging function.
-    :param x: array, x points
-    :param y: array, y points
-    :param xDeriv: array, x points for derivative
-    :param yDeriv: array, the derivative of xDeriv points
-    :param choixDerive: string, 'cst', 'lin' or 'quad'
-    :param choixCov: string, 'lin' or 'cub'
-    :param plot_x_pts: array, number of points for plot
-    :param nugg: float, nugget effect (variance)
-    :return kringFunctionStr: string, string of the kriging function
-    :return x_var_sym: string, string of the x variable
+
+    Parameters
+    ----------
+    x : array
+        x points
+    y : array
+        y points
+    xDeriv : array
+        x points for derivative
+    yDeriv : array
+        the derivative of xDeriv points
+    choixDerive : string
+        the name of the derivative function. Possible values are 'cst', 'lin' or 'quad'.
+    choixCov : string
+        the name of the covariance function. Possible values are 'lin' or 'cub'.
+    plot_x_pts: array
+        number of points for plot
+    nugg: float
+        nugget effect (variance)
+
+    Returns
+    -------
+    kringFunctionStr: string
+        String of the kriging function.
+    x_var_sym: string
+        string of the x variable
     """
 
     # plot the original dataset using scatter

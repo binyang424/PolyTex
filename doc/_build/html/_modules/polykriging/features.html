@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.features &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/polykriging.html">polykriging package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.features</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polykriging.features</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+
+
+<div class="viewcode-block" id="voxelize"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.features.voxelize">[docs]</a><span class="k">def</span> <span class="nf">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_number&#39;</span><span class="p">,</span> <span class="n">contained_cells</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Voxelize surface mesh to UnstructuredGrid. The bounding box of the voxelized mesh possibly smaller</span>
+<span class="sd">    than the bounding box of the surface mesh when cell_size type of density is used.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh : pyvista.PolyData</span>
+<span class="sd">        Surface mesh to be voxelized.</span>
+<span class="sd">    density : float, int, or list of float or int</span>
+<span class="sd">        Uniform size of the voxels when single float passed. A list of densities along</span>
+<span class="sd">        x,y,z directions. Defaults to 1/100th of the mesh length for cell_size (float or list)</span>
+<span class="sd">        flavor density and 50 cells in each direction for cell_number density (int or list).</span>
+<span class="sd">    check_surface : bool</span>
+<span class="sd">        Specify whether to check the surface for closure. If on, then the algorithm</span>
+<span class="sd">        first checks to see if the surface is closed and manifold. If the surface is</span>
+<span class="sd">        not closed and manifold, a runtime error is raised.</span>
+<span class="sd">    density_type : str</span>
+<span class="sd">        Specify the type of density to use. Options are &#39;cell_number&#39; or &#39;cell_size&#39;.</span>
+<span class="sd">        When &#39;cell_number&#39; is used, the density is the number of cells in each direction.</span>
+<span class="sd">        When &#39;cell_size&#39; is used, the density is the size of cells in each direction.</span>
+<span class="sd">    contained_cells : bool</span>
+<span class="sd">        If True, only cells that fully are contained in the surface mesh will be selected.</span>
+<span class="sd">        If False, extract the cells that contain at least one of the extracted points.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vox : pyvista.UnstructuredGrid</span>
+<span class="sd">        Voxelized unstructured grid of the original mesh.</span>
+<span class="sd">    ugrid : pyvista.UnstructuredGrid</span>
+<span class="sd">        The backgrond mesh for voxelization</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    Create an equal density voxelized mesh using cell_size density.</span>
+
+<span class="sd">    &gt;&gt;&gt; import pyvista as pv</span>
+<span class="sd">    &gt;&gt;&gt; from pyvista import examples</span>
+<span class="sd">    &gt;&gt;&gt; import polykriging.mesh as ms</span>
+<span class="sd">    &gt;&gt;&gt; mesh = pv.PolyData(examples.load_uniform().points)</span>
+<span class="sd">    &gt;&gt;&gt; vox, _ = ms.voxelize(mesh, density=0.5, density_type=&#39;cell_size&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; vox.plot(show_edges = True)</span>
+
+<span class="sd">    Create a voxelized mesh with specified number of elements in x, y, and z dimensions.</span>
+
+<span class="sd">    &gt;&gt;&gt; mesh = pv.PolyData(examples.load_uniform().points)</span>
+<span class="sd">    &gt;&gt;&gt; vox, _ = ms.voxelize(mesh, density=[50, 50, 50], density_type=&#39;cell_number&#39;, contained_cells=False)</span>
+<span class="sd">    &gt;&gt;&gt; vox.plot(show_edges = True)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">pyvista</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">is_pyvista_dataset</span><span class="p">(</span><span class="n">mesh</span><span class="p">):</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">density</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">density</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">density</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">density_x</span><span class="p">,</span> <span class="n">density_y</span><span class="p">,</span> <span class="n">density_z</span> <span class="o">=</span> <span class="p">[</span><span class="n">density</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">density</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">density_x</span><span class="p">,</span> <span class="n">density_y</span><span class="p">,</span> <span class="n">density_z</span> <span class="o">=</span> <span class="n">density</span>
+
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">bounds</span>
+    <span class="k">if</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s1">&#39;cell_number&#39;</span><span class="p">:</span>
+        <span class="n">density_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">density_x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">density_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">density_y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">density_z</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">density_z</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">density_x</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">density_y</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">density_z</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s1">&#39;cell_size&#39;</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">density_x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">density_y</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">density_z</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+    <span class="c1"># Create unstructured grid from the structured grid</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">StructuredGrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">ugrid</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+    <span class="c1"># get part of the mesh within the mesh&#39;s bounding surface.</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="n">ugrid</span><span class="o">.</span><span class="n">select_enclosed_points</span><span class="p">(</span>
+        <span class="n">mesh</span><span class="o">.</span><span class="n">extract_surface</span><span class="p">(),</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="n">check_surface</span>
+    <span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">selection</span><span class="o">.</span><span class="n">point_data</span><span class="p">[</span><span class="s1">&#39;SelectedPoints&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>
+
+    <span class="c1"># extract cells from point indices</span>
+    <span class="n">adjacent_cells</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">contained_cells</span>
+    <span class="n">vox</span> <span class="o">=</span> <span class="n">ugrid</span><span class="o">.</span><span class="n">extract_points</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">adjacent_cells</span><span class="o">=</span><span class="n">adjacent_cells</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vox</span><span class="p">,</span> <span class="n">ugrid</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># voxelize the mesh</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./00_surfaceMesh/profile_0.stl&quot;</span><span class="p">)</span>
+
+    <span class="c1"># test the effect of density on mesh volume and cell size</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+    <span class="n">vox</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">density</span><span class="p">,</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_size&#39;</span><span class="p">,</span> <span class="n">contained_cells</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">vox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -11,8 +11,13 @@ def get_cells(mesh):
     Returns a list of the cells from this mesh with mixed cell types.
     This properly unpacks the VTK cells array.(safe but now so fast)
 
-    :param mesh: A pyvista mesh object
-    :return cells: A list of cells
+    Parameters
+    ----------
+    mesh: A pyvista mesh object
+
+    Returns
+    -------
+    cells: A list of cells
     """
     offset = 0
     cells = []
@@ -28,13 +33,19 @@ def get_cells(mesh):
 def get_edges_from_tetra(cells):
     """
     Given cells of tetrahedral mesh, return all the edges.
-    :param cells: A numpy array in the shape of [n_cells, 4]
-        The cells array containing node connectivity
-    :return edges_for_cell: A list of edges
+
+    Parameters
+    ----------
+    cells: A numpy array in the shape of [n_cells, 4]
+        The cells array containing node connectivity.
+
+    Returns
+    -------
+    edges_for_cell: A list of edges
         The edges are sorted so that the first node is always smaller
         than the second. This is to ensure easy searching neighbors.
         The edges of a cell can be retrieved by edges[cell_index]
-    :return edges: A numpy array in the shape of [n_edges, 2]
+    edges: A numpy array in the shape of [n_edges, 2]
         The edges array containing node connectivity.
     """
     cells = np.sort(cells, axis=1)
@@ -52,11 +63,17 @@ def get_edges_from_tetra(cells):
 def get_edge_length(points, edges):
     """
     Returns the length of an edge given node position and the edge.
-    :param points: A numpy array in the shape of [n_points, 3]
+
+    Parameters
+    ----------
+    points: A numpy array in the shape of [n_points, 3]
         The points array containing node position
-    :param edges: A numpy array in the shape of [n_edges, 2]
+    edges: A numpy array in the shape of [n_edges, 2]
         The edges array containing node connectivity
-    :return edge_length: A numpy array in the shape of [n_edges]
+
+    Returns
+    -------
+    edge_length: A numpy array in the shape of [n_edges]
     """
     return np.linalg.norm(points[edges[:, 0]] - points[edges[:, 1]], axis=1)
 
@@ -73,7 +90,11 @@ def adjacent_from_edge(cells, edges, cell_idx=None, return_dict={}):
         edge list to be collapsed
     cell_idx: (n,) array
         cell index. If None, it will be generated as np.arange(n). (default: None)
-    return_dict: a dictionary of adjacent cells with key as the edge
+
+    Returns
+    -------
+    return_dict: dictionary
+        a dictionary of adjacent cells with key as the edge
     """
     if cell_idx is None:
         cell_idx = np.arange(cells.shape[0])
@@ -89,13 +110,19 @@ def adjacent_from_edge(cells, edges, cell_idx=None, return_dict={}):
 def adjacent_from_edge_parallel(cells, edge_collapse, n_cores=4):
     """
     Get the adjacent cells of the edges to be collapsed.
-    :param cells: (n, 4) array
+
+    Parameters
+    ----------
+    cells: (n, 4) array
         cell list of the mesh expressed in node connectivity
-    :param edge_collapse: (m, 2) array
+    edge_collapse: (m, 2) array
         edge list to be collapsed
-    :param n_cores: int
+    n_cores: int
         number of cores to use for multiprocessing (default: 4)
-    :return return_dict: a dictionary of adjacent cells with key as the edge
+
+    Returns
+    -------
+    return_dict: a dictionary of adjacent cells with key as the edge
     """
     cell_idx = np.arange(cells.shape[0])
 
@@ -126,6 +153,11 @@ def get_boundary_points(mesh):
     ----------
     mesh: pyvista mesh object
     boundary_points: A list of boundary points
+
+    Returns
+    -------
+    pts_boundary_idx: NumPy array
+        A numpy array in the shape of [n_boundary_points] containing the index of boundary points.
     """
     pts_boundary_idx = []
     points = mesh.points
@@ -143,9 +175,15 @@ def get_boundary_points(mesh):
 def get_maximal_independent_node(edges):
     """
     Get the maximal independent node set from the edge list.
-    :param edges: (n, 2) array
+
+    Parameters
+    ----------
+    edges: (n, 2) array
         edge list
-    :return pts_independent: (m,) array
+
+    Returns
+    -------
+    pts_independent: (m,) array
         maximal independent node set
     """
     import networkx as nx
@@ -165,17 +203,22 @@ def get_vertex_indicator(n_points, pts_boundary_idx, pts_independent, edges):
     The nodes to be collapsed are the ones with indicator function equal to 2
     while 0 and 1 are fixed.
 
-    :param n_points: int
+    Parameters
+    ----------
+    n_points: int
         number of vertices
-    :param pts_boundary_idx: (m,) array
+    pts_boundary_idx: (m,) array
         indices of boundary points
-    :param pts_independent: (n,) array
+    pts_independent: (n,) array
         indices of independent points
-    :param edges: (n', 2) array
+    edges: (n', 2) array
         edge list
-    :return vertex_indicator: (n_points,) array
+
+    Returns
+    -------
+    vertex_indicator: (n_points,) array
         indicator function of the vertices
-    :return edge_indicator: (n', 2) array
+    edge_indicator: (n', 2) array
         indicator function of the two vertices of an edge
     """
     # Eliminate the boundary vertices contained in pts_independent
@@ -193,9 +236,15 @@ def get_collapse_direction(edge_indicator):
     """
     Get the direction of edge collapse.
     The direction is determined by the indicator function of the two vertices.
-    :param edge_indicator: (n, 2) array
+
+    Parameters
+    ----------
+    edge_indicator: (n, 2) array
         indicator function of the two vertices of an edge
-    :return collapse_indicator: (n,) array
+
+    Returns
+    -------
+    collapse_indicator: (n,) array
         direction of edge collapse. possible values are "forward", "backward",
         "bilateral", and "neither"
     """
@@ -221,12 +270,18 @@ def get_surf_dist(surf, points):
     """
     Get the distance from a point to the surface mesh by finding the closest
     point on the surface mesh with KDTree.
-    :param surf: A pyvista triangular mesh object
-    :param points: (n, 3) array
+
+    Parameters
+    ----------
+    surf: A pyvista triangular mesh object
+    points: (n, 3) array
         points to be measured
-    :return surf_dist: (n,) array of float
+
+    Returns
+    -------
+    surf_dist: (n,) array of float
         distance from the points to the surface mesh
-    :return idx: (n,) array of int
+    idx: (n,) array of int
         index of the closest point on the surface mesh
     """
     from scipy.spatial import KDTree
@@ -242,24 +297,30 @@ def get_surf_dist(surf, points):
 def get_edge_collapse(points, edges, surf_dist, edge_indicator, threshold=1.2):
     """
     Get the edge collapse list.
-    :param points: (n, 3) array
+
+    Parameters
+    ----------
+    points: (n, 3) array
         vertex list
-    :param edges: (n', 2) array
+    edges: (n', 2) array
         edge list
-    :param surf_dist: (n,) array
+    surf_dist: (n,) array
         surface distance of the vertices to interfaces
-    :param edge_indicator: (n', 2) array
+    edge_indicator: (n', 2) array
         indicator function of the two vertices of an edge. possible values are
         0, 1, and 2 for each containing boundary, independent, and free vertices
         respectively.
-    :param threshold: float
+    threshold: float
     # TODO: explain this parameter
         threshold for the surface distance to filter out the edges to be collapsed.
         The edges to be collapsed are the ones with edge length less than the threshold
         and surface distance of the two vertices are both greater than the threshold.
-    :return edge_collapse: (n'', 2) array
+
+    Returns
+    -------
+    edge_collapse: (n'', 2) array
         edge collapse list
-    :return collapse_indicator: (n'', 2) array
+    collapse_indicator: (n'', 2) array
         indicator function of the two vertices of an edge to be collapsed. possible values are
         "forward", "backward", "bilateral", and "neither"
     """
@@ -287,12 +348,18 @@ def get_edge_collapse(points, edges, surf_dist, edge_indicator, threshold=1.2):
 def renumber_points(pts_del, cells, proc_num, return_dict={}):
     """
     Renumber the points in cells after some points are deleted.
-    :param pts_del: A list of points to be deleted
-    :param cells: A numpy array in the shape of [n_cells, 4]
+
+    Parameters
+    ----------
+    pts_del: A list of points to be deleted
+    cells: A numpy array in the shape of [n_cells, 4]
         The cells array containing node connectivity
-    :param proc_num: Int, the number of process for multiprocessing.
-    :param return_dict: A dictionary to store the result of each process.
-    :return num_diff: A numpy array in the shape of [n_cells, 4]
+    proc_num: Int, the number of process for multiprocessing.
+    return_dict: A dictionary to store the result of each process.
+
+    Returns
+    -------
+    num_diff: A numpy array in the shape of [n_cells, 4]
         The difference between the original node index and the new node index
     """
     num_diff = np.zeros(cells.shape, dtype=np.int32)
@@ -306,20 +373,26 @@ def renumber_points(pts_del, cells, proc_num, return_dict={}):
 def tetra_edge_collapse(edges, collapse_indicator, edge_adjacent, points, cells, n_cores):
     """
     Collapse edges of tetrahedral mesh.
-    :param edges: (n, 2) array
+    
+    Parameters
+    ----------
+    edges: (n, 2) array
 
-    :param collapse_indicator: (n,) array
+    collapse_indicator: (n,) array
         direction of edge collapse. possible values are "forward", "backward",
         "bilateral", and "neither"
-    :param edge_adjacent: dict
+    edge_adjacent: dict
         adjacent cells of each edge
-    :param points: (n, 3) array
+    points: (n, 3) array
         node positions
-    :param cells: (n, 4) array
+    cells: (n, 4) array
         node connectivity
-    :return points: (n, 3) array
+
+    Returns
+    -------
+    points: (n, 3) array
         node positions after edge collapse
-    :return cells: (n, 4) array
+    cells: (n, 4) array
         node connectivity after edge collapse
     """
     print("Edge collapse...")
@@ -409,18 +482,24 @@ def tetra_edge_collapse(edges, collapse_indicator, edge_adjacent, points, cells,
 def edge_collapse_pipeline(mesh, surf, iteration=1, threshold=2, n_cores=4):
     """
     Edge collapse pipeline. Edges containing boundary and independent points will not be collapsed.
-    :param points: (n, 3) array
+
+    Parameters
+    ----------
+    points: (n, 3) array
         vertices
-    :param cells: (m, 4) array
+    cells: (m, 4) array
         connectivity
-    :param surf: a surface mesh of interfaces between materials (subdomains)
-    :param iteration: int
+    surf: a surface mesh of interfaces between materials (subdomains)
+    iteration: int
         number of iterations for edge collapse
-    :param threshold: float
+    threshold: float
         threshold for edge collapse
-    :return new_points: (n', 3) array
+
+    Returns
+    -------
+    new_points: (n', 3) array
         vertices after edge collapse
-    :return new_cells: (m', 4) array
+    new_cells: (m', 4) array
         connectivity after edge collapse
     """
     global collapse_indicator, edge_collapse, edge_adjacent, points, cells
@@ -467,19 +546,25 @@ def edge_collapse_pipeline(mesh, surf, iteration=1, threshold=2, n_cores=4):
 def construct_tetra_vtk(points, cells, save=False, filename="tetra.vtk", path="./", binary=True):
     """
     Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.
-    :param points: (n, 3) array
+
+    Parameters
+    ----------
+    points: (n, 3) array
         vertices
-    :param cells: (m, 4) array
+    cells: (m, 4) array
         connectivity
-    :param save: bool
+    save: bool
         whether to save the mesh
-    :param filename: str
+    filename: str
         if save=True, provide a file name
-    :param path: str
+    path: str
         if save=True, provide a path to save the mesh
-    :param binary: bool
+    binary: bool
         whether to save the mesh in binary format
-    :return grid: pyvista.UnstructuredGrid
+
+    Returns
+    -------
+    grid: pyvista.UnstructuredGrid
         UnstructuredGrid tetrahedral mesh
     """
     n_cells = cells.shape[0]

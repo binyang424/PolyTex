@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.stats.kde &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.stats.kde</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polykriging.stats.kde</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">argrelextrema</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+
+<span class="kn">from</span> <span class="nn">.bw_opt</span> <span class="kn">import</span> <span class="n">bw_scott</span><span class="p">,</span> <span class="n">opt_bandwidth</span>
+<span class="kn">from</span> <span class="nn">..thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
+
+
+<div class="viewcode-block" id="kdeScreen"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.kdeScreen">[docs]</a><span class="k">def</span> <span class="nf">kdeScreen</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">kernels</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    variable : Numpy array</span>
+<span class="sd">        A N x 1 dimension numpy array to apply the kernel density estimation.</span>
+<span class="sd">    x_test : Numpy array</span>
+<span class="sd">        Test data to get the density distribution.</span>
+<span class="sd">        It has the same shape as the given variable.</span>
+<span class="sd">    bw : float, default=1.0</span>
+<span class="sd">        The bandwidth of the kernel.</span>
+<span class="sd">    kernel : string, optional</span>
+<span class="sd">        The kernel to use. The default is &#39;gaussian&#39;. The possible values are</span>
+<span class="sd">        {&#39;gaussian&#39;, &#39;tophat&#39;, &#39;epanechnikov&#39;, &#39;exponential&#39;, &#39;linear&#39;, \</span>
+<span class="sd">                 &#39;cosine&#39;}.</span>
+<span class="sd">    plot : bool, optional</span>
+<span class="sd">        Whether plot the result. The default is &quot;False&quot;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    clusters : dictionary</span>
+<span class="sd">        The index of the cluster centers, cluster boundary and the</span>
+<span class="sd">        probability density distribution (pdf).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernels</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="n">bw</span><span class="p">)</span>
+    <span class="c1"># check if the variable is 1D array</span>
+    <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">x_test</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+    <span class="n">log_dens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+    <span class="n">pdf_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">variable</span><span class="p">))</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">pdf</span> <span class="o">=</span> <span class="n">kde</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">plot</span> <span class="o">!=</span> <span class="s2">&quot;False&quot;</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># mask for the local maxima of density</span>
+    <span class="c1"># argrelextrema: Calculate the relative extrema of `data`.</span>
+    <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_bounds</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">:</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s2">&quot;cluster boundary&quot;</span><span class="p">:</span> <span class="n">cluster_bounds</span><span class="p">,</span>
+                             <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span> <span class="s2">&quot;pdf input&quot;</span><span class="p">:</span> <span class="n">pdf_input</span><span class="p">,</span>
+                <span class="s2">&quot;t input&quot;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;t test&quot;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">clusters</span></div>
+
+
+<div class="viewcode-block" id="movingKDE"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.movingKDE">[docs]</a><span class="k">def</span> <span class="nf">movingKDE</span><span class="p">(</span><span class="n">pcd</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cluster_center</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pcd : Numpy array</span>
+<span class="sd">        A N x 2 dimension numpy array for kernel density estimation.</span>
+<span class="sd">        The first colum should be the variable under analysis, the second</span>
+<span class="sd">        is the tag of cross-sections for windows separation.</span>
+<span class="sd">    bw : Numpy array or a number</span>
+<span class="sd">        A range of bandwidth values for kde operation usually generated with np.arange().</span>
+<span class="sd">        The optimal bandwidth will be identified within this range and be used for kernel</span>
+<span class="sd">        density estimation. If a number is given, the number will be used as the bandwidth for kernel estimation.</span>
+<span class="sd">    windows : int, The number of windows (segmentations) for KDE analysis</span>
+<span class="sd">        DESCRIPTION. The default is 1.</span>
+<span class="sd">    n_cluster_center : int, The target number of cluster_center</span>
+<span class="sd">        DESCRIPTION. The default is 20.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    kdeOutput : Numpy array</span>
+<span class="sd">        A N x 3 dimension numpy array. The first column is the tag of the window under analysis,</span>
+<span class="sd">        the second is normlized distance, the third is the probability density.</span>
+<span class="sd">    cluster_center : Numpy array</span>
+<span class="sd">        A M x N dimension numpy array. M is the number of windows and N-1 is the number of cluster centers.</span>
+<span class="sd">        The first column is the maximum index for each window, the following columns are the cluster centers.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">kdeOutput</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">pcd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="n">cluster_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">windows</span><span class="p">,</span> <span class="n">n_cluster_center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">anchor</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">nslices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pcd</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">winLen</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">nslices</span> <span class="o">/</span> <span class="n">windows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">win</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">windows</span><span class="p">):</span>
+        <span class="c1"># Point cloud in a window</span>
+        <span class="n">maskMax</span> <span class="o">=</span> <span class="n">pcd</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">win</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">winLen</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">pcd</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">maskMax</span><span class="p">]</span>
+        <span class="c1"># Do not miss &quot;=&quot;.</span>
+        <span class="n">maskMin</span> <span class="o">=</span> <span class="n">pcd</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">maskMax</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">win</span> <span class="o">*</span> <span class="n">winLen</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[</span><span class="n">maskMin</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Generate test data to get the density distribution</span>
+        <span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">size</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">==</span> <span class="s2">&quot;numpy&quot;</span><span class="p">:</span>
+            <span class="n">optBw</span> <span class="o">=</span> <span class="n">opt_bandwidth</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bw</span> <span class="o">*</span> <span class="mf">1e20</span><span class="p">))</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">optBw</span> <span class="o">=</span> <span class="n">bw</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please check if a bandwidth is given correctly!!!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Call function kdeScreen() to get the variable-density curve</span>
+        <span class="c1"># the index for cluster_center.</span>
+        <span class="n">xkde</span><span class="p">,</span> <span class="n">ykde</span><span class="p">,</span> <span class="n">cluster_center_idx</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">optBw</span><span class="p">)</span>
+
+        <span class="n">upperLimit</span> <span class="o">=</span> <span class="n">anchor</span> <span class="o">+</span> <span class="n">variable</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start index </span><span class="si">{}</span><span class="s2">; end index </span><span class="si">{}</span><span class="s2">; number of variables </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">anchor</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">,</span> <span class="n">upperLimit</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">n_cluster_center</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Window: </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">win</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;√ The required number of points </span><span class="si">{}</span><span class="s2"> was reached at h = </span><span class="si">{}</span><span class="s2">. </span><span class="se">\</span>
+<span class="s2">                  </span><span class="se">\n</span><span class="s2">The number of actual cluster_center is [</span><span class="si">{}</span><span class="s2">]. </span><span class="se">\</span>
+<span class="s2">                  --------------------&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">n_cluster_center</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">optBw</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">)))</span>
+
+            <span class="c1"># sort the data from minimum to maximun and return the index</span>
+            <span class="n">maskSort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ykde</span><span class="p">[</span><span class="n">cluster_center_idx</span><span class="p">])</span>
+            <span class="n">extrDisordered</span> <span class="o">=</span> <span class="n">cluster_center_idx</span><span class="p">[</span><span class="n">maskSort</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">)</span> <span class="o">-</span> <span class="n">n_cluster_center</span><span class="p">:]</span>
+
+            <span class="c1"># kdeOutput</span>
+            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">win</span>
+            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xkde</span>
+            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ykde</span>
+
+            <span class="c1"># cluster_center</span>
+            <span class="n">cluster_center</span><span class="p">[</span><span class="n">win</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">upperLimit</span>
+            <span class="n">cluster_center</span><span class="p">[</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">extrDisordered</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">extrDisordered</span><span class="p">)]</span>
+            <span class="n">anchor</span> <span class="o">=</span> <span class="n">upperLimit</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Window: </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">win</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;--&gt; Cannot reach the targeted </span><span class="si">{}</span><span class="s2"> points. </span><span class="se">\</span>
+<span class="s2">                  There are [</span><span class="si">{}</span><span class="s2">] points for h = </span><span class="si">{}</span><span class="s2">. Please reduce bandwidth.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                  <span class="s2">&quot;--------------------&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">n_cluster_center</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">optBw</span><span class="p">,</span> <span class="mi">4</span><span class="p">))))</span>
+
+            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">win</span>
+            <span class="n">cluster_center</span><span class="p">[</span><span class="n">win</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">upperLimit</span>
+
+            <span class="n">anchor</span> <span class="o">=</span> <span class="n">upperLimit</span>
+            <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">kdeOutput</span><span class="p">,</span> <span class="n">cluster_center</span></div>
+
+
+<div class="viewcode-block" id="kdePlot"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.kdePlot">[docs]</a><span class="k">def</span> <span class="nf">kdePlot</span><span class="p">(</span><span class="n">xkde</span><span class="p">,</span> <span class="n">ykde</span><span class="p">,</span> <span class="n">cluster_center_idx</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xkde : Numpy array</span>
+<span class="sd">        The normalized distance.</span>
+<span class="sd">    ykde : Numpy array</span>
+<span class="sd">        The probability density distribution corresponding to the normalized distance.</span>
+<span class="sd">    cluster_center_idx : Numpy array</span>
+<span class="sd">        The index of the cluster centers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xkde</span><span class="p">[</span><span class="n">cluster_center_idx</span><span class="p">],</span> <span class="n">ykde</span><span class="p">[</span><span class="n">cluster_center_idx</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xkde</span><span class="p">,</span> <span class="n">ykde</span><span class="p">)</span>
+
+    <span class="c1"># Median</span>
+    <span class="n">cdf</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">cumtrapz</span><span class="p">(</span><span class="n">ykde</span><span class="p">,</span> <span class="n">xkde</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">nearest_05</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cdf</span> <span class="o">-</span> <span class="n">cdf</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">x_median</span><span class="p">,</span> <span class="n">y_median</span> <span class="o">=</span> <span class="n">xkde</span><span class="p">[</span><span class="n">nearest_05</span><span class="p">],</span> <span class="n">ykde</span><span class="p">[</span><span class="n">nearest_05</span><span class="p">]</span>
+    <span class="c1"># Plot the median value as vertical line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x_median</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_median</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Normalized distance&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Distribution density&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plt.savefig(str(windowIndex)+&#39;.tiff&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

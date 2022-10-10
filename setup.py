@@ -9,13 +9,15 @@ setup(
     author_email='bin.yang@polymtl.ca',
     license='BSD 2-clause',
     packages=['polykriging', 'polykriging.fileio', 'polykriging.stats',
-              'polykriging.thirdparty', 'polykriging.plot'],
+              'polykriging.thirdparty', 'polykriging.plot', 'polykriging.geometry'],
     install_requires=['numpy>=0.5',
                       'matplotlib',
                       'sympy',
                       'tk',             #tkinter
                       'shapely',
-                      'SciencePlots',  # matplotlib styles
+                      'SciencePlots', 
+                      'opencv-python',
+                      # matplotlib styles
                       ],
 
     classifiers=[

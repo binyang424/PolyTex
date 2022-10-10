@@ -4,7 +4,7 @@ from scipy.signal import argrelextrema
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-from .bw_opt import bw_scott, opt_bandwidth
+from .bw_opt import opt_bandwidth
 from ..thirdparty.bcolors import bcolors
 
 

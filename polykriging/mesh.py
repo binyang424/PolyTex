@@ -11,9 +11,16 @@ def isInbBox(bbox, point):
     Determine if point is within a bounding box (bbox)
     that parallel to the principle axes of global Cartesian coordinate.
 
-    :param bbox: bounding box, list: [xmin, xmax, ymin, ymax, zmin, zmax]
-    :param point: point, list: [x, y, z]
-    :return: True or False
+    Parameters
+    ----------
+    bbox: list
+        bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].
+    point: list
+        [x, y, z]
+
+    Returns
+    -------
+    True or False
     """
     x, y, z = point[0], point[1], point[2]
     xmin, ymin, zmin = bbox[0], bbox[1], bbox[2]
@@ -71,13 +78,20 @@ def background_mesh_generator(bbox, voxel_size=None):
 def find_cells_within_bounds(mesh, bounds):
     """
     Find the index of cells in this mesh within bounds.
-    :param mesh: pyvista mesh
-    :param bounds: type:　iterable(float)
+
+    Parameters
+    ----------
+    mesh: pyvista mesh
+    bounds: type:　iterable(float)
         list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]
-    :return: type: numpy.ndarray
-        array of cell indices
+
+    Returns
+    -------
+    type: numpy.ndarray
+        array of cell indices within bounds.
     
-    example:
+    Example
+    -------
         >> mesh = pv.PolyData(np.random.rand(10, 3))
         >> indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])
     """
@@ -97,12 +111,21 @@ def find_cells_within_bounds(mesh, bounds):
 def label_mask(mesh_background, mesh_tri, tolerance=0.0000001):
     """
     Store the label of each fiber tow for intersection detection.
-    :param mesh_background: background mesh, type: pyvista.UnstructuredGrid
-    :param mesh_tri: tubular mesh of the fiber tows
-    :param tolerance: tolerance for the enclosed point detection
-    :return: mask: type: numpy.ndarray (bool)
+
+    Parameters
+    ----------
+    mesh_background: pyvista.UnstructuredGrid
+        background mesh
+    mesh_tri: pyvista.PolyData
+        tubular mesh of the fiber tows
+    tolerance: float
+        tolerance for the enclosed point detection
+
+    Returns
+    -------
+    mask: type: numpy.ndarray (bool)
         mask of the background mesh, True for the cells that are within the bounds of the tubular mesh
-    :return: label_yarn: type: numpy.ndarray (int) (1D)
+    label_yarn: type: numpy.ndarray (int) (1D)
     """
     # extract the cell centers of the background mesh
     cellCenters = mesh_background.cell_centers().points
@@ -117,9 +140,16 @@ def label_mask(mesh_background, mesh_tri, tolerance=0.0000001):
 def intersection_detect(label_set_dict):
     """
     Find the intersection of fiber tows from implicit surface.
-    :param label_set_dict: dictionary of label sets, type: dict
-        key: yarn indices, value: sparse matrix of cell queries
-    :return: type: dictionary of the indices of intersected cell
+
+    Parameters
+    ----------
+    label_set_dict: dictioanry
+        dictionary of the label sets of the fiber tows
+        (key: yarn indices, value: sparse matrix of cell queries)
+
+    Returns
+    -------
+    type: dictionary of the indices of intersected cell
         key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices
     """
     import itertools
@@ -176,13 +206,25 @@ def intersection_detect(label_set_dict):
 
 def structured_cylinder_vertices(a, b, h, theta_res=5, h_res=5):
     """
-    Generate points on a ellipse
-    :param a: semi-major axis
-    :param b: semi-minor axis
-    :param h: height
-    :param theta_res: number of points
-    :param h_res: number of points
-    :return:  vertices on the ellipse
+    Generate points on an ellipse.
+
+    Parameters
+    ----------
+    a : float
+        semi-major axis
+    b : float
+        semi-minor axis
+    h : float
+        height
+    theta_res : int, optional
+        number of points, by default 5.
+    h_res:  int, optional
+        number of points. by default 5.
+
+    Returns
+    -------
+    points: numpy.ndarray
+        vertices on the ellipse surface (x, y, z).
     """
     theta_resolution = theta_res + 1
     theta = np.linspace(0, 2 * np.pi, theta_resolution)
@@ -200,14 +242,23 @@ def structured_cylinder_vertices(a, b, h, theta_res=5, h_res=5):
 
 def tubular_mesh_generator(theta_res, h_res, vertices, plot=True):
     """
-    Generate a tubular mesh
-    :param theta_res: number of points
-    :param h_res: number of points
-    :param vertices: vertices of the tubular mesh, shape (n, 3)
+    Generate a tubular mesh.
+
+    Parameters
+    ----------
+    theta_res: int
+        number of points
+    h_res: int
+        number of points
+    vertices: numpy.ndarray
+        vertices of the tubular mesh, shape (n, 3)
         The vertices of the tubular mesh are sorted in the radial direction first,
         then in the vertical direction. The first vertex is repeated
         at the end of each radial direction point list.
-    :return:  points on the tubular mesh
+
+    Returns
+    -------
+    mesh : points on the tubular mesh
     """
     import pyvista as pv
     mesh = pv.CylinderStructured(theta_resolution=theta_res + 1,
@@ -221,10 +272,16 @@ def tubular_mesh_generator(theta_res, h_res, vertices, plot=True):
 def to_meshio_data(mesh, theta_res, correction=True):
     """
     Convert PyVista flavor data structure to meshio.
-    :param mesh: PyVista.DataSet - Any PyVista mesh/spatial data type.
-    :param theta_res: number of points in the radial direction
-    :param correction: boolean, if True, tubular mesh will be closed
-            at the ends with triangles.
+
+    Parameters
+    ----------
+
+    mesh: PyVista.DataSet
+        Any PyVista mesh/spatial data type.
+    theta_res:
+        number of points in the radial direction
+    correction: boolean
+        if True, tubular mesh will be closed at the ends with triangles.
     """
     try:
         import meshio
@@ -342,19 +399,44 @@ def mesh_correction(cells, points, theta_res):
 
 
 def unit_vector(vector):
+    """
+    Returns the unit vector of the input vector.
+
+    Parameters
+    ----------
+    vector : array-like
+        Input vector.
+
+    Returns
+    -------
+    unit_vector : array-like
+        Unit vector of the input vector.
+    """
     vector = np.array(vector)
-    """ Returns the unit vector of the vector.  """
     return vector / np.linalg.norm(vector)
 
 
 def angle_between(v1, v2):
-    """ Returns the angle in radians between vectors 'v1' and 'v2'::
+    """
+    Returns the angle in radians between vectors 'v1' and 'v2'::
     numpy.clip(a, a_min, a_max, out=None, **kwargs)[source]
     Clip (limit) the values in an array.     Given an interval, values outside the interval
     are clipped to the interval edges. For example, if an interval of [0, 1] is specified,
     values smaller than 0 become 0, and values larger than 1 become 1.
     Equivalent to but faster than np.minimum(a_max, np.maximum(a, a_min)).
     No check is performed to ensure a_min < a_max.
+
+    Parameters
+    ----------
+    v1 : array-like
+        First vector.
+    v2 : array-like
+        Second vector.
+
+    Returns
+    -------
+    angle : float
+        Angle in degrees between the two input vectors.
     """
     v1_u = unit_vector(v1)
     v2_u = unit_vector(v2)

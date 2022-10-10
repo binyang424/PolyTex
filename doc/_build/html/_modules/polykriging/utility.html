@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.utility &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/polykriging.html">polykriging package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.utility</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polykriging.utility</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ！/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<div class="viewcode-block" id="zipFilelist"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.zipFilelist">[docs]</a><span class="k">def</span> <span class="nf">zipFilelist</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fileList</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">removeFile</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add multiple files to the zip file.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of the files to be added to zip file</span>
+<span class="sd">    fileList :</span>
+<span class="sd">        the list of files to be added to the zip file</span>
+<span class="sd">    filename:</span>
+<span class="sd">        the name of the zip file</span>
+<span class="sd">    removeFile:</span>
+<span class="sd">        whether to remove original files after adding to zip file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :return: None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipObj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fileList</span><span class="p">)):</span>
+            <span class="n">zipObj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">fileList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">removeFile</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">fileList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="cwd_chdir"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.cwd_chdir">[docs]</a><span class="k">def</span> <span class="nf">cwd_chdir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set given directory or the folder where the code file is as current working directory</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of current working directory. if empty, the path of the code file is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cwd: the current working directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">cwd</span><span class="p">,</span> <span class="n">pyname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="n">path</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cwd</span></div>
+
+
+<div class="viewcode-block" id="filenames"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.filenames">[docs]</a><span class="k">def</span> <span class="nf">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the list of files in the given folder.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of the folder</span>
+<span class="sd">    condition:</span>
+<span class="sd">        filter for file selection.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flst: the list of files in the given folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">filenamels</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="c1"># filter the file list by the given condition.</span>
+    <span class="n">flst</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filenamels</span> <span class="k">if</span> <span class="p">(</span><span class="n">condition</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)]</span>
+    <span class="n">flst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">flst</span></div>
+
+
+<span class="c1">######################################################</span>
+<span class="c1">#                            Create csv file with given info.                         #</span>
+<span class="c1">######################################################</span>
+<div class="viewcode-block" id="create_csv"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.create_csv">[docs]</a><span class="k">def</span> <span class="nf">create_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">coordinate</span><span class="p">,</span> <span class="n">csv_head</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    coordinate: [[x,y,z]]</span>
+<span class="sd">    </span>
+<span class="sd">    TODO: 不定参数个数作为每列的标题存储在第一行，需要实现</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of the folder</span>
+<span class="sd">    filename:</span>
+<span class="sd">        the name of the csv file</span>
+<span class="sd">    coordinate:</span>
+<span class="sd">        the list of coordinates to be saved in the csv file</span>
+<span class="sd">    csv_head:</span>
+<span class="sd">        the list of the head of the csv file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
+    <span class="c1"># 添加newline参数避免输出换行符</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">csv_write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="c1"># csv_head = [&quot;line&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;, &quot;distance&quot;,</span>
+        <span class="c1">#       &quot;normalised distance&quot;, &quot;angle position&quot;, &quot;radius&quot;, &quot;nugget&quot;]</span>
+        <span class="n">csv_write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">csv_head</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">coordinate</span><span class="p">:</span>
+            <span class="n">csv_write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="choose_directory"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.choose_directory">[docs]</a><span class="k">def</span> <span class="nf">choose_directory</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the directory of selections in &quot;.csv&quot; format:&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Choose a directory with GUI and return its path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    titl: String.</span>
+<span class="sd">        The title of the open folder dialog window.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    path: String. The path of the directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">filedialog</span>
+    <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">titl</span><span class="p">)</span>
+    <span class="c1"># pointing root to Tk() to use it as Tk() in program.</span>
+    <span class="c1"># like a window (container) where we can put widgets.</span>
+    <span class="n">directory_root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+    <span class="n">directory_root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>  <span class="c1"># Hides small tkinter window.</span>
+    <span class="n">directory_root</span><span class="o">.</span><span class="n">attributes</span><span class="p">(</span><span class="s1">&#39;-topmost&#39;</span><span class="p">,</span>
+                        <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Opened windows will be active. above all windows.</span>
+    <span class="n">path_work</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askdirectory</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">titl</span><span class="p">)</span>  <span class="c1"># Returns opened path as str</span>
+    <span class="k">if</span> <span class="n">path_work</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;You did not select any folder! Please select again.&#39;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">choose_directory</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># replace the forward slash returned by askdirectory</span>
+        <span class="c1"># with backslash (\) on Windows.</span>
+        <span class="k">return</span> <span class="n">path_work</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="choose_file"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.choose_file">[docs]</a><span class="k">def</span> <span class="nf">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the directory of selections in &quot;.csv&quot; format:&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Choose a file with GUI and return its path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    titl: String.</span>
+<span class="sd">        The title of the window.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    path: String.</span>
+<span class="sd">        The path of the file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">filedialog</span>
+    <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">time</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">titl</span><span class="p">)</span>
+    <span class="n">directory_root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+    <span class="n">directory_root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>  <span class="c1"># Hides small tkinter window.</span>
+    <span class="n">directory_root</span><span class="o">.</span><span class="n">attributes</span><span class="p">(</span><span class="s1">&#39;-topmost&#39;</span><span class="p">,</span>
+                        <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Opened windows will be active. above all windows.</span>
+    <span class="n">path_work</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">titl</span><span class="p">)</span>  <span class="c1"># Returns opened path as str</span>
+
+    <span class="c1"># replace the forward slash returned by askdirectory</span>
+    <span class="c1"># with backslash (\) on Windows.</span>
+    <span class="k">return</span> <span class="n">path_work</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="expr_io"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.utility.expr_io">[docs]</a><span class="k">def</span> <span class="nf">expr_io</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Import or export kriging expression as .txt file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: String.</span>
+<span class="sd">        filename with extension txt.</span>
+<span class="sd">    expression: String.</span>
+<span class="sd">        kriging expression.</span>
+<span class="sd">        Import txt file which contains a kriging expression if Empty string &#39;&#39; is taken.</span>
+<span class="sd">        Export the kriging expression when expression is given as a variable name of</span>
+<span class="sd">        kriging expression. The default is &#39;&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    String.</span>
+<span class="sd">        kriging expression.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">expression</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">expression</span><span class="p">))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The kriged function has been saved.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">expression</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">expression</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

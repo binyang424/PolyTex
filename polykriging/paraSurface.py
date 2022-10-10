@@ -7,10 +7,24 @@ import sympy as sym
 
 #  Drift and Covariance
 def func_select(drift_name, cov_name):
-    '''
+    """
     This is the function for definition of drift function and covariance function
     in dictionary drif_funcs and cov_funcs.
-    '''
+
+    Parameters
+    ----------
+    drift_name: str.
+        The name of the drift function. Possible values are: "const", "lin", "quad".
+    cov_name: str.
+        The name of the covariance function. Possible values are: "lin", "cub", "log".
+
+    Returns
+    -------
+    drift_func:
+        The drift function.
+    cov_func:
+        The covariance function.
+    """
     # Definitions of drift functions by dictionary
     import sympy as sym
 
@@ -34,8 +48,16 @@ def func_select(drift_name, cov_name):
 def dist1D(x):
     """
     Calculate the distance between each pair of points.
-    :param x: numpy array. The coordinates in parametric space of the points. The shape is (m, 1).
-    :return: numpy array. The distance between each pair of points. The shape is (m, m).
+
+    Parameters
+    ----------
+    x: numpy array.
+        The coordinates in parametric space of the points. The shape is (m, 1).
+
+    Returns
+    -------
+    numpy array.
+        The distance between each pair of points. The shape is (m, m).
     """
     b_len = x.size
 
@@ -49,10 +71,20 @@ def dist1D(x):
 def kVector(x, symVar, drift_name, cov_name):
     """
     Calculate the kriging matrix.
-    :param x: numpy array. The coordinates in parametric space of the points. The shape is (m, 1).
-    :param symVar: String. The variable in parametric space.
-    :param cov_name: String. The name of covariance function.
-    :return: numpy array. The kriging matrix. The shape is (m, 1).
+
+    Parameters
+    ----------
+    x: numpy array.
+        The coordinates in parametric space of the points. The shape is (m, 1).
+    symVar: String.
+        The variable in parametric space.
+    cov_name: String.
+        The name of covariance function.
+
+    Returns
+    -------
+    :return: numpy array.
+        The kriging matrix. The shape is (m, 1).
     """
     s = sym.Symbol(symVar)
     drift_func, cov_func, a_len = func_select(drift_name, cov_name)
@@ -69,11 +101,17 @@ def kVector(x, symVar, drift_name, cov_name):
 def buildM(x, drift_name, cov_name):
     """
     Build the kriging matrix.
-    :param x: The coordinates of the points. The shape is (m, 2).
-    :param drift_name: str. The name of the drift function.
+
+    Parameters
+    ----------
+    x: The coordinates of the points. The shape is (m, 2).
+    drift_name: str. The name of the drift function.
         Possible values are: "const", "lin", "quad".
-    :param cov_name: str. The name of the covariance function.
+    cov_name: str. The name of the covariance function.
         Possible values are: "lin", "cub", "log".
+
+    Returns
+    -------
     :return drift_func: The drift function.
     :return cov_func: The covariance function.
     :return a_len: The length of the drift function.
@@ -106,9 +144,18 @@ def buildM(x, drift_name, cov_name):
 def nugget(M, nugg, b_len):
     """
     Introduce the nugget effect to the kriging matrix.
-    :param M:   The kriging matrix.
-    :param nugg:    The nugget effect.
-    :return:    The kriging matrix with nugget effect.
+
+    Parameters
+    ----------
+    M : numpy array.
+        The kriging matrix.
+    nugg: float.
+        The nugget effect.
+
+    Returns
+    -------
+    M : numpy array.
+        The kriging matrix with nugget effect.
     """
     # -------- identity matrix with the same size as M --------
     I = np.identity(b_len)
@@ -122,9 +169,18 @@ def nugget(M, nugg, b_len):
 def buildP(x, a_lenS, a_lenT):
     """
     Build the result vector of the kriging linear system.
-    :param z: The values of the target function. The shape is (m,n).
-    :param a_len: The length of the drift function.
-    :return: The result vector of the kriging linear system. The shape is (n,).
+
+    Parameters
+    ----------
+    z: numpy array.
+        The values of the target function. The shape is (m,n).
+    a_len: int.
+        The length of the drift function.
+
+    Returns
+    -------
+    P : numpy array.
+        The result vector of the kriging linear system. The shape is (n,).
     """
     P = np.append(x, np.zeros((a_lenS, x.shape[1])), axis=0)
     P = np.append(P, np.zeros((P.shape[0], a_lenT)), axis=1)
@@ -134,14 +190,25 @@ def buildP(x, a_lenS, a_lenT):
 def buildKriging(s, t, x, drift_names, cov_names, nugg=[0, 0]):
     """
     Build the kriging model and return the expression in string format.
-    :param s, t: numpy array. The parameters of the two profiles for surface parametric kriging.
-    :param x: array like. The known values of the variables in parametric space.
-    :param drift_names: list. The name of the drift functions for profile 1 and profile 2 in the
+
+    Parameters
+    ----------
+    s, t: numpy array.
+        The parameters of the two profiles for surface parametric kriging.
+    x: array like.
+        The known values of the variables in parametric space.
+    drift_names: list.
+        The name of the drift functions for profile 1 and profile 2 in the
         following format: [drift_name1, drift_name2]. The possible values are: 'const', 'lin', 'cub'.
-    :param cov_names: list. The name of the covariance functions in the following format:
+    cov_names: list.
+        The name of the covariance functions in the following format:
         [covariance_name1, covariance_name2]. The possible values are: 'lin', 'cub', 'log'.
-    :param nugg: list. The nugget effects (variance) for each profile contained in a list.
-    :return expr: The expression of kriging function in string format.
+    nugg: list.
+        The nugget effects (variance) for each profile contained in a list.
+
+    Returns
+    -------
+    expr: The expression of kriging function in string format.
     """
     s, t, x = np.array(s), np.array(t), np.array(x)
 
@@ -169,9 +236,18 @@ def buildKriging(s, t, x, drift_names, cov_names, nugg=[0, 0]):
 def interp(s, t, expr):
     """
     Interpolation (substitute the symbolic variables in the expression).
-    :param s, t: numpy array. The parameters of the two profiles for surface parametric kriging.
-    :param expr: String. The expression of the target function.
-    :return: The values of the kriging function. The shape is (s.size,t.size).
+
+    Parameters
+    ----------
+    s, t: numpy array.
+        The parameters of the two profiles for surface parametric kriging.
+    expr: String.
+        The expression of the target function.
+
+    Returns
+    -------
+    xinterp: numpy array.
+        The values of the kriging function. The shape is (s.size,t.size).
     """
     sVar, tVar = sym.symbols('s t')
     xinterp = np.zeros((len(s), len(t)))

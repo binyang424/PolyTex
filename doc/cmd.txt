@@ -1,4 +1,4 @@
-sphinx-apidoc -o polykriging/source ../polykriging/
+sphinx-apidoc -o source ../polykriging/
 
 make html
 

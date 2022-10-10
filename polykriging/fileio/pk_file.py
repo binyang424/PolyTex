@@ -4,6 +4,8 @@ import pandas as pd
 from numpy.compat import os_fspath
 from numpy.lib import format
 import contextlib
+from ..curve2D import addPoints
+from ..geometry import normDist
 
 
 def save(file, arr, allow_pickle=True, fix_imports=True):
@@ -76,6 +78,64 @@ def pk_load(pk_file):
 
     df = pd.DataFrame(values, index=index, columns=columns)
     return df
+
+
+def pcd_to_ply(file_pcd, file_ply, binary=False):
+    """
+    Convert a pcd file to ply file.
+
+    Parameters
+    ----------
+    file_pcd : str
+        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.
+    file_ply : str
+        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
+    :return: None
+    """
+    import meshio
+
+    vertices = pk_load(file_pcd).to_numpy()
+
+    mesh = meshio.Mesh(points=vertices[:, 1:],
+                       cells=[],
+                       # Optionally provide extra data on points, cells, etc.
+                       point_data={"nx": vertices[:, 0], "ny": vertices[:, 1], "nz": vertices[:, 2]},
+                       # Each item in cell data must match the cells array
+                       # cell_data={"a": [[0.1, 0.2], [0.4]]},
+                       )
+
+    meshio.write(file_ply, mesh, binary=False)
+
+
+def coo_to_ply(file_coo, file_ply, binary=False, interpolate=False, threshold=0.1):
+    """
+    Convert a pcd file to ply file.
+
+    Parameters
+    ----------
+    file_pcd : str
+        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.
+    file_ply : str
+        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
+    :return: None
+    """
+    import meshio
+    df = pk_load(file_coo)
+    vertices = df.to_numpy()[:, [1, 3, 4, 5]]
+
+    if interpolate:
+        # interpolate
+        vertices = addPoints(vertices, threshold=threshold)
+
+    mesh = meshio.Mesh(points=vertices[:, 1:],
+                       cells=[],
+                       # Optionally provide extra data on points, cells, etc.
+                       point_data={"nx": vertices[:, 0], "ny": vertices[:, 1], "nz": vertices[:, 2]},
+                       # Each item in cell data must match the cells array
+                       # cell_data={"a": [[0.1, 0.2], [0.4]]},
+                       )
+
+    meshio.write(file_ply, mesh, binary=False)
 
 
 if "__main__" == __name__:

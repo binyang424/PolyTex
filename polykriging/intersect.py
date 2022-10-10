@@ -19,11 +19,18 @@ ax.tick_params(axis='both', which='minor', labelsize=15,
 
 def generate_points(n, a, b):
     """
-    generate points on an ellipse
-    :param n: number of points
-    :param a: semi-major axis
-    :param b: semi-minor axis
-    :return:
+    generate points on an ellipse.
+    
+    Parameters
+    ----------
+    n : number of points
+    a : semi-major axis
+    b : semi-minor axis
+
+    Returns
+    -------
+    data: array-like
+        Points on the ellipse with shape (n, 3).
     """
     data = np.zeros((n, 4))
     theta = np.linspace(0, 2 * np.pi, n, endpoint=False)
@@ -36,11 +43,17 @@ def generate_points(n, a, b):
 def find_intersect(f, curve, niterations=5, mSegments=5):
     """
     find the intersection of a curve with a plane
-    :param f: function of the plane
-    :param curve:
-    :param niterations:
-    :param mSegments:
-    :return:
+
+    Parameters
+    ----------
+    f : function of plane
+    curve :
+    niterations: number of iterations
+    mSegments: number of segments
+
+    Returns
+    -------
+
     """
     fSign = f(curve[:, 0], curve[:, 1], curve[:, 2])
     idx = np.where(np.diff(np.sign(fSign)))[0]
@@ -59,12 +72,24 @@ def find_intersect(f, curve, niterations=5, mSegments=5):
 def linePlaneIntersect(planeNormal, planePoint, rayDirection, rayPoint, epsilon=1e-6):
     """
     Find the intersection between a plane and a line.
-    :param planeNormal: array-like, normal vector of the plane for defining the plane.
-    :param planePoint: array-like, point on the plane for defining the plane.
-    :param rayDirection: array-like, direction of the ray.
-    :param rayPoint: array-like, point on the ray.
-    :param epsilon: float, tolerance for determining if an intersection point exists.
-    :return Psi: array-like, intersection point.
+
+    Parameters
+    ----------
+    planeNormal : array-like
+        normal vector of the plane for defining the plane.
+    planePoint : array-like
+        point on the plane for defining the plane.
+    rayDirection : array-like
+        direction of the ray.
+    rayPoint : array-like
+        point on the ray.
+    epsilon : float
+        tolerance for determining if an intersection point exists.
+
+    Returns
+    -------
+    Psi: array-like
+        intersection point.
     """
     planeNormal = np.array(planeNormal)
     planePoint = np.array(planePoint)

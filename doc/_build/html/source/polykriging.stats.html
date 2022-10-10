@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.stats package &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="polykriging.thirdparty package" href="polykriging.thirdparty.html" />
+    <link rel="prev" title="polykriging.plot package" href="polykriging.plot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">polykriging package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.stats package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats.bw_opt">polykriging.stats.bw_opt module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats.kde">polykriging.stats.kde module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.curve2D">polykriging.curve2D module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.decimation">polykriging.decimation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.features">polykriging.features module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.geometry">polykriging.geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.intersect">polykriging.intersect module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.mdKrig">polykriging.mdKrig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.mesh">polykriging.mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.paraSurface">polykriging.paraSurface module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.tool">polykriging.tool module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.utility">polykriging.utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.volumeKrig">polykriging.volumeKrig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="polykriging.html">polykriging package</a> &raquo;</li>
+      <li>polykriging.stats package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polykriging.stats.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polykriging-stats-package">
+<h1>polykriging.stats package<a class="headerlink" href="#polykriging-stats-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.stats.bw_opt">
+<span id="polykriging-stats-bw-opt-module"></span><h2>polykriging.stats.bw_opt module<a class="headerlink" href="#module-polykriging.stats.bw_opt" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.bw_opt.bw_scott">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">bw_scott</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/bw_opt.html#bw_scott"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.bw_opt.bw_scott" title="Permalink to this definition"></a></dt>
+<dd><p>Scott’s rule for bandwidth selection.
+:param sigma: standard deviation of the data, type: float
+:param n: number of data points, type: int
+:return: bandwidth, type: float</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.bw_opt.log_likelihood">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">log_likelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/bw_opt.html#log_likelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.bw_opt.log_likelihood" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Calculate the likelihood of the given probability density function.
+The likelihood is:</p>
+<blockquote>
+<div><p><a href="#id1"><span class="problematic" id="id2">``</span></a>L =</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="simple">
+<dt>rac{1}{N}sum_{i=1}^{N} f(x_i)``</dt><dd><dl class="simple">
+<dt>pdf<span class="classifier">Numpy array</span></dt><dd><p>The probability density function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>LL</strong><span class="classifier">float</span></dt><dd><p>The log-likelihood of the given probability density function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.bw_opt.opt_bandwidth">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">opt_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/bw_opt.html#opt_bandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.bw_opt.opt_bandwidth" title="Permalink to this definition"></a></dt>
+<dd><p>Find the optimal bandwidth by tuning of the <cite>bandwidth</cite> parameter
+via cross-validation and returns the parameter value that maximizes
+the log-likelihood of data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array. The data to apply the kernel density estimation.</p>
+</dd>
+<dt><strong>x_test</strong><span class="classifier">Numpy array</span></dt><dd><p>Test data to get the density distribution.</p>
+</dd>
+<dt><strong>bw</strong><span class="classifier">list of float</span></dt><dd><p>The bandwidth of the kernels to be tested.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.stats.kde">
+<span id="polykriging-stats-kde-module"></span><h2>polykriging.stats.kde module<a class="headerlink" href="#module-polykriging.stats.kde" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.kde.kdePlot">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xkde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ykde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_center_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#kdePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.kdePlot" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xkde</strong><span class="classifier">Numpy array</span></dt><dd><p>The normalized distance.</p>
+</dd>
+<dt><strong>ykde</strong><span class="classifier">Numpy array</span></dt><dd><p>The probability density distribution corresponding to the normalized distance.</p>
+</dd>
+<dt><strong>cluster_center_idx</strong><span class="classifier">Numpy array</span></dt><dd><p>The index of the cluster centers.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.kde.kdeScreen">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdeScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'False'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#kdeScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.kdeScreen" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array to apply the kernel density estimation.</p>
+</dd>
+<dt><strong>x_test</strong><span class="classifier">Numpy array</span></dt><dd><p>Test data to get the density distribution.
+It has the same shape as the given variable.</p>
+</dd>
+<dt><strong>bw</strong><span class="classifier">float, default=1.0</span></dt><dd><p>The bandwidth of the kernel.</p>
+</dd>
+<dt><strong>kernel</strong><span class="classifier">string, optional</span></dt><dd><p>The kernel to use. The default is ‘gaussian’. The possible values are
+{‘gaussian’, ‘tophat’, ‘epanechnikov’, ‘exponential’, ‘linear’,                  ‘cosine’}.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether plot the result. The default is “False”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>clusters</strong><span class="classifier">dictionary</span></dt><dd><p>The index of the cluster centers, cluster boundary and the
+probability density distribution (pdf).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.stats.kde.movingKDE">
+<span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">movingKDE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pcd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#movingKDE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.movingKDE" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pcd</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 2 dimension numpy array for kernel density estimation.
+The first colum should be the variable under analysis, the second
+is the tag of cross-sections for windows separation.</p>
+</dd>
+<dt><strong>bw</strong><span class="classifier">Numpy array or a number</span></dt><dd><p>A range of bandwidth values for kde operation usually generated with np.arange().
+The optimal bandwidth will be identified within this range and be used for kernel
+density estimation. If a number is given, the number will be used as the bandwidth for kernel estimation.</p>
+</dd>
+<dt><strong>windows</strong><span class="classifier">int, The number of windows (segmentations) for KDE analysis</span></dt><dd><p>DESCRIPTION. The default is 1.</p>
+</dd>
+<dt><strong>n_cluster_center</strong><span class="classifier">int, The target number of cluster_center</span></dt><dd><p>DESCRIPTION. The default is 20.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>kdeOutput</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 3 dimension numpy array. The first column is the tag of the window under analysis,
+the second is normlized distance, the third is the probability density.</p>
+</dd>
+<dt><strong>cluster_center</strong><span class="classifier">Numpy array</span></dt><dd><p>A M x N dimension numpy array. M is the number of windows and N-1 is the number of cluster centers.
+The first column is the maximum index for each window, the following columns are the cluster centers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.stats">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.stats" title="Permalink to this heading"></a></h2>
+<p>polykriging.</p>
+<p>An implementation of dual Kriging.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polykriging.plot.html" class="btn btn-neutral float-left" title="polykriging.plot package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.thirdparty.html" class="btn btn-neutral float-right" title="polykriging.thirdparty package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,6 +1,8 @@
 # ！/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import matplotlib.pyplot as plt
+import numpy as np
 
 ######################################################
 #                      Data Normalization                                #
@@ -9,9 +11,16 @@
 def norm(data_krig, norm_type='axial'):
     '''
     This is the normalization function. After input the data of DSC test, this function
-    will normalize temperature, degree of cure and rate of cure. 
+    will normalize temperature, degree of cure and rate of cure.
+
+    Parameters
+    ----------
+    data_krig : numpy array
+        Time-Temperature-Alpha-dadt
+    norm_type : string, optional
+        The type of normalization. The default is 'axial'. The other option is 'global' (TODO).
     '''
-    import numpy as np
+
     data_shape = np.shape(data_krig)
     norm = np.zeros(data_shape)
 

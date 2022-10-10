@@ -9,14 +9,22 @@ def func_select(drift_name, cov_name):
     """
     Function for definition of drift and covariance function
     in dictionary drif_funcs and cov_funcs.
-    :param drift_name: str. The name of the drift function.
+    
+    Parameters
+    ----------
+    drift_name: str. The name of the drift function.
         Possible values are: "const", "lin", "quad".
-    :param cov_name: str. The name of the covariance function.
+    cov_name: str. The name of the covariance function.
         Possible values are: "lin", "cub", "log".
-    :return: drift_func, cov_func, a_len.
-        drift_func: Function. The drift function.
-        cov_func: Function. The covariance function.
-        a_len: int. The length of the drift function.
+
+    Returns
+    -------
+    drift_func: Function.
+        The drift function.
+    cov_func: Function.
+        The covariance function.
+    a_len: int.
+        The length of the drift function.
     """
     # Definitions of drift functions by dictionary
     drift_funcs = {
@@ -41,12 +49,19 @@ def func_select(drift_name, cov_name):
 def dist(xy, type="Euclidean"):
     """
     Calculate the distance between each pair of points.
-    :param xy: numpy array. The coordinates of the points. The shape is (m, 2).
-    :param type: str. The type of the distance. The default is "Euclidean".
+
+    Parameters
+    ----------
+    xy: numpy array. The coordinates of the points. The shape is (m, 2).
+    type: str. The type of the distance. The default is "Euclidean".
         Other possible values are:
             "1-norm" : The 1-norm distance.
             "inf-norm" : The infinity-norm distance.
-    :return: numpy array. The distance between each pair of points. The shape is (m, m).
+
+    Returns
+    -------
+    distance : numpy array
+        The distance between each pair of points. The shape is (m, m).
     """
     x, y = xy[:, 0], xy[:, 1]
 
@@ -73,15 +88,21 @@ def dist(xy, type="Euclidean"):
 def buildM(xy, drift_name, cov_name):
     """
     Build the kriging matrix.
-    :param xy: The coordinates of the points. The shape is (m, 2).
-    :param drift_name: str. The name of the drift function.
+
+    Parameters
+    ----------
+    xy: The coordinates of the points. The shape is (m, 2).
+    drift_name: str. The name of the drift function.
         Possible values are: "const", "lin", "quad".
-    :param cov_name: str. The name of the covariance function.
+    cov_name: str. The name of the covariance function.
         Possible values are: "lin", "cub", "log".
-    :return drift_func: The drift function.
-    :return cov_func: The covariance function.
-    :return a_len: The length of the drift function.
-    :return: The matrix of the kriging system. The shape is (n,n).
+
+    Returns
+    -------
+    drift_func: The drift function.
+    cov_func: The covariance function.
+    a_len: The length of the drift function.
+    M: The matrix of the kriging system. The shape is (n,n).
     """
     # ------------drift and covariance function selection------------
     drift_func, cov_func, a_len = func_select(drift_name, cov_name)
@@ -112,9 +133,18 @@ def buildM(xy, drift_name, cov_name):
 def nugget(M, nugg, b_len):
     """
     Introduce the nugget effect to the kriging matrix.
-    :param M:   The kriging matrix.
-    :param nugg:    The nugget effect.
-    :return:    The kriging matrix with nugget effect.
+
+    Parameters
+    ----------
+    M : numpy array.
+        The kriging matrix. The shape is (n,n).
+    nugg : float.
+        The nugget effect.
+
+    Returns
+    -------
+    M: numpy array.
+        The kriging matrix with nugget effect.
     """
     # -------- identity matrix with the same size as M --------
     I = np.identity(b_len)
@@ -128,9 +158,17 @@ def nugget(M, nugg, b_len):
 def buildU(z, a_len):
     """
     Build the result vector of the kriging linear system.
-    :param z: The values of the target function. The shape is (m,).
-    :param a_len: The length of the drift function.
-    :return: The result vector of the kriging linear system. The shape is (n,).
+
+    Parameters
+    ----------
+    z:
+        The values of the target function. The shape is (m,).
+    a_len:
+        The length of the drift function.
+
+    Returns
+    -------
+    U: The result vector of the kriging linear system. The shape is (n,).
     """
     n = z.size + a_len
     U = np.zeros((n, 1))
@@ -141,9 +179,18 @@ def buildU(z, a_len):
 def solveB(M, U):
     """
     Solve the kriging linear system.
-    :param M:  numpy array. The kriging matrix.
-    :param U:  numpy array. The result vector of the kriging linear system.
-    :return B: numpy array. The solution of the kriging linear system (vector contains b_i and a_i).
+
+    Parameters
+    ----------
+    M:  numpy array.
+        The kriging matrix.
+    U:  numpy array.
+        The result vector of the kriging linear system.
+
+    Returns
+    -------
+    B: numpy array.
+        The solution of the kriging linear system (vector contains b_i and a_i).
     """
     b = np.linalg.solve(M, U)
     print('solution Matrix b writes:')
@@ -154,13 +201,19 @@ def solveB(M, U):
 def buildKriging(xy, z, drift_name, cov_name, nugg=0):
     """
     Build the kriging model and return the expression in string format.
-    :param xy: array like. The coordinates of the points. The shape is (m, 2).
-    :param z: array like. The values of the target function. The shape is (m,).
-    :param drift_name: str. The name of the drift function.
+
+    Parameters
+    ----------
+    xy: array like. The coordinates of the points. The shape is (m, 2).
+    z: array like. The values of the target function. The shape is (m,).
+    drift_name: str. The name of the drift function.
             The possible values are: 'const', 'lin', 'cub'.
-    :param cov_name: str. The name of the covariance function.
+    cov_name: str. The name of the covariance function.
             The possible values are: 'lin', 'cub', 'log'.
-    :param nugg: float. The nugget effect (variance).
+    nugg: float. The nugget effect (variance).
+
+    Returns
+    -------
     :return: The expression of kriging function in string format.
     """
     # ------- build the kriging matrix -------
@@ -188,9 +241,18 @@ def buildKriging(xy, z, drift_name, cov_name, nugg=0):
 
 def interp(xy, expr):
     """
-    :param xy: numpy array. The coordinates of the points. The shape is (m, 2).
-    :param expr: String. The expression of the target function.
-    :return: The values of the kriging function. The shape is (m,).
+    TODO: add description
+
+    Parameters
+    ----------
+    xy: numpy array.
+        The coordinates of the points. The shape is (m, 2).
+    expr: String.
+        The expression of the target function.
+
+    Returns
+    -------
+    yinter: The values of the kriging function. The shape is (m,).
     """
     x, y = sym.symbols('x y')
 
