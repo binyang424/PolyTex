@@ -75,7 +75,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
 
-<span class="kn">from</span> <span class="nn">.bw_opt</span> <span class="kn">import</span> <span class="n">bw_scott</span><span class="p">,</span> <span class="n">opt_bandwidth</span>
+<span class="kn">from</span> <span class="nn">.bw_opt</span> <span class="kn">import</span> <span class="n">opt_bandwidth</span>
 <span class="kn">from</span> <span class="nn">..thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 
 
@@ -125,9 +125,9 @@
     <span class="c1"># argrelextrema: Calculate the relative extrema of `data`.</span>
     <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_bounds</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">clusters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">:</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">:</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="c1"># Indices of local maxima</span>
                                 <span class="s2">&quot;cluster boundary&quot;</span><span class="p">:</span> <span class="n">cluster_bounds</span><span class="p">,</span>
-                             <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span> <span class="s2">&quot;pdf input&quot;</span><span class="p">:</span> <span class="n">pdf_input</span><span class="p">,</span>
+                             <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span> <span class="s2">&quot;pdf input&quot;</span><span class="p">:</span> <span class="n">pdf_input</span><span class="p">,</span> <span class="c1"># pdf_input is the pdf of the input variable</span>
                 <span class="s2">&quot;t input&quot;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;t test&quot;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">clusters</span></div>
 
@@ -185,14 +185,20 @@
 
         <span class="c1"># Call function kdeScreen() to get the variable-density curve</span>
         <span class="c1"># the index for cluster_center.</span>
-        <span class="n">xkde</span><span class="p">,</span> <span class="n">ykde</span><span class="p">,</span> <span class="n">cluster_center_idx</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">optBw</span><span class="p">)</span>
+        <span class="n">clusters</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">optBw</span><span class="p">)</span>
+
+        <span class="c1"># Get the index for cluster_center</span>
+        <span class="n">cluster_center_idx</span> <span class="o">=</span> <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">]</span>
+        <span class="n">ykde</span> <span class="o">=</span> <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;pdf&quot;</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The cluster centers are: &quot;</span><span class="p">,</span> <span class="n">cluster_center_idx</span><span class="p">)</span>
 
         <span class="n">upperLimit</span> <span class="o">=</span> <span class="n">anchor</span> <span class="o">+</span> <span class="n">variable</span><span class="o">.</span><span class="n">size</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start index </span><span class="si">{}</span><span class="s2">; end index </span><span class="si">{}</span><span class="s2">; number of variables </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">anchor</span><span class="p">,</span> <span class="n">upperLimit</span><span class="p">,</span> <span class="n">upperLimit</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">n_cluster_center</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_center_idx</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">n_cluster_center</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Window: </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">win</span><span class="p">))</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;√ The required number of points </span><span class="si">{}</span><span class="s2"> was reached at h = </span><span class="si">{}</span><span class="s2">. </span><span class="se">\</span>
 <span class="s2">                  </span><span class="se">\n</span><span class="s2">The number of actual cluster_center is [</span><span class="si">{}</span><span class="s2">]. </span><span class="se">\</span>
@@ -205,7 +211,7 @@
 
             <span class="c1"># kdeOutput</span>
             <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">win</span>
-            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xkde</span>
+            <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pcd</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">kdeOutput</span><span class="p">[</span><span class="n">anchor</span><span class="p">:</span><span class="n">upperLimit</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ykde</span>
 
             <span class="c1"># cluster_center</span>
@@ -224,6 +230,11 @@
 
             <span class="n">anchor</span> <span class="o">=</span> <span class="n">upperLimit</span>
             <span class="k">continue</span>
+
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="n">kdeOutput_col</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="s2">&quot;normalized distance&quot;</span><span class="p">,</span> <span class="s2">&quot;probability density&quot;</span><span class="p">]</span>
+    <span class="n">kdeOutput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">kdeOutput</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kdeOutput_col</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">kdeOutput</span><span class="p">,</span> <span class="n">cluster_center</span></div>
 
 

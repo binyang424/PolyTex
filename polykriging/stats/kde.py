@@ -35,6 +35,11 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
 
     """
     model = KernelDensity(kernel=kernels, bandwidth=bw)
+    # check if variable is a dataframe object
+    import pandas as pd
+    if isinstance(variable, pd.Series):
+        variable = variable.to_numpy()
+
     # check if the variable is 1D array
     if variable.ndim == 1:
         variable = variable.reshape(-1, 1)
@@ -54,14 +59,14 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     # argrelextrema: Calculate the relative extrema of `data`.
     cluster_bounds = np.insert(argrelextrema(pdf, np.less)[0], 0, 0)
     cluster_bounds = np.append(cluster_bounds, -1)
-    clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0],
+    clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0], # Indices of local maxima
                                 "cluster boundary": cluster_bounds,
-                             "pdf": pdf, "pdf input": pdf_input,
+                             "pdf": pdf, "pdf input": pdf_input, # pdf_input is the pdf of the input variable
                 "t input": variable, "t test": x_test}
     return clusters
 
 
-def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
+def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20, x_test=None):
     '''
     Parameters
     ----------
@@ -77,6 +82,8 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
         DESCRIPTION. The default is 1.
     n_cluster_center : int, The target number of cluster_center
         DESCRIPTION. The default is 20.
+    x_test : Numpy array
+        Test data to get the density distribution. The default is None.
 
     Returns
     -------
@@ -102,8 +109,9 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
         maskMin = pcd[:, -1][maskMax] >= win * winLen
         variable = variable[maskMin].reshape(-1, 1)
 
-        # Generate test data to get the density distribution
-        x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
+        if x_test is None:
+            # Generate test data to get the density distribution
+            x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
 
         if type(bw).__module__ == "numpy":
             optBw = opt_bandwidth(variable, x_test, bw)
@@ -114,14 +122,20 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
 
         # Call function kdeScreen() to get the variable-density curve
         # the index for cluster_center.
-        xkde, ykde, cluster_center_idx = kdeScreen(variable, x_test, optBw)
+        clusters = kdeScreen(variable, x_test, optBw)
+
+        # Get the index for cluster_center
+        cluster_center_idx = clusters["cluster centers"]
+        ykde = clusters["pdf"]
+
+        print("The cluster centers are: ", cluster_center_idx)
 
         upperLimit = anchor + variable.size
 
         print("start index {}; end index {}; number of variables {}".format(
             anchor, upperLimit, upperLimit - anchor))
 
-        if len(cluster_center_idx) > n_cluster_center:
+        if len(cluster_center_idx) >= n_cluster_center:
             print("Window: {}:".format(win))
             print("√ The required number of points {} was reached at h = {}. \
                   \nThe number of actual cluster_center is [{}]. \
@@ -134,7 +148,7 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
 
             # kdeOutput
             kdeOutput[anchor:upperLimit, 0] = win
-            kdeOutput[anchor:upperLimit, 1] = xkde
+            kdeOutput[anchor:upperLimit, 1] = pcd[:,0]
             kdeOutput[anchor:upperLimit, 2] = ykde
 
             # cluster_center
@@ -153,6 +167,21 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20):
 
             anchor = upperLimit
             continue
+
+    import pandas as pd
+    kdeOutput_col = ["window", "normalized distance", "probability density"]
+    kdeOutput = pd.DataFrame(kdeOutput, columns=kdeOutput_col)
+
+    # Returns a column mask to show if any zero values are present in the row of kdeOutput
+    # If any zero values are present, the row is masked (False), otherwise the row is not masked (True).
+    # The mask is used to remove the rows with zero values from the kdeOutput.
+    # the first row is always as True since it is the starting point (0) of the contour.
+    mask = np.all(kdeOutput.iloc[:, [1, 2]] != 0, axis=1)
+    mask[0] = True
+
+    # remove the rows with zero values from the kdeOutput
+    kdeOutput = kdeOutput[mask]
+
     return kdeOutput, cluster_center
 
 

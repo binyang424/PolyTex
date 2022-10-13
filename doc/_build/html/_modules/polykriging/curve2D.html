@@ -73,7 +73,7 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Curve Kriging</span>
+<span class="sd">Implementation of 2D Curve Kriging.</span>
 
 <span class="sd">Bin Yang  2021-9-2</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -101,6 +101,8 @@
 <span class="sd">        [normalized distance, X, Y, Z]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">deltaD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">coordinate</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># print(deltaD[:3])</span>
+    <span class="n">deltaD</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">deltaD</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">iDelta</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">deltaD</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">deltaD</span><span class="p">[</span><span class="n">iDelta</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span>
@@ -109,14 +111,16 @@
             <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
                 <span class="n">temp</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="n">iDelta</span><span class="p">,</span> <span class="p">:]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">dtemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">coordinate</span><span class="p">[</span><span class="n">iDelta</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinate</span><span class="p">[</span><span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">deltaD</span><span class="p">[</span><span class="n">iDelta</span><span class="p">]</span> <span class="o">/</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">dtemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">coordinate</span><span class="p">[</span><span class="n">iDelta</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinate</span><span class="p">[</span><span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">deltaD</span><span class="p">[</span><span class="n">iDelta</span><span class="p">]</span> <span class="o">/</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
                                 <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">xtemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">dtemp</span><span class="p">,</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">])</span>
             <span class="n">ytemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">dtemp</span><span class="p">,</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">])</span>
-            <span class="n">ztemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">xtemp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">ztemp</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">ztemp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">dtemp</span><span class="p">,</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinate</span><span class="p">[[</span><span class="n">iDelta</span><span class="p">,</span> <span class="n">iDelta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">])</span>
 
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">temp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">dtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">xtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ytemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ztemp</span><span class="o">.</span><span class="n">T</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">temp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">dtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">xtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ytemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ztemp</span><span class="o">.</span><span class="n">T</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">dtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">xtemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ytemp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ztemp</span><span class="o">.</span><span class="n">T</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
     <span class="n">coordinate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">temp</span><span class="p">,</span> <span class="n">coordinate</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]))</span>
 
     <span class="k">return</span> <span class="n">coordinate</span></div>
@@ -397,7 +401,7 @@
 <span class="sd">        The kriging expression.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="o">=</span> \
+    <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
         <span class="n">curveKrig1D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="p">)</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -405,7 +409,7 @@
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">interp</span><span class="p">)</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">X_predict</span> <span class="o">=</span> <span class="n">interp</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">X_predict</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">X_predict</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="n">yinter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">X_predict</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">pts</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_predict</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -413,8 +417,8 @@
 
     <span class="n">yinter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yinter</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-15</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
 
-    <span class="n">X_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-    
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
     <span class="k">if</span> <span class="n">return_std</span><span class="p">:</span>
         <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span> <span class="o">=</span> <span class="n">lambda_weight</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">)</span>
         <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">func_var</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">nuggetEffect</span><span class="p">)</span>
@@ -432,6 +436,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve the linear equation system M * B = U</span>
 <span class="sd">    TODO: check the comments</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    M : numpy array</span>
@@ -553,6 +558,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Matrix u writes:&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">U</span></div>
+
 
 <div class="viewcode-block" id="bd_Deriv_kriging_func"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.curve2D.bd_Deriv_kriging_func">[docs]</a><span class="k">def</span> <span class="nf">bd_Deriv_kriging_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xDeriv</span><span class="p">,</span> <span class="n">yDeriv</span><span class="p">,</span> <span class="n">choixDerive</span><span class="p">,</span> <span class="n">choixCov</span><span class="p">,</span> <span class="n">plot_x_pts</span><span class="p">,</span> <span class="n">nugg</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>

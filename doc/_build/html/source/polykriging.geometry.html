@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.geometry package &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polykriging.html">polykriging package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging.geometry package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polykriging.geometry.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polykriging-geometry-package">
+<h1>polykriging.geometry package<a class="headerlink" href="#polykriging-geometry-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.geometry.geometry">
+<span id="polykriging-geometry-geometry-module"></span><h2>polykriging.geometry.geometry module<a class="headerlink" href="#module-polykriging.geometry.geometry" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.geometry.geometry.angularSort">
+<span class="sig-prename descclassname"><span class="pre">polykriging.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">angularSort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centroid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/geometry.html#angularSort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.geometry.angularSort" title="Permalink to this definition"></a></dt>
+<dd><p>Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>localCo</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 colums. The x, y coordinate components of the vertices of the polygon (For the
+cross-section of fiber tows, it is the coordinate in the local coordinate system with</p>
+<blockquote>
+<div><p>its center at the centroid of the polygon).</p>
+</div></blockquote>
+</dd>
+<dt><strong>centroid</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 colums. The x, y coordinate components of the centroid of the polygon.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
+not sorted and returned following the original order with angular position
+for each input vertices.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coorSort</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in
+angular order. The third column is the z coordinate in 3d case.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">Numpy array</span></dt><dd><p>with 1 colums. The angular position of the vertices of the polygon in degree. The two
+returns are sorted in the same order if sort is True. Otherwise, the two returns are
+not sorted, and is following the original order of the input vertices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.geometry.geometry.edgeLen">
+<span class="sig-prename descclassname"><span class="pre">polykriging.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">edgeLen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rotated'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/geometry.html#edgeLen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.geometry.edgeLen" title="Permalink to this definition"></a></dt>
+<dd><p>the width and height of rotated_rectangle
+boundType: rotated or parallel</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.geometry.geometry.geom">
+<span class="sig-prename descclassname"><span class="pre">polykriging.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">geom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'OFF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/geometry.html#geom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.geometry.geom" title="Permalink to this definition"></a></dt>
+<dd><p>分析2D的截面信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
+Note: 只使用了前两个</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>geometry file</strong><span class="classifier">x,y,z of points, and x,y,z of centerline</span></dt><dd></dd>
+<dt>properties: area… …</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.geometry.geometry.normDist">
+<span class="sig-prename descclassname"><span class="pre">polykriging.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">normDist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/geometry.html#normDist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.geometry.normDist" title="Permalink to this definition"></a></dt>
+<dd><p>The normalized distance of the vertices of a polygon</p>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.geometry">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.geometry" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-from polykriging import utility
 import polykriging as pk
 
 # Input: parameters
@@ -10,16 +9,17 @@ resolution = 0.022  # 0.022 mm
 extremaNum, windows, nuggets = 30, 5, [1e-3]
 
 ''' Data loading '''
-path = utility.choose_file(titl="Directory for file CoordinatesSorted file (.coo)")
-coordinatesSorted = pk.pk_load(path).to_numpy()
+path = pk.choose_file(titl="Directory for file CoordinatesSorted file (.coo)", format=".coo")
+coordinatesSorted = pk.pk_load(path)
 
 ''' Initial bandwidth estimation by Scott's rule '''
-std = np.std(coordinatesSorted[:, 1])
-bw = pk.stats.bw_scott(std, coordinatesSorted[:, 1].size)
+t_norm = coordinatesSorted["normalized distance"]
+std = np.std(t_norm)
+bw = pk.stats.bw_scott(std, t_norm.size)/5
 
 '''  Kernel density estimation   '''
 t_test = np.linspace(0, 1, 1000)
-clusters = pk.stats.kdeScreen(coordinatesSorted[:, 1], t_test, 0.05, plot=True)
+clusters = pk.stats.kdeScreen(t_norm, t_test, 0.05, plot=True)
 
 # log-likelihood
 LL = pk.stats.log_likelihood(clusters["pdf input"])
@@ -35,12 +35,12 @@ cmap1 = mpl.cm.cool
 cmap2 = mpl.cm.jet
 
 # color the scatters with the density pdf
-ax1.scatter(coordinatesSorted[:, 3], coordinatesSorted[:, 4], s=30,
-            c=clusters["t input"], cmap=cmap1, alpha=1/10, edgecolors='none')
+ax1.scatter(coordinatesSorted["X"], coordinatesSorted["Y"], s=30,
+            c=clusters["t input"], cmap=cmap1, alpha=1/5, edgecolors='none')
 
 # color the scatters with the density pdf
-ax2.scatter(coordinatesSorted[:, 3], coordinatesSorted[:, 4], s=30,
-            c=color, cmap=cmap2, alpha=1/20, edgecolors='none')
+ax2.scatter(coordinatesSorted["X"], coordinatesSorted["Y"], s=30,
+            c=color, cmap=cmap2, alpha=1/5, edgecolors='none')
 
 ax2.set_xlabel('x (mm)')
 ax1.set_ylabel('y (mm)')
@@ -48,8 +48,8 @@ ax2.set_ylabel('y (mm)')
 # remove the ticks in ax1
 ax1.tick_params(axis='x', which='both', bottom=False, top=False,
                 labelbottom=False)
-ax1.set_aspect(2.5)  # aspect ratio: y/x
-ax2.set_aspect(2.5)  # aspect ratio: y/x
+ax1.set_aspect(1)  # aspect ratio: y/x
+ax2.set_aspect(1)  # aspect ratio: y/x
 plt.subplots_adjust(wspace=0, hspace=0)
 plt.tight_layout()
 plt.show()
@@ -65,6 +65,6 @@ norm = mpl.colors.BoundaryNorm(bounds, cmap2.N,
                                # extend='both'
                                )
 
-fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
+fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap2),
              cax=ax1, orientation='horizontal', label='pdf')
 plt.show()

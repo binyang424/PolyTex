@@ -1,24 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from polykriging import curve2D, utility
+from polykriging import curve2D
+import numpy as np
 import polykriging as pk
-
-
-# Input: parameters
-resolution = 0.022  # 0.022 mm
-# number of extrema (control points) for contour description
-extremaNum, windows, nuggets = 30, 5, [1e-3]
-
-''' Data loading '''
-path = utility.choose_file(titl="Directory for file CoordinatesSorted file (.coo)")
-coordinatesSorted = pk.pk_load(path).to_numpy()
-
-# C:\BinY\OneDrive - polymtl.ca\A3\05_Documentation
-slices = coordinatesSorted[:, -1] / resolution
-nslices = np.unique(slices).size
-t_norm = np.vstack((coordinatesSorted[:, 1], slices)).T
-bw = np.arange(0.04, 0.06, 0.01)  # specify a range for bandwidth optimization
-kdeOutput, cluster_centers = pk.stats.movingKDE(t_norm, bw, windows, extremaNum)
 
 """   Overfitting test    """
 ii = 0
@@ -78,7 +61,6 @@ for iSlice in [250 * 0.022]:
     plt.legend()
     ax1.axis("equal")
     plt.show()
-
 
 ''' Polar plot: angular position - normalized distance '''
 # #fig = plt.figure()

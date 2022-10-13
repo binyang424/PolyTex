@@ -12,10 +12,42 @@ polykriging.fileio.construct\_tetra\_vtk module
    :undoc-members:
    :show-inheritance:
 
+polykriging.fileio.cwd\_chdir module
+------------------------------------
+
+.. automodule:: polykriging.fileio.cwd_chdir
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+polykriging.fileio.expr\_io module
+----------------------------------
+
+.. automodule:: polykriging.fileio.expr_io
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+polykriging.fileio.file\_dialog module
+--------------------------------------
+
+.. automodule:: polykriging.fileio.file_dialog
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 polykriging.fileio.pk\_file module
 ----------------------------------
 
 .. automodule:: polykriging.fileio.pk_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+polykriging.fileio.save\_csv module
+-----------------------------------
+
+.. automodule:: polykriging.fileio.save_csv
    :members:
    :undoc-members:
    :show-inheritance:
@@ -32,6 +64,14 @@ polykriging.fileio.save\_nrrd module
 ------------------------------------
 
 .. automodule:: polykriging.fileio.save_nrrd
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+polykriging.fileio.save\_ply module
+-----------------------------------
+
+.. automodule:: polykriging.fileio.save_ply
    :members:
    :undoc-members:
    :show-inheritance:

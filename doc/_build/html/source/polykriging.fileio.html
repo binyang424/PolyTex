@@ -49,9 +49,14 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.fileio package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.construct_tetra_vtk">polykriging.fileio.construct_tetra_vtk module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.cwd_chdir">polykriging.fileio.cwd_chdir module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.expr_io">polykriging.fileio.expr_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.file_dialog">polykriging.fileio.file_dialog module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.pk_file">polykriging.fileio.pk_file module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_csv">polykriging.fileio.save_csv module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_inp">polykriging.fileio.save_inp module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_nrrd">polykriging.fileio.save_nrrd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_ply">polykriging.fileio.save_ply module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio">Module contents</a></li>
 </ul>
 </li>
@@ -70,7 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.mesh">polykriging.mesh module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.paraSurface">polykriging.paraSurface module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.tool">polykriging.tool module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.utility">polykriging.utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#polykriging-utility-module">polykriging.utility module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.volumeKrig">polykriging.volumeKrig module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
 </ul>
@@ -140,8 +145,183 @@ UnstructuredGrid tetrahedral mesh</p>
 </dd></dl>
 
 </section>
+<section id="module-polykriging.fileio.cwd_chdir">
+<span id="polykriging-fileio-cwd-chdir-module"></span><h2>polykriging.fileio.cwd_chdir module<a class="headerlink" href="#module-polykriging.fileio.cwd_chdir" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.cwd_chdir.cwd_chdir">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.cwd_chdir.</span></span><span class="sig-name descname"><span class="pre">cwd_chdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/cwd_chdir.html#cwd_chdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.cwd_chdir.cwd_chdir" title="Permalink to this definition"></a></dt>
+<dd><p>Set given directory or the folder where the code file is as current working directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of current working directory. if empty, the path of the code file is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>cwd: the current working directory.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.fileio.expr_io">
+<span id="polykriging-fileio-expr-io-module"></span><h2>polykriging.fileio.expr_io module<a class="headerlink" href="#module-polykriging.fileio.expr_io" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.expr_io.expr_io">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.expr_io.</span></span><span class="sig-name descname"><span class="pre">expr_io</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/expr_io.html#expr_io"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.expr_io.expr_io" title="Permalink to this definition"></a></dt>
+<dd><p>Import or export kriging expression as .txt file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename: String.</strong></dt><dd><p>filename with extension txt.</p>
+</dd>
+<dt><strong>expression: String.</strong></dt><dd><p>kriging expression.
+Import txt file which contains a kriging expression if Empty string ‘’ is taken.
+Export the kriging expression when expression is given as a variable name of
+kriging expression. The default is ‘’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>String.</dt><dd><p>kriging expression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.fileio.file_dialog">
+<span id="polykriging-fileio-file-dialog-module"></span><h2>polykriging.fileio.file_dialog module<a class="headerlink" href="#module-polykriging.fileio.file_dialog" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.file_dialog.choose_directory">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.file_dialog.</span></span><span class="sig-name descname"><span class="pre">choose_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Select</span> <span class="pre">the</span> <span class="pre">directory</span> <span class="pre">of</span> <span class="pre">selections</span> <span class="pre">in</span> <span class="pre">&quot;.csv&quot;</span> <span class="pre">format:'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/file_dialog.html#choose_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.file_dialog.choose_directory" title="Permalink to this definition"></a></dt>
+<dd><p>Choose a directory with GUI and return its path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>titl: String.</strong></dt><dd><p>The title of the open folder dialog window.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>path: String. The path of the directory.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.file_dialog.choose_file">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.file_dialog.</span></span><span class="sig-name descname"><span class="pre">choose_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Select</span> <span class="pre">the</span> <span class="pre">directory</span> <span class="pre">of</span> <span class="pre">selections</span> <span class="pre">in</span> <span class="pre">&quot;.csv&quot;</span> <span class="pre">format:'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/file_dialog.html#choose_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.file_dialog.choose_file" title="Permalink to this definition"></a></dt>
+<dd><p>Choose a file with GUI and return its path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>titl: String.</strong></dt><dd><p>The title of the window.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>path: String.</dt><dd><p>The path of the file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.file_dialog.filenames">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.file_dialog.</span></span><span class="sig-name descname"><span class="pre">filenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/file_dialog.html#filenames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.file_dialog.filenames" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of files in the given folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of the folder</p>
+</dd>
+<dt><strong>condition:</strong></dt><dd><p>filter for file selection.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>flst: the list of files in the given folder.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.file_dialog.zipFilelist">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.file_dialog.</span></span><span class="sig-name descname"><span class="pre">zipFilelist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileList</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removeFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'True'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/file_dialog.html#zipFilelist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.file_dialog.zipFilelist" title="Permalink to this definition"></a></dt>
+<dd><p>Add multiple files to the zip file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of the files to be added to zip file</p>
+</dd>
+<dt><strong>fileList</strong></dt><dd><p>the list of files to be added to the zip file</p>
+</dd>
+<dt><strong>filename:</strong></dt><dd><p>the name of the zip file</p>
+</dd>
+<dt><strong>removeFile:</strong></dt><dd><p>whether to remove original files after adding to zip file</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>None.
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-polykriging.fileio.pk_file">
 <span id="polykriging-fileio-pk-file-module"></span><h2>polykriging.fileio.pk_file module<a class="headerlink" href="#module-polykriging.fileio.pk_file" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.pk_file.coo_to_ply">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.pk_file.</span></span><span class="sig-name descname"><span class="pre">coo_to_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_coo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/pk_file.html#coo_to_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.pk_file.coo_to_ply" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a pcd file to ply file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_pcd</strong><span class="classifier">str</span></dt><dd><p>The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>file_ply</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</p>
+</dd>
+<dt><strong>:return: None</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.pk_file.pcd_to_ply">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.pk_file.</span></span><span class="sig-name descname"><span class="pre">pcd_to_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_pcd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/pk_file.html#pcd_to_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.pk_file.pcd_to_ply" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a pcd file to ply file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_pcd</strong><span class="classifier">str</span></dt><dd><p>The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>file_ply</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</p>
+</dd>
+<dt><strong>:return: None</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.fileio.pk_file.pk_load">
 <span class="sig-prename descclassname"><span class="pre">polykriging.fileio.pk_file.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pk_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/pk_file.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.pk_file.pk_load" title="Permalink to this definition"></a></dt>
@@ -188,8 +368,42 @@ Python 2, so that the pickle data stream is readable with Python 2.</p>
 </dd></dl>
 
 </section>
+<section id="module-polykriging.fileio.save_csv">
+<span id="polykriging-fileio-save-csv-module"></span><h2>polykriging.fileio.save_csv module<a class="headerlink" href="#module-polykriging.fileio.save_csv" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.save_csv.save_csv">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.save_csv.</span></span><span class="sig-name descname"><span class="pre">save_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_head</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['line',</span> <span class="pre">'x',</span> <span class="pre">'y',</span> <span class="pre">'z']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_csv.html#save_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_csv.save_csv" title="Permalink to this definition"></a></dt>
+<dd><p>Save numpy array to csv file with given info in the first row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of the folder</p>
+</dd>
+<dt><strong>filename:</strong></dt><dd><p>the name of the csv file</p>
+</dd>
+<dt><strong>coordinate:</strong></dt><dd><p>the list of coordinates to be saved in the csv file</p>
+</dd>
+<dt><strong>csv_head:</strong></dt><dd><p>the list of the head of the csv file</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-polykriging.fileio.save_inp">
 <span id="polykriging-fileio-save-inp-module"></span><h2>polykriging.fileio.save_inp module<a class="headerlink" href="#module-polykriging.fileio.save_inp" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.save_inp.test_elset">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.save_inp.</span></span><span class="sig-name descname"><span class="pre">test_elset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_inp.html#test_elset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_inp.test_elset" title="Permalink to this definition"></a></dt>
+<dd><p>TODO: This is a test case that need to be finished.</p>
+</dd></dl>
+
 </section>
 <section id="module-polykriging.fileio.save_nrrd">
 <span id="polykriging-fileio-save-nrrd-module"></span><h2>polykriging.fileio.save_nrrd module<a class="headerlink" href="#module-polykriging.fileio.save_nrrd" title="Permalink to this heading"></a></h2>
@@ -201,6 +415,38 @@ Python 2, so that the pickle data stream is readable with Python 2.</p>
 :param file_name: the name of the .nrrd file, type: str
 :param file_path: the save path of the .nrrd file, type: str
 :return: None</p>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.fileio.save_ply">
+<span id="polykriging-fileio-save-ply-module"></span><h2>polykriging.fileio.save_ply module<a class="headerlink" href="#module-polykriging.fileio.save_ply" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.fileio.save_ply.save_ply">
+<span class="sig-prename descclassname"><span class="pre">polykriging.fileio.save_ply.</span></span><span class="sig-name descname"><span class="pre">save_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_ply.html#save_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_ply.save_ply" title="Permalink to this definition"></a></dt>
+<dd><p>Save surface mesh as a ply file by definition of vertices and faces. Point data and cell data can be added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>vertices</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</p>
+</dd>
+<dt><strong>cells</strong><span class="classifier">list, optional</span></dt><dd><p>The faces of the mesh stored as the connectivity between vertices. The default is [].</p>
+</dd>
+<dt><strong>point_data</strong><span class="classifier">dict, optional</span></dt><dd><p>The point data of the mesh. The default is {}.</p>
+</dd>
+<dt><strong>cell_data</strong><span class="classifier">dict, optional</span></dt><dd><p>The cell data of the mesh. The default is {}.</p>
+</dd>
+<dt><strong>binary</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the data is written in binary format. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

@@ -1,3 +1,4 @@
 *.pyc
 /build/
 /polykriging.egg-info/
+/future/

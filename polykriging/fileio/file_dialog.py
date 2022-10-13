@@ -88,7 +88,7 @@ def zipFilelist(path, fileList, filename, removeFile="True"):
                 os.remove(path + fileList[i])
 
 
-def choose_file(titl='Select the directory of selections in ".csv" format:'):
+def choose_file(titl='Select the directory of selections in ".csv" format:', format='csv'):
     """
     Choose a file with GUI and return its path.
 
@@ -107,8 +107,9 @@ def choose_file(titl='Select the directory of selections in ".csv" format:'):
     directory_root = Tk()
     directory_root.withdraw()  # Hides small tkinter window.
     directory_root.attributes('-topmost',
-                              True)  # Opened windows will be active. above all windows.
-    path_work = filedialog.askopenfilename(title=titl)  # Returns opened path as str
+                              True)  # Opened windows will be active (appears above all windows)
+    path_work = filedialog.askopenfilename(
+        title=titl, filetypes=[(format, format),('All files', '*.*')])  # Returns opened path as str
 
     # replace the forward slash returned by askdirectory
     # with backslash (\) on Windows.

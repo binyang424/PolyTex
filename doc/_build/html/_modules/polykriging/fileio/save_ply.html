@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.fileio.save_ply &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.fileio.save_ply</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polykriging.fileio.save_ply</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">meshio</span>
+
+
+<div class="viewcode-block" id="save_ply"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.save_ply.save_ply">[docs]</a><span class="k">def</span> <span class="nf">save_ply</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save surface mesh as a ply file by definition of vertices and faces. Point data and cell data can be added.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    vertices : numpy.ndarray</span>
+<span class="sd">        The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</span>
+<span class="sd">    cells : list, optional</span>
+<span class="sd">        The faces of the mesh stored as the connectivity between vertices. The default is [].</span>
+<span class="sd">    point_data : dict, optional</span>
+<span class="sd">        The point data of the mesh. The default is {}.</span>
+<span class="sd">    cell_data : dict, optional</span>
+<span class="sd">        The cell data of the mesh. The default is {}.</span>
+<span class="sd">    binary : bool, optional</span>
+<span class="sd">        If True, the data is written in binary format. The default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">Mesh</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">vertices</span><span class="p">,</span>
+                       <span class="n">cells</span><span class="o">=</span><span class="p">[],</span>
+                       <span class="c1"># Optionally provide extra data on points, cells, etc.</span>
+                       <span class="n">point_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;nx&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;ny&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;nz&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]},</span>
+                       <span class="c1"># Each item in cell data must match the cells array</span>
+                       <span class="c1"># cell_data={&quot;a&quot;: [[0.1, 0.2], [0.4]]},</span>
+                       <span class="p">)</span>
+
+    <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

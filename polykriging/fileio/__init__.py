@@ -17,3 +17,4 @@ from .expr_io import expr_io
 from .cwd_chdir import cwd_chdir
 from .save_csv import save_csv
 from .save_ply import save_ply
+from .save_krig import save_krig

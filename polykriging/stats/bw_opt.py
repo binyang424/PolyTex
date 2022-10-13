@@ -3,7 +3,7 @@ from sklearn.neighbors import KernelDensity
 from sklearn.model_selection import GridSearchCV
 
 
-def bw_scott(sigma, n):
+def bw_scott(sigma, n=''):
     """
     Scott's rule for bandwidth selection.
     :param sigma: standard deviation of the data, type: float

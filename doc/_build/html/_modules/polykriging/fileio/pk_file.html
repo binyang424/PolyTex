@@ -75,6 +75,8 @@
 <span class="kn">from</span> <span class="nn">numpy.compat</span> <span class="kn">import</span> <span class="n">os_fspath</span>
 <span class="kn">from</span> <span class="nn">numpy.lib</span> <span class="kn">import</span> <span class="nb">format</span>
 <span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">from</span> <span class="nn">..curve2D</span> <span class="kn">import</span> <span class="n">addPoints</span>
+<span class="kn">from</span> <span class="nn">..geometry</span> <span class="kn">import</span> <span class="n">normDist</span>
 
 
 <div class="viewcode-block" id="save"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.save">[docs]</a><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -147,6 +149,64 @@
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="pcd_to_ply"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.pcd_to_ply">[docs]</a><span class="k">def</span> <span class="nf">pcd_to_ply</span><span class="p">(</span><span class="n">file_pcd</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a pcd file to ply file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_pcd : str</span>
+<span class="sd">        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    file_ply : str</span>
+<span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">meshio</span>
+
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">file_pcd</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">Mesh</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span>
+                       <span class="n">cells</span><span class="o">=</span><span class="p">[],</span>
+                       <span class="c1"># Optionally provide extra data on points, cells, etc.</span>
+                       <span class="n">point_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;nx&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;ny&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;nz&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]},</span>
+                       <span class="c1"># Each item in cell data must match the cells array</span>
+                       <span class="c1"># cell_data={&quot;a&quot;: [[0.1, 0.2], [0.4]]},</span>
+                       <span class="p">)</span>
+
+    <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_ply</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="coo_to_ply"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.coo_to_ply">[docs]</a><span class="k">def</span> <span class="nf">coo_to_ply</span><span class="p">(</span><span class="n">file_coo</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a pcd file to ply file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_pcd : str</span>
+<span class="sd">        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    file_ply : str</span>
+<span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">meshio</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">file_coo</span><span class="p">)</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+
+    <span class="k">if</span> <span class="n">interpolate</span><span class="p">:</span>
+        <span class="c1"># interpolate</span>
+        <span class="n">vertices</span> <span class="o">=</span> <span class="n">addPoints</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">Mesh</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span>
+                       <span class="n">cells</span><span class="o">=</span><span class="p">[],</span>
+                       <span class="c1"># Optionally provide extra data on points, cells, etc.</span>
+                       <span class="n">point_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;nx&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;ny&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;nz&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]},</span>
+                       <span class="c1"># Each item in cell data must match the cells array</span>
+                       <span class="c1"># cell_data={&quot;a&quot;: [[0.1, 0.2], [0.4]]},</span>
+                       <span class="p">)</span>
+
+    <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_ply</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="s2">&quot;__main__&quot;</span> <span class="o">==</span> <span class="vm">__name__</span><span class="p">:</span>
