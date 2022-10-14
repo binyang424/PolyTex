@@ -6,6 +6,8 @@ from numpy.lib import format
 import contextlib
 from ..curve2D import addPoints
 from ..geometry import normDist
+from ..thirdparty.bcolors import bcolors
+import os
 
 
 def save(file, arr, allow_pickle=True, fix_imports=True):
@@ -47,36 +49,69 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
 
 def pk_save(file, df):
     """
-    Save a pandas dataframe as a file format defined in polykriging (.coo, geo) file
-    :param file: file, str, or pathlib.Path. File or filename to which the data is saved.
-    :param df: pandas.DataFrame
-    :return: None
-    """
-    # index
-    index = df.index
-    # columns
-    columns = df.columns
-    # values
-    values = df.to_numpy()
+    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file
 
-    pk_file = {"index": index, "columns": columns, "values": values}
-    # save dataframes to npz file
-    save(file, pk_file, allow_pickle=True, fix_imports=True)
+    Parameters
+    ----------
+    file: str, or pathlib.Path.
+        File path and name to which the data is saved.
+    df: pandas.DataFrame
+        The data to be saved.
+
+    Returns
+    -------
+    None
+    """
+    # df is a dict
+    filename = os.path.basename(file)
+    if isinstance(df, dict):
+        save(file, df, allow_pickle=True)
+        print(bcolors.ok("The file {} is saved successfully.").format(filename))
+    elif isinstance(df, pd.DataFrame):
+        # index
+        index = df.index
+        # columns
+        columns = df.columns
+        # values
+        values = df.to_numpy()
+        pk_file = {"index": index, "columns": columns, "values": values}
+        save(file, pk_file, allow_pickle=True, fix_imports=True)
+        print(bcolors.ok("The file {} is saved successfully.").format(filename))
+    else:
+        raise TypeError("The input data type is not supported.")
 
 
 def pk_load(pk_file):
     """
-    Load a file format defined in polykriging (.coo, geo) file
-    and return as a pandas dataframe.
-    :param pk_file:  file, str, or pathlib.Path. File or filename to which the data is stored.
-    :return df: pandas.DataFrame
-    """
-    file = np.load(pk_file, allow_pickle=True, fix_imports=True).tolist()
-    index = file["index"]
-    columns = file["columns"]
-    values = file["values"]
+    Load a file format defined in polykriging (.coo, .geo, or .stat) file
+    and return as a pandas dataframe or a numpy.array object.
 
-    df = pd.DataFrame(values, index=index, columns=columns)
+    Parameters
+    ----------
+    pk_file:  str, or pathlib.Path.
+        File path and name to which the data is stored.
+
+    Returns
+    -------
+    df: pandas.DataFrame or numpy.ndarray
+        The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
+        Otherwise, it is a numpy array or dict and a warning will be raised.
+    """
+
+    filename = os.path.basename(pk_file)
+    try:
+        file = np.load(pk_file, allow_pickle=True, fix_imports=True).tolist()
+        index = file["index"]
+        columns = file["columns"]
+        values = file["values"]
+
+        df = pd.DataFrame(values, index=index, columns=columns)
+        print(bcolors.ok("The file {} is loaded successfully.").format(filename))
+    except:
+        df = np.load(pk_file, allow_pickle=True, fix_imports=True)
+        print(bcolors.ok("The file {} is loaded successfully.").format(filename))
+        print(bcolors.warning("Warning: The file is not a pandas dataframe. It is loaded as a numpy array.\n "
+              "If it is a dict originally, please use file.tolist() to convert it to a dict."))
     return df
 
 

@@ -35,12 +35,8 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
 
     """
     model = KernelDensity(kernel=kernels, bandwidth=bw)
-    # check if variable is a dataframe object
-    import pandas as pd
-    if isinstance(variable, pd.Series):
-        variable = variable.to_numpy()
-
     # check if the variable is 1D array
+    variable = variable.to_numpy()
     if variable.ndim == 1:
         variable = variable.reshape(-1, 1)
 
@@ -53,6 +49,10 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     kde = plt.plot(x_test, np.exp(log_dens), c='cyan')
     _, pdf = kde[0].get_data()
     if plot != "False":
+        # x label
+        plt.xlabel('Normalized distance (radial)')
+        # y label
+        plt.ylabel('Probability density')
         plt.show()
 
     # mask for the local maxima of density
@@ -60,9 +60,9 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     cluster_bounds = np.insert(argrelextrema(pdf, np.less)[0], 0, 0)
     cluster_bounds = np.append(cluster_bounds, -1)
     clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0], # Indices of local maxima
-                                "cluster boundary": cluster_bounds,
-                             "pdf": pdf, "pdf input": pdf_input, # pdf_input is the pdf of the input variable
-                "t input": variable, "t test": x_test}
+                "cluster boundary": cluster_bounds,
+                "t test": x_test, "pdf": pdf,
+                "t input": variable, "pdf input": pdf_input,} # pdf_input is the pdf of the input variable
     return clusters
 
 

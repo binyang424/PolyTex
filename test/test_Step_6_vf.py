@@ -1,5 +1,4 @@
 import polykriging as pk
-import numpy as np
 import matplotlib.pyplot as plt
 import re, pyLCM
 
@@ -12,10 +11,15 @@ labels = [int(re.findall(r'\d+', filename)[0]) for filename in filenames]
 # sort the filenames according to the labels
 filenames = [filename for _, filename in sorted(zip(labels, filenames))]
 
-fig, ax = plt.subplots(1, 1, figsize=(8, 6))
-for filename in filenames[:2]:
+for filename in filenames[:5]:
     geo = pk.pk_load(filename)
-    tex = 1100  # tex: 1 tex = 1 g/km
+
+    if "warp" in filename:
+        tex = 2200  # tex: 1 tex = 1 g/km
+    elif "weft" in filename:
+        tex = 1100
+    else:
+        tex = 275  # binder
 
     print(filename)
     fiber_area = pyLCM.utility.tex_to_area(tex, density_fiber=2550)  # mm^2
@@ -25,7 +29,10 @@ for filename in filenames[:2]:
           % (vf.min(), vf.max()))
 
     # plot the fiber volume fraction.
-    ax.plot(geo["centroidY"], vf, label=filename)
+    try:
+        ax.plot(geo["centroidZ"], vf, label=filename)
+    except NameError:
+        fig, ax = plt.subplots(1, 1, figsize=(8, 6))
 
 ax.set_xlabel("y (mm)")
 ax.set_ylabel("fiber volume fraction")

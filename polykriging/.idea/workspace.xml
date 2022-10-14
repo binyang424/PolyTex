@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ff4e8c15-a939-47ba-9c1a-4fe106beae02" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/fileio/pk_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileio/pk_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/kde.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/kde.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/test_Step3_pdf_clusters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../test/test_Step3_pdf_clusters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/test_vf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../test/test_Step_6_vf.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2G5Qy2Ic0NCDsGl4CZLbiZuqjnZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/AQ84510/Nutstore/2/04_coding/Python/00_Projects/05_polyKriging/polykriging/polykriging",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff4e8c15-a939-47ba-9c1a-4fe106beae02" name="Changes" comment="" />
+      <created>1665676215473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665676215473</updated>
+      <workItem from="1665676216828" duration="141000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
