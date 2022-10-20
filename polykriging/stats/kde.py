@@ -35,17 +35,16 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
 
     """
     model = KernelDensity(kernel=kernels, bandwidth=bw)
+
     # check if the variable is 1D array
     variable = variable.to_numpy()
     if variable.ndim == 1:
         variable = variable.reshape(-1, 1)
 
-    if x_test.ndim == 1:
-        x_test = x_test.reshape(-1, 1)
-
     model.fit(variable)
-    log_dens = model.score_samples(x_test)
+    log_dens = model.score_samples(x_test.reshape(-1, 1))
     pdf_input = np.exp(model.score_samples(variable))
+
     kde = plt.plot(x_test, np.exp(log_dens), c='cyan')
     _, pdf = kde[0].get_data()
     if plot != "False":
@@ -59,10 +58,10 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     # argrelextrema: Calculate the relative extrema of `data`.
     cluster_bounds = np.insert(argrelextrema(pdf, np.less)[0], 0, 0)
     cluster_bounds = np.append(cluster_bounds, -1)
-    clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0], # Indices of local maxima
+    clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0],  # Indices of local maxima
                 "cluster boundary": cluster_bounds,
                 "t test": x_test, "pdf": pdf,
-                "t input": variable, "pdf input": pdf_input,} # pdf_input is the pdf of the input variable
+                "t input": variable, "pdf input": pdf_input, }  # pdf_input is the pdf of the input variable
     return clusters
 
 
@@ -148,7 +147,7 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20, x_test=None):
 
             # kdeOutput
             kdeOutput[anchor:upperLimit, 0] = win
-            kdeOutput[anchor:upperLimit, 1] = pcd[:,0]
+            kdeOutput[anchor:upperLimit, 1] = pcd[:, 0]
             kdeOutput[anchor:upperLimit, 2] = ykde
 
             # cluster_center

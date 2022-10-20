@@ -13,11 +13,13 @@ def get_cells(mesh):
 
     Parameters
     ----------
-    mesh: A pyvista mesh object
+    mesh: pyvista mesh object
+        A pyvista mesh object.
 
     Returns
     -------
-    cells: A list of cells
+    cells: list
+        A list of cells
     """
     offset = 0
     cells = []

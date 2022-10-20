@@ -11,7 +11,9 @@ __credits__ = 'Polytechnique Montreal & Wuhan University of Technology'
 
 from .fileio import *
 from . import geometry
+from . import kriging
+from . import mesh
 from . import stats
-
 from . import thirdparty
+
 from .plot import *

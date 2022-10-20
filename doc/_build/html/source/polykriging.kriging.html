@@ -21,7 +21,9 @@
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="polykriging.mesh package" href="polykriging.mesh.html" />
+    <link rel="prev" title="polykriging.geometry package" href="polykriging.geometry.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,9 +42,39 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
-<li class="toctree-l1"><a class="reference internal" href="polykriging.html">polykriging package</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#test">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#clean">Clean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#brief-history">Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#citation">Citation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">polykriging package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.kriging package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.curve2D">polykriging.kriging.curve2D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.mdKrig">polykriging.kriging.mdKrig module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.paraSurface">polykriging.kriging.paraSurface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.tool">polykriging.kriging.tool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.volumeKrig">polykriging.kriging.volumeKrig module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -59,6 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="polykriging.html">polykriging package</a> &raquo;</li>
       <li>polykriging.kriging package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.kriging.rst.txt" rel="nofollow"> View page source</a>
@@ -71,15 +104,813 @@
              
   <section id="polykriging-kriging-package">
 <h1>polykriging.kriging package<a class="headerlink" href="#polykriging-kriging-package" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.kriging.curve2D">
+<span id="polykriging-kriging-curve2d-module"></span><h2>polykriging.kriging.curve2D module<a class="headerlink" href="#module-polykriging.kriging.curve2D" title="Permalink to this heading"></a></h2>
+<p>Implementation of 2D Curve Kriging.</p>
+<p>Bin Yang  2021-9-2</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.addPoints">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">addPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#addPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.addPoints" title="Permalink to this definition"></a></dt>
+<dd><p>Linearly interpolate the points between each of two points that
+further than the threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points. [normalized distance, X, Y, Z]</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>The distance between two points. The default is 0.03.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points after linear interpolation.
+[normalized distance, X, Y, Z]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.bd_Deriv_kriging_func">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">bd_Deriv_kriging_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xDeriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yDeriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choixDerive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choixCov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_x_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#bd_Deriv_kriging_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.bd_Deriv_kriging_func" title="Permalink to this definition"></a></dt>
+<dd><p>Derivative kriging function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">array</span></dt><dd><p>x points</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array</span></dt><dd><p>y points</p>
+</dd>
+<dt><strong>xDeriv</strong><span class="classifier">array</span></dt><dd><p>x points for derivative</p>
+</dd>
+<dt><strong>yDeriv</strong><span class="classifier">array</span></dt><dd><p>the derivative of xDeriv points</p>
+</dd>
+<dt><strong>choixDerive</strong><span class="classifier">string</span></dt><dd><p>the name of the derivative function. Possible values are ‘cst’, ‘lin’ or ‘quad’.</p>
+</dd>
+<dt><strong>choixCov</strong><span class="classifier">string</span></dt><dd><p>the name of the covariance function. Possible values are ‘lin’ or ‘cub’.</p>
+</dd>
+<dt><strong>plot_x_pts: array</strong></dt><dd><p>number of points for plot</p>
+</dd>
+<dt><strong>nugg: float</strong></dt><dd><p>nugget effect (variance)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>kringFunctionStr: string</dt><dd><p>String of the kriging function.</p>
+</dd>
+<dt>x_var_sym: string</dt><dd><p>string of the x variable</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.buildKrigFunc_deriv">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">buildKrigFunc_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xKnown</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xKnown_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriveFuncs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#buildKrigFunc_deriv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.buildKrigFunc_deriv" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.buildM_deriv">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">buildM_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#buildM_deriv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.buildM_deriv" title="Permalink to this definition"></a></dt>
+<dd><p>Build the matrix M for the derivative kriging system</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.buildU_deriv">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">buildU_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriveFuncs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#buildU_deriv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.buildU_deriv" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.curve1Dexpression">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curve1Dexpression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">len_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_ba</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#curve1Dexpression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.curve1Dexpression" title="Permalink to this definition"></a></dt>
+<dd><p>return the Kriging function expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>len_b</strong><span class="classifier">int</span></dt><dd><p>The length of the b vector (the coefficient of linear combination).</p>
+</dd>
+<dt><strong>func_drift</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>func_cov</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+<dt><strong>adef</strong><span class="classifier">numpy array</span></dt><dd><p>The coefficients of the drift function.</p>
+</dd>
+<dt><strong>dataset</strong><span class="classifier">numpy array</span></dt><dd><p>The sample points. X-Y.</p>
+</dd>
+<dt><strong>vector_ba</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging vector.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">sympy expression</span></dt><dd><p>The analytical expression of the function created by kriging.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.curve1Dsolve">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curve1Dsolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_krig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverseType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'inverse'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#curve1Dsolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.curve1Dsolve" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the kriging equation: [Matrix_kriging] [b_a] = [u.. 0..]</p>
+<dl class="simple">
+<dt>dataset: numpy array.</dt><dd><p>The sample points. X-Y.</p>
+</dd>
+<dt>krig_len: int.</dt><dd><p>The length of the kriging vector.</p>
+</dd>
+<dt>mat_krig: numpy array.</dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt>inverseType: String.</dt><dd><p>The type of the inverse matrix. “inverse” or “pseudoinverse”.
+“inverse” : inverse matrix
+“pseudoinverse” : generalized inverse/pseudoinverse</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>b_a: numpy array.</dt><dd><p>The kriging vector.</p>
+</dd>
+<dt>mat_krig_inv: numpy array.</dt><dd><p>The inverse matrix of the kriging matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.curve2Dinter">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curve2Dinter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nuggetEffect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#curve2Dinter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.curve2Dinter" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataset</strong><span class="classifier">numpy array</span></dt><dd><p>X-Y.</p>
+</dd>
+<dt><strong>name_drift</strong><span class="classifier">String</span></dt><dd><p>Name of drift.</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">String</span></dt><dd><p>Name of covariance.</p>
+</dd>
+<dt><strong>nuggetEffect</strong><span class="classifier">Float</span></dt><dd><p>smoothing strength control</p>
+</dd>
+<dt><strong>interp: Numpy array</strong></dt><dd><p>The points that need to be interpolated, 1D numpy array.
+If interp is not given, the x-coordinate of the sample points is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.curveKrig1D">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curveKrig1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nuggetEffect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#curveKrig1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.curveKrig1D" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataset: numpy array</strong></dt><dd><p>X-Y.</p>
+</dd>
+<dt><strong>name_drift</strong><span class="classifier">String</span></dt><dd><p>Name of drift.</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">String</span></dt><dd><p>Name of covariance.</p>
+</dd>
+<dt><strong>nuggetEffect</strong><span class="classifier">Float</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.func_select">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">func_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#func_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.func_select" title="Permalink to this definition"></a></dt>
+<dd><p>This is the function for definition of drift function and covariance function
+in dictionary drif_funcs and cov_funcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name</strong><span class="classifier">string</span></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, and
+“quad” for “constant”, “linear”, “quadratic”, respectively.</p>
+</dd>
+<dt><strong>cov_name</strong><span class="classifier">string</span></dt><dd><p>The name of the covariance function. Possible values are: “lin”, “cub”, and “log”
+for “linear”, “cubic”, “logarithmic”, respectively.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>drift_func</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>cov_func</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.func_var">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">func_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nuggetEffect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#func_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.func_var" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the variance of the prediction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
+</dd>
+<dt><strong>K_h</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>lambda_</strong><span class="classifier">numpy array</span></dt><dd><p>The weight of gloabl combination. Note that it is different from
+the vector_ba in dual Kriging formulation.</p>
+</dd>
+<dt><strong>nuggetEffect</strong><span class="classifier">float</span></dt><dd><p>The nugget effect. Default is 0.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>std_prediction</strong><span class="classifier">numpy array</span></dt><dd><p>the standard deviation of the prediction</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.h">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#h"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.h" title="Permalink to this definition"></a></dt>
+<dd><p>The function h(x1, x2) = abs(x1 - x2).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x1</strong><span class="classifier">float</span></dt><dd><p>The first point.</p>
+</dd>
+<dt><strong>x2</strong><span class="classifier">float</span></dt><dd><p>The second point.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>h</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.lambda_weight">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">lambda_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_krig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#lambda_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.lambda_weight" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the weight of the lambda matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
+</dd>
+<dt><strong>X_train</strong><span class="classifier">numpy array</span></dt><dd><p>The training data. The locations where function values are known.</p>
+</dd>
+<dt><strong>func_drift</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>func_cov</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+<dt><strong>mat_krig</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>K_h</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>lambda_</strong><span class="classifier">numpy array</span></dt><dd><p>The weight of gloabl combination. Note that it is different from
+the vector_ba in dual Kriging formulation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.curve2D.solveB">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">solveB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/curve2D.html#solveB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.curve2D.solveB" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the linear equation system M * B = U
+TODO: check the comments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">numpy array</span></dt><dd><p>The vector of the right hand side of the linear equation system.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>B</strong><span class="classifier">numpy array</span></dt><dd><p>The solution of the linear equation system.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.kriging.mdKrig">
+<span id="polykriging-kriging-mdkrig-module"></span><h2>polykriging.kriging.mdKrig module<a class="headerlink" href="#module-polykriging.kriging.mdKrig" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.buildKriging">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.buildKriging" title="Permalink to this definition"></a></dt>
+<dd><p>Build the kriging model and return the expression in string format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: array like. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>z: array like. The values of the target function. The shape is (m,).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>The possible values are: ‘const’, ‘lin’, ‘cub’.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>The possible values are: ‘lin’, ‘cub’, ‘log’.</p>
+</dd>
+<dt><strong>nugg: float. The nugget effect (variance).</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>The expression of kriging function in string format.
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.buildM">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#buildM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.buildM" title="Permalink to this definition"></a></dt>
+<dd><p>Build the kriging matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func: The drift function.</dt><dd></dd>
+<dt>cov_func: The covariance function.</dt><dd></dd>
+<dt>a_len: The length of the drift function.</dt><dd></dd>
+<dt>M: The matrix of the kriging system. The shape is (n,n).</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.buildU">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#buildU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.buildU" title="Permalink to this definition"></a></dt>
+<dd><p>Build the result vector of the kriging linear system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>z:</strong></dt><dd><p>The values of the target function. The shape is (m,).</p>
+</dd>
+<dt><strong>a_len:</strong></dt><dd><p>The length of the drift function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>U: The result vector of the kriging linear system. The shape is (n,).</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.dist">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Euclidean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.dist" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the distance between each pair of points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: numpy array. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>type: str. The type of the distance. The default is “Euclidean”.</strong></dt><dd><dl class="simple">
+<dt>Other possible values are:</dt><dd><p>“1-norm” : The 1-norm distance.
+“inf-norm” : The infinity-norm distance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance</strong><span class="classifier">numpy array</span></dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.func_select">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">func_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#func_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.func_select" title="Permalink to this definition"></a></dt>
+<dd><p>Function for definition of drift and covariance function
+in dictionary drif_funcs and cov_funcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func: Function.</dt><dd><p>The drift function.</p>
+</dd>
+<dt>cov_func: Function.</dt><dd><p>The covariance function.</p>
+</dd>
+<dt>a_len: int.</dt><dd><p>The length of the drift function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.interp">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#interp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.interp" title="Permalink to this definition"></a></dt>
+<dd><p>TODO: add description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: numpy array.</strong></dt><dd><p>The coordinates of the points. The shape is (m, 2).</p>
+</dd>
+<dt><strong>expr: String.</strong></dt><dd><p>The expression of the target function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>yinter: The values of the kriging function. The shape is (m,).</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.nugget">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">nugget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#nugget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.nugget" title="Permalink to this definition"></a></dt>
+<dd><p>Introduce the nugget effect to the kriging matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix. The shape is (n,n).</p>
+</dd>
+<dt><strong>nugg</strong><span class="classifier">float.</span></dt><dd><p>The nugget effect.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>M: numpy array.</dt><dd><p>The kriging matrix with nugget effect.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.mdKrig.solveB">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">solveB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#solveB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.solveB" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the kriging linear system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M:  numpy array.</strong></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>U:  numpy array.</strong></dt><dd><p>The result vector of the kriging linear system.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>B: numpy array.</dt><dd><p>The solution of the kriging linear system (vector contains b_i and a_i).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.kriging.paraSurface">
+<span id="polykriging-kriging-parasurface-module"></span><h2>polykriging.kriging.paraSurface module<a class="headerlink" href="#module-polykriging.kriging.paraSurface" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.buildKriging">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.buildKriging" title="Permalink to this definition"></a></dt>
+<dd><p>Build the kriging model and return the expression in string format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging.</p>
+</dd>
+<dt><strong>x: array like.</strong></dt><dd><p>The known values of the variables in parametric space.</p>
+</dd>
+<dt><strong>drift_names: list.</strong></dt><dd><p>The name of the drift functions for profile 1 and profile 2 in the
+following format: [drift_name1, drift_name2]. The possible values are: ‘const’, ‘lin’, ‘cub’.</p>
+</dd>
+<dt><strong>cov_names: list.</strong></dt><dd><p>The name of the covariance functions in the following format:
+[covariance_name1, covariance_name2]. The possible values are: ‘lin’, ‘cub’, ‘log’.</p>
+</dd>
+<dt><strong>nugg: list.</strong></dt><dd><p>The nugget effects (variance) for each profile contained in a list.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>expr: The expression of kriging function in string format.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.buildM">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#buildM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.buildM" title="Permalink to this definition"></a></dt>
+<dd><p>Build the kriging matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return drift_func</dt>
+<dd class="field-odd"><p>The drift function.
+..</p>
+</dd>
+<dt class="field-even">return cov_func</dt>
+<dd class="field-even"><p>The covariance function.
+..</p>
+</dd>
+<dt class="field-odd">return a_len</dt>
+<dd class="field-odd"><p>The length of the drift function.
+..</p>
+</dd>
+<dt class="field-even">return M</dt>
+<dd class="field-even"><p>The matrix of the kriging system. The shape is (n,n).
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.buildP">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_lenS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_lenT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#buildP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.buildP" title="Permalink to this definition"></a></dt>
+<dd><p>Build the result vector of the kriging linear system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>z: numpy array.</strong></dt><dd><p>The values of the target function. The shape is (m,n).</p>
+</dd>
+<dt><strong>a_len: int.</strong></dt><dd><p>The length of the drift function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">numpy array.</span></dt><dd><p>The result vector of the kriging linear system. The shape is (n,).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.dist1D">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">dist1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#dist1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.dist1D" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the distance between each pair of points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array.</dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.func_select">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">func_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#func_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.func_select" title="Permalink to this definition"></a></dt>
+<dd><p>This is the function for definition of drift function and covariance function
+in dictionary drif_funcs and cov_funcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name: str.</strong></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str.</strong></dt><dd><p>The name of the covariance function. Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func:</dt><dd><p>The drift function.</p>
+</dd>
+<dt>cov_func:</dt><dd><p>The covariance function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.interp">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#interp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.interp" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolation (substitute the symbolic variables in the expression).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging.</p>
+</dd>
+<dt><strong>expr: String.</strong></dt><dd><p>The expression of the target function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>xinterp: numpy array.</dt><dd><p>The values of the kriging function. The shape is (s.size,t.size).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.kVector">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">kVector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symVar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#kVector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.kVector" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the kriging matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
+</dd>
+<dt><strong>symVar: String.</strong></dt><dd><p>The variable in parametric space.</p>
+</dd>
+<dt><strong>cov_name: String.</strong></dt><dd><p>The name of covariance function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>numpy array.
+The kriging matrix. The shape is (m, 1).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.paraSurface.nugget">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">nugget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#nugget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.nugget" title="Permalink to this definition"></a></dt>
+<dd><p>Introduce the nugget effect to the kriging matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>nugg: float.</strong></dt><dd><p>The nugget effect.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix with nugget effect.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.kriging.tool">
+<span id="polykriging-kriging-tool-module"></span><h2>polykriging.kriging.tool module<a class="headerlink" href="#module-polykriging.kriging.tool" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.tool.data_compr">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">data_compr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matXC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_comp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/tool.html#data_compr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.tool.data_compr" title="Permalink to this definition"></a></dt>
+<dd><p>Data compression by kriging using linear drift and linear covariance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
+</dd>
+<dt><strong>max_err</strong><span class="classifier">float</span></dt><dd><p>The criterion for data compression, which is the maximum local error.</p>
+</dd>
+<dt><strong>skip_comp</strong><span class="classifier">int</span></dt><dd><p>skip (skip_comp-1) data point for data compression.
+skip_comp &gt;=1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>data_norm_comp</strong><span class="classifier">TYPE</span></dt><dd><p>Data points .</p>
+</dd>
+<dt><strong>extre</strong><span class="classifier">numpy array</span></dt><dd><p>Index of data_norm_comp or extrema choosed according to kriging compression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.tool.fun_crva">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">fun_crva</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_para</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_para</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/tool.html#fun_crva"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.tool.fun_crva" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt.</p>
+</dd>
+<dt><strong>drift_para</strong><span class="classifier">list</span></dt><dd><p>List of string elements.</p>
+</dd>
+<dt><strong>cov_para</strong><span class="classifier">list</span></dt><dd><p>List of string elements.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.kriging.tool.norm">
+<span class="sig-prename descclassname"><span class="pre">polykriging.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_krig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'axial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/tool.html#norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.tool.norm" title="Permalink to this definition"></a></dt>
+<dd><p>This is the normalization function. After input the data of DSC test, this function
+will normalize temperature, degree of cure and rate of cure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_krig</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
+</dd>
+<dt><strong>norm_type</strong><span class="classifier">string, optional</span></dt><dd><p>The type of normalization. The default is ‘axial’. The other option is ‘global’ (TODO).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-polykriging.kriging.volumeKrig">
+<span id="polykriging-kriging-volumekrig-module"></span><h2>polykriging.kriging.volumeKrig module<a class="headerlink" href="#module-polykriging.kriging.volumeKrig" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.kriging">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.kriging" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polykriging.geometry.html" class="btn btn-neutral float-left" title="polykriging.geometry package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.mesh.html" class="btn btn-neutral float-right" title="polykriging.mesh package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

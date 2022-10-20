@@ -40,7 +40,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#test">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#clean">Clean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#brief-history">Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
 </ul>
 
@@ -75,8 +83,9 @@
 <span class="kn">from</span> <span class="nn">numpy.compat</span> <span class="kn">import</span> <span class="n">os_fspath</span>
 <span class="kn">from</span> <span class="nn">numpy.lib</span> <span class="kn">import</span> <span class="nb">format</span>
 <span class="kn">import</span> <span class="nn">contextlib</span>
-<span class="kn">from</span> <span class="nn">..curve2D</span> <span class="kn">import</span> <span class="n">addPoints</span>
-<span class="kn">from</span> <span class="nn">..geometry</span> <span class="kn">import</span> <span class="n">normDist</span>
+<span class="kn">from</span> <span class="nn">..kriging.curve2D</span> <span class="kn">import</span> <span class="n">addPoints</span>
+<span class="kn">from</span> <span class="nn">..thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 
 <div class="viewcode-block" id="save"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.save">[docs]</a><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -118,36 +127,69 @@
 
 <div class="viewcode-block" id="pk_save"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.pk_save">[docs]</a><span class="k">def</span> <span class="nf">pk_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Save a pandas dataframe as a file format defined in polykriging (.coo, geo) file</span>
-<span class="sd">    :param file: file, str, or pathlib.Path. File or filename to which the data is saved.</span>
-<span class="sd">    :param df: pandas.DataFrame</span>
-<span class="sd">    :return: None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># index</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
-    <span class="c1"># columns</span>
-    <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
-    <span class="c1"># values</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</span>
 
-    <span class="n">pk_file</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">values</span><span class="p">}</span>
-    <span class="c1"># save dataframes to npz file</span>
-    <span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">pk_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file: str, or pathlib.Path.</span>
+<span class="sd">        File path and name to which the data is saved.</span>
+<span class="sd">    df: pandas.DataFrame</span>
+<span class="sd">        The data to be saved.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># df is a dict</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;The file </span><span class="si">{}</span><span class="s2"> is saved successfully.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="c1"># index</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+        <span class="c1"># columns</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+        <span class="c1"># values</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">pk_file</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">values</span><span class="p">}</span>
+        <span class="n">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">pk_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;The file </span><span class="si">{}</span><span class="s2"> is saved successfully.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The input data type is not supported.&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="pk_load"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.pk_file.pk_load">[docs]</a><span class="k">def</span> <span class="nf">pk_load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load a file format defined in polykriging (.coo, geo) file</span>
-<span class="sd">    and return as a pandas dataframe.</span>
-<span class="sd">    :param pk_file:  file, str, or pathlib.Path. File or filename to which the data is stored.</span>
-<span class="sd">    :return df: pandas.DataFrame</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
-    <span class="n">columns</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+<span class="sd">    Load a file format defined in polykriging (.coo, .geo, or .stat) file</span>
+<span class="sd">    and return as a pandas dataframe or a numpy.array object.</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pk_file:  str, or pathlib.Path.</span>
+<span class="sd">        File path and name to which the data is stored.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df: pandas.DataFrame or numpy.ndarray</span>
+<span class="sd">        The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.</span>
+<span class="sd">        Otherwise, it is a numpy array or dict and a warning will be raised.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">pk_file</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;The file </span><span class="si">{}</span><span class="s2"> is loaded successfully.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;The file </span><span class="si">{}</span><span class="s2"> is loaded successfully.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: The file is not a pandas dataframe. It is loaded as a numpy array.</span><span class="se">\n</span><span class="s2"> &quot;</span>
+              <span class="s2">&quot;If it is a dict originally, please use file.tolist() to convert it to a dict.&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">df</span></div>
 
 

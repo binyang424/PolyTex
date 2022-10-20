@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>Project description &mdash; PolyKriging 0.1.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css\rtd_sphinx_search.min.css" type="text/css" />
@@ -43,7 +43,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#test">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#clean">Clean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#brief-history">Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/polykriging.html">polykriging package</a></li>
 </ul>
 
@@ -61,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Install</li>
+      <li>Project description</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Install.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -71,8 +79,115 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="install">
-<h1>Install<a class="headerlink" href="#install" title="Permalink to this heading"></a></h1>
+  <section id="project-description">
+<h1>Project description<a class="headerlink" href="#project-description" title="Permalink to this heading"></a></h1>
+<p><strong>Note:</strong></p>
+<ul class="simple">
+<li><p><strong>This document is only a template and will be completed when the
+project is released.</strong></p></li>
+<li><p><strong>Therefore, the following information may not correct at this
+stage</strong>.</p></li>
+</ul>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>To install PolyKriging using PyPI, run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install polykriging
+</pre></div>
+</div>
+<p>To install PolyKriging using Anaconda, run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c anaconda polykriging
+</pre></div>
+</div>
+<p>To install PolyKriging from GitHub source, first clone PolyKriging using
+<code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/binyang424/polykriging.git
+</pre></div>
+</div>
+<p>Then, in the <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> repository that you cloned, simply run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py install
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://docs.PolyKriging.org/dev/install.html">https://docs.PolyKriging.org/dev/install.html</a> for more information.</p>
+</section>
+<section id="documentation-and-usage">
+<h1>Documentation and Usage<a class="headerlink" href="#documentation-and-usage" title="Permalink to this heading"></a></h1>
+<p>Everything is at:</p>
+<p><a class="reference external" href="https://docs.PolyKriging.org/">https://docs.PolyKriging.org/</a></p>
+<p>You can generate everything at the above site in your local copy of
+PolyKriging by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd doc
+$ make html
+</pre></div>
+</div>
+<p>Then the docs will be in _build/html.</p>
+</section>
+<section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h1>
+<p>We welcome contributions from anyone, even if you are new to open
+source. Please read our <a class="reference external" href="https://github.com/PolyKriging/PolyKriging/wiki/Introduction-to-contributing">Introduction to
+Contributing</a>
+page and the <a class="reference external" href="https://docs.PolyKriging.org/dev/documentation-style-guide.html">PolyKriging Documentation Style
+Guide</a>.
+If you are new and looking for some way to contribute, a good place to
+start is to look at the issues tagged <a class="reference external" href="https://github.com/PolyKriging/PolyKriging/issues?q=is%3Aopen+is%3Aissue+label%3A%22Easy+to+Fix%22">Easy to
+Fix</a>.</p>
+<p>Please note that all participants in this project are expected to follow
+our Code of Conduct. By participating in this project you agree to abide
+by its terms. See
+<a class="reference external" href="https://pypi.org/project/PolyKriging/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a>.</p>
+</section>
+<section id="test">
+<h1>Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h1>
+<p>TODO</p>
+</section>
+<section id="clean">
+<h1>Clean<a class="headerlink" href="#clean" title="Permalink to this heading"></a></h1>
+<p>To clean everything (thus getting the same tree as in the repository):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./setup.py clean
+</pre></div>
+</div>
+<p>You can also clean things with git using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clean -Xdf
+</pre></div>
+</div>
+<p>which will clear everything ignored by <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clean -df
+</pre></div>
+</div>
+<p>to clear all untracked files. You can revert the most recent changes in
+git with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git reset --hard
+</pre></div>
+</div>
+<p>WARNING: The above commands will all clear changes you may have made,
+and you will lose them forever. Be sure to check things with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-Xn</span></code>, and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-n</span></code>
+before doing any of those.</p>
+</section>
+<section id="bugs">
+<h1>Bugs<a class="headerlink" href="#bugs" title="Permalink to this heading"></a></h1>
+<p>Our issue tracker is at
+<a class="reference external" href="https://github.com/PolyKriging/PolyKriging/issues">https://github.com/PolyKriging/PolyKriging/issues</a>. Please report any
+bugs that you find. Or, even better, fork the repository on GitHub and
+create a pull request. We welcome all changes, big or small, and we will
+help you make the pull request if you are new to git (just ask on our
+mailing list or Gitter Channel).</p>
+</section>
+<section id="brief-history">
+<h1>Brief History<a class="headerlink" href="#brief-history" title="Permalink to this heading"></a></h1>
+</section>
+<section id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h1>
+<p>To cite PolyKriging in publications use</p>
+<p>A BibTeX entry for LaTeX users is</p>
+<p>PolyKriging is BSD licensed, so you are free to use it whatever you
+like, be it academic, commercial, creating forks or derivatives, as long
+as you copy the BSD statement if you redistribute it (see the LICENSE
+file for details). That said, although not required by the PolyKriging
+license, if it is convenient for you, please cite PolyKriging when using
+it in your work and also consider contributing all your changes back, so
+that we can incorporate it and all of us will benefit in the end.</p>
 </section>
 
 

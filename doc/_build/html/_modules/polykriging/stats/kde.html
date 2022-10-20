@@ -40,7 +40,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#test">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#clean">Clean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#brief-history">Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
 </ul>
 
@@ -107,6 +115,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernels</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="n">bw</span><span class="p">)</span>
     <span class="c1"># check if the variable is 1D array</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -119,6 +128,10 @@
     <span class="n">kde</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">pdf</span> <span class="o">=</span> <span class="n">kde</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">plot</span> <span class="o">!=</span> <span class="s2">&quot;False&quot;</span><span class="p">:</span>
+        <span class="c1"># x label</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Normalized distance (radial)&#39;</span><span class="p">)</span>
+        <span class="c1"># y label</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
     <span class="c1"># mask for the local maxima of density</span>
@@ -126,13 +139,13 @@
     <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">cluster_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_bounds</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">clusters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">:</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="c1"># Indices of local maxima</span>
-                                <span class="s2">&quot;cluster boundary&quot;</span><span class="p">:</span> <span class="n">cluster_bounds</span><span class="p">,</span>
-                             <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span> <span class="s2">&quot;pdf input&quot;</span><span class="p">:</span> <span class="n">pdf_input</span><span class="p">,</span> <span class="c1"># pdf_input is the pdf of the input variable</span>
-                <span class="s2">&quot;t input&quot;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;t test&quot;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">}</span>
+                <span class="s2">&quot;cluster boundary&quot;</span><span class="p">:</span> <span class="n">cluster_bounds</span><span class="p">,</span>
+                <span class="s2">&quot;t test&quot;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">,</span> <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span>
+                <span class="s2">&quot;t input&quot;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;pdf input&quot;</span><span class="p">:</span> <span class="n">pdf_input</span><span class="p">,}</span> <span class="c1"># pdf_input is the pdf of the input variable</span>
     <span class="k">return</span> <span class="n">clusters</span></div>
 
 
-<div class="viewcode-block" id="movingKDE"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.movingKDE">[docs]</a><span class="k">def</span> <span class="nf">movingKDE</span><span class="p">(</span><span class="n">pcd</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cluster_center</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class="viewcode-block" id="movingKDE"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.movingKDE">[docs]</a><span class="k">def</span> <span class="nf">movingKDE</span><span class="p">(</span><span class="n">pcd</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cluster_center</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">x_test</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -148,6 +161,8 @@
 <span class="sd">        DESCRIPTION. The default is 1.</span>
 <span class="sd">    n_cluster_center : int, The target number of cluster_center</span>
 <span class="sd">        DESCRIPTION. The default is 20.</span>
+<span class="sd">    x_test : Numpy array</span>
+<span class="sd">        Test data to get the density distribution. The default is None.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -173,8 +188,9 @@
         <span class="n">maskMin</span> <span class="o">=</span> <span class="n">pcd</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">maskMax</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">win</span> <span class="o">*</span> <span class="n">winLen</span>
         <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[</span><span class="n">maskMin</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="c1"># Generate test data to get the density distribution</span>
-        <span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">size</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">x_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Generate test data to get the density distribution</span>
+            <span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">size</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">==</span> <span class="s2">&quot;numpy&quot;</span><span class="p">:</span>
             <span class="n">optBw</span> <span class="o">=</span> <span class="n">opt_bandwidth</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">)</span>
@@ -234,6 +250,16 @@
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
     <span class="n">kdeOutput_col</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="s2">&quot;normalized distance&quot;</span><span class="p">,</span> <span class="s2">&quot;probability density&quot;</span><span class="p">]</span>
     <span class="n">kdeOutput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">kdeOutput</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kdeOutput_col</span><span class="p">)</span>
+
+    <span class="c1"># Returns a column mask to show if any zero values are present in the row of kdeOutput</span>
+    <span class="c1"># If any zero values are present, the row is masked (False), otherwise the row is not masked (True).</span>
+    <span class="c1"># The mask is used to remove the rows with zero values from the kdeOutput.</span>
+    <span class="c1"># the first row is always as True since it is the starting point (0) of the contour.</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">kdeOutput</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># remove the rows with zero values from the kdeOutput</span>
+    <span class="n">kdeOutput</span> <span class="o">=</span> <span class="n">kdeOutput</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">kdeOutput</span><span class="p">,</span> <span class="n">cluster_center</span></div>
 

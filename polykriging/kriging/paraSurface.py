@@ -138,7 +138,7 @@ def buildM(x, drift_name, cov_name):
     for i in np.arange(a_len):
         M[:b_len, b_len + i] = a[i]
         M[b_len + i, :b_len] = a[i]
-    return M, drift_func, cov_func, a_len
+    return M, drift_func, cov_func, a_len, b_len
 
 
 def nugget(M, nugg, b_len):
@@ -157,6 +157,8 @@ def nugget(M, nugg, b_len):
     M : numpy array.
         The kriging matrix with nugget effect.
     """
+    M = sym.Matrix(M)
+
     # -------- identity matrix with the same size as M --------
     I = np.identity(b_len)
     # -------- multiply nugg to the diagonal of I --------
@@ -168,14 +170,16 @@ def nugget(M, nugg, b_len):
 
 def buildP(x, a_lenS, a_lenT):
     """
-    Build the result vector of the kriging linear system.
+    Build the result matrix of the kriging linear system.
 
     Parameters
     ----------
-    z: numpy array.
+    x: numpy array.
         The values of the target function. The shape is (m,n).
-    a_len: int.
-        The length of the drift function.
+    a_lenS: int.
+        The size of the result matrix in S direction.
+    a_lenT: int.
+        The length of the result matrix in T direction.
 
     Returns
     -------
@@ -187,14 +191,14 @@ def buildP(x, a_lenS, a_lenT):
     return P
 
 
-def buildKriging(s, t, x, drift_names, cov_names, nugg=[0, 0]):
+def buildKriging(s, t, x, drift_names, cov_names, nugg=[]):
     """
     Build the kriging model and return the expression in string format.
 
     Parameters
     ----------
     s, t: numpy array.
-        The parameters of the two profiles for surface parametric kriging.
+        The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).
     x: array like.
         The known values of the variables in parametric space.
     drift_names: list.
@@ -213,34 +217,51 @@ def buildKriging(s, t, x, drift_names, cov_names, nugg=[0, 0]):
     s, t, x = np.array(s), np.array(t), np.array(x)
 
     # ------- build the kriging matrix -------
-    MS, drift_funcS, cov_funcS, a_lenS = buildM(s, drift_names[0], cov_names[0])
-    MT, drift_funcT, cov_funcT, a_lenT = buildM(t, drift_names[1], cov_names[1])
+    MS, drift_funcS, cov_funcS, a_lenS, b_lenS = buildM(s, drift_names[0], cov_names[0])
+    MT, drift_funcT, cov_funcT, a_lenT, b_lenT = buildM(t, drift_names[1], cov_names[1])
 
     # ------- introduce nugget effect -------
-    MS = nugget(MS, nugg[0], a_lenS)
-    MT = nugget(MT, nugg[1], a_lenT)
+    # check if nugget effect is given as a list of two numerical values
+    if len(nugg) == 2:
+        MS = nugget(MS, nugg[0], b_lenS)
+        MT = nugget(MT, nugg[1], b_lenT)
+    else:
+        nugS, nugT = sym.symbols('nugS, nugT')
+        MS = nugget(MS, nugS, b_lenS)
+        MT = nugget(MT, nugT, b_lenT)
 
     # ------- build parametric kriging vectors -------
     k1s = kVector(s, 's', drift_names[0], cov_names[0])
     k2t = kVector(t, 't', drift_names[1], cov_names[1])
 
+
     # ------- build the matrix of known variables P -------
     Px = buildP(x, a_lenS, a_lenT)
 
     # ------- build the parametric kriging model -------
-    expr = np.linalg.multi_dot([k1s.reshape([1, -1]), np.linalg.inv(MS),
-                                Px, np.linalg.inv(MT), k2t.reshape([-1, 1])]).sum()
-    return expr
+    # expr = np.linalg.multi_dot([k1s.reshape([1, -1]), np.linalg.inv(MS),
+    #                             Px, np.linalg.inv(MT), k2t.reshape([-1, 1])]).sum()
+
+    # The shape of the matrces for dot product are always known. In this case, we can
+    # use np.dot instead of np.linalg.multi_dot to speed up the calculation process by
+    # control the order of matrix multiplication (reduce the number of scalar operations).
+    # expr = np.dot(np.dot(k1s.reshape([1, -1]), np.linalg.inv(MS)),
+    #               np.dot(Px, np.dot(np.linalg.inv(MT), k2t.reshape([-1, 1])))).sum()
+    expr = np.dot(np.dot(k1s.reshape([1, -1]), MS.inv()),
+                  np.dot(Px, np.dot(MT.inv(), k2t.reshape([-1, 1])))).sum()
+
+    return expr, MS,MT, k1s, k2t, Px
 
 
-def interp(s, t, expr):
+def interp(s, t, expr, split_complexity=1):
     """
     Interpolation (substitute the symbolic variables in the expression).
 
     Parameters
     ----------
     s, t: numpy array.
-        The parameters of the two profiles for surface parametric kriging.
+        The parameters of the two profiles for surface parametric kriging (1d array).
+        s has size that same as the number of rows and t the same as the number of columns.
     expr: String.
         The expression of the target function.
 
@@ -250,11 +271,70 @@ def interp(s, t, expr):
         The values of the kriging function. The shape is (s.size,t.size).
     """
     sVar, tVar = sym.symbols('s t')
-    xinterp = np.zeros((len(s), len(t)))
-    for i in range(len(s)):
-        for j in range(len(t)):
-            xinterp[i, j] = sym.simplify(expr.subs({sVar: s[i], tVar: t[j]}))
+    # xinterp = np.zeros((len(s), len(t)))
+    # for i in range(len(s)):
+    #     for j in range(len(t)):
+    #         xinterp[i, j] = sym.simplify(expr.subs({sVar: s[i], tVar: t[j]}))
+
+    if split_complexity == 0:
+        xfnp = sym.lambdify([sVar, tVar], expr, 'numpy')
+    elif split_complexity > 0:
+        import tensorwaves as tw
+        xfnp = tw.function.sympy.fast_lambdify(
+            expr,
+            [sVar, tVar],
+            max_complexity=split_complexity,
+            backend="numpy",
+        )
+
+    xv, yv = np.array(np.meshgrid(s, t))
+    xinterp = xfnp(xv.T, yv.T)
+
     return xinterp
+
+
+def surface3Dinterp(x, y, z, name_drift, name_cov, nug, return_dict=None, label=None):
+    """
+    Build the kriging model and interpolate the results
+
+    Parameters
+    ----------
+    x: numpy array.
+        The coordinates in parametric space of the points. The shape is (m, 1).
+    y: numpy array.
+        The coordinates in parametric space of the points. The shape is (n, 1).
+    z: numpy array.
+        The coordinates in parametric space of the points. The shape is (m, n).
+    name_drift: String.
+        The name of drift function.
+    name_cov: String.
+        The name of covariance function.
+    nug: float.
+        The nugget effect.
+    return_dict: dict.
+        The dictionary to store the results. It is used for multiprocessing purpose.
+    label: String.
+        The label of the result.
+
+    Returns
+    -------
+    z_krig: numpy array.
+        The interpolated results. The shape is (m, n). It is the return value if return_dict is None
+        (namely, the function is not used in parallel).
+
+    return_dict: dict.
+        The dictionary to store the results. It is used for multiprocessing purpose.
+    """
+    expr, MS, MT, k1s, k2t, P = buildKriging(x, y, z, name_drift, name_cov, nug)
+    z_interp = interp(x, y, expr, split_complexity=0)
+
+    z_interp[-1, :] = z_interp[0, :]
+
+    if return_dict is not None:
+        return_dict[label] = z_interp
+        return return_dict
+    else:
+        return z_interp
 
 
 if __name__ == '__main__':
@@ -275,3 +355,5 @@ if __name__ == '__main__':
     xinterp = interp(s, t, xexpr)
     yinterp = interp(s, t, yexpr)
     zinterp = interp(s, t, zexpr)
+
+

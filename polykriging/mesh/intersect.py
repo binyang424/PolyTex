@@ -4,17 +4,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(10, 10))
-ax = plt.subplot(111, projection='3d')
-
-ax.set_xlabel('x', fontsize=18)
-ax.set_ylabel('y', fontsize=18)
-ax.set_zlabel('z', fontsize=18)
-
-ax.tick_params(axis='both', which='major', labelsize=15,
-               labelrotation=0, direction='in', length=10, width=1, pad=0.5)
-ax.tick_params(axis='both', which='minor', labelsize=15,
-               labelrotation=0, direction='in', length=5, width=1, pad=0.5)
+# plt.figure(figsize=(10, 10))
+# ax = plt.subplot(111, projection='3d')
+#
+# ax.set_xlabel('x', fontsize=18)
+# ax.set_ylabel('y', fontsize=18)
+# ax.set_zlabel('z', fontsize=18)
+#
+# ax.tick_params(axis='both', which='major', labelsize=15,
+#                labelrotation=0, direction='in', length=10, width=1, pad=0.5)
+# ax.tick_params(axis='both', which='minor', labelsize=15,
+#                labelrotation=0, direction='in', length=5, width=1, pad=0.5)
 
 
 def generate_points(n, a, b):

@@ -52,11 +52,6 @@ surf2stl.tri_write('mobius.stl', x, y, z, delaunay_tri)
 If you use jupyter notebook,
 'Surf2stl-python_example.ipynb' shows the examples with 3d graphs in matplotlib.
 
-![jupyter_notebook_image1](images/jupyter_notebook_image1.png)
-![meshlab_image1](images/3d-sinusoidal_meshlab.png)
-![jupyter_notebook_image2](images/jupyter_notebook_image2.png)
-![meshlab_image2](images/mobius_meshlab.png)
-
 
 ## Requirement
 - Python 3

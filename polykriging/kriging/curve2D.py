@@ -341,8 +341,8 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
         X_predict = dataset[:, 0]
 
     yinter = np.empty(X_predict.shape[0])
-    for pts in range(X_predict.shape[0]):
-        yinter[pts] = expr.subs({x: interp[pts]})
+    xfnp = sym.lambdify(x, expr, 'numpy')
+    yinter = xfnp(np.array(X_predict))
 
     yinter[np.abs(yinter) < 1e-15] = 0.
 
@@ -352,9 +352,9 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
         K_h, lambda_ = lambda_weight(X_predict, X_train, func_drift, func_cov, mat_krig)
         std_prediction = func_var(X_predict, K_h, lambda_, nuggetEffect=nuggetEffect)
 
-        return yinter, expr, std_prediction
+        return yinter.flatten(), expr, std_prediction.flatten()
 
-    return yinter, expr
+    return yinter.flatten(), expr
 
 
 # ---------------------Derivative Kriging--------------
@@ -592,7 +592,7 @@ if __name__ == "__main__":
      [0.421875 0.125    0.       0.015625 1.      ]
      [1.       0.421875 0.015625 0.       1.      ]
      [1.       1.       1.       1.       0.      ]]
-     
+
     [[0.   0.25 0.75 1.   1.  ]
      [0.25 0.   0.5  0.75 1.  ]
      [0.75 0.5  0.   0.25 1.  ]

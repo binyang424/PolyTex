@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="polykriging.plot package" href="polykriging.plot.html" />
+    <link rel="next" title="polykriging.geometry package" href="polykriging.geometry.html" />
     <link rel="prev" title="polykriging package" href="polykriging.html" /> 
 </head>
 
@@ -43,7 +43,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#test">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#clean">Clean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#brief-history">Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html#citation">Citation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">polykriging package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="polykriging.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.fileio package</a><ul>
@@ -55,28 +63,20 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.pk_file">polykriging.fileio.pk_file module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_csv">polykriging.fileio.save_csv module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_inp">polykriging.fileio.save_inp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_krig">polykriging.fileio.save_krig module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_nrrd">polykriging.fileio.save_nrrd module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio.save_ply">polykriging.fileio.save_ply module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.fileio">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.curve2D">polykriging.curve2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.decimation">polykriging.decimation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.features">polykriging.features module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.geometry">polykriging.geometry module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.intersect">polykriging.intersect module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.mdKrig">polykriging.mdKrig module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.mesh">polykriging.mesh module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.paraSurface">polykriging.paraSurface module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.tool">polykriging.tool module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#polykriging-utility-module">polykriging.utility module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.volumeKrig">polykriging.volumeKrig module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
 </ul>
 </li>
@@ -325,19 +325,44 @@ kriging expression. The default is ‘’.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.fileio.pk_file.pk_load">
 <span class="sig-prename descclassname"><span class="pre">polykriging.fileio.pk_file.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pk_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/pk_file.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.pk_file.pk_load" title="Permalink to this definition"></a></dt>
-<dd><p>Load a file format defined in polykriging (.coo, geo) file
-and return as a pandas dataframe.
-:param pk_file:  file, str, or pathlib.Path. File or filename to which the data is stored.
-:return df: pandas.DataFrame</p>
+<dd><p>Load a file format defined in polykriging (.coo, .geo, or .stat) file
+and return as a pandas dataframe or a numpy.array object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pk_file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>df: pandas.DataFrame or numpy.ndarray</dt><dd><p>The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
+Otherwise, it is a numpy array or dict and a warning will be raised.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.fileio.pk_file.pk_save">
 <span class="sig-prename descclassname"><span class="pre">polykriging.fileio.pk_file.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/pk_file.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.pk_file.pk_save" title="Permalink to this definition"></a></dt>
-<dd><p>Save a pandas dataframe as a file format defined in polykriging (.coo, geo) file
-:param file: file, str, or pathlib.Path. File or filename to which the data is saved.
-:param df: pandas.DataFrame
-:return: None</p>
+<dd><p>Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file: str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is saved.</p>
+</dd>
+<dt><strong>df: pandas.DataFrame</strong></dt><dd><p>The data to be saved.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -405,6 +430,83 @@ Python 2, so that the pickle data stream is readable with Python 2.</p>
 </dd></dl>
 
 </section>
+<section id="module-polykriging.fileio.save_krig">
+<span id="polykriging-fileio-save-krig-module"></span><h2>polykriging.fileio.save_krig module<a class="headerlink" href="#module-polykriging.fileio.save_krig" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.fileio.save_krig.save_krig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.fileio.save_krig.</span></span><span class="sig-name descname"><span class="pre">save_krig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_krig.html#save_krig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_krig.save_krig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>This saves a dictonary of sympy expressions to a file
+in human readable form.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
+<td><p>Create a new dictionary with keys from iterable and values set to value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>(key[, default])</p></td>
+<td><p>Return the value for key if key is in the dictionary, else default.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(key[, default])</p></td>
+<td><p>If the key is not found, return the default if given; otherwise, raise a KeyError.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>(/)</p></td>
+<td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>(key[, default])</p></td>
+<td><p>Insert key with a value of default if key is not in the dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E, ]**F)</p></td>
+<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>load</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>save</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.fileio.save_krig.save_krig.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_krig.html#save_krig.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_krig.save_krig.load" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.fileio.save_krig.save_krig.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/fileio/save_krig.html#save_krig.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.fileio.save_krig.save_krig.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-polykriging.fileio.save_nrrd">
 <span id="polykriging-fileio-save-nrrd-module"></span><h2>polykriging.fileio.save_nrrd module<a class="headerlink" href="#module-polykriging.fileio.save_nrrd" title="Permalink to this heading"></a></h2>
 <dl class="py function">
@@ -462,7 +564,7 @@ Python 2, so that the pickle data stream is readable with Python 2.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="polykriging.html" class="btn btn-neutral float-left" title="polykriging package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="polykriging.plot.html" class="btn btn-neutral float-right" title="polykriging.plot package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="polykriging.geometry.html" class="btn btn-neutral float-right" title="polykriging.geometry package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

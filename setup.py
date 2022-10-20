@@ -2,14 +2,15 @@ from setuptools import setup
 
 setup(
     name='polykriging',
-    version='0.1.2',    
+    version='0.1.5',    
     description='A kriging package as a result of the course MEC 6310',
     url='https://github.com/shuds13/polykriging',
     author='Bin Yang',
     author_email='bin.yang@polymtl.ca',
     license='BSD 2-clause',
-    packages=['polykriging', 'polykriging.fileio', 'polykriging.stats',
-              'polykriging.thirdparty', 'polykriging.plot', 'polykriging.geometry'],
+    packages=['polykriging', 'polykriging.fileio', 'polykriging.geometry',
+              'polykriging.kriging', 'polykriging.mesh', 'polykriging.plot',
+              'polykriging.stats', 'polykriging.thirdparty', ],
     install_requires=['numpy>=0.5',
                       'matplotlib',
                       'sympy',

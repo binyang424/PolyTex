@@ -60,6 +60,14 @@ polykriging.fileio.save\_inp module
    :undoc-members:
    :show-inheritance:
 
+polykriging.fileio.save\_krig module
+------------------------------------
+
+.. automodule:: polykriging.fileio.save_krig
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 polykriging.fileio.save\_nrrd module
 ------------------------------------
 

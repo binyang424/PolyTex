@@ -4,9 +4,9 @@ import pandas as pd
 from numpy.compat import os_fspath
 from numpy.lib import format
 import contextlib
-from ..curve2D import addPoints
-from ..geometry import normDist
+from ..kriging.curve2D import addPoints
 from ..thirdparty.bcolors import bcolors
+from .save_krig import save_krig
 import os
 
 
@@ -55,7 +55,7 @@ def pk_save(file, df):
     ----------
     file: str, or pathlib.Path.
         File path and name to which the data is saved.
-    df: pandas.DataFrame
+    df: pandas.DataFrame or dict
         The data to be saved.
 
     Returns
@@ -64,9 +64,15 @@ def pk_save(file, df):
     """
     # df is a dict
     filename = os.path.basename(file)
-    if isinstance(df, dict):
+    if file.endswith('.krig'):
+        expr = save_krig(df)
+        expr.save(file)
+        print(bcolors.ok("The Kriging function {} is saved successfully.").format(filename))
+
+    elif isinstance(df, dict) and not file.endswith('.krig'):
         save(file, df, allow_pickle=True)
         print(bcolors.ok("The file {} is saved successfully.").format(filename))
+
     elif isinstance(df, pd.DataFrame):
         # index
         index = df.index
@@ -99,6 +105,9 @@ def pk_load(pk_file):
     """
 
     filename = os.path.basename(pk_file)
+    if pk_file.endswith('.krig'):
+        print(bcolors.ok("The Kriging expression {} is loaded successfully.").format(filename))
+        return save_krig.load(pk_file)
     try:
         file = np.load(pk_file, allow_pickle=True, fix_imports=True).tolist()
         index = file["index"]

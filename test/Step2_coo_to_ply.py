@@ -2,8 +2,8 @@
 input: .coo file
 output: .ply file
 
-If interpolate is True, the points farther than the given thereshold (normalzied distance)
-will be linearly interpolated to avoid distortion in tetralization process.
+If interpolate is True, the points farther than the given threshold (normalzied distance)
+will be linearly interpolated to avoid distortion in tetralization  process.
 """
 
 import polykriging as pk

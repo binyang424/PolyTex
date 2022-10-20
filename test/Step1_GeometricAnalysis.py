@@ -30,7 +30,7 @@ pathsave = pk.fileio.choose_directory(
 resolution = 0.022  # mm/pixel
 
 fig = plt.figure()
-for yarn in np.arange(32, 50):
+for yarn in np.arange(32, 33):
 
     # load contour described by point cloud
     pcd = pk.pk_load("warp_{}.pcd".format(yarn))

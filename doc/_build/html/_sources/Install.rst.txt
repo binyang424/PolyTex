@@ -1,2 +1,140 @@
-Install
-=======
+Project description
+===================
+
+**Note:**
+
+-  **This document is only a template and will be completed when the
+   project is released.**
+
+-  **Therefore, the following information may not correct at this
+   stage**.
+
+Installation
+============
+
+To install PolyKriging using PyPI, run the following command:
+
+.. code:: 
+
+   $ pip install polykriging
+
+To install PolyKriging using Anaconda, run the following command:
+
+.. code:: 
+
+   $ conda install -c anaconda polykriging
+
+To install PolyKriging from GitHub source, first clone PolyKriging using
+``git``:
+
+.. code:: 
+
+   $ git clone https://github.com/binyang424/polykriging.git
+
+Then, in the ``PolyKriging`` repository that you cloned, simply run:
+
+.. code:: 
+
+   $ python setup.py install
+
+See https://docs.PolyKriging.org/dev/install.html for more information.
+
+Documentation and Usage
+=======================
+
+Everything is at:
+
+https://docs.PolyKriging.org/
+
+You can generate everything at the above site in your local copy of
+PolyKriging by:
+
+.. code:: 
+
+   $ cd doc
+   $ make html
+
+Then the docs will be in \_build/html.
+
+Contributing
+============
+
+We welcome contributions from anyone, even if you are new to open
+source. Please read our `Introduction to
+Contributing <https://github.com/PolyKriging/PolyKriging/wiki/Introduction-to-contributing>`__
+page and the `PolyKriging Documentation Style
+Guide <https://docs.PolyKriging.org/dev/documentation-style-guide.html>`__.
+If you are new and looking for some way to contribute, a good place to
+start is to look at the issues tagged `Easy to
+Fix <https://github.com/PolyKriging/PolyKriging/issues?q=is%3Aopen+is%3Aissue+label%3A%22Easy+to+Fix%22>`__.
+
+Please note that all participants in this project are expected to follow
+our Code of Conduct. By participating in this project you agree to abide
+by its terms. See
+`CODE\_OF\_CONDUCT.md <https://pypi.org/project/PolyKriging/CODE_OF_CONDUCT.md>`__.
+
+Test
+====
+
+TODO
+
+Clean
+=====
+
+To clean everything (thus getting the same tree as in the repository):
+
+.. code:: 
+
+   $ ./setup.py clean
+
+You can also clean things with git using:
+
+.. code:: 
+
+   $ git clean -Xdf
+
+which will clear everything ignored by ``.gitignore``, and:
+
+.. code:: 
+
+   $ git clean -df
+
+to clear all untracked files. You can revert the most recent changes in
+git with:
+
+.. code:: 
+
+   $ git reset --hard
+
+WARNING: The above commands will all clear changes you may have made,
+and you will lose them forever. Be sure to check things with
+``git status``, ``git diff``, ``git clean -Xn``, and ``git clean -n``
+before doing any of those.
+
+Bugs
+====
+
+Our issue tracker is at
+https://github.com/PolyKriging/PolyKriging/issues. Please report any
+bugs that you find. Or, even better, fork the repository on GitHub and
+create a pull request. We welcome all changes, big or small, and we will
+help you make the pull request if you are new to git (just ask on our
+mailing list or Gitter Channel).
+
+Brief History
+=============
+
+Citation
+========
+
+To cite PolyKriging in publications use
+
+A BibTeX entry for LaTeX users is
+
+PolyKriging is BSD licensed, so you are free to use it whatever you
+like, be it academic, commercial, creating forks or derivatives, as long
+as you copy the BSD statement if you redistribute it (see the LICENSE
+file for details). That said, although not required by the PolyKriging
+license, if it is convenient for you, please cite PolyKriging when using
+it in your work and also consider contributing all your changes back, so
+that we can incorporate it and all of us will benefit in the end.
