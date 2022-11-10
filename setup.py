@@ -18,7 +18,7 @@ setup(
                       'shapely',
                       'SciencePlots', 
                       'opencv-python',
-                      # matplotlib styles
+                      'pyvista',
                       ],
 
     classifiers=[

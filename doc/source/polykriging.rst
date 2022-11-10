@@ -1,11 +1,8 @@
-polykriging package
+Subpackages
 ===================
 
-Subpackages
------------
-
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    polykriging.fileio
    polykriging.geometry
@@ -14,11 +11,3 @@ Subpackages
    polykriging.plot
    polykriging.stats
    polykriging.thirdparty
-
-Module contents
----------------
-
-.. automodule:: polykriging
-   :members:
-   :undoc-members:
-   :show-inheritance:

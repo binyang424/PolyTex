@@ -20,14 +20,6 @@ polykriging.fileio.cwd\_chdir module
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.expr\_io module
-----------------------------------
-
-.. automodule:: polykriging.fileio.expr_io
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 polykriging.fileio.file\_dialog module
 --------------------------------------
 

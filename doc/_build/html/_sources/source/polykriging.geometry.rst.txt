@@ -4,6 +4,14 @@ polykriging.geometry package
 Submodules
 ----------
 
+polykriging.geometry.basic module
+---------------------------------
+
+.. automodule:: polykriging.geometry.basic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 polykriging.geometry.geometry module
 ------------------------------------
 

@@ -38,18 +38,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#test">Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#clean">Clean</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#brief-history">Brief History</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#citation">Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
 </ul>
 
         </div>
@@ -217,7 +217,7 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a_len</span><span class="p">):</span>
         <span class="n">M</span><span class="p">[:</span><span class="n">b_len</span><span class="p">,</span> <span class="n">b_len</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">M</span><span class="p">[</span><span class="n">b_len</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">b_len</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">M</span><span class="p">,</span> <span class="n">drift_func</span><span class="p">,</span> <span class="n">cov_func</span><span class="p">,</span> <span class="n">a_len</span></div>
+    <span class="k">return</span> <span class="n">M</span><span class="p">,</span> <span class="n">drift_func</span><span class="p">,</span> <span class="n">cov_func</span><span class="p">,</span> <span class="n">a_len</span><span class="p">,</span> <span class="n">b_len</span></div>
 
 
 <div class="viewcode-block" id="nugget"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.nugget">[docs]</a><span class="k">def</span> <span class="nf">nugget</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">nugg</span><span class="p">,</span> <span class="n">b_len</span><span class="p">):</span>
@@ -236,6 +236,8 @@
 <span class="sd">    M : numpy array.</span>
 <span class="sd">        The kriging matrix with nugget effect.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+
     <span class="c1"># -------- identity matrix with the same size as M --------</span>
     <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">b_len</span><span class="p">)</span>
     <span class="c1"># -------- multiply nugg to the diagonal of I --------</span>
@@ -247,14 +249,16 @@
 
 <div class="viewcode-block" id="buildP"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.buildP">[docs]</a><span class="k">def</span> <span class="nf">buildP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a_lenS</span><span class="p">,</span> <span class="n">a_lenT</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Build the result vector of the kriging linear system.</span>
+<span class="sd">    Build the result matrix of the kriging linear system.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    z: numpy array.</span>
+<span class="sd">    x: numpy array.</span>
 <span class="sd">        The values of the target function. The shape is (m,n).</span>
-<span class="sd">    a_len: int.</span>
-<span class="sd">        The length of the drift function.</span>
+<span class="sd">    a_lenS: int.</span>
+<span class="sd">        The size of the result matrix in S direction.</span>
+<span class="sd">    a_lenT: int.</span>
+<span class="sd">        The length of the result matrix in T direction.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -266,14 +270,14 @@
     <span class="k">return</span> <span class="n">P</span></div>
 
 
-<div class="viewcode-block" id="buildKriging"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.buildKriging">[docs]</a><span class="k">def</span> <span class="nf">buildKriging</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">,</span> <span class="n">cov_names</span><span class="p">,</span> <span class="n">nugg</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
+<div class="viewcode-block" id="buildKriging"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.buildKriging">[docs]</a><span class="k">def</span> <span class="nf">buildKriging</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">,</span> <span class="n">cov_names</span><span class="p">,</span> <span class="n">nugg</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build the kriging model and return the expression in string format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    s, t: numpy array.</span>
-<span class="sd">        The parameters of the two profiles for surface parametric kriging.</span>
+<span class="sd">        The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).</span>
 <span class="sd">    x: array like.</span>
 <span class="sd">        The known values of the variables in parametric space.</span>
 <span class="sd">    drift_names: list.</span>
@@ -292,34 +296,51 @@
     <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="c1"># ------- build the kriging matrix -------</span>
-    <span class="n">MS</span><span class="p">,</span> <span class="n">drift_funcS</span><span class="p">,</span> <span class="n">cov_funcS</span><span class="p">,</span> <span class="n">a_lenS</span> <span class="o">=</span> <span class="n">buildM</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">MT</span><span class="p">,</span> <span class="n">drift_funcT</span><span class="p">,</span> <span class="n">cov_funcT</span><span class="p">,</span> <span class="n">a_lenT</span> <span class="o">=</span> <span class="n">buildM</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">MS</span><span class="p">,</span> <span class="n">drift_funcS</span><span class="p">,</span> <span class="n">cov_funcS</span><span class="p">,</span> <span class="n">a_lenS</span><span class="p">,</span> <span class="n">b_lenS</span> <span class="o">=</span> <span class="n">buildM</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">MT</span><span class="p">,</span> <span class="n">drift_funcT</span><span class="p">,</span> <span class="n">cov_funcT</span><span class="p">,</span> <span class="n">a_lenT</span><span class="p">,</span> <span class="n">b_lenT</span> <span class="o">=</span> <span class="n">buildM</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="c1"># ------- introduce nugget effect -------</span>
-    <span class="n">MS</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span> <span class="n">nugg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a_lenS</span><span class="p">)</span>
-    <span class="n">MT</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MT</span><span class="p">,</span> <span class="n">nugg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a_lenT</span><span class="p">)</span>
+    <span class="c1"># check if nugget effect is given as a list of two numerical values</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nugg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">MS</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span> <span class="n">nugg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b_lenS</span><span class="p">)</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MT</span><span class="p">,</span> <span class="n">nugg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b_lenT</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nugS</span><span class="p">,</span> <span class="n">nugT</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;nugS, nugT&#39;</span><span class="p">)</span>
+        <span class="n">MS</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MS</span><span class="p">,</span> <span class="n">nugS</span><span class="p">,</span> <span class="n">b_lenS</span><span class="p">)</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="n">nugget</span><span class="p">(</span><span class="n">MT</span><span class="p">,</span> <span class="n">nugT</span><span class="p">,</span> <span class="n">b_lenT</span><span class="p">)</span>
 
     <span class="c1"># ------- build parametric kriging vectors -------</span>
     <span class="n">k1s</span> <span class="o">=</span> <span class="n">kVector</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">k2t</span> <span class="o">=</span> <span class="n">kVector</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">drift_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cov_names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
+
     <span class="c1"># ------- build the matrix of known variables P -------</span>
     <span class="n">Px</span> <span class="o">=</span> <span class="n">buildP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a_lenS</span><span class="p">,</span> <span class="n">a_lenT</span><span class="p">)</span>
 
     <span class="c1"># ------- build the parametric kriging model -------</span>
-    <span class="n">expr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">multi_dot</span><span class="p">([</span><span class="n">k1s</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">MS</span><span class="p">),</span>
-                                <span class="n">Px</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">MT</span><span class="p">),</span> <span class="n">k2t</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">expr</span></div>
+    <span class="c1"># expr = np.linalg.multi_dot([k1s.reshape([1, -1]), np.linalg.inv(MS),</span>
+    <span class="c1">#                             Px, np.linalg.inv(MT), k2t.reshape([-1, 1])]).sum()</span>
+
+    <span class="c1"># The shape of the matrces for dot product are always known. In this case, we can</span>
+    <span class="c1"># use np.dot instead of np.linalg.multi_dot to speed up the calculation process by</span>
+    <span class="c1"># control the order of matrix multiplication (reduce the number of scalar operations).</span>
+    <span class="c1"># expr = np.dot(np.dot(k1s.reshape([1, -1]), np.linalg.inv(MS)),</span>
+    <span class="c1">#               np.dot(Px, np.dot(np.linalg.inv(MT), k2t.reshape([-1, 1])))).sum()</span>
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k1s</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">MS</span><span class="o">.</span><span class="n">inv</span><span class="p">()),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Px</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">MT</span><span class="o">.</span><span class="n">inv</span><span class="p">(),</span> <span class="n">k2t</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">expr</span><span class="p">,</span> <span class="n">MS</span><span class="p">,</span><span class="n">MT</span><span class="p">,</span> <span class="n">k1s</span><span class="p">,</span> <span class="n">k2t</span><span class="p">,</span> <span class="n">Px</span></div>
 
 
-<div class="viewcode-block" id="interp"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.interp">[docs]</a><span class="k">def</span> <span class="nf">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+<div class="viewcode-block" id="interp"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.interp">[docs]</a><span class="k">def</span> <span class="nf">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">split_complexity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interpolation (substitute the symbolic variables in the expression).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    s, t: numpy array.</span>
-<span class="sd">        The parameters of the two profiles for surface parametric kriging.</span>
+<span class="sd">        The parameters of the two profiles for surface parametric kriging (1d array).</span>
+<span class="sd">        s has size that same as the number of rows and t the same as the number of columns.</span>
 <span class="sd">    expr: String.</span>
 <span class="sd">        The expression of the target function.</span>
 
@@ -329,11 +350,70 @@
 <span class="sd">        The values of the kriging function. The shape is (s.size,t.size).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sVar</span><span class="p">,</span> <span class="n">tVar</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s t&#39;</span><span class="p">)</span>
-    <span class="n">xinterp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
-            <span class="n">xinterp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">sVar</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tVar</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]}))</span>
+    <span class="c1"># xinterp = np.zeros((len(s), len(t)))</span>
+    <span class="c1"># for i in range(len(s)):</span>
+    <span class="c1">#     for j in range(len(t)):</span>
+    <span class="c1">#         xinterp[i, j] = sym.simplify(expr.subs({sVar: s[i], tVar: t[j]}))</span>
+
+    <span class="k">if</span> <span class="n">split_complexity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">xfnp</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">([</span><span class="n">sVar</span><span class="p">,</span> <span class="n">tVar</span><span class="p">],</span> <span class="n">expr</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">split_complexity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">tensorwaves</span> <span class="k">as</span> <span class="nn">tw</span>
+        <span class="n">xfnp</span> <span class="o">=</span> <span class="n">tw</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">sympy</span><span class="o">.</span><span class="n">fast_lambdify</span><span class="p">(</span>
+            <span class="n">expr</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">sVar</span><span class="p">,</span> <span class="n">tVar</span><span class="p">],</span>
+            <span class="n">max_complexity</span><span class="o">=</span><span class="n">split_complexity</span><span class="p">,</span>
+            <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">xv</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+    <span class="n">xinterp</span> <span class="o">=</span> <span class="n">xfnp</span><span class="p">(</span><span class="n">xv</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">yv</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">xinterp</span></div>
+
+
+<div class="viewcode-block" id="surface3Dinterp"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.paraSurface.surface3Dinterp">[docs]</a><span class="k">def</span> <span class="nf">surface3Dinterp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nug</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build the kriging model and interpolate the results</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: numpy array.</span>
+<span class="sd">        The coordinates in parametric space of the points. The shape is (m, 1).</span>
+<span class="sd">    y: numpy array.</span>
+<span class="sd">        The coordinates in parametric space of the points. The shape is (n, 1).</span>
+<span class="sd">    z: numpy array.</span>
+<span class="sd">        The coordinates in parametric space of the points. The shape is (m, n).</span>
+<span class="sd">    name_drift: String.</span>
+<span class="sd">        The name of drift function.</span>
+<span class="sd">    name_cov: String.</span>
+<span class="sd">        The name of covariance function.</span>
+<span class="sd">    nug: float.</span>
+<span class="sd">        The nugget effect.</span>
+<span class="sd">    return_dict: dict.</span>
+<span class="sd">        The dictionary to store the results. It is used for multiprocessing purpose.</span>
+<span class="sd">    label: String.</span>
+<span class="sd">        The label of the result.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z_krig: numpy array.</span>
+<span class="sd">        The interpolated results. The shape is (m, n). It is the return value if return_dict is None</span>
+<span class="sd">        (namely, the function is not used in parallel).</span>
+
+<span class="sd">    return_dict: dict.</span>
+<span class="sd">        The dictionary to store the results. It is used for multiprocessing purpose.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">expr</span><span class="p">,</span> <span class="n">MS</span><span class="p">,</span> <span class="n">MT</span><span class="p">,</span> <span class="n">k1s</span><span class="p">,</span> <span class="n">k2t</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">buildKriging</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nug</span><span class="p">)</span>
+    <span class="n">z_interp</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">split_complexity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">z_interp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">z_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">if</span> <span class="n">return_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">return_dict</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_interp</span>
+        <span class="k">return</span> <span class="n">return_dict</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">z_interp</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -354,6 +434,8 @@
     <span class="n">xinterp</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">xexpr</span><span class="p">)</span>
     <span class="n">yinterp</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">yexpr</span><span class="p">)</span>
     <span class="n">zinterp</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">zexpr</span><span class="p">)</span>
+
+
 </pre></div>
 
            </div>

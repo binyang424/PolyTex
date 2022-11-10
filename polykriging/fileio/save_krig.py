@@ -4,8 +4,12 @@ import sympy
 
 class save_krig(dict):
     """
-    This saves a dictonary of sympy expressions to a file
-    in human readable form.
+    This class saves a dictonary of sympy expressions to a file in human
+    readable form and then load as sympy expressions directly without other
+    conversion. It is called by polykriging.fileio.pk_save to save kriging
+    expressions to a ".krig" file and by polykriging.fileio.pk_load to load
+    these files. Therefore, the class is not intended to be used directly by
+    the user.
 
     Note:
     --------
@@ -16,11 +20,12 @@ class save_krig(dict):
     Example:
     --------
     >>> import sympy
+    >>> from polykriging.fileio.save_krig import save_krig
     >>> a, b = sympy.symbols('a, b')
     >>> d = save_krig({'a':a, 'b':b})
-    >>> d.save('name.expr')
+    >>> d.save('name.krig')
     >>> del d
-    >>> d2 = save_krig.load('name.expr')
+    >>> d2 = save_krig.load('name.krig')
     """
 
     def __init__(self, *args, **kwargs):
@@ -55,8 +60,6 @@ class save_krig(dict):
 
 
 if __name__ == '__main__':
-    a, b = sympy.symbols('a, b')
-    d = save_krig({'a':a, 'b':b})
-    d.save('name.expr')
-    del d
-    d2 = save_krig.load('./name.expr')
+    import doctest
+
+    doctest.testmod()

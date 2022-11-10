@@ -18,7 +18,7 @@ coordinatesSorted = pk.pk_load(path)
 ''' Initial bandwidth estimation by Scott's rule '''
 t_norm = coordinatesSorted["normalized distance"]
 std = np.std(t_norm)
-bw = pk.stats.bw_scott(std, t_norm.size) / 10
+bw = pk.stats.bw_scott(std, t_norm.size) / 2
 print("Initial bandwidth: {}".format(bw))
 
 '''  Kernel density estimation   '''

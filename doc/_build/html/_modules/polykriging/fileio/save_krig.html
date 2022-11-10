@@ -38,18 +38,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#test">Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#clean">Clean</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#brief-history">Brief History</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#citation">Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
 </ul>
 
         </div>
@@ -83,8 +83,12 @@
 
 <div class="viewcode-block" id="save_krig"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.save_krig.save_krig">[docs]</a><span class="k">class</span> <span class="nc">save_krig</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This saves a dictonary of sympy expressions to a file</span>
-<span class="sd">    in human readable form.</span>
+<span class="sd">    This class saves a dictonary of sympy expressions to a file in human</span>
+<span class="sd">    readable form and then load as sympy expressions directly without other</span>
+<span class="sd">    conversion. It is called by polykriging.fileio.pk_save to save kriging</span>
+<span class="sd">    expressions to a &quot;.krig&quot; file and by polykriging.fileio.pk_load to load</span>
+<span class="sd">    these files. Therefore, the class is not intended to be used directly by</span>
+<span class="sd">    the user.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">    --------</span>
@@ -95,11 +99,12 @@
 <span class="sd">    Example:</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import sympy</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.fileio.save_krig import save_krig</span>
 <span class="sd">    &gt;&gt;&gt; a, b = sympy.symbols(&#39;a, b&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; d = save_krig({&#39;a&#39;:a, &#39;b&#39;:b})</span>
-<span class="sd">    &gt;&gt;&gt; d.save(&#39;name.expr&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; d.save(&#39;name.krig&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; del d</span>
-<span class="sd">    &gt;&gt;&gt; d2 = save_krig.load(&#39;name.expr&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; d2 = save_krig.load(&#39;name.krig&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -134,11 +139,9 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a, b&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">save_krig</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">})</span>
-    <span class="n">d</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;name.expr&#39;</span><span class="p">)</span>
-    <span class="k">del</span> <span class="n">d</span>
-    <span class="n">d2</span> <span class="o">=</span> <span class="n">save_krig</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;./name.expr&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
 </pre></div>
 
            </div>

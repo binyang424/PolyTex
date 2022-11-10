@@ -38,18 +38,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#test">Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#clean">Clean</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#brief-history">Brief History</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Install.html#citation">Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">polykriging package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
 </ul>
 
         </div>
@@ -420,8 +420,8 @@
         <span class="n">X_predict</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="n">yinter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">X_predict</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">pts</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_predict</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">yinter</span><span class="p">[</span><span class="n">pts</span><span class="p">]</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span> <span class="n">interp</span><span class="p">[</span><span class="n">pts</span><span class="p">]})</span>
+    <span class="n">xfnp</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+    <span class="n">yinter</span> <span class="o">=</span> <span class="n">xfnp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_predict</span><span class="p">))</span>
 
     <span class="n">yinter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yinter</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-15</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
 
@@ -431,9 +431,9 @@
         <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span> <span class="o">=</span> <span class="n">lambda_weight</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">)</span>
         <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">func_var</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">nuggetEffect</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">yinter</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">std_prediction</span>
+        <span class="k">return</span> <span class="n">yinter</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">expr</span><span class="p">,</span> <span class="n">std_prediction</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">yinter</span><span class="p">,</span> <span class="n">expr</span></div>
+    <span class="k">return</span> <span class="n">yinter</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">expr</span></div>
 
 
 <span class="c1"># ---------------------Derivative Kriging--------------</span>
@@ -671,7 +671,7 @@
 <span class="sd">     [0.421875 0.125    0.       0.015625 1.      ]</span>
 <span class="sd">     [1.       0.421875 0.015625 0.       1.      ]</span>
 <span class="sd">     [1.       1.       1.       1.       0.      ]]</span>
-<span class="sd">     </span>
+
 <span class="sd">    [[0.   0.25 0.75 1.   1.  ]</span>
 <span class="sd">     [0.25 0.   0.5  0.75 1.  ]</span>
 <span class="sd">     [0.75 0.5  0.   0.25 1.  ]</span>

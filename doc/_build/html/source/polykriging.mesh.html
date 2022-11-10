@@ -41,19 +41,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Install.html">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#test">Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#clean">Clean</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#brief-history">Brief History</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Install.html#citation">Citation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">polykriging package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to PolyKriging’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#project-description">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#documentation-and-usage">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
@@ -61,7 +55,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.intersect">polykriging.mesh.intersect module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh">Module contents</a></li>
 </ul>
@@ -71,7 +64,61 @@
 <li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#citation">Citation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">polykriging.mesh package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.adjacent_from_edge"><code class="docutils literal notranslate"><span class="pre">adjacent_from_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.adjacent_from_edge_parallel"><code class="docutils literal notranslate"><span class="pre">adjacent_from_edge_parallel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.construct_tetra_vtk"><code class="docutils literal notranslate"><span class="pre">construct_tetra_vtk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.edge_collapse_pipeline"><code class="docutils literal notranslate"><span class="pre">edge_collapse_pipeline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_boundary_points"><code class="docutils literal notranslate"><span class="pre">get_boundary_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_cells"><code class="docutils literal notranslate"><span class="pre">get_cells()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_collapse_direction"><code class="docutils literal notranslate"><span class="pre">get_collapse_direction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_edge_collapse"><code class="docutils literal notranslate"><span class="pre">get_edge_collapse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_edge_length"><code class="docutils literal notranslate"><span class="pre">get_edge_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_edges_from_tetra"><code class="docutils literal notranslate"><span class="pre">get_edges_from_tetra()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_maximal_independent_node"><code class="docutils literal notranslate"><span class="pre">get_maximal_independent_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_surf_dist"><code class="docutils literal notranslate"><span class="pre">get_surf_dist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.get_vertex_indicator"><code class="docutils literal notranslate"><span class="pre">get_vertex_indicator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.renumber_points"><code class="docutils literal notranslate"><span class="pre">renumber_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.decimation.tetra_edge_collapse"><code class="docutils literal notranslate"><span class="pre">tetra_edge_collapse()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.features.voxelize"><code class="docutils literal notranslate"><span class="pre">voxelize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.angle_between"><code class="docutils literal notranslate"><span class="pre">angle_between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.background_mesh_generator"><code class="docutils literal notranslate"><span class="pre">background_mesh_generator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.find_cells_within_bounds"><code class="docutils literal notranslate"><span class="pre">find_cells_within_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.intersection_detect"><code class="docutils literal notranslate"><span class="pre">intersection_detect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.isInbBox"><code class="docutils literal notranslate"><span class="pre">isInbBox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.label_mask"><code class="docutils literal notranslate"><span class="pre">label_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.mesh_correction"><code class="docutils literal notranslate"><span class="pre">mesh_correction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.structured_cylinder_vertices"><code class="docutils literal notranslate"><span class="pre">structured_cylinder_vertices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.to_meshio_data"><code class="docutils literal notranslate"><span class="pre">to_meshio_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.tubular_mesh_generator"><code class="docutils literal notranslate"><span class="pre">tubular_mesh_generator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.mesh.mesh.unit_vector"><code class="docutils literal notranslate"><span class="pre">unit_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.mesh">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html">polykriging.stats package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
 </ul>
 </li>
 </ul>
@@ -90,7 +137,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="polykriging.html">polykriging package</a> &raquo;</li>
+          <li><a href="polykriging.html">Subpackages</a> &raquo;</li>
       <li>polykriging.mesh package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.mesh.rst.txt" rel="nofollow"> View page source</a>
@@ -569,76 +616,6 @@ If False, extract the cells that contain at least one of the extracted points.</
 <span class="go">    ..</span>
 </pre></div>
 </div>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="module-polykriging.mesh.intersect">
-<span id="polykriging-mesh-intersect-module"></span><h2>polykriging.mesh.intersect module<a class="headerlink" href="#module-polykriging.mesh.intersect" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.mesh.intersect.find_intersect">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.intersect.</span></span><span class="sig-name descname"><span class="pre">find_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mSegments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/intersect.html#find_intersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.intersect.find_intersect" title="Permalink to this definition"></a></dt>
-<dd><p>find the intersection of a curve with a plane</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>f</strong><span class="classifier">function of plane</span></dt><dd></dd>
-<dt><strong>curve</strong></dt><dd></dd>
-<dt><strong>niterations: number of iterations</strong></dt><dd></dd>
-<dt><strong>mSegments: number of segments</strong></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"></dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.mesh.intersect.generate_points">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.intersect.</span></span><span class="sig-name descname"><span class="pre">generate_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/intersect.html#generate_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.intersect.generate_points" title="Permalink to this definition"></a></dt>
-<dd><p>generate points on an ellipse.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">number of points</span></dt><dd></dd>
-<dt><strong>a</strong><span class="classifier">semi-major axis</span></dt><dd></dd>
-<dt><strong>b</strong><span class="classifier">semi-minor axis</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>data: array-like</dt><dd><p>Points on the ellipse with shape (n, 3).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.mesh.intersect.linePlaneIntersect">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.intersect.</span></span><span class="sig-name descname"><span class="pre">linePlaneIntersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">planeNormal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planePoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayDirection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayPoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/intersect.html#linePlaneIntersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.intersect.linePlaneIntersect" title="Permalink to this definition"></a></dt>
-<dd><p>Find the intersection between a plane and a line.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>planeNormal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane for defining the plane.</p>
-</dd>
-<dt><strong>planePoint</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane for defining the plane.</p>
-</dd>
-<dt><strong>rayDirection</strong><span class="classifier">array-like</span></dt><dd><p>direction of the ray.</p>
-</dd>
-<dt><strong>rayPoint</strong><span class="classifier">array-like</span></dt><dd><p>point on the ray.</p>
-</dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>tolerance for determining if an intersection point exists.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Psi: array-like</dt><dd><p>intersection point.</p>
-</dd>
-</dl>
 </dd>
 </dl>
 </dd></dl>

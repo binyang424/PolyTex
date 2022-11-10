@@ -12,6 +12,14 @@ polykriging.kriging.curve2D module
    :undoc-members:
    :show-inheritance:
 
+polykriging.kriging.intersect module
+------------------------------------
+
+.. automodule:: polykriging.kriging.intersect
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 polykriging.kriging.mdKrig module
 ---------------------------------
 
@@ -24,6 +32,14 @@ polykriging.kriging.paraSurface module
 --------------------------------------
 
 .. automodule:: polykriging.kriging.paraSurface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+polykriging.kriging.projection module
+-------------------------------------
+
+.. automodule:: polykriging.kriging.projection
    :members:
    :undoc-members:
    :show-inheritance:

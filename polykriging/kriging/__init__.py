@@ -12,3 +12,6 @@ from .volumeKrig import *
 
 from . import tool
 from .tool import *
+
+from . import intersect
+from .intersect import *

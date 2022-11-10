@@ -20,14 +20,6 @@ polykriging.mesh.features module
    :undoc-members:
    :show-inheritance:
 
-polykriging.mesh.intersect module
----------------------------------
-
-.. automodule:: polykriging.mesh.intersect
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 polykriging.mesh.mesh module
 ----------------------------
 

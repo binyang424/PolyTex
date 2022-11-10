@@ -12,10 +12,10 @@ polykriging.plot.color\_cluster module
    :undoc-members:
    :show-inheritance:
 
-polykriging.plot.imagePlot module
----------------------------------
+polykriging.plot.image\_plot module
+-----------------------------------
 
-.. automodule:: polykriging.plot.imagePlot
+.. automodule:: polykriging.plot.image_plot
    :members:
    :undoc-members:
    :show-inheritance:

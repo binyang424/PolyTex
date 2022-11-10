@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from polykriging import curve2D
+from polykriging.kriging import curve2D
 import numpy as np
 import polykriging as pk
 

@@ -30,10 +30,14 @@ pathsave = pk.fileio.choose_directory(
 resolution = 0.022  # mm/pixel
 
 fig = plt.figure()
-for yarn in np.arange(32, 33):
+for yarn in np.arange(0, 7):
+    try:
+        # load contour described by point cloud
+        pcd = pk.pk_load("weft_{}.pcd".format(yarn))
+    except FileNotFoundError:
+        print("weft_{}.pcd not found!".format(yarn))
+        continue
 
-    # load contour described by point cloud
-    pcd = pk.pk_load("warp_{}.pcd".format(yarn))
     surfPoints = pcd.to_numpy()[:, 1:] * resolution
 
     slices = np.unique(surfPoints[:, -1]) /resolution
@@ -82,8 +86,8 @@ for yarn in np.arange(32, 33):
 
     # save the geomFeature properties
 
-    pk.pk_save(pathsave + "\\warp_" + str(yarn) + ".geo", df_geom)
-    pk.pk_save(pathsave + "\\warp_" + str(yarn) + ".coo", df_coor)
+    pk.pk_save(pathsave + "\\weft_" + str(yarn) + ".geo", df_geom)
+    pk.pk_save(pathsave + "\\weft_" + str(yarn) + ".coo", df_coor)
 
     del surfPoints, coordinate, geomFeature, coordinateSorted, geomFeatures, coordinatesSorted
     plt.close('all')

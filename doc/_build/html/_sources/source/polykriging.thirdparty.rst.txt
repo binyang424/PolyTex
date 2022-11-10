@@ -1,6 +1,14 @@
 polykriging.thirdparty package
 ==============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   polykriging.thirdparty.surf2stl
+
 Submodules
 ----------
 
@@ -8,14 +16,6 @@ polykriging.thirdparty.bcolors module
 -------------------------------------
 
 .. automodule:: polykriging.thirdparty.bcolors
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-polykriging.thirdparty.surf2stl module
------------------------------------------------
-
-.. automodule:: polykriging.thirdparty.surf2stl
    :members:
    :undoc-members:
    :show-inheritance:

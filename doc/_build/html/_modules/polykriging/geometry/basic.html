@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.geometry.basic &mdash; PolyKriging 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.geometry.basic</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polykriging.geometry.basic</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy.geometry.line</span> <span class="k">as</span> <span class="nn">symLine</span>
+<span class="kn">import</span> <span class="nn">sympy.geometry.curve</span> <span class="k">as</span> <span class="nn">symCurve</span>
+<span class="kn">import</span> <span class="nn">sympy.geometry.plane</span> <span class="k">as</span> <span class="nn">symPlane</span>
+<span class="kn">import</span> <span class="nn">sympy.geometry.point</span> <span class="k">as</span> <span class="nn">symPoint</span>
+<span class="kn">from</span> <span class="nn">sympy.geometry.entity</span> <span class="kn">import</span> <span class="n">GeometryEntity</span>
+<span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">is_sequence</span>
+
+
+<div class="viewcode-block" id="Point"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point">[docs]</a><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A point / vector class inheriting from numpy.ndarray. This class is</span>
+<span class="sd">    used to represent points in n-dimensional space. The shape of the</span>
+<span class="sd">    array is (m, n), where m is the number of points and n is the</span>
+<span class="sd">    dimensionality of the space.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Efficient Vector / Point class in Python from:</span>
+<span class="sd">    https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; p1 = Point([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; p2 = Point([4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; p3 = Point([[1, 2, 3], [1, 2, 3]])</span>
+<span class="sd">    &gt;&gt;&gt; p4 = Point([[2, 4, 6], [2, 4, 6]])</span>
+<span class="sd">    &gt;&gt;&gt; dist34 = np.linalg.norm(p3 - p4, axis=1)</span>
+<span class="sd">    &gt;&gt;&gt; x, y, z = p1.x, p1.y, p1.z</span>
+<span class="sd">    &gt;&gt;&gt; x, y, z</span>
+<span class="sd">    (1, 2, 3)</span>
+<span class="sd">    &gt;&gt;&gt; xyz = p1.xyz</span>
+<span class="sd">    &gt;&gt;&gt; assert (p1.xyz == np.array([1, 2, 3])).all()</span>
+<span class="sd">    &gt;&gt;&gt; # Operations</span>
+<span class="sd">    &gt;&gt;&gt; assert p1 + p2 == Point([5, 7, 9])</span>
+<span class="sd">    &gt;&gt;&gt; assert p1.dist(p2) ** 2 == 27</span>
+<span class="sd">    &gt;&gt;&gt; assert (p3.dist(p4) == dist34).all()</span>
+<span class="sd">    &gt;&gt;&gt; assert p1 != p2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">orig_3d</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cls : class</span>
+<span class="sd">            The class of the object.</span>
+<span class="sd">        orig_3d : tuple</span>
+<span class="sd">            Defaults to 3d origin (0, 0, 0).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        obj : Point</span>
+<span class="sd">            The origin point of 3d space.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; p1 = Point()</span>
+<span class="sd">        &gt;&gt;&gt; p1</span>
+<span class="sd">        Point([0, 0, 0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">orig_3d</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Point</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">z</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        z : float</span>
+<span class="sd">            3rd dimension element. 0 if not defined</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Point is not 3D.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Point is not 3D.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Point.set_x"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.set_x">[docs]</a>    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span></div>
+
+<div class="viewcode-block" id="Point.set_y"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.set_y">[docs]</a>    <span class="k">def</span> <span class="nf">set_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span></div>
+
+<div class="viewcode-block" id="Point.set_z"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.set_z">[docs]</a>    <span class="k">def</span> <span class="nf">set_z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="c1"># check if self.z is IndexError</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Point is not 3D, cannot set z.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Point is not 3D, cannot set z.&quot;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Point.dist"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.dist">[docs]</a>    <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Both points must have the same dimensions</span>
+<span class="sd">        :return: Euclidean distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check if both array have the same shape</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Point datasets must have the same dimensionality and size.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span> <span class="o">-</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span> <span class="o">-</span> <span class="n">other</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Point.direction_ratio"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.direction_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">direction_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gives the direction ratio between 2 points</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : Point object</span>
+<span class="sd">            The other point to which the direction ratio is calculated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        direction_ratio : list</span>
+<span class="sd">            The direction ratio between the 2 points.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Point</span>
+<span class="sd">        &gt;&gt;&gt; p1 = Point(1, 2, 3)</span>
+<span class="sd">        &gt;&gt;&gt; p1.direction_ratio(Point(2, 3, 5))</span>
+<span class="sd">        [1, 1, 2]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)]</span></div></div>
+
+
+<div class="viewcode-block" id="Vector"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector">[docs]</a><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A vector class inheriting from Point. This class is used to represent</span>
+<span class="sd">    vectors in n-dimensional space. The shape of the array is (1, n).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Vector</span>
+<span class="sd">    &gt;&gt;&gt; v1 = Vector([1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; v2 = Vector([4, 5, 7])</span>
+<span class="sd">    &gt;&gt;&gt; sum12 = Vector([5, 7, 10])</span>
+<span class="sd">    &gt;&gt;&gt; dot12 = Vector([4, 10, 21])</span>
+<span class="sd">    &gt;&gt;&gt; dist34 = np.linalg.norm(p3 - p4, axis=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert v1 + v2 == sum12</span>
+<span class="sd">    &gt;&gt;&gt; assert v1 * v2 == dot12  # Dot product</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: check if the input is a 1d array. If not, raise an error</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Vector(</span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># it is not necessary to check the shape of the array</span>
+        <span class="c1"># because numpy will do it automatically.</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="n">other</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">-</span> <span class="n">other</span>
+
+<div class="viewcode-block" id="Vector.dot"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector.dot">[docs]</a>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vector.cross"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector.cross">[docs]</a>    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        norm : float</span>
+<span class="sd">            The norm of the vector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Line"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Line">[docs]</a><span class="k">class</span> <span class="nc">Line</span><span class="p">(</span><span class="n">symLine</span><span class="o">.</span><span class="n">Line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A line class. This class is used to represent a line in n-dimensional space.</span>
+<span class="sd">    The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.line.Line.</span>
+
+<span class="sd">    So far, please refer to the documentation of sympy.geometry.line.Line for more information.</span>
+<span class="sd">        https://docs.sympy.org/latest/modules/geometry/lines.html</span>
+
+<span class="sd">    TODO : A detailed documentation will be added in the future.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Line</span>
+<span class="sd">    &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; p2 = Point([2, 3, 4])</span>
+<span class="sd">    &gt;&gt;&gt; l1 = Line(p1, p2)</span>
+<span class="sd">    &gt;&gt;&gt; l1.__repr__()</span>
+<span class="sd">    &#39;Line(Point((1, 1, 1)), Point((2, 3, 4)))&#39;</span>
+<span class="sd">    &gt;&gt;&gt; l1.ambient_dimension</span>
+<span class="sd">    3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p1 : Point object</span>
+<span class="sd">            The first point of the line.</span>
+<span class="sd">        p2 : Point object</span>
+<span class="sd">            The second point of the line.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="p">:</span>
+            <span class="c1"># sometimes we return a single point if we are not given two unique</span>
+            <span class="c1"># points. This is done in the specific subclass</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.__new__ requires two unique Points.&quot;</span> <span class="o">%</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p2</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.__new__ requires two Points of equal dimension.&quot;</span> <span class="o">%</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">p2</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.__new__ requires two Points of 1 dimension.&quot;</span> <span class="o">%</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">GeometryEntity</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Line(Point </span><span class="si">%s</span><span class="s2">, Point </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Curve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Curve">[docs]</a><span class="k">class</span> <span class="nc">Curve</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is an open curve defined by a list of points in the order of connection. It is</span>
+<span class="sd">    created by using composition instead of inheritance of PolyKriging.geometry.Point.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Curve</span>
+<span class="sd">    &gt;&gt;&gt; p = Point([[2, 4, 6], [2, 4, 5]])</span>
+<span class="sd">    &gt;&gt;&gt; c = Curve(p)</span>
+<span class="sd">    &gt;&gt;&gt; c.points</span>
+<span class="sd">    [[2, 4, 6], [2, 4, 6]]</span>
+<span class="sd">    &gt;&gt;&gt; c.ambient_dimension</span>
+<span class="sd">    3</span>
+<span class="sd">    &gt;&gt;&gt; c.length</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : list</span>
+<span class="sd">            A list of Point objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+        <span class="c1"># TODO : curvature, tangent, etc.</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the length of the curve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        length : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tangent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the tangent vector of the curve at each point.</span>
+
+<span class="sd">        TODO : check and improve the tangent vector calculation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tangent : Vector object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># return np.diff(self.points, axis=0)</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the curvature of the curve.</span>
+
+<span class="sd">        TODO: curvature of a curve</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curvature : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ambient_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the dimension of the curve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ambient_dimension : int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__to_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the curve to a polygon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        polygon : Polygon object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]))</span>
+        <span class="k">return</span> <span class="n">Polygon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ParamCurve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve</span><span class="p">(</span><span class="n">symCurve</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a parametric curve defined by a function.</span>
+
+<span class="sd">    The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</span>
+<span class="sd">    documentation of sympy.geometry.curve.Curve for more information.</span>
+<span class="sd">        https://docs.sympy.org/latest/modules/geometry/curves.html</span>
+
+<span class="sd">    TODO : A detailed documentation will be added in the future.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Elipse"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Elipse">[docs]</a><span class="k">class</span> <span class="nc">Elipse</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is an elipse defined by a center point and two vectors.</span>
+<span class="sd">    TODO : a wrap of sympy.geometry.ellipse (2D function)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Polygon"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Polygon">[docs]</a><span class="k">class</span> <span class="nc">Polygon</span><span class="p">(</span><span class="n">Curve</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a closed curve in 2/3-dimensional space. The polygon is defined</span>
+<span class="sd">    by a list of points. The first and last point must be the same. if not,</span>
+<span class="sd">    the last point will be added to the list.</span>
+
+<span class="sd">    TODO : check if all the points are in the same plane.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Polygon</span>
+<span class="sd">    &gt;&gt;&gt; p = Point([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 0, 0]])</span>
+<span class="sd">    &gt;&gt;&gt; poly = Polygon(p)</span>
+<span class="sd">    &gt;&gt;&gt; poly.points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Polygon.to_curve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Polygon.to_curve">[docs]</a>    <span class="k">def</span> <span class="nf">to_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the polygon to a curve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curve : Curve object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Curve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">centroild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the centroild of the polygon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        centroild : Point object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the area of the polygon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        area : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the perimeter of the polygon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        perimeter : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">length</span></div>
+
+
+<div class="viewcode-block" id="Plane"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane">[docs]</a><span class="k">class</span> <span class="nc">Plane</span><span class="p">(</span><span class="n">symPlane</span><span class="o">.</span><span class="n">Plane</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a wrap of sympy.geometry.plane.Plane class to define a plane in 3D space.</span>
+<span class="sd">    It can be defined by a point and a normal vector or by 3 points.</span>
+
+<span class="sd">    For now, you could refer to the sympy.geometry.plane.Plane class for more information:</span>
+<span class="sd">        https://docs.sympy.org/latest/modules/geometry/plane.html</span>
+
+<span class="sd">    TODO : A detailed documentation will be added later.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Plane</span>
+<span class="sd">    &gt;&gt;&gt; # # create a plane from 3 points</span>
+<span class="sd">    &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; p2 = Point([2, 3, 4])</span>
+<span class="sd">    &gt;&gt;&gt; p3 = Point([2, 2, 2])</span>
+<span class="sd">    &gt;&gt;&gt; plane1 = Plane(p1, p2, p3)</span>
+<span class="sd">    &gt;&gt;&gt; # create a plane from a point and a normal vector</span>
+<span class="sd">    &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; normal = Point([1, 4, 7])</span>
+<span class="sd">    &gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">p3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+            <span class="c1"># p1.tolist(): convert the point to a list for capatibility with sympy geometry</span>
+            <span class="c1"># It is originally a PolyKriging Point object which is inherited from numpy.ndarray.</span>
+            <span class="k">if</span> <span class="n">symPoint</span><span class="o">.</span><span class="n">Point3D</span><span class="o">.</span><span class="n">are_collinear</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p2</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Enter three non-collinear points&#39;</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">direction_ratio</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">direction_ratio</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span>
+            <span class="n">normal_vector</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># kwargs is a dictionary of keyword arguments. It is used to pass the normal vector</span>
+            <span class="c1"># to the sympy.geometry.plane.Plane class. pop() is used to remove the normal vector</span>
+            <span class="c1"># from the dictionary and return it.</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;normal_vector&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+            <span class="c1"># get() is used to get the normal vector from the dictionary.</span>
+            <span class="n">evaluate</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">normal_vector</span> <span class="o">=</span> <span class="n">symPoint</span><span class="o">.</span><span class="n">Point3D</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">args</span> <span class="k">if</span> <span class="n">evaluate</span> <span class="k">else</span> <span class="n">a</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;Either provide 3 3D points or a point with a</span>
+<span class="s1">                    normal vector expressed as a sequence of length 3&#39;&#39;&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">is_zero</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">normal_vector</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Normal vector cannot be zero vector&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GeometryEntity</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">normal_vector</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Plane(Point</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="si">}</span><span class="s2">, Normal</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal_vector</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="ParamSurface"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface">[docs]</a><span class="k">class</span> <span class="nc">ParamSurface</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A parametric surface is defined by two parametric equations in the form of</span>
+<span class="sd">        x = f(s, t)</span>
+<span class="sd">        y = g(s, t)</span>
+<span class="sd">        z = h(s, t)</span>
+<span class="sd">    The surface is defined by the domain of s and t.</span>
+<span class="sd">    store: s,t, x,y,z</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

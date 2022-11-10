@@ -157,7 +157,6 @@ def geom(coordinate, message="OFF", sort=True):
     properties: area... ...
 
     """
-    global localCo, centroid
 
     polygon = Polygon(coordinate[:, [0, 1]])
 
@@ -203,6 +202,11 @@ def geom(coordinate, message="OFF", sort=True):
         print(geomFeature)
 
     return geomFeature, coordinateSorted
+
+
+
+
+
 
 
 if __name__ == "__main__":
