@@ -346,6 +346,9 @@ def curve2Dinter(dataset, name_drift, name_cov, nuggetEffect=0, interp=' ', retu
 
     yinter[np.abs(yinter) < 1e-15] = 0.
 
+    if dataset[0, 0] == 0 and dataset[-1, 0] == 1:
+        yinter[-1] = yinter[0]
+
     X_train = dataset[:, 0]
 
     if return_std:

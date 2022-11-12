@@ -51,16 +51,17 @@ def angularSort(localCo, centroid, sort=True):
     coordinate = localCo[:,:2] + centroid[:2]
 
     if sort:
-
         coorSort = np.zeros([localCo.shape[0], 3])
         coorSort[:, :2] = np.append(coordinate[maxIndex:],
                                     coordinate[:maxIndex], axis=0)
         coorSort[:, 2] = centroid[2]
         angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
 
-        if np.max(angle) == angle[0] or np.max(angle) == angle[1]:
+        if np.max(angle) in angle[:6]:
             coorSort = np.flip(coorSort, axis=0)
             angle = np.flip(angle, axis=0)
+
+        # print("angle", angle, "max", np.max(angle), "min", np.min(angle))
 
         # origin
         xp = np.squeeze(localCo[[minIndex, maxIndex], 0])
@@ -74,9 +75,6 @@ def angularSort(localCo, centroid, sort=True):
         coorSort = np.zeros([coordinate.shape[0], 3])
         coorSort[:, :2] = coordinate
         coorSort[:, -1] = centroid[2]
-
-    ##    print(angle.shape)
-    ##    print(angle)
 
     return coorSort, angle
 
@@ -141,9 +139,9 @@ def normDist(localCo):
     return distance, normDistance
 
 
-def geom(coordinate, message="OFF", sort=True):
+def geom_cs(coordinate, message="OFF", sort=True):
     """
-    分析2D的截面信息
+    Geometry analysis and points sorting for a cross-section of a fiber tow.
 
     Parameters
     ----------
@@ -204,9 +202,57 @@ def geom(coordinate, message="OFF", sort=True):
     return geomFeature, coordinateSorted
 
 
+def geom_tow(surf_points, sort=True):
+    """
+    The surface points for each cross-sections. the last column (z-axis) should be along the extension
+    direction of the cross-sections. It also serves as the label of each cross-section.
 
+    Parameters
+    ----------
+    surf_points : array_like
+        The surface points for each cross-sections. the last column (z-axis) should be along the extension
+        direction of the cross-sections. It also serves as the label of each cross-section.
 
+    Returns
+    -------
+    df_geom : DataFrame
+        The geometrical features of each cross-sections. The columns are:
+        [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]
+    df_coo : DataFrame
+        The coordinates of each cross-sections. The columns are:
+        [distance, normalized distance, angular position (degree), X, Y, Z)]
+    """
+    slices = np.unique(surf_points[:, -1])
+    centerline = np.zeros([slices.size, 3])
+    for iSlice in range(slices.size):
+        # for iSlice in range(2):
+        mask_slice = surf_points[:, -1] == slices[iSlice]
+        coordinate = surf_points[mask_slice, -3:]
+        surf_points = surf_points[~mask_slice, :]
 
+        geomFeature, coordinateSorted = geom_cs(coordinate, sort=sort)
+
+        centerline[iSlice - 1, :] = geomFeature[-3:]
+
+        try:
+            geomFeatures = np.vstack((geomFeatures, geomFeature))
+            coordinatesSorted = np.vstack((coordinatesSorted, coordinateSorted))
+        except NameError:
+            geomFeatures = geomFeature
+            coordinatesSorted = coordinateSorted
+
+    column_geom = ["Area", "Perimeter", "Width", "Height", "AngleRotated", "Circularity",
+                   "centroidX", "centroidY", "centroidZ"]
+    column_coord = ["distance", "normalized distance", "angular position (degree)",
+                    "X", "Y", "Z"]
+
+    import pandas as pd
+
+    # recover the original order
+    df_geom = pd.DataFrame(geomFeatures, columns=column_geom)
+    df_coord = pd.DataFrame(coordinatesSorted, columns=column_coord)
+
+    return df_geom, df_coord
 
 
 if __name__ == "__main__":

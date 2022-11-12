@@ -8,6 +8,9 @@ from sympy.geometry.entity import GeometryEntity
 from sympy.utilities.iterables import is_sequence
 from sympy.core.containers import Tuple
 
+import polykriging.mesh as ms
+import polykriging as pk
+
 
 class Point(np.ndarray):
     """
@@ -50,7 +53,7 @@ class Point(np.ndarray):
         ----------
         cls : class
             The class of the object.
-        orig_3d : tuple
+        orig_3d : tuple, list, or array_like
             Defaults to 3d origin (0, 0, 0).
 
         Returns
@@ -205,11 +208,10 @@ class Vector(Point):
     Examples
     --------
     >>> from polykriging.geometry import Vector
-    >>> v1 = Vector([1, 2, 3])
-    >>> v2 = Vector([4, 5, 7])
-    >>> sum12 = Vector([5, 7, 10])
-    >>> dot12 = Vector([4, 10, 21])
-    >>> dist34 = np.linalg.norm(p3 - p4, axis=1)
+    >>> v1 = Vector((1, 2, 3))
+    >>> v2 = Vector((4, 5, 7))
+    >>> sum12 = Vector((5, 7, 10))
+    >>> dot12 = Vector((4, 10, 21))
     >>> assert v1 + v2 == sum12
     >>> assert v1 * v2 == dot12  # Dot product
     """
@@ -267,7 +269,6 @@ class Line(symLine.Line):
     >>> l1.ambient_dimension
     3
     """
-
     def __new__(cls, p1, p2=None, **kwargs):
         """
         Parameters
@@ -303,7 +304,7 @@ class Curve:
     Examples
     --------
     >>> from polykriging.geometry import Point, Curve
-    >>> p = Point([[2, 4, 6], [2, 4, 5]])
+    >>> p = [[2, 4, 6], [2, 4, 5]]
     >>> c = Curve(p)
     >>> c.points
     [[2, 4, 6], [2, 4, 6]]
@@ -319,7 +320,7 @@ class Curve:
 
         Parameters
         ----------
-        points : list
+        points : list, tuple or array_like
             A list of Point objects.
         """
         self.points = Point(points)
@@ -408,9 +409,9 @@ class Curve:
         return Polygon(self.points)
 
 
-class Elipse:
+class Ellipse:
     """
-    This is an elipse defined by a center point and two vectors.
+    This is an ellipse defined by a center point and two vectors.
     TODO : a wrap of sympy.geometry.ellipse (2D function)
     """
 
@@ -444,13 +445,13 @@ class Polygon(Curve):
         return Curve(self.points[:-1, :])
 
     @property
-    def centroild(self):
+    def centroid(self):
         """
-        Return the centroild of the polygon.
+        Return the centroid of the polygon.
 
         Returns
         -------
-        centroild : Point object
+        centroid : Point object
         """
         return Point(np.mean(self.points[:-1, :], axis=0))
 
@@ -507,7 +508,7 @@ class Plane(symPlane.Plane):
             p2 = Point(a)
             p3 = Point(b)
 
-            # p1.tolist(): convert the point to a list for capatibility with sympy geometry
+            # p1.tolist(): convert the point to a list for compatibility with sympy geometry
             # It is originally a PolyKriging Point object which is inherited from numpy.ndarray.
             if symPoint.Point3D.are_collinear(p1.tolist(), p2.tolist(), p3.tolist()):
                 raise ValueError('Enter three non-collinear points')
@@ -535,13 +536,116 @@ class Plane(symPlane.Plane):
         return f"Plane(Point{self.p1}, Normal{self.normal_vector})"
 
 
+class Tube(GeometryEntity):
+    """
+    This class defines a 3D tubular surface by number of points on each cross-section (theta_res)
+    and the number of cross-sections (h_res). Note that the number of points on the cross-section
+    is the same for all the-cross sections.
+
+    Examples
+    --------
+    >>> from polykriging.geometry import Tube
+    >>> tube = Tube(5,10,major=2, minor=1,h=5)
+    >>> mesh = tube.mesh(plot=True)
+    >>> tube.save_mesh('tube.vtk')
+    """
+
+    def __new__(cls, theta_res, h_res, points=None, **kwargs):
+        """
+        Parameters
+        ----------
+        theta_res : int
+            The number of points on each cross-section.
+        h_res : int
+            The number of cross-sections.
+        points : array_like
+            The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
+            The points should be ordered in the following way:
+                [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]
+            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom.
+
+            the default value is None. If the value is None, the points will be generated automatically by assigning
+            the height, major and minor radius to the tube.
+
+        major : float
+            The major radius of the tube. Only used when the points are not given.
+        minor : float
+            The minor radius of the tube. Only used when the points are not given.
+        h : float
+            The height of the tube. Only used when the points are not given.
+        """
+
+        if points is not None:
+            points = np.array(points)
+            if points.shape[0] != h_res * theta_res:
+                raise ValueError('The number of points is not equal to the number of cross-sections times the'
+                                 ' number of points on each cross-section')
+            if points.shape[1] != 3:
+                raise ValueError('The points must be in the shape of (n, 3)')
+
+        cls.a = kwargs.pop('major')
+        cls.b = kwargs.pop('minor')
+        cls.h = kwargs.pop('h')
+
+        return super().__new__(cls, theta_res, h_res, points, **kwargs)
+
+    @property
+    def theta_res(self) -> int:
+        return self.args[0]
+
+    @property
+    def h_res(self) -> int:
+        return self.args[1]
+
+    @property
+    def points(self):
+        if self.args[2] is not None:
+            return self.args[2]
+        else:
+            return ms.structured_cylinder_vertices(a=self.a, b=self.b, h=self.h,
+                                                   theta_res=self.theta_res, h_res=self.h_res)
+
+    def mesh(self, plot=False):
+        # import pyvista as pv
+        print(self.theta_res, self.h_res)
+        theta_res, h_res = int(self.theta_res), int(self.h_res)
+        vertices = self.points
+        mesh = ms.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
+                                         vertices=vertices, plot=plot)
+        return mesh
+
+    def save_mesh(self, filename):
+        """
+        Save the tubular mesh to a file. The file format is determined by the extension of the filename.
+        The possible file formats are: [".ply", ".stl", ".vtk", ".vtu"].
+
+        This is a wrap of meshio.write() function.
+
+        Parameters
+        ----------
+        filename : str
+            The path and the name of the file to be saved with the extension.
+
+        Returns
+        -------
+        mesh : pyvista.UnstructuredGrid
+            The tubular mesh.
+
+        Examples
+        --------
+        >>> from polykriging.geometry import Tube
+        >>> tube = Tube(5,10,major=2, minor=1,h=5)
+        >>> tube.save_mesh('tube.vtu')
+        """
+        mesh = self.mesh()
+        points, cells, point_data, cell_data = ms.to_meshio_data(mesh, int(self.theta_res), correction=True)
+        pk.save_ply(filename, points, cells=cells,
+                    point_data={}, cell_data={}, binary=False)
+
+
 class ParametricGeometry:
     """
-    This is a parametric geometry defined by a function. It can be a curve or
-    a surface. The former is a 1D function with 1 parameter and the latter is
-    a 2D function with 2 parameters.
-
-    TODO
+    TODO : This should be an mother class of all the parametric geometries.
     """
 
     pass
@@ -558,12 +662,6 @@ class ParamCurve2D(symCurve.Curve):
 
     TODO : A detailed documentation will be added in the future.
 
-    Parameters
-    ----------
-    function : list of functions
-    limits : 3-tuple
-        Function parameter and lower and upper bounds.
-
     Examples
     --------
     >>> from polykriging.geometry import ParamCurve2D
@@ -575,6 +673,13 @@ class ParamCurve2D(symCurve.Curve):
     """
 
     def __new__(cls, function, limits):
+        """
+        Parameters
+        ----------
+        function : list of functions
+        limits : 3-tuple
+            Function parameter and lower and upper bounds.
+        """
         if not is_sequence(function) or len(function) != 2:
             raise ValueError("Function argument should be (x(t), y(t)) "
                              "but got %s" % str(function))
@@ -619,24 +724,26 @@ class ParamCurve3D(symCurve.Curve):
     """
     This is a parametric curve defined by a function.
 
-    Parameters
-    ----------
-    function : list of functions
-        Function argument should be (x(t), y(t), z(t)) for a 3D curve.
-    limits : 3-tuple
-        Function parameter and lower and upper bounds. The parameter should be
-        the same for all three functions. For example, (t, 0, 1) is valid but
-        ((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.
-
     Examples
     --------
-    >>> from polykriging.geometry.basic import ParamCurve3D
+    >>> from polykriging.geometry import ParamCurve3D
     >>> from sympy import sin, cos, symbols
     >>> s = symbols('s')
     >>> curve = ParamCurve3D((cos(s), sin(s), s), (s, 0, 2*np.pi))
     >>> curve
     """
-    def __new__(cls, functions, limits,**kwargs):
+
+    def __new__(cls, functions, limits, **kwargs):
+        """
+        Parameters
+        ----------
+        function : list of functions
+            Function argument should be (x(t), y(t), z(t)) for a 3D curve.
+        limits : 3-tuple
+            Function parameter and lower and upper bounds. The parameter should be
+            the same for all three functions. For example, (t, 0, 1) is valid but
+            ((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.
+        """
         if not is_sequence(functions) or len(functions) != 3:
             raise ValueError("Function argument should be (x(t), y(t), z(t)) "
                              "but got %s" % str(functions))
@@ -694,7 +801,7 @@ class ParamCurve3D(symCurve.Curve):
             returns a translated curve.
         Examples
         ========
-        >>> from polykriging.geometry.basic import ParamCurve3D
+        >>> from polykriging.geometry import ParamCurve3D
         >>> from sympy.abc import x
         >>> ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)
         ParamCurve3D((x + 1, x + 2), (x, 0, 1))
@@ -719,18 +826,9 @@ class ParamSurface(GeometryEntity):
     The surface is defined by the domain of s and t.
     store: s,t, x,y,z
 
-    Parameters
-    ----------
-    functions : list of functions
-        Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.
-    limits : 2-tuple
-        Function parameter and lower and upper bounds of the two parameters. For
-        example, ((s, 0, 1), (t, 0, 1)) is valid. The parameter should be
-        the same for all three functions.
-
     Examples
     --------
-    >>> from polykriging.geometry.basic import ParamSurface
+    >>> from polykriging.geometry import ParamSurface
     >>> from sympy import sin, cos, symbols
     >>> s, t = symbols('s t')
     >>> surface = ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 2*np.pi), (t, 0, np.pi)))
@@ -739,14 +837,25 @@ class ParamSurface(GeometryEntity):
     >>> surface.eval(0.5, 0.5)
 
     """
+
     def __new__(cls, functions, limits, **kwargs):
+        """
+        Parameters
+        ----------
+        functions : list of functions
+            Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.
+        limits : 2-tuple
+            Function parameter and lower and upper bounds of the two parameters. For
+            example, ((s, 0, 1), (t, 0, 1)) is valid. The parameter should be
+            the same for all three functions.
+        """
         if not is_sequence(functions) or len(functions) != 3:
             raise ValueError("Function argument should be (x(t), y(t), z(t)) "
                              "but got %s" % str(functions))
 
         cond_limits = is_sequence(limits) and len(limits) == 2 and \
-                        is_sequence(limits[0]) and len(limits[0]) == 3 and \
-                        is_sequence(limits[1]) and len(limits[1]) == 3
+            is_sequence(limits[0]) and len(limits[0]) == 3 and \
+            is_sequence(limits[1]) and len(limits[1]) == 3
         if not cond_limits:
             raise ValueError("Limit argument should be ((s, smin, smax), (t, tmin, tmax))"
                              "but got %s" % str(limits))
@@ -765,7 +874,7 @@ class ParamSurface(GeometryEntity):
         Examples
         --------
         >>> from sympy.abc import t
-        >>> from polykriging.geometry.basic import ParamCurve3D
+        >>> from polykriging.geometry import ParamCurve3D
         >>> surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))
         >>> surface.functions
         (t, t, t)
@@ -783,7 +892,7 @@ class ParamSurface(GeometryEntity):
         Examples
         --------
         >>> from sympy.abc import t
-        >>> from polykriging.geometry.basic import ParamCurve3D
+        >>> from polykriging.geometry import ParamCurve3D
         >>> surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))
         >>> surface.limits
         ((t, 0, 1), (t, 0, 1))
@@ -796,9 +905,9 @@ class ParamSurface(GeometryEntity):
 
         Parameters
         ----------
-        s : float or array_like
+        s_value : float or array_like
             The parameter value for evaluation.
-        t : float or array_like
+        t_value : float or array_like
             The parameter value for evaluation.
 
         Returns
@@ -842,6 +951,7 @@ class ParamSurface(GeometryEntity):
     def scale(self, x=1, y=1, z=1):
         fx, fy, fz = self.functions
         return self.func((fx * x, fy * y, fz * z), self.limits)
+
 
 if __name__ == "__main__":
     import doctest
