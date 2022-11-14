@@ -269,6 +269,7 @@ class Line(symLine.Line):
     >>> l1.ambient_dimension
     3
     """
+
     def __new__(cls, p1, p2=None, **kwargs):
         """
         Parameters
@@ -550,7 +551,7 @@ class Tube(GeometryEntity):
     >>> tube.save_mesh('tube.vtk')
     """
 
-    def __new__(cls, theta_res, h_res, points=None, **kwargs):
+    def __new__(cls, theta_res, h_res, vertices=None, **kwargs):
         """
         Parameters
         ----------
@@ -575,19 +576,19 @@ class Tube(GeometryEntity):
             The height of the tube. Only used when the points are not given.
         """
 
-        if points is not None:
-            points = np.array(points)
-            if points.shape[0] != h_res * theta_res:
-                raise ValueError('The number of points is not equal to the number of cross-sections times the'
-                                 ' number of points on each cross-section')
-            if points.shape[1] != 3:
-                raise ValueError('The points must be in the shape of (n, 3)')
+        if vertices is not None:
+            vertices = np.array(vertices)
+            if vertices.shape[0] != h_res * theta_res:
+                raise ValueError('The number of vertices is not equal to the number of cross-sections times the'
+                                 ' number of vertices on each cross-section')
+            if vertices.shape[1] != 3:
+                raise ValueError('The vertices must be in the shape of (n, 3)')
+        else:
+            cls.a = kwargs.pop('major')
+            cls.b = kwargs.pop('minor')
+            cls.h = kwargs.pop('h')
 
-        cls.a = kwargs.pop('major')
-        cls.b = kwargs.pop('minor')
-        cls.h = kwargs.pop('h')
-
-        return super().__new__(cls, theta_res, h_res, points, **kwargs)
+        return super().__new__(cls, theta_res, h_res, vertices, **kwargs)
 
     @property
     def theta_res(self) -> int:
@@ -602,24 +603,37 @@ class Tube(GeometryEntity):
         if self.args[2] is not None:
             return self.args[2]
         else:
-            return ms.structured_cylinder_vertices(a=self.a, b=self.b, h=self.h,
-                                                   theta_res=self.theta_res, h_res=self.h_res)
+            pts = ms.structured_cylinder_vertices(a=self.a, b=self.b, h=self.h,
+                                                  theta_res=self.theta_res, h_res=self.h_res)
+            return pts
 
-    def mesh(self, plot=False):
-        # import pyvista as pv
-        print(self.theta_res, self.h_res)
+    @property
+    def bounds(self):
+        min = np.min(self.points, axis=0)
+        max = np.max(self.points, axis=0)
+
+        return [min[0], max[0], min[1], max[1], min[2], max[2]]
+
+    def mesh(self, plot=False, show_edges=True):
+        """
+        TODO : raise TypeError("Given points must be a sequence or an array.")
+
+        """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
-        vertices = self.points
-        mesh = ms.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
-                                         vertices=vertices, plot=plot)
+        pts = np.array(self.points, dtype=np.float32)
+        mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
+                                              vertices=pts, plot=False)
+        mesh.points = pts
+        if plot:
+            mesh.plot(show_edges=True)
         return mesh
 
-    def save_mesh(self, filename):
+    def save_as_mesh(self, filename):
         """
         Save the tubular mesh to a file. The file format is determined by the extension of the filename.
         The possible file formats are: [".ply", ".stl", ".vtk", ".vtu"].
 
-        This is a wrap of meshio.write() function.
+        TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.
 
         Parameters
         ----------
@@ -635,25 +649,17 @@ class Tube(GeometryEntity):
         --------
         >>> from polykriging.geometry import Tube
         >>> tube = Tube(5,10,major=2, minor=1,h=5)
-        >>> tube.save_mesh('tube.vtu')
+        >>> tube.save_as_mesh('tube.vtu')
         """
         mesh = self.mesh()
-        points, cells, point_data, cell_data = ms.to_meshio_data(mesh, int(self.theta_res), correction=True)
+        points, cells, point_data, cell_data = ms.to_meshio_data(mesh, int(self.theta_res), correction=False)
         pk.save_ply(filename, points, cells=cells,
                     point_data={}, cell_data={}, binary=False)
 
 
-class ParametricGeometry:
+class ParamCurve:
     """
-    TODO : This should be an mother class of all the parametric geometries.
-    """
-
-    pass
-
-
-class ParamCurve2D(symCurve.Curve):
-    """
-    This is a parametric curve in 2D space. It is defined by a function and
+    This is a parametric curve. It is defined by a function and
     a parameter.
 
         The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the
@@ -664,30 +670,75 @@ class ParamCurve2D(symCurve.Curve):
 
     Examples
     --------
-    >>> from polykriging.geometry import ParamCurve2D
+    >>> from polykriging.geometry import ParamCurve
     >>> from sympy import sin, cos, symbols
+    >>> import numpy as np
     >>> s = symbols('s')
-    >>> curve = ParamCurve2D((cos(s), sin(s)), (s, 0, 2*np.pi))
+    >>> curve = ParamCurve(limits=(s, 0, 2*np.pi), function=(cos(s), sin(s)))
     >>> curve
-    ParametricCurve2D([cos(s), sin(s)], (s, 0, 6.28318530717959))
     """
 
-    def __new__(cls, function, limits):
+    def __new__(cls, limits, function=[], dataset=None, krig_configure=("lin", "cub", 0.0)):
         """
         Parameters
         ----------
-        function : list of functions
         limits : 3-tuple
             Function parameter and lower and upper bounds.
-        """
-        if not is_sequence(function) or len(function) != 2:
-            raise ValueError("Function argument should be (x(t), y(t)) "
-                             "but got %s" % str(function))
-        if not is_sequence(limits) or len(limits) != 3:
-            raise ValueError("Limit argument should be (t, tmin, tmax) "
-                             "but got %s" % str(limits))
+        function : list
+            The function list for each coordinate component. The default value is [].
+        dataset : array_like
+            The dataset of the curve. The default value is None. The first column is
+            the parameter and the other columns are the value of coordinate components.
 
-        return GeometryEntity.__new__(cls, Tuple(*function), Tuple(*limits))
+            One of the function or dataset must be given. Please note that both are
+            given, the dataset will be ignored.
+        kriging : tuple
+            The kriging interpolation configuration. The default value is (). The tuple
+            should be in the form of (drift_name, covariance_name, smoothing_factor).
+        """
+        cls.limits = limits
+
+        if len(function)!=0:
+            if not is_sequence(function) or len(function) != 2:
+                raise ValueError("Function argument should be (x(t), y(t)) "
+                                 "but got %s" % str(function))
+            if not is_sequence(limits) or len(limits) != 3:
+                raise ValueError("Limit argument should be (t, tmin, tmax) "
+                                 "but got %s" % str(limits))
+            cls.function = function
+            return super().__new__(cls)
+
+        if dataset is not None:
+            cls.function=[]
+            dataset = np.array(dataset)
+            n_component = dataset.shape[1] - 1
+
+            drift, cov, smoothing_factor = krig_configure
+
+            for i in range(n_component):
+                data_krig = dataset[:, [0, i + 1]]
+
+                print("Creating kriging model for %s -th component" % str(i+1))
+
+                mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
+                    pk.kriging.curveKrig1D(data_krig, name_drift=drift,
+                                           name_cov=cov, nuggetEffect=smoothing_factor)
+
+                cls.function.append(expr)
+
+            print("Kriging model is created successfully for all components.")
+
+            return super().__new__(cls)
+
+    def __repr__(self):
+        return "Limits: " + str(self.limits) + "; Functions: " + str(self.function)
+
+    def bounds(self):
+        t_value = np.linspace(float(self.limits[1]), float(self.limits[2]), 50)
+        print("This is an estimate of the bounds with 50 points. "
+              "The actual bounds may be different.")
+        curve = self.eval(t_value)
+        return curve.bounds
 
     def eval(self, t_value):
         """
@@ -699,24 +750,23 @@ class ParamCurve2D(symCurve.Curve):
         """
         t, tmin, tmax = self.limits
 
+        # TODO : This is a temporary solution.
+        #  The actual parametric variable should be used.
+        if isinstance(t, str):
+            t = sym.Symbol("x")
+
         if np.min(t_value) < tmin or np.max(t_value) > tmax:
             raise ValueError("Parameter value should be within the limits.")
 
-        func_x = sym.lambdify(t, self.functions[0], 'numpy')
-        x_t = func_x(np.array(t_value))
+        for func in self.function:
+            func_x = sym.lambdify(t, func, 'numpy')
+            x_t = func_x(np.array(t_value))
+            try:
+                interpolated_curve = np.vstack((interpolated_curve, x_t))
+            except NameError:
+                interpolated_curve = x_t
 
-        func_y = sym.lambdify(self.limits[0], self.functions[1], 'numpy')
-        y_t = func_y(np.array(t_value))
-
-        return Curve(np.array([x_t, y_t]).T)
-
-    @property
-    def bounds(self):
-        t_value = np.linspace(float(self.limits[1]), float(self.limits[2]), 50)
-        print("This is an estimate of the bounds with 50 points. "
-              "The actual bounds may be different.")
-        curve = self.eval(t_value)
-        return curve.bounds
+        return Curve(np.array(interpolated_curve).T)
 
 
 # TODO : An inheritance of sympy.geometry.entity.GeometryEntity should be enough.
@@ -854,8 +904,8 @@ class ParamSurface(GeometryEntity):
                              "but got %s" % str(functions))
 
         cond_limits = is_sequence(limits) and len(limits) == 2 and \
-            is_sequence(limits[0]) and len(limits[0]) == 3 and \
-            is_sequence(limits[1]) and len(limits[1]) == 3
+                      is_sequence(limits[0]) and len(limits[0]) == 3 and \
+                      is_sequence(limits[1]) and len(limits[1]) == 3
         if not cond_limits:
             raise ValueError("Limit argument should be ((s, smin, smax), (t, tmin, tmax))"
                              "but got %s" % str(limits))
