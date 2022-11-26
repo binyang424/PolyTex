@@ -15,5 +15,5 @@ from .pk_file import *
 from .file_dialog import *
 from .cwd_chdir import cwd_chdir
 from .save_csv import save_csv
-from .save_ply import save_ply
+from .save_ply import save_ply, get_ply_property
 from .save_krig import save_krig

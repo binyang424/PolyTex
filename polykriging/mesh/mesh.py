@@ -89,7 +89,7 @@ def find_cells_within_bounds(mesh, bounds):
     -------
     type: numpy.ndarray
         array of cell indices within bounds.
-    
+
     Example
     -------
         >> mesh = pv.PolyData(np.random.rand(10, 3))
@@ -261,7 +261,7 @@ def tubular_mesh_generator(theta_res, h_res, vertices, plot=True):
     mesh : points on the tubular mesh
     """
     import pyvista as pv
-    mesh = pv.CylinderStructured(theta_resolution=theta_res + 1,
+    mesh = pv.CylinderStructured(theta_resolution=theta_res,
                                  z_resolution=h_res)
     mesh.points = vertices
     if plot:

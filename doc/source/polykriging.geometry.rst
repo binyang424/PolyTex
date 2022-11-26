@@ -1,12 +1,9 @@
-polykriging.geometry package
+polykriging.geometry
 ============================
 
-Submodules
-----------
 
 polykriging.geometry.basic module
 ---------------------------------
-
 .. automodule:: polykriging.geometry.basic
    :members:
    :undoc-members:
@@ -14,16 +11,12 @@ polykriging.geometry.basic module
 
 polykriging.geometry.geometry module
 ------------------------------------
+.. inheritance-diagram:: polykriging.geometry.geometry
+   :parts: 1
+
 
 .. automodule:: polykriging.geometry.geometry
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: polykriging.geometry
-   :members:
-   :undoc-members:
-   :show-inheritance:

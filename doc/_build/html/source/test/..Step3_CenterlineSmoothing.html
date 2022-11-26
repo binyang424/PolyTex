@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test &mdash; PolyKriging 0.1.5 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Step1_GeometricAnalysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Test</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/test/..Step3_CenterlineSmoothing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-source-test-step3-centerlinesmoothing-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="test">
+<span id="sphx-glr-source-test-step3-centerlinesmoothing-py"></span><h1>Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h1>
+<p>Test</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">polykriging</span> <span class="kn">import</span> <span class="n">curve2D</span><span class="p">,</span> <span class="n">utility</span><span class="p">,</span> <span class="n">tool</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">argrelextrema</span>  <span class="c1"># data compression</span>
+
+<span class="c1"># the current work directory</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">utility</span><span class="o">.</span><span class="n">cwd_chdir</span><span class="p">()</span>
+
+<span class="c1"># Load centroid data and assigned to the bezier points</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;D:/04_coding/Python/06_Visualization/Mesh/00_data_acquisition/3D_2_4_5layers/Long/centerline/0.csv&quot;</span>
+<span class="c1"># filepath = &quot;D:/04_coding/Python/06_Visualization/Mesh/00_data_acquisition/3D_2_4_5layers&quot; \</span>
+<span class="c1">#            &quot;/Binder/Centerline/uBinder2/centerline.csv&quot;</span>
+<span class="n">centerline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># Reorganize the data for parametric kriging:</span>
+<span class="c1"># x</span>
+<span class="n">matXC</span> <span class="o">=</span> <span class="n">centerline</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">matXC</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">matXC</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">matYC</span> <span class="o">=</span> <span class="n">centerline</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">matYC</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">matYC</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="c1"># for local maxima</span>
+<span class="n">max_ind</span> <span class="o">=</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">matYC</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">)</span>
+<span class="c1"># for local minima</span>
+<span class="n">min_ind</span> <span class="o">=</span> <span class="n">argrelextrema</span><span class="p">(</span><span class="n">matYC</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">)</span>
+<span class="n">extrema_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">max_ind</span><span class="p">,</span> <span class="n">min_ind</span><span class="p">))</span>
+
+<span class="n">add</span> <span class="o">=</span> <span class="p">[</span>  <span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span>
+ <span class="mi">76</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">159</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span>
+ <span class="mi">162</span><span class="p">,</span> <span class="mi">171</span><span class="p">]]</span>
+
+<span class="n">extrema_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">extrema_ind</span><span class="p">,</span> <span class="n">add</span><span class="p">))</span>
+
+<span class="c1"># include end points</span>
+<span class="n">extrema_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">extrema_ind</span><span class="p">,</span><span class="mi">0</span><span class="p">,[</span><span class="mi">0</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">extrema_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">extrema_ind</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,[</span><span class="nb">len</span><span class="p">(</span><span class="n">matYC</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># avoid repeat</span>
+<span class="n">extrema_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">extrema_ind</span><span class="p">)</span>
+<span class="n">extrema_ind</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>   <span class="c1"># sort by ascending</span>
+
+<span class="n">xmat_krig</span><span class="p">,</span> <span class="n">xmat_krig_inv</span><span class="p">,</span> <span class="n">xvector_ba</span><span class="p">,</span> <span class="n">xexpr</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">curveKrig</span><span class="p">(</span>
+    <span class="n">matXC</span><span class="p">[</span><span class="n">extrema_ind</span><span class="p">],</span> <span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="s1">&#39;lin&#39;</span><span class="p">,</span><span class="n">nuggetEffect</span><span class="o">=</span><span class="mf">5e-2</span><span class="p">)</span>
+<span class="n">ymat_krig</span><span class="p">,</span> <span class="n">ymat_krig_inv</span><span class="p">,</span> <span class="n">yvector_ba</span><span class="p">,</span> <span class="n">yexpr</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">curveKrig</span><span class="p">(</span>
+    <span class="n">matYC</span><span class="p">[</span><span class="n">extrema_ind</span><span class="p">],</span> <span class="s1">&#39;quad&#39;</span><span class="p">,</span> <span class="s1">&#39;lin&#39;</span><span class="p">,</span><span class="n">nuggetEffect</span><span class="o">=</span><span class="mf">5e-2</span><span class="p">)</span>
+
+
+<span class="c1">##expr = {&#39;Weft&#39;:{&quot;1&quot;:[xexpr, yexpr]}}</span>
+<span class="c1">### Save the kriging expression</span>
+<span class="c1">##utility.expr_io(&quot;centerlineKrig.txt&quot;, expr)</span>
+
+<span class="c1">#---------------------------------------------------------------------</span>
+<span class="c1"># Calculate the Kriged coordinate and the tangent</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">coorKrig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">centerline</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xexpr</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xf</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">yexpr</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">yf</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">unitVector</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Returns the unit vector of the vector.  &quot;&quot;&quot;</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">normValue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">norm</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">normValue</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">norm</span>
+
+<span class="n">tangent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">centerline</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">xexprDeri</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xexpr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">xderf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xexprDeri</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">tangent</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xderf</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">yexprDeri</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">yexpr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">yderf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">yexprDeri</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">tangent</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">yderf</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">tangent</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># z direction (iSlice)</span>
+
+<span class="n">tangent</span> <span class="o">=</span> <span class="n">unitVector</span><span class="p">(</span><span class="n">tangent</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>   <span class="c1"># fig.add_subplot(projection=&#39;3d&#39;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">centerline</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;XC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">centerline</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;YC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>  <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Centerline&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Kriging&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Slice&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;XC &amp; YC/voxel&#39;</span><span class="p">)</span>
+<span class="c1">##ax.set_xlim(0, 275)</span>
+<span class="c1">##ax.set_ylim(225, 275)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="c1"># Error plot</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig2</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coorKrig</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centerline</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">dist</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Slice&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;local error/voxel&#39;</span><span class="p">)</span>
+
+<span class="n">iSlice</span><span class="p">,</span> <span class="n">yerror</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_lines</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+<span class="n">boo</span> <span class="o">=</span> <span class="n">yerror</span><span class="o">&gt;</span><span class="mf">0.75</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iSlice</span><span class="p">[</span><span class="n">boo</span><span class="p">]:</span>
+    <span class="n">indexErr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">iSlice</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">indexErr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">h_pad</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 数据压缩 (nuggetEffect=0)</span>
+<span class="c1"># 用参数方程求切线</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-step3-centerlinesmoothing-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/cf493287d2b16b874204dab690d34540/..Step3_CenterlineSmoothing.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">..Step3_CenterlineSmoothing.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/5dae7a17c105a76c08911550298086e6/..Step3_CenterlineSmoothing.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">..Step3_CenterlineSmoothing.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Step1_GeometricAnalysis.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

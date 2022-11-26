@@ -199,6 +199,21 @@ class Point(np.ndarray):
         """
         return [(other.x - self.x), (other.y - self.y), (other.z - self.z)]
 
+    def save_as_vtk(self, filename, color=None):
+        """
+        Save the point as a vtk file.
+        """
+        if color is None:
+            color = {}
+        # check if color is a np.ndarray
+        elif isinstance(color, np.ndarray):
+            if color.shape[0] != self.shape[0]:
+                raise ValueError("Color array must have the same size as the point array.")
+        else:
+            filename = filename + ".vtk" if not filename.endswith(".vtk") else filename
+            pk.save_ply(filename, vertices=self.xyz,
+                        point_data=color, binary=False)
+
 
 class Vector(Point):
     """
@@ -623,7 +638,6 @@ class Tube(GeometryEntity):
         pts = np.array(self.points, dtype=np.float32)
         mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
                                               vertices=pts, plot=False)
-        mesh.points = pts
         if plot:
             mesh.plot(show_edges=True)
         return mesh
@@ -678,7 +692,7 @@ class ParamCurve:
     >>> curve
     """
 
-    def __new__(cls, limits, function=[], dataset=None, krig_configure=("lin", "cub", 0.0)):
+    def __new__(cls, limits, function=[], dataset=None, krig_config=("lin", "cub", 0.0)):
         """
         Parameters
         ----------

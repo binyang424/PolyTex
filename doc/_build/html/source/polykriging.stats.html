@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.stats package &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>polykriging.stats &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,12 +25,14 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="polykriging.thirdparty package" href="polykriging.thirdparty.html" />
-    <link rel="prev" title="polykriging.plot package" href="polykriging.plot.html" /> 
+    <link rel="next" title="polykriging.thirdparty" href="polykriging.thirdparty.html" />
+    <link rel="prev" title="polykriging.plot" href="polykriging.plot.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,6 +41,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -41,61 +51,29 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#installation">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html#documentation-and-usage">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.stats package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats.bw_opt">polykriging.stats.bw_opt module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats.kde">polykriging.stats.kde module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.stats">Module contents</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.stats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging-stats-bw-opt-module">polykriging.stats.bw_opt module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging-stats-kde-module">polykriging.stats.kde module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#citation">Citation</a></li>
-</ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">polykriging.stats package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.stats.bw_opt">polykriging.stats.bw_opt module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.bw_opt.bw_scott"><code class="docutils literal notranslate"><span class="pre">bw_scott()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.bw_opt.log_likelihood"><code class="docutils literal notranslate"><span class="pre">log_likelihood()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.bw_opt.opt_bandwidth"><code class="docutils literal notranslate"><span class="pre">opt_bandwidth()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.stats.kde">polykriging.stats.kde module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.kde.kdePlot"><code class="docutils literal notranslate"><span class="pre">kdePlot()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.kde.kdeScreen"><code class="docutils literal notranslate"><span class="pre">kdeScreen()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.stats.kde.movingKDE"><code class="docutils literal notranslate"><span class="pre">movingKDE()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.stats">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty package</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -112,8 +90,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="polykriging.html">Subpackages</a> &raquo;</li>
-      <li>polykriging.stats package</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Submodules</a> &raquo;</li>
+      <li>polykriging.stats</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.stats.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,14 +102,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-stats-package">
-<h1>polykriging.stats package<a class="headerlink" href="#polykriging-stats-package" title="Permalink to this heading"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
-</section>
-<section id="module-polykriging.stats.bw_opt">
-<span id="polykriging-stats-bw-opt-module"></span><h2>polykriging.stats.bw_opt module<a class="headerlink" href="#module-polykriging.stats.bw_opt" title="Permalink to this heading"></a></h2>
-<dl class="py function">
+  <section id="polykriging-stats">
+<h1>polykriging.stats<a class="headerlink" href="#polykriging-stats" title="Permalink to this heading"></a></h1>
+<section id="polykriging-stats-bw-opt-module">
+<h2>polykriging.stats.bw_opt module<a class="headerlink" href="#polykriging-stats-bw-opt-module" title="Permalink to this heading"></a></h2>
+<span class="target" id="module-polykriging.stats.bw_opt"></span><dl class="py function">
 <dt class="sig sig-object py" id="polykriging.stats.bw_opt.bw_scott">
 <span class="sig-prename descclassname"><span class="pre">polykriging.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">bw_scott</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/bw_opt.html#bw_scott"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.bw_opt.bw_scott" title="Permalink to this definition"></a></dt>
 <dd><p>Scott’s rule for bandwidth selection.
@@ -157,7 +133,7 @@ The likelihood is:</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>LL</strong><span class="classifier">float</span></dt><dd><p>The log-likelihood of the given probability density function.</p>
 </dd>
@@ -173,7 +149,7 @@ The likelihood is:</p>
 via cross-validation and returns the parameter value that maximizes
 the log-likelihood of data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array. The data to apply the kernel density estimation.</p>
 </dd>
@@ -187,13 +163,13 @@ the log-likelihood of data.</p>
 </dd></dl>
 
 </section>
-<section id="module-polykriging.stats.kde">
-<span id="polykriging-stats-kde-module"></span><h2>polykriging.stats.kde module<a class="headerlink" href="#module-polykriging.stats.kde" title="Permalink to this heading"></a></h2>
-<dl class="py function">
+<section id="polykriging-stats-kde-module">
+<h2>polykriging.stats.kde module<a class="headerlink" href="#polykriging-stats-kde-module" title="Permalink to this heading"></a></h2>
+<span class="target" id="module-polykriging.stats.kde"></span><dl class="py function">
 <dt class="sig sig-object py" id="polykriging.stats.kde.kdePlot">
 <span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xkde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ykde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_center_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#kdePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.kdePlot" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xkde</strong><span class="classifier">Numpy array</span></dt><dd><p>The normalized distance.</p>
 </dd>
@@ -203,7 +179,7 @@ the log-likelihood of data.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -215,7 +191,7 @@ the log-likelihood of data.</p>
 <dt class="sig sig-object py" id="polykriging.stats.kde.kdeScreen">
 <span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdeScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'False'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#kdeScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.kdeScreen" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array to apply the kernel density estimation.</p>
 </dd>
@@ -231,7 +207,7 @@ It has the same shape as the given variable.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>clusters</strong><span class="classifier">dictionary</span></dt><dd><p>The index of the cluster centers, cluster boundary and the
 probability density distribution (pdf).</p>
@@ -245,7 +221,7 @@ probability density distribution (pdf).</p>
 <dt class="sig sig-object py" id="polykriging.stats.kde.movingKDE">
 <span class="sig-prename descclassname"><span class="pre">polykriging.stats.kde.</span></span><span class="sig-name descname"><span class="pre">movingKDE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pcd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/stats/kde.html#movingKDE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.stats.kde.movingKDE" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pcd</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 2 dimension numpy array for kernel density estimation.
 The first colum should be the variable under analysis, the second
@@ -263,7 +239,7 @@ density estimation. If a number is given, the number will be used as the bandwid
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>kdeOutput</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 3 dimension numpy array. The first column is the tag of the window under analysis,
 the second is normlized distance, the third is the probability density.</p>
@@ -277,19 +253,14 @@ The first column is the maximum index for each window, the following columns are
 </dd></dl>
 
 </section>
-<section id="module-polykriging.stats">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.stats" title="Permalink to this heading"></a></h2>
-<p>polykriging.</p>
-<p>An implementation of dual Kriging.</p>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="polykriging.plot.html" class="btn btn-neutral float-left" title="polykriging.plot package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="polykriging.thirdparty.html" class="btn btn-neutral float-right" title="polykriging.thirdparty package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="polykriging.plot.html" class="btn btn-neutral float-left" title="polykriging.plot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.thirdparty.html" class="btn btn-neutral float-right" title="polykriging.thirdparty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

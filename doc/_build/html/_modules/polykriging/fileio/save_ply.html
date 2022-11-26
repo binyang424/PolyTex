@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.fileio.save_ply &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>polykriging.fileio.save_ply &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +24,8 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -29,6 +38,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,18 +48,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -135,6 +137,66 @@
                          <span class="s2">&quot;Please use ply, stl, vtk, or vtu.&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="get_ply_property"><a class="viewcode-back" href="../../../source/polykriging.fileio.html#polykriging.fileio.save_ply.get_ply_property">[docs]</a><span class="k">def</span> <span class="nf">get_ply_property</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span><span class="p">,</span> <span class="n">save_vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function get a vertex property or cell property from a mesh stored as .ply</span>
+<span class="sd">    format. It is intended to be used to get the user-defined properties that most of</span>
+<span class="sd">    meshing and rendering software does not support.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    The mesh must be saved as ASCII format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh_path : str</span>
+<span class="sd">        The path of the mesh file with .ply extension.</span>
+<span class="sd">    column : int or list of int</span>
+<span class="sd">        The column number of the property.</span>
+<span class="sd">    skip : int, optional</span>
+<span class="sd">        The number of lines to skip in the header. The default is 11.</span>
+<span class="sd">    type : str, optional</span>
+<span class="sd">        The type of the property. The default is &quot;vertex&quot; for vertex property. The other</span>
+<span class="sd">        possible value is &quot;cell&quot; for cell property.</span>
+<span class="sd">    save_vtk : bool, optional</span>
+<span class="sd">        If True, the mesh is saved as a vtk file. The default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    property : numpy.ndarray</span>
+<span class="sd">        The property of the mesh.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import polykriging as pk</span>
+<span class="sd">    &gt;&gt;&gt; mesh_path = &quot;./weft_0_lin_lin_krig_30pts.ply&quot;</span>
+<span class="sd">    &gt;&gt;&gt; quality = pk.get_ply_property(mesh_path, -2, skip=11, type=&quot;vertex&quot;, save_vtk=False)</span>
+<span class="sd">    &gt;&gt;&gt; quality</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">)</span>
+    <span class="n">n_pts</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">n_points</span>
+    <span class="n">n_cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">n_cells</span>
+
+    <span class="c1"># load as csv</span>
+    <span class="n">mesh_txt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;vertex&quot;</span><span class="p">:</span>
+        <span class="n">vertex</span> <span class="o">=</span> <span class="n">mesh_txt</span><span class="p">[:</span><span class="n">n_pts</span><span class="p">]</span>
+        <span class="n">quality</span> <span class="o">=</span> <span class="n">vertex</span><span class="p">[:,</span> <span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;cell&quot;</span><span class="p">:</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">mesh_txt</span><span class="p">[</span><span class="n">n_pts</span><span class="p">:</span><span class="n">n_pts</span> <span class="o">+</span> <span class="n">n_cells</span><span class="p">]</span>
+        <span class="n">quality</span> <span class="o">=</span> <span class="n">cell</span><span class="p">[:,</span> <span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_vtk</span><span class="p">:</span>
+        <span class="n">mesh</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quality</span>
+        <span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">quality</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

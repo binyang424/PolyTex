@@ -6,6 +6,7 @@
 import os
 import sys
 
+
 sys.path.insert(0, os.path.abspath('./../polykriging'))  # 指向src目录
 
 # -- Project information -----------------------------------------------------
@@ -13,18 +14,57 @@ sys.path.insert(0, os.path.abspath('./../polykriging'))  # 指向src目录
 project = 'PolyKriging'
 copyright = '2022, Bin Yang'
 author = 'Bin Yang'
-release = '0.1.1'
+release = '0.1.5'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.autodoc', 
 			  'sphinx.ext.mathjax',
-              'sphinx.ext.viewcode', 'sphinx_search.extension',
-			  "numpydoc",]
+              'sphinx.ext.viewcode', 
+			  'sphinx_search.extension',
+			  "numpydoc",
+			  'sphinx.ext.graphviz',
+			  'sphinx.ext.inheritance_diagram',
+              'sphinx_copybutton',
+              'matplotlib.sphinxext.plot_directive',
+			  "m2r2",
+			  "sphinx.ext.autosummary",
+			  "sphinx_gallery.gen_gallery",
+			  ]
+			  
+autodoc_default_flags = ["members", "inherited-members"]
+
+# autosummaries from source-files
+autosummary_generate = True
+# dont show __init__ docstring
+autoclass_content = "class"
+# sort class members
+autodoc_member_order = "groupwise"
+# autodoc_member_order = 'bysource'
+			  
+inheritance_graph_attrs = dict(rankdir="TB", size='""')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# The suffix(es) of source filenames.
+# You can specify multiple suffix as a list of string:
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".txt": "restructuredtext",
+    ".md": "markdown",
+}
+
+sphinx_gallery_conf = {
+    # path to your examples scripts
+    "examples_dirs": "../test",
+    # path where to save gallery generated examples
+    "gallery_dirs": "source/test",
+    "filename_pattern": "/.*.py",
+}
+
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -41,3 +81,8 @@ nb_execution_mode = 'off'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_theme = 'sphinx_rtd_theme'
 html_static_path = []
+html_logo = "source/polykriging_logo.png"
+html_theme_options = {
+    'logo_only': False,
+    'display_version': True,
+}

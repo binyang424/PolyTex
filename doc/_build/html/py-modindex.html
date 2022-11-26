@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>Python Module Index &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +24,8 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script src="_static/js\rtd_sphinx_search.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -32,6 +41,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="index.html" class="icon icon-home"> PolyKriging
+            <img src="_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -41,18 +51,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#citation">Citation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="source/polykriging.html">Subpackages</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -93,12 +95,7 @@
        <td><img src="_static/minus.png" class="toggler"
               id="toggle-1" style="display: none" alt="-" /></td>
        <td>
-       <code class="xref">polykriging</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="source/polykriging.fileio.html#module-polykriging.fileio"><code class="xref">polykriging.fileio</code></a></td><td>
+       <a href="source/polykriging.html#module-polykriging"><code class="xref">polykriging</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -148,22 +145,12 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="source/polykriging.geometry.html#module-polykriging.geometry"><code class="xref">polykriging.geometry</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="source/polykriging.geometry.html#module-polykriging.geometry.basic"><code class="xref">polykriging.geometry.basic</code></a></td><td>
+       <a href="source/classes.html#module-0"><code class="xref">polykriging.geometry.basic</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="source/polykriging.geometry.html#module-polykriging.geometry.geometry"><code class="xref">polykriging.geometry.geometry</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="source/polykriging.kriging.html#module-polykriging.kriging"><code class="xref">polykriging.kriging</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -203,11 +190,6 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="source/polykriging.mesh.html#module-polykriging.mesh"><code class="xref">polykriging.mesh</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
        <a href="source/polykriging.mesh.html#module-polykriging.mesh.decimation"><code class="xref">polykriging.mesh.decimation</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
@@ -223,22 +205,12 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="source/polykriging.plot.html#module-polykriging.plot"><code class="xref">polykriging.plot</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
        <a href="source/polykriging.plot.html#module-polykriging.plot.color_cluster"><code class="xref">polykriging.plot.color_cluster</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="source/polykriging.plot.html#module-polykriging.plot.image_plot"><code class="xref">polykriging.plot.image_plot</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="source/polykriging.stats.html#module-polykriging.stats"><code class="xref">polykriging.stats</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -253,12 +225,17 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="source/polykriging.thirdparty.html#module-polykriging.thirdparty"><code class="xref">polykriging.thirdparty</code></a></td><td>
+       <a href="source/classes.html#module-polykriging.textile"><code class="xref">polykriging.textile</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="source/polykriging.thirdparty.html#module-polykriging.thirdparty.bcolors"><code class="xref">polykriging.thirdparty.bcolors</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="source/classes.html#module-polykriging.tow"><code class="xref">polykriging.tow</code></a></td><td>
        <em></em></td></tr>
    </table>
 

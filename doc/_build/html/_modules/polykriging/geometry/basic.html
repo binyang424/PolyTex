@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.geometry.basic &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>polykriging.geometry.basic &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +24,8 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -29,6 +38,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,18 +48,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -78,12 +80,17 @@
              
   <h1>Source code for polykriging.geometry.basic</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">sympy.geometry.point</span> <span class="k">as</span> <span class="nn">symPoint</span>
 <span class="kn">import</span> <span class="nn">sympy.geometry.line</span> <span class="k">as</span> <span class="nn">symLine</span>
 <span class="kn">import</span> <span class="nn">sympy.geometry.curve</span> <span class="k">as</span> <span class="nn">symCurve</span>
 <span class="kn">import</span> <span class="nn">sympy.geometry.plane</span> <span class="k">as</span> <span class="nn">symPlane</span>
-<span class="kn">import</span> <span class="nn">sympy.geometry.point</span> <span class="k">as</span> <span class="nn">symPoint</span>
 <span class="kn">from</span> <span class="nn">sympy.geometry.entity</span> <span class="kn">import</span> <span class="n">GeometryEntity</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">is_sequence</span>
+<span class="kn">from</span> <span class="nn">sympy.core.containers</span> <span class="kn">import</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">polykriging.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
 
 
 <div class="viewcode-block" id="Point"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point">[docs]</a><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
@@ -127,7 +134,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        cls : class</span>
 <span class="sd">            The class of the object.</span>
-<span class="sd">        orig_3d : tuple</span>
+<span class="sd">        orig_3d : tuple, list, or array_like</span>
 <span class="sd">            Defaults to 3d origin (0, 0, 0).</span>
 
 <span class="sd">        Returns</span>
@@ -190,6 +197,21 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bounds : array_like</span>
+<span class="sd">            The bounding box of the point. The first row is the minimum</span>
+<span class="sd">            values and the second row is the maximum values for each</span>
+<span class="sd">            dimension.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Point.set_x"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.set_x">[docs]</a>    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -256,7 +278,22 @@
 <span class="sd">        &gt;&gt;&gt; p1.direction_ratio(Point(2, 3, 5))</span>
 <span class="sd">        [1, 1, 2]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)]</span></div></div>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="Point.save_as_vtk"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.save_as_vtk">[docs]</a>    <span class="k">def</span> <span class="nf">save_as_vtk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the point as a vtk file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># check if color is a np.ndarray</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">color</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Color array must have the same size as the point array.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.vtk&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">filename</span>
+            <span class="n">pk</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span>
+                        <span class="n">point_data</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Vector"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector">[docs]</a><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
@@ -267,11 +304,10 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Vector</span>
-<span class="sd">    &gt;&gt;&gt; v1 = Vector([1, 2, 3])</span>
-<span class="sd">    &gt;&gt;&gt; v2 = Vector([4, 5, 7])</span>
-<span class="sd">    &gt;&gt;&gt; sum12 = Vector([5, 7, 10])</span>
-<span class="sd">    &gt;&gt;&gt; dot12 = Vector([4, 10, 21])</span>
-<span class="sd">    &gt;&gt;&gt; dist34 = np.linalg.norm(p3 - p4, axis=1)</span>
+<span class="sd">    &gt;&gt;&gt; v1 = Vector((1, 2, 3))</span>
+<span class="sd">    &gt;&gt;&gt; v2 = Vector((4, 5, 7))</span>
+<span class="sd">    &gt;&gt;&gt; sum12 = Vector((5, 7, 10))</span>
+<span class="sd">    &gt;&gt;&gt; dot12 = Vector((4, 10, 21))</span>
 <span class="sd">    &gt;&gt;&gt; assert v1 + v2 == sum12</span>
 <span class="sd">    &gt;&gt;&gt; assert v1 * v2 == dot12  # Dot product</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -329,6 +365,7 @@
 <span class="sd">    &gt;&gt;&gt; l1.ambient_dimension</span>
 <span class="sd">    3</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -364,27 +401,26 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Curve</span>
-<span class="sd">    &gt;&gt;&gt; p = Point([[2, 4, 6], [2, 4, 5]])</span>
+<span class="sd">    &gt;&gt;&gt; p = [[2, 4, 6], [2, 4, 5]]</span>
 <span class="sd">    &gt;&gt;&gt; c = Curve(p)</span>
 <span class="sd">    &gt;&gt;&gt; c.points</span>
 <span class="sd">    [[2, 4, 6], [2, 4, 6]]</span>
 <span class="sd">    &gt;&gt;&gt; c.ambient_dimension</span>
 <span class="sd">    3</span>
 <span class="sd">    &gt;&gt;&gt; c.length</span>
-<span class="sd">    0.0</span>
+<span class="sd">    1.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        points : list</span>
+<span class="sd">        points : list, tuple or array_like</span>
 <span class="sd">            A list of Point objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
-
-        <span class="c1"># TODO : curvature, tangent, etc.</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -396,6 +432,28 @@
 <span class="sd">        length : float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ambient_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the dimension of the curve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ambient_dimension : int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">ndim</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the bounds of the curve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bounds : tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">bounds</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">tangent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -448,22 +506,9 @@
         <span class="k">return</span> <span class="n">Polygon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ParamCurve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve</span><span class="p">(</span><span class="n">symCurve</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+<div class="viewcode-block" id="Ellipse"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Ellipse">[docs]</a><span class="k">class</span> <span class="nc">Ellipse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This is a parametric curve defined by a function.</span>
-
-<span class="sd">    The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</span>
-<span class="sd">    documentation of sympy.geometry.curve.Curve for more information.</span>
-<span class="sd">        https://docs.sympy.org/latest/modules/geometry/curves.html</span>
-
-<span class="sd">    TODO : A detailed documentation will be added in the future.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="Elipse"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Elipse">[docs]</a><span class="k">class</span> <span class="nc">Elipse</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This is an elipse defined by a center point and two vectors.</span>
+<span class="sd">    This is an ellipse defined by a center point and two vectors.</span>
 <span class="sd">    TODO : a wrap of sympy.geometry.ellipse (2D function)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -485,6 +530,7 @@
 <span class="sd">    &gt;&gt;&gt; poly = Polygon(p)</span>
 <span class="sd">    &gt;&gt;&gt; poly.points</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Polygon.to_curve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Polygon.to_curve">[docs]</a>    <span class="k">def</span> <span class="nf">to_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the polygon to a curve.</span>
@@ -496,13 +542,13 @@
         <span class="k">return</span> <span class="n">Curve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">centroild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the centroild of the polygon.</span>
+<span class="sd">        Return the centroid of the polygon.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        centroild : Point object</span>
+<span class="sd">        centroid : Point object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
@@ -552,13 +598,14 @@
 <span class="sd">    &gt;&gt;&gt; normal = Point([1, 4, 7])</span>
 <span class="sd">    &gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
             <span class="n">p3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
-            <span class="c1"># p1.tolist(): convert the point to a list for capatibility with sympy geometry</span>
+            <span class="c1"># p1.tolist(): convert the point to a list for compatibility with sympy geometry</span>
             <span class="c1"># It is originally a PolyKriging Point object which is inherited from numpy.ndarray.</span>
             <span class="k">if</span> <span class="n">symPoint</span><span class="o">.</span><span class="n">Point3D</span><span class="o">.</span><span class="n">are_collinear</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p2</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Enter three non-collinear points&#39;</span><span class="p">)</span>
@@ -586,7 +633,336 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Plane(Point</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="si">}</span><span class="s2">, Normal</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal_vector</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
 
-<div class="viewcode-block" id="ParamSurface"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface">[docs]</a><span class="k">class</span> <span class="nc">ParamSurface</span><span class="p">:</span>
+<div class="viewcode-block" id="Tube"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube">[docs]</a><span class="k">class</span> <span class="nc">Tube</span><span class="p">(</span><span class="n">GeometryEntity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class defines a 3D tubular surface by number of points on each cross-section (theta_res)</span>
+<span class="sd">    and the number of cross-sections (h_res). Note that the number of points on the cross-section</span>
+<span class="sd">    is the same for all the-cross sections.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Tube</span>
+<span class="sd">    &gt;&gt;&gt; tube = Tube(5,10,major=2, minor=1,h=5)</span>
+<span class="sd">    &gt;&gt;&gt; mesh = tube.mesh(plot=True)</span>
+<span class="sd">    &gt;&gt;&gt; tube.save_mesh(&#39;tube.vtk&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        theta_res : int</span>
+<span class="sd">            The number of points on each cross-section.</span>
+<span class="sd">        h_res : int</span>
+<span class="sd">            The number of cross-sections.</span>
+<span class="sd">        points : array_like</span>
+<span class="sd">            The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).</span>
+<span class="sd">            The points should be ordered in the following way:</span>
+<span class="sd">                [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]</span>
+<span class="sd">            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom.</span>
+
+<span class="sd">            the default value is None. If the value is None, the points will be generated automatically by assigning</span>
+<span class="sd">            the height, major and minor radius to the tube.</span>
+
+<span class="sd">        major : float</span>
+<span class="sd">            The major radius of the tube. Only used when the points are not given.</span>
+<span class="sd">        minor : float</span>
+<span class="sd">            The minor radius of the tube. Only used when the points are not given.</span>
+<span class="sd">        h : float</span>
+<span class="sd">            The height of the tube. Only used when the points are not given.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">h_res</span> <span class="o">*</span> <span class="n">theta_res</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The number of vertices is not equal to the number of cross-sections times the&#39;</span>
+                                 <span class="s1">&#39; number of vertices on each cross-section&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The vertices must be in the shape of (n, 3)&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;major&#39;</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;minor&#39;</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">theta_res</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">h_res</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pts</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">structured_cylinder_vertices</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span>
+                                                  <span class="n">theta_res</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pts</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="nb">min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">min</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">min</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+<div class="viewcode-block" id="Tube.mesh"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh">[docs]</a>    <span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
+                                              <span class="n">vertices</span><span class="o">=</span><span class="n">pts</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mesh</span></div>
+
+<div class="viewcode-block" id="Tube.save_as_mesh"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.save_as_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">save_as_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the tubular mesh to a file. The file format is determined by the extension of the filename.</span>
+<span class="sd">        The possible file formats are: [&quot;.ply&quot;, &quot;.stl&quot;, &quot;.vtk&quot;, &quot;.vtu&quot;].</span>
+
+<span class="sd">        TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            The path and the name of the file to be saved with the extension.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mesh : pyvista.UnstructuredGrid</span>
+<span class="sd">            The tubular mesh.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Tube</span>
+<span class="sd">        &gt;&gt;&gt; tube = Tube(5,10,major=2, minor=1,h=5)</span>
+<span class="sd">        &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtu&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">()</span>
+        <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">to_meshio_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">pk</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
+                    <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ParamCurve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a parametric curve. It is defined by a function and</span>
+<span class="sd">    a parameter.</span>
+
+<span class="sd">        The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</span>
+<span class="sd">    documentation of sympy.geometry.curve.Curve for more information.</span>
+<span class="sd">        https://docs.sympy.org/latest/modules/geometry/curves.html</span>
+
+<span class="sd">    TODO : A detailed documentation will be added in the future.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamCurve</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; s = symbols(&#39;s&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; curve = ParamCurve(limits=(s, 0, 2*np.pi), function=(cos(s), sin(s)))</span>
+<span class="sd">    &gt;&gt;&gt; curve</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="p">[],</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        limits : 3-tuple</span>
+<span class="sd">            Function parameter and lower and upper bounds.</span>
+<span class="sd">        function : list</span>
+<span class="sd">            The function list for each coordinate component. The default value is [].</span>
+<span class="sd">        dataset : array_like</span>
+<span class="sd">            The dataset of the curve. The default value is None. The first column is</span>
+<span class="sd">            the parameter and the other columns are the value of coordinate components.</span>
+
+<span class="sd">            One of the function or dataset must be given. Please note that both are</span>
+<span class="sd">            given, the dataset will be ignored.</span>
+<span class="sd">        kriging : tuple</span>
+<span class="sd">            The kriging interpolation configuration. The default value is (). The tuple</span>
+<span class="sd">            should be in the form of (drift_name, covariance_name, smoothing_factor).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">limits</span> <span class="o">=</span> <span class="n">limits</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">function</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">function</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">function</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Function argument should be (x(t), y(t)) &quot;</span>
+                                 <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Limit argument should be (t, tmin, tmax) &quot;</span>
+                                 <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">limits</span><span class="p">))</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">function</span><span class="o">=</span><span class="p">[]</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+            <span class="n">n_component</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">smoothing_factor</span> <span class="o">=</span> <span class="n">krig_configure</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_component</span><span class="p">):</span>
+                <span class="n">data_krig</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating kriging model for </span><span class="si">%s</span><span class="s2"> -th component&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+                <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
+                    <span class="n">pk</span><span class="o">.</span><span class="n">kriging</span><span class="o">.</span><span class="n">curveKrig1D</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">name_drift</span><span class="o">=</span><span class="n">drift</span><span class="p">,</span>
+                                           <span class="n">name_cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">smoothing_factor</span><span class="p">)</span>
+
+                <span class="bp">cls</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging model is created successfully for all components.&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Limits: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; Functions: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParamCurve.bounds"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve.bounds">[docs]</a>    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is an estimate of the bounds with 50 points. &quot;</span>
+              <span class="s2">&quot;The actual bounds may be different.&quot;</span><span class="p">)</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">curve</span><span class="o">.</span><span class="n">bounds</span></div>
+
+<div class="viewcode-block" id="ParamCurve.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate the curve at a given parameter value. The parameter value</span>
+<span class="sd">        should be within the limits. Otherwise, an error will be raised.</span>
+
+<span class="sd">        t_value : float or array_like</span>
+<span class="sd">            The parameter value for evaluation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
+
+        <span class="c1"># TODO : This is a temporary solution.</span>
+        <span class="c1">#  The actual parametric variable should be used.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tmin</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tmax</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parameter value should be within the limits.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">:</span>
+            <span class="n">func_x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+            <span class="n">x_t</span> <span class="o">=</span> <span class="n">func_x</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t_value</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">interpolated_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">interpolated_curve</span><span class="p">,</span> <span class="n">x_t</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+                <span class="n">interpolated_curve</span> <span class="o">=</span> <span class="n">x_t</span>
+
+        <span class="k">return</span> <span class="n">Curve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interpolated_curve</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># TODO : An inheritance of sympy.geometry.entity.GeometryEntity should be enough.</span>
+<div class="viewcode-block" id="ParamCurve3D"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve3D</span><span class="p">(</span><span class="n">symCurve</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a parametric curve defined by a function.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
+<span class="sd">    &gt;&gt;&gt; s = symbols(&#39;s&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; curve = ParamCurve3D((cos(s), sin(s), s), (s, 0, 2*np.pi))</span>
+<span class="sd">    &gt;&gt;&gt; curve</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        function : list of functions</span>
+<span class="sd">            Function argument should be (x(t), y(t), z(t)) for a 3D curve.</span>
+<span class="sd">        limits : 3-tuple</span>
+<span class="sd">            Function parameter and lower and upper bounds. The parameter should be</span>
+<span class="sd">            the same for all three functions. For example, (t, 0, 1) is valid but</span>
+<span class="sd">            ((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Function argument should be (x(t), y(t), z(t)) &quot;</span>
+                             <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">functions</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Limit argument should be (t, tmin, tmax) &quot;</span>
+                             <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">limits</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">GeometryEntity</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">functions</span><span class="p">),</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">limits</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParamCurve3D.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        t : float or array_like</span>
+<span class="sd">            The parameter value for evaluation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tmin</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tmax</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parameter value should be within the limits.&quot;</span><span class="p">)</span>
+
+        <span class="n">func_x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">x_t</span> <span class="o">=</span> <span class="n">func_x</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t_value</span><span class="p">))</span>
+
+        <span class="n">func_y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">y_t</span> <span class="o">=</span> <span class="n">func_y</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t_value</span><span class="p">))</span>
+
+        <span class="n">func_z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">z_t</span> <span class="o">=</span> <span class="n">func_z</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t_value</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">Curve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_t</span><span class="p">,</span> <span class="n">y_t</span><span class="p">,</span> <span class="n">z_t</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The length of the curve.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;The length of a parametric curve is not &quot;</span>
+                                  <span class="s2">&quot;implemented yet. Please use the ParamCurve3D.eval() method &quot;</span>
+                                  <span class="s2">&quot;to evaluate the curve at a given parameter value list and &quot;</span>
+                                  <span class="s2">&quot;then calculate the length of the returned curve.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is an estimate of the bounds with 50 points. &quot;</span>
+              <span class="s2">&quot;The actual bounds may be different.&quot;</span><span class="p">)</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">curve</span><span class="o">.</span><span class="n">bounds</span>
+
+<div class="viewcode-block" id="ParamCurve3D.translate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.translate">[docs]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Translate the Curve by (x, y, z).</span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        Curve :</span>
+<span class="sd">            returns a translated curve.</span>
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
+<span class="sd">        &gt;&gt;&gt; ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)</span>
+<span class="sd">        ParamCurve3D((x + 1, x + 2), (x, 0, 1))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">((</span><span class="n">fx</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">fy</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">fz</span> <span class="o">+</span> <span class="n">z</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParamCurve3D.rotate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;The rotate method is not implemented yet for parametric curve.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParamCurve3D.scale"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">((</span><span class="n">fx</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">fy</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">fz</span> <span class="o">*</span> <span class="n">z</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ParamSurface"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface">[docs]</a><span class="k">class</span> <span class="nc">ParamSurface</span><span class="p">(</span><span class="n">GeometryEntity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A parametric surface is defined by two parametric equations in the form of</span>
 <span class="sd">        x = f(s, t)</span>
@@ -594,8 +970,132 @@
 <span class="sd">        z = h(s, t)</span>
 <span class="sd">    The surface is defined by the domain of s and t.</span>
 <span class="sd">    store: s,t, x,y,z</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamSurface</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
+<span class="sd">    &gt;&gt;&gt; s, t = symbols(&#39;s t&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; surface = ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 2*np.pi), (t, 0, np.pi)))</span>
+<span class="sd">    &gt;&gt;&gt; surface</span>
+<span class="sd">    ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 6.28318530717959), (t, 0, 3.14159265358979)))</span>
+<span class="sd">    &gt;&gt;&gt; surface.eval(0.5, 0.5)</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        functions : list of functions</span>
+<span class="sd">            Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.</span>
+<span class="sd">        limits : 2-tuple</span>
+<span class="sd">            Function parameter and lower and upper bounds of the two parameters. For</span>
+<span class="sd">            example, ((s, 0, 1), (t, 0, 1)) is valid. The parameter should be</span>
+<span class="sd">            the same for all three functions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Function argument should be (x(t), y(t), z(t)) &quot;</span>
+                             <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">functions</span><span class="p">))</span>
+
+        <span class="n">cond_limits</span> <span class="o">=</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> \
+                      <span class="n">is_sequence</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> \
+                      <span class="n">is_sequence</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cond_limits</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Limit argument should be ((s, smin, smax), (t, tmin, tmax))&quot;</span>
+                             <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">limits</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">GeometryEntity</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">functions</span><span class="p">),</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">limits</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The functions specifying the surface.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        functions :</span>
+<span class="sd">            list of parameterized coordinate functions.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from sympy.abc import t</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))</span>
+<span class="sd">        &gt;&gt;&gt; surface.functions</span>
+<span class="sd">        (t, t, t)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The limits of the two parameters specifying the surface.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            list limits of the parameters.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from sympy.abc import t</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))</span>
+<span class="sd">        &gt;&gt;&gt; surface.limits</span>
+<span class="sd">        ((t, 0, 1), (t, 0, 1))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ParamSurface.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s_value</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate the surface at the given parameter values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        s_value : float or array_like</span>
+<span class="sd">            The parameter value for evaluation.</span>
+<span class="sd">        t_value : float or array_like</span>
+<span class="sd">            The parameter value for evaluation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Surface :</span>
+<span class="sd">            The surface evaluated at the given parameter values.</span>
+<span class="sd">            the shape of the returned surface is (len(s) * len(t), 3). The</span>
+<span class="sd">            first column is s values, the second column is t values, and the</span>
+<span class="sd">            following columns are the coordinates of the surface at the given</span>
+<span class="sd">            parameter values (x, y, z).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s</span><span class="p">,</span> <span class="n">smin</span><span class="p">,</span> <span class="n">smax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">s_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">smin</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">s_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">smax</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;First parameter value should be within the limits.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tmin</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tmax</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Second parameter value should be within the limits.&quot;</span><span class="p">)</span>
+
+        <span class="n">sv</span><span class="p">,</span> <span class="n">tv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">s_value</span><span class="p">,</span> <span class="n">t_value</span><span class="p">)</span>
+        <span class="n">sv</span><span class="p">,</span> <span class="n">tv</span> <span class="o">=</span> <span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="p">(</span><span class="n">tv</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">func_x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">x_st</span> <span class="o">=</span> <span class="n">func_x</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tv</span><span class="p">))</span>
+
+        <span class="n">func_y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">y_st</span> <span class="o">=</span> <span class="n">func_y</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tv</span><span class="p">))</span>
+
+        <span class="n">func_z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+        <span class="n">z_st</span> <span class="o">=</span> <span class="n">func_z</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tv</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sv</span><span class="p">,</span> <span class="n">tv</span><span class="p">,</span> <span class="n">x_st</span><span class="p">,</span> <span class="n">y_st</span><span class="p">,</span> <span class="n">z_st</span><span class="p">])</span><span class="o">.</span><span class="n">T</span></div>
+
+<div class="viewcode-block" id="ParamSurface.translate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate">[docs]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">((</span><span class="n">fx</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">fy</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">fz</span> <span class="o">+</span> <span class="n">z</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParamSurface.rotate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;The rotate method is not implemented yet for parametric surface.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParamSurface.scale"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">((</span><span class="n">fx</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">fy</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">fz</span> <span class="o">*</span> <span class="n">z</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

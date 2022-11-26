@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.geometry.geometry &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>polykriging.geometry.geometry &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +24,8 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -29,6 +38,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,18 +48,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#documentation-and-usage">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html#citation">Citation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/polykriging.html">Subpackages</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -130,16 +132,17 @@
     <span class="n">coordinate</span> <span class="o">=</span> <span class="n">localCo</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">centroid</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
-
         <span class="n">coorSort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">localCo</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">])</span>
         <span class="n">coorSort</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coordinate</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">:],</span>
                                     <span class="n">coordinate</span><span class="p">[:</span><span class="n">maxIndex</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">coorSort</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">centroid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">:],</span> <span class="n">angle</span><span class="p">[:</span><span class="n">maxIndex</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">==</span> <span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">==</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="ow">in</span> <span class="n">angle</span><span class="p">[:</span><span class="mi">6</span><span class="p">]:</span>
             <span class="n">coorSort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">coorSort</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># print(&quot;angle&quot;, angle, &quot;max&quot;, np.max(angle), &quot;min&quot;, np.min(angle))</span>
 
         <span class="c1"># origin</span>
         <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">localCo</span><span class="p">[[</span><span class="n">minIndex</span><span class="p">,</span> <span class="n">maxIndex</span><span class="p">],</span> <span class="mi">0</span><span class="p">])</span>
@@ -153,9 +156,6 @@
         <span class="n">coorSort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">coordinate</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">])</span>
         <span class="n">coorSort</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinate</span>
         <span class="n">coorSort</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">centroid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-
-    <span class="c1">##    print(angle.shape)</span>
-    <span class="c1">##    print(angle)</span>
 
     <span class="k">return</span> <span class="n">coorSort</span><span class="p">,</span> <span class="n">angle</span></div>
 
@@ -220,9 +220,9 @@
     <span class="k">return</span> <span class="n">distance</span><span class="p">,</span> <span class="n">normDistance</span></div>
 
 
-<div class="viewcode-block" id="geom"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.geometry.geom">[docs]</a><span class="k">def</span> <span class="nf">geom</span><span class="p">(</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="geom_cs"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.geometry.geom_cs">[docs]</a><span class="k">def</span> <span class="nf">geom_cs</span><span class="p">(</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    分析2D的截面信息</span>
+<span class="sd">    Geometry analysis and points sorting for a cross-section of a fiber tow.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -283,9 +283,57 @@
     <span class="k">return</span> <span class="n">geomFeature</span><span class="p">,</span> <span class="n">coordinateSorted</span></div>
 
 
+<div class="viewcode-block" id="geom_tow"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.geometry.geom_tow">[docs]</a><span class="k">def</span> <span class="nf">geom_tow</span><span class="p">(</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The surface points for each cross-sections. the last column (z-axis) should be along the extension</span>
+<span class="sd">    direction of the cross-sections. It also serves as the label of each cross-section.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    surf_points : array_like</span>
+<span class="sd">        The surface points for each cross-sections. the last column (z-axis) should be along the extension</span>
+<span class="sd">        direction of the cross-sections. It also serves as the label of each cross-section.</span>
 
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df_geom : DataFrame</span>
+<span class="sd">        The geometrical features of each cross-sections. The columns are:</span>
+<span class="sd">        [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</span>
+<span class="sd">    df_coo : DataFrame</span>
+<span class="sd">        The coordinates of each cross-sections. The columns are:</span>
+<span class="sd">        [distance, normalized distance, angular position (degree), X, Y, Z)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">surf_points</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">centerline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">slices</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">iSlice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slices</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="c1"># for iSlice in range(2):</span>
+        <span class="n">mask_slice</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">slices</span><span class="p">[</span><span class="n">iSlice</span><span class="p">]</span>
+        <span class="n">coordinate</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[</span><span class="n">mask_slice</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+        <span class="n">surf_points</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[</span><span class="o">~</span><span class="n">mask_slice</span><span class="p">,</span> <span class="p">:]</span>
 
+        <span class="n">geomFeature</span><span class="p">,</span> <span class="n">coordinateSorted</span> <span class="o">=</span> <span class="n">geom_cs</span><span class="p">(</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+
+        <span class="n">centerline</span><span class="p">[</span><span class="n">iSlice</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">geomFeature</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">geomFeatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">geomFeatures</span><span class="p">,</span> <span class="n">geomFeature</span><span class="p">))</span>
+            <span class="n">coordinatesSorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">coordinatesSorted</span><span class="p">,</span> <span class="n">coordinateSorted</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+            <span class="n">geomFeatures</span> <span class="o">=</span> <span class="n">geomFeature</span>
+            <span class="n">coordinatesSorted</span> <span class="o">=</span> <span class="n">coordinateSorted</span>
+
+    <span class="n">column_geom</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Area&quot;</span><span class="p">,</span> <span class="s2">&quot;Perimeter&quot;</span><span class="p">,</span> <span class="s2">&quot;Width&quot;</span><span class="p">,</span> <span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="s2">&quot;AngleRotated&quot;</span><span class="p">,</span> <span class="s2">&quot;Circularity&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;centroidX&quot;</span><span class="p">,</span> <span class="s2">&quot;centroidY&quot;</span><span class="p">,</span> <span class="s2">&quot;centroidZ&quot;</span><span class="p">]</span>
+    <span class="n">column_coord</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="s2">&quot;normalized distance&quot;</span><span class="p">,</span> <span class="s2">&quot;angular position (degree)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">]</span>
+
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="c1"># recover the original order</span>
+    <span class="n">df_geom</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">geomFeatures</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_geom</span><span class="p">)</span>
+    <span class="n">df_coord</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">coordinatesSorted</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_coord</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_geom</span><span class="p">,</span> <span class="n">df_coord</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

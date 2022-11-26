@@ -10,4 +10,4 @@ __credits__ = 'Polytechnique Montreal & Wuhan University of Technology'
 
 
 from .color_cluster import *
-from . import image_plot
+from .image_plot import *

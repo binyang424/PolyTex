@@ -1,11 +1,11 @@
-polykriging.kriging package
+polykriging.kriging
 ===========================
-
-Submodules
-----------
 
 polykriging.kriging.curve2D module
 ----------------------------------
+.. inheritance-diagram:: polykriging.kriging.curve2D
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.curve2D
    :members:
@@ -14,6 +14,9 @@ polykriging.kriging.curve2D module
 
 polykriging.kriging.intersect module
 ------------------------------------
+.. inheritance-diagram:: polykriging.kriging.intersect
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.intersect
    :members:
@@ -22,6 +25,9 @@ polykriging.kriging.intersect module
 
 polykriging.kriging.mdKrig module
 ---------------------------------
+.. inheritance-diagram:: polykriging.kriging.mdKrig
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.mdKrig
    :members:
@@ -30,6 +36,9 @@ polykriging.kriging.mdKrig module
 
 polykriging.kriging.paraSurface module
 --------------------------------------
+.. inheritance-diagram:: polykriging.kriging.paraSurface
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.paraSurface
    :members:
@@ -38,6 +47,9 @@ polykriging.kriging.paraSurface module
 
 polykriging.kriging.projection module
 -------------------------------------
+.. inheritance-diagram:: polykriging.kriging.projection
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.projection
    :members:
@@ -46,6 +58,9 @@ polykriging.kriging.projection module
 
 polykriging.kriging.tool module
 -------------------------------
+.. inheritance-diagram:: polykriging.kriging.tool
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.tool
    :members:
@@ -54,16 +69,12 @@ polykriging.kriging.tool module
 
 polykriging.kriging.volumeKrig module
 -------------------------------------
+.. inheritance-diagram:: polykriging.kriging.volumeKrig
+   :parts: 1
+
 
 .. automodule:: polykriging.kriging.volumeKrig
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: polykriging.kriging
-   :members:
-   :undoc-members:
-   :show-inheritance:

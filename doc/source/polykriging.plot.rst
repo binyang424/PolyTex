@@ -1,4 +1,4 @@
-polykriging.plot package
+polykriging.plot
 ========================
 
 Submodules
@@ -6,6 +6,9 @@ Submodules
 
 polykriging.plot.color\_cluster module
 --------------------------------------
+.. inheritance-diagram:: polykriging.plot.color_cluster
+   :parts: 1
+
 
 .. automodule:: polykriging.plot.color_cluster
    :members:
@@ -14,16 +17,12 @@ polykriging.plot.color\_cluster module
 
 polykriging.plot.image\_plot module
 -----------------------------------
+.. inheritance-diagram:: polykriging.plot.image_plot
+   :parts: 1
+
 
 .. automodule:: polykriging.plot.image_plot
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: polykriging.plot
-   :members:
-   :undoc-members:
-   :show-inheritance:

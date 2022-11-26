@@ -58,6 +58,66 @@ def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False
     return None
 
 
+def get_ply_property(mesh_path, column, skip=11, type="vertex", save_vtk=False):
+    """
+    This function get a vertex property or cell property from a mesh stored as .ply
+    format. It is intended to be used to get the user-defined properties that most of
+    meshing and rendering software does not support.
+
+    Note
+    ----
+    The mesh must be saved as ASCII format.
+
+    Parameters
+    ----------
+    mesh_path : str
+        The path of the mesh file with .ply extension.
+    column : int or list of int
+        The column number of the property.
+    skip : int, optional
+        The number of lines to skip in the header. The default is 11.
+    type : str, optional
+        The type of the property. The default is "vertex" for vertex property. The other
+        possible value is "cell" for cell property.
+    save_vtk : bool, optional
+        If True, the mesh is saved as a vtk file. The default is False.
+
+    Returns
+    -------
+    property : numpy.ndarray
+        The property of the mesh.
+
+    Examples
+    --------
+    >>> import polykriging as pk
+    >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
+    >>> quality = pk.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
+    >>> quality
+    """
+    import pyvista as pv
+    import numpy as np
+
+    mesh = pv.read(mesh_path)
+    n_pts = mesh.n_points
+    n_cells = mesh.n_cells
+
+    # load as csv
+    mesh_txt = np.loadtxt(mesh_path, dtype=object, delimiter=" ", skiprows=11)
+
+    if type == "vertex":
+        vertex = mesh_txt[:n_pts]
+        quality = vertex[:, column].astype(np.float32)
+    elif type == "cell":
+        cell = mesh_txt[n_pts:n_pts + n_cells]
+        quality = cell[:, column].astype(np.float32)
+
+    if save_vtk:
+        mesh["quality"] = quality
+        mesh.save(mesh_path[:-4] + ".vtk")
+
+    return quality
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

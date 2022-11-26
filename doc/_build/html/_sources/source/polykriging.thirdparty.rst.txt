@@ -1,4 +1,4 @@
-polykriging.thirdparty package
+polykriging.thirdparty
 ==============================
 
 Subpackages
@@ -14,16 +14,12 @@ Submodules
 
 polykriging.thirdparty.bcolors module
 -------------------------------------
+.. inheritance-diagram:: polykriging.thirdparty.bcolors
+   :parts: 1
+
 
 .. automodule:: polykriging.thirdparty.bcolors
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: polykriging.thirdparty
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.thirdparty package &mdash; PolyKriging 0.1.1 documentation</title>
+  <title>polykriging.thirdparty &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,12 +25,14 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="polykriging.thirdparty.surf2stl package" href="polykriging.thirdparty.surf2stl.html" />
-    <link rel="prev" title="polykriging.stats package" href="polykriging.stats.html" /> 
+    <link rel="next" title="polykriging.thirdparty.surf2stl" href="polykriging.thirdparty.surf2stl.html" />
+    <link rel="prev" title="polykriging.stats" href="polykriging.stats.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,6 +41,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -41,57 +51,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to PolyKriging’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#project-description">Project description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#installation">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html#documentation-and-usage">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.thirdparty package</a><ul>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.thirdparty</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.thirdparty.bcolors">polykriging.thirdparty.bcolors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.thirdparty">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging-thirdparty-bcolors-module">polykriging.thirdparty.bcolors module</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#bugs">Bugs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#citation">Citation</a></li>
-</ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="polykriging.html">Subpackages</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html">polykriging.plot package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html">polykriging.stats package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">polykriging.thirdparty package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html">polykriging.thirdparty.surf2stl package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.thirdparty.bcolors">polykriging.thirdparty.bcolors module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#polykriging.thirdparty.bcolors.bcolors"><code class="docutils literal notranslate"><span class="pre">bcolors</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-polykriging.thirdparty">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
 
         </div>
@@ -108,8 +91,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="polykriging.html">Subpackages</a> &raquo;</li>
-      <li>polykriging.thirdparty package</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Submodules</a> &raquo;</li>
+      <li>polykriging.thirdparty</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.thirdparty.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,16 +103,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-thirdparty-package">
-<h1>polykriging.thirdparty package<a class="headerlink" href="#polykriging-thirdparty-package" title="Permalink to this heading"></a></h1>
+  <section id="polykriging-thirdparty">
+<h1>polykriging.thirdparty<a class="headerlink" href="#polykriging-thirdparty" title="Permalink to this heading"></a></h1>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html">polykriging.thirdparty.surf2stl package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html#submodules">Submodules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html">polykriging.thirdparty.surf2stl</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html#polykriging-thirdparty-surf2stl-surf2stl-module">polykriging.thirdparty.surf2stl.surf2stl module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.surf2stl.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -137,9 +119,15 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-polykriging.thirdparty.bcolors">
-<span id="polykriging-thirdparty-bcolors-module"></span><h2>polykriging.thirdparty.bcolors module<a class="headerlink" href="#module-polykriging.thirdparty.bcolors" title="Permalink to this heading"></a></h2>
-<dl class="py class">
+<section id="polykriging-thirdparty-bcolors-module">
+<h2>polykriging.thirdparty.bcolors module<a class="headerlink" href="#polykriging-thirdparty-bcolors-module" title="Permalink to this heading"></a></h2>
+digraph inheritance53c3cfd9ec {
+bgcolor=transparent;
+rankdir=TB;
+size=&quot;&quot;;
+  &quot;bcolors&quot; [URL=&quot;#polykriging.thirdparty.bcolors.bcolors&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;[Simple Python class to create colored messages for command line printing]&quot;];
+}
+<span class="target" id="module-polykriging.thirdparty.bcolors"></span><dl class="py class">
 <dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.thirdparty.bcolors.</span></span><span class="sig-name descname"><span class="pre">bcolors</span></span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -164,10 +152,6 @@
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.thirdparty.bcolors.bcolors.colored" title="polykriging.thirdparty.bcolors.bcolors.colored"><code class="xref py py-obj docutils literal notranslate"><span class="pre">colored</span></code></a>(message, color)</p></td>
 <td><p></p></td>
@@ -189,6 +173,36 @@
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.colored">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colored</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.colored"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.colored" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.fail">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.fail" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.header">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.header" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.ok">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.ok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.ok" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.okblue">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">okblue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.okblue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.okblue" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.warning">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.warning" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.BOLD">
 <span class="sig-name descname"><span class="pre">BOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[1m'</span></em><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.BOLD" title="Permalink to this definition"></a></dt>
@@ -234,43 +248,8 @@
 <span class="sig-name descname"><span class="pre">WARNING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[93m'</span></em><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.WARNING" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.colored">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colored</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.colored"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.colored" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.fail">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.fail" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.header">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.header" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.ok">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.ok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.ok" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.okblue">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">okblue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.okblue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.okblue" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polykriging.thirdparty.bcolors.bcolors.warning">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/thirdparty/bcolors.html#bcolors.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.thirdparty.bcolors.bcolors.warning" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
-</section>
-<section id="module-polykriging.thirdparty">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.thirdparty" title="Permalink to this heading"></a></h2>
-<p>polykriging.</p>
-<p>An implementation of dual Kriging.</p>
 </section>
 </section>
 
@@ -278,8 +257,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="polykriging.stats.html" class="btn btn-neutral float-left" title="polykriging.stats package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="polykriging.thirdparty.surf2stl.html" class="btn btn-neutral float-right" title="polykriging.thirdparty.surf2stl package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="polykriging.stats.html" class="btn btn-neutral float-left" title="polykriging.stats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.thirdparty.surf2stl.html" class="btn btn-neutral float-right" title="polykriging.thirdparty.surf2stl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

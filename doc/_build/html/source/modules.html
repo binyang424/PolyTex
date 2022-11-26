@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging &mdash; PolyKriging 0.1.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polykriging">
+<h1>polykriging<a class="headerlink" href="#polykriging" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="polykriging.html">polykriging package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-construct-tetra-vtk-module">polykriging.fileio.construct_tetra_vtk module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-cwd-chdir-module">polykriging.fileio.cwd_chdir module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-file-dialog-module">polykriging.fileio.file_dialog module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-pk-file-module">polykriging.fileio.pk_file module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-save-csv-module">polykriging.fileio.save_csv module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-save-inp-module">polykriging.fileio.save_inp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-save-krig-module">polykriging.fileio.save_krig module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-save-nrrd-module">polykriging.fileio.save_nrrd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.fileio.html#polykriging-fileio-save-ply-module">polykriging.fileio.save_ply module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#module-polykriging.geometry.basic">polykriging.geometry.basic module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging-geometry-geometry-module">polykriging.geometry.geometry module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-curve2d-module">polykriging.kriging.curve2D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-intersect-module">polykriging.kriging.intersect module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-mdkrig-module">polykriging.kriging.mdKrig module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-parasurface-module">polykriging.kriging.paraSurface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-projection-module">polykriging.kriging.projection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-tool-module">polykriging.kriging.tool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-volumekrig-module">polykriging.kriging.volumeKrig module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-decimation-module">polykriging.mesh.decimation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-features-module">polykriging.mesh.features module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-mesh-module">polykriging.mesh.mesh module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.plot.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-color-cluster-module">polykriging.plot.color_cluster module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-image-plot-module">polykriging.plot.image_plot module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-bw-opt-module">polykriging.stats.bw_opt module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-kde-module">polykriging.stats.kde module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging-thirdparty-bcolors-module">polykriging.thirdparty.bcolors module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.textile">polykriging.textile module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.html#polykriging.textile.Textile"><code class="docutils literal notranslate"><span class="pre">Textile</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging.tow">polykriging.tow module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow"><code class="docutils literal notranslate"><span class="pre">Tow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.kde"><code class="docutils literal notranslate"><span class="pre">Tow.kde()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.krig_cs"><code class="docutils literal notranslate"><span class="pre">Tow.krig_cs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smooth_window"><code class="docutils literal notranslate"><span class="pre">Tow.smooth_window()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smoothing"><code class="docutils literal notranslate"><span class="pre">Tow.smoothing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.surf_mesh"><code class="docutils literal notranslate"><span class="pre">Tow.surf_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.trajectory"><code class="docutils literal notranslate"><span class="pre">Tow.trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.unit_vector"><code class="docutils literal notranslate"><span class="pre">Tow.unit_vector()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.html#module-polykriging">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
