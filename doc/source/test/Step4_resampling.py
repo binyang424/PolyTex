@@ -1,6 +1,6 @@
 """
-Resampling
-=================
+Step 4: Resampling
+=============
 
 Test
 

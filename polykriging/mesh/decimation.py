@@ -13,14 +13,20 @@ def get_cells(mesh):
 
     Parameters
     ----------
-    mesh: pyvista mesh object
+    mesh: pyvista unstructured mesh object
         A pyvista mesh object.
 
     Returns
     -------
     cells: list
-        A list of cells
+        A list of cells. The first element of each cell is the number of nodes in the cell.
     """
+    if not isinstance(mesh, pv.UnstructuredGrid):
+        try:
+            mesh = mesh.cast_to_unstructured_grid()
+        except:
+            raise TypeError('Input mesh must be an UnstructuredGrid')
+
     offset = 0
     cells = []
     for i in range(mesh.n_cells):
@@ -29,7 +35,9 @@ def get_cells(mesh):
         offset += nc
         cell = mesh.cells[loc + 1:loc + nc + 1]
         cells.append(cell)
-    return np.array(cells, dtype=np.int32)
+
+    cells = [np.insert(cell, 0, len(cell)) for cell in cells]
+    return cells
 
 
 def get_edges_from_tetra(cells):
@@ -375,7 +383,7 @@ def renumber_points(pts_del, cells, proc_num, return_dict={}):
 def tetra_edge_collapse(edges, collapse_indicator, edge_adjacent, points, cells, n_cores):
     """
     Collapse edges of tetrahedral mesh.
-    
+
     Parameters
     ----------
     edges: (n, 2) array

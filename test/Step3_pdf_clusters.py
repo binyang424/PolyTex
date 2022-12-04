@@ -1,5 +1,5 @@
 """
-pdf cluster
+Step 3: pdf cluster
 =================
 
 Test

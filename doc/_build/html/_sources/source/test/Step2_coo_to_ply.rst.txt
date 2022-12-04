@@ -18,13 +18,16 @@
 .. _sphx_glr_source_test_Step2_coo_to_ply.py:
 
 
+Step 2： Convert .coo file to .ply for point cloud visualization
+=========================================
+
 input: .coo file
 output: .ply file
 
 If interpolate is True, the points farther than the given threshold (normalzied distance)
 will be linearly interpolated to avoid distortion in tetralization  process.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-26
+.. GENERATED FROM PYTHON SOURCE LINES 11-29
 
 .. code-block:: default
 

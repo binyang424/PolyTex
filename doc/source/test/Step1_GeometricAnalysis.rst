@@ -18,10 +18,13 @@
 .. _sphx_glr_source_test_Step1_GeometricAnalysis.py:
 
 
+Step1_GeometricAnalysis
+==================
+
 Input: pcd
 Output: .geo and .coo files
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-94
+.. GENERATED FROM PYTHON SOURCE LINES 9-97
 
 .. code-block:: default
 

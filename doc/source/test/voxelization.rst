@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_voxelization.py:
 
 
-Voxelization
-=================
+Voxelization of surface mesh
+====================
 
 Test
 

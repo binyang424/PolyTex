@@ -10,6 +10,9 @@ from sympy.core.containers import Tuple
 
 import polykriging.mesh as ms
 import polykriging as pk
+import pyvista as pv
+
+import os
 
 
 class Point(np.ndarray):
@@ -328,6 +331,7 @@ class Curve:
     3
     >>> c.length
     1.0
+    >>> c.plot()
     """
 
     def __init__(self, points):
@@ -340,6 +344,8 @@ class Curve:
             A list of Point objects.
         """
         self.points = Point(points)
+        self.n_points = self.points.shape[0]
+        self.cells = self.__cell_from_points()
 
     @property
     def length(self):
@@ -401,18 +407,64 @@ class Curve:
         """
         return NotImplementedError
 
-    @property
-    def ambient_dimension(self):
+    def __cell_from_points(self):
         """
-        Return the dimension of the curve.
+        Given an array of points, make a line set
 
         Returns
         -------
-        ambient_dimension : int
+        cell : vtk.vtkCellArray
+            The cell array of the curve. The first column is the number of points
+            in each line segment (2 for line segment), and the following columns are
+            the indices of the points.
         """
-        return self.points.shape[1]
+        points = self.points
+        cells = np.full((len(points) - 1, 3), 2, dtype=np.int_)
+        cells[:, 1] = np.arange(0, len(points) - 1, dtype=np.int_)
+        cells[:, 2] = np.arange(1, len(points), dtype=np.int_)
 
-    def __to_polygon(self):
+        return cells
+
+    def save(self, save_path=None):
+        """
+        Save the curve to a vtk file.
+
+        Parameters
+        ----------
+        save_path : str
+            The path to save the vtk file.
+
+        Returns
+        -------
+        None
+        """
+        poly = pv.PolyData()
+        poly.points = self.points
+        poly.lines = self.__cell_from_points()
+        self.__curve = poly
+
+        if save_path is not None:
+            path, filename = os.path.split(save_path)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            poly.save(save_path)
+
+        return None
+
+    def plot(self):
+        """
+        Plot the curve.
+
+        Returns
+        -------
+        None
+        """
+        if not hasattr(self, "__curve"):
+            self.save()
+        self.__curve.plot()
+        return None
+
+    def to_polygon(self):
         """
         Convert the curve to a polygon.
 
@@ -420,7 +472,7 @@ class Curve:
         -------
         polygon : Polygon object
         """
-        if np.any(self.points[0, :] - self.points[-1, :]):
+        if np.any(self.points[0, :] - self.points[-1, :]!= 0):
             self.points = np.vstack((self.points, self.points[0, :]))
         return Polygon(self.points)
 
@@ -449,6 +501,21 @@ class Polygon(Curve):
     >>> poly = Polygon(p)
     >>> poly.points
     """
+    def __init__(self, points):
+        """
+        A partial inheritance of polykriging.geometry.Point class.
+
+        Parameters
+        ----------
+        points : list, tuple or array_like
+            A list of Point objects.
+        """
+        if np.any(points[0, :] - points[-1, :]!= 0):
+            points = np.vstack((points, points[0, :]))
+
+        self.points = Point(points)
+        self.n_points = self.points.shape[0]
+        self.cells = self._Curve__cell_from_points()
 
     def to_curve(self):
         """
@@ -636,13 +703,13 @@ class Tube(GeometryEntity):
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
-        mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
+        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
                                               vertices=pts, plot=False)
         if plot:
-            mesh.plot(show_edges=True)
-        return mesh
+            pv_mesh.plot(show_edges=True)
+        return pv_mesh
 
-    def save_as_mesh(self, filename):
+    def save_as_mesh(self, save_path, end_closed=True):
         """
         Save the tubular mesh to a file. The file format is determined by the extension of the filename.
         The possible file formats are: [".ply", ".stl", ".vtk", ".vtu"].
@@ -651,8 +718,10 @@ class Tube(GeometryEntity):
 
         Parameters
         ----------
-        filename : str
+        save_path : str
             The path and the name of the file to be saved with the extension.
+        end_closed : bool
+            If True, the ends of the tube will be closed. The default value is True.
 
         Returns
         -------
@@ -666,9 +735,19 @@ class Tube(GeometryEntity):
         >>> tube.save_as_mesh('tube.vtu')
         """
         mesh = self.mesh()
-        points, cells, point_data, cell_data = ms.to_meshio_data(mesh, int(self.theta_res), correction=False)
-        pk.save_ply(filename, points, cells=cells,
-                    point_data={}, cell_data={}, binary=False)
+        if end_closed:
+            points, cells, point_data, cell_data = ms.to_meshio_data(
+                mesh,
+                int(self.theta_res),
+                correction=end_closed)
+
+            pk.save_ply(save_path, points, cells=cells,
+                        point_data={}, cell_data={}, binary=False)
+        else:
+            import pyvista as pv
+            pv.save_meshio(save_path, self.mesh(), binary=False)
+
+        return mesh
 
 
 class ParamCurve:
@@ -692,7 +771,7 @@ class ParamCurve:
     >>> curve
     """
 
-    def __new__(cls, limits, function=[], dataset=None, krig_config=("lin", "cub", 0.0)):
+    def __new__(cls, limits, function=[], dataset=None, krig_config=("lin", "cub"), smooth=0.0):
         """
         Parameters
         ----------
@@ -727,7 +806,8 @@ class ParamCurve:
             dataset = np.array(dataset)
             n_component = dataset.shape[1] - 1
 
-            drift, cov, smoothing_factor = krig_configure
+            drift, cov = krig_config
+            smoothing_factor = smooth
 
             for i in range(n_component):
                 data_krig = dataset[:, [0, i + 1]]

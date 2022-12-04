@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_pk_io.py:
 
 
-Test
-=================
+File input and output
+==============
 
 Test
 

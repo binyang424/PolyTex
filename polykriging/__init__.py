@@ -19,3 +19,5 @@ from .plot import *
 from .fileio import *
 from .textile import *
 from .tow import *
+
+from .__dataset__ import example

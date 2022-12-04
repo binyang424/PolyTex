@@ -1,23 +1,20 @@
-# PolyKriging: A parametric geometry modeling package
+# `PolyKriging`: A parametric geometry modeling package
 
-## Project description
+## About this project
 
-**Note: **
+`PolyKriging` is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis, modeling accuracy evaluation, and interface smoothing. A meshing module was implemented to generate tetrahedral conformal meshes and voxel meshes. Local material properties are assigned to each cell, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a "Digital Material Twin". The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation.
 
-- **This document is only a template and will be completed when the project is released.** 
-- **Therefore, the following information may not correct at this stage**.
-
-> An implementation of Kriging.
->
-> 
->
-> This kriging library for (parametric) curve and surface reconstruction and interpolation is developed
-> in Python 3 using 64-bit deployment.
+We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation). 
 
 Our issue tracker is at [https://github.com/binyang424/polykriging/issues](https://github.com/binyang424/polykriging/issues). Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.
 
+> `PolyKriging` is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+>
+> `PolyKriging` is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [License](./LICENSE.html) for more details.
 
 ## Installation
+
+**Note: This document is only a template and will be completed when the project is released. The following information may not work at this stage**.
 
 To install polyKriging using PyPI, run the following command:
 
@@ -31,7 +28,7 @@ To install polyKriging using Anaconda, run the following command:
 $ conda install -c anaconda polykriging
 ```
 
-To install polyKriging from GitHub source, first clone polyKriging using `git`:
+To install `PolyKriging` from GitHub source, first clone `PolyKriging` using `git`(check our tutorial [Git for beginners](https://github.com/binyang424/Git-for-beginners) if you are new to this):
 
 ```
 $ git clone https://github.com/binyang424/polykriging.git
@@ -45,16 +42,17 @@ $ python setup.py install
 
 ## Contributing
 
-We welcome contributions from anyone, even if you are new to open source. Please read our [Introduction to Contributing](https://github.com/PolyKriging/PolyKriging/wiki/Introduction-to-contributing) page and the [polyKriging Documentation Style Guide](https://docs.PolyKriging.org/dev/documentation-style-guide.html). If you are new and looking for some way to contribute, a good place to start is to look at the issues tagged [Easy to Fix](https://github.com/PolyKriging/PolyKriging/issues?q=is%3Aopen+is%3Aissue+label%3A%22Easy+to+Fix%22).
+We welcome contributions from anyone, even if you are new to open source. Please read our [Introduction to Contributing](https://www.binyang.fun/polykriging/Introduction-to-contributing) page and the [PolyKriging Documentation Style Guide](https://www.binyang.fun/polykriging/documentation-style-guide.html). If you are new and looking for some way to contribute, a good place to start is to look at the issues tagged [Easy to Fix](https://github.com/binyang424/polykriging/issues).
 
 
 ## Citation
 
-To cite polyKriging in publications use
+`PolyKriging` is BSD licensed, so you are free to use it whatever you like, be it academic, commercial, creating forks or derivatives, as long as you copy the BSD statement if you redistribute it (see the  [License](./LICENSE.html) file for details). Although not required by the license, if it is convenient for you, please cite `PolyKriging` when using it in your work and also consider contributing all your changes back, so that we can incorporate it and all of us will benefit in the end.
+
+- To cite `PolyKriging` in publications use:
 
 
 
-A BibTeX entry for LaTeX users is
+- A BibTeX entry for LaTeX users is:
 
-
-polyKriging is BSD licensed, so you are free to use it whatever you like, be it academic, commercial, creating forks or derivatives, as long as you copy the BSD statement if you redistribute it (see the LICENSE file for details). That said, although not required by the polyKriging license, if it is convenient for you, please cite polyKriging when using it in your work and also consider contributing all your changes back, so that we can incorporate it and all of us will benefit in the end.
+  

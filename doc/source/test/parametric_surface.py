@@ -1,6 +1,6 @@
 """
-Test
-=================
+Parametric kriging of surface
+===================
 
 Test
 

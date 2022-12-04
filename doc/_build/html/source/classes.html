@@ -52,7 +52,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Textile objects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#polykriging.textile.Textile"><code class="docutils literal notranslate"><span class="pre">Textile</span></code></a></li>
@@ -150,6 +150,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -232,25 +233,25 @@ plane to the current point, the ‘angular position (degree)’, and the corresp
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
 <td><p>Generate the kernel density estimation of the radial normalized distance for point cloud decomposition.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.krig_cs" title="polykriging.tow.Tow.krig_cs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">krig_cs</span></code></a>([krig_config, skip, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.krig_cs" title="polykriging.tow.Tow.krig_cs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">krig_cs</span></code></a>([krig_config, skip, ...])</p></td>
 <td><p>Kriging the cross-sections of the tow to oobtain the parametric equations for each cross-section (which is a closed curve).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
 <td><p>The window size of smoothing operation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
 <td><p>Smooth the tow using parametric surface kriging.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path])</p></td>
 <td><p>Generate the surface mesh of the tow.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
 <td><p>Generate the trajectory of the tow and smooth it using kriging.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
 <td><p>Returns the unit vector of the input vector along the given axis.</p></td>
 </tr>
 </tbody>
@@ -772,7 +773,7 @@ calculations that may overflow a fixed size integer type.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Polygon" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#polykriging.geometry.basic.Curve" title="polykriging.geometry.basic.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve" title="polykriging.geometry.basic.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a></p>
 <p>This is a closed curve in 2/3-dimensional space. The polygon is defined
 by a list of points. The first and last point must be the same. if not,
 the last point will be added to the list.</p>
@@ -918,7 +919,7 @@ rectangle for the geometric figure.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="polykriging.geometry.basic.Vector">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#polykriging.geometry.basic.Point" title="polykriging.geometry.basic.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point" title="polykriging.geometry.basic.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p>
 <p>A vector class inheriting from Point. This class is used to represent
 vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <p class="rubric">Examples</p>
@@ -1039,7 +1040,7 @@ store: s,t, x,y,z</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>Surface</strong><span class="classifier"></span></dt><dd><p>The surface evaluated at the given parameter values.
+<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
 the shape of the returned surface is (len(s) * len(t), 3). The
 first column is s values, the second column is t values, and the
 following columns are the coordinates of the surface at the given
@@ -1058,7 +1059,7 @@ parameter values (x, y, z).</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
@@ -1081,7 +1082,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
@@ -1104,7 +1105,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
@@ -1132,7 +1133,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>functions</strong><span class="classifier"></span></dt><dd><p>list of parameterized coordinate functions.</p>
+<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
 </dd>
 </dl>
 </dd>

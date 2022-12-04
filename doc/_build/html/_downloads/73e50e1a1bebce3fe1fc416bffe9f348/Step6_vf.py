@@ -1,6 +1,6 @@
 """
-Fiber volume fraction
-=================
+Fiber volume fraction of tow
+====================
 
 Test
 

@@ -1,6 +1,6 @@
 """
-Voxelization
-=================
+Voxelization of surface mesh
+====================
 
 Test
 

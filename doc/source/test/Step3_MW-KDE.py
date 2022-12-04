@@ -1,6 +1,6 @@
 """
-Moving window KDE
-=================
+Step 3: Moving window KDE
+====================
 
 Test
 

@@ -52,8 +52,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">PolyKriging: A parametric geometry modeling package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#project-description">Project description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about-this-project">About this project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
@@ -61,6 +61,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -77,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>PolyKriging: A parametric geometry modeling package</li>
+      <li><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,23 +89,20 @@
            <div itemprop="articleBody">
              
   <section id="polykriging-a-parametric-geometry-modeling-package">
-<h1>PolyKriging: A parametric geometry modeling package<a class="headerlink" href="#polykriging-a-parametric-geometry-modeling-package" title="Permalink to this heading"></a></h1>
-<section id="project-description">
-<h2>Project description<a class="headerlink" href="#project-description" title="Permalink to this heading"></a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Note: **</p>
-<ul class="simple">
-<li><p><strong>This document is only a template and will be completed when the project is released.</strong></p></li>
-<li><p><strong>Therefore, the following information may not correct at this stage</strong>.</p></li>
-</ul>
-<blockquote>
-<div><p>An implementation of Kriging.</p>
-<p>This kriging library for (parametric) curve and surface reconstruction and interpolation is developed
-in Python 3 using 64-bit deployment.</p>
-</div></blockquote>
+<h1><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package<a class="headerlink" href="#polykriging-a-parametric-geometry-modeling-package" title="Permalink to this heading"></a></h1>
+<section id="about-this-project">
+<h2>About this project<a class="headerlink" href="#about-this-project" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis, modeling accuracy evaluation, and interface smoothing. A meshing module was implemented to generate tetrahedral conformal meshes and voxel meshes. Local material properties are assigned to each cell, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a “Digital Material Twin”. The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation.</p>
+<p>We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation).</p>
 <p>Our issue tracker is at <a class="reference external" href="https://github.com/binyang424/polykriging/issues">https://github.com/binyang424/polykriging/issues</a>. Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See <a class="reference external" href="./LICENSE.html">License</a> for more details.</p>
+</div></blockquote>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p><strong>Note: This document is only a template and will be completed when the project is released. The following information may not work at this stage</strong>.</p>
 <p>To install polyKriging using PyPI, run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install polykriging
 </pre></div>
@@ -113,7 +111,7 @@ in Python 3 using 64-bit deployment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c anaconda polykriging
 </pre></div>
 </div>
-<p>To install polyKriging from GitHub source, first clone polyKriging using <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> from GitHub source, first clone <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> using <code class="docutils literal notranslate"><span class="pre">git</span></code>(check our tutorial <a class="reference external" href="https://github.com/binyang424/Git-for-beginners">Git for beginners</a> if you are new to this):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/binyang424/polykriging.git
 </pre></div>
 </div>
@@ -124,13 +122,15 @@ in Python 3 using 64-bit deployment.</p>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h2>
-<p>We welcome contributions from anyone, even if you are new to open source. Please read our <a class="reference external" href="https://github.com/PolyKriging/PolyKriging/wiki/Introduction-to-contributing">Introduction to Contributing</a> page and the <a class="reference external" href="https://docs.PolyKriging.org/dev/documentation-style-guide.html">polyKriging Documentation Style Guide</a>. If you are new and looking for some way to contribute, a good place to start is to look at the issues tagged <a class="reference external" href="https://github.com/PolyKriging/PolyKriging/issues?q=is%3Aopen+is%3Aissue+label%3A%22Easy+to+Fix%22">Easy to Fix</a>.</p>
+<p>We welcome contributions from anyone, even if you are new to open source. Please read our <a class="reference external" href="https://www.binyang.fun/polykriging/Introduction-to-contributing">Introduction to Contributing</a> page and the <a class="reference external" href="https://www.binyang.fun/polykriging/documentation-style-guide.html">PolyKriging Documentation Style Guide</a>. If you are new and looking for some way to contribute, a good place to start is to look at the issues tagged <a class="reference external" href="https://github.com/binyang424/polykriging/issues">Easy to Fix</a>.</p>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h2>
-<p>To cite polyKriging in publications use</p>
-<p>A BibTeX entry for LaTeX users is</p>
-<p>polyKriging is BSD licensed, so you are free to use it whatever you like, be it academic, commercial, creating forks or derivatives, as long as you copy the BSD statement if you redistribute it (see the LICENSE file for details). That said, although not required by the polyKriging license, if it is convenient for you, please cite polyKriging when using it in your work and also consider contributing all your changes back, so that we can incorporate it and all of us will benefit in the end.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is BSD licensed, so you are free to use it whatever you like, be it academic, commercial, creating forks or derivatives, as long as you copy the BSD statement if you redistribute it (see the  <a class="reference external" href="./LICENSE.html">License</a> file for details). Although not required by the license, if it is convenient for you, please cite <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> when using it in your work and also consider contributing all your changes back, so that we can incorporate it and all of us will benefit in the end.</p>
+<ul class="simple">
+<li><p>To cite <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> in publications use:</p></li>
+<li><p>A BibTeX entry for LaTeX users is:</p></li>
+</ul>
 </section>
 </section>
 

@@ -52,7 +52,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">PolyKriging: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
@@ -74,6 +74,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -403,7 +404,7 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 <td><p>Returns the intersection of 'self' and 'other'.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(other)</p></td>
-<td><p>Returns a list of all of the intersections of self with o.</p></td>
+<td><p>The intersection with another geometrical entity.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code> are disjoint.</p></td>
@@ -893,7 +894,7 @@ If no point given, the curve will be rotated around origin.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>Curve</strong><span class="classifier"></span></dt><dd><p>returns a curve rotated at given angle along given point.</p>
+<dt>Curve</dt><dd><p>returns a curve rotated at given angle along given point.</p>
 </dd>
 </dl>
 </dd>
@@ -914,7 +915,7 @@ If no point given, the curve will be rotated around origin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>Curve</strong><span class="classifier"></span></dt><dd><p>returns scaled curve.</p>
+<dt>Curve</dt><dd><p>returns scaled curve.</p>
 </dd>
 </dl>
 </dd>
@@ -1184,7 +1185,7 @@ store: s,t, x,y,z</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>Surface</strong><span class="classifier"></span></dt><dd><p>The surface evaluated at the given parameter values.
+<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
 the shape of the returned surface is (len(s) * len(t), 3). The
 first column is s values, the second column is t values, and the
 following columns are the coordinates of the surface at the given
@@ -1277,7 +1278,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>functions</strong><span class="classifier"></span></dt><dd><p>list of parameterized coordinate functions.</p>
+<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
 </dd>
 </dl>
 </dd>

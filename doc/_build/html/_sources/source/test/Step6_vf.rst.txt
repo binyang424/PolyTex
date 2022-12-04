@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_Step6_vf.py:
 
 
-Fiber volume fraction
-=================
+Fiber volume fraction of tow
+====================
 
 Test
 

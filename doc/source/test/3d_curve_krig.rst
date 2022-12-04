@@ -18,12 +18,12 @@
 .. _sphx_glr_source_test_3d_curve_krig.py:
 
 
-Test
-=================
+3d_curve_krig
+=============
 
 Test
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-22
+.. GENERATED FROM PYTHON SOURCE LINES 11-23
 
 .. code-block:: default
 
@@ -39,6 +39,7 @@ Test
     expr = buildKriging(xy, z, 'lin', 'cub', nugg=0.001)
 
     zInterp = interp(dataset[:, :2], expr)
+
 
 .. rst-class:: sphx-glr-timing
 

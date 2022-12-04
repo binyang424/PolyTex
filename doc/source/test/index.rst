@@ -10,18 +10,18 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Test">
+    <div class="sphx-glr-thumbcontainer" tooltip="We provide several example datasets for testing and demonstration purposes. This file shows how...">
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_00_temp_thumb.png
-    :alt: Test
+  .. image:: /source/test/images/thumb/sphx_glr_example_dataset_thumb.png
+    :alt: Example dataset
 
-  :ref:`sphx_glr_source_test_00_temp.py`
+  :ref:`sphx_glr_source_test_example_dataset.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Test</div>
+      <div class="sphx-glr-thumbnail-title">Example dataset</div>
     </div>
 
 
@@ -32,13 +32,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_3d_curve_krig_thumb.png
-    :alt: Test
+    :alt: 3d_curve_krig
 
   :ref:`sphx_glr_source_test_3d_curve_krig.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Test</div>
+      <div class="sphx-glr-thumbnail-title">3d_curve_krig</div>
     </div>
 
 
@@ -49,13 +49,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_pk_io_thumb.png
-    :alt: Test
+    :alt: File input and output
 
   :ref:`sphx_glr_source_test_pk_io.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Test</div>
+      <div class="sphx-glr-thumbnail-title">File input and output</div>
     </div>
 
 
@@ -78,18 +78,18 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="If interpolate is True, the points farther than the given threshold (normalzied distance) will ...">
+    <div class="sphx-glr-thumbcontainer" tooltip="input: .coo file output: .ply file">
 
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step2_coo_to_ply_thumb.png
-    :alt: input: .coo file
+    :alt: Step 2： Convert .coo file to .ply for point cloud visualization
 
   :ref:`sphx_glr_source_test_Step2_coo_to_ply.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">input: .coo file</div>
+      <div class="sphx-glr-thumbnail-title">Step 2： Convert .coo file to .ply for point cloud visualization</div>
     </div>
 
 
@@ -100,13 +100,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_derivative_Kriging_thumb.png
-    :alt: Test
+    :alt: Derivative_Kriging
 
   :ref:`sphx_glr_source_test_derivative_Kriging.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Test</div>
+      <div class="sphx-glr-thumbnail-title">Derivative_Kriging</div>
     </div>
 
 
@@ -117,13 +117,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step3_MW-KDE_thumb.png
-    :alt: Moving window KDE
+    :alt: Step 3: Moving window KDE
 
   :ref:`sphx_glr_source_test_Step3_MW-KDE.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Moving window KDE</div>
+      <div class="sphx-glr-thumbnail-title">Step 3: Moving window KDE</div>
     </div>
 
 
@@ -134,13 +134,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_parametric_surface_thumb.png
-    :alt: Test
+    :alt: Parametric kriging of surface
 
   :ref:`sphx_glr_source_test_parametric_surface.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Test</div>
+      <div class="sphx-glr-thumbnail-title">Parametric kriging of surface</div>
     </div>
 
 
@@ -151,13 +151,30 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step6_vf_thumb.png
-    :alt: Fiber volume fraction
+    :alt: Fiber volume fraction of tow
 
   :ref:`sphx_glr_source_test_Step6_vf.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Fiber volume fraction</div>
+      <div class="sphx-glr-thumbnail-title">Fiber volume fraction of tow</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Extract surface mesh from image sequence">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_mesh_from_image_thumb.png
+    :alt: Extract surface mesh from image sequence
+
+  :ref:`sphx_glr_source_test_mesh_from_image.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Extract surface mesh from image sequence</div>
     </div>
 
 
@@ -202,13 +219,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step3_pdf_clusters_thumb.png
-    :alt: pdf cluster
+    :alt: Step 3: pdf cluster
 
   :ref:`sphx_glr_source_test_Step3_pdf_clusters.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">pdf cluster</div>
+      <div class="sphx-glr-thumbnail-title">Step 3: pdf cluster</div>
     </div>
 
 
@@ -219,13 +236,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step4_resampling_thumb.png
-    :alt: Resampling
+    :alt: Step 4: Resampling
 
   :ref:`sphx_glr_source_test_Step4_resampling.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Resampling</div>
+      <div class="sphx-glr-thumbnail-title">Step 4: Resampling</div>
     </div>
 
 
@@ -236,30 +253,30 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_voxelization_thumb.png
-    :alt: Voxelization
+    :alt: Voxelization of surface mesh
 
   :ref:`sphx_glr_source_test_voxelization.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Voxelization</div>
+      <div class="sphx-glr-thumbnail-title">Voxelization of surface mesh</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Input: pcd">
+    <div class="sphx-glr-thumbcontainer" tooltip="Input: pcd Output: .geo and .coo files">
 
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step1_GeometricAnalysis_thumb.png
-    :alt: Input: pcd
+    :alt: Step1_GeometricAnalysis
 
   :ref:`sphx_glr_source_test_Step1_GeometricAnalysis.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Input: pcd</div>
+      <div class="sphx-glr-thumbnail-title">Step1_GeometricAnalysis</div>
     </div>
 
 
@@ -288,7 +305,7 @@
 .. toctree::
    :hidden:
 
-   /source/test/00_temp
+   /source/test/example_dataset
    /source/test/3d_curve_krig
    /source/test/pk_io
    /source/test/tubular_structure_mesh
@@ -297,6 +314,7 @@
    /source/test/Step3_MW-KDE
    /source/test/parametric_surface
    /source/test/Step6_vf
+   /source/test/mesh_from_image
    /source/test/curve2D_interp_with_confidence
    /source/test/backround_mesh_generation__labelling_and _intersection_detection
    /source/test/Step3_pdf_clusters
@@ -304,6 +322,44 @@
    /source/test/voxelization
    /source/test/Step1_GeometricAnalysis
    /source/test/..Step3_CenterlineSmoothing
+
+```
+# Explain the example dataset
+```
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Test">
+
+.. only:: html
+
+  .. image:: /source/test/test_data/images/thumb/sphx_glr_cylinder1_thumb.png
+    :alt: Test
+
+  :ref:`sphx_glr_source_test_test_data_cylinder1.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Test</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+   :includehidden:
+
+   /source/test/test_data/index.rst
 
 
 .. only:: html

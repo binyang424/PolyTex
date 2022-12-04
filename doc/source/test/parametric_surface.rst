@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_parametric_surface.py:
 
 
-Test
-=================
+Parametric kriging of surface
+===================
 
 Test
 

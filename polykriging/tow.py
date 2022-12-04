@@ -1,8 +1,14 @@
 from .fileio import pk_save, pk_load, save_ply
-from .geometry import geom_tow, Tube, ParamCurve
+from .fileio import save as save_tow
+
+from .geometry import geom_tow, Curve, Polygon, Tube, ParamCurve
 from .kriging import curve2Dinter, surface3Dinterp
+from .mesh import get_cells
 from .stats import kdeScreen, bw_scott
 import numpy as np
+import os
+import pyvista as pv
+# pv.set_plot_theme("document")
 
 
 class Tow:
@@ -143,7 +149,7 @@ class Tow:
 
         Returns
         -------
-        kriged_cs : ndarray
+        _Tow__kriged_vertices : ndarray
             The kriged points for eacg cross-section of the tow. It is an array of shape
             (n, 3) where n is the number of points. The kriged points is obtained according
             to the kriging configuration and the resampling positions. If the resampling
@@ -163,6 +169,9 @@ class Tow:
             interp = np.linspace(0, 1, 20, endpoint=True)
         else:
             interp = sample_position
+
+        self.theta_res = len(interp)
+        self.h_res = n_slices
 
         pts_krig = np.zeros((n_slices * len(interp), 3))
         print("Kriging cross-sections... \n"
@@ -197,11 +206,11 @@ class Tow:
         expr = {self.order[0] + " kriging equation": dict_cs_x, self.order[1] + " kriging equation": dict_cs_y}
         print("Kriging on cross-sections is finished.")
 
-        self.kriged_cs = pts_krig  # the columns are in the same order as the input data (surf_points)
+        self.__kriged_vertices = pts_krig  # the columns are in the same order as the input data (surf_points)
         inv_order = self.__column_order__
         return pts_krig[:, inv_order], expr
 
-    def surf_mesh(self, plot=False, save_path=None):
+    def surf_mesh(self, plot=False, save_path=None, end_closed=False):
         """
         Generate the surface mesh of the tow.
 
@@ -217,23 +226,23 @@ class Tow:
         surf_mesh :
             The surface mesh of the tow.
         """
-        # if self.kriged_cs is not defined, raise error
-        if not hasattr(self, "kriged_cs"):
+        # if self._Tow__kriged_vertices is not defined, raise error
+        if not hasattr(self, "_Tow__kriged_vertices"):
             raise AttributeError("The kriged cross-sections are not defined. Please generate the "
                                  "kriged cross-section points using Tow.krig_cs() first.")
 
         inv_order = self.__column_order__
 
-        h_res = int(np.unique(self.kriged_cs[:, 2]).shape[0])
-        theta_res = int(self.kriged_cs.shape[0] / h_res)
+        h_res = int(np.unique(self._Tow__kriged_vertices[:, 2]).shape[0])
+        theta_res = int(self._Tow__kriged_vertices.shape[0] / h_res)
 
-        pts = self.kriged_cs[:, inv_order]
+        pts = self._Tow__kriged_vertices[:, inv_order]
 
         tube = Tube(theta_res, h_res, vertices=pts)
         mesh = tube.mesh(plot=plot)
-        if save_path is not None:
-            tube.save_as_mesh(save_path)
 
+        if save_path is not None:
+            mesh = tube.save_as_mesh(save_path, end_closed=end_closed)
         return mesh
 
     def trajectory(self, krig_config=("lin", "cub"), smooth=0.0, plot=False, save_path=None, orientation=False):
@@ -277,12 +286,12 @@ class Tow:
             cen = centerline.eval(dataset[:, 0])
 
             traj = np.hstack((dataset_0_org.reshape(-1, 1),
-                              cen.points))[:, [1, 2, 0]][:, self.__inv_order]
+                              cen.points))[:, [1, 2, 0]][:, self.__column_order__]
             cen_points = cen.points
         else:
             cen_points = dataset[:, 1:]
             traj = np.hstack((dataset_0_org.reshape(-1, 1),
-                              cen_points))[:, [1, 2, 0]][:, self.__inv_order]
+                              cen_points))[:, [1, 2, 0]][:, self.__column_order__]
 
         if plot:
             import matplotlib.pyplot as plt
@@ -316,8 +325,9 @@ class Tow:
             # normalize the tangent vector
             orient = self.unit_vector(orient, ax=1)
 
-            orient = orient[:, self.__inv_order]
+            orient = orient[:, self.__column_order__]
 
+            self.__orient__ = orient
             self.orientation = orient
 
         if save_path is not None:
@@ -401,9 +411,9 @@ class Tow:
 
         labels = [self.order[0], self.order[1], self.order[2]]
 
-        col_0 = self.kriged_cs[:, 0]
-        col_1 = self.kriged_cs[:, 1]
-        col_2 = self.kriged_cs[:, 2]
+        col_0 = self._Tow__kriged_vertices[:, 0]
+        col_1 = self._Tow__kriged_vertices[:, 1]
+        col_2 = self._Tow__kriged_vertices[:, 2]
 
         s = self.clusters['cluster centers']
         t = np.unique(col_2) / np.max(col_2)  # the input order
@@ -574,3 +584,271 @@ class Tow:
         win_result[-1, :] = [extend, extend + h_res - 1 - win_interp[-1, 0]]
 
         return win_interp, win_result
+
+    def save(cls, save_path):
+        """
+        Save the fiber tow data.
+
+        Parameters
+        ----------
+        save_path : str
+            The path to save the fiber tow data.
+        """
+        # split the file name and path using os.path.split()
+        path, filename = os.path.split(save_path)
+
+        # if the path does not exist, create it
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        save_tow(save_path, cls)
+
+    def axial_lines(self, save_path=None, plot=True):
+        """
+        Generate the axial line of the fiber tow surface.
+
+        Parameters
+        ----------
+        save_path : str, optional
+            The path to save the axial line data as a vtk mesh file.
+        plot : bool, optional
+            Whether to plot the axial line. Default is True.
+
+        Returns
+        -------
+        axial_line : vtkPolyData
+            The axial lines of the fiber tow.
+        """
+        # check if self._Tow__kriged_vertices exists
+        if not hasattr(self, "_Tow__kriged_vertices"):
+            pts_krig, _ = self.krig_cs()
+        else:
+            pts_krig = self._Tow__kriged_vertices[:, self.__column_order__]
+
+        theta_res = int(self.theta_res)
+        lines = pts_krig.reshape([-1, theta_res, 3])
+
+        for i in range(theta_res):
+            line = Curve(lines[:, i, :])
+            cells = line.cells
+            cells[:, 1:] += i * line.n_points
+
+            point_data = np.full((line.n_points, 1), i, dtype=np.int_)
+
+            try:
+                line_set = np.vstack((line_set, line.points))
+                cells_set = np.vstack((cells_set, cells))
+                point_data_set = np.vstack((point_data_set, point_data))
+            except NameError:
+                line_set = line.points
+                cells_set = cells
+                point_data_set = point_data
+
+        poly = pv.PolyData()
+        poly.points = line_set
+        poly.lines = cells_set
+        poly.point_data["theta"] = point_data_set.ravel()
+
+        if save_path is not None:
+            path, filename = os.path.split(save_path)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            poly.save(save_path)
+
+        if plot:
+            poly.plot()
+
+        # self.axial_line = poly
+        return poly
+
+    def radial_lines(self, save_path=None, plot=True, type="resampled"):
+        """
+        Generate the radial line of the fiber tow surface.
+
+        Parameters
+        -----------
+        save_path : str, optional
+            The path to save the radial line data as a vtk mesh file.
+        plot : bool, optional
+            Whether to plot the radial line. Default is True.
+        type : str, optional
+            The type of radial line. Default is "resampled". The other option is
+            "original".
+
+        Returns
+        -------
+        radial_line : vtkPolyData
+            The radial lines of the fiber tow.
+        """
+        if type == "resampled":
+            # check if self._Tow__kriged_vertices exists
+            if not hasattr(self, "_Tow__kriged_vertices"):
+                lines, _ = self.krig_cs()
+            else:
+                lines = self._Tow__kriged_vertices
+
+        elif type == "original":
+            lines = self.coordinates.iloc[:, [-3,-2,-1]].values
+
+        slices = np.unique(lines[:, -1])
+
+        n=0
+        for i in slices:
+            mask = lines[:, -1] == i
+            line = Curve(lines[mask])
+            cells = line.cells
+            cells[:, 1:] += n
+
+            n += line.n_points
+
+            point_data = np.full((line.n_points, 1), i, dtype=np.int_)
+
+            try:
+                line_set = np.vstack((line_set, line.points))
+                cells_set = np.vstack((cells_set, cells))
+                point_data_set = np.vstack((point_data_set, point_data))
+            except NameError:
+                line_set = line.points
+                cells_set = cells
+                point_data_set = point_data
+
+        poly = pv.PolyData()
+        poly.points = line_set[:, self.__column_order__]
+        poly.lines = cells_set
+        poly.point_data["h_res"] = point_data_set.ravel()
+
+        if save_path is not None:
+            path, filename = os.path.split(save_path)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            poly.save(save_path)
+
+        if plot:
+            poly.plot(show_axes=None)
+
+        # self.radial_line = poly
+        return poly
+
+    def normal_cross_section(self, algorithm="kriging", save_path=None,
+                             plot=True, i_size=0.7, j_size=1, skip=10):
+        """
+        Generate the normal cross section of the fiber tow surface.
+
+        Parameters
+        ----------
+        algorithm : str, optional
+            The algorithm to generate the cross section. Default is "kriging". The other
+            option is "pyvista" which uses pyvista's mesh clip function (Polydata.clip_surface()).
+        save_path : str, optional
+            The path to save the normal cross sections as a vtk mesh file.
+        plot : bool, optional
+            Whether to plot the normal cross sections. Default is True.
+        i_size : float, optional
+            The size of the i direction of the noraml plane. Default is 0.7.
+        j_size : float, optional
+            The size of the j direction of the noraml plane. Default is 1.
+        skip : int, optional
+            The number of cross sections to skip in plot. Default is 10. If skip is 1, all
+            cross sections will be plotted.
+
+        Returns
+        -------
+        cross_section : pyvista.PolyData
+            The normal cross section of the fiber tows stored in a pyvista.PolyData object.
+            Note that only the cross sections that are plotted are stored. If one wants to
+            save all the cross sections, set skip=1.
+        planes : pyvista.PolyData
+            The corresponding planes that the cross sections are generated from. Note that
+            only the planes that are plotted are stored. If one wants to save all the planes,
+            set skip=1.
+        """
+        if algorithm == "pyvista":
+            mesh = self.surf_mesh(plot=False, save_path=None)
+
+            points = mesh.points
+            cells = get_cells(mesh)
+
+            s1 = pv.PolyData()
+            s1.points = points
+            s1.faces = cells
+            s1 = s1.triangulate()
+
+            trajectory = self.__traj
+            direction = self.orientation
+
+            cross_section = pv.PolyData()
+            planes = pv.PolyData()
+            pl = pv.Plotter()
+            _ = pl.add_mesh(s1, style='wireframe', color='black', opacity=0.2)
+
+            area = []
+            perimeter = []
+            width = []
+            height = []
+            for i in np.arange(0, trajectory.shape[0]):
+                p = pv.Plane(center=trajectory[i],
+                             direction=direction[i],
+                             i_size=i_size, j_size=j_size).triangulate()
+                p.point_data.clear()
+
+                clipped = p.clip_surface(s1, invert=False)
+
+                # sort the points on the boundary of clipped mesh
+                edges = clipped.extract_feature_edges(30)
+                edge = np.array(get_cells(edges))
+
+                edge_reorder = edge[0, :]
+
+                n_iter = edge.shape[0]
+                for j in range(1, n_iter):
+                    # find the index where the row contains the last element of edge_reorder
+                    index = np.where(edge[1:, 1:] == edge_reorder.flatten()[-1])[0][0] + 1
+                    edge_reorder = np.vstack((edge_reorder, edge[index, :]))
+                    edge = np.delete(arr=edge, obj=index, axis=0)
+
+                connectivity = edge_reorder[:, 1]
+                points_boundary = edges.points[connectivity]
+
+                polygon = Polygon(points_boundary)
+
+                centroid = trajectory[i]
+                points_boundary_local = points_boundary - centroid
+                radius = np.sort(np.linalg.norm(points_boundary_local, axis=1))
+
+                # height of the cross section
+                h = np.average(radius[:4]) * 2
+                # width of the cross section
+                wid = np.average(radius[-4:]) * 2
+
+                area.append(clipped.area)
+                perimeter.append(polygon.perimeter)
+                width.append(wid)
+                height.append(h)
+
+                if i % skip == 0:
+                    cross_section = cross_section.merge(clipped)
+                    planes = planes.merge(p)
+
+                    _ = pl.add_mesh(p, style='surface', opacity=0.5)
+                    _ = pl.add_mesh(clipped, color='r', line_width=10)
+
+            if plot:
+                _ = pl.show()
+
+            if save_path is not None:
+                path, filename = os.path.split(save_path)
+                if not os.path.exists(path):
+                    os.makedirs(path)
+                elif not save_path.endswith(".vtk"):
+                    save_path += ".vtk"
+
+                cross_section.save(save_path)
+
+            # update the geometry information
+            self.geom_features["Area"] = area
+            self.geom_features["Perimeter"] = perimeter
+            self.geom_features["Width"] = width
+            self.geom_features["Height"] = height
+
+            return cross_section, planes, clipped
+

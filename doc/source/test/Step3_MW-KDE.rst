@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_Step3_MW-KDE.py:
 
 
-Moving window KDE
-=================
+Step 3: Moving window KDE
+====================
 
 Test
 

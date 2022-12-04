@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_Step4_resampling.py:
 
 
-Resampling
-=================
+Step 4: Resampling
+=============
 
 Test
 

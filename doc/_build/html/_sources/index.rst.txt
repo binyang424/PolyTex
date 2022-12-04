@@ -7,3 +7,4 @@ Table of Content
    intro
    documentation
    source/examples.rst
+   LICENSE.rst

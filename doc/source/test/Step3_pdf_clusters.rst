@@ -18,7 +18,7 @@
 .. _sphx_glr_source_test_Step3_pdf_clusters.py:
 
 
-pdf cluster
+Step 3: pdf cluster
 =================
 
 Test

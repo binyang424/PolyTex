@@ -6,3 +6,4 @@ from .features import *
 
 from . import mesh
 from .mesh import *
+from .from_image import *

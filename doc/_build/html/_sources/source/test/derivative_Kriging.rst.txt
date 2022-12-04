@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_derivative_Kriging.py:
 
 
-Test
-=================
+Derivative_Kriging
+==================
 
 Test
 

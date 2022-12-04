@@ -360,10 +360,32 @@ def to_meshio_data(mesh, theta_res, correction=True):
 
 
 def mesh_correction(cells, points, theta_res):
+    """
+    Close the ends of the tubular mesh with triangles.
+
+    Parameters
+    ----------
+    cells: list
+        list of cells
+    points: numpy.ndarray
+        vertices of the tubular mesh
+    theta_res: int
+        number of points in the radial direction of the tubular mesh. The first and the last
+        vertex of each radial direction point list are repeated. However, they are considered
+        as two different points when considering theta resolution (theta_res).
+
+    Returns
+    -------
+    points: numpy.ndarray
+        vertices of the tubular mesh
+    cells: list
+        list of cells
+    """
+    theta_res = theta_res - 1
     cells_connectivity = cells[0][1]
 
     # 遍历cells中的每一个元素，如果元素中的点在rm_row_ind中，则将该元素减小theta_res
-    rm_row_ind = np.arange(theta_res, points.shape[0] + 2, theta_res + 1)
+    rm_row_ind = np.arange(theta_res, points.shape[0] + 1, theta_res + 1)
     for i in range(cells_connectivity.shape[0]):
         for j in range(cells_connectivity.shape[1]):
             if cells_connectivity[i][j] in rm_row_ind:
@@ -371,7 +393,8 @@ def mesh_correction(cells, points, theta_res):
                 cells_connectivity[i][j] -= theta_res
 
     # get index of boundary points
-    first_boundary_ind = np.arange(theta_res)
+    first_boundary_ind = np.arange(theta_res + 1)
+
     second_boundary_ind = np.arange(points.shape[0] - 1 - theta_res, points.shape[0] - 1)
 
     # coordinates of boundary points
@@ -392,6 +415,9 @@ def mesh_correction(cells, points, theta_res):
     second_boundary_new_cell = [np.array([points.shape[0] - 1, i, i + 1]) for i in second_boundary_ind[:-1]]
     second_boundary_new_cell.append(np.array([points.shape[0] - 1, second_boundary_ind[-1], second_boundary_ind[0]]))
     new_cells = first_boundary_new_cell + second_boundary_new_cell
+
+    # flip cells_connectivity along rows
+    cells_connectivity = np.flip(cells_connectivity, axis=1)
 
     cells = [('quad', list(cells_connectivity)), ('triangle', new_cells)]
 
