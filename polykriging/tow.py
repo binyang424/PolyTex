@@ -8,6 +8,8 @@ from .stats import kdeScreen, bw_scott
 import numpy as np
 import os
 import pyvista as pv
+
+
 # pv.set_plot_theme("document")
 
 
@@ -628,6 +630,7 @@ class Tow:
         theta_res = int(self.theta_res)
         lines = pts_krig.reshape([-1, theta_res, 3])
 
+        axial = {}
         for i in range(theta_res):
             line = Curve(lines[:, i, :])
             cells = line.cells
@@ -644,6 +647,8 @@ class Tow:
                 cells_set = cells
                 point_data_set = point_data
 
+            axial[i] = line
+
         poly = pv.PolyData()
         poly.points = line_set
         poly.lines = cells_set
@@ -658,7 +663,7 @@ class Tow:
         if plot:
             poly.plot()
 
-        # self.axial_line = poly
+        self.axial = axial
         return poly
 
     def radial_lines(self, save_path=None, plot=True, type="resampled"):
@@ -688,11 +693,12 @@ class Tow:
                 lines = self._Tow__kriged_vertices
 
         elif type == "original":
-            lines = self.coordinates.iloc[:, [-3,-2,-1]].values
+            lines = self.coordinates.iloc[:, [-3, -2, -1]].values
 
         slices = np.unique(lines[:, -1])
 
-        n=0
+        n = 0
+        radial = {}
         for i in slices:
             mask = lines[:, -1] == i
             line = Curve(lines[mask])
@@ -712,6 +718,8 @@ class Tow:
                 cells_set = cells
                 point_data_set = point_data
 
+            radial[i] = line
+
         poly = pv.PolyData()
         poly.points = line_set[:, self.__column_order__]
         poly.lines = cells_set
@@ -726,7 +734,7 @@ class Tow:
         if plot:
             poly.plot(show_axes=None)
 
-        # self.radial_line = poly
+        self.radial = radial
         return poly
 
     def normal_cross_section(self, algorithm="kriging", save_path=None,
@@ -850,5 +858,5 @@ class Tow:
             self.geom_features["Width"] = width
             self.geom_features["Height"] = height
 
+            # TODO : The returned object clipped will be removed in the future. It is used for debugging.
             return cross_section, planes, clipped
-

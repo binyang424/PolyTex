@@ -1,3 +1,9 @@
+"""
+polykriging.
+
+An implementation of dual Kriging.
+"""
+
 from . import decimation
 from .decimation import *
 

@@ -9,18 +9,22 @@ def example(data_name, outdir=r"./test_data/", overwrite=False):
     Parameters
     ----------
     data_name : str
-        Name of the dataset.
+        Name of the dataset. Use ``data_name="all"`` to see a list of all
+        available datasets.
     outdir : str
         Output directory.
     overwrite : bool
         Overwrite existing files.
     """
-    url = __data_list(data_name)
-    fname = __download_file(url, outdir=outdir, overwrite=True)
+    if data_name == "all":
+        __data_list(data_name)
+    else:
+        url = __data_list(data_name)
+        fname = __download_file(url, outdir=outdir, overwrite=True)
 
-    path = os.path.join(outdir, fname)
+        path = os.path.join(outdir, fname)
 
-    return path
+        return path
 
 
 def __data_list(data_name):
@@ -38,12 +42,18 @@ def __data_list(data_name):
     url : str
         URL of the dataset.
     """
-    data_list = {
-        "git": "https://raw.githubusercontent.com/binyang424/Git-for-beginners/master/git-cheat-sheet-education.pdf",
-        "image": "https://www.binyang.fun/resource/test_data/binder_216_302.tif",
-        "surface points": "https://www.binyang.fun/resource/test_data/binder_2.pcd", }
 
-    return data_list[data_name]
+    data_list = {
+        "image": "https://www.binyang.fun/resource/test_data/binder_216_302.tif",
+        "surface points": "https://www.binyang.fun/resource/test_data/binder_4.pcd",
+        "cross-section": "https://www.binyang.fun/resource/test_data/boundary_of_cross-section.vtk",}
+
+    if data_name == "all":
+        print("Available datasets:" + "\n")
+        for key in data_list.keys():
+            print(key)
+    else:
+        return data_list[data_name]
 
 
 def __get_filename(url):

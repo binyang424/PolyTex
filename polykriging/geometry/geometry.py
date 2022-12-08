@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
+from . import basic
 from shapely.geometry import Polygon, Point
 
 
@@ -253,6 +254,67 @@ def geom_tow(surf_points, sort=True):
     df_coord = pd.DataFrame(coordinatesSorted, columns=column_coord)
 
     return df_geom, df_coord
+
+
+def area_signed(points: np.ndarray) -> float:
+    """
+    Return the signed area of a simple polygon given the 2D coordinates of its veritces.
+
+    Note: This function is modified from open source Python library scikit-spatial:
+      skspatial.measurement — scikit-spatial documentation
+      https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed)
+
+    The signed area is computed using the shoelace algorithm. A positive area is
+    returned for a polygon whose vertices are given by a counter-clockwise
+    sequence of points.
+
+    Parameters
+    ----------
+    points : array_like
+         Input 2D points of the polygon in the shape (n, 2). If the polygon is
+         3D, An error is raised. Note that the points have to be ordered in a
+         clockwise or counter-clockwise manner. Otherwise, the area will be
+         non-sense.
+
+    Returns
+    -------
+    area_signed : float
+        The signed area of the polygon.
+
+    Raises
+    ------
+    ValueError
+        If the points are not 2D.
+        If there are fewer than three points.
+
+    Examples
+    --------
+    >>> from polykriging.geometry import area_signed
+
+    >>> area_signed([[0, 0], [1, 0], [0, 1]])
+    0.5
+
+    >>> area_signed([[0, 0], [0, 1], [1, 0]])
+    -0.5
+
+    >>> area_signed([[0, 0], [0, 1], [1, 2], [2, 1], [2, 0]])
+    -3.0
+    """
+    n_points = points.shape[0]
+
+    if points.shape[1] != 2:
+        raise ValueError("The points must be 2D.")
+
+    if n_points < 3:
+        raise ValueError("There must be at least 3 points.")
+
+    X = points[:, 0]
+    Y = points[:, 1]
+
+    indices = np.arange(n_points)
+    indices_offset = indices - 1
+
+    return 0.5 * np.sum(X[indices_offset] * Y[indices] - X[indices] * Y[indices_offset])
 
 
 if __name__ == "__main__":

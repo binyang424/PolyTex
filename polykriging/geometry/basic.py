@@ -3,8 +3,9 @@ import sympy as sym
 import sympy.geometry.point as symPoint
 import sympy.geometry.line as symLine
 import sympy.geometry.curve as symCurve
-import sympy.geometry.plane as symPlane
-from sympy.geometry.entity import GeometryEntity
+
+# TODO: Remove the dependency of __entity__ in the future
+from .__entity__ import GeometryEntity
 from sympy.utilities.iterables import is_sequence
 from sympy.core.containers import Tuple
 
@@ -79,16 +80,16 @@ class Point(np.ndarray):
     @property
     def x(self):
         if self.ndim == 1:
-            return self[0]
+            return float(self[0])
         else:
-            return self[:, 0]
+            return np.asarray(self[:, 0])
 
     @property
     def y(self):
         if self.ndim == 1:
-            return self[1]
+            return float(self[1])
         else:
-            return self[:, 1]
+            return np.asarray(self[:, 1])
 
     @property
     def z(self: np.ndarray):
@@ -100,12 +101,12 @@ class Point(np.ndarray):
         """
         if self.ndim == 1:
             try:
-                return self[2]
+                return float(self[2])
             except IndexError:
                 raise IndexError("Point is not 3D.")
         else:
             try:
-                return self[:, 2]
+                return np.asarray(self[:, 2])
             except IndexError:
                 raise IndexError("Point is not 3D.")
 
@@ -217,7 +218,6 @@ class Point(np.ndarray):
             pk.save_ply(filename, vertices=self.xyz,
                         point_data=color, binary=False)
 
-
 class Vector(Point):
     """
     A vector class inheriting from Point. This class is used to represent
@@ -264,6 +264,18 @@ class Vector(Point):
             The norm of the vector.
         """
         return np.linalg.norm(self)
+
+    def angle_between(self, other):
+        """
+        Return the angle between 2 vectors in radians.
+        """
+        if other is not Vector:
+            try:
+                other = Vector(other)
+            except ValueError:
+                raise ValueError("The other object must be a Vector")
+
+        return np.arccos(self.dot(other) / (self.norm * other.norm))
 
 
 class Line(symLine.Line):
@@ -346,6 +358,8 @@ class Curve:
         self.points = Point(points)
         self.n_points = self.points.shape[0]
         self.cells = self.__cell_from_points()
+
+        self.__type__ = "Curve"
 
     @property
     def length(self):
@@ -472,18 +486,64 @@ class Curve:
         -------
         polygon : Polygon object
         """
-        if np.any(self.points[0, :] - self.points[-1, :]!= 0):
+        if np.any(self.points[0, :] - self.points[-1, :] != 0):
             self.points = np.vstack((self.points, self.points[0, :]))
         return Polygon(self.points)
 
 
-class Ellipse:
+class Ellipse2D:
     """
     This is an ellipse defined by a center point and two vectors.
-    TODO : a wrap of sympy.geometry.ellipse (2D function)
-    """
 
-    pass
+    Examples
+    --------
+    >>> from polykriging.geometry import Ellipse2D
+    >>> e = Ellipse2D(20, 1, 0.5, [0, 0])
+    >>> e.__repr__()
+    """
+    def __init__(self, n: int, a: float, b: float, center=[0, 0]):
+        """
+        Parameters
+        ----------
+        n : int
+            The number of points to generate.
+        a : float
+            The length of the major axis.
+        b : float
+            The length of the minor axis.
+        center : list, tuple or array_like
+            The center of the ellipse.
+        """
+        self.center = center
+        self.a = a
+        self.b = b
+        self.n = n
+
+        self.points = self.elipse_2d()
+        self.x = self.points[:, 0]
+        self.y = self.points[:, 1]
+
+    def elipse_2d(self) -> np.ndarray:
+        """
+        Generate points on an ellipse.
+
+        Returns
+        -------
+        xy: array-like
+            Points on the ellipse with shape (n, 2).
+        """
+        n = self.n
+        a = self.a
+        b = self.b
+        center = self.center
+
+        xy = np.zeros((n, 2))
+        theta = np.linspace(0, 2 * np.pi, n, endpoint=False)
+
+        pc = np.array(center, dtype=np.float32)
+        xy[:, 0] = a * np.cos(theta) + pc[0]
+        xy[:, 1] = b * np.sin(theta) + pc[1]
+        return xy
 
 
 class Polygon(Curve):
@@ -501,6 +561,7 @@ class Polygon(Curve):
     >>> poly = Polygon(p)
     >>> poly.points
     """
+
     def __init__(self, points):
         """
         A partial inheritance of polykriging.geometry.Point class.
@@ -510,7 +571,7 @@ class Polygon(Curve):
         points : list, tuple or array_like
             A list of Point objects.
         """
-        if np.any(points[0, :] - points[-1, :]!= 0):
+        if np.any(points[0, :] - points[-1, :] != 0):
             points = np.vstack((points, points[0, :]))
 
         self.points = Point(points)
@@ -561,32 +622,50 @@ class Polygon(Curve):
         return cls.length
 
 
-class Plane(symPlane.Plane):
+class Plane:
     """
-    This is a wrap of sympy.geometry.plane.Plane class to define a plane in 3D space.
-    It can be defined by a point and a normal vector or by 3 points.
-
-    For now, you could refer to the sympy.geometry.plane.Plane class for more information:
-        https://docs.sympy.org/latest/modules/geometry/plane.html
-
-    TODO : A detailed documentation will be added later.
+    A plane in 3D space. The plane can be defined by a point and a normal vector,
+    or by three points.
 
     Examples
     --------
     >>> from polykriging.geometry import Point, Plane
-    >>> # # create a plane from 3 points
+
+    Create a plane from 3 points
     >>> p1 = Point([1, 1, 1])
     >>> p2 = Point([2, 3, 4])
     >>> p3 = Point([2, 2, 2])
     >>> plane1 = Plane(p1, p2, p3)
-    >>> # create a plane from a point and a normal vector
+
+    Create a plane from a point and a normal vector
     >>> p1 = Point([1, 1, 1])
     >>> normal = Point([1, 4, 7])
     >>> plane2 = Plane(p1, normal_vector=normal)
     """
 
-    def __new__(cls, p1, a=None, b=None, **kwargs):
+    def __init__(self, p1, a=None, b=None, **kwargs):
+        """
+        Create a plane from 3 points or a point and a normal vector.
+
+        Parameters
+        ----------
+        p1 : Point object
+            A point on the plane.
+        a : Point object, optional
+            A point on the plane. The default is None.
+        b : Point object, optional
+            A point on the plane. The default is None.
+        **kwargs : dict, optional
+            normal_vector can be passed as a keyword argument when leaving
+            a and b as None. If both a and b are not None, normal_vector will
+            be ignored.
+
+        Returns
+        -------
+        plane : Plane object
+        """
         p1 = Point(p1)
+
         if a is not None and b is not None:
             p2 = Point(a)
             p3 = Point(b)
@@ -609,14 +688,85 @@ class Plane(symPlane.Plane):
             if is_sequence(a) and len(a) == 3:
                 normal_vector = symPoint.Point3D(a).args if evaluate else a
             else:
-                raise ValueError('''Either provide 3 3D points or a point with a
-                    normal vector expressed as a sequence of length 3''')
+                raise ValueError("""Either provide 3 3D points or a point with a
+                    normal vector expressed as a sequence of length 3""")
             if all(coord.is_zero for coord in normal_vector):
                 raise ValueError('Normal vector cannot be zero vector')
-        return GeometryEntity.__new__(cls, p1, normal_vector, **kwargs)
+
+        self.p1 = p1
+        self.normal = tuple(np.array(normal_vector, dtype=np.float32))
 
     def __repr__(self):
-        return f"Plane(Point{self.p1}, Normal{self.normal_vector})"
+        return f"Plane(Point{self.p1}, Normal{self.normal})"
+
+    # def __dir__(self):
+    #     return []
+
+    def function(self):
+        """
+        Return the equation of the plane as a function of x, y and z.
+
+        Note
+        ----
+            normal = (a, b, c)
+            point = (x0, y0, z0)
+            Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0
+
+        Parameters
+        ----------
+        normal : array-like
+            normal vector of the plane.
+        point : array-like
+            point on the plane.
+
+        Returns
+        -------
+        A lambda function of x, y and z.
+            function of plane.
+
+        Example
+        -------
+        Create a plane from a point and a normal vector
+        >>> from polykriging.geometry import Point, Plane
+        >>> p1 = Point([1, 1, 1])
+        >>> normal = Point([1, 4, 7])
+        >>> plane2 = Plane(p1, normal_vector=normal)
+        >>> f = plane2.function()
+        >>> f
+        <function polykriging.geometry.basic.Plane.function.<locals>.<lambda>(x, y, z)>
+        >>> f(1, 1, 1)
+        0
+        """
+        # definition of the plane for intersection with the curve
+        normal = np.array(self.normal)
+        point = np.array(self.p1)
+
+        f = lambda x, y, z: normal[0] * (x - point[0]) \
+                            + normal[1] * (y - point[1]) \
+                            + normal[2] * (z - point[2])
+        return f
+
+    def intersection(self, obj, max_dist):
+        try:
+            obj_type = obj.__type__
+        except AttributeError:
+            raise TypeError('Object must be a Curve, ParamCurve or ParamSurface '
+                            'object defined in polykriging.geometry')
+
+        if obj_type == 'Curve':
+            f = self.function()
+            points = obj.points
+            mask = np.linalg.norm(points - self.p1, axis=1) < max_dist
+
+            try:
+                pts_intersect = find_intersect(f, points[mask, :])
+                return pts_intersect
+            except RuntimeError:
+                print('No intersection found')
+                return None
+        else:
+            # TODO: implement intersection with ParamCurve and ParamSurface
+            raise NotImplementedError
 
 
 class Tube(GeometryEntity):
@@ -628,9 +778,9 @@ class Tube(GeometryEntity):
     Examples
     --------
     >>> from polykriging.geometry import Tube
-    >>> tube = Tube(5,10,major=2, minor=1,h=5)
+    >>> tube = Tube(4,10,major=2, minor=1,h=5)
     >>> mesh = tube.mesh(plot=True)
-    >>> tube.save_mesh('tube.vtk')
+    >>> tube.save_as_mesh('tube.vtk')
     """
 
     def __new__(cls, theta_res, h_res, vertices=None, **kwargs):
@@ -699,12 +849,11 @@ class Tube(GeometryEntity):
     def mesh(self, plot=False, show_edges=True):
         """
         TODO : raise TypeError("Given points must be a sequence or an array.")
-
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
         pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
-                                              vertices=pts, plot=False)
+                                                 vertices=pts, plot=False)
         if plot:
             pv_mesh.plot(show_edges=True)
         return pv_mesh
@@ -791,7 +940,7 @@ class ParamCurve:
         """
         cls.limits = limits
 
-        if len(function)!=0:
+        if len(function) != 0:
             if not is_sequence(function) or len(function) != 2:
                 raise ValueError("Function argument should be (x(t), y(t)) "
                                  "but got %s" % str(function))
@@ -802,7 +951,7 @@ class ParamCurve:
             return super().__new__(cls)
 
         if dataset is not None:
-            cls.function=[]
+            cls.function = []
             dataset = np.array(dataset)
             n_component = dataset.shape[1] - 1
 
@@ -812,7 +961,7 @@ class ParamCurve:
             for i in range(n_component):
                 data_krig = dataset[:, [0, i + 1]]
 
-                print("Creating kriging model for %s -th component" % str(i+1))
+                print("Creating kriging model for %s -th component" % str(i + 1))
 
                 mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
                     pk.kriging.curveKrig1D(data_krig, name_drift=drift,
@@ -1096,6 +1245,57 @@ class ParamSurface(GeometryEntity):
         fx, fy, fz = self.functions
         return self.func((fx * x, fy * y, fz * z), self.limits)
 
+
+def find_intersect(f, curve, niterations=5, mSegments=5):
+    """
+    Find the intersection of a curve with a plane
+
+    Parameters
+    ----------
+    f : lambda function
+        function of plane.
+    curve : array-like
+        points on the curve in shape of (n, 3).
+    niterations: int
+        number of iterations.
+    mSegments: int
+        number of segments for each iteration.
+
+    Returns
+    -------
+    intersection: array-like
+        intersection points with shape (n, 3).
+    """
+    # check if curve is a numpy array
+    if not isinstance(curve, np.ndarray):
+        curve = np.array(curve)
+    if curve.shape[1] != 3:
+        raise RuntimeError("The shape of curve must be (n, 3).")
+
+    fSign = f(curve[:, 0], curve[:, 1], curve[:, 2])
+    idx = np.where(np.diff(np.sign(fSign)))[0]
+
+    # if there is no intersection
+    if len(idx) == 0:
+        raise RuntimeError("No intersection was detected.")
+    elif len(idx) > 1:
+        print("Warning: More than one intersection was detected. "
+              "However, only the first one is handled.")
+
+    # TODO: cases with more than one intersection
+    while niterations > 0:
+        # refine the result by linear interpolation
+        niterations -= 1
+        low = curve[idx, :]
+        high = curve[idx + 1, :]
+        curve = np.squeeze(
+            np.linspace(low, high, mSegments).reshape(1, -1, 3))
+        fSign = f(curve[:, 0], curve[:, 1], curve[:, 2])
+        idx = np.where(np.diff(np.sign(fSign)))[0]
+
+    intersect = (curve[idx, :] + curve[idx + 1, :]) / 2
+
+    return intersect
 
 if __name__ == "__main__":
     import doctest

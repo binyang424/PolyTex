@@ -20,121 +20,6 @@ def surf_surf()
 import numpy as np
 
 
-def generate_elipse_2d(n, a, b, pc=[0, 0]):
-    """
-    generate points on an ellipse.
-    
-    Parameters
-    ----------
-    n : number of points
-    a : semi-major axis
-    b : semi-minor axis
-    pc : center of the ellipse
-
-    Returns
-    -------
-    xy: array-like
-        Points on the ellipse with shape (n, 3).
-    """
-    xy = np.zeros((n, 2))
-    theta = np.linspace(0, 2 * np.pi, n, endpoint=False)
-
-    pc = np.array(pc, dtype=np.float32)
-    xy[:, 0] = a * np.cos(theta) + pc[0]
-    xy[:, 1] = b * np.sin(theta) + pc[1]
-
-    return xy
-
-
-def plane(normal, point):
-    """
-    Define a plane by a normal vector and a point on the plane.
-
-    Note
-    ----
-        normal = (a, b, c)
-        point = (x0, y0, z0)
-        Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0
-
-    Parameters
-    ----------
-    normal : array-like
-        normal vector of the plane.
-    point : array-like
-        point on the plane.
-
-    Returns
-    -------
-    f : function
-        function of plane.
-
-    Example
-    -------
-    >>> normal = [0.12, 0.01, 1]
-    >>> point = [0, 0, 0.5]
-    >>> f = plane(normal, point)
-    >>> f
-    <function __main__.plane.<locals>.<lambda>(x, y, z)>
-    """
-    # definition of the plane for intersection with the curve
-    normal = np.array(normal)
-    point = np.array(point)
-
-    f = lambda x, y, z: normal[0] * (x - point[0]) \
-                        + normal[1] * (y - point[1]) \
-                        + normal[2] * (z - point[2])
-    return f
-
-
-def find_intersect(f, curve, niterations=5, mSegments=5):
-    """
-    Find the intersection of a curve with a plane
-
-    Parameters
-    ----------
-    f : lambda function
-        function of plane.
-    curve : array-like
-        points on the curve in shape of (n, 3).
-    niterations: int
-        number of iterations.
-    mSegments: int
-        number of segments for each iteration.
-
-    Returns
-    -------
-    intersection: array-like
-        intersection points with shape (n, 3).
-    """
-    # check if curve is a numpy array
-    if not isinstance(curve, np.ndarray):
-        curve = np.array(curve)
-    if curve.shape[1] != 3:
-        raise RuntimeError("The shape of curve must be (n, 3).")
-
-    fSign = f(curve[:, 0], curve[:, 1], curve[:, 2])
-    idx = np.where(np.diff(np.sign(fSign)))[0]
-
-    # if there is no intersection
-    if len(idx) == 0:
-        raise RuntimeError("No intersection was detected.")
-
-    # TODO: cases with more than one intersection
-    while niterations > 0:
-        # refine the result by linear interpolation
-        niterations -= 1
-        low = curve[idx, :]
-        high = curve[idx + 1, :]
-        curve = np.squeeze(
-            np.linspace(low, high, mSegments).reshape(1, -1, 3))
-        fSign = f(curve[:, 0], curve[:, 1], curve[:, 2])
-        idx = np.where(np.diff(np.sign(fSign)))[0]
-
-    intersect = (curve[idx, :] + curve[idx + 1, :]) / 2
-
-    return intersect
-
-
 def ray_plane_intersect(plane_normal, plane_point, ray_direction, ray_point, epsilon=1e-6):
     """
     Find the intersection between a plane and a ray.
@@ -179,7 +64,7 @@ if __name__ == '__main__':
     """ Make up a test dataset of cylindrical surface """
     m, n = 10, 10  # number of cross-sections and points on each cross-section
 
-    elipse = generate_elipse_2d(n, 1, 1)
+    ellipse = generate_elipse_2d(n, 1, 1)
 
     # ------- generate a grid: n (point label), x, y, z
     pts = np.zeros((m * n, 4))
@@ -187,7 +72,7 @@ if __name__ == '__main__':
         # number of cross-section
         pts[i * n:(i + 1) * n, 0] = np.arange(n)
         # x, y
-        pts[i * n:(i + 1) * n, 1:3] = elipse
+        pts[i * n:(i + 1) * n, 1:3] = ellipse
         # z
         pts[i * n:(i + 1) * n, 3] = z
 

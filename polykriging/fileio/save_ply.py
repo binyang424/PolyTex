@@ -17,7 +17,12 @@ def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False
     point_data : dict, optional
         The point data of the mesh. The default is {}.
     cell_data : dict, optional
-        The cell data of the mesh. The default is {}.
+        The cell data of the mesh. The default is {}. Note that the cell data should be added as a
+        list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
+        has 2 triangles and 1 quad, namely,
+          cells = [("triangle", [0, 1, 2], [1,2,3]), ("quad", [3, 4, 5, 6])],
+        then the cell data should be added as
+          cell_data = {"data": [[1, 2], [3]}.
     binary : bool, optional
         If True, the data is written in binary format. The default is False.
 
@@ -32,7 +37,7 @@ def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False
     >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
     >>> point_data = {"a": np.array([0, 1, 2, 3])}
-    >>> cell_data = {"b": np.array([0, 1, 2, 3])}
+    >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
     >>> pk.save_ply("test.ply", vertices, cells, point_data, cell_data)
     >>> print("Done")
     Done

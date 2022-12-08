@@ -1,3 +1,9 @@
+"""
+polykriging.
+
+An implementation of dual Kriging.
+"""
+
 from . import curve2D
 from .curve2D import *
 
