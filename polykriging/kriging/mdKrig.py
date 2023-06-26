@@ -9,7 +9,7 @@ def func_select(drift_name, cov_name):
     """
     Function for definition of drift and covariance function
     in dictionary drif_funcs and cov_funcs.
-    
+
     Parameters
     ----------
     drift_name: str. The name of the drift function.
@@ -193,8 +193,8 @@ def solveB(M, U):
         The solution of the kriging linear system (vector contains b_i and a_i).
     """
     b = np.linalg.solve(M, U)
-    print('solution Matrix b writes:')
-    print(b)
+    # print('solution Matrix b writes:')
+    # print(b)
     return b
 
 
@@ -230,7 +230,7 @@ def buildKriging(xy, z, drift_name, cov_name, nugg=0):
 
     # ------- build the kriging model -------
     x, y = sym.symbols('x y')
-    doc_krig = drift_func(x,y,B[b_len:])
+    doc_krig = drift_func(x, y, B[b_len:])
 
     for i in np.arange(xy.shape[0]):
         bi_cov = ((cov_func((x - xy[:, 0][i]) ** 2 + (y - xy[:, 1][i]) ** 2)) ** (1 / 2)) * B[i, 0]

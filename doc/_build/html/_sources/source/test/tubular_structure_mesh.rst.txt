@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_tubular_structure_mesh.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_tubular_structure_mesh.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,19 +18,26 @@
 .. _sphx_glr_source_test_tubular_structure_mesh.py:
 
 
-Tubular mesh
-=========
+Tubular mesh with functions in polykriging.mesh
+================================================
+The fiber tow surface can be regarded as a tubular structure. Thus, it is
+important to construct a tubular mesh for further analysis.
 
-Test
+This example shows how to create a tubular mesh with constant cross-section. The
+cross-section is defined by a set of ellipse points. The parameters of the
+ellipse are the major and minor axis, and the number of points on the ellipse.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-33
+Note that we already implemented a primitive geometry generator in
+polykriging.geometry.Tube class. It is recommended to use that class to
+generate tubular mesh. This example is only for demonstration purpose.
+
+.. GENERATED FROM PYTHON SOURCE LINES 15-25
 
 .. code-block:: default
 
 
     import polykriging.mesh as ms
     import meshio
-    import numpy as np
 
     theta_res = 5
     h_res = 5
@@ -38,13 +45,55 @@ Test
     a = 4
     b = 1
 
+
+.. GENERATED FROM PYTHON SOURCE LINES 26-28
+
+Generate the tubular mesh vertices
+----------------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 28-31
+
+.. code-block:: default
+
     points = ms.structured_cylinder_vertices(a=a, b=b, h=h,
                                              theta_res=theta_res, h_res=h_res)
-    mesh = ms.tubular_mesh_generator(theta_res=theta_res,
-                                     h_res=h_res, vertices=points)
 
-    points, cells, point_data, cell_data = ms.to_meshio_data(mesh, theta_res, correction=True)
 
+.. GENERATED FROM PYTHON SOURCE LINES 32-34
+
+Generate the tubular mesh cells
+-------------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 34-38
+
+.. code-block:: default
+
+    mesh = ms.tubular_mesh_generator(theta_res=theta_res+1,
+                                     h_res=h_res,
+                                     vertices=points)
+    mesh.plot(show_edges=True)
+
+.. GENERATED FROM PYTHON SOURCE LINES 39-41
+
+Extract information from the mesh object
+--------------------------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 41-44
+
+.. code-block:: default
+
+    points, cells, point_data, cell_data = ms.to_meshio_data(mesh,
+                                                             theta_res,
+                                                             correction=True)
+
+.. GENERATED FROM PYTHON SOURCE LINES 45-47
+
+Write the mesh to a file with meshio
+------------------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 47-53
+
+.. code-block:: default
 
     meshio.write_points_cells(
         filename="cylinder.ply",
@@ -64,6 +113,8 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

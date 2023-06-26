@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>2D curve kriging with confidence &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Test" href="backround_mesh_generation__labelling_and%20_intersection_detection.html" />
-    <link rel="prev" title="Fiber volume fraction of tow" href="Step6_vf.html" /> 
+    <link rel="next" title="3D curve kriging" href="3d_curve_krig.html" />
+    <link rel="prev" title="Tubular mesh with functions in polykriging.mesh" href="tubular_structure_mesh.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +41,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,9 +76,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../examples.html">Examples</a> &raquo;</li>
-      <li>Test</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">2D curve kriging with confidence</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/curve2D_interp_with_confidence.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,12 +90,18 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-source-test-curve2d-interp-with-confidence-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-source-test-curve2d-interp-with-confidence-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="test">
-<span id="sphx-glr-source-test-curve2d-interp-with-confidence-py"></span><h1>Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h1>
-<p>Test</p>
+<section class="sphx-glr-example-title" id="d-curve-kriging-with-confidence">
+<span id="sphx-glr-source-test-curve2d-interp-with-confidence-py"></span><h1>2D curve kriging with confidence<a class="headerlink" href="#d-curve-kriging-with-confidence" title="Permalink to this heading"></a></h1>
+<p>This example shows how to interpolate a 2D curve with confidence estimation.</p>
+<div class="math notranslate nohighlight">
+\[y = f(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is a 2D curve. The curve is defined by a set of points
+<span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, where <span class="math notranslate nohighlight">\(i = 1, 2, ..., n\)</span>.</p>
+<p>This kriging method is the basis for fiber tow trajectory smoothing and control
+point resampling of fiber tow surface implimented in polykriging.Tow class.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">polykriging.kriging</span> <span class="kn">import</span> <span class="n">curve2D</span>
 <span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
@@ -110,14 +121,23 @@ to download the full example code</p>
 
 <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span> <span class="o">=</span> <span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;cub&#39;</span>
 <span class="n">nuggetEffect</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># # Matrice and vectors for dual Kriging formulation</span>
-<span class="c1"># mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \</span>
-<span class="c1">#     curve2D.curveKrig1D(data_set, name_drift, name_cov, nuggetEffect=nuggetEffect)</span>
-
-<span class="c1"># Kriging model and prediction with mean, Kriging expression</span>
-<span class="c1"># and the corresponding standard deviation as output.</span>
-<span class="n">mean_prediction</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">curve2Dinter</span><span class="p">(</span>
+</pre></div>
+</div>
+<section id="matrice-and-vectors-for-dual-kriging-formulation">
+<h2>Matrice and vectors for dual Kriging formulation<a class="headerlink" href="#matrice-and-vectors-for-dual-kriging-formulation" title="Permalink to this heading"></a></h2>
+<p>For most users, this part can be ignored. It is only for the purpose of
+understanding the formulation of dual Kriging. Kriging interpolation can be
+achieved by calling the function <code class="docutils literal notranslate"><span class="pre">curve2D.curve2Dinter</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
+    <span class="n">curve2D</span><span class="o">.</span><span class="n">curveKrig1D</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">nuggetEffect</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="kriging-interpolation">
+<h2>Kriging interpolation<a class="headerlink" href="#kriging-interpolation" title="Permalink to this heading"></a></h2>
+<p>Kriging model and prediction with mean, Kriging expression
+and the corresponding standard deviation as output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean_prediction</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">curve2Dinter</span><span class="p">(</span>
     <span class="n">data_set</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span>
     <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">nuggetEffect</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -129,16 +149,25 @@ to download the full example code</p>
                  <span class="n">mean_prediction</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">std_prediction</span><span class="p">,</span>
                  <span class="n">mean_prediction</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">std_prediction</span><span class="p">,</span>
                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(x)$&quot;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2D curve Kriging regression on noise-free dataset&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">expr_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cross&quot;</span><span class="p">:</span> <span class="n">expr</span><span class="p">}</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">pk_save</span><span class="p">(</span><span class="s2">&quot;FunXY.krig&quot;</span><span class="p">,</span> <span class="n">expr_dict</span><span class="p">)</span>
-<span class="n">expr_load</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="s2">&quot;FunXY.krig&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/2D_curve_kriging_with_confidence.png" src="../../_images/2D_curve_kriging_with_confidence.png" />
+</section>
+<section id="save-the-kriging-model">
+<h2>Save the Kriging model<a class="headerlink" href="#save-the-kriging-model" title="Permalink to this heading"></a></h2>
+<p>You can save the Kriging model to a file for later use and load it back
+using pk.load() function. Note that the Kriging model is saved in a Python
+dictionary with its name as the key.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cross&quot;</span><span class="p">:</span> <span class="n">expr</span><span class="p">}</span>
+<span class="n">pk</span><span class="o">.</span><span class="n">pk_save</span><span class="p">(</span><span class="s2">&quot;./test_data/FunXY.krig&quot;</span><span class="p">,</span> <span class="n">expr_dict</span><span class="p">)</span>
+<span class="n">expr_load</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="s2">&quot;./test_data/FunXY.krig&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
@@ -152,13 +181,14 @@ to download the full example code</p>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Step6_vf.html" class="btn btn-neutral float-left" title="Fiber volume fraction of tow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="backround_mesh_generation__labelling_and%20_intersection_detection.html" class="btn btn-neutral float-right" title="Test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tubular_structure_mesh.html" class="btn btn-neutral float-left" title="Tubular mesh with functions in polykriging.mesh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3d_curve_krig.html" class="btn btn-neutral float-right" title="3D curve kriging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

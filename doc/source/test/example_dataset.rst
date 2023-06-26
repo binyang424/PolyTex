@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_example_dataset.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_example_dataset.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -27,32 +27,42 @@ the datasets are stored in the user's current working directory in a folder
 called ``test_data``. This can be changed by specifying the path as demonstrated
 below.
 
-.. GENERATED FROM PYTHON SOURCE LINES 14-17
+.. GENERATED FROM PYTHON SOURCE LINES 16-18
+
+Check the available datasets
+-------------------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 18-21
 
 .. code-block:: default
 
-
     import polykriging as pk
+    pk.example(data_name="all")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-26
+.. GENERATED FROM PYTHON SOURCE LINES 22-30
 
 Downloading the example datasets
---------------------------------
+-------------------------------------
 
-The example datasets are hosted on a public github repository.
+The example datasets are hosted on a public Github repository.
 To download the datasets, use the ``polykriging.example()`` function.
 This function will download the datasets to the user's current working
 directory in a folder called ``test_data``. This can be changed by specifying
-the path.
+the path using the entry ``outdir``.
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-29
+.. GENERATED FROM PYTHON SOURCE LINES 30-33
 
 .. code-block:: default
 
 
-    pk.example("git")
+    pk.example("surface points", outdir="./test_data/")
 
+
+.. GENERATED FROM PYTHON SOURCE LINES 34-36
+
+The input and output of the example datasets will be described in the examples
+for polyKriging.fileio module.
 
 
 .. rst-class:: sphx-glr-timing
@@ -65,6 +75,8 @@ the path.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

@@ -47,8 +47,6 @@ We welcome contributions from anyone, even if you are new to open source. Please
 
 ## Citation
 
-`PolyKriging` is BSD licensed, so you are free to use it whatever you like, be it academic, commercial, creating forks or derivatives, as long as you copy the BSD statement if you redistribute it (see the  [License](./LICENSE.html) file for details). Although not required by the license, if it is convenient for you, please cite `PolyKriging` when using it in your work and also consider contributing all your changes back, so that we can incorporate it and all of us will benefit in the end.
-
 - To cite `PolyKriging` in publications use:
 
 

@@ -37,40 +37,59 @@ def angularSort(localCo, centroid, sort=True):
     # of the cross-section
     xloc = localCo[:, 0]
     yloc = localCo[:, 1]
+    coordinate = localCo[:, :2] + centroid[:2]
     angle = np.mod(np.arctan2(yloc, xloc), 2 * np.pi) * 180 / np.pi  # mapping to 0-360 degree
+
+    if (np.sign(np.diff(angle))==-1).sum() / angle.shape[0] > 0.7:
+        angle = np.flip(angle)
+        coordinate = np.flip(coordinate, axis=0)
+        # sort = False
 
     minIndex = np.where(angle == np.min(angle))[0][0]
     maxIndex = np.where(angle == np.max(angle))[0][0]
+
+    if minIndex==0:
+        sort = False
 
     if abs(minIndex - maxIndex) == 1:
         pass
     elif maxIndex > minIndex:
         maxIndex = minIndex + 1
-    else:
-        maxIndex = maxIndex - 1
-
-    coordinate = localCo[:,:2] + centroid[:2]
+    elif maxIndex < minIndex:
+        sign = np.sign(angle[maxIndex:minIndex + 1] - 180)
+        idx_sign_change = (sign==1).sum() - 1
+        maxIndex += idx_sign_change
+        minIndex = maxIndex + 1
 
     if sort:
         coorSort = np.zeros([localCo.shape[0], 3])
-        coorSort[:, :2] = np.append(coordinate[maxIndex:],
-                                    coordinate[:maxIndex], axis=0)
         coorSort[:, 2] = centroid[2]
-        angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
+
+        if maxIndex > minIndex:
+            coorSort[:, :2] = np.append(coordinate[maxIndex:],
+                                        coordinate[:maxIndex], axis=0)
+
+            angle = np.append(angle[maxIndex:], angle[:maxIndex], axis=0)
+        elif maxIndex < minIndex:
+            coorSort[:, :2] = np.append(coordinate[minIndex:],
+                                        coordinate[:minIndex], axis=0)
+
+            angle = np.append(angle[minIndex:], angle[:minIndex], axis=0)
 
         if np.max(angle) in angle[:6]:
             coorSort = np.flip(coorSort, axis=0)
             angle = np.flip(angle, axis=0)
 
-        # print("angle", angle, "max", np.max(angle), "min", np.min(angle))
-
         # origin
-        xp = np.squeeze(localCo[[minIndex, maxIndex], 0])
-        yp = np.squeeze(localCo[[minIndex, maxIndex], 1])
+        xp = np.squeeze(coorSort[[0, -1], 0])
+        yp = np.squeeze(coorSort[[0, -1], 1])
         # y is known.
-        origin = [np.interp(0, yp, xp), 0, 0] + centroid
-        coorSort = np.vstack((origin, coorSort))
+        ratio = (360 - angle[-1]) / (angle[0] + 360 - angle[-1])
+        origin = [ (xp[0] - xp[1])*ratio + xp[1],
+                   (yp[0] - yp[1])*ratio + yp[1],
+                   centroid[2] ]
 
+        coorSort = np.vstack((origin, coorSort))
         angle = np.hstack((0, angle))
     else:
         coorSort = np.zeros([coordinate.shape[0], 3])
@@ -201,7 +220,7 @@ def geom_cs(coordinate, message="OFF", sort=True):
         print(geomFeature)
 
     return geomFeature, coordinateSorted
-
+#
 
 def geom_tow(surf_points, sort=True):
     """

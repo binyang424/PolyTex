@@ -747,6 +747,22 @@ class Plane:
         return f
 
     def intersection(self, obj, max_dist):
+        """
+        Return the intersection of the plane with a curve or a polygon.
+
+        Parameters
+        ----------
+        obj : Curve or Polygon object
+            The object to intersect with the plane.
+        max_dist : float
+            The maximum distance of checked points from the plane.
+
+        Returns
+        -------
+        intersection : list or array
+            The intersection point of the plane with the obj in the shape of
+            (1, 3). If the intersection is not found, none is returned.
+        """
         try:
             obj_type = obj.__type__
         except AttributeError:
@@ -762,7 +778,7 @@ class Plane:
                 pts_intersect = find_intersect(f, points[mask, :])
                 return pts_intersect
             except RuntimeError:
-                print('No intersection found')
+                # print('No intersection found')
                 return None
         else:
             # TODO: implement intersection with ParamCurve and ParamSurface
@@ -849,10 +865,14 @@ class Tube(GeometryEntity):
     def mesh(self, plot=False, show_edges=True):
         """
         TODO : raise TypeError("Given points must be a sequence or an array.")
+
+        Note
+        ----
+        theta_res should be 1 less then else where. To be fixed in the future.
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
-        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res, h_res=h_res,
+        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res-1, h_res=h_res,
                                                  vertices=pts, plot=False)
         if plot:
             pv_mesh.plot(show_edges=True)
@@ -884,17 +904,26 @@ class Tube(GeometryEntity):
         >>> tube.save_as_mesh('tube.vtu')
         """
         mesh = self.mesh()
+        # check if path is valid
+        if not os.path.exists(os.path.dirname(save_path)):
+            # create the directory
+            os.makedirs(os.path.dirname(save_path))
+
+        if save_path.endswith('.stl'):
+            mesh = mesh.cast_to_unstructured_grid()
+            mesh = mesh.triangulate()
+
         if end_closed:
             points, cells, point_data, cell_data = ms.to_meshio_data(
                 mesh,
                 int(self.theta_res),
                 correction=end_closed)
 
-            pk.save_ply(save_path, points, cells=cells,
+            pk.meshio_save(save_path, points, cells=cells,
                         point_data={}, cell_data={}, binary=False)
         else:
             import pyvista as pv
-            pv.save_meshio(save_path, self.mesh(), binary=False)
+            pv.save_meshio(save_path, mesh, binary=False)
 
         return mesh
 

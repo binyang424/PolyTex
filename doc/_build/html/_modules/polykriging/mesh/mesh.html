@@ -442,10 +442,32 @@
 
 
 <div class="viewcode-block" id="mesh_correction"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.mesh_correction">[docs]</a><span class="k">def</span> <span class="nf">mesh_correction</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Close the ends of the tubular mesh with triangles.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    theta_res: int</span>
+<span class="sd">        number of points in the radial direction of the tubular mesh. The first and the last</span>
+<span class="sd">        vertex of each radial direction point list are repeated. However, they are considered</span>
+<span class="sd">        as two different points when considering theta resolution (theta_res).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">theta_res</span> <span class="o">=</span> <span class="n">theta_res</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">cells_connectivity</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># 遍历cells中的每一个元素，如果元素中的点在rm_row_ind中，则将该元素减小theta_res</span>
-    <span class="n">rm_row_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">theta_res</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">rm_row_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">cells_connectivity</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">rm_row_ind</span><span class="p">:</span>
@@ -453,7 +475,8 @@
                 <span class="n">cells_connectivity</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="n">theta_res</span>
 
     <span class="c1"># get index of boundary points</span>
-    <span class="n">first_boundary_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">theta_res</span><span class="p">)</span>
+    <span class="n">first_boundary_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">theta_res</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
     <span class="n">second_boundary_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># coordinates of boundary points</span>
@@ -474,6 +497,9 @@
     <span class="n">second_boundary_new_cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">second_boundary_ind</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
     <span class="n">second_boundary_new_cell</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">second_boundary_ind</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">second_boundary_ind</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
     <span class="n">new_cells</span> <span class="o">=</span> <span class="n">first_boundary_new_cell</span> <span class="o">+</span> <span class="n">second_boundary_new_cell</span>
+
+    <span class="c1"># flip cells_connectivity along rows</span>
+    <span class="n">cells_connectivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;quad&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;triangle&#39;</span><span class="p">,</span> <span class="n">new_cells</span><span class="p">)]</span>
 

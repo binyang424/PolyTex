@@ -270,7 +270,7 @@ def euler_zx_coordinate(z_new, x_new) -> list:
         print("Result checking shows the z-axis is not aligned with the normal vector.")
 
     x_temp = Vector(temp[0, :])
-    psi = x_basis.angle_between(x_new) * np.sign(x_temp[1])
+    psi = x_basis.angle_between(x_temp) * np.sign(x_temp[1])
     angles = [psi, angles[1], angles[2]]
 
     return angles

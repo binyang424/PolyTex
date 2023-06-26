@@ -10,22 +10,26 @@ from ..thirdparty.bcolors import bcolors
 
 def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     """
+    This function estimates the probability density distribution of the input variable
+    with the non-parametric kernel density estimation (KDE) method. The local maxima
+    and minima of the probability density distribution are identified to decompose the
+    input variable into a set of clusters. The former is used as the cluster centers
+    and the latter is used as the cluster boundaries.
 
     Parameters
     ----------
     variable : Numpy array
         A N x 1 dimension numpy array to apply the kernel density estimation.
     x_test : Numpy array
-        Test data to get the density distribution.
-        It has the same shape as the given variable.
-    bw : float, default=1.0
+        Test data to get the density distribution. It has the same shape as
+        the given variable. It should cover the whole range of the variable.
+    bw : float
         The bandwidth of the kernel.
     kernel : string, optional
         The kernel to use. The default is 'gaussian'. The possible values are
-        {'gaussian', 'tophat', 'epanechnikov', 'exponential', 'linear', \
-                 'cosine'}.
+        {'gaussian', 'tophat', 'epanechnikov', 'exponential', 'linear', 'cosine'}.
     plot : bool, optional
-        Whether plot the result. The default is "False".
+        Whether plot the probability density distribution. The default is False.
 
     Returns
     -------
@@ -34,14 +38,16 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
         probability density distribution (pdf).
 
     """
-    model = KernelDensity(kernel=kernels, bandwidth=bw)
-
     # check if the variable is 1D array
-    variable = variable.to_numpy()
+
     if variable.ndim == 1:
         variable = variable.reshape(-1, 1)
+    else:
+        raise ValueError("The input variable should be a 1D array.")
 
+    model = KernelDensity(kernel=kernels, bandwidth=bw)
     model.fit(variable)
+
     log_dens = model.score_samples(x_test.reshape(-1, 1))
     pdf_input = np.exp(model.score_samples(variable))
 
@@ -55,7 +61,7 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
         plt.show()
 
     # mask for the local maxima of density
-    # argrelextrema: Calculate the relative extrema of `data`.
+    # argrelextrema: identify the relative extrema of `data`.
     cluster_bounds = np.insert(argrelextrema(pdf, np.less)[0], 0, 0)
     cluster_bounds = np.append(cluster_bounds, -1)
     clusters = {"cluster centers": argrelextrema(pdf, np.greater)[0],  # Indices of local maxima
@@ -65,90 +71,102 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     return clusters
 
 
-def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20, x_test=None):
-    '''
+def movingKDE(dataset, bw=0.002, windows=1, n_clusters=20, x_test=None):
+    """
+    This function applies the kernel density estimation (KDE) method to the input
+    dataset with a moving window. Namely, the dataset is divided into a set of
+    windows and the KDE method is applied to each window. This allows to capture
+    more details of geometry changes of a fiber tow.
+
     Parameters
     ----------
-    pcd : Numpy array
+    dataset : Numpy array
         A N x 2 dimension numpy array for kernel density estimation.
         The first colum should be the variable under analysis, the second
-        is the tag of cross-sections for windows separation.
-    bw : Numpy array or a number
+        is the label of cross-sections that the variable belongs to.
+    bw : Numpy array or float, optional
         A range of bandwidth values for kde operation usually generated with np.arange().
         The optimal bandwidth will be identified within this range and be used for kernel
-        density estimation. If a number is given, the number will be used as the bandwidth for kernel estimation.
-    windows : int, The number of windows (segmentations) for KDE analysis
-        DESCRIPTION. The default is 1.
-    n_cluster_center : int, The target number of cluster_center
-        DESCRIPTION. The default is 20.
+        density estimation. If a number is given, the number will be used as the bandwidth
+        for kernel estimation.
+    windows : int,
+        The number of windows (segmentations) for KDE analysis. The default is 1, namely,
+        the whole dataset is used for KDE analysis and gives the same result as using
+        the function kdeScreen() directly.
+    n_clusters : int
+        The target number of cluster_center. The default is 20.
     x_test : Numpy array
         Test data to get the density distribution. The default is None.
 
     Returns
     -------
     kdeOutput : Numpy array
-        A N x 3 dimension numpy array. The first column is the tag of the window under analysis,
+        A N x 3 dimension numpy array. The first column is the label of the window under analysis,
         the second is normlized distance, the third is the probability density.
     cluster_center : Numpy array
         A M x N dimension numpy array. M is the number of windows and N-1 is the number of cluster centers.
         The first column is the maximum index for each window, the following columns are the cluster centers.
-    '''
-    kdeOutput = np.zeros([pcd.shape[0], 3])
-    cluster_center = np.zeros([windows, n_cluster_center + 1])
+    """
+    import pandas as pd
+
+    kdeOutput = np.zeros([dataset.shape[0], 3])
+    cluster_center = np.zeros([windows - 1, n_clusters + 1])
     anchor = 0
 
-    nslices = np.unique(pcd[:, -1]).size
+    nslices = np.unique(dataset[:, -1]).size
     winLen = int((nslices / windows + 1))
 
-    for win in range(0, windows):
+    for win in range(0, windows - 1):
         # Point cloud in a window
-        maskMax = pcd[:, -1] < (win + 1) * winLen
-        variable = pcd[:, 0][maskMax]
-        # Do not miss "=".
-        maskMin = pcd[:, -1][maskMax] >= win * winLen
-        variable = variable[maskMin].reshape(-1, 1)
+        mask = (dataset[:, -1] < (win + 1) * winLen) & \
+               (dataset[:, -1] >= win * winLen)
+        variable = dataset[:, 0][mask].reshape(-1, 1)
 
         if x_test is None:
             # Generate test data to get the density distribution
             x_test = np.linspace(0, 1, variable.size)[:, np.newaxis]
 
         if type(bw).__module__ == "numpy":
-            optBw = opt_bandwidth(variable, x_test, bw)
+            opt_bw = opt_bandwidth(variable, x_test, bw)
         elif str(int(bw * 1e20)).isdigit():
-            optBw = bw
+            opt_bw = bw
         else:
-            print("Please check if a bandwidth is given correctly!!!")
+            print("Please check if bandwidth is given correctly!!!")
 
         # Call function kdeScreen() to get the variable-density curve
         # the index for cluster_center.
-        clusters = kdeScreen(variable, x_test, optBw)
+        variable = variable.flatten()
+        clusters = kdeScreen(variable, x_test, opt_bw)
 
         # Get the index for cluster_center
         cluster_center_idx = clusters["cluster centers"]
+
         ykde = clusters["pdf"]
 
-        print("The cluster centers are: ", cluster_center_idx)
+        print("The variable size is: ", x_test.size)
+        upperLimit = anchor + x_test.size
 
-        upperLimit = anchor + variable.size
-
-        print("start index {}; end index {}; number of variables {}".format(
-            anchor, upperLimit, upperLimit - anchor))
-
-        if len(cluster_center_idx) >= n_cluster_center:
-            print("Window: {}:".format(win))
+        if len(cluster_center_idx) >= n_clusters:
+            print(bcolors.ok("Window: {}:".format(win)))
             print("√ The required number of points {} was reached at h = {}. \
-                  \nThe number of actual cluster_center is [{}]. \
-                  --------------------".format(
-                n_cluster_center, round(optBw, 4), len(cluster_center_idx)))
+                  \nThe number of actual cluster_center is [{}]".format(
+                n_clusters, round(opt_bw, 4), len(cluster_center_idx)))
+
+            print("start index {}; end index {}; number of variables {}".format(
+                anchor, upperLimit, upperLimit - anchor))
+
+            print("The cluster centers are: ", cluster_center_idx)
 
             # sort the data from minimum to maximun and return the index
             maskSort = np.argsort(ykde[cluster_center_idx])
-            extrDisordered = cluster_center_idx[maskSort][len(cluster_center_idx) - n_cluster_center:]
+            extrDisordered = cluster_center_idx[maskSort][len(cluster_center_idx) - n_clusters:]
 
             # kdeOutput
+            print("test", anchor, upperLimit)
+            print(x_test.shape, ykde.shape)
             kdeOutput[anchor:upperLimit, 0] = win
-            kdeOutput[anchor:upperLimit, 1] = pcd[:, 0]
-            kdeOutput[anchor:upperLimit, 2] = ykde
+            kdeOutput[anchor:upperLimit, 1] = x_test.flatten()
+            kdeOutput[anchor:upperLimit, 2] = ykde.flatten()
 
             # cluster_center
             cluster_center[win, 0] = upperLimit
@@ -159,7 +177,7 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20, x_test=None):
             print(bcolors.warning("--> Cannot reach the targeted {} points. \
                   There are [{}] points for h = {}. Please reduce bandwidth.\n"
                                   "--------------------".format(
-                n_cluster_center, len(cluster_center_idx), round(optBw, 4))))
+                n_clusters, len(cluster_center_idx), round(opt_bw, 4))))
 
             kdeOutput[anchor:upperLimit, 0] = win
             cluster_center[win, 0] = upperLimit
@@ -167,13 +185,12 @@ def movingKDE(pcd, bw=0.002, windows=1, n_cluster_center=20, x_test=None):
             anchor = upperLimit
             continue
 
-    import pandas as pd
     kdeOutput_col = ["window", "normalized distance", "probability density"]
     kdeOutput = pd.DataFrame(kdeOutput, columns=kdeOutput_col)
 
     # Returns a column mask to show if any zero values are present in the row of kdeOutput
-    # If any zero values are present, the row is masked (False), otherwise the row is not masked (True).
-    # The mask is used to remove the rows with zero values from the kdeOutput.
+    # If any zero values are present, the row is masked (False), otherwise the row is not
+    # masked (True). The mask is used to remove the rows with zero values from the kdeOutput.
     # the first row is always as True since it is the starting point (0) of the contour.
     mask = np.all(kdeOutput.iloc[:, [1, 2]] != 0, axis=1)
     mask[0] = True

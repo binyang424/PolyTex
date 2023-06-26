@@ -12,17 +12,24 @@ called ``test_data``. This can be changed by specifying the path as demonstrated
 below.
 """
 
+###############################################################################
+# Check the available datasets
+# -------------------------------------
 import polykriging as pk
+pk.example(data_name="all")
 
 ###############################################################################
 # Downloading the example datasets
-# --------------------------------
+# -------------------------------------
 #
-# The example datasets are hosted on a public github repository.
+# The example datasets are hosted on a public Github repository.
 # To download the datasets, use the ``polykriging.example()`` function.
 # This function will download the datasets to the user's current working
 # directory in a folder called ``test_data``. This can be changed by specifying
-# the path.
+# the path using the entry ``outdir``.
 
-pk.example("git")
+pk.example("surface points", outdir="./test_data/")
 
+###############################################################################
+# The input and output of the example datasets will be described in the examples
+# for ``polyKriging.fileio`` module.

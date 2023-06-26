@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_backround_mesh_labelling_and _intersection_detection.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_backround_mesh_labelling_and _intersection_detection.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,7 +18,7 @@
 .. _sphx_glr_source_test_backround_mesh_labelling_and _intersection_detection.py:
 
 
-Test
+Mesh labelling and intersection detection
 =================
 
 Test
@@ -98,6 +98,8 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

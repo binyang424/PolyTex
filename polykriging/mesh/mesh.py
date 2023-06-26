@@ -419,7 +419,10 @@ def mesh_correction(cells, points, theta_res):
     # flip cells_connectivity along rows
     cells_connectivity = np.flip(cells_connectivity, axis=1)
 
-    cells = [('quad', list(cells_connectivity)), ('triangle', new_cells)]
+    if cells_connectivity.shape[1] == 3:
+        cells = [("triangle", cells_connectivity), ("triangle", np.array(new_cells))]
+    else:
+        cells = [('quad', list(cells_connectivity)), ('triangle', new_cells)]
 
     return points, cells
 

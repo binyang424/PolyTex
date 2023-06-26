@@ -46,12 +46,18 @@ def __data_list(data_name):
     data_list = {
         "image": "https://www.binyang.fun/resource/test_data/binder_216_302.tif",
         "surface points": "https://www.binyang.fun/resource/test_data/binder_4.pcd",
-        "cross-section": "https://www.binyang.fun/resource/test_data/boundary_of_cross-section.vtk",}
+        "cross-section": "https://www.binyang.fun/resource/test_data/boundary_of_cross-section.vtk",
+        "sorted coordinate": "https://www.binyang.fun/resource/test_data/vf57_weft_0.coo",}
+    dataset_info = {
+        "image": "An image sequence of two  binder tows obtained by Micro CT scanner.",
+        "surface points": "The surface points of a binder tow.",
+        "cross-section": "The cross-section of the binder tow.",
+        "sorted coordinate": "This file contains the sorted coordinates of a tow and the corresponding parameters.",}
 
     if data_name == "all":
         print("Available datasets:" + "\n")
         for key in data_list.keys():
-            print(key)
+            print(key, ":", dataset_info[key])
     else:
         return data_list[data_name]
 
@@ -79,6 +85,21 @@ def __download_file(url, outdir=r"./test_data/", overwrite=True):
         URL string.
     outdir : str
         Output directory.
+
+    Returns
+    -------
+    fname : str
+        Filename.
+
+    Examples
+    --------
+    >>> from polykriging import __download_file
+    >>> # File locations
+    >>> url_list = ["https://www.binyang.fun/resource/Semivariogram_1D_Porosity.xlsx", \
+                "https://www.binyang.fun/resource/LICENSE"]
+    >>> # Download files
+    >>> for url in url_list:
+    >>>    __download_file(url)
     """
     # Create folder if it does not exist
     if not os.path.exists(outdir):
@@ -99,17 +120,3 @@ def __download_file(url, outdir=r"./test_data/", overwrite=True):
             print("File already exists:", fname)
 
     return fname
-
-
-if __name__ == "__main__":
-
-    # File locations
-    url_list = ["https://www.binyang.fun/resource/Semivariogram_1D_Porosity.xlsx",
-                "https://www.binyang.fun/resource/LICENSE",
-                "https://www.binyang.fun/resource/Thermoset_FRP_Manufacturing_Fundamentals.pdf",
-                "https://raw.githubusercontent.com/binyang424/Git-for-beginners/master/git-cheat-sheet-education.pdf"
-                ]
-
-    # Download files
-    for url in url_list:
-        __download_file(url)

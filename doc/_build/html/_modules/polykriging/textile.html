@@ -90,10 +90,50 @@
 <div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a class for textile geometrical analysis and numerical meshing.</span>
+<span class="sd">    定义为体素网格？</span>
 
 <span class="sd">    # TODO : analyze, design, and program the Textile class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the textile object by creating a background mesh.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_mesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Textile.add"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a tow to the textile using mesh merging. Each tow is a mesh object</span>
+<span class="sd">        and labeled with a unique integer.</span>
+
+<span class="sd">        key - tow id, integer;</span>
+<span class="sd">        value - tow object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Textile.remove"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Textile.triangulate"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.triangulate">[docs]</a>    <span class="k">def</span> <span class="nf">triangulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hexahedral mesh to tetrahedral mesh. Conformal meshing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Textile.decimate"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.decimate">[docs]</a>    <span class="k">def</span> <span class="nf">decimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decimate the mesh.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Textile.background_mesh"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.background_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">background_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a background mesh for the textile.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 </pre></div>
 
            </div>

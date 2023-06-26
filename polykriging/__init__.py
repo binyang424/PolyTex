@@ -16,8 +16,10 @@ from . import stats
 from . import thirdparty
 from .plot import *
 
-from .fileio import *
+# from .fileio import *
 from .textile import *
 from .tow import *
 
-from .__dataset__ import example
+from .__dataset__ import example, __download_file
+
+from .io import *

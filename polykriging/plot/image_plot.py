@@ -113,6 +113,72 @@ def plot_on_img(x, y, backgroundImg, labels=[], save=False):
     plt.show()
 
 
+def xy_interp(*axis_list, num=100, raw=False):
+    """
+    Interpolate the axis_list to the same x-axis and calculate the mean y-axis
+    for all the input x-y pairs (midline).
+
+    TODO: check what happens if the range of x-axis is not the same for all the input axis_list.
+
+    Note:
+    -----
+    [algorithm - How to interpolate a line between two other lines in python]
+    (https://stackoverflow.com/questions/49037902/how-to-interpolate-a-line-between-two-other-lines-in-python/49041142#49041142)
+
+    Parameters
+    ----------
+    axis_list : list of np.ndarray
+        Each element is a 2D array with shape (n, 2), where n is the number of points.
+        The first column is x-axis and the second column is y-axis.
+    num : int, optional
+        The number of points to interpolate. The default is 100.
+    raw : bool, optional
+        If True, return the raw interpolated axis_list. The default is False.
+
+    Returns
+    -------
+    mid : np.ndarray
+        The interpolated midline with shape (n, 2), where n is the number of points.
+        The first column is x-axis and the second column is y-axis.
+    raw_interp : np.ndarray
+        The raw interpolated axis_list with shape (n, m), where n is the number of points
+        and m is the number of input axis_list. The first m columns are x-axis and the
+        last m columns are y-axis.
+
+    Examples
+    --------
+    >>> x1 = np.linspace(0, 10, 10)
+    >>> y1 = np.linspace(0, 15, 10)
+    >>> x2 = np.linspace(0, 10, 20)
+    >>> y2 = np.linspace(0, 12, 20)
+    >>> x3 = np.linspace(0, 9, 30)
+    >>> y3 = np.linspace(0, 18, 30)
+    >>> interp(np.vstack((x1, y1)).T, np.vstack((x2, y2)).T, np.vstack((x3, y3)).T)
+    """
+    min_max_xs = [(min(axis[:, 0]), max(axis[:, 0])) for axis in axis_list]
+
+    # TODO : The interpolated range of x-axis is not the same for all the input axis_list.
+    # 1. Interpolate the axis_list to the same x-axis: [maximun min_x, minimun max_x].
+    # 2. Calculate the mean y-axis for all the input x-y pairs (midline)
+    new_axis_xs = [np.linspace(min_x, max_x, num) for min_x, max_x in min_max_xs]
+    new_axis_ys = [np.interp(new_x_axis, axis[:, 0], axis[:, 1])
+                   for axis, new_x_axis in zip(axis_list, new_axis_xs)]
+
+    midx = [np.mean([new_axis_xs[axis_idx][i]
+                     for axis_idx in range(len(axis_list))]) for i in range(num)]
+    midy = [np.mean([new_axis_ys[axis_idx][i]
+                     for axis_idx in range(len(axis_list))]) for i in range(num)]
+
+    mid = np.vstack((midx, midy)).T
+    print(np.array(new_axis_xs).shape, np.array(new_axis_ys).shape)
+    raw_interp = np.vstack((new_axis_xs[0], new_axis_ys))
+
+    if raw:
+        return mid, raw_interp
+    else:
+        return mid
+        
+
 if __name__ == '__main__':
     img = './test/imagePlot/trans0000.tif'
     data = './test/imagePlot/4_1_XY_Coordinates.csv'

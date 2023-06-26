@@ -1,5 +1,5 @@
 """
-Test
+Mesh labelling and intersection detection
 =================
 
 Test

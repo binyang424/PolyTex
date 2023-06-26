@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_parametric_surface.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_parametric_surface.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -19,11 +19,11 @@
 
 
 Parametric kriging of surface
-===================
+=============================
 
 Test
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-50
+.. GENERATED FROM PYTHON SOURCE LINES 8-51
 
 .. code-block:: default
 
@@ -63,10 +63,11 @@ Test
         import time
 
         start = time.time()
+
         for i in range(1):
-            xinterp = interp(s, t, xexpr, split_complexity=10)
-            yinterp = interp(s, t, yexpr, split_complexity=10)
-            zinterp = interp(s, t, zexpr, split_complexity=10)
+            xinterp = interp(s, t, xexpr, split_complexity=0)
+            yinterp = interp(s, t, yexpr, split_complexity=0)
+            zinterp = interp(s, t, zexpr, split_complexity=0)
 
         print('time: ', time.time() - start)
 
@@ -81,6 +82,8 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

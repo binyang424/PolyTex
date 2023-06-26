@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_Tow_Class.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_Tow_Class.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -25,7 +25,7 @@ designed to handle the parametrization and geometrical analysis of a fiber tow.
 A Tow instance is created by passing the surface points of the tow to the
 constructor.
 
-.. GENERATED FROM PYTHON SOURCE LINES 9-18
+.. GENERATED FROM PYTHON SOURCE LINES 9-13
 
 .. code-block:: default
 
@@ -33,18 +33,27 @@ constructor.
     import polykriging as pk
     import numpy as np
 
-    """Parametrization & Geometrical analysis (vertical cut plane)"""
-    # Load the surface points of fiber tow
+
+.. GENERATED FROM PYTHON SOURCE LINES 14-17
+
+Example dataset
+-----------------
+Load the surface points of fiber tow
+
+.. GENERATED FROM PYTHON SOURCE LINES 17-20
+
+.. code-block:: default
+
     path = pk.example("surface points")
     surf_points = pk.pk_load(path).to_numpy()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-21
+.. GENERATED FROM PYTHON SOURCE LINES 21-23
 
 We clip the coordinates to discard the part of the tow that is necessary for
 the modeling of the tow.
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-24
+.. GENERATED FROM PYTHON SOURCE LINES 23-26
 
 .. code-block:: default
 
@@ -52,7 +61,7 @@ the modeling of the tow.
     surf_points_clip = surf_points[mask]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-30
+.. GENERATED FROM PYTHON SOURCE LINES 27-32
 
 Exchange the first and last column for geometry analysis. Note that
 the last column is deemed as the label column. Namely, the points
@@ -60,71 +69,177 @@ with the same label are considered as belonging to the same slice and
 are parametrized in the radial direction (theta). This data reorder
 is necessary for the users.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-54
+.. GENERATED FROM PYTHON SOURCE LINES 32-34
 
 .. code-block:: default
 
     coordinates = surf_points_clip[:, [2, 1, 0]]
 
-    # # filtering the points
-    # mask = abs(coordinates[:, -1] - 9.196) > 0.09
-    # coordinates = coordinates[mask]
 
-    """ Utilization of the PolyKriging Tow class """
-    # Create a Tow instance
+.. GENERATED FROM PYTHON SOURCE LINES 35-38
+
+We can filtering the points to remove noise or the points that are not necessary:
+mask = abs(coordinates[:, -1] - 9.196) > 0.09
+coordinates = coordinates[mask]
+
+.. GENERATED FROM PYTHON SOURCE LINES 40-43
+
+Utilization of the PolyKriging Tow class
+Create a Tow instance
+----------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 43-45
+
+.. code-block:: default
+
     tow = pk.Tow(surf_points=coordinates, tex=0, name="binder_4", order="zyx")
 
-    # Get the parametric coordinates of the tow: The points on the same slice
-    # are parametrized in the radial direction (theta) and stored in the
-    # normalized distance column of the attribute, tow.coordinates, a pandas
-    # DataFrame.
+
+.. GENERATED FROM PYTHON SOURCE LINES 46-50
+
+Get the parametric coordinates of the tow: The points on the same slice
+are parametrized in the radial direction (theta) and stored in the
+normalized distance column of the attribute, tow.coordinates, a pandas
+DataFrame.
+
+.. GENERATED FROM PYTHON SOURCE LINES 50-52
+
+.. code-block:: default
+
     df_coord = tow.coordinates  # parametric coordinates of the tow
 
-    # Get the geometrical features of the tow: The geometrical features of the tow
-    # are stored in the attribute, tow.geom_features, a pandas DataFrame.
-    # For straight fiber tows, the geometrical features can be used as an approximation
-    # of the actual tow geometry. But for wavy tows, such as binder, the geometrical
-    # features are not accurate enough. We need to redo the geometrical analysis
-    # after identifying the normal cross-sections of the tow.
+
+.. GENERATED FROM PYTHON SOURCE LINES 53-59
+
+Get the geometrical features of the tow: The geometrical features of the tow
+are stored in the attribute, tow.geom_features, a pandas DataFrame.
+For straight fiber tows, the geometrical features can be used as an approximation
+of the actual tow geometry. But for wavy tows, such as binder, the geometrical
+features are not accurate enough. We need to redo the geometrical analysis
+after identifying the normal cross-sections of the tow.
+
+.. GENERATED FROM PYTHON SOURCE LINES 59-61
+
+.. code-block:: default
+
     df_geom = tow.geom_features  # geometrical features of the tow
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-58
+.. GENERATED FROM PYTHON SOURCE LINES 62-67
 
+Resampling
+----------
 Resampling the control points of the tow with a uniform spacing in the
 normalized distance direction. The resampling is necessary to create a
 parametric representation based on dual kriging.
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-83
+.. GENERATED FROM PYTHON SOURCE LINES 67-73
 
 .. code-block:: default
 
     theta_res = 35  # number of control points in the radial direction
     sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
-    pts_krig, expr_krig = tow.krig_cs(krig_config=("lin", "cub"),
-                                      skip=2, sample_position=sample_position,
-                                      smooth=0.0001)
+    pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
+                                         skip=2, sample_position=sample_position,
+                                         smooth=0.0001)
 
-    # tow.save("./tow/binder_4.tow")
-    # tow = np.load("./tow/binder_4.tow", allow_pickle=True).tolist()
+
+.. GENERATED FROM PYTHON SOURCE LINES 74-78
+
+Save and reload the tow instance
+------------
+tow.save("./tow/binder_4.tow")
+tow = np.load("./tow/binder_4.tow", allow_pickle=True).tolist()
+
+.. GENERATED FROM PYTHON SOURCE LINES 80-82
+
+Plot the tow
+------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 82-84
+
+.. code-block:: default
 
     mesh = tow.surf_mesh(plot=True, save_path="./test_data/binder_4.ply", end_closed=True)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 85-87
+
+Smooth the tow trajectory with Kriging
+-------------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 87-90
+
+.. code-block:: default
 
     trajectory_sm = tow.trajectory(smooth=0.0015, plot=False,
                                    save_path="./test_data/trajectory.ply", orientation=True)
 
-    # Get the axial lines of the tow (the lines connecting the parametrized control points in
-    # the axial direction)
+
+.. GENERATED FROM PYTHON SOURCE LINES 91-95
+
+Axial and radial lines
+-------------------------
+Get the axial lines of the tow (the lines connecting the parametrized control points in
+the axial direction)
+
+.. GENERATED FROM PYTHON SOURCE LINES 95-101
+
+.. code-block:: default
+
     line_axi = tow.axial_lines(plot=True)
 
     # Get the radial lines of the tow (the lines connecting the parametrized control points in
     # the radial direction)
     line_rad = tow.radial_lines(plot=True)
 
-    # The returned object clipped will be removed in the future. It is used for debugging.
-    cross_section, plane, clipped = tow.normal_cross_section(algorithm="pyvista")
 
-    df_geom = tow.geom_features
+.. GENERATED FROM PYTHON SOURCE LINES 102-108
+
+Get the normal cross-sections of the tow
+----------------------------------------
+So far, we provide two methods to get the normal cross-sections of the tow.
+The first method wraps the intersection function of plane and surface mesh
+in the pyvista package. The second method is based on the intersection of
+a parametric curve and a implicit plane.
+
+.. GENERATED FROM PYTHON SOURCE LINES 108-109
+
+.. code-block:: default
+
+    cross_section, plane = tow.normal_cross_section(algorithm="pyvista")
+
+.. GENERATED FROM PYTHON SOURCE LINES 110-117
+
+Update the geometrical features of the tow
+------------------------------------------
+The geometrical features of the tow are stored in the attribute, tow.geom_features, a pandas DataFrame.
+You have this information once the tow instance is created. However, that is calculated based on the vertical
+cross-sections of the tow. A more accurate geometrical analysis can be done during the identification of
+the normal cross-sections with the class method, Tow.normal_cross_section.
+Hard copy to prevent the modification by the kriging method.
+
+.. GENERATED FROM PYTHON SOURCE LINES 117-122
+
+.. code-block:: default
+
+    df_geom_pv = tow.geom_features.copy()
+
+    cross_section, plane = tow.normal_cross_section(algorithm="kriging")
+    df_geom_krig = tow.geom_features
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 123-131
+
+Geometry features
+-----------------
+as shwon above, the tow geometry features can be updated after the normal cross-sections
+are identified using both method. However, the accuracy are different. The pyvista method
+is faster but less accurate. In the kriging method, we transform the identified cross-sections
+to a 2d plane. The geometry features are then calculated based on the 2d coordinates. Thus, the
+geometry features are more accurate than the pyvista method. However, this also makes the
+kriging method less efficient. The kriging method is recommended for wavy tows, such as binder.
+
 
 .. rst-class:: sphx-glr-timing
 
@@ -136,6 +251,8 @@ parametric representation based on dual kriging.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

@@ -13,3 +13,5 @@ from .bw_opt import *
 
 from . import kde
 from .kde import *
+
+from .correlation import *

@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step1_GeometricAnalysis &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>Step 1: GeometricAnalysis &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Test" href="..Step3_CenterlineSmoothing.html" />
-    <link rel="prev" title="Voxelization of surface mesh" href="voxelization.html" /> 
+    <link rel="next" title="Voxelization of surface mesh" href="voxelization.html" />
+    <link rel="prev" title="Parametric kriging of surface" href="parametric_surface.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,21 +40,35 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#fabric-geometry-modeling-and-meshing">Fabric Geometry modeling and meshing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#using-as-a-library-of-kriging-for-interpolations">Using as a library of Kriging for interpolations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html#using-as-a-library">Using as a library</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 1: GeometricAnalysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="voxelization.html">Voxelization of surface mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backround_mesh_labelling_and%20_intersection_detection.html">Mesh labelling and intersection detection</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -71,9 +85,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../examples.html">Examples</a> &raquo;</li>
-      <li>Step1_GeometricAnalysis</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">Step 1: GeometricAnalysis</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/Step1_GeometricAnalysis.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,8 +102,8 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-source-test-step1-geometricanalysis-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="step1-geometricanalysis">
-<span id="sphx-glr-source-test-step1-geometricanalysis-py"></span><h1>Step1_GeometricAnalysis<a class="headerlink" href="#step1-geometricanalysis" title="Permalink to this heading"></a></h1>
+<section class="sphx-glr-example-title" id="step-1-geometricanalysis">
+<span id="sphx-glr-source-test-step1-geometricanalysis-py"></span><h1>Step 1: GeometricAnalysis<a class="headerlink" href="#step-1-geometricanalysis" title="Permalink to this heading"></a></h1>
 <p>Input: pcd
 Output: .geo and .coo files</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -198,8 +212,8 @@ Output: .geo and .coo files</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="voxelization.html" class="btn btn-neutral float-left" title="Voxelization of surface mesh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="..Step3_CenterlineSmoothing.html" class="btn btn-neutral float-right" title="Test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="parametric_surface.html" class="btn btn-neutral float-left" title="Parametric kriging of surface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="voxelization.html" class="btn btn-neutral float-right" title="Voxelization of surface mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

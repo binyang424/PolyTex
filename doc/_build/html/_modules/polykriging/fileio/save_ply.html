@@ -99,7 +99,12 @@
 <span class="sd">    point_data : dict, optional</span>
 <span class="sd">        The point data of the mesh. The default is {}.</span>
 <span class="sd">    cell_data : dict, optional</span>
-<span class="sd">        The cell data of the mesh. The default is {}.</span>
+<span class="sd">        The cell data of the mesh. The default is {}. Note that the cell data should be added as a</span>
+<span class="sd">        list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh</span>
+<span class="sd">        has 2 triangles and 1 quad, namely,</span>
+<span class="sd">          cells = [(&quot;triangle&quot;, [0, 1, 2], [1,2,3]), (&quot;quad&quot;, [3, 4, 5, 6])],</span>
+<span class="sd">        then the cell data should be added as</span>
+<span class="sd">          cell_data = {&quot;data&quot;: [[1, 2], [3]}.</span>
 <span class="sd">    binary : bool, optional</span>
 <span class="sd">        If True, the data is written in binary format. The default is False.</span>
 
@@ -114,7 +119,7 @@
 <span class="sd">    &gt;&gt;&gt; vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])</span>
 <span class="sd">    &gt;&gt;&gt; cells = [(&quot;triangle&quot;, [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]</span>
 <span class="sd">    &gt;&gt;&gt; point_data = {&quot;a&quot;: np.array([0, 1, 2, 3])}</span>
-<span class="sd">    &gt;&gt;&gt; cell_data = {&quot;b&quot;: np.array([0, 1, 2, 3])}</span>
+<span class="sd">    &gt;&gt;&gt; cell_data = {&quot;b&quot;: np.array([[0, 1, 2, 3],])}</span>
 <span class="sd">    &gt;&gt;&gt; pk.save_ply(&quot;test.ply&quot;, vertices, cells, point_data, cell_data)</span>
 <span class="sd">    &gt;&gt;&gt; print(&quot;Done&quot;)</span>
 <span class="sd">    Done</span>

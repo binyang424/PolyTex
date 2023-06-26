@@ -84,6 +84,7 @@
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
 <span class="kn">from</span> <span class="nn">.basic</span> <span class="kn">import</span> <span class="n">Vector</span>
 
+
 <div class="viewcode-block" id="rx"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.rx">[docs]</a><span class="k">def</span> <span class="nf">rx</span><span class="p">(</span><span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Single axis frame rotation about the X-axis.</span>
@@ -165,49 +166,77 @@
 <span class="c1"># How to Transform a Reference Frame in Python Using NumPy | by Andrew Joseph Davies</span>
 <span class="c1"># https://python.plainenglish.io/reference-frame-transformations-in-python-with-numpy-and-matplotlib-6adeb901e0b0</span>
 
-<div class="viewcode-block" id="q11"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q11">[docs]</a><span class="k">def</span> <span class="nf">q11</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q11</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q12"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q12">[docs]</a><span class="k">def</span> <span class="nf">q12</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q12</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q13"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q13">[docs]</a><span class="k">def</span> <span class="nf">q13</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q13</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q21"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q21">[docs]</a><span class="k">def</span> <span class="nf">q21</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q21</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q22"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q22">[docs]</a><span class="k">def</span> <span class="nf">q22</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q22</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q23"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q23">[docs]</a><span class="k">def</span> <span class="nf">q23</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q23</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q31"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q31">[docs]</a><span class="k">def</span> <span class="nf">q31</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q31</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q32"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q32">[docs]</a><span class="k">def</span> <span class="nf">q32</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q32</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="q33"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.q33">[docs]</a><span class="k">def</span> <span class="nf">q33</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">__q33</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="e123_dcm"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.e123_dcm">[docs]</a><span class="k">def</span> <span class="nf">e123_dcm</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
+<div class="viewcode-block" id="e123_dcm"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.e123_dcm">[docs]</a><span class="k">def</span> <span class="nf">e123_dcm</span><span class="p">(</span><span class="n">psi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function chaining the rotation matrices for the Euler 123 sequence.</span>
+<span class="sd">    This function chaining the rotation matrices for the Euler 123 sequence. The</span>
+<span class="sd">    rotation matrix is defined as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        R = R_3(psi) R_2(theta) R_1(phi)</span>
+
+<span class="sd">    where :math:`R_1` is the rotation matrix about the x-axis, :math:`R_2` is the</span>
+<span class="sd">    rotation matrix about the y-axis, and :math:`R_3` is the rotation matrix about</span>
+<span class="sd">    the z-axis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    psi : float</span>
+<span class="sd">        The rotation angle about the z-axis in radians.</span>
+<span class="sd">    theta : float</span>
+<span class="sd">        The rotation angle about the y-axis in radians.</span>
+<span class="sd">    phi : float</span>
+<span class="sd">        The rotation angle about the x-axis in radians.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dcm : numpy.ndarray</span>
+<span class="sd">        The direction cosine matrix for the Euler 123 sequence.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import polykriging.geometry.transform as tf</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">q11</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">q12</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">q13</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="n">q21</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">q22</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">q23</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="n">q31</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">q32</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">q33</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)]])</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">__q11</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">__q12</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">__q13</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="n">__q21</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">__q22</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">__q23</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="n">__q31</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">__q32</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span> <span class="n">__q33</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)]])</span></div>
+
 
 <span class="c1"># Above code is from:</span>
 <span class="c1"># How to Transform a Reference Frame in Python Using NumPy | by Andrew Joseph Davies</span>
@@ -215,12 +244,20 @@
 <span class="c1"># ====================================================</span>
 
 
-<div class="viewcode-block" id="euler_z_noraml"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.euler_z_noraml">[docs]</a><span class="k">def</span> <span class="nf">euler_z_noraml</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+<div class="viewcode-block" id="euler_z_noraml"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.euler_z_noraml">[docs]</a><span class="k">def</span> <span class="nf">euler_z_noraml</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function returns the euler angles (phi, theta, psi) for</span>
 <span class="sd">    rotating the global coordinate system to align its z-axis with</span>
 <span class="sd">    a normal vector from the origin to a point (namely, no translation</span>
 <span class="sd">    is considered).</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    No translation is considered. The origin of the global coordinate</span>
+<span class="sd">    system is assumed to be the origin of the local coordinate system.</span>
+<span class="sd">    The user should translate the local coordinate system to the origin</span>
+<span class="sd">    before calling this function and then re-translate the local</span>
+<span class="sd">    coordinate system to the desired location.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -233,6 +270,8 @@
 <span class="sd">        The euler angles (psi, theta, phi), where psi is the rotation</span>
 <span class="sd">        angle about the z-axis, theta is the rotation angle about the</span>
 <span class="sd">        y-axis, and phi is the rotation angle about the x-axis in radians.</span>
+<span class="sd">        Note that the rotation should be performed in the order of e123</span>
+<span class="sd">        by pre-multiplying the rotation matrices.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -267,6 +306,56 @@
     <span class="n">theta</span> <span class="o">=</span> <span class="n">normal</span><span class="o">.</span><span class="n">angle_between</span><span class="p">(</span><span class="n">normal_proj</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
     <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="euler_zx_coordinate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.transform.euler_zx_coordinate">[docs]</a><span class="k">def</span> <span class="nf">euler_zx_coordinate</span><span class="p">(</span><span class="n">z_new</span><span class="p">,</span> <span class="n">x_new</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns the euler angles (phi, theta, psi) for</span>
+<span class="sd">    rotating the global coordinate system to align its z-axis with</span>
+<span class="sd">    the z_new vector and its x-axis with the x_new vector.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    No translation is considered. The origin of the global coordinate</span>
+<span class="sd">    system is assumed to be the origin of the local coordinate system.</span>
+<span class="sd">    The user should translate the local coordinate system to the origin</span>
+<span class="sd">    before calling this function and then re-translate the local</span>
+<span class="sd">    coordinate system to the desired location.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    z_new : list or array</span>
+<span class="sd">        The coordinate of the new z-axis in the original coordinate system.</span>
+<span class="sd">    x_new : list or array</span>
+<span class="sd">        The coordinate of the new x-axis in the original coordinate system.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    euler_angles : list</span>
+<span class="sd">        The euler angles (psi, theta, phi), where psi is the rotation</span>
+<span class="sd">        angle about the z-axis, theta is the rotation angle about the</span>
+<span class="sd">        y-axis, and phi is the rotation angle about the x-axis in radians.</span>
+<span class="sd">        Note that the rotation should be done in e123 sequence by pre-multiplying</span>
+<span class="sd">        the rotation matrices.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import polykriging.geometry.transform as tf</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_basis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">euler_z_noraml</span><span class="p">(</span><span class="n">z_new</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e123_dcm</span><span class="p">(</span><span class="o">*</span><span class="n">angles</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x_new</span><span class="p">,</span> <span class="n">z_new</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Check the result</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result checking shows the z-axis is not aligned with the normal vector.&quot;</span><span class="p">)</span>
+
+    <span class="n">x_temp</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">x_basis</span><span class="o">.</span><span class="n">angle_between</span><span class="p">(</span><span class="n">x_temp</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="n">psi</span><span class="p">,</span> <span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">angles</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

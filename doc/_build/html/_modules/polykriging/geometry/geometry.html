@@ -84,6 +84,7 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">basic</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
 
 
@@ -335,6 +336,67 @@
     <span class="n">df_coord</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">coordinatesSorted</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_coord</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">df_geom</span><span class="p">,</span> <span class="n">df_coord</span></div>
+
+
+<div class="viewcode-block" id="area_signed"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.geometry.area_signed">[docs]</a><span class="k">def</span> <span class="nf">area_signed</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the signed area of a simple polygon given the 2D coordinates of its veritces.</span>
+
+<span class="sd">    Note: This function is modified from open source Python library scikit-spatial:</span>
+<span class="sd">      skspatial.measurement — scikit-spatial documentation</span>
+<span class="sd">      https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed)</span>
+
+<span class="sd">    The signed area is computed using the shoelace algorithm. A positive area is</span>
+<span class="sd">    returned for a polygon whose vertices are given by a counter-clockwise</span>
+<span class="sd">    sequence of points.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    points : array_like</span>
+<span class="sd">         Input 2D points of the polygon in the shape (n, 2). If the polygon is</span>
+<span class="sd">         3D, An error is raised. Note that the points have to be ordered in a</span>
+<span class="sd">         clockwise or counter-clockwise manner. Otherwise, the area will be</span>
+<span class="sd">         non-sense.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    area_signed : float</span>
+<span class="sd">        The signed area of the polygon.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the points are not 2D.</span>
+<span class="sd">        If there are fewer than three points.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import area_signed</span>
+
+<span class="sd">    &gt;&gt;&gt; area_signed([[0, 0], [1, 0], [0, 1]])</span>
+<span class="sd">    0.5</span>
+
+<span class="sd">    &gt;&gt;&gt; area_signed([[0, 0], [0, 1], [1, 0]])</span>
+<span class="sd">    -0.5</span>
+
+<span class="sd">    &gt;&gt;&gt; area_signed([[0, 0], [0, 1], [1, 2], [2, 1], [2, 0]])</span>
+<span class="sd">    -3.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The points must be 2D.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;There must be at least 3 points.&quot;</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_points</span><span class="p">)</span>
+    <span class="n">indices_offset</span> <span class="o">=</span> <span class="n">indices</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">indices_offset</span><span class="p">]</span> <span class="o">*</span> <span class="n">Y</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">*</span> <span class="n">Y</span><span class="p">[</span><span class="n">indices_offset</span><span class="p">])</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

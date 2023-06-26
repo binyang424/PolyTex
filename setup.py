@@ -7,8 +7,8 @@ setup(
     url='https://github.com/shuds13/polykriging',
     author='Bin Yang',
     author_email='bin.yang@polymtl.ca',
-    license='BSD 2-clause',
-    packages=['polykriging', 'polykriging.fileio', 'polykriging.geometry',
+    license='GPL',
+    packages=['polykriging', 'polykriging.geometry',
               'polykriging.kriging', 'polykriging.mesh', 'polykriging.plot',
               'polykriging.stats', 'polykriging.thirdparty', ],
     install_requires=['numpy>=0.5',
@@ -19,6 +19,8 @@ setup(
                       'SciencePlots', 
                       'opencv-python',
                       'pyvista',
+                      'meshio',
+                      'scikit-learn',
                       ],
 
     classifiers=[

@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tubular mesh &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>Tubular mesh with functions in polykriging.mesh &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Step 2： Convert .coo file to .ply for point cloud visualization" href="Step2_coo_to_ply.html" />
-    <link rel="prev" title="File input and output" href="pk_io.html" /> 
+    <link rel="next" title="2D curve kriging with confidence" href="curve2D_interp_with_confidence.html" />
+    <link rel="prev" title="Extract surface mesh from image sequence" href="mesh_from_image.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +40,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,9 +75,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../examples.html">Examples</a> &raquo;</li>
-      <li>Tubular mesh</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">Tubular mesh with functions in polykriging.mesh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/tubular_structure_mesh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,31 +89,56 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-source-test-tubular-structure-mesh-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-source-test-tubular-structure-mesh-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="tubular-mesh">
-<span id="sphx-glr-source-test-tubular-structure-mesh-py"></span><h1>Tubular mesh<a class="headerlink" href="#tubular-mesh" title="Permalink to this heading"></a></h1>
-<p>Test</p>
+<section class="sphx-glr-example-title" id="tubular-mesh-with-functions-in-polykriging-mesh">
+<span id="sphx-glr-source-test-tubular-structure-mesh-py"></span><h1>Tubular mesh with functions in polykriging.mesh<a class="headerlink" href="#tubular-mesh-with-functions-in-polykriging-mesh" title="Permalink to this heading"></a></h1>
+<p>The fiber tow surface can be regarded as a tubular structure. Thus, it is
+important to construct a tubular mesh for further analysis.</p>
+<p>This example shows how to create a tubular mesh with constant cross-section. The
+cross-section is defined by a set of ellipse points. The parameters of the
+ellipse are the major and minor axis, and the number of points on the ellipse.</p>
+<p>Note that we already implemented a primitive geometry generator in
+polykriging.geometry.Tube class. It is recommended to use that class to
+generate tubular mesh. This example is only for demonstration purpose.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polykriging.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
 <span class="kn">import</span> <span class="nn">meshio</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">theta_res</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">h_res</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="n">points</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">structured_cylinder_vertices</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+</pre></div>
+</div>
+<section id="generate-the-tubular-mesh-vertices">
+<h2>Generate the tubular mesh vertices<a class="headerlink" href="#generate-the-tubular-mesh-vertices" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">structured_cylinder_vertices</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
                                          <span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">)</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="p">,</span>
-                                 <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
-
-<span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">to_meshio_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-
-<span class="n">meshio</span><span class="o">.</span><span class="n">write_points_cells</span><span class="p">(</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-the-tubular-mesh-cells">
+<h2>Generate the tubular mesh cells<a class="headerlink" href="#generate-the-tubular-mesh-cells" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+                                 <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
+                                 <span class="n">vertices</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="extract-information-from-the-mesh-object">
+<h2>Extract information from the mesh object<a class="headerlink" href="#extract-information-from-the-mesh-object" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">to_meshio_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span>
+                                                         <span class="n">theta_res</span><span class="p">,</span>
+                                                         <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="write-the-mesh-to-a-file-with-meshio">
+<h2>Write the mesh to a file with meshio<a class="headerlink" href="#write-the-mesh-to-a-file-with-meshio" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meshio</span><span class="o">.</span><span class="n">write_points_cells</span><span class="p">(</span>
     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;cylinder.ply&quot;</span><span class="p">,</span>
     <span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
     <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span>
@@ -127,13 +156,14 @@ to download the full example code</p>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pk_io.html" class="btn btn-neutral float-left" title="File input and output" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Step2_coo_to_ply.html" class="btn btn-neutral float-right" title="Step 2： Convert .coo file to .ply for point cloud visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mesh_from_image.html" class="btn btn-neutral float-left" title="Extract surface mesh from image sequence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curve2D_interp_with_confidence.html" class="btn btn-neutral float-right" title="2D curve kriging with confidence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

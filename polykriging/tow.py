@@ -1,13 +1,15 @@
-from .fileio import pk_save, pk_load, save_ply
-from .fileio import save as save_tow
+from .io import pk_save, pk_load, save_ply
+from .io import save as save_tow
 
-from .geometry import geom_tow, Curve, Polygon, Tube, ParamCurve
+from .geometry import geom_tow, Curve, Polygon, Plane, Tube, ParamCurve, area_signed
+from .geometry import transform as tf
 from .kriging import curve2Dinter, surface3Dinterp
 from .mesh import get_cells
 from .stats import kdeScreen, bw_scott
 import numpy as np
 import os
 import pyvista as pv
+import pandas as pd
 
 
 # pv.set_plot_theme("document")
@@ -20,29 +22,59 @@ class Tow:
 
     Attributes
     ----------
+    name : str
+        The name or type of the tow. Default is "Tow". It can be any string that helps
+        users to identify the tow. (initialized in Tow.__init__)
+    tex : float
+        The linear density of the tow in tex. Default is 0. (initialized in Tow.__init__)
+    order : str
+        It is preferred to set the last column of the surf_points as the coordinate in
+        the direction that is perpendicular to the image slices for geometry analysis,
+        parametrization and kriging resampling. Hence, you may have reordered the columns.
+        Here, you can specify the order of the columns in the reordered points. Default is "xyz".
+        The other options are "xzy", "yxz", "yzx", "zxy", "zyx". The output coordinate will
+        be reordered in the right order (xyz) according to the order specified here.
+        (initialized in Tow.__init__)
+    resolution : float
+        The resolution of the MicroCT image used to generate the tow dataset. Default is None.
+        This is only stored as an attribute for future use. It is not used in the current version.
+        (initialized in Tow.__init__)
+    surf_points : ndarray
+        The surface points of the tow. It stores the coordinates of the points input by the user.
+        (initialized in Tow.__init__)
     geom_features : dataframe
         The geometry features of each cross-section of the tow. The features include
         the 'Area', 'Perimeter', 'Width', 'Height', 'AngleRotated', 'Circularity',
-       'centroidX', 'centroidY', and 'centroidZ'.
+       'centroidX', 'centroidY', and 'centroidZ'. (initialized in Tow.__init__)
     coordinates : dataframe
         The parametrilized coordinates of the tow. It includes the geodesic 'distance'
         and the normalized distance 'norm_distance' from the start point of the parametric
         plane to the current point, the 'angular position (degree)', and the corresponding
-        'X', 'Y', and 'Z' coordinates.
+        'X', 'Y', and 'Z' coordinates. (initialized in Tow.__init__)
+    theta_res : float
+        The number of points to describe the profile of a tow cross-section in the radial
+        direction. (initialized in Tow.resampling)
+    h_res : float
+        The number of cross-sections to describe the profile of a tow in the axial
+        direction. (initialized in Tow.resampling)
+    orientation : ndarray
+        The orientation of the tow calculated from the tangent of centerline of the tow.
+        (initialized in Tow.trajectory)
 
     Examples
     --------
     >>> import polykriging as pk
     >>> import numpy as np
     >>>
-    >>> surf_points = pk.pk_load("./216_302_binder_1.pcd").to_numpy()
+    >>> path = pk.example("surface points")
+    >>> surf_points = pk.pk_load(path).to_numpy()
     >>> coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm
     >>> tow = pk.Tow(surf_points=coordinates, tex=0, name="Tow") # PolyKriging Tow class
     >>> df_coord = tow.coordinates  # parametric coordinates of the tow
     >>> df_geom = tow.geom_features  # geometrical features of the tow
     >>>
     >>> sample_position = np.linspace(0, 1, 20, endpoint=True)
-    >>> pts_krig, expr_krig = tow.krig_cs(krig_config=("lin", "cub"),
+    >>> pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
                                           skip=10, sample_position=sample_position,
                                           smooth=0.0001)
     >>> mesh = tow.surf_mesh(order="zyx", plot=True)
@@ -104,7 +136,19 @@ class Tow:
                 raise ValueError("surf_points must be a point cloud data file (.pcd),"
                                  "a numpy array, or an pandas dataframe with xyz coordinates"
                                  "in the shape of (n,3).")
-        self.geom_features, self.coordinates = geom_tow(self.surf_points, sort=sort)
+
+        # self.__geom_features and self.__coordinates are private attributes used for data transfer
+        # between the functions in the class. They are not supposed to be accessed by the user.
+        # The user should use the public attributes self.geom_features and self.coordinates
+        # to access the data.
+        self.__geom_features, self.__coordinates = geom_tow(self.surf_points, sort=sort)
+
+        self.geom_features = pd.DataFrame(self.__geom_features.to_numpy()[:,
+                                          np.hstack(([0, 1, 2, 3, 4, 5], self.__column_order__+6))],
+                                          columns=self.__geom_features.keys())
+        self.coordinates = pd.DataFrame(self.__coordinates.to_numpy()[:,
+                                        np.hstack(([0, 1, 2], self.__column_order__+3))],
+                                        columns=self.__coordinates.keys())
 
     def __str__(self):
         return self.name
@@ -113,7 +157,7 @@ class Tow:
         tow_info = "Tow: " + self.name + "; \n" + \
                    "Linear density: " + str(self.tex) + "; \n" + \
                    "Number of points: " + str(self.surf_points.shape[0]) + "; \n" + \
-                   "Number of cross-sections: " + str(self.geom_features.shape[0])
+                   "Number of cross-sections: " + str(self.__geom_features.shape[0])
         return tow_info
 
     @property
@@ -127,32 +171,85 @@ class Tow:
         inv_order = np.argsort(order_list)
         return inv_order
 
-    def krig_cs(self, krig_config=("lin", "cub"), skip=5, sample_position=[], smooth=0):
+    def kde(self, bw=None, save_path=None):
         """
-        Kriging the cross-sections of the tow to oobtain the parametric equations
+        Generate the kernel density estimation of the radial normalized distance for point cloud
+        decomposition.
+
+        Parameters
+        ----------
+        bw : float, optional
+            The bandwidth of the kernel density estimation. Default is None and the bandwidth
+            will be estimated using the Scott's rule of thumb (one-fifth of the estimated value).
+        save_path : str, optional
+            The path to save the kernel density estimation. Default is None. If None, the
+            kernel density estimation will not be saved. The file format is .stat and can be
+            loaded by the function `polykriging.pk_load`.
+
+        Returns
+        -------
+        clusters : dict
+
+        """
+        t_norm = self.__coordinates["normalized distance"]
+
+        if bw is None:
+            """ Initial bandwidth estimation by Scott's rule """
+            std = np.std(t_norm)
+            bw = bw_scott(std, t_norm.size) / 5
+
+        print("Initial bandwidth: {}".format(bw))
+
+        """  Kernel density estimation   """
+        t_test = np.linspace(0, 1, 1000)
+        clusters = kdeScreen(t_norm, t_test, bw, plot=False)
+        print("Number of clusters: {}".format(len(clusters['cluster centers'])))
+
+        clusters["cluster centers"] = t_test[clusters["cluster centers"]]
+        clusters["cluster boundary"] = t_test[clusters["cluster boundary"]]
+
+        self.clusters = clusters
+
+        if save_path is not None:
+            save_path = save_path + ".stat" if not save_path.endswith(".stat") else save_path
+            pk_save(save_path, clusters)
+
+        return clusters
+
+    def mw_kde(self):
+        pass
+
+    def resampling(self, krig_config=("lin", "cub"), skip=5, sample_position=[], smooth=0, type="distance"):
+        """
+        Kriging the cross-sections of the tow to obtain the parametric equations
         for each cross-section (which is a closed curve).
 
         Parameters
         ----------
         krig_config : tuple, optional
             The kriging configuration. The first element is the kriging model for
-            the drift term and the second is the name of covariance function. Default
-            is ("lin", "cub").
+            the drift and the second is the name of covariance. Default is ("lin", "cub").
         skip : int, optional
-            The number of cross-sections to skip when kriging to accelerate the
-            interpolation. Default is 5. If skip is 1, all the cross-sections will
-            be kriged.
+            The number of cross-sections to be skipped for resampling to accelerate the
+            operation. Default is 5. Namely, 1 of every 5 cross-sections will be resampled.
+            If skip is 1, all the cross-sections will be kriged.
         sample_position : array_like, optional
             The resampling positions of each cross-sections specified by the normalized
             distance in radial direction of each cross-section. Default is [].
         smooth : float, optional
             The smoothing parameter for the kriging resampling. Default is 0. Also known
             as the nugget effect in geo-statistics and kriging theory.
+        type : str, optional
+            The type of the kriging resampling. Default is "distance". The other option
+            is "angular". If "distance", the resampling positions are specified by the
+            normalized distance (between 0 and 1) in radial direction of each cross-section.
+            If "angular", the resampling positions are specified by angular position (between
+            0 and 360) of control points in radial direction of each cross-section.
 
         Returns
         -------
         _Tow__kriged_vertices : ndarray
-            The kriged points for eacg cross-section of the tow. It is an array of shape
+            The kriged points for each cross-section of the tow. It is an array of shape
             (n, 3) where n is the number of points. The kriged points is obtained according
             to the kriging configuration and the resampling positions. If the resampling
             positions are not specified, the kriged points are obtained by evenly sampling
@@ -161,9 +258,9 @@ class Tow:
         expr : dict
             The kriging expression for each cross-section. It contains two sub-dictionaries that
              use the cross-section number as the key and the kriging expression as the value for
-             the components in y and z directions. (x is the normalized distance in radial direction).
+             the first two components of user input.
         """
-        slices = np.unique(self.coordinates["Z"])[::skip]
+        slices = np.unique(self.__coordinates["Z"])[::skip]
         n_slices = len(slices)
         dict_cs_x = {}
         dict_cs_y = {}
@@ -172,6 +269,8 @@ class Tow:
         else:
             interp = sample_position
 
+        self.__sample_position = interp
+
         self.theta_res = len(interp)
         self.h_res = n_slices
 
@@ -179,15 +278,18 @@ class Tow:
         print("Kriging cross-sections... \n"
               "It may take a while depending on the number of cross-sections.")
 
-        for i in range(n_slices):
-            drift, cov = krig_config
-            try:
-                mask = self.coordinates["Z"] == slices[i]
-                pts_cs = self.coordinates[mask]
+        drift, cov = krig_config
+        params = {"distance": 1, "angular": 2}
 
-                x_inter, x_expr = curve2Dinter(pts_cs.iloc[:, [1, 3]].to_numpy(),
+        for i in range(n_slices):
+
+            try:
+                mask = self.__coordinates["Z"] == slices[i]
+                pts_cs = self.__coordinates[mask]
+
+                x_inter, x_expr = curve2Dinter(pts_cs.iloc[:, [params[type], 3]].to_numpy(),
                                                drift, cov, nuggetEffect=smooth, interp=interp)
-                y_inter, y_expr = curve2Dinter(pts_cs.iloc[:, [1, 4]].to_numpy(),
+                y_inter, y_expr = curve2Dinter(pts_cs.iloc[:, [params[type], 4]].to_numpy(),
                                                drift, cov, nuggetEffect=smooth, interp=interp)
                 z_ = np.full(len(interp), slices[i])
 
@@ -209,7 +311,10 @@ class Tow:
         print("Kriging on cross-sections is finished.")
 
         self.__kriged_vertices = pts_krig  # the columns are in the same order as the input data (surf_points)
+
         inv_order = self.__column_order__
+        self.resampled = pts_krig[:, inv_order]
+
         return pts_krig[:, inv_order], expr
 
     def surf_mesh(self, plot=False, save_path=None, end_closed=False):
@@ -231,7 +336,7 @@ class Tow:
         # if self._Tow__kriged_vertices is not defined, raise error
         if not hasattr(self, "_Tow__kriged_vertices"):
             raise AttributeError("The kriged cross-sections are not defined. Please generate the "
-                                 "kriged cross-section points using Tow.krig_cs() first.")
+                                 "kriged cross-section points using Tow.resampling() first.")
 
         inv_order = self.__column_order__
 
@@ -242,6 +347,8 @@ class Tow:
 
         tube = Tube(theta_res, h_res, vertices=pts)
         mesh = tube.mesh(plot=plot)
+
+        self.__surf_mesh = mesh
 
         if save_path is not None:
             mesh = tube.save_as_mesh(save_path, end_closed=end_closed)
@@ -273,7 +380,7 @@ class Tow:
         traj : np.ndarray
             The trajectory of the tow in the form of (n, 3) where n is the number of points.
         """
-        dataset = self.geom_features.iloc[:, [-3, -2, -1]].to_numpy()
+        dataset = self.__geom_features.iloc[:, [-3, -2, -1]].to_numpy()
         dataset = dataset[:, [-1, -3, -2]]
 
         # normalize the first column of dataset
@@ -413,11 +520,15 @@ class Tow:
 
         labels = [self.order[0], self.order[1], self.order[2]]
 
+        # check if self._Tow__kriged_vertices exists
+        if not hasattr(self, "_Tow__kriged_vertices"):
+            _, _ = self.resampling()
+
         col_0 = self._Tow__kriged_vertices[:, 0]
         col_1 = self._Tow__kriged_vertices[:, 1]
         col_2 = self._Tow__kriged_vertices[:, 2]
 
-        s = self.clusters['cluster centers']
+        s = self.__sample_position
         t = np.unique(col_2) / np.max(col_2)  # the input order
 
         theta_res = s.size
@@ -493,47 +604,6 @@ class Tow:
         if plot:
             tube.mesh(plot=True)
         return vertices
-
-    def kde(self, bw=None, save_path=None):
-        """
-        Generate the kernel density estimation of the radial normalized distance for point cloud
-        decomposition.
-
-        Parameters
-        ----------
-        bw : float, optional
-            The bandwidth of the kernel density estimation. Default is None and the bandwidth
-            will be estimated using the Scott's rule of thumb.
-
-        Returns
-        -------
-        clusters : dict
-
-        """
-        t_norm = self.coordinates["normalized distance"]
-
-        if bw is None:
-            """ Initial bandwidth estimation by Scott's rule """
-            std = np.std(t_norm)
-            bw = bw_scott(std, t_norm.size) / 5
-
-        print("Initial bandwidth: {}".format(bw))
-
-        """  Kernel density estimation   """
-        t_test = np.linspace(0, 1, 1000)
-        clusters = kdeScreen(t_norm, t_test, bw, plot=False)
-        print("Number of clusters: {}".format(len(clusters['cluster centers'])))
-
-        clusters["cluster centers"] = t_test[clusters["cluster centers"]]
-        clusters["cluster boundary"] = t_test[clusters["cluster boundary"]]
-
-        self.clusters = clusters
-
-        if save_path is not None:
-            save_path = save_path + ".stat" if not save_path.endswith(".stat") else save_path
-            pk_save(save_path, clusters)
-
-        return clusters
 
     def smooth_window(self, size, h_res, extend=2):
         """
@@ -623,7 +693,7 @@ class Tow:
         """
         # check if self._Tow__kriged_vertices exists
         if not hasattr(self, "_Tow__kriged_vertices"):
-            pts_krig, _ = self.krig_cs()
+            pts_krig, _ = self.resampling()
         else:
             pts_krig = self._Tow__kriged_vertices[:, self.__column_order__]
 
@@ -688,12 +758,12 @@ class Tow:
         if type == "resampled":
             # check if self._Tow__kriged_vertices exists
             if not hasattr(self, "_Tow__kriged_vertices"):
-                lines, _ = self.krig_cs()
+                lines, _ = self.resampling()
             else:
                 lines = self._Tow__kriged_vertices
 
         elif type == "original":
-            lines = self.coordinates.iloc[:, [-3, -2, -1]].values
+            lines = self.__coordinates.iloc[:, [-3, -2, -1]].values
 
         slices = np.unique(lines[:, -1])
 
@@ -738,7 +808,7 @@ class Tow:
         return poly
 
     def normal_cross_section(self, algorithm="kriging", save_path=None,
-                             plot=True, i_size=0.7, j_size=1, skip=10):
+                             plot=True, i_size=0.7, j_size=1, skip=10, max_dist=2):
         """
         Generate the normal cross section of the fiber tow surface.
 
@@ -770,6 +840,11 @@ class Tow:
             only the planes that are plotted are stored. If one wants to save all the planes,
             set skip=1.
         """
+        cross_section = pv.PolyData()
+        planes = pv.PolyData()
+
+        area, perimeter, width, height = [], [], [], []
+
         if algorithm == "pyvista":
             mesh = self.surf_mesh(plot=False, save_path=None)
 
@@ -784,15 +859,9 @@ class Tow:
             trajectory = self.__traj
             direction = self.orientation
 
-            cross_section = pv.PolyData()
-            planes = pv.PolyData()
             pl = pv.Plotter()
             _ = pl.add_mesh(s1, style='wireframe', color='black', opacity=0.2)
 
-            area = []
-            perimeter = []
-            width = []
-            height = []
             for i in np.arange(0, trajectory.shape[0]):
                 p = pv.Plane(center=trajectory[i],
                              direction=direction[i],
@@ -800,10 +869,18 @@ class Tow:
                 p.point_data.clear()
 
                 clipped = p.clip_surface(s1, invert=False)
+                # Sometimes there are small pieces of mesh left after clipping, depending on
+                # the shape of the tow. This is to remove those small pieces. This usually
+                # happens at the beginning and end of the tow and can be generally ignored.
+                clipped = clipped.connectivity(largest=True)
 
                 # sort the points on the boundary of clipped mesh
-                edges = clipped.extract_feature_edges(30)
+                edges = clipped.extract_feature_edges(feature_angle=30,
+                                                      boundary_edges=True,
+                                                      manifold_edges=False)
                 edge = np.array(get_cells(edges))
+                # remove edges with zero length
+                edge = edge[edge[:,1] != edge[:,2]]
 
                 edge_reorder = edge[0, :]
 
@@ -840,23 +917,99 @@ class Tow:
                     _ = pl.add_mesh(p, style='surface', opacity=0.5)
                     _ = pl.add_mesh(clipped, color='r', line_width=10)
 
-            if plot:
-                _ = pl.show()
+        elif algorithm == "kriging":
 
-            if save_path is not None:
-                path, filename = os.path.split(save_path)
-                if not os.path.exists(path):
-                    os.makedirs(path)
-                elif not save_path.endswith(".vtk"):
-                    save_path += ".vtk"
+            axial = self.axial
+            orientation = self.orientation
+            trajectory = self.__traj
 
-                cross_section.save(save_path)
+            intersect = np.full([orientation.shape[0] * len(axial.keys()), 4], -1., dtype=np.float32)
 
-            # update the geometry information
-            self.geom_features["Area"] = area
-            self.geom_features["Perimeter"] = perimeter
-            self.geom_features["Width"] = width
-            self.geom_features["Height"] = height
+            n_pts = 0
 
-            # TODO : The returned object clipped will be removed in the future. It is used for debugging.
-            return cross_section, planes, clipped
+            pl = pv.Plotter()
+            _ = pl.add_mesh(self.__surf_mesh, style='wireframe', color='black', opacity=0.2)
+
+            for j in np.arange(orientation.shape[0]):
+                plane = Plane(p1=trajectory[j], normal_vector=orientation[j])
+                points_boundary = []
+                for i in axial.keys():
+                    line = axial[i]
+                    n_pts += 1
+                    # Plane.intersection() returns none when no intersection is found.
+                    pts_intersect = plane.intersection(line, max_dist=max_dist)
+                    if pts_intersect is not None:
+                        intersect[n_pts - 1, 0] = j
+                        intersect[n_pts - 1, 1:] = pts_intersect
+                        points_boundary.append(pts_intersect[0, :])
+
+                #####################################################################
+                # Rotate the points to the x-y plane for geometry analysis
+                # --------------------------------------------------------
+                print(len(points_boundary))
+                if points_boundary == []:
+                    area.append(0)
+                    height.append(0)
+                    width.append(0)
+                    perimeter.append(0)
+                    continue
+
+                points_boundary_local = points_boundary - trajectory[j]
+
+                x_new = points_boundary_local[np.argmax(np.linalg.norm(points_boundary_local, axis=1))]
+
+                angles = tf.euler_zx_coordinate(orientation[j], x_new)
+                dcm = tf.e123_dcm(*angles)
+                points_boundary_rotated = np.dot(dcm, points_boundary_local.T).T
+
+                area.append(abs(area_signed(points_boundary_rotated[:, :2])))
+                polygon = Polygon(points_boundary_rotated[:, :2])
+
+                h, wid = np.sort(np.diff(polygon.bounds, axis=0)).flatten()
+                height.append(h)
+                width.append(wid)
+
+                perimeter.append(polygon.perimeter)
+
+                #####################################################################
+                # Visualizations
+                # --------------
+                # Cross-sections of the tow
+                if plot and j % skip == 0:
+                    p = pv.Plane(center=trajectory[j],
+                                 direction=orientation[j],
+                                 i_size=1, j_size=1).triangulate()
+                    p.point_data.clear()
+
+                    clipped = pv.PolyData(points_boundary).delaunay_2d()
+
+                    cross_section = cross_section.merge(clipped)
+                    planes = planes.merge(p)
+
+                    _ = pl.add_mesh(p, style='surface', opacity=0.5)
+                    _ = pl.add_mesh(clipped, color='r', line_width=10)
+
+        if plot:
+            _ = pl.show()
+
+        if save_path is not None:
+            path, filename = os.path.split(save_path)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            elif not save_path.endswith(".vtk"):
+                save_path += ".vtk"
+
+            cross_section.save(save_path)
+
+        # update the geometry information
+        self.__geom_features["Area"] = area
+        self.__geom_features["Perimeter"] = perimeter
+        self.__geom_features["Width"] = width
+        self.__geom_features["Height"] = height
+
+        self.geom_features["Area"] = area
+        self.geom_features["Perimeter"] = perimeter
+        self.geom_features["Width"] = width
+        self.geom_features["Height"] = height
+
+        return cross_section, planes

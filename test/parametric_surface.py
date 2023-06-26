@@ -1,6 +1,6 @@
 """
 Parametric kriging of surface
-===================
+=============================
 
 Test
 
@@ -41,9 +41,10 @@ if __name__ == '__main__':
     import time
 
     start = time.time()
+
     for i in range(1):
-        xinterp = interp(s, t, xexpr, split_complexity=10)
-        yinterp = interp(s, t, yexpr, split_complexity=10)
-        zinterp = interp(s, t, zexpr, split_complexity=10)
+        xinterp = interp(s, t, xexpr, split_complexity=0)
+        yinterp = interp(s, t, yexpr, split_complexity=0)
+        zinterp = interp(s, t, zexpr, split_complexity=0)
 
     print('time: ', time.time() - start)

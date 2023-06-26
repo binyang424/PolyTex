@@ -18,7 +18,7 @@
 .. _sphx_glr_source_test_Step1_GeometricAnalysis.py:
 
 
-Step1_GeometricAnalysis
+Step 1: GeometricAnalysis
 ==================
 
 Input: pcd

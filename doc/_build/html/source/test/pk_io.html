@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>File input and output &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,29 +10,29 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Tubular mesh" href="tubular_structure_mesh.html" />
-    <link rel="prev" title="3d_curve_krig" href="3d_curve_krig.html" /> 
+    <link rel="next" title="Tow class example" href="Tow_Class.html" />
+    <link rel="prev" title="Example dataset" href="example_dataset.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +40,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,9 +75,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../examples.html">Examples</a> &raquo;</li>
-      <li>File input and output</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">File input and output</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/pk_io.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,26 +89,58 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-source-test-pk-io-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-source-test-pk-io-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="file-input-and-output">
 <span id="sphx-glr-source-test-pk-io-py"></span><h1>File input and output<a class="headerlink" href="#file-input-and-output" title="Permalink to this heading"></a></h1>
-<p>Test</p>
+<p>All the functions related to file input and output were defined in
+<cite>polykriging.fileio</cite> module. These functions allow users to read
+and write files tailored for <cite>polykriging</cite>. The functions in this module
+can be directly called by <cite>polykriging.</cite> + <cite>function name</cite>. For example,
+to call the function choose_file, use <cite>polykriging.fileio.choose_file</cite>
+or simply <cite>polykriging.choose_file</cite>.</p>
+<p>For more information about these file formats, please refer to
+“<a class="reference external" href="https://www.binyang.fun/polykriging/">https://www.binyang.fun/polykriging/</a>”.</p>
+<ol class="arabic">
+<li><p>File selection
+In polykriging, two function were provided to facilitate file selection:</p>
+<blockquote>
+<div><p>1.1 polykriging.choose_file
+1.2 polykrigingchoose_directory</p>
+</div></blockquote>
+</li>
+<li><p>File reading and writing</p></li>
+</ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
-
-<span class="n">label_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="select-file-and-return-the-path">
+<h2>Select file and return the path<a class="headerlink" href="#select-file-and-return-the-path" title="Permalink to this heading"></a></h2>
+<p>The function <cite>polykriging.choose_file()</cite> allows users to select a file from
+a directory with a GUI. The function returns the path of the selected file.
+Users can also specify the file type and the title of the GUI window as below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s2">&quot;Directory for file CoordinatesSorted file (.coo)&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;.coo&quot;</span><span class="p">)</span>
+<span class="n">coordinatesSorted</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="traverse-and-return-a-list-of-filenames-in-the-directory">
+<h2>Traverse and return a list of filenames in the directory<a class="headerlink" href="#traverse-and-return-a-list-of-filenames-in-the-directory" title="Permalink to this heading"></a></h2>
+<p>The function <cite>polykriging.filenames()</cite> allows users to traverse a directory
+and return a list of filenames with a given extension.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">label_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
 <span class="n">label_col</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCD&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">label_row</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">label_col</span><span class="p">)</span>
 
 <span class="c1"># save</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">pk_save</span><span class="p">(</span><span class="s2">&quot;test.coo&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">pk</span><span class="o">.</span><span class="n">pk_save</span><span class="p">(</span><span class="s2">&quot;./test_data/test.coo&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># load</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="s2">&quot;test.coo&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="s2">&quot;./test_data/test.coo&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
@@ -118,13 +154,14 @@ to download the full example code</p>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="3d_curve_krig.html" class="btn btn-neutral float-left" title="3d_curve_krig" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tubular_structure_mesh.html" class="btn btn-neutral float-right" title="Tubular mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="example_dataset.html" class="btn btn-neutral float-left" title="Example dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Tow_Class.html" class="btn btn-neutral float-right" title="Tow class example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

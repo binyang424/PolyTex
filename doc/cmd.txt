@@ -7,6 +7,6 @@ make clean
 参考pyimagej的文档组织形式
 
 https://github.com/imagej/pyimagej/blob/master/doc/index.rst
-引用了md文档作为内容，再相同的目录下
+引用了md文档作为内容，在相同的目录下
 
 https://github.com/imagej/pyimagej/tree/master/doc

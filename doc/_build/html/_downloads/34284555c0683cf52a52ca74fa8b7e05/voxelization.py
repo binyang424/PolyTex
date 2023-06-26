@@ -8,7 +8,7 @@ Test
 
 import numpy as np
 import pyvista as pv
-from polykriging import features
+from polykriging.mesh import features
 
 # voxelize the mesh
 mesh = pv.read("./testdata/profile_0_weft.stl")
@@ -29,6 +29,7 @@ vox2 = ugrid.extract_cells(mask)
 # save mesh vox2
 vox2.plot(show_edges=True)
 vox2.save("./testdata/profile_0_weft_vox2.vtk")
+
 # vox3, _ = features.voxelize(mesh, density=density, density_type='cell_size', contained_cells=True)
 #
 # pv.global_theme.font.size = 10
@@ -67,16 +68,16 @@ vox2.save("./testdata/profile_0_weft_vox2.vtk")
 # 0.22: 19.166; 9.828; 3.003
 
 # voxel size and mesh volume and vox1, vox2, and vox3 volume, respectively.
-volumes = np.array([ [0.022, 11.638, 10.729, 9.750],
-            [0.044, 12.513, 10.726, 8.757],
-            [0.066, 13.635, 10.729, 8.038],
-            [0.088, 14.27, 10.655, 6.884],
-            [0.11, 15.248, 10.723, 6.173],
-            [0.132, 16.143, 10.897, 5.322],
-            [0.154, 16.684, 10.862, 4.313],
-            [0.176, 17.429, 10.947, 3.2],
-            [0.198, 19.15, 10.922, 3.454],
-            [0.22, 19.166, 9.828, 3.003] ])
+volumes = np.array([[0.022, 11.638, 10.729, 9.750],
+                    [0.044, 12.513, 10.726, 8.757],
+                    [0.066, 13.635, 10.729, 8.038],
+                    [0.088, 14.27, 10.655, 6.884],
+                    [0.11, 15.248, 10.723, 6.173],
+                    [0.132, 16.143, 10.897, 5.322],
+                    [0.154, 16.684, 10.862, 4.313],
+                    [0.176, 17.429, 10.947, 3.2],
+                    [0.198, 19.15, 10.922, 3.454],
+                    [0.22, 19.166, 9.828, 3.003]])
 
 import matplotlib.pyplot as plt
 
@@ -86,9 +87,9 @@ plt.rcParams.update({'font.size': 12, 'font.family': 'Times New Roman'})
 # plot a horizontal line at the volume of the mesh
 plt.plot([0.02, 0.22], [10.735, 10.735], 'k--')
 
-plt.plot(volumes[:,0], volumes[:,1], 'o-')
-plt.plot(volumes[:,0], volumes[:,2], 'x-')
-plt.plot(volumes[:,0], volumes[:,3], '*-')
+plt.plot(volumes[:, 0], volumes[:, 1], 'o-')
+plt.plot(volumes[:, 0], volumes[:, 2], 'x-')
+plt.plot(volumes[:, 0], volumes[:, 3], '*-')
 
 plt.legend(['Actual volume', 'Vertices based', 'Centroid based', 'Cell based'])
 plt.xlabel('Voxel size ($mm$)')

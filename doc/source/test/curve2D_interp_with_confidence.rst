@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_curve2D_interp_with_confidence.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_curve2D_interp_with_confidence.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,12 +18,20 @@
 .. _sphx_glr_source_test_curve2D_interp_with_confidence.py:
 
 
-Test
-=================
+2D curve kriging with confidence
+================================
 
-Test
+This example shows how to interpolate a 2D curve with confidence estimation.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-57
+.. math:: y = f(x)
+
+where :math:`f` is a 2D curve. The curve is defined by a set of points
+:math:`(x_i, y_i)`, where :math:`i = 1, 2, ..., n`.
+
+This kriging method is the basis for fiber tow trajectory smoothing and control
+point resampling of fiber tow surface implimented in polykriging.Tow class.
+
+.. GENERATED FROM PYTHON SOURCE LINES 15-36
 
 .. code-block:: default
 
@@ -48,12 +56,34 @@ Test
     name_drift, name_cov = 'lin', 'cub'
     nuggetEffect = 0
 
-    # # Matrice and vectors for dual Kriging formulation
-    # mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
-    #     curve2D.curveKrig1D(data_set, name_drift, name_cov, nuggetEffect=nuggetEffect)
 
-    # Kriging model and prediction with mean, Kriging expression
-    # and the corresponding standard deviation as output.
+.. GENERATED FROM PYTHON SOURCE LINES 37-42
+
+Matrice and vectors for dual Kriging formulation
+------------------------------------------------
+For most users, this part can be ignored. It is only for the purpose of
+understanding the formulation of dual Kriging. Kriging interpolation can be
+achieved by calling the function ``curve2D.curve2Dinter``
+
+.. GENERATED FROM PYTHON SOURCE LINES 42-45
+
+.. code-block:: default
+
+    mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
+        curve2D.curveKrig1D(data_set, name_drift, name_cov, nuggetEffect=nuggetEffect)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 46-50
+
+Kriging interpolation
+---------------------
+Kriging model and prediction with mean, Kriging expression
+and the corresponding standard deviation as output.
+
+.. GENERATED FROM PYTHON SOURCE LINES 50-70
+
+.. code-block:: default
+
     mean_prediction, expr, std_prediction = curve2D.curve2Dinter(
         data_set, name_drift, name_cov,
         nuggetEffect=nuggetEffect, interp=X, return_std=True)
@@ -66,6 +96,7 @@ Test
                      mean_prediction - 1.96 * std_prediction,
                      mean_prediction + 1.96 * std_prediction,
                      alpha=0.5, label=r"95% confidence interval")
+
     plt.legend()
     plt.xlabel("$x$")
     plt.ylabel("$f(x)$")
@@ -73,10 +104,26 @@ Test
 
     plt.show()
 
-    expr_dict = {"cross": expr}
-    pk.pk_save("FunXY.krig", expr_dict)
-    expr_load = pk.pk_load("FunXY.krig")
 
+.. GENERATED FROM PYTHON SOURCE LINES 71-72
+
+.. image:: images/2D_curve_kriging_with_confidence.png
+
+.. GENERATED FROM PYTHON SOURCE LINES 74-79
+
+Save the Kriging model
+----------------------
+You can save the Kriging model to a file for later use and load it back
+using pk.load() function. Note that the Kriging model is saved in a Python
+dictionary with its name as the key.
+
+.. GENERATED FROM PYTHON SOURCE LINES 79-81
+
+.. code-block:: default
+
+    expr_dict = {"cross": expr}
+    pk.pk_save("./test_data/FunXY.krig", expr_dict)
+    expr_load = pk.pk_load("./test_data/FunXY.krig")
 
 .. rst-class:: sphx-glr-timing
 
@@ -88,6 +135,8 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

@@ -1,6 +1,6 @@
 ply
 format ascii 1.0
-comment Created by meshio v5.3.4, 2022-12-05T17:16:43.257568
+comment Created by meshio v5.3.4, 2022-12-22T12:26:48.566409
 element vertex 4
 property int32 x
 property int32 y

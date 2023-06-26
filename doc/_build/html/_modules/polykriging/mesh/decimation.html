@@ -95,14 +95,20 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    mesh: pyvista mesh object</span>
+<span class="sd">    mesh: pyvista unstructured mesh object</span>
 <span class="sd">        A pyvista mesh object.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    cells: list</span>
-<span class="sd">        A list of cells</span>
+<span class="sd">        A list of cells. The first element of each cell is the number of nodes in the cell.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cast_to_unstructured_grid</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Input mesh must be an UnstructuredGrid&#39;</span><span class="p">)</span>
+
     <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">cells</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_cells</span><span class="p">):</span>
@@ -111,7 +117,9 @@
         <span class="n">offset</span> <span class="o">+=</span> <span class="n">nc</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">loc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">loc</span> <span class="o">+</span> <span class="n">nc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">cells</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span></div>
+
+    <span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">cells</span></div>
 
 
 <div class="viewcode-block" id="get_edges_from_tetra"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.decimation.get_edges_from_tetra">[docs]</a><span class="k">def</span> <span class="nf">get_edges_from_tetra</span><span class="p">(</span><span class="n">cells</span><span class="p">):</span>
@@ -457,7 +465,7 @@
 <div class="viewcode-block" id="tetra_edge_collapse"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.decimation.tetra_edge_collapse">[docs]</a><span class="k">def</span> <span class="nf">tetra_edge_collapse</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">collapse_indicator</span><span class="p">,</span> <span class="n">edge_adjacent</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">n_cores</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Collapse edges of tetrahedral mesh.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    edges: (n, 2) array</span>

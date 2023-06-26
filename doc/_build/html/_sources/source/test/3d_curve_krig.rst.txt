@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_3d_curve_krig.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_3d_curve_krig.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,27 +18,87 @@
 .. _sphx_glr_source_test_3d_curve_krig.py:
 
 
-3d_curve_krig
-=============
+3D curve kriging
+================
 
-Test
+This example shows how to use the 3D curve kriging method to interpolate a
+3D curve:
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-23
+.. math:: z = f(x, y)
+
+In this example, we use the following equation to generate a 3D curve for
+illustration:
+
+.. math:: x=\sin(t), y= \cos(t), z= \cos(8t)
+
+Note that the function name is possibly been modified in future versions.
+
+.. GENERATED FROM PYTHON SOURCE LINES 20-26
 
 .. code-block:: default
 
 
     import numpy as np
-    from polykriging.mdKrig import buildKriging, interp
+    from polykriging.kriging.mdKrig import buildKriging, interp
 
-    dataset = [[1, 0, 0], [0, 1, 0], [-1, 0, 0], [0, -1, 0], [0, 0, 1]]
-    dataset = np.array(dataset)
-    xy = dataset[:, :2]
-    z = dataset[:, 2]
+    import matplotlib.pyplot as plt
 
-    expr = buildKriging(xy, z, 'lin', 'cub', nugg=0.001)
 
-    zInterp = interp(dataset[:, :2], expr)
+.. GENERATED FROM PYTHON SOURCE LINES 27-31
+
+Prepare the data for kriging interpolation
+------------------
+The data for kriging interpolation should be an array of xy data in shape of
+(n, 2) and an array of z data in shape of (n, 1).
+
+.. GENERATED FROM PYTHON SOURCE LINES 31-36
+
+.. code-block:: default
+
+    t_rad = np.linspace(0, 2 * np.pi, 10)
+
+    xy = np.hstack((np.sin(t_rad).reshape(-1, 1), np.cos(t_rad).reshape(-1, 1)))
+    z = np.cos(8 * t_rad)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 37-44
+
+Build the kriging model
+-----------------------
+The kriging model is built by the function :func:`buildKriging`. The possible
+drift functions are: ``lin``, ``quad``, and ``cub``, namely, the linear, quadratic
+and cubic drift functions. The default drift function is ``lin``. The possible
+covariance functions are: ``lin``, and ``cub``.
+Nugget effect (nugg) is used for the smoothing of the curve.
+
+.. GENERATED FROM PYTHON SOURCE LINES 44-49
+
+.. code-block:: default
+
+
+    expr = buildKriging(xy, z, 'lin', 'cub', nugg=100)
+
+    zInterp = interp(xy, expr)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 50-52
+
+Plot the result
+---------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 52-61
+
+.. code-block:: default
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    # ax.plot(xy[:, 0], xy[:, 1], z, '--', label='data')
+    ax.plot(xy[:, 0], xy[:, 1], zInterp, label='interp/nugg=1')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
+    ax.legend()
+    plt.show()
 
 
 .. rst-class:: sphx-glr-timing
@@ -51,6 +111,8 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python
