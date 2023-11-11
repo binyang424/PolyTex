@@ -30,7 +30,7 @@ def isInbBox(bbox, point):
     return boo == boolst
 
 
-def background_mesh_generator(bbox, voxel_size=None):
+def background_mesh(bbox, voxel_size=None):
     """
     Generate a voxel background mesh.
 
@@ -40,9 +40,12 @@ def background_mesh_generator(bbox, voxel_size=None):
         contains the minimum and maximum coordinates of the bounding box
         [xmin, xmax, ymin, ymax, zmin, zmax]
     voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray
-        if None, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
-        if float, the voxel size is set to the float value in x, y, z directions;
-        if numpy.ndarray, the voxel size is set to the values in the numpy.ndarray for corresponding directions.
+        if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
+
+        if `float`, the voxel size is set to the float value in x, y, z directions;
+
+        if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for
+        the x-, y- and z- directions.
 
     Returns
     -------
@@ -70,7 +73,8 @@ def background_mesh_generator(bbox, voxel_size=None):
     x, y, z = np.meshgrid(xrng, yrng, zrng)
     grid = pv.StructuredGrid(x, y, z)
     mesh_shape = np.array(x.shape) - 1
-    print(mesh_shape)
+    print("Background mesh generation complete. \n Mesh shape (number of cells in "
+          "x, y, z-directon): {}".format(mesh_shape))
     # return the unstructured grid and the number of cells of the grid in each direction
     return grid.cast_to_unstructured_grid(), mesh_shape
 
@@ -282,6 +286,17 @@ def to_meshio_data(mesh, theta_res, correction=True):
         number of points in the radial direction
     correction: boolean
         if True, tubular mesh will be closed at the ends with triangles.
+
+    Returns
+    -------
+    points: numpy.ndarray
+        vertices of the tubular mesh
+    cells: list
+        list of cells
+    point_data: numpy.ndarray
+        point data
+    cell_data: numpy.ndarray
+        cell data
     """
     try:
         import meshio
@@ -313,11 +328,11 @@ def to_meshio_data(mesh, theta_res, correction=True):
     c = 0
     for offset, cell_type in zip(vtk_offset, vtk_cell_type):
         numnodes = vtk_cells[offset + c]
-        if _vtk.VTK9:  # must offset by cell count
-            cell = vtk_cells[offset + 1 + c: offset + 1 + c + numnodes]
-            c += 1
-        else:
-            cell = vtk_cells[offset + 1: offset + 1 + numnodes]
+        # if _vtk.VTK9:  # Support for VTK9 and above only since Pyvista 0.39.0
+        cell = vtk_cells[offset + 1 + c: offset + 1 + c + numnodes]
+        c += 1
+        # else:
+        #     cell = vtk_cells[offset + 1: offset + 1 + numnodes]
         cell = (
             cell
             if cell_type not in pixel_voxel

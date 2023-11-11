@@ -10,7 +10,7 @@ setup(
     license='GPL',
     packages=['polykriging', 'polykriging.geometry',
               'polykriging.kriging', 'polykriging.mesh', 'polykriging.plot',
-              'polykriging.stats', 'polykriging.thirdparty', ],
+              'polykriging.stats', 'polykriging.thirdparty'],
     install_requires=['numpy>=0.5',
                       'matplotlib',
                       'sympy',

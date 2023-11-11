@@ -350,6 +350,8 @@ class Tow:
 
         self.__surf_mesh = mesh
 
+        # TODO : add support for end capping when save path is None.
+
         if save_path is not None:
             mesh = tube.save_as_mesh(save_path, end_closed=end_closed)
         return mesh
@@ -483,7 +485,9 @@ class Tow:
                   name_drift=['lin', 'lin'],
                   name_cov=['cub', 'cub'],
                   smooth_factor=[0, 0],
-                  size=25, save_path=None, plot=False):
+                  size=25,
+                  save_path=None,
+                  plot=False):
         """
         Smooth the tow using parametric surface kriging.
         Anisotropic smoothing is applied to the tow by using different smoothing factors
@@ -865,7 +869,8 @@ class Tow:
             for i in np.arange(0, trajectory.shape[0]):
                 p = pv.Plane(center=trajectory[i],
                              direction=direction[i],
-                             i_size=i_size, j_size=j_size).triangulate()
+                             i_size=i_size, j_size=j_size,
+                             i_resolution=40, j_resolution=60).triangulate()
                 p.point_data.clear()
 
                 clipped = p.clip_surface(s1, invert=False)
@@ -884,12 +889,25 @@ class Tow:
 
                 edge_reorder = edge[0, :]
 
+                """Skip the calculation if the number of points on the boundary is less than 3"""
                 n_iter = edge.shape[0]
+                if n_iter < 3:
+                    area.append(0)
+                    height.append(0)
+                    width.append(0)
+                    perimeter.append(0)
+                    continue
+
                 for j in range(1, n_iter):
                     # find the index where the row contains the last element of edge_reorder
-                    index = np.where(edge[1:, 1:] == edge_reorder.flatten()[-1])[0][0] + 1
-                    edge_reorder = np.vstack((edge_reorder, edge[index, :]))
-                    edge = np.delete(arr=edge, obj=index, axis=0)
+                    try:
+                        index = np.where(edge[1:, 1:] == edge_reorder.flatten()[-1])[0][0] + 1
+                        edge_reorder = np.vstack((edge_reorder, edge[index, :]))
+                        edge = np.delete(arr=edge, obj=index, axis=0)
+                    except IndexError:
+                        # TODO: fix the bug: why there is an index error in some cases?
+                        # reproduce the error: warp_34.pcd, weft_20, vf = 57% (transformation\pcd\)
+                        break
 
                 connectivity = edge_reorder[:, 1]
                 points_boundary = edges.points[connectivity]
@@ -938,7 +956,9 @@ class Tow:
                     n_pts += 1
                     # Plane.intersection() returns none when no intersection is found.
                     pts_intersect = plane.intersection(line, max_dist=max_dist)
-                    if pts_intersect is not None:
+                    if pts_intersect is not None and pts_intersect.shape[0]== 1:
+                        # the second condition is to avoid that more than one intersection was detected.
+                        # Now it is simply ignored that if more than one intersection is detected.
                         intersect[n_pts - 1, 0] = j
                         intersect[n_pts - 1, 1:] = pts_intersect
                         points_boundary.append(pts_intersect[0, :])
@@ -946,7 +966,7 @@ class Tow:
                 #####################################################################
                 # Rotate the points to the x-y plane for geometry analysis
                 # --------------------------------------------------------
-                print(len(points_boundary))
+                # print(len(points_boundary))
                 if points_boundary == []:
                     area.append(0)
                     height.append(0)
@@ -975,7 +995,7 @@ class Tow:
                 # Visualizations
                 # --------------
                 # Cross-sections of the tow
-                if plot and j % skip == 0:
+                if j % skip == 0:
                     p = pv.Plane(center=trajectory[j],
                                  direction=orientation[j],
                                  i_size=1, j_size=1).triangulate()
@@ -1012,4 +1032,4 @@ class Tow:
         self.geom_features["Width"] = width
         self.geom_features["Height"] = height
 
-        return cross_section, planes
+        return cross_section, planes, clipped
