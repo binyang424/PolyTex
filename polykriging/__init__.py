@@ -26,4 +26,4 @@ from .io import *
 from . import io
 
 
-from ._abaqus_inp import *
+from .misc import *
