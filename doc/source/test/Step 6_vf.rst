@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_Step 6_vf.py>`
+        Click :ref:`here <sphx_glr_download_source_test_Step 6_vf.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -43,10 +43,10 @@ Note:
     import matplotlib.pyplot as plt
     import polykriging as pk
 
-    path = pk.fileio.choose_directory(titl="geo files")
-    cwd = pk.fileio.cwd_chdir(path)  # ./transformation
+    path = pk.io.choose_directory(titl="geo files")
+    cwd = pk.io.cwd_chdir(path)  # ./transformation
 
-    filenames = pk.fileio.filenames(path, "geo")
+    filenames = pk.io.filenames(path, "geo")
 
     labels = [int(re.findall(r'\d+', filename)[0]) for filename in filenames]
     # sort the filenames according to the labels
@@ -92,8 +92,6 @@ Note:
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

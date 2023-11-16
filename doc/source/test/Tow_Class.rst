@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_Tow_Class.py>`
+        Click :ref:`here <sphx_glr_download_source_test_Tow_Class.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -20,30 +20,24 @@
 
 Tow class example
 =================
-This example shows how to use the PolyKriging Tow class. The tow class is
+This example shows how to use the Tow class in PolyKriging package. It is
 designed to handle the parametrization and geometrical analysis of a fiber tow.
-A Tow instance is created by passing the surface points of the tow to the
-constructor.
+A Tow instance is created by passing the point cloud of a tow, which consists only the points
+ on the tow surface, to the constructor.
 
-.. GENERATED FROM PYTHON SOURCE LINES 9-13
+.. GENERATED FROM PYTHON SOURCE LINES 11-13
+
+Example dataset
+-----------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 13-20
 
 .. code-block:: default
-
 
     import polykriging as pk
     import numpy as np
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 14-17
-
-Example dataset
------------------
-Load the surface points of fiber tow
-
-.. GENERATED FROM PYTHON SOURCE LINES 17-20
-
-.. code-block:: default
-
+    # Load the surface points of fiber tow
     path = pk.example("surface points")
     surf_points = pk.pk_load(path).to_numpy()
 
@@ -51,7 +45,7 @@ Load the surface points of fiber tow
 .. GENERATED FROM PYTHON SOURCE LINES 21-23
 
 We clip the coordinates to discard the part of the tow that is necessary for
-the modeling of the tow.
+the modeling of the tow. Optional.
 
 .. GENERATED FROM PYTHON SOURCE LINES 23-26
 
@@ -251,8 +245,6 @@ kriging method less efficient. The kriging method is recommended for wavy tows, 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

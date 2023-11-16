@@ -20,10 +20,10 @@ import re
 import matplotlib.pyplot as plt
 import polykriging as pk
 
-path = pk.fileio.choose_directory(titl="geo files")
-cwd = pk.fileio.cwd_chdir(path)  # ./transformation
+path = pk.io.choose_directory(titl="geo files")
+cwd = pk.io.cwd_chdir(path)  # ./transformation
 
-filenames = pk.fileio.filenames(path, "geo")
+filenames = pk.io.filenames(path, "geo")
 
 labels = [int(re.findall(r'\d+', filename)[0]) for filename in filenames]
 # sort the filenames according to the labels

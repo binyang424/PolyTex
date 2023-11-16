@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging.mesh package &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,24 +40,43 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.mesh package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.from_image">polykriging.mesh.from_image module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
@@ -75,10 +94,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Submodules</a></li>
-      <li class="breadcrumb-item active">polykriging.mesh package</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Submodules</a> &raquo;</li>
+      <li>polykriging.mesh package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.mesh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,20 +112,901 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="polykriging-mesh-decimation-module">
-<h2>polykriging.mesh.decimation module<a class="headerlink" href="#polykriging-mesh-decimation-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.mesh.decimation">
+<span id="polykriging-mesh-decimation-module"></span><h2>polykriging.mesh.decimation module<a class="headerlink" href="#module-polykriging.mesh.decimation" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.adjacent_from_edge">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">adjacent_from_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#adjacent_from_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.adjacent_from_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the adjacent cells of the edges with the index of the edge as key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
+</dd>
+<dt><strong>edges: (m, 2) array</strong></dt><dd><p>edge list to be collapsed</p>
+</dd>
+<dt><strong>cell_idx: (n,) array</strong></dt><dd><p>cell index. If None, it will be generated as np.arange(n). (default: None)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>return_dict: dictionary</dt><dd><p>a dictionary of adjacent cells with key as the edge</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.adjacent_from_edge_parallel">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">adjacent_from_edge_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_collapse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#adjacent_from_edge_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.adjacent_from_edge_parallel" title="Permalink to this definition"></a></dt>
+<dd><p>Get the adjacent cells of the edges to be collapsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
+</dd>
+<dt><strong>edge_collapse: (m, 2) array</strong></dt><dd><p>edge list to be collapsed</p>
+</dd>
+<dt><strong>n_cores: int</strong></dt><dd><p>number of cores to use for multiprocessing (default: 4)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>return_dict: a dictionary of adjacent cells with key as the edge</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.construct_tetra_vtk">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">construct_tetra_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tetra.vtk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#construct_tetra_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.construct_tetra_vtk" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
+</dd>
+<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
+</dd>
+<dt><strong>save: bool</strong></dt><dd><p>whether to save the mesh</p>
+</dd>
+<dt><strong>filename: str</strong></dt><dd><p>if save=True, provide a file name</p>
+</dd>
+<dt><strong>path: str</strong></dt><dd><p>if save=True, provide a path to save the mesh</p>
+</dd>
+<dt><strong>binary: bool</strong></dt><dd><p>whether to save the mesh in binary format</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.edge_collapse_pipeline">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">edge_collapse_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#edge_collapse_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.edge_collapse_pipeline" title="Permalink to this definition"></a></dt>
+<dd><p>Edge collapse pipeline. Edges containing boundary and independent points will not be collapsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
+</dd>
+<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
+</dd>
+<dt><strong>surf: a surface mesh of interfaces between materials (subdomains)</strong></dt><dd></dd>
+<dt><strong>iteration: int</strong></dt><dd><p>number of iterations for edge collapse</p>
+</dd>
+<dt><strong>threshold: float</strong></dt><dd><p>threshold for edge collapse</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>new_points: (n’, 3) array</dt><dd><p>vertices after edge collapse</p>
+</dd>
+<dt>new_cells: (m’, 4) array</dt><dd><p>connectivity after edge collapse</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_boundary_points">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_boundary_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_boundary_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_boundary_points" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of boundary points from this mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh: pyvista mesh object</strong></dt><dd></dd>
+<dt><strong>boundary_points: A list of boundary points</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pts_boundary_idx: NumPy array</dt><dd><p>A numpy array in the shape of [n_boundary_points] containing the index of boundary points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_cells">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_cells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_cells" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of the cells from this mesh with mixed cell types.
+This properly unpacks the VTK cells array.(safe but now so fast)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh: pyvista unstructured mesh object</strong></dt><dd><p>A pyvista mesh object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>cells: list</dt><dd><p>A list of cells. The first element of each cell is the number of nodes in the cell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_collapse_direction">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_collapse_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_indicator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_collapse_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_collapse_direction" title="Permalink to this definition"></a></dt>
+<dd><p>Get the direction of edge collapse.
+The direction is determined by the indicator function of the two vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>edge_indicator: (n, 2) array</strong></dt><dd><p>indicator function of the two vertices of an edge</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>collapse_indicator: (n,) array</dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
+“bilateral”, and “neither”</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_edge_collapse">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edge_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf_dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_edge_collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_edge_collapse" title="Permalink to this definition"></a></dt>
+<dd><p>Get the edge collapse list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertex list</p>
+</dd>
+<dt><strong>edges: (n’, 2) array</strong></dt><dd><p>edge list</p>
+</dd>
+<dt><strong>surf_dist: (n,) array</strong></dt><dd><p>surface distance of the vertices to interfaces</p>
+</dd>
+<dt><strong>edge_indicator: (n’, 2) array</strong></dt><dd><p>indicator function of the two vertices of an edge. possible values are
+0, 1, and 2 for each containing boundary, independent, and free vertices
+respectively.</p>
+</dd>
+<dt><strong>threshold: float</strong></dt><dd></dd>
+<dt><strong># TODO: explain this parameter</strong></dt><dd><p>threshold for the surface distance to filter out the edges to be collapsed.
+The edges to be collapsed are the ones with edge length less than the threshold
+and surface distance of the two vertices are both greater than the threshold.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>edge_collapse: (n’’, 2) array</dt><dd><p>edge collapse list</p>
+</dd>
+<dt>collapse_indicator: (n’’, 2) array</dt><dd><p>indicator function of the two vertices of an edge to be collapsed. possible values are
+“forward”, “backward”, “bilateral”, and “neither”</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_edge_length">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edge_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_edge_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_edge_length" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the length of an edge given node position and the edge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points: A numpy array in the shape of [n_points, 3]</strong></dt><dd><p>The points array containing node position</p>
+</dd>
+<dt><strong>edges: A numpy array in the shape of [n_edges, 2]</strong></dt><dd><p>The edges array containing node connectivity</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>edge_length: A numpy array in the shape of [n_edges]</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_edges_from_tetra">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edges_from_tetra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_edges_from_tetra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_edges_from_tetra" title="Permalink to this definition"></a></dt>
+<dd><p>Given cells of tetrahedral mesh, return all the edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>edges_for_cell: A list of edges</dt><dd><p>The edges are sorted so that the first node is always smaller
+than the second. This is to ensure easy searching neighbors.
+The edges of a cell can be retrieved by edges[cell_index]</p>
+</dd>
+<dt>edges: A numpy array in the shape of [n_edges, 2]</dt><dd><p>The edges array containing node connectivity.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_maximal_independent_node">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_maximal_independent_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_maximal_independent_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_maximal_independent_node" title="Permalink to this definition"></a></dt>
+<dd><p>Get the maximal independent node set from the edge list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>edges: (n, 2) array</strong></dt><dd><p>edge list</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pts_independent: (m,) array</dt><dd><p>maximal independent node set</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_surf_dist">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_surf_dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_surf_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_surf_dist" title="Permalink to this definition"></a></dt>
+<dd><p>Get the distance from a point to the surface mesh by finding the closest
+point on the surface mesh with KDTree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>surf: A pyvista triangular mesh object</strong></dt><dd></dd>
+<dt><strong>points: (n, 3) array</strong></dt><dd><p>points to be measured</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>surf_dist: (n,) array of float</dt><dd><p>distance from the points to the surface mesh</p>
+</dd>
+<dt>idx: (n,) array of int</dt><dd><p>index of the closest point on the surface mesh</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.get_vertex_indicator">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_vertex_indicator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pts_boundary_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pts_independent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#get_vertex_indicator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.get_vertex_indicator" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Get the indicator function of the vertices:</dt><dd><p>0 for boundary vertices,
+1 for independent vertices,
+2 for free vertices.</p>
+</dd>
+</dl>
+<p>The indicator function is used to determine the nodes to be collapsed.
+The nodes to be collapsed are the ones with indicator function equal to 2
+while 0 and 1 are fixed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_points: int</strong></dt><dd><p>number of vertices</p>
+</dd>
+<dt><strong>pts_boundary_idx: (m,) array</strong></dt><dd><p>indices of boundary points</p>
+</dd>
+<dt><strong>pts_independent: (n,) array</strong></dt><dd><p>indices of independent points</p>
+</dd>
+<dt><strong>edges: (n’, 2) array</strong></dt><dd><p>edge list</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>vertex_indicator: (n_points,) array</dt><dd><p>indicator function of the vertices</p>
+</dd>
+<dt>edge_indicator: (n’, 2) array</dt><dd><p>indicator function of the two vertices of an edge</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.renumber_points">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">renumber_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts_del</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proc_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#renumber_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.renumber_points" title="Permalink to this definition"></a></dt>
+<dd><p>Renumber the points in cells after some points are deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pts_del: A list of points to be deleted</strong></dt><dd></dd>
+<dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity</p>
+</dd>
+<dt><strong>proc_num: Int, the number of process for multiprocessing.</strong></dt><dd></dd>
+<dt><strong>return_dict: A dictionary to store the result of each process.</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>num_diff: A numpy array in the shape of [n_cells, 4]</dt><dd><p>The difference between the original node index and the new node index</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.decimation.tetra_edge_collapse">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">tetra_edge_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collapse_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_adjacent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#tetra_edge_collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.tetra_edge_collapse" title="Permalink to this definition"></a></dt>
+<dd><p>Collapse edges of tetrahedral mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>edges: (n, 2) array</strong></dt><dd></dd>
+<dt><strong>collapse_indicator: (n,) array</strong></dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
+“bilateral”, and “neither”</p>
+</dd>
+<dt><strong>edge_adjacent: dict</strong></dt><dd><p>adjacent cells of each edge</p>
+</dd>
+<dt><strong>points: (n, 3) array</strong></dt><dd><p>node positions</p>
+</dd>
+<dt><strong>cells: (n, 4) array</strong></dt><dd><p>node connectivity</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>points: (n, 3) array</dt><dd><p>node positions after edge collapse</p>
+</dd>
+<dt>cells: (n, 4) array</dt><dd><p>node connectivity after edge collapse</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="polykriging-mesh-features-module">
-<h2>polykriging.mesh.features module<a class="headerlink" href="#polykriging-mesh-features-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.mesh.features">
+<span id="polykriging-mesh-features-module"></span><h2>polykriging.mesh.features module<a class="headerlink" href="#module-polykriging.mesh.features" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.features.voxelize">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.features.</span></span><span class="sig-name descname"><span class="pre">voxelize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cell_number'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contained_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/features.html#voxelize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.features.voxelize" title="Permalink to this definition"></a></dt>
+<dd><p>Voxelize surface mesh to UnstructuredGrid. The bounding box of the voxelized mesh possibly smaller
+than the bounding box of the surface mesh when cell_size type of density is used.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>Surface mesh to be voxelized.</p>
+</dd>
+<dt><strong>density</strong><span class="classifier">float, int, or list of float or int</span></dt><dd><p>Uniform size of the voxels when single float passed. A list of densities along
+x,y,z directions. Defaults to 1/100th of the mesh length for cell_size (float or list)
+flavor density and 50 cells in each direction for cell_number density (int or list).</p>
+</dd>
+<dt><strong>check_surface</strong><span class="classifier">bool</span></dt><dd><p>Specify whether to check the surface for closure. If on, then the algorithm
+first checks to see if the surface is closed and manifold. If the surface is
+not closed and manifold, a runtime error is raised.</p>
+</dd>
+<dt><strong>density_type</strong><span class="classifier">str</span></dt><dd><p>Specify the type of density to use. Options are ‘cell_number’ or ‘cell_size’.
+When ‘cell_number’ is used, the density is the number of cells in each direction.
+When ‘cell_size’ is used, the density is the size of cells in each direction.</p>
+</dd>
+<dt><strong>contained_cells</strong><span class="classifier">bool</span></dt><dd><p>If True, only cells that fully are contained in the surface mesh will be selected.
+If False, extract the cells that contain at least one of the extracted points.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>vox</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>Voxelized unstructured grid of the original mesh.</p>
+</dd>
+<dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The backgrond mesh for voxelization</p>
+</dd>
+<dt>Examples:</dt><dd></dd>
+<dt>Create an equal density voxelized mesh using cell_size density.</dt><dd></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">PolyData</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_uniform</span><span class="p">()</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_size&#39;</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Create a voxelized mesh with specified number of elements in x, y, and z dimensions.</dt><dd></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">PolyData</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_uniform</span><span class="p">()</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_number&#39;</span><span class="p">,</span> <span class="n">contained_cells</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="polykriging-mesh-from-image-module">
-<h2>polykriging.mesh.from_image module<a class="headerlink" href="#polykriging-mesh-from-image-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.mesh.from_image">
+<span id="polykriging-mesh-from-image-module"></span><h2>polykriging.mesh.from_image module<a class="headerlink" href="#module-polykriging.mesh.from_image" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>To check the use of this module, please refer to the example “mesh_from_image.py”</dt><dd><p>in the test folder of Polykriging.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.from_image.get_vcut_plane">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">get_vcut_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#get_vcut_plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.get_vcut_plane" title="Permalink to this definition"></a></dt>
+<dd><p>Get the vertical cut plane of the surf mesh in the direction
+of x, y, or z axis through (boundary) cutting edge extraction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>surf_mesh</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The surface mesh.</p>
+</dd>
+<dt><strong>direction</strong><span class="classifier">str, optional</span></dt><dd><p>The direction of the vertical cut plane, by default ‘x’.
+The direction can be ‘x’, ‘y’, or ‘z’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>vcut_plane</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertical cut planes of the surf mesh.</p>
+</dd>
+<dt><strong>trajectory</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The trajectory (centroid) of the vertical cut plane calculated
+by averaging the coordinates of the points on the cutting edge.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.from_image.im_to_ugrid">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">im_to_ugrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#im_to_ugrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.im_to_ugrid" title="Permalink to this definition"></a></dt>
+<dd><p>Convert image or image sequence to an unstructured grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>im</strong><span class="classifier">image object</span></dt><dd><p>The image sequence stored as a single tif file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The unstructured grid discretized from the image with voxels.</p>
+</dd>
+<dt><strong>im_dim</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The image dimension.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.from_image.mesh_extract">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">mesh_extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ugrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pointdata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tiff</span> <span class="pre">Scalars'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'foreground'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#mesh_extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.mesh_extract" title="Permalink to this definition"></a></dt>
+<dd><p>Extract part of the mesh from the unstructured grid according to the value of point data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The unstructured grid discretized from the image with voxels.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float</span></dt><dd><p>The threshold value of the point data specified by the parameter ‘pointdata’.</p>
+</dd>
+<dt><strong>pointdata</strong><span class="classifier">str, optional</span></dt><dd><p>The point data name, by default ‘Tiff Scalars’.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the extracted mesh, by default “forground”. The type can be “forground” or
+“background”. If the type is “foreground”, the extracted mesh is where the point data is
+greater than the threshold value. If the type is “background”, the extracted mesh is where
+the point data is less than the threshold value.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>subset_final</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The extracted volume mesh.</p>
+</dd>
+<dt><strong>surf</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The extracted surface mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.from_image.mesh_separation">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">mesh_separation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#mesh_separation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.mesh_separation" title="Permalink to this definition"></a></dt>
+<dd><p>Separate the mesh object into different regions according to the
+connectivity of the mesh. It may not work for mesh with multiple
+regions that are connected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The mesh object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh_dict</strong><span class="classifier">dict</span></dt><dd><p>The dictionary of the separated mesh objects. The key is the
+region number and the value is the mesh object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.from_image.slice_plot">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">slice_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcut_planes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#slice_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.slice_plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the vertical cut planes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vcut_planes</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertical cut planes of the surf mesh stored in a numpy array.
+The shape of the array is (n_points, 3).</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cut planes to skip when plotting the vertical cut planes,
+by default 10.</p>
+</dd>
+<dt><strong>marker</strong><span class="classifier">str, optional</span></dt><dd><p>The marker type, by default ‘o’.</p>
+</dd>
+<dt><strong>marker_size</strong><span class="classifier">float, optional</span></dt><dd><p>The marker size, by default 0.1.</p>
+</dd>
+<dt><strong>dpi</strong><span class="classifier">int, optional</span></dt><dd><p>The resolution of the figure, by default 300.</p>
+</dd>
+<dt><strong>save</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to save the figure, by default False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the figure, by default None. If save is True, the save_path
+must be specified.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="polykriging-mesh-mesh-module">
-<h2>polykriging.mesh.mesh module<a class="headerlink" href="#polykriging-mesh-mesh-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.mesh.mesh">
+<span id="polykriging-mesh-mesh-module"></span><h2>polykriging.mesh.mesh module<a class="headerlink" href="#module-polykriging.mesh.mesh" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.angle_between">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.angle_between" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the angle in radians between vectors ‘v1’ and ‘v2’::
+numpy.clip(a, a_min, a_max, out=None, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)[source]
+Clip (limit) the values in an array.     Given an interval, values outside the interval
+are clipped to the interval edges. For example, if an interval of [0, 1] is specified,
+values smaller than 0 become 0, and values larger than 1 become 1.
+Equivalent to but faster than np.minimum(a_max, np.maximum(a, a_min)).
+No check is performed to ensure a_min &lt; a_max.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>v1</strong><span class="classifier">array-like</span></dt><dd><p>First vector.</p>
+</dd>
+<dt><strong>v2</strong><span class="classifier">array-like</span></dt><dd><p>Second vector.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle in degrees between the two input vectors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.background_mesh">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.background_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a voxel background mesh.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>bbox: bounding box of the background mesh specified through a numpy array</strong></dt><dd><p>contains the minimum and maximum coordinates of the bounding box
+[xmin, xmax, ymin, ymax, zmin, zmax]</p>
+</dd>
+<dt><strong>voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray</strong></dt><dd><p>if <cite>None</cite>, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</p>
+<p>if <cite>float</cite>, the voxel size is set to the float value in x, y, z directions;</p>
+<p>if <cite>list</cite>, <cite>set</cite>, or <cite>tuple</cite> of size 3, the voxel size is set to the values for
+the x-, y- and z- directions.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>grid</strong><span class="classifier">pyvista mesh object (UnstructuredGrid)</span></dt><dd></dd>
+<dt><strong>mesh_shape</strong><span class="classifier">tuple</span></dt><dd><p>shape of the mesh</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.find_cells_within_bounds">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">find_cells_within_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#find_cells_within_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.find_cells_within_bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Find the index of cells in this mesh within bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh: pyvista mesh</strong></dt><dd></dd>
+<dt><strong>bounds: type:　iterable(float)</strong></dt><dd><p>list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>type: numpy.ndarray</dt><dd><p>array of cell indices within bounds.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.intersection_detect">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">intersection_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_set_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#intersection_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.intersection_detect" title="Permalink to this definition"></a></dt>
+<dd><p>Find the intersection of fiber tows from implicit surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label_set_dict: dictioanry</strong></dt><dd><p>dictionary of the label sets of the fiber tows
+(key: yarn indices, value: sparse matrix of cell queries)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>type: dictionary of the indices of intersected cell</dt><dd><p>key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.isInbBox">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">isInbBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#isInbBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.isInbBox" title="Permalink to this definition"></a></dt>
+<dd><p>Determine if point is within a bounding box (bbox)
+that parallel to the principle axes of global Cartesian coordinate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bbox: list</strong></dt><dd><p>bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</p>
+</dd>
+<dt><strong>point: list</strong></dt><dd><p>[x, y, z]</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>True or False</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.label_mask">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">label_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_background</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_tri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#label_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.label_mask" title="Permalink to this definition"></a></dt>
+<dd><p>Store the label of each fiber tow for intersection detection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh_background: pyvista.UnstructuredGrid</strong></dt><dd><p>background mesh</p>
+</dd>
+<dt><strong>mesh_tri: pyvista.PolyData</strong></dt><dd><p>tubular mesh of the fiber tows</p>
+</dd>
+<dt><strong>tolerance: float</strong></dt><dd><p>tolerance for the enclosed point detection</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>mask: type: numpy.ndarray (bool)</dt><dd><p>mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</p>
+</dd>
+<dt>label_yarn: type: numpy.ndarray (int) (1D)</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.mesh_correction">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">mesh_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#mesh_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.mesh_correction" title="Permalink to this definition"></a></dt>
+<dd><p>Close the ends of the tubular mesh with triangles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cells: list</strong></dt><dd><p>list of cells</p>
+</dd>
+<dt><strong>points: numpy.ndarray</strong></dt><dd><p>vertices of the tubular mesh</p>
+</dd>
+<dt><strong>theta_res: int</strong></dt><dd><p>number of points in the radial direction of the tubular mesh. The first and the last
+vertex of each radial direction point list are repeated. However, they are considered
+as two different points when considering theta resolution (theta_res).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
+</dd>
+<dt>cells: list</dt><dd><p>list of cells</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.structured_cylinder_vertices">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">structured_cylinder_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#structured_cylinder_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.structured_cylinder_vertices" title="Permalink to this definition"></a></dt>
+<dd><p>Generate points on an ellipse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a</strong><span class="classifier">float</span></dt><dd><p>semi-major axis</p>
+</dd>
+<dt><strong>b</strong><span class="classifier">float</span></dt><dd><p>semi-minor axis</p>
+</dd>
+<dt><strong>h</strong><span class="classifier">float</span></dt><dd><p>height</p>
+</dd>
+<dt><strong>theta_res</strong><span class="classifier">int, optional</span></dt><dd><p>number of points, by default 5.</p>
+</dd>
+<dt><strong>h_res:  int, optional</strong></dt><dd><p>number of points. by default 5.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>points: numpy.ndarray</dt><dd><p>vertices on the ellipse surface (x, y, z).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.to_meshio_data">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">to_meshio_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#to_meshio_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.to_meshio_data" title="Permalink to this definition"></a></dt>
+<dd><p>Convert PyVista flavor data structure to meshio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh: PyVista.DataSet</strong></dt><dd><p>Any PyVista mesh/spatial data type.</p>
+</dd>
+<dt><strong>theta_res:</strong></dt><dd><p>number of points in the radial direction</p>
+</dd>
+<dt><strong>correction: boolean</strong></dt><dd><p>if True, tubular mesh will be closed at the ends with triangles.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
+</dd>
+<dt>cells: list</dt><dd><p>list of cells</p>
+</dd>
+<dt>point_data: numpy.ndarray</dt><dd><p>point data</p>
+</dd>
+<dt>cell_data: numpy.ndarray</dt><dd><p>cell data</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.tubular_mesh_generator">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">tubular_mesh_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#tubular_mesh_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.tubular_mesh_generator" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a tubular mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>theta_res: int</strong></dt><dd><p>number of points</p>
+</dd>
+<dt><strong>h_res: int</strong></dt><dd><p>number of points</p>
+</dd>
+<dt><strong>vertices: numpy.ndarray</strong></dt><dd><p>vertices of the tubular mesh, shape (n, 3)
+The vertices of the tubular mesh are sorted in the radial direction first,
+then in the vertical direction. The first vertex is repeated
+at the end of each radial direction point list.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">points on the tubular mesh</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.mesh.mesh.unit_vector">
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.unit_vector" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the unit vector of the input vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector</strong><span class="classifier">array-like</span></dt><dd><p>Input vector.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>unit_vector</strong><span class="classifier">array-like</span></dt><dd><p>Unit vector of the input vector.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.mesh">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.mesh" title="Permalink to this heading"></a></h2>
+<p>polykriging.</p>
+<p>An implementation of dual Kriging.</p>
 </section>
 </section>
 

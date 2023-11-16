@@ -947,10 +947,14 @@
 <div class="viewcode-block" id="Tube.mesh"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh">[docs]</a>    <span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        theta_res should be 1 less then else where. To be fixed in the future.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
+        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
                                                  <span class="n">vertices</span><span class="o">=</span><span class="n">pts</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">pv_mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -982,17 +986,26 @@
 <span class="sd">        &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtu&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">()</span>
+        <span class="c1"># check if path is valid</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">save_path</span><span class="p">)):</span>
+            <span class="c1"># create the directory</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">save_path</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">save_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.stl&#39;</span><span class="p">):</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cast_to_unstructured_grid</span><span class="p">()</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">triangulate</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="n">end_closed</span><span class="p">:</span>
             <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">to_meshio_data</span><span class="p">(</span>
                 <span class="n">mesh</span><span class="p">,</span>
                 <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span>
                 <span class="n">correction</span><span class="o">=</span><span class="n">end_closed</span><span class="p">)</span>
 
-            <span class="n">pk</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
+            <span class="n">pk</span><span class="o">.</span><span class="n">meshio_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
                         <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-            <span class="n">pv</span><span class="o">.</span><span class="n">save_meshio</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">pv</span><span class="o">.</span><span class="n">save_meshio</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">mesh</span></div></div>
 

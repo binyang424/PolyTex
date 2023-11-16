@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_backround_mesh_labelling_and _intersection_detection.py>`
+        Click :ref:`here <sphx_glr_download_source_test_backround_mesh_labelling_and _intersection_detection.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -23,17 +23,19 @@ Mesh labelling and intersection detection
 
 Test
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-67
+.. GENERATED FROM PYTHON SOURCE LINES 8-73
 
 .. code-block:: default
 
 
-    from polykriging.mesh import background_mesh_generator, label_mask, save_nrrd, intersection_detect
+    import re
+    import time
+
     import numpy as np
     import pyvista as pv
-    import time, re
+    from polykriging.io import save_nrrd, choose_directory, filenames
+    from polykriging.mesh import background_mesh, label_mask, intersection_detect
     from scipy.sparse import coo_matrix
-    from polykriging import utility
 
     """ Inputs """
     # Generate a voxel background mesh.
@@ -42,7 +44,11 @@ Test
     yarnIndex = np.arange(0, 52)
 
     """ Generate a voxel background mesh. """
-    mesh_background, mesh_shape = background_mesh_generator(bbox, voxel_size)
+    mesh_background, mesh_shape = background_mesh(bbox, voxel_size)
+
+    """ Plot the background mesh. """
+    mesh_background.plot(show_edges=True, color='w', opacity=1)
+    # mesh.save("./file/test_bbox.vtu", binary=True)
 
     # time labelling
     start_labelling = time.time()
@@ -52,8 +58,8 @@ Test
 
     """ Select the surface meshes of yarns to be labelled """
     label_set_dict = dict()
-    path = utility.choose_directory("Choose the surface mesh directory for fiber tow labelling")
-    file_list = utility.filenames(path, ".stl")
+    path = choose_directory("Choose the surface mesh directory for fiber tow labelling")
+    file_list = filenames(path, ".stl")
     file_list_sort = {}
     for i, file in enumerate(file_list):
         # regular expression for integer
@@ -98,8 +104,6 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

@@ -112,7 +112,7 @@
     <span class="k">return</span> <span class="n">boo</span> <span class="o">==</span> <span class="n">boolst</span></div>
 
 
-<div class="viewcode-block" id="background_mesh_generator"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.background_mesh_generator">[docs]</a><span class="k">def</span> <span class="nf">background_mesh_generator</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="background_mesh"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.background_mesh">[docs]</a><span class="k">def</span> <span class="nf">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a voxel background mesh.</span>
 
@@ -122,9 +122,12 @@
 <span class="sd">        contains the minimum and maximum coordinates of the bounding box</span>
 <span class="sd">        [xmin, xmax, ymin, ymax, zmin, zmax]</span>
 <span class="sd">    voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray</span>
-<span class="sd">        if None, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</span>
-<span class="sd">        if float, the voxel size is set to the float value in x, y, z directions;</span>
-<span class="sd">        if numpy.ndarray, the voxel size is set to the values in the numpy.ndarray for corresponding directions.</span>
+<span class="sd">        if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</span>
+
+<span class="sd">        if `float`, the voxel size is set to the float value in x, y, z directions;</span>
+
+<span class="sd">        if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for</span>
+<span class="sd">        the x-, y- and z- directions.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -152,7 +155,8 @@
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xrng</span><span class="p">,</span> <span class="n">yrng</span><span class="p">,</span> <span class="n">zrng</span><span class="p">)</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">StructuredGrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
     <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">mesh_shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background mesh generation complete. </span><span class="se">\n</span><span class="s2"> Mesh shape (number of cells in &quot;</span>
+          <span class="s2">&quot;x, y, z-directon): </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mesh_shape</span><span class="p">))</span>
     <span class="c1"># return the unstructured grid and the number of cells of the grid in each direction</span>
     <span class="k">return</span> <span class="n">grid</span><span class="o">.</span><span class="n">cast_to_unstructured_grid</span><span class="p">(),</span> <span class="n">mesh_shape</span></div>
 
@@ -364,6 +368,17 @@
 <span class="sd">        number of points in the radial direction</span>
 <span class="sd">    correction: boolean</span>
 <span class="sd">        if True, tubular mesh will be closed at the ends with triangles.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
+<span class="sd">    point_data: numpy.ndarray</span>
+<span class="sd">        point data</span>
+<span class="sd">    cell_data: numpy.ndarray</span>
+<span class="sd">        cell data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">meshio</span>
@@ -395,11 +410,11 @@
     <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="n">cell_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vtk_offset</span><span class="p">,</span> <span class="n">vtk_cell_type</span><span class="p">):</span>
         <span class="n">numnodes</span> <span class="o">=</span> <span class="n">vtk_cells</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="n">c</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">_vtk</span><span class="o">.</span><span class="n">VTK9</span><span class="p">:</span>  <span class="c1"># must offset by cell count</span>
-            <span class="n">cell</span> <span class="o">=</span> <span class="n">vtk_cells</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c</span><span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">numnodes</span><span class="p">]</span>
-            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">cell</span> <span class="o">=</span> <span class="n">vtk_cells</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">numnodes</span><span class="p">]</span>
+        <span class="c1"># if _vtk.VTK9:  # Support for VTK9 and above only since Pyvista 0.39.0</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">vtk_cells</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c</span><span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">numnodes</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     cell = vtk_cells[offset + 1: offset + 1 + numnodes]</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">cell</span>
             <span class="k">if</span> <span class="n">cell_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pixel_voxel</span>
@@ -501,7 +516,10 @@
     <span class="c1"># flip cells_connectivity along rows</span>
     <span class="n">cells_connectivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;quad&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;triangle&#39;</span><span class="p">,</span> <span class="n">new_cells</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">cells_connectivity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="n">cells_connectivity</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_cells</span><span class="p">))]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;quad&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;triangle&#39;</span><span class="p">,</span> <span class="n">new_cells</span><span class="p">)]</span>
 
     <span class="k">return</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span></div>
 

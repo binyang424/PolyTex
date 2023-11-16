@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mesh labelling and intersection detection &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -75,9 +71,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Mesh labelling and intersection detection</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Mesh labelling and intersection detection</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/backround_mesh_labelling_and _intersection_detection.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,18 +85,20 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#sphx-glr-download-source-test-backround-mesh-labelling-and-intersection-detection-py"><span class="std std-ref">Go to the end</span></a>
+<p>Click <a class="reference internal" href="#sphx-glr-download-source-test-backround-mesh-labelling-and-intersection-detection-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="mesh-labelling-and-intersection-detection">
 <span id="sphx-glr-source-test-backround-mesh-labelling-and-intersection-detection-py"></span><h1>Mesh labelling and intersection detection<a class="headerlink" href="#mesh-labelling-and-intersection-detection" title="Permalink to this heading"></a></h1>
 <p>Test</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">polykriging.mesh</span> <span class="kn">import</span> <span class="n">background_mesh_generator</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span> <span class="n">save_nrrd</span><span class="p">,</span> <span class="n">intersection_detect</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">polykriging.io</span> <span class="kn">import</span> <span class="n">save_nrrd</span><span class="p">,</span> <span class="n">choose_directory</span><span class="p">,</span> <span class="n">filenames</span>
+<span class="kn">from</span> <span class="nn">polykriging.mesh</span> <span class="kn">import</span> <span class="n">background_mesh</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span> <span class="n">intersection_detect</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span>
-<span class="kn">from</span> <span class="nn">polykriging</span> <span class="kn">import</span> <span class="n">utility</span>
 
 <span class="sd">&quot;&quot;&quot; Inputs &quot;&quot;&quot;</span>
 <span class="c1"># Generate a voxel background mesh.</span>
@@ -109,7 +107,11 @@ to download the full example code</p>
 <span class="n">yarnIndex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span>
 
 <span class="sd">&quot;&quot;&quot; Generate a voxel background mesh. &quot;&quot;&quot;</span>
-<span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">background_mesh_generator</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="p">)</span>
+<span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; Plot the background mesh. &quot;&quot;&quot;</span>
+<span class="n">mesh_background</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># mesh.save(&quot;./file/test_bbox.vtu&quot;, binary=True)</span>
 
 <span class="c1"># time labelling</span>
 <span class="n">start_labelling</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -119,8 +121,8 @@ to download the full example code</p>
 
 <span class="sd">&quot;&quot;&quot; Select the surface meshes of yarns to be labelled &quot;&quot;&quot;</span>
 <span class="n">label_set_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">utility</span><span class="o">.</span><span class="n">choose_directory</span><span class="p">(</span><span class="s2">&quot;Choose the surface mesh directory for fiber tow labelling&quot;</span><span class="p">)</span>
-<span class="n">file_list</span> <span class="o">=</span> <span class="n">utility</span><span class="o">.</span><span class="n">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;.stl&quot;</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">choose_directory</span><span class="p">(</span><span class="s2">&quot;Choose the surface mesh directory for fiber tow labelling&quot;</span><span class="p">)</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;.stl&quot;</span><span class="p">)</span>
 <span class="n">file_list_sort</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
     <span class="c1"># regular expression for integer</span>

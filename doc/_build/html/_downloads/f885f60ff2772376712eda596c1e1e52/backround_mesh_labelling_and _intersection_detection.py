@@ -6,12 +6,14 @@ Test
 
 """
 
-from polykriging.mesh import background_mesh_generator, label_mask, save_nrrd, intersection_detect
+import re
+import time
+
 import numpy as np
 import pyvista as pv
-import time, re
+from polykriging.io import save_nrrd, choose_directory, filenames
+from polykriging.mesh import background_mesh, label_mask, intersection_detect
 from scipy.sparse import coo_matrix
-from polykriging import utility
 
 """ Inputs """
 # Generate a voxel background mesh.
@@ -20,7 +22,11 @@ voxel_size = [0.11, 0.11, 0.11]
 yarnIndex = np.arange(0, 52)
 
 """ Generate a voxel background mesh. """
-mesh_background, mesh_shape = background_mesh_generator(bbox, voxel_size)
+mesh_background, mesh_shape = background_mesh(bbox, voxel_size)
+
+""" Plot the background mesh. """
+mesh_background.plot(show_edges=True, color='w', opacity=1)
+# mesh.save("./file/test_bbox.vtu", binary=True)
 
 # time labelling
 start_labelling = time.time()
@@ -30,8 +36,8 @@ label_list = np.full(mesh_background.n_cells, -1, dtype=np.int32)
 
 """ Select the surface meshes of yarns to be labelled """
 label_set_dict = dict()
-path = utility.choose_directory("Choose the surface mesh directory for fiber tow labelling")
-file_list = utility.filenames(path, ".stl")
+path = choose_directory("Choose the surface mesh directory for fiber tow labelling")
+file_list = filenames(path, ".stl")
 file_list_sort = {}
 for i, file in enumerate(file_list):
     # regular expression for integer

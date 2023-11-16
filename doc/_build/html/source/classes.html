@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Textile objects &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,9 +54,114 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Textile objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#primitive-geometries">Primitive geometries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parametric-geometries">Parametric geometries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Textile objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.textile.Textile"><code class="docutils literal notranslate"><span class="pre">Textile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.add"><code class="docutils literal notranslate"><span class="pre">Textile.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.background_mesh"><code class="docutils literal notranslate"><span class="pre">Textile.background_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.decimate"><code class="docutils literal notranslate"><span class="pre">Textile.decimate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.remove"><code class="docutils literal notranslate"><span class="pre">Textile.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.triangulate"><code class="docutils literal notranslate"><span class="pre">Textile.triangulate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.tow.Tow"><code class="docutils literal notranslate"><span class="pre">Tow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.axial_lines"><code class="docutils literal notranslate"><span class="pre">Tow.axial_lines()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.kde"><code class="docutils literal notranslate"><span class="pre">Tow.kde()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.mw_kde"><code class="docutils literal notranslate"><span class="pre">Tow.mw_kde()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.normal_cross_section"><code class="docutils literal notranslate"><span class="pre">Tow.normal_cross_section()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.radial_lines"><code class="docutils literal notranslate"><span class="pre">Tow.radial_lines()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.resampling"><code class="docutils literal notranslate"><span class="pre">Tow.resampling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.save"><code class="docutils literal notranslate"><span class="pre">Tow.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.smooth_window"><code class="docutils literal notranslate"><span class="pre">Tow.smooth_window()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.smoothing"><code class="docutils literal notranslate"><span class="pre">Tow.smoothing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.surf_mesh"><code class="docutils literal notranslate"><span class="pre">Tow.surf_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.trajectory"><code class="docutils literal notranslate"><span class="pre">Tow.trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.tow.Tow.unit_vector"><code class="docutils literal notranslate"><span class="pre">Tow.unit_vector()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#primitive-geometries">Primitive geometries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Curve"><code class="docutils literal notranslate"><span class="pre">Curve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.plot"><code class="docutils literal notranslate"><span class="pre">Curve.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.save"><code class="docutils literal notranslate"><span class="pre">Curve.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.to_polygon"><code class="docutils literal notranslate"><span class="pre">Curve.to_polygon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.ambient_dimension"><code class="docutils literal notranslate"><span class="pre">Curve.ambient_dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.bounds"><code class="docutils literal notranslate"><span class="pre">Curve.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.curvature"><code class="docutils literal notranslate"><span class="pre">Curve.curvature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.length"><code class="docutils literal notranslate"><span class="pre">Curve.length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Curve.tangent"><code class="docutils literal notranslate"><span class="pre">Curve.tangent</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Line.default_assumptions"><code class="docutils literal notranslate"><span class="pre">Line.default_assumptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Plane"><code class="docutils literal notranslate"><span class="pre">Plane</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Plane.function"><code class="docutils literal notranslate"><span class="pre">Plane.function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Plane.intersection"><code class="docutils literal notranslate"><span class="pre">Plane.intersection()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.direction_ratio"><code class="docutils literal notranslate"><span class="pre">Point.direction_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.dist"><code class="docutils literal notranslate"><span class="pre">Point.dist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.save_as_vtk"><code class="docutils literal notranslate"><span class="pre">Point.save_as_vtk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.set_x"><code class="docutils literal notranslate"><span class="pre">Point.set_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.set_y"><code class="docutils literal notranslate"><span class="pre">Point.set_y()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.set_z"><code class="docutils literal notranslate"><span class="pre">Point.set_z()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.bounds"><code class="docutils literal notranslate"><span class="pre">Point.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.size"><code class="docutils literal notranslate"><span class="pre">Point.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.xyz"><code class="docutils literal notranslate"><span class="pre">Point.xyz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Point.z"><code class="docutils literal notranslate"><span class="pre">Point.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Polygon.to_curve"><code class="docutils literal notranslate"><span class="pre">Polygon.to_curve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Polygon.area"><code class="docutils literal notranslate"><span class="pre">Polygon.area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Polygon.centroid"><code class="docutils literal notranslate"><span class="pre">Polygon.centroid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Polygon.perimeter"><code class="docutils literal notranslate"><span class="pre">Polygon.perimeter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Tube"><code class="docutils literal notranslate"><span class="pre">Tube</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.mesh"><code class="docutils literal notranslate"><span class="pre">Tube.mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.save_as_mesh"><code class="docutils literal notranslate"><span class="pre">Tube.save_as_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.bounds"><code class="docutils literal notranslate"><span class="pre">Tube.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.default_assumptions"><code class="docutils literal notranslate"><span class="pre">Tube.default_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.h_res"><code class="docutils literal notranslate"><span class="pre">Tube.h_res</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.points"><code class="docutils literal notranslate"><span class="pre">Tube.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Tube.theta_res"><code class="docutils literal notranslate"><span class="pre">Tube.theta_res</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.Vector"><code class="docutils literal notranslate"><span class="pre">Vector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.angle_between"><code class="docutils literal notranslate"><span class="pre">Vector.angle_between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.cross"><code class="docutils literal notranslate"><span class="pre">Vector.cross()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.dot"><code class="docutils literal notranslate"><span class="pre">Vector.dot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.add"><code class="docutils literal notranslate"><span class="pre">Vector.add</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.norm"><code class="docutils literal notranslate"><span class="pre">Vector.norm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.Vector.sub"><code class="docutils literal notranslate"><span class="pre">Vector.sub</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parametric-geometries">Parametric geometries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.ParamCurve"><code class="docutils literal notranslate"><span class="pre">ParamCurve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamCurve.bounds"><code class="docutils literal notranslate"><span class="pre">ParamCurve.bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamCurve.eval"><code class="docutils literal notranslate"><span class="pre">ParamCurve.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface"><code class="docutils literal notranslate"><span class="pre">ParamSurface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.eval"><code class="docutils literal notranslate"><span class="pre">ParamSurface.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.rotate"><code class="docutils literal notranslate"><span class="pre">ParamSurface.rotate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.scale"><code class="docutils literal notranslate"><span class="pre">ParamSurface.scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.translate"><code class="docutils literal notranslate"><span class="pre">ParamSurface.translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.default_assumptions"><code class="docutils literal notranslate"><span class="pre">ParamSurface.default_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.functions"><code class="docutils literal notranslate"><span class="pre">ParamSurface.functions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.geometry.basic.ParamSurface.limits"><code class="docutils literal notranslate"><span class="pre">ParamSurface.limits</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="submodules.html">Submodules</a></li>
 </ul>
 </li>
@@ -81,9 +182,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-      <li class="breadcrumb-item active">Textile objects</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+      <li>Textile objects</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/classes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,14 +194,1299 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="textile-objects">
-<h1>Textile objects<a class="headerlink" href="#textile-objects" title="Permalink to this heading"></a></h1>
+  <section id="module-polykriging.textile">
+<span id="textile-objects"></span><h1>Textile objects<a class="headerlink" href="#module-polykriging.textile" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.textile.Textile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class for textile geometrical analysis and numerical meshing.
+定义为体素网格？</p>
+<p># TODO : analyze, design, and program the Textile class.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.add" title="polykriging.textile.Textile.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(tow)</p></td>
+<td><p>Add a tow to the textile using mesh merging.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.background_mesh" title="polykriging.textile.Textile.background_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">background_mesh</span></code></a>(x, y, z)</p></td>
+<td><p>Generate a background mesh for the textile.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
+<td><p>Decimate the mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.triangulate" title="polykriging.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
+<td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>remove</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add" title="Permalink to this definition"></a></dt>
+<dd><p>Add a tow to the textile using mesh merging. Each tow is a mesh object
+and labeled with a unique integer.</p>
+<p>key - tow id, integer;
+value - tow object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.background_mesh">
+<span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.background_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a background mesh for the textile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.decimate">
+<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.decimate" title="Permalink to this definition"></a></dt>
+<dd><p>Decimate the mesh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.triangulate">
+<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
+<dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-polykriging.tow"></span><dl class="py class">
+<dt class="sig sig-object py" id="polykriging.tow.Tow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.tow.</span></span><span class="sig-name descname"><span class="pre">Tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to store the tow information, calculate the geometry features
+and parametrilize the tow.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mf">0.022</span>  <span class="c1"># convert voxel to mm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tow</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">)</span> <span class="c1"># PolyKriging Tow class</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_coord</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">coordinates</span>  <span class="c1"># parametric coordinates of the tow</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_geom</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span>  <span class="c1"># geometrical features of the tow</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pts_krig</span><span class="p">,</span> <span class="n">expr_krig</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">resampling</span><span class="p">(</span><span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
+<span class="go">                                      skip=10, sample_position=sample_position,</span>
+<span class="go">                                      smooth=0.0001)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">surf_mesh</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;zyx&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;./216_302_binder_1.vtk&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_sm</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">trajectory</span><span class="p">(</span><span class="n">smooth</span><span class="o">=</span><span class="mf">0.0015</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;./trajectory.ply&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>The name or type of the tow. Default is “Tow”. It can be any string that helps
+users to identify the tow. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>tex</strong><span class="classifier">float</span></dt><dd><p>The linear density of the tow in tex. Default is 0. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>order</strong><span class="classifier">str</span></dt><dd><p>It is preferred to set the last column of the surf_points as the coordinate in
+the direction that is perpendicular to the image slices for geometry analysis,
+parametrization and kriging resampling. Hence, you may have reordered the columns.
+Here, you can specify the order of the columns in the reordered points. Default is “xyz”.
+The other options are “xzy”, “yxz”, “yzx”, “zxy”, “zyx”. The output coordinate will
+be reordered in the right order (xyz) according to the order specified here.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>resolution</strong><span class="classifier">float</span></dt><dd><p>The resolution of the MicroCT image used to generate the tow dataset. Default is None.
+This is only stored as an attribute for future use. It is not used in the current version.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>surf_points</strong><span class="classifier">ndarray</span></dt><dd><p>The surface points of the tow. It stores the coordinates of the points input by the user.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>geom_features</strong><span class="classifier">dataframe</span></dt><dd><blockquote>
+<div><p>The geometry features of each cross-section of the tow. The features include
+the ‘Area’, ‘Perimeter’, ‘Width’, ‘Height’, ‘AngleRotated’, ‘Circularity’,</p>
+</div></blockquote>
+<p>‘centroidX’, ‘centroidY’, and ‘centroidZ’. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>coordinates</strong><span class="classifier">dataframe</span></dt><dd><p>The parametrilized coordinates of the tow. It includes the geodesic ‘distance’
+and the normalized distance ‘norm_distance’ from the start point of the parametric
+plane to the current point, the ‘angular position (degree)’, and the corresponding
+‘X’, ‘Y’, and ‘Z’ coordinates. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>theta_res</strong><span class="classifier">float</span></dt><dd><p>The number of points to describe the profile of a tow cross-section in the radial
+direction. (initialized in Tow.resampling)</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">float</span></dt><dd><p>The number of cross-sections to describe the profile of a tow in the axial
+direction. (initialized in Tow.resampling)</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">ndarray</span></dt><dd><p>The orientation of the tow calculated from the tangent of centerline of the tow.
+(initialized in Tow.trajectory)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.axial_lines" title="polykriging.tow.Tow.axial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code></a>([save_path, plot])</p></td>
+<td><p>Generate the axial line of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
+<td><p>Generate the kernel density estimation of the radial normalized distance for point cloud decomposition.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.normal_cross_section" title="polykriging.tow.Tow.normal_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code></a>([algorithm, save_path, ...])</p></td>
+<td><p>Generate the normal cross section of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.radial_lines" title="polykriging.tow.Tow.radial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code></a>([save_path, plot, type])</p></td>
+<td><p>Generate the radial line of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.resampling" title="polykriging.tow.Tow.resampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code></a>([krig_config, skip, ...])</p></td>
+<td><p>Kriging the cross-sections of the tow to obtain the parametric equations for each cross-section (which is a closed curve).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.save" title="polykriging.tow.Tow.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(save_path)</p></td>
+<td><p>Save the fiber tow data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
+<td><p>The window size of smoothing operation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
+<td><p>Smooth the tow using parametric surface kriging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path, end_closed])</p></td>
+<td><p>Generate the surface mesh of the tow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
+<td><p>Generate the trajectory of the tow and smooth it using kriging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
+<td><p>Returns the unit vector of the input vector along the given axis.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>mw_kde</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.axial_lines">
+<span class="sig-name descname"><span class="pre">axial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.axial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.axial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the axial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the axial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the axial line. Default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>axial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The axial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.kde">
+<span class="sig-name descname"><span class="pre">kde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.kde" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the kernel density estimation of the radial normalized distance for point cloud
+decomposition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bw</strong><span class="classifier">float, optional</span></dt><dd><p>The bandwidth of the kernel density estimation. Default is None and the bandwidth
+will be estimated using the Scott’s rule of thumb (one-fifth of the estimated value).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the kernel density estimation. Default is None. If None, the
+kernel density estimation will not be saved. The file format is .stat and can be
+loaded by the function <cite>polykriging.pk_load</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>clusters</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.mw_kde">
+<span class="sig-name descname"><span class="pre">mw_kde</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.mw_kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.mw_kde" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.normal_cross_section">
+<span class="sig-name descname"><span class="pre">normal_cross_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kriging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.normal_cross_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.normal_cross_section" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the normal cross section of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>algorithm</strong><span class="classifier">str, optional</span></dt><dd><p>The algorithm to generate the cross section. Default is “kriging”. The other
+option is “pyvista” which uses pyvista’s mesh clip function (Polydata.clip_surface()).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the normal cross sections as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the normal cross sections. Default is True.</p>
+</dd>
+<dt><strong>i_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the i direction of the noraml plane. Default is 0.7.</p>
+</dd>
+<dt><strong>j_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the j direction of the noraml plane. Default is 1.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross sections to skip in plot. Default is 10. If skip is 1, all
+cross sections will be plotted.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>cross_section</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The normal cross section of the fiber tows stored in a pyvista.PolyData object.
+Note that only the cross sections that are plotted are stored. If one wants to
+save all the cross sections, set skip=1.</p>
+</dd>
+<dt><strong>planes</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The corresponding planes that the cross sections are generated from. Note that
+only the planes that are plotted are stored. If one wants to save all the planes,
+set skip=1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.radial_lines">
+<span class="sig-name descname"><span class="pre">radial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'resampled'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.radial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.radial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the radial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the radial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the radial line. Default is True.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of radial line. Default is “resampled”. The other option is
+“original”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>radial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The radial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.resampling">
+<span class="sig-name descname"><span class="pre">resampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'distance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.resampling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.resampling" title="Permalink to this definition"></a></dt>
+<dd><p>Kriging the cross-sections of the tow to obtain the parametric equations
+for each cross-section (which is a closed curve).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration. The first element is the kriging model for
+the drift and the second is the name of covariance. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross-sections to be skipped for resampling to accelerate the
+operation. Default is 5. Namely, 1 of every 5 cross-sections will be resampled.
+If skip is 1, all the cross-sections will be kriged.</p>
+</dd>
+<dt><strong>sample_position</strong><span class="classifier">array_like, optional</span></dt><dd><p>The resampling positions of each cross-sections specified by the normalized
+distance in radial direction of each cross-section. Default is [].</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the kriging resampling. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the kriging resampling. Default is “distance”. The other option
+is “angular”. If “distance”, the resampling positions are specified by the
+normalized distance (between 0 and 1) in radial direction of each cross-section.
+If “angular”, the resampling positions are specified by angular position (between
+0 and 360) of control points in radial direction of each cross-section.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>_Tow__kriged_vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The kriged points for each cross-section of the tow. It is an array of shape
+(n, 3) where n is the number of points. The kriged points is obtained according
+to the kriging configuration and the resampling positions. If the resampling
+positions are not specified, the kriged points are obtained by evenly sampling
+the cross-sections with a sampling interval of 0.05, namely, 20 points per cross-
+section.</p>
+</dd>
+<dt><strong>expr</strong><span class="classifier">dict</span></dt><dd><dl class="simple">
+<dt>The kriging expression for each cross-section. It contains two sub-dictionaries that</dt><dd><p>use the cross-section number as the key and the kriging expression as the value for
+the first two components of user input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the fiber tow data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the fiber tow data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.smooth_window">
+<span class="sig-name descname"><span class="pre">smooth_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.smooth_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.smooth_window" title="Permalink to this definition"></a></dt>
+<dd><p>The window size of smoothing operation. The window size is the number of
+slices in the axial direction of fiber tow that are smoothed per iteration.</p>
+<p>A smaller window size will significantly decrease the computation time of
+smoothing operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The window size.</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">int</span></dt><dd><p>The number of slices in the axial direction of fiber tow.</p>
+</dd>
+<dt><strong>extend</strong><span class="classifier">int, optional</span></dt><dd><p>The number of slices that are extended to the left and right of the
+smoothing window to ensure the smoothness of the surface at the
+boundary of the windows.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>wins_interp</strong><span class="classifier">ndarray</span></dt><dd><p>The window size for interpolation (with extensions at the two ends).</p>
+</dd>
+<dt><strong>wins_result</strong><span class="classifier">ndarray</span></dt><dd><p>The index of effective smoothing results (without extensions).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.smoothing">
+<span class="sig-name descname"><span class="pre">smoothing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_drift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['lin',</span> <span class="pre">'lin']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['cub',</span> <span class="pre">'cub']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.smoothing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.smoothing" title="Permalink to this definition"></a></dt>
+<dd><p>Smooth the tow using parametric surface kriging.
+Anisotropic smoothing is applied to the tow by using different smoothing factors
+for the two directions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name_drift</strong><span class="classifier">list, optional</span></dt><dd><p>The drift function for the parametric surface kriging. Default is [‘lin’, ‘lin’].</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">list, optional</span></dt><dd><p>The covariance function for the parametric surface kriging. Default is [‘cub’, ‘cub’].</p>
+</dd>
+<dt><strong>smooth_factor</strong><span class="classifier">list, optional</span></dt><dd><p>The smoothing factor for the parametric surface kriging. Default is [0, 0]. Also known
+as the nugget effect in geo-statistics and kriging theory. The smoothing factor
+is applied to the two directions separately. The first element is the smoothing
+factor for the radial direction and the second element is the smoothing factor for
+the axial direction.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p># TODO : improve the description
+The size of the window for the moving average filter. Default is 25.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the smoothed tow. Default is None. If None, the smoothed tow
+will not be saved. The file format is .ply.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the smoothed tow. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The smoothed tow vertices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.surf_mesh">
+<span class="sig-name descname"><span class="pre">surf_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.surf_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.surf_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the surface mesh of the tow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the surface mesh. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the surface mesh. Default is None and the surface mesh will not be saved.
+The file format can be .ply or .vtk.</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>surf_mesh</strong></dt><dd><p>The surface mesh of the tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.trajectory">
+<span class="sig-name descname"><span class="pre">trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.trajectory" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the trajectory of the tow and smooth it using kriging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration for the trajectory. It is a tuple of two strings that
+specify the drift and covariance function. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the parametric curve kriging. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the trajectory. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the trajectory as vtk file. Default is None and the trajectory
+will not be saved.</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to calculate the orientation of the tow. Default is False. The orientation
+is the tangent vector of the trajectory.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>traj</strong><span class="classifier">np.ndarray</span></dt><dd><p>The trajectory of the tow in the form of (n, 3) where n is the number of points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.unit_vector">
+<span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.unit_vector" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the unit vector of the input vector along the given axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector</strong><span class="classifier">ndarray</span></dt><dd><p>The input vector.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">int, optional</span></dt><dd><p>The axis along which the unit vector is calculated. Default is 1 (column).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>unit_vector</strong><span class="classifier">ndarray</span></dt><dd><p>The unit vector of the input vector along the given axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="primitive-geometries">
 <h1>Primitive geometries<a class="headerlink" href="#primitive-geometries" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-polykriging.geometry.basic"></span><dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Curve" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is an open curve defined by a list of points in the order of connection. It is
+created by using composition instead of inheritance of PolyKriging.geometry.Point.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Curve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Curve</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">points</span>
+<span class="go">[[2, 4, 6], [2, 4, 6]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">ambient_dimension</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">length</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Curve.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Curve.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Curve.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Curve.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the curve to a vtk file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the vtk file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.to_polygon">
+<span class="sig-name descname"><span class="pre">to_polygon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Curve.to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Curve.to_polygon" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the curve to a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>polygon</strong><span class="classifier">Polygon object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.ambient_dimension">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ambient_dimension</span></span><a class="headerlink" href="#polykriging.geometry.basic.Curve.ambient_dimension" title="Permalink to this definition"></a></dt>
+<dd><p>Return the dimension of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ambient_dimension</strong><span class="classifier">int</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polykriging.geometry.basic.Curve.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Return the bounds of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">tuple</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.curvature">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">curvature</span></span><a class="headerlink" href="#polykriging.geometry.basic.Curve.curvature" title="Permalink to this definition"></a></dt>
+<dd><p>Return the curvature of the curve.</p>
+<p>TODO: curvature of a curve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curvature</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#polykriging.geometry.basic.Curve.length" title="Permalink to this definition"></a></dt>
+<dd><p>Return the length of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>length</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Curve.tangent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tangent</span></span><a class="headerlink" href="#polykriging.geometry.basic.Curve.tangent" title="Permalink to this definition"></a></dt>
+<dd><p>Return the tangent vector of the curve at each point.</p>
+<p>TODO : check and improve the tangent vector calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tangent</strong><span class="classifier">Vector object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Line">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Line" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></p>
+<p>A line class. This class is used to represent a line in n-dimensional space.
+The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.line.Line.</p>
+<dl class="simple">
+<dt>So far, please refer to the documentation of sympy.geometry.line.Line for more information.</dt><dd><p><a class="reference external" href="https://docs.sympy.org/latest/modules/geometry/lines.html">https://docs.sympy.org/latest/modules/geometry/lines.html</a></p>
+</dd>
+</dl>
+<p>TODO : A detailed documentation will be added in the future.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Line</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l1</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+<span class="go">&#39;Line(Point((1, 1, 1)), Point((2, 3, 4)))&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l1</span><span class="o">.</span><span class="n">ambient_dimension</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Line.default_assumptions">
+<span class="sig-name descname"><span class="pre">default_assumptions</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#polykriging.geometry.basic.Line.default_assumptions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Plane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Plane" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A plane in 3D space. The plane can be defined by a point and a normal vector,
+or by three points.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
+</pre></div>
+</div>
+<p>Create a plane from 3 points
+&gt;&gt;&gt; p1 = Point([1, 1, 1])
+&gt;&gt;&gt; p2 = Point([2, 3, 4])
+&gt;&gt;&gt; p3 = Point([2, 2, 2])
+&gt;&gt;&gt; plane1 = Plane(p1, p2, p3)</p>
+<p>Create a plane from a point and a normal vector
+&gt;&gt;&gt; p1 = Point([1, 1, 1])
+&gt;&gt;&gt; normal = Point([1, 4, 7])
+&gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Plane.function">
+<span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
+<dd><p>Return the equation of the plane as a function of x, y and z.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane.</p>
+</dd>
+<dt><strong>point</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A lambda function of x, y and z.</dt><dd><p>function of plane.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Plane.intersection">
+<span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Plane.intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Plane.intersection" title="Permalink to this definition"></a></dt>
+<dd><p>Return the intersection of the plane with a curve or a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">Curve or Polygon object</span></dt><dd><p>The object to intersect with the plane.</p>
+</dd>
+<dt><strong>max_dist</strong><span class="classifier">float</span></dt><dd><p>The maximum distance of checked points from the plane.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>intersection</strong><span class="classifier">list or array</span></dt><dd><p>The intersection point of the plane with the obj in the shape of
+(1, 3). If the intersection is not found, none is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+<p>A point / vector class inheriting from numpy.ndarray. This class is
+used to represent points in n-dimensional space. The shape of the
+array is (m, n), where m is the number of points and n is the
+dimensionality of the space.</p>
+<p class="rubric">Notes</p>
+<p>Efficient Vector / Point class in Python from:
+<a class="reference external" href="https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python">https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p4</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dist34</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">p3</span> <span class="o">-</span> <span class="n">p4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">z</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+<span class="go">(1, 2, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xyz</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">xyz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">xyz</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Operations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span> <span class="o">==</span> <span class="n">Point</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">p1</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">27</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="p">(</span><span class="n">p3</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">p4</span><span class="p">)</span> <span class="o">==</span> <span class="n">dist34</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">p1</span> <span class="o">!=</span> <span class="n">p2</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.direction_ratio">
+<span class="sig-name descname"><span class="pre">direction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.direction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.direction_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Gives the direction ratio between 2 points
+Parameters
+———-
+other : Point object</p>
+<blockquote>
+<div><p>The other point to which the direction ratio is calculated.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>direction_ratio</strong><span class="classifier">list</span></dt><dd><p>The direction ratio between the 2 points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">.</span><span class="n">direction_ratio</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">[1, 1, 2]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.dist" title="Permalink to this definition"></a></dt>
+<dd><p>Both points must have the same dimensions
+:return: Euclidean distance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.save_as_vtk">
+<span class="sig-name descname"><span class="pre">save_as_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.save_as_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.save_as_vtk" title="Permalink to this definition"></a></dt>
+<dd><p>Save the point as a vtk file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.set_x">
+<span class="sig-name descname"><span class="pre">set_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.set_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.set_x" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.set_y">
+<span class="sig-name descname"><span class="pre">set_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.set_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.set_y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.set_z">
+<span class="sig-name descname"><span class="pre">set_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Point.set_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Point.set_z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.bounds" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">array_like</span></dt><dd><p>The bounding box of the point. The first row is the minimum
+values and the second row is the maximum values for each
+dimension.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.size" title="Permalink to this definition"></a></dt>
+<dd><p>Number of elements in the array.</p>
+<p>Equal to <code class="docutils literal notranslate"><span class="pre">np.prod(a.shape)</span></code>, i.e., the product of the array’s
+dimensions.</p>
+<p class="rubric">Notes</p>
+<p><cite>a.size</cite> returns a standard arbitrary precision Python integer. This
+may not be the case with other methods of obtaining the same value
+(like the suggested <code class="docutils literal notranslate"><span class="pre">np.prod(a.shape)</span></code>, which returns an instance
+of <code class="docutils literal notranslate"><span class="pre">np.int_</span></code>), and may be relevant if the value is used further in
+calculations that may overflow a fixed size integer type.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">size</span>
+<span class="go">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">30</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.x" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.xyz">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.xyz" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Point.z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#polykriging.geometry.basic.Point.z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Polygon" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve" title="polykriging.geometry.basic.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a></p>
+<p>This is a closed curve in 2/3-dimensional space. The polygon is defined
+by a list of points. The first and last point must be the same. if not,
+the last point will be added to the list.</p>
+<p>TODO : check if all the points are in the same plane.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span><span class="o">.</span><span class="n">points</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon.to_curve">
+<span class="sig-name descname"><span class="pre">to_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Polygon.to_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Polygon.to_curve" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the polygon to a curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#polykriging.geometry.basic.Polygon.area" title="Permalink to this definition"></a></dt>
+<dd><p>Return the area of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon.centroid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centroid</span></span><a class="headerlink" href="#polykriging.geometry.basic.Polygon.centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Return the centroid of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>centroid</strong><span class="classifier">Point object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Polygon.perimeter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perimeter</span></span><a class="headerlink" href="#polykriging.geometry.basic.Polygon.perimeter" title="Permalink to this definition"></a></dt>
+<dd><p>Return the perimeter of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>perimeter</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Tube"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Tube" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
+<p>This class defines a 3D tubular surface by number of points on each cross-section (theta_res)
+and the number of cross-sections (h_res). Note that the number of points on the cross-section
+is the same for all the-cross sections.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Tube.mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Tube.mesh" title="Permalink to this definition"></a></dt>
+<dd><p>TODO : raise TypeError(“Given points must be a sequence or an array.”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.save_as_mesh">
+<span class="sig-name descname"><span class="pre">save_as_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Tube.save_as_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Tube.save_as_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Save the tubular mesh to a file. The file format is determined by the extension of the filename.
+The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].</p>
+<p>TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path and the name of the file to be saved with the extension.</p>
+</dd>
+<dt><strong>end_closed</strong><span class="classifier">bool</span></dt><dd><p>If True, the ends of the tube will be closed. The default value is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The tubular mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polykriging.geometry.basic.Tube.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Return a tuple (xmin, ymin, xmax, ymax) representing the bounding
+rectangle for the geometric figure.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.default_assumptions">
+<span class="sig-name descname"><span class="pre">default_assumptions</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#polykriging.geometry.basic.Tube.default_assumptions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.h_res">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">h_res</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#polykriging.geometry.basic.Tube.h_res" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#polykriging.geometry.basic.Tube.points" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Tube.theta_res">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">theta_res</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#polykriging.geometry.basic.Tube.theta_res" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point" title="polykriging.geometry.basic.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p>
+<p>A vector class inheriting from Point. This class is used to represent
+vectors in n-dimensional space. The shape of the array is (1, n).</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sum12</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot12</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span> <span class="o">==</span> <span class="n">sum12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">v1</span> <span class="o">*</span> <span class="n">v2</span> <span class="o">==</span> <span class="n">dot12</span>  <span class="c1"># Dot product</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.angle_between">
+<span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector.angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.angle_between" title="Permalink to this definition"></a></dt>
+<dd><p>Return the angle between 2 vectors in radians.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.cross">
+<span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector.cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.cross" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.dot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.add">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><a class="headerlink" href="#polykriging.geometry.basic.Vector.add" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.norm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">norm</span></span><a class="headerlink" href="#polykriging.geometry.basic.Vector.norm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.sub">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sub</span></span><a class="headerlink" href="#polykriging.geometry.basic.Vector.sub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="parametric-geometries">
 <h1>Parametric geometries<a class="headerlink" href="#parametric-geometries" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-0"></span><dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a parametric curve. It is defined by a function and
+a parameter.</p>
+<blockquote>
+<div><p>The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</p>
+</div></blockquote>
+<dl class="simple">
+<dt>documentation of sympy.geometry.curve.Curve for more information.</dt><dd><p><a class="reference external" href="https://docs.sympy.org/latest/modules/geometry/curves.html">https://docs.sympy.org/latest/modules/geometry/curves.html</a></p>
+</dd>
+</dl>
+<p>TODO : A detailed documentation will be added in the future.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve</span> <span class="o">=</span> <span class="n">ParamCurve</span><span class="p">(</span><span class="n">limits</span><span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="n">function</span><span class="o">=</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamCurve.bounds">
+<span class="sig-name descname"><span class="pre">bounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamCurve.bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamCurve.bounds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamCurve.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamCurve.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamCurve.eval" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate the curve at a given parameter value. The parameter value
+should be within the limits. Otherwise, an error will be raised.</p>
+<dl class="simple">
+<dt>t_value<span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamSurface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
+<dl class="simple">
+<dt>A parametric surface is defined by two parametric equations in the form of</dt><dd><p>x = f(s, t)
+y = g(s, t)
+z = h(s, t)</p>
+</dd>
+</dl>
+<p>The surface is defined by the domain of s and t.
+store: s,t, x,y,z</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamSurface</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s t&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span> <span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span>
+<span class="go">ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 6.28318530717959), (t, 0, 3.14159265358979)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamSurface.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.eval" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate the surface at the given parameter values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
+the shape of the returned surface is (len(s) * len(t), 3). The
+first column is s values, the second column is t values, and the
+following columns are the coordinates of the surface at the given
+parameter values (x, y, z).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'z'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamSurface.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.rotate" title="Permalink to this definition"></a></dt>
+<dd><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p>
+<p>The default pt is the origin, Point(0, 0)</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="c1"># vertex on x axis</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># vertex on y axis now</span>
+<span class="go">Triangle(Point2D(0, 1), Point2D(-sqrt(3)/2, -1/2), Point2D(sqrt(3)/2, -1/2))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamSurface.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.scale" title="Permalink to this definition"></a></dt>
+<dd><p>Scale the object by multiplying the x,y-coordinates by x and y.</p>
+<p>If pt is given, the scaling is done relative to that point; the
+object is shifted by -pt, scaled, and shifted by pt.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)/2), Point2D(-1, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)), Point2D(-1, -sqrt(3)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#ParamSurface.translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.translate" title="Permalink to this definition"></a></dt>
+<dd><p>Shift the object by adding to the x,y-coordinates the values x and y.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(3, 0), Point2D(3/2, sqrt(3)/2), Point2D(3/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(3, 2), Point2D(3/2, sqrt(3)/2 + 2), Point2D(3/2, 2 - sqrt(3)/2))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.default_assumptions">
+<span class="sig-name descname"><span class="pre">default_assumptions</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.default_assumptions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.functions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">functions</span></span><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.functions" title="Permalink to this definition"></a></dt>
+<dd><p>The functions specifying the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">functions</span>
+<span class="go">(t, t, t)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.geometry.basic.ParamSurface.limits">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">limits</span></span><a class="headerlink" href="#polykriging.geometry.basic.ParamSurface.limits" title="Permalink to this definition"></a></dt>
+<dd><p>The limits of the two parameters specifying the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>list limits of the parameters.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">limits</span>
+<span class="go">((t, 0, 1), (t, 0, 1))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

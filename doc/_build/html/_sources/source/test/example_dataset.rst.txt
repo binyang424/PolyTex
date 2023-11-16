@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_example_dataset.py>`
+        Click :ref:`here <sphx_glr_download_source_test_example_dataset.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -62,7 +62,7 @@ the path using the entry ``outdir``.
 .. GENERATED FROM PYTHON SOURCE LINES 34-36
 
 The input and output of the example datasets will be described in the examples
-for polyKriging.fileio module.
+for ``polyKriging.io`` module.
 
 
 .. rst-class:: sphx-glr-timing
@@ -75,8 +75,6 @@ for polyKriging.fileio module.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

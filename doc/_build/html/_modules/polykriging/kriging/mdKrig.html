@@ -91,7 +91,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function for definition of drift and covariance function</span>
 <span class="sd">    in dictionary drif_funcs and cov_funcs.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    drift_name: str. The name of the drift function.</span>
@@ -312,7 +312,7 @@
 
     <span class="c1"># ------- build the kriging model -------</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x y&#39;</span><span class="p">)</span>
-    <span class="n">doc_krig</span> <span class="o">=</span> <span class="n">drift_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">B</span><span class="p">[</span><span class="n">b_len</span><span class="p">:])</span>
+    <span class="n">doc_krig</span> <span class="o">=</span> <span class="n">drift_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">B</span><span class="p">[</span><span class="n">b_len</span><span class="p">:])</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="n">bi_cov</span> <span class="o">=</span> <span class="p">((</span><span class="n">cov_func</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">xy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">xy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>

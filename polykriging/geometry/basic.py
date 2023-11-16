@@ -218,6 +218,7 @@ class Point(np.ndarray):
             pk.save_ply(filename, vertices=self.xyz,
                         point_data=color, binary=False)
 
+
 class Vector(Point):
     """
     A vector class inheriting from Point. This class is used to represent
@@ -265,9 +266,22 @@ class Vector(Point):
         """
         return np.linalg.norm(self)
 
-    def angle_between(self, other):
+    def angle_between(self, other, radian=False):
         """
-        Return the angle between 2 vectors in radians.
+        Return the angle between 2 vectors.
+
+        Parameters
+        ----------
+        other : Vector object
+            The other vector to which the angle is calculated.
+        radian : bool, optional
+            If True, return the angle in radians. The default is False.
+
+        Returns
+        -------
+        angle : float
+            The angle between the 2 vectors. If radian is True, the angle is in radians.
+            Otherwise, the angle is in degrees.
         """
         if other is not Vector:
             try:
@@ -275,7 +289,10 @@ class Vector(Point):
             except ValueError:
                 raise ValueError("The other object must be a Vector")
 
-        return np.arccos(self.dot(other) / (self.norm * other.norm))
+        if radian:
+            return np.arccos(self.dot(other) / (self.norm * other.norm))
+        else:
+            return np.arccos(self.dot(other) / (self.norm * other.norm))
 
 
 class Line(symLine.Line):
@@ -501,6 +518,7 @@ class Ellipse2D:
     >>> e = Ellipse2D(20, 1, 0.5, [0, 0])
     >>> e.__repr__()
     """
+
     def __init__(self, n: int, a: float, b: float, center=[0, 0]):
         """
         Parameters
@@ -656,7 +674,7 @@ class Plane:
         b : Point object, optional
             A point on the plane. The default is None.
         **kwargs : dict, optional
-            normal_vector can be passed as a keyword argument when leaving
+            `normal_vector` can be passed as a keyword argument when leaving
             a and b as None. If both a and b are not None, normal_vector will
             be ignored.
 
@@ -669,6 +687,9 @@ class Plane:
         if a is not None and b is not None:
             p2 = Point(a)
             p3 = Point(b)
+
+            self.p2 = p2
+            self.p3 = p3
 
             # p1.tolist(): convert the point to a list for compatibility with sympy geometry
             # It is originally a PolyKriging Point object which is inherited from numpy.ndarray.
@@ -685,19 +706,76 @@ class Plane:
 
             # get() is used to get the normal vector from the dictionary.
             evaluate = kwargs.get('evaluate', True)
-            if is_sequence(a) and len(a) == 3:
-                normal_vector = symPoint.Point3D(a).args if evaluate else a
-            else:
+
+            # check if a is a Point object
+            if not isinstance(a, Vector):
+                a = Vector(a)
+
+            if not len(a) == 3:
                 raise ValueError("""Either provide 3 3D points or a point with a
                     normal vector expressed as a sequence of length 3""")
-            if all(coord.is_zero for coord in normal_vector):
+
+            normal_vector = a
+
+            if np.all(a == 0):
                 raise ValueError('Normal vector cannot be zero vector')
 
         self.p1 = p1
-        self.normal = tuple(np.array(normal_vector, dtype=np.float32))
+        self.normal = Vector(np.array(normal_vector / normal_vector.norm, dtype=np.float32))
+
+
 
     def __repr__(self):
         return f"Plane(Point{self.p1}, Normal{self.normal})"
+
+    def distance(self, point):
+        """
+        Return the signed distance between a point and the plane.
+
+        Parameters
+        ----------
+        point : Point object
+            The point to calculate the distance. shape = (n, 3), where n is the number of points.
+
+        Returns
+        -------
+        distance : float
+            The distance between the point and the plane.
+
+        Examples
+        --------
+        >>> from polykriging.geometry import Point, Plane
+        >>> p1 = Point([5, 0, 0])
+        >>> normal = Point([1, 0, 0])
+        >>> plane = Plane(p1, normal_vector=normal)
+        >>> plane.show()
+        >>> plane.distance([[0, 0, 0], [1, 0, 0], [2, 0, 0]])
+        array([-5., -4., -3.])
+        """
+        normal = self.normal
+        p1 = self.p1
+
+        # check if point is a Point object
+        if not isinstance(point, Point):
+            point = Point(point)
+
+        dist = (normal[0] * (point.x - p1.x)
+                + normal[1] * (point.y - p1.y)
+                + normal[2] * (point.z - p1.z))
+        return dist
+
+    def show(self):
+        """
+        Plot the plane.
+
+        Returns
+        -------
+        None
+        """
+        p = pv.Plane(center=self.p1, direction=self.normal,
+                  i_size=1, j_size=1,
+                  i_resolution=2, j_resolution=2)
+        p.plot(show_edges=False)
 
     # def __dir__(self):
     #     return []
@@ -872,7 +950,7 @@ class Tube(GeometryEntity):
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
-        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res-1, h_res=h_res,
+        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res - 1, h_res=h_res,
                                                  vertices=pts, plot=False)
         if plot:
             pv_mesh.plot(show_edges=True)
@@ -920,7 +998,7 @@ class Tube(GeometryEntity):
                 correction=end_closed)
 
             pk.meshio_save(save_path, points, cells=cells,
-                        point_data={}, cell_data={}, binary=False)
+                           point_data={}, cell_data={}, binary=False)
         else:
             import pyvista as pv
             pv.save_meshio(save_path, mesh, binary=False)
@@ -1325,6 +1403,7 @@ def find_intersect(f, curve, niterations=5, mSegments=5):
     intersect = (curve[idx, :] + curve[idx + 1, :]) / 2
 
     return intersect
+
 
 if __name__ == "__main__":
     import doctest

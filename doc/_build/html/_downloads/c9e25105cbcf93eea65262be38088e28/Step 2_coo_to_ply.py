@@ -11,10 +11,10 @@ will be linearly interpolated to avoid distortion in tetralization  process.
 
 import polykriging as pk
 
-path = pk.fileio.choose_directory(titl="coo files")
-cwd = pk.fileio.cwd_chdir(path)
+path = pk.io.choose_directory(titl="coo files")
+cwd = pk.io.cwd_chdir(path)
 
-filenames = pk.fileio.filenames(path, "coo")
+filenames = pk.io.filenames(path, "coo")
 
 for filename in filenames:
     # extract the yarn number from the filename string using regular expression

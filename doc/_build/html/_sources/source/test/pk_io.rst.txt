@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_pk_io.py>`
+        Click :ref:`here <sphx_glr_download_source_test_pk_io.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -21,10 +21,10 @@
 File input and output
 =====================
 All the functions related to file input and output were defined in
-`polykriging.fileio` module. These functions allow users to read
+`polykriging.io` module. These functions allow users to read
 and write files tailored for `polykriging`. The functions in this module
 can be directly called by `polykriging.` + `function name`. For example,
-to call the function choose_file, use `polykriging.fileio.choose_file`
+to call the function choose_file, use `polykriging.io.choose_file`
 or simply `polykriging.choose_file`.
 
 For more information about these file formats, please refer to
@@ -99,8 +99,6 @@ and return a list of filenames with a given extension.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

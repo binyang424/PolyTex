@@ -195,6 +195,72 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="xy_interp"><a class="viewcode-back" href="../../../source/polykriging.plot.html#polykriging.plot.image_plot.xy_interp">[docs]</a><span class="k">def</span> <span class="nf">xy_interp</span><span class="p">(</span><span class="o">*</span><span class="n">axis_list</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interpolate the axis_list to the same x-axis and calculate the mean y-axis</span>
+<span class="sd">    for all the input x-y pairs (midline).</span>
+
+<span class="sd">    TODO: check what happens if the range of x-axis is not the same for all the input axis_list.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    -----</span>
+<span class="sd">    [algorithm - How to interpolate a line between two other lines in python]</span>
+<span class="sd">    (https://stackoverflow.com/questions/49037902/how-to-interpolate-a-line-between-two-other-lines-in-python/49041142#49041142)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    axis_list : list of np.ndarray</span>
+<span class="sd">        Each element is a 2D array with shape (n, 2), where n is the number of points.</span>
+<span class="sd">        The first column is x-axis and the second column is y-axis.</span>
+<span class="sd">    num : int, optional</span>
+<span class="sd">        The number of points to interpolate. The default is 100.</span>
+<span class="sd">    raw : bool, optional</span>
+<span class="sd">        If True, return the raw interpolated axis_list. The default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mid : np.ndarray</span>
+<span class="sd">        The interpolated midline with shape (n, 2), where n is the number of points.</span>
+<span class="sd">        The first column is x-axis and the second column is y-axis.</span>
+<span class="sd">    raw_interp : np.ndarray</span>
+<span class="sd">        The raw interpolated axis_list with shape (n, m), where n is the number of points</span>
+<span class="sd">        and m is the number of input axis_list. The first m columns are x-axis and the</span>
+<span class="sd">        last m columns are y-axis.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x1 = np.linspace(0, 10, 10)</span>
+<span class="sd">    &gt;&gt;&gt; y1 = np.linspace(0, 15, 10)</span>
+<span class="sd">    &gt;&gt;&gt; x2 = np.linspace(0, 10, 20)</span>
+<span class="sd">    &gt;&gt;&gt; y2 = np.linspace(0, 12, 20)</span>
+<span class="sd">    &gt;&gt;&gt; x3 = np.linspace(0, 9, 30)</span>
+<span class="sd">    &gt;&gt;&gt; y3 = np.linspace(0, 18, 30)</span>
+<span class="sd">    &gt;&gt;&gt; interp(np.vstack((x1, y1)).T, np.vstack((x2, y2)).T, np.vstack((x3, y3)).T)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">min_max_xs</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">min</span><span class="p">(</span><span class="n">axis</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">axis</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">axis_list</span><span class="p">]</span>
+
+    <span class="c1"># TODO : The interpolated range of x-axis is not the same for all the input axis_list.</span>
+    <span class="c1"># 1. Interpolate the axis_list to the same x-axis: [maximun min_x, minimun max_x].</span>
+    <span class="c1"># 2. Calculate the mean y-axis for all the input x-y pairs (midline)</span>
+    <span class="n">new_axis_xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span> <span class="ow">in</span> <span class="n">min_max_xs</span><span class="p">]</span>
+    <span class="n">new_axis_ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">new_x_axis</span><span class="p">,</span> <span class="n">axis</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+                   <span class="k">for</span> <span class="n">axis</span><span class="p">,</span> <span class="n">new_x_axis</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axis_list</span><span class="p">,</span> <span class="n">new_axis_xs</span><span class="p">)]</span>
+
+    <span class="n">midx</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">new_axis_xs</span><span class="p">[</span><span class="n">axis_idx</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                     <span class="k">for</span> <span class="n">axis_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">axis_list</span><span class="p">))])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)]</span>
+    <span class="n">midy</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">new_axis_ys</span><span class="p">[</span><span class="n">axis_idx</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                     <span class="k">for</span> <span class="n">axis_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">axis_list</span><span class="p">))])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)]</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">midx</span><span class="p">,</span> <span class="n">midy</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_axis_xs</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_axis_ys</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">raw_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">new_axis_xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_axis_ys</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mid</span><span class="p">,</span> <span class="n">raw_interp</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mid</span></div>
+        
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">img</span> <span class="o">=</span> <span class="s1">&#39;./test/imagePlot/trans0000.tif&#39;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./test/imagePlot/4_1_XY_Coordinates.csv&#39;</span>

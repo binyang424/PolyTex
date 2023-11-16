@@ -22,13 +22,13 @@ Variables:
 
 # the path where the npz file is stored.
 # ./05_polyKriging\Data\extractedData\
-path = pk.fileio.choose_directory(
+path = pk.io.choose_directory(
     titl="Choose the directory that contains raw point cloud data (pcd) ...")
 
-pk.fileio.cwd_chdir(path)  # set the path as current work directory
-filelist = pk.fileio.filenames(path, "pcd")
+pk.io.cwd_chdir(path)  # set the path as current work directory
+filelist = pk.io.filenames(path, "pcd")
 
-pathsave = pk.fileio.choose_directory(
+pathsave = pk.io.choose_directory(
     titl="Choose the directory to save Geometry features")
 
 resolution = 0.022  # mm/pixel

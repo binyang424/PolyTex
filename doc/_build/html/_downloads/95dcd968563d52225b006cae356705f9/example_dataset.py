@@ -32,4 +32,4 @@ pk.example("surface points", outdir="./test_data/")
 
 ###############################################################################
 # The input and output of the example datasets will be described in the examples
-# for polyKriging.fileio module.
+# for ``polyKriging.io`` module.

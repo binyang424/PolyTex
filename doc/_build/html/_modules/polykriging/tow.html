@@ -80,8 +80,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for polykriging.tow</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.fileio</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">save_ply</span>
-<span class="kn">from</span> <span class="nn">.fileio</span> <span class="kn">import</span> <span class="n">save</span> <span class="k">as</span> <span class="n">save_tow</span>
+<span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">save_ply</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">save</span> <span class="k">as</span> <span class="n">save_tow</span>
 
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">geom_tow</span><span class="p">,</span> <span class="n">Curve</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Plane</span><span class="p">,</span> <span class="n">Tube</span><span class="p">,</span> <span class="n">ParamCurve</span><span class="p">,</span> <span class="n">area_signed</span>
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">transform</span> <span class="k">as</span> <span class="n">tf</span>
@@ -91,6 +91,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
 <span class="c1"># pv.set_plot_theme(&quot;document&quot;)</span>
@@ -103,29 +104,59 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name or type of the tow. Default is &quot;Tow&quot;. It can be any string that helps</span>
+<span class="sd">        users to identify the tow. (initialized in Tow.__init__)</span>
+<span class="sd">    tex : float</span>
+<span class="sd">        The linear density of the tow in tex. Default is 0. (initialized in Tow.__init__)</span>
+<span class="sd">    order : str</span>
+<span class="sd">        It is preferred to set the last column of the surf_points as the coordinate in</span>
+<span class="sd">        the direction that is perpendicular to the image slices for geometry analysis,</span>
+<span class="sd">        parametrization and kriging resampling. Hence, you may have reordered the columns.</span>
+<span class="sd">        Here, you can specify the order of the columns in the reordered points. Default is &quot;xyz&quot;.</span>
+<span class="sd">        The other options are &quot;xzy&quot;, &quot;yxz&quot;, &quot;yzx&quot;, &quot;zxy&quot;, &quot;zyx&quot;. The output coordinate will</span>
+<span class="sd">        be reordered in the right order (xyz) according to the order specified here.</span>
+<span class="sd">        (initialized in Tow.__init__)</span>
+<span class="sd">    resolution : float</span>
+<span class="sd">        The resolution of the MicroCT image used to generate the tow dataset. Default is None.</span>
+<span class="sd">        This is only stored as an attribute for future use. It is not used in the current version.</span>
+<span class="sd">        (initialized in Tow.__init__)</span>
+<span class="sd">    surf_points : ndarray</span>
+<span class="sd">        The surface points of the tow. It stores the coordinates of the points input by the user.</span>
+<span class="sd">        (initialized in Tow.__init__)</span>
 <span class="sd">    geom_features : dataframe</span>
 <span class="sd">        The geometry features of each cross-section of the tow. The features include</span>
 <span class="sd">        the &#39;Area&#39;, &#39;Perimeter&#39;, &#39;Width&#39;, &#39;Height&#39;, &#39;AngleRotated&#39;, &#39;Circularity&#39;,</span>
-<span class="sd">       &#39;centroidX&#39;, &#39;centroidY&#39;, and &#39;centroidZ&#39;.</span>
+<span class="sd">       &#39;centroidX&#39;, &#39;centroidY&#39;, and &#39;centroidZ&#39;. (initialized in Tow.__init__)</span>
 <span class="sd">    coordinates : dataframe</span>
 <span class="sd">        The parametrilized coordinates of the tow. It includes the geodesic &#39;distance&#39;</span>
 <span class="sd">        and the normalized distance &#39;norm_distance&#39; from the start point of the parametric</span>
 <span class="sd">        plane to the current point, the &#39;angular position (degree)&#39;, and the corresponding</span>
-<span class="sd">        &#39;X&#39;, &#39;Y&#39;, and &#39;Z&#39; coordinates.</span>
+<span class="sd">        &#39;X&#39;, &#39;Y&#39;, and &#39;Z&#39; coordinates. (initialized in Tow.__init__)</span>
+<span class="sd">    theta_res : float</span>
+<span class="sd">        The number of points to describe the profile of a tow cross-section in the radial</span>
+<span class="sd">        direction. (initialized in Tow.resampling)</span>
+<span class="sd">    h_res : float</span>
+<span class="sd">        The number of cross-sections to describe the profile of a tow in the axial</span>
+<span class="sd">        direction. (initialized in Tow.resampling)</span>
+<span class="sd">    orientation : ndarray</span>
+<span class="sd">        The orientation of the tow calculated from the tangent of centerline of the tow.</span>
+<span class="sd">        (initialized in Tow.trajectory)</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import polykriging as pk</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; surf_points = pk.pk_load(&quot;./216_302_binder_1.pcd&quot;).to_numpy()</span>
+<span class="sd">    &gt;&gt;&gt; path = pk.example(&quot;surface points&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; surf_points = pk.pk_load(path).to_numpy()</span>
 <span class="sd">    &gt;&gt;&gt; coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm</span>
 <span class="sd">    &gt;&gt;&gt; tow = pk.Tow(surf_points=coordinates, tex=0, name=&quot;Tow&quot;) # PolyKriging Tow class</span>
 <span class="sd">    &gt;&gt;&gt; df_coord = tow.coordinates  # parametric coordinates of the tow</span>
 <span class="sd">    &gt;&gt;&gt; df_geom = tow.geom_features  # geometrical features of the tow</span>
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; sample_position = np.linspace(0, 1, 20, endpoint=True)</span>
-<span class="sd">    &gt;&gt;&gt; pts_krig, expr_krig = tow.krig_cs(krig_config=(&quot;lin&quot;, &quot;cub&quot;),</span>
+<span class="sd">    &gt;&gt;&gt; pts_krig, expr_krig = tow.resampling(krig_config=(&quot;lin&quot;, &quot;cub&quot;),</span>
 <span class="sd">                                          skip=10, sample_position=sample_position,</span>
 <span class="sd">                                          smooth=0.0001)</span>
 <span class="sd">    &gt;&gt;&gt; mesh = tow.surf_mesh(order=&quot;zyx&quot;, plot=True)</span>
@@ -187,7 +218,19 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;surf_points must be a point cloud data file (.pcd),&quot;</span>
                                  <span class="s2">&quot;a numpy array, or an pandas dataframe with xyz coordinates&quot;</span>
                                  <span class="s2">&quot;in the shape of (n,3).&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">geom_tow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+
+        <span class="c1"># self.__geom_features and self.__coordinates are private attributes used for data transfer</span>
+        <span class="c1"># between the functions in the class. They are not supposed to be accessed by the user.</span>
+        <span class="c1"># The user should use the public attributes self.geom_features and self.coordinates</span>
+        <span class="c1"># to access the data.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span> <span class="o">=</span> <span class="n">geom_tow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span>
+                                          <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="o">+</span><span class="mi">6</span><span class="p">))],</span>
+                                          <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span>
+                                        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="o">+</span><span class="mi">3</span><span class="p">))],</span>
+                                        <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -196,7 +239,7 @@
         <span class="n">tow_info</span> <span class="o">=</span> <span class="s2">&quot;Tow: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
                    <span class="s2">&quot;Linear density: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
                    <span class="s2">&quot;Number of points: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                   <span class="s2">&quot;Number of cross-sections: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                   <span class="s2">&quot;Number of cross-sections: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">tow_info</span>
 
     <span class="nd">@property</span>
@@ -210,32 +253,85 @@
         <span class="n">inv_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">order_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">inv_order</span>
 
-<div class="viewcode-block" id="Tow.krig_cs"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.krig_cs">[docs]</a>    <span class="k">def</span> <span class="nf">krig_cs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="p">[],</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="Tow.kde"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.kde">[docs]</a>    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Kriging the cross-sections of the tow to oobtain the parametric equations</span>
+<span class="sd">        Generate the kernel density estimation of the radial normalized distance for point cloud</span>
+<span class="sd">        decomposition.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bw : float, optional</span>
+<span class="sd">            The bandwidth of the kernel density estimation. Default is None and the bandwidth</span>
+<span class="sd">            will be estimated using the Scott&#39;s rule of thumb (one-fifth of the estimated value).</span>
+<span class="sd">        save_path : str, optional</span>
+<span class="sd">            The path to save the kernel density estimation. Default is None. If None, the</span>
+<span class="sd">            kernel density estimation will not be saved. The file format is .stat and can be</span>
+<span class="sd">            loaded by the function `polykriging.pk_load`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        clusters : dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">bw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot; Initial bandwidth estimation by Scott&#39;s rule &quot;&quot;&quot;</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">t_norm</span><span class="p">)</span>
+            <span class="n">bw</span> <span class="o">=</span> <span class="n">bw_scott</span><span class="p">(</span><span class="n">std</span><span class="p">,</span> <span class="n">t_norm</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial bandwidth: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bw</span><span class="p">))</span>
+
+        <span class="sd">&quot;&quot;&quot;  Kernel density estimation   &quot;&quot;&quot;</span>
+        <span class="n">t_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="n">clusters</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">t_norm</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">[</span><span class="s1">&#39;cluster centers&#39;</span><span class="p">])))</span>
+
+        <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_test</span><span class="p">[</span><span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">]]</span>
+        <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster boundary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_test</span><span class="p">[</span><span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster boundary&quot;</span><span class="p">]]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="n">clusters</span>
+
+        <span class="k">if</span> <span class="n">save_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">save_path</span> <span class="o">=</span> <span class="n">save_path</span> <span class="o">+</span> <span class="s2">&quot;.stat&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">save_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">save_path</span>
+            <span class="n">pk_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">clusters</span></div>
+
+<div class="viewcode-block" id="Tow.mw_kde"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.mw_kde">[docs]</a>    <span class="k">def</span> <span class="nf">mw_kde</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Tow.resampling"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.resampling">[docs]</a>    <span class="k">def</span> <span class="nf">resampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="p">[],</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Kriging the cross-sections of the tow to obtain the parametric equations</span>
 <span class="sd">        for each cross-section (which is a closed curve).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        krig_config : tuple, optional</span>
 <span class="sd">            The kriging configuration. The first element is the kriging model for</span>
-<span class="sd">            the drift term and the second is the name of covariance function. Default</span>
-<span class="sd">            is (&quot;lin&quot;, &quot;cub&quot;).</span>
+<span class="sd">            the drift and the second is the name of covariance. Default is (&quot;lin&quot;, &quot;cub&quot;).</span>
 <span class="sd">        skip : int, optional</span>
-<span class="sd">            The number of cross-sections to skip when kriging to accelerate the</span>
-<span class="sd">            interpolation. Default is 5. If skip is 1, all the cross-sections will</span>
-<span class="sd">            be kriged.</span>
+<span class="sd">            The number of cross-sections to be skipped for resampling to accelerate the</span>
+<span class="sd">            operation. Default is 5. Namely, 1 of every 5 cross-sections will be resampled.</span>
+<span class="sd">            If skip is 1, all the cross-sections will be kriged.</span>
 <span class="sd">        sample_position : array_like, optional</span>
 <span class="sd">            The resampling positions of each cross-sections specified by the normalized</span>
 <span class="sd">            distance in radial direction of each cross-section. Default is [].</span>
 <span class="sd">        smooth : float, optional</span>
 <span class="sd">            The smoothing parameter for the kriging resampling. Default is 0. Also known</span>
 <span class="sd">            as the nugget effect in geo-statistics and kriging theory.</span>
+<span class="sd">        type : str, optional</span>
+<span class="sd">            The type of the kriging resampling. Default is &quot;distance&quot;. The other option</span>
+<span class="sd">            is &quot;angular&quot;. If &quot;distance&quot;, the resampling positions are specified by the</span>
+<span class="sd">            normalized distance (between 0 and 1) in radial direction of each cross-section.</span>
+<span class="sd">            If &quot;angular&quot;, the resampling positions are specified by angular position (between</span>
+<span class="sd">            0 and 360) of control points in radial direction of each cross-section.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        _Tow__kriged_vertices : ndarray</span>
-<span class="sd">            The kriged points for eacg cross-section of the tow. It is an array of shape</span>
+<span class="sd">            The kriged points for each cross-section of the tow. It is an array of shape</span>
 <span class="sd">            (n, 3) where n is the number of points. The kriged points is obtained according</span>
 <span class="sd">            to the kriging configuration and the resampling positions. If the resampling</span>
 <span class="sd">            positions are not specified, the kriged points are obtained by evenly sampling</span>
@@ -244,9 +340,9 @@
 <span class="sd">        expr : dict</span>
 <span class="sd">            The kriging expression for each cross-section. It contains two sub-dictionaries that</span>
 <span class="sd">             use the cross-section number as the key and the kriging expression as the value for</span>
-<span class="sd">             the components in y and z directions. (x is the normalized distance in radial direction).</span>
+<span class="sd">             the first two components of user input.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">])[::</span><span class="n">skip</span><span class="p">]</span>
+        <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">])[::</span><span class="n">skip</span><span class="p">]</span>
         <span class="n">n_slices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span>
         <span class="n">dict_cs_x</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">dict_cs_y</span> <span class="o">=</span> <span class="p">{}</span>
@@ -255,6 +351,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">interp</span> <span class="o">=</span> <span class="n">sample_position</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sample_position</span> <span class="o">=</span> <span class="n">interp</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">h_res</span> <span class="o">=</span> <span class="n">n_slices</span>
 
@@ -262,15 +360,18 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging cross-sections... </span><span class="se">\n</span><span class="s2">&quot;</span>
               <span class="s2">&quot;It may take a while depending on the number of cross-sections.&quot;</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_slices</span><span class="p">):</span>
-            <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">krig_config</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">slices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">pts_cs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+        <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">krig_config</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;angular&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 
-                <span class="n">x_inter</span><span class="p">,</span> <span class="n">x_expr</span> <span class="o">=</span> <span class="n">curve2Dinter</span><span class="p">(</span><span class="n">pts_cs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_slices</span><span class="p">):</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">slices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">pts_cs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+                <span class="n">x_inter</span><span class="p">,</span> <span class="n">x_expr</span> <span class="o">=</span> <span class="n">curve2Dinter</span><span class="p">(</span><span class="n">pts_cs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="nb">type</span><span class="p">],</span> <span class="mi">3</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
                                                <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">smooth</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="n">interp</span><span class="p">)</span>
-                <span class="n">y_inter</span><span class="p">,</span> <span class="n">y_expr</span> <span class="o">=</span> <span class="n">curve2Dinter</span><span class="p">(</span><span class="n">pts_cs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+                <span class="n">y_inter</span><span class="p">,</span> <span class="n">y_expr</span> <span class="o">=</span> <span class="n">curve2Dinter</span><span class="p">(</span><span class="n">pts_cs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="nb">type</span><span class="p">],</span> <span class="mi">4</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
                                                <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">smooth</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="n">interp</span><span class="p">)</span>
                 <span class="n">z_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">),</span> <span class="n">slices</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
@@ -292,7 +393,10 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging on cross-sections is finished.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__kriged_vertices</span> <span class="o">=</span> <span class="n">pts_krig</span>  <span class="c1"># the columns are in the same order as the input data (surf_points)</span>
+
         <span class="n">inv_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resampled</span> <span class="o">=</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">]</span>
+
         <span class="k">return</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">],</span> <span class="n">expr</span></div>
 
 <div class="viewcode-block" id="Tow.surf_mesh"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.surf_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">surf_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -314,7 +418,7 @@
         <span class="c1"># if self._Tow__kriged_vertices is not defined, raise error</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_Tow__kriged_vertices&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;The kriged cross-sections are not defined. Please generate the &quot;</span>
-                                 <span class="s2">&quot;kriged cross-section points using Tow.krig_cs() first.&quot;</span><span class="p">)</span>
+                                 <span class="s2">&quot;kriged cross-section points using Tow.resampling() first.&quot;</span><span class="p">)</span>
 
         <span class="n">inv_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span>
 
@@ -327,6 +431,8 @@
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="n">plot</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__surf_mesh</span> <span class="o">=</span> <span class="n">mesh</span>
+
+        <span class="c1"># TODO : add support for end capping when save path is None.</span>
 
         <span class="k">if</span> <span class="n">save_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="n">end_closed</span><span class="p">)</span>
@@ -358,7 +464,7 @@
 <span class="sd">        traj : np.ndarray</span>
 <span class="sd">            The trajectory of the tow in the form of (n, 3) where n is the number of points.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
 
         <span class="c1"># normalize the first column of dataset</span>
@@ -461,7 +567,9 @@
                   <span class="n">name_drift</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;lin&#39;</span><span class="p">],</span>
                   <span class="n">name_cov</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cub&#39;</span><span class="p">,</span> <span class="s1">&#39;cub&#39;</span><span class="p">],</span>
                   <span class="n">smooth_factor</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                  <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                  <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                  <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Smooth the tow using parametric surface kriging.</span>
 <span class="sd">        Anisotropic smoothing is applied to the tow by using different smoothing factors</span>
@@ -498,11 +606,15 @@
 
         <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
+        <span class="c1"># check if self._Tow__kriged_vertices exists</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_Tow__kriged_vertices&quot;</span><span class="p">):</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampling</span><span class="p">()</span>
+
         <span class="n">col_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Tow__kriged_vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">col_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Tow__kriged_vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">col_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Tow__kriged_vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
 
-        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="s1">&#39;cluster centers&#39;</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sample_position</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">col_2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">col_2</span><span class="p">)</span>  <span class="c1"># the input order</span>
 
         <span class="n">theta_res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">size</span>
@@ -578,47 +690,6 @@
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">vertices</span></div>
-
-<div class="viewcode-block" id="Tow.kde"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.kde">[docs]</a>    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate the kernel density estimation of the radial normalized distance for point cloud</span>
-<span class="sd">        decomposition.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        bw : float, optional</span>
-<span class="sd">            The bandwidth of the kernel density estimation. Default is None and the bandwidth</span>
-<span class="sd">            will be estimated using the Scott&#39;s rule of thumb.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        clusters : dict</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">t_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">bw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot; Initial bandwidth estimation by Scott&#39;s rule &quot;&quot;&quot;</span>
-            <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">t_norm</span><span class="p">)</span>
-            <span class="n">bw</span> <span class="o">=</span> <span class="n">bw_scott</span><span class="p">(</span><span class="n">std</span><span class="p">,</span> <span class="n">t_norm</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial bandwidth: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bw</span><span class="p">))</span>
-
-        <span class="sd">&quot;&quot;&quot;  Kernel density estimation   &quot;&quot;&quot;</span>
-        <span class="n">t_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-        <span class="n">clusters</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">t_norm</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">[</span><span class="s1">&#39;cluster centers&#39;</span><span class="p">])))</span>
-
-        <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_test</span><span class="p">[</span><span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster centers&quot;</span><span class="p">]]</span>
-        <span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster boundary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_test</span><span class="p">[</span><span class="n">clusters</span><span class="p">[</span><span class="s2">&quot;cluster boundary&quot;</span><span class="p">]]</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="n">clusters</span>
-
-        <span class="k">if</span> <span class="n">save_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">save_path</span> <span class="o">=</span> <span class="n">save_path</span> <span class="o">+</span> <span class="s2">&quot;.stat&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">save_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">save_path</span>
-            <span class="n">pk_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">clusters</span></div>
 
 <div class="viewcode-block" id="Tow.smooth_window"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.smooth_window">[docs]</a>    <span class="k">def</span> <span class="nf">smooth_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -708,7 +779,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check if self._Tow__kriged_vertices exists</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_Tow__kriged_vertices&quot;</span><span class="p">):</span>
-            <span class="n">pts_krig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">krig_cs</span><span class="p">()</span>
+            <span class="n">pts_krig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampling</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">pts_krig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Tow__kriged_vertices</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="p">]</span>
 
@@ -773,12 +844,12 @@
         <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;resampled&quot;</span><span class="p">:</span>
             <span class="c1"># check if self._Tow__kriged_vertices exists</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_Tow__kriged_vertices&quot;</span><span class="p">):</span>
-                <span class="n">lines</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">krig_cs</span><span class="p">()</span>
+                <span class="n">lines</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampling</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Tow__kriged_vertices</span>
 
         <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span>
-            <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 
         <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">lines</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
@@ -880,7 +951,8 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                 <span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">trajectory</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                              <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                             <span class="n">i_size</span><span class="o">=</span><span class="n">i_size</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="n">j_size</span><span class="p">)</span><span class="o">.</span><span class="n">triangulate</span><span class="p">()</span>
+                             <span class="n">i_size</span><span class="o">=</span><span class="n">i_size</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="n">j_size</span><span class="p">,</span>
+                             <span class="n">i_resolution</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">j_resolution</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">triangulate</span><span class="p">()</span>
                 <span class="n">p</span><span class="o">.</span><span class="n">point_data</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
                 <span class="n">clipped</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">clip_surface</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -899,12 +971,25 @@
 
                 <span class="n">edge_reorder</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
+                <span class="sd">&quot;&quot;&quot;Skip the calculation if the number of points on the boundary is less than 3&quot;&quot;&quot;</span>
                 <span class="n">n_iter</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">n_iter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">width</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">perimeter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
                 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
                     <span class="c1"># find the index where the row contains the last element of edge_reorder</span>
-                    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">edge_reorder</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-                    <span class="n">edge_reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">edge_reorder</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:]))</span>
-                    <span class="n">edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">arr</span><span class="o">=</span><span class="n">edge</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">edge_reorder</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                        <span class="n">edge_reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">edge_reorder</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:]))</span>
+                        <span class="n">edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">arr</span><span class="o">=</span><span class="n">edge</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                        <span class="c1"># TODO: fix the bug: why there is an index error in some cases?</span>
+                        <span class="c1"># reproduce the error: warp_34.pcd, weft_20, vf = 57% (transformation\pcd\)</span>
+                        <span class="k">break</span>
 
                 <span class="n">connectivity</span> <span class="o">=</span> <span class="n">edge_reorder</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="n">points_boundary</span> <span class="o">=</span> <span class="n">edges</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">connectivity</span><span class="p">]</span>
@@ -953,7 +1038,9 @@
                     <span class="n">n_pts</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="c1"># Plane.intersection() returns none when no intersection is found.</span>
                     <span class="n">pts_intersect</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="n">max_dist</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">pts_intersect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">pts_intersect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pts_intersect</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="c1"># the second condition is to avoid that more than one intersection was detected.</span>
+                        <span class="c1"># Now it is simply ignored that if more than one intersection is detected.</span>
                         <span class="n">intersect</span><span class="p">[</span><span class="n">n_pts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
                         <span class="n">intersect</span><span class="p">[</span><span class="n">n_pts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">pts_intersect</span>
                         <span class="n">points_boundary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pts_intersect</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
@@ -961,6 +1048,14 @@
                 <span class="c1">#####################################################################</span>
                 <span class="c1"># Rotate the points to the x-y plane for geometry analysis</span>
                 <span class="c1"># --------------------------------------------------------</span>
+                <span class="c1"># print(len(points_boundary))</span>
+                <span class="k">if</span> <span class="n">points_boundary</span> <span class="o">==</span> <span class="p">[]:</span>
+                    <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">width</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">perimeter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
                 <span class="n">points_boundary_local</span> <span class="o">=</span> <span class="n">points_boundary</span> <span class="o">-</span> <span class="n">trajectory</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 
                 <span class="n">x_new</span> <span class="o">=</span> <span class="n">points_boundary_local</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">points_boundary_local</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
@@ -982,7 +1077,7 @@
                 <span class="c1"># Visualizations</span>
                 <span class="c1"># --------------</span>
                 <span class="c1"># Cross-sections of the tow</span>
-                <span class="k">if</span> <span class="n">plot</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">%</span> <span class="n">skip</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">j</span> <span class="o">%</span> <span class="n">skip</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">trajectory</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
                                  <span class="n">direction</span><span class="o">=</span><span class="n">orientation</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
                                  <span class="n">i_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">triangulate</span><span class="p">()</span>
@@ -1009,12 +1104,17 @@
             <span class="n">cross_section</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
 
         <span class="c1"># update the geometry information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">[</span><span class="s2">&quot;Area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">[</span><span class="s2">&quot;Perimeter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">perimeter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">[</span><span class="s2">&quot;Width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">area</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Perimeter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">perimeter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height</span>
 
-        <span class="k">return</span> <span class="n">cross_section</span><span class="p">,</span> <span class="n">planes</span></div></div>
+        <span class="k">return</span> <span class="n">cross_section</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">clipped</span></div></div>
 </pre></div>
 
            </div>

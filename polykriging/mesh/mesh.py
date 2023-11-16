@@ -442,55 +442,10 @@ def mesh_correction(cells, points, theta_res):
     return points, cells
 
 
-def unit_vector(vector):
-    """
-    Returns the unit vector of the input vector.
-
-    Parameters
-    ----------
-    vector : array-like
-        Input vector.
-
-    Returns
-    -------
-    unit_vector : array-like
-        Unit vector of the input vector.
-    """
-    vector = np.array(vector)
-    return vector / np.linalg.norm(vector)
-
-
-def angle_between(v1, v2):
-    """
-    Returns the angle in radians between vectors 'v1' and 'v2'::
-    numpy.clip(a, a_min, a_max, out=None, **kwargs)[source]
-    Clip (limit) the values in an array.     Given an interval, values outside the interval
-    are clipped to the interval edges. For example, if an interval of [0, 1] is specified,
-    values smaller than 0 become 0, and values larger than 1 become 1.
-    Equivalent to but faster than np.minimum(a_max, np.maximum(a, a_min)).
-    No check is performed to ensure a_min < a_max.
-
-    Parameters
-    ----------
-    v1 : array-like
-        First vector.
-    v2 : array-like
-        Second vector.
-
-    Returns
-    -------
-    angle : float
-        Angle in degrees between the two input vectors.
-    """
-    v1_u = unit_vector(v1)
-    v2_u = unit_vector(v2)
-    return np.rad2deg(np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0)))
-
-
 if "__name__" == "__main__":
     bbox = np.array((0.0, 12.21, 0.5, 10.4, 0.20, 5.37))
     voxel_size = [0.11, 0.11, 0.044]
 
-    mesh_background = background_mesh_generator(bbox, voxel_size)
+    mesh_background = background_mesh(bbox, voxel_size)
 
     # mesh_background.save('./test_bbox_voxel.vtu', binary=True)

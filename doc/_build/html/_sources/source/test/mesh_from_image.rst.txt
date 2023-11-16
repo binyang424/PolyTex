@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_mesh_from_image.py>`
+        Click :ref:`here <sphx_glr_download_source_test_mesh_from_image.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -149,8 +149,6 @@ Visualize the point cloud dataset (.pcd)
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

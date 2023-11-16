@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging package &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -38,16 +38,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -73,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">polykriging package</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,42 +102,256 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#polykriging-geometry-basic-module">polykriging.geometry.basic module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#polykriging-geometry-geometry-module">polykriging.geometry.geometry module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#polykriging-geometry-transform-module">polykriging.geometry.transform module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#module-polykriging.geometry.basic">polykriging.geometry.basic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve"><code class="docutils literal notranslate"><span class="pre">Curve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.plot"><code class="docutils literal notranslate"><span class="pre">Curve.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.save"><code class="docutils literal notranslate"><span class="pre">Curve.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.to_polygon"><code class="docutils literal notranslate"><span class="pre">Curve.to_polygon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.ambient_dimension"><code class="docutils literal notranslate"><span class="pre">Curve.ambient_dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.bounds"><code class="docutils literal notranslate"><span class="pre">Curve.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.curvature"><code class="docutils literal notranslate"><span class="pre">Curve.curvature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.length"><code class="docutils literal notranslate"><span class="pre">Curve.length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Curve.tangent"><code class="docutils literal notranslate"><span class="pre">Curve.tangent</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Ellipse2D"><code class="docutils literal notranslate"><span class="pre">Ellipse2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Ellipse2D.elipse_2d"><code class="docutils literal notranslate"><span class="pre">Ellipse2D.elipse_2d()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Line.default_assumptions"><code class="docutils literal notranslate"><span class="pre">Line.default_assumptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve"><code class="docutils literal notranslate"><span class="pre">ParamCurve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve.bounds"><code class="docutils literal notranslate"><span class="pre">ParamCurve.bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve.eval"><code class="docutils literal notranslate"><span class="pre">ParamCurve.eval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.eval"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.rotate"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.rotate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.scale"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.translate"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.bounds"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.default_assumptions"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.default_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.length"><code class="docutils literal notranslate"><span class="pre">ParamCurve3D.length</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface"><code class="docutils literal notranslate"><span class="pre">ParamSurface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.eval"><code class="docutils literal notranslate"><span class="pre">ParamSurface.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate"><code class="docutils literal notranslate"><span class="pre">ParamSurface.rotate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale"><code class="docutils literal notranslate"><span class="pre">ParamSurface.scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate"><code class="docutils literal notranslate"><span class="pre">ParamSurface.translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.default_assumptions"><code class="docutils literal notranslate"><span class="pre">ParamSurface.default_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.functions"><code class="docutils literal notranslate"><span class="pre">ParamSurface.functions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.limits"><code class="docutils literal notranslate"><span class="pre">ParamSurface.limits</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Plane"><code class="docutils literal notranslate"><span class="pre">Plane</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Plane.function"><code class="docutils literal notranslate"><span class="pre">Plane.function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Plane.intersection"><code class="docutils literal notranslate"><span class="pre">Plane.intersection()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.direction_ratio"><code class="docutils literal notranslate"><span class="pre">Point.direction_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.dist"><code class="docutils literal notranslate"><span class="pre">Point.dist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.save_as_vtk"><code class="docutils literal notranslate"><span class="pre">Point.save_as_vtk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.set_x"><code class="docutils literal notranslate"><span class="pre">Point.set_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.set_y"><code class="docutils literal notranslate"><span class="pre">Point.set_y()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.set_z"><code class="docutils literal notranslate"><span class="pre">Point.set_z()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.bounds"><code class="docutils literal notranslate"><span class="pre">Point.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.size"><code class="docutils literal notranslate"><span class="pre">Point.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.xyz"><code class="docutils literal notranslate"><span class="pre">Point.xyz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Point.z"><code class="docutils literal notranslate"><span class="pre">Point.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Polygon.to_curve"><code class="docutils literal notranslate"><span class="pre">Polygon.to_curve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Polygon.area"><code class="docutils literal notranslate"><span class="pre">Polygon.area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Polygon.centroid"><code class="docutils literal notranslate"><span class="pre">Polygon.centroid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Polygon.perimeter"><code class="docutils literal notranslate"><span class="pre">Polygon.perimeter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube"><code class="docutils literal notranslate"><span class="pre">Tube</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh"><code class="docutils literal notranslate"><span class="pre">Tube.mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.save_as_mesh"><code class="docutils literal notranslate"><span class="pre">Tube.save_as_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.bounds"><code class="docutils literal notranslate"><span class="pre">Tube.bounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.default_assumptions"><code class="docutils literal notranslate"><span class="pre">Tube.default_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.h_res"><code class="docutils literal notranslate"><span class="pre">Tube.h_res</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.points"><code class="docutils literal notranslate"><span class="pre">Tube.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Tube.theta_res"><code class="docutils literal notranslate"><span class="pre">Tube.theta_res</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector"><code class="docutils literal notranslate"><span class="pre">Vector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.angle_between"><code class="docutils literal notranslate"><span class="pre">Vector.angle_between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.cross"><code class="docutils literal notranslate"><span class="pre">Vector.cross()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.dot"><code class="docutils literal notranslate"><span class="pre">Vector.dot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.add"><code class="docutils literal notranslate"><span class="pre">Vector.add</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.norm"><code class="docutils literal notranslate"><span class="pre">Vector.norm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.Vector.sub"><code class="docutils literal notranslate"><span class="pre">Vector.sub</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.basic.find_intersect"><code class="docutils literal notranslate"><span class="pre">find_intersect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#module-polykriging.geometry.geometry">polykriging.geometry.geometry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.angularSort"><code class="docutils literal notranslate"><span class="pre">angularSort()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.area_signed"><code class="docutils literal notranslate"><span class="pre">area_signed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.edgeLen"><code class="docutils literal notranslate"><span class="pre">edgeLen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.geom_cs"><code class="docutils literal notranslate"><span class="pre">geom_cs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.geom_tow"><code class="docutils literal notranslate"><span class="pre">geom_tow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.geometry.normDist"><code class="docutils literal notranslate"><span class="pre">normDist()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#module-polykriging.geometry.transform">polykriging.geometry.transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.d2r"><code class="docutils literal notranslate"><span class="pre">d2r()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.e123_dcm"><code class="docutils literal notranslate"><span class="pre">e123_dcm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.euler_z_noraml"><code class="docutils literal notranslate"><span class="pre">euler_z_noraml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.euler_zx_coordinate"><code class="docutils literal notranslate"><span class="pre">euler_zx_coordinate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.rx"><code class="docutils literal notranslate"><span class="pre">rx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.ry"><code class="docutils literal notranslate"><span class="pre">ry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html#polykriging.geometry.transform.rz"><code class="docutils literal notranslate"><span class="pre">rz()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.geometry.html#module-polykriging.geometry">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-curve2d-module">polykriging.kriging.curve2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-intersect-module">polykriging.kriging.intersect module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-mdkrig-module">polykriging.kriging.mdKrig module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-parasurface-module">polykriging.kriging.paraSurface module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-projection-module">polykriging.kriging.projection module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-tool-module">polykriging.kriging.tool module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#polykriging-kriging-volumekrig-module">polykriging.kriging.volumeKrig module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.curve2D">polykriging.kriging.curve2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.addPoints"><code class="docutils literal notranslate"><span class="pre">addPoints()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.bd_Deriv_kriging_func"><code class="docutils literal notranslate"><span class="pre">bd_Deriv_kriging_func()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.buildKrigFunc_deriv"><code class="docutils literal notranslate"><span class="pre">buildKrigFunc_deriv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.buildM_deriv"><code class="docutils literal notranslate"><span class="pre">buildM_deriv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.buildU_deriv"><code class="docutils literal notranslate"><span class="pre">buildU_deriv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.curve1Dexpression"><code class="docutils literal notranslate"><span class="pre">curve1Dexpression()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.curve1Dsolve"><code class="docutils literal notranslate"><span class="pre">curve1Dsolve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.curve2Dinter"><code class="docutils literal notranslate"><span class="pre">curve2Dinter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.curveKrig1D"><code class="docutils literal notranslate"><span class="pre">curveKrig1D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.func_select"><code class="docutils literal notranslate"><span class="pre">func_select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.func_var"><code class="docutils literal notranslate"><span class="pre">func_var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.h"><code class="docutils literal notranslate"><span class="pre">h()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.lambda_weight"><code class="docutils literal notranslate"><span class="pre">lambda_weight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.curve2D.solveB"><code class="docutils literal notranslate"><span class="pre">solveB()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.intersect">polykriging.kriging.intersect module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.intersect.ray_plane_intersect"><code class="docutils literal notranslate"><span class="pre">ray_plane_intersect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.mdKrig">polykriging.kriging.mdKrig module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.buildKriging"><code class="docutils literal notranslate"><span class="pre">buildKriging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.buildM"><code class="docutils literal notranslate"><span class="pre">buildM()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.buildU"><code class="docutils literal notranslate"><span class="pre">buildU()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.func_select"><code class="docutils literal notranslate"><span class="pre">func_select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.interp"><code class="docutils literal notranslate"><span class="pre">interp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.nugget"><code class="docutils literal notranslate"><span class="pre">nugget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.mdKrig.solveB"><code class="docutils literal notranslate"><span class="pre">solveB()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.paraSurface">polykriging.kriging.paraSurface module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.buildKriging"><code class="docutils literal notranslate"><span class="pre">buildKriging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.buildM"><code class="docutils literal notranslate"><span class="pre">buildM()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.buildP"><code class="docutils literal notranslate"><span class="pre">buildP()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.dist1D"><code class="docutils literal notranslate"><span class="pre">dist1D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.func_select"><code class="docutils literal notranslate"><span class="pre">func_select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.interp"><code class="docutils literal notranslate"><span class="pre">interp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.kVector"><code class="docutils literal notranslate"><span class="pre">kVector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.nugget"><code class="docutils literal notranslate"><span class="pre">nugget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.paraSurface.surface3Dinterp"><code class="docutils literal notranslate"><span class="pre">surface3Dinterp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.projection">polykriging.kriging.projection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.tool">polykriging.kriging.tool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.tool.data_compr"><code class="docutils literal notranslate"><span class="pre">data_compr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.tool.fun_crva"><code class="docutils literal notranslate"><span class="pre">fun_crva()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html#polykriging.kriging.tool.norm"><code class="docutils literal notranslate"><span class="pre">norm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging.volumeKrig">polykriging.kriging.volumeKrig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.kriging.html#module-polykriging.kriging">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-decimation-module">polykriging.mesh.decimation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-features-module">polykriging.mesh.features module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-from-image-module">polykriging.mesh.from_image module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#polykriging-mesh-mesh-module">polykriging.mesh.mesh module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh.decimation">polykriging.mesh.decimation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.adjacent_from_edge"><code class="docutils literal notranslate"><span class="pre">adjacent_from_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.adjacent_from_edge_parallel"><code class="docutils literal notranslate"><span class="pre">adjacent_from_edge_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.construct_tetra_vtk"><code class="docutils literal notranslate"><span class="pre">construct_tetra_vtk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.edge_collapse_pipeline"><code class="docutils literal notranslate"><span class="pre">edge_collapse_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_boundary_points"><code class="docutils literal notranslate"><span class="pre">get_boundary_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_cells"><code class="docutils literal notranslate"><span class="pre">get_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_collapse_direction"><code class="docutils literal notranslate"><span class="pre">get_collapse_direction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_edge_collapse"><code class="docutils literal notranslate"><span class="pre">get_edge_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_edge_length"><code class="docutils literal notranslate"><span class="pre">get_edge_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_edges_from_tetra"><code class="docutils literal notranslate"><span class="pre">get_edges_from_tetra()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_maximal_independent_node"><code class="docutils literal notranslate"><span class="pre">get_maximal_independent_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_surf_dist"><code class="docutils literal notranslate"><span class="pre">get_surf_dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.get_vertex_indicator"><code class="docutils literal notranslate"><span class="pre">get_vertex_indicator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.renumber_points"><code class="docutils literal notranslate"><span class="pre">renumber_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.decimation.tetra_edge_collapse"><code class="docutils literal notranslate"><span class="pre">tetra_edge_collapse()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh.features">polykriging.mesh.features module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.features.voxelize"><code class="docutils literal notranslate"><span class="pre">voxelize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh.from_image">polykriging.mesh.from_image module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.from_image.get_vcut_plane"><code class="docutils literal notranslate"><span class="pre">get_vcut_plane()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.from_image.im_to_ugrid"><code class="docutils literal notranslate"><span class="pre">im_to_ugrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.from_image.mesh_extract"><code class="docutils literal notranslate"><span class="pre">mesh_extract()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.from_image.mesh_separation"><code class="docutils literal notranslate"><span class="pre">mesh_separation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.from_image.slice_plot"><code class="docutils literal notranslate"><span class="pre">slice_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh.mesh">polykriging.mesh.mesh module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.angle_between"><code class="docutils literal notranslate"><span class="pre">angle_between()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.background_mesh"><code class="docutils literal notranslate"><span class="pre">background_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.find_cells_within_bounds"><code class="docutils literal notranslate"><span class="pre">find_cells_within_bounds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.intersection_detect"><code class="docutils literal notranslate"><span class="pre">intersection_detect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.isInbBox"><code class="docutils literal notranslate"><span class="pre">isInbBox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.label_mask"><code class="docutils literal notranslate"><span class="pre">label_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.mesh_correction"><code class="docutils literal notranslate"><span class="pre">mesh_correction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.structured_cylinder_vertices"><code class="docutils literal notranslate"><span class="pre">structured_cylinder_vertices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.to_meshio_data"><code class="docutils literal notranslate"><span class="pre">to_meshio_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.tubular_mesh_generator"><code class="docutils literal notranslate"><span class="pre">tubular_mesh_generator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.unit_vector"><code class="docutils literal notranslate"><span class="pre">unit_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-color-cluster-module">polykriging.plot.color_cluster module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-image-plot-module">polykriging.plot.image_plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-color-cluster-module">polykriging.plot.color_cluster module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html#polykriging.plot.color_cluster.color_cluster"><code class="docutils literal notranslate"><span class="pre">color_cluster()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.plot.html#polykriging-plot-image-plot-module">polykriging.plot.image_plot module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html#polykriging.plot.image_plot.para_plot"><code class="docutils literal notranslate"><span class="pre">para_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html#polykriging.plot.image_plot.plot_on_img"><code class="docutils literal notranslate"><span class="pre">plot_on_img()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html#polykriging.plot.image_plot.vert_sub_plot"><code class="docutils literal notranslate"><span class="pre">vert_sub_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html#polykriging.plot.image_plot.xy_interp"><code class="docutils literal notranslate"><span class="pre">xy_interp()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-bw-opt-module">polykriging.stats.bw_opt module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-kde-module">polykriging.stats.kde module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-bw-opt-module">polykriging.stats.bw_opt module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.bw_opt.bw_scott"><code class="docutils literal notranslate"><span class="pre">bw_scott()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.bw_opt.log_likelihood"><code class="docutils literal notranslate"><span class="pre">log_likelihood()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.bw_opt.opt_bandwidth"><code class="docutils literal notranslate"><span class="pre">opt_bandwidth()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.stats.html#polykriging-stats-kde-module">polykriging.stats.kde module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.kde.kdePlot"><code class="docutils literal notranslate"><span class="pre">kdePlot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.kde.kdeScreen"><code class="docutils literal notranslate"><span class="pre">kdeScreen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html#polykriging.stats.kde.movingKDE"><code class="docutils literal notranslate"><span class="pre">movingKDE()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a><ul>
@@ -153,7 +363,27 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.html#polykriging-thirdparty-bcolors-module">polykriging.thirdparty.bcolors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polykriging.thirdparty.html#polykriging-thirdparty-bcolors-module">polykriging.thirdparty.bcolors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors"><code class="docutils literal notranslate"><span class="pre">bcolors</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.colored"><code class="docutils literal notranslate"><span class="pre">bcolors.colored()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.fail"><code class="docutils literal notranslate"><span class="pre">bcolors.fail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.header"><code class="docutils literal notranslate"><span class="pre">bcolors.header()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.ok"><code class="docutils literal notranslate"><span class="pre">bcolors.ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.okblue"><code class="docutils literal notranslate"><span class="pre">bcolors.okblue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.warning"><code class="docutils literal notranslate"><span class="pre">bcolors.warning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.BOLD"><code class="docutils literal notranslate"><span class="pre">bcolors.BOLD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.ENDC"><code class="docutils literal notranslate"><span class="pre">bcolors.ENDC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.FAIL"><code class="docutils literal notranslate"><span class="pre">bcolors.FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.HEADER"><code class="docutils literal notranslate"><span class="pre">bcolors.HEADER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.OKBLUE"><code class="docutils literal notranslate"><span class="pre">bcolors.OKBLUE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.OKCYAN"><code class="docutils literal notranslate"><span class="pre">bcolors.OKCYAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.OKGREEN"><code class="docutils literal notranslate"><span class="pre">bcolors.OKGREEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.UNDERLINE"><code class="docutils literal notranslate"><span class="pre">bcolors.UNDERLINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="polykriging.thirdparty.html#polykriging.thirdparty.bcolors.bcolors.WARNING"><code class="docutils literal notranslate"><span class="pre">bcolors.WARNING</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -162,14 +392,522 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="polykriging-textile-module">
-<h2>polykriging.textile module<a class="headerlink" href="#polykriging-textile-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.textile">
+<span id="polykriging-textile-module"></span><h2>polykriging.textile module<a class="headerlink" href="#module-polykriging.textile" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.textile.Textile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class for textile geometrical analysis and numerical meshing.
+定义为体素网格？</p>
+<p># TODO : analyze, design, and program the Textile class.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.add" title="polykriging.textile.Textile.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(tow)</p></td>
+<td><p>Add a tow to the textile using mesh merging.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.background_mesh" title="polykriging.textile.Textile.background_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">background_mesh</span></code></a>(x, y, z)</p></td>
+<td><p>Generate a background mesh for the textile.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
+<td><p>Decimate the mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.triangulate" title="polykriging.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
+<td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>remove</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add" title="Permalink to this definition"></a></dt>
+<dd><p>Add a tow to the textile using mesh merging. Each tow is a mesh object
+and labeled with a unique integer.</p>
+<p>key - tow id, integer;
+value - tow object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.background_mesh">
+<span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.background_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a background mesh for the textile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.decimate">
+<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.decimate" title="Permalink to this definition"></a></dt>
+<dd><p>Decimate the mesh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.triangulate">
+<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
+<dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="polykriging-tow-module">
-<h2>polykriging.tow module<a class="headerlink" href="#polykriging-tow-module" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging.tow">
+<span id="polykriging-tow-module"></span><h2>polykriging.tow module<a class="headerlink" href="#module-polykriging.tow" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="polykriging.tow.Tow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.tow.</span></span><span class="sig-name descname"><span class="pre">Tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to store the tow information, calculate the geometry features
+and parametrilize the tow.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mf">0.022</span>  <span class="c1"># convert voxel to mm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tow</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">)</span> <span class="c1"># PolyKriging Tow class</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_coord</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">coordinates</span>  <span class="c1"># parametric coordinates of the tow</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_geom</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span>  <span class="c1"># geometrical features of the tow</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pts_krig</span><span class="p">,</span> <span class="n">expr_krig</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">resampling</span><span class="p">(</span><span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
+<span class="go">                                      skip=10, sample_position=sample_position,</span>
+<span class="go">                                      smooth=0.0001)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">surf_mesh</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;zyx&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;./216_302_binder_1.vtk&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_sm</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">trajectory</span><span class="p">(</span><span class="n">smooth</span><span class="o">=</span><span class="mf">0.0015</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;./trajectory.ply&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>The name or type of the tow. Default is “Tow”. It can be any string that helps
+users to identify the tow. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>tex</strong><span class="classifier">float</span></dt><dd><p>The linear density of the tow in tex. Default is 0. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>order</strong><span class="classifier">str</span></dt><dd><p>It is preferred to set the last column of the surf_points as the coordinate in
+the direction that is perpendicular to the image slices for geometry analysis,
+parametrization and kriging resampling. Hence, you may have reordered the columns.
+Here, you can specify the order of the columns in the reordered points. Default is “xyz”.
+The other options are “xzy”, “yxz”, “yzx”, “zxy”, “zyx”. The output coordinate will
+be reordered in the right order (xyz) according to the order specified here.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>resolution</strong><span class="classifier">float</span></dt><dd><p>The resolution of the MicroCT image used to generate the tow dataset. Default is None.
+This is only stored as an attribute for future use. It is not used in the current version.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>surf_points</strong><span class="classifier">ndarray</span></dt><dd><p>The surface points of the tow. It stores the coordinates of the points input by the user.
+(initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>geom_features</strong><span class="classifier">dataframe</span></dt><dd><blockquote>
+<div><p>The geometry features of each cross-section of the tow. The features include
+the ‘Area’, ‘Perimeter’, ‘Width’, ‘Height’, ‘AngleRotated’, ‘Circularity’,</p>
+</div></blockquote>
+<p>‘centroidX’, ‘centroidY’, and ‘centroidZ’. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>coordinates</strong><span class="classifier">dataframe</span></dt><dd><p>The parametrilized coordinates of the tow. It includes the geodesic ‘distance’
+and the normalized distance ‘norm_distance’ from the start point of the parametric
+plane to the current point, the ‘angular position (degree)’, and the corresponding
+‘X’, ‘Y’, and ‘Z’ coordinates. (initialized in Tow.__init__)</p>
+</dd>
+<dt><strong>theta_res</strong><span class="classifier">float</span></dt><dd><p>The number of points to describe the profile of a tow cross-section in the radial
+direction. (initialized in Tow.resampling)</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">float</span></dt><dd><p>The number of cross-sections to describe the profile of a tow in the axial
+direction. (initialized in Tow.resampling)</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">ndarray</span></dt><dd><p>The orientation of the tow calculated from the tangent of centerline of the tow.
+(initialized in Tow.trajectory)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.axial_lines" title="polykriging.tow.Tow.axial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code></a>([save_path, plot])</p></td>
+<td><p>Generate the axial line of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
+<td><p>Generate the kernel density estimation of the radial normalized distance for point cloud decomposition.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.normal_cross_section" title="polykriging.tow.Tow.normal_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code></a>([algorithm, save_path, ...])</p></td>
+<td><p>Generate the normal cross section of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.radial_lines" title="polykriging.tow.Tow.radial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code></a>([save_path, plot, type])</p></td>
+<td><p>Generate the radial line of the fiber tow surface.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.resampling" title="polykriging.tow.Tow.resampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code></a>([krig_config, skip, ...])</p></td>
+<td><p>Kriging the cross-sections of the tow to obtain the parametric equations for each cross-section (which is a closed curve).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.save" title="polykriging.tow.Tow.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(save_path)</p></td>
+<td><p>Save the fiber tow data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
+<td><p>The window size of smoothing operation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
+<td><p>Smooth the tow using parametric surface kriging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path, end_closed])</p></td>
+<td><p>Generate the surface mesh of the tow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
+<td><p>Generate the trajectory of the tow and smooth it using kriging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
+<td><p>Returns the unit vector of the input vector along the given axis.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>mw_kde</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.axial_lines">
+<span class="sig-name descname"><span class="pre">axial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.axial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.axial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the axial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the axial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the axial line. Default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>axial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The axial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.kde">
+<span class="sig-name descname"><span class="pre">kde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.kde" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the kernel density estimation of the radial normalized distance for point cloud
+decomposition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bw</strong><span class="classifier">float, optional</span></dt><dd><p>The bandwidth of the kernel density estimation. Default is None and the bandwidth
+will be estimated using the Scott’s rule of thumb (one-fifth of the estimated value).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the kernel density estimation. Default is None. If None, the
+kernel density estimation will not be saved. The file format is .stat and can be
+loaded by the function <cite>polykriging.pk_load</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>clusters</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.mw_kde">
+<span class="sig-name descname"><span class="pre">mw_kde</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.mw_kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.mw_kde" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.normal_cross_section">
+<span class="sig-name descname"><span class="pre">normal_cross_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kriging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.normal_cross_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.normal_cross_section" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the normal cross section of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>algorithm</strong><span class="classifier">str, optional</span></dt><dd><p>The algorithm to generate the cross section. Default is “kriging”. The other
+option is “pyvista” which uses pyvista’s mesh clip function (Polydata.clip_surface()).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the normal cross sections as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the normal cross sections. Default is True.</p>
+</dd>
+<dt><strong>i_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the i direction of the noraml plane. Default is 0.7.</p>
+</dd>
+<dt><strong>j_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the j direction of the noraml plane. Default is 1.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross sections to skip in plot. Default is 10. If skip is 1, all
+cross sections will be plotted.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>cross_section</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The normal cross section of the fiber tows stored in a pyvista.PolyData object.
+Note that only the cross sections that are plotted are stored. If one wants to
+save all the cross sections, set skip=1.</p>
+</dd>
+<dt><strong>planes</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The corresponding planes that the cross sections are generated from. Note that
+only the planes that are plotted are stored. If one wants to save all the planes,
+set skip=1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.radial_lines">
+<span class="sig-name descname"><span class="pre">radial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'resampled'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.radial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.radial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the radial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the radial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the radial line. Default is True.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of radial line. Default is “resampled”. The other option is
+“original”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>radial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The radial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.resampling">
+<span class="sig-name descname"><span class="pre">resampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'distance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.resampling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.resampling" title="Permalink to this definition"></a></dt>
+<dd><p>Kriging the cross-sections of the tow to obtain the parametric equations
+for each cross-section (which is a closed curve).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration. The first element is the kriging model for
+the drift and the second is the name of covariance. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross-sections to be skipped for resampling to accelerate the
+operation. Default is 5. Namely, 1 of every 5 cross-sections will be resampled.
+If skip is 1, all the cross-sections will be kriged.</p>
+</dd>
+<dt><strong>sample_position</strong><span class="classifier">array_like, optional</span></dt><dd><p>The resampling positions of each cross-sections specified by the normalized
+distance in radial direction of each cross-section. Default is [].</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the kriging resampling. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the kriging resampling. Default is “distance”. The other option
+is “angular”. If “distance”, the resampling positions are specified by the
+normalized distance (between 0 and 1) in radial direction of each cross-section.
+If “angular”, the resampling positions are specified by angular position (between
+0 and 360) of control points in radial direction of each cross-section.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>_Tow__kriged_vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The kriged points for each cross-section of the tow. It is an array of shape
+(n, 3) where n is the number of points. The kriged points is obtained according
+to the kriging configuration and the resampling positions. If the resampling
+positions are not specified, the kriged points are obtained by evenly sampling
+the cross-sections with a sampling interval of 0.05, namely, 20 points per cross-
+section.</p>
+</dd>
+<dt><strong>expr</strong><span class="classifier">dict</span></dt><dd><dl class="simple">
+<dt>The kriging expression for each cross-section. It contains two sub-dictionaries that</dt><dd><p>use the cross-section number as the key and the kriging expression as the value for
+the first two components of user input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the fiber tow data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the fiber tow data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.smooth_window">
+<span class="sig-name descname"><span class="pre">smooth_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.smooth_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.smooth_window" title="Permalink to this definition"></a></dt>
+<dd><p>The window size of smoothing operation. The window size is the number of
+slices in the axial direction of fiber tow that are smoothed per iteration.</p>
+<p>A smaller window size will significantly decrease the computation time of
+smoothing operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The window size.</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">int</span></dt><dd><p>The number of slices in the axial direction of fiber tow.</p>
+</dd>
+<dt><strong>extend</strong><span class="classifier">int, optional</span></dt><dd><p>The number of slices that are extended to the left and right of the
+smoothing window to ensure the smoothness of the surface at the
+boundary of the windows.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>wins_interp</strong><span class="classifier">ndarray</span></dt><dd><p>The window size for interpolation (with extensions at the two ends).</p>
+</dd>
+<dt><strong>wins_result</strong><span class="classifier">ndarray</span></dt><dd><p>The index of effective smoothing results (without extensions).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.smoothing">
+<span class="sig-name descname"><span class="pre">smoothing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_drift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['lin',</span> <span class="pre">'lin']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['cub',</span> <span class="pre">'cub']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.smoothing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.smoothing" title="Permalink to this definition"></a></dt>
+<dd><p>Smooth the tow using parametric surface kriging.
+Anisotropic smoothing is applied to the tow by using different smoothing factors
+for the two directions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name_drift</strong><span class="classifier">list, optional</span></dt><dd><p>The drift function for the parametric surface kriging. Default is [‘lin’, ‘lin’].</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">list, optional</span></dt><dd><p>The covariance function for the parametric surface kriging. Default is [‘cub’, ‘cub’].</p>
+</dd>
+<dt><strong>smooth_factor</strong><span class="classifier">list, optional</span></dt><dd><p>The smoothing factor for the parametric surface kriging. Default is [0, 0]. Also known
+as the nugget effect in geo-statistics and kriging theory. The smoothing factor
+is applied to the two directions separately. The first element is the smoothing
+factor for the radial direction and the second element is the smoothing factor for
+the axial direction.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p># TODO : improve the description
+The size of the window for the moving average filter. Default is 25.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the smoothed tow. Default is None. If None, the smoothed tow
+will not be saved. The file format is .ply.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the smoothed tow. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The smoothed tow vertices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.surf_mesh">
+<span class="sig-name descname"><span class="pre">surf_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.surf_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.surf_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the surface mesh of the tow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the surface mesh. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the surface mesh. Default is None and the surface mesh will not be saved.
+The file format can be .ply or .vtk.</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>surf_mesh</strong></dt><dd><p>The surface mesh of the tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.trajectory">
+<span class="sig-name descname"><span class="pre">trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.trajectory" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the trajectory of the tow and smooth it using kriging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration for the trajectory. It is a tuple of two strings that
+specify the drift and covariance function. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the parametric curve kriging. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the trajectory. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the trajectory as vtk file. Default is None and the trajectory
+will not be saved.</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to calculate the orientation of the tow. Default is False. The orientation
+is the tangent vector of the trajectory.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>traj</strong><span class="classifier">np.ndarray</span></dt><dd><p>The trajectory of the tow in the form of (n, 3) where n is the number of points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.unit_vector">
+<span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/tow.html#Tow.unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.unit_vector" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the unit vector of the input vector along the given axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector</strong><span class="classifier">ndarray</span></dt><dd><p>The input vector.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">int, optional</span></dt><dd><p>The axis along which the unit vector is calculated. Default is 1 (column).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>unit_vector</strong><span class="classifier">ndarray</span></dt><dd><p>The unit vector of the input vector along the given axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-polykriging">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging" title="Permalink to this heading"></a></h2>
+<p>polykriging.</p>
+<p>An implementation of dual Kriging.</p>
 </section>
 </section>
 
