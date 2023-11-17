@@ -374,6 +374,7 @@ class Curve:
         """
         self.points = Point(points)
         self.n_points = self.points.shape[0]
+        self.dim = self.points.shape[1]
         self.cells = self.__cell_from_points()
 
         self.__type__ = "Curve"
@@ -416,14 +417,48 @@ class Curve:
         """
         Return the tangent vector of the curve at each point.
 
-        TODO : check and improve the tangent vector calculation.
-
         Returns
         -------
         tangent : Vector object
         """
-        # return np.diff(self.points, axis=0)
-        return NotImplementedError
+        if self.dim == 2:
+            tang = np.zeros((self.points.shape[0], 2))
+
+            x_dist = np.diff(self.points[:, 0]) + 1e-15
+
+            x_prime = np.ones(self.n_points)
+            y_prime = [(self.points[i + 1, 1] - self.points[i - 1, 1]) / (x_dist[i - 1] + x_dist[i])
+                        for i in range(1, self.n_points - 1)]
+            y_prime = np.concatenate(([y_prime[0]], y_prime, [y_prime[-1]]))
+
+            tang[:, 0] = x_prime
+            tang[:, 1] = y_prime
+
+            tang = tang / np.linalg.norm(tang, axis=1)[:, None]
+
+        elif self.dim == 3:
+            tang = np.zeros((self.points.shape[0], 3))
+
+            x_dist = np.diff(self.points[:, 0]) + 1e-15
+
+            x_prime = np.ones(self.n_points)
+            # get y_prime with central difference
+            y_prime = [(self.points[i + 1, 1] - self.points[i - 1, 1]) / (x_dist[i - 1] + x_dist[i])
+                        for i in range(1, self.n_points - 1)]
+            y_prime = np.concatenate(([y_prime[0]], y_prime, [y_prime[-1]]))
+
+            # get z_prime with central difference
+            z_prime = [(self.points[i + 1, 2] - self.points[i - 1, 2]) / (x_dist[i - 1] + x_dist[i])
+                        for i in range(1, self.n_points - 1)]
+            z_prime = np.concatenate(([z_prime[0]], z_prime, [z_prime[-1]]))
+
+            tang[:, 0] = x_prime
+            tang[:, 1] = y_prime
+            tang[:, 2] = z_prime
+
+            tang = tang / np.linalg.norm(tang, axis=1)[:, None]
+
+        return Vector(tang)
 
     @property
     def curvature(self):
