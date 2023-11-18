@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.fileio package &mdash; PolyKriging 0.1.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging.fileio package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polykriging.io.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polykriging-fileio-package">
+<h1>polykriging.fileio package<a class="headerlink" href="#polykriging-fileio-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.io.construct_tetra_vtk">
+<span id="polykriging-io-construct-tetra-vtk-module"></span><h2>polykriging.io.construct_tetra_vtk module<a class="headerlink" href="#module-polykriging.io.construct_tetra_vtk" title="Permalink to this heading"></a></h2>
+<p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>points: (n, 3) array</dt><dd><p>vertices</p>
+</dd>
+<dt>cells: (m, 4) array</dt><dd><p>connectivity</p>
+</dd>
+<dt>save: str</dt><dd><p>The path and file name of the vtk file to be saved (“./tetra.vtk”).
+If None, the vtk file will not be saved.</p>
+</dd>
+<dt>binary: bool</dt><dd><p>whether to save the mesh in binary format</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="module-polykriging.io.cwd_chdir">
+<span id="polykriging-io-cwd-chdir-module"></span><h2>polykriging.io.cwd_chdir module<a class="headerlink" href="#module-polykriging.io.cwd_chdir" title="Permalink to this heading"></a></h2>
+<p>Set given directory or the folder where the code file is as current working directory</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>path:</dt><dd><p>the path of current working directory. if empty, the path of the code file is used.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>cwd: the current working directory.</p>
+</section>
+</section>
+<section id="polykriging-io-file-dialog-module">
+<h2>polykriging.io.file_dialog module<a class="headerlink" href="#polykriging-io-file-dialog-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="polykriging-io-pk-file-module">
+<h2>polykriging.io.pk_file module<a class="headerlink" href="#polykriging-io-pk-file-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.io.save_csv">
+<span id="polykriging-io-save-csv-module"></span><h2>polykriging.io.save_csv module<a class="headerlink" href="#module-polykriging.io.save_csv" title="Permalink to this heading"></a></h2>
+<p>Save numpy array to csv file with given info in the first row.</p>
+<section id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>filename:</dt><dd><p>The path and name of the csv file.</p>
+</dd>
+<dt>dataset: List or numpy.ndarray</dt><dd><p>The dataset to be saved in the csv file</p>
+</dd>
+<dt>csv_head:</dt><dd><p>A list of headers of the csv file. The length of the list
+should be the same as the number of columns in the dataset.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>Returns<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>None.</p>
+</section>
+</section>
+<section id="polykriging-io-save-inp-module">
+<h2>polykriging.io.save_inp module<a class="headerlink" href="#polykriging-io-save-inp-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polykriging.io.save_krig">
+<span id="polykriging-io-save-krig-module"></span><h2>polykriging.io.save_krig module<a class="headerlink" href="#module-polykriging.io.save_krig" title="Permalink to this heading"></a></h2>
+<p>This class saves a dictonary of sympy expressions to a file in human
+readable form and then load as sympy expressions directly without other
+conversion. It is called by polykriging.fileio.pk_save to save kriging
+expressions to a “.krig” file and by polykriging.fileio.pk_load to load
+these files. Therefore, the class is not intended to be used directly by
+the user.</p>
+<section id="note">
+<h3>Note:<a class="headerlink" href="#note" title="Permalink to this heading"></a></h3>
+<p>This class is taken from: <a class="reference external" href="https://github.com/sympy/sympy/issues/7974">https://github.com/sympy/sympy/issues/7974</a>.
+A bug in exec() is fixed and some modifications are made to make it
+fit for the purpose of this project (store the kriging expression).</p>
+</section>
+<section id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.fileio.save_krig</span> <span class="kn">import</span> <span class="n">save_krig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a, b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">save_krig</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;name.krig&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span> <span class="o">=</span> <span class="n">save_krig</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;name.krig&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.clear">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None.</span>&#160; <span class="pre">Remove</span> <span class="pre">all</span> <span class="pre">items</span> <span class="pre">from</span> <span class="pre">D.</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.clear" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.copy">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">shallow</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">D</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.copy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.fromkeys">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">fromkeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#polykriging.io.save_krig.fromkeys" title="Permalink to this definition"></a></dt>
+<dd><p>Create a new dictionary with keys from iterable and values set to value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.get">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#polykriging.io.save_krig.get" title="Permalink to this definition"></a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.items">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.keys">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.keys" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.pop">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default=&lt;unrepresentable&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#polykriging.io.save_krig.pop" title="Permalink to this definition"></a></dt>
+<dd><p>If the key is not found, return the default if given; otherwise,
+raise a KeyError.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.popitem">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">popitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#polykriging.io.save_krig.popitem" title="Permalink to this definition"></a></dt>
+<dd><p>Remove and return a (key, value) pair as a 2-tuple.</p>
+<p>Pairs are returned in LIFO (last-in, first-out) order.
+Raises KeyError if the dict is empty.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.setdefault">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#polykriging.io.save_krig.setdefault" title="Permalink to this definition"></a></dt>
+<dd><p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.update">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <span class="optional">]</span><em class="sig-param"><span class="n"><span class="pre">**F</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None.</span>&#160; <span class="pre">Update</span> <span class="pre">D</span> <span class="pre">from</span> <span class="pre">dict/iterable</span> <span class="pre">E</span> <span class="pre">and</span> <span class="pre">F.</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.update" title="Permalink to this definition"></a></dt>
+<dd><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+In either case, this is followed by: for k in F:  D[k] = F[k]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.save_krig.values">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.save_krig.</span></span><span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#polykriging.io.save_krig.values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-polykriging.io.save_nrrd">
+<span id="polykriging-io-save-nrrd-module"></span><h2>polykriging.io.save_nrrd module<a class="headerlink" href="#module-polykriging.io.save_nrrd" title="Permalink to this heading"></a></h2>
+<p>Save the labels of a hexahedral mesh to a nrrd file. The labels should be
+starting from 0 and increasing by 1.</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>cell_label: numpy array(int, int, int)</dt><dd><p>The cell label of the mesh.</p>
+</dd>
+<dt>file_name: String</dt><dd><p>The name of the .nrrd file.</p>
+</dd>
+<dt>file_path: String</dt><dd><p>The save path of the .nrrd file.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+</section>
+<section id="module-polykriging.io.save_ply">
+<span id="polykriging-io-save-ply-module"></span><h2>polykriging.io.save_ply module<a class="headerlink" href="#module-polykriging.io.save_ply" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

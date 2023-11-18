@@ -58,7 +58,6 @@
 <li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.fileio.html">polykriging.fileio package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.mesh package</a><ul>
@@ -727,34 +726,6 @@ must be specified.</p>
 <section id="module-polykriging.mesh.mesh">
 <span id="polykriging-mesh-mesh-module"></span><h2>polykriging.mesh.mesh module<a class="headerlink" href="#module-polykriging.mesh.mesh" title="Permalink to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="polykriging.mesh.mesh.angle_between">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.angle_between" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the angle in radians between vectors ‘v1’ and ‘v2’::
-numpy.clip(a, a_min, a_max, out=None, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)[source]
-Clip (limit) the values in an array.     Given an interval, values outside the interval
-are clipped to the interval edges. For example, if an interval of [0, 1] is specified,
-values smaller than 0 become 0, and values larger than 1 become 1.
-Equivalent to but faster than np.minimum(a_max, np.maximum(a, a_min)).
-No check is performed to ensure a_min &lt; a_max.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>v1</strong><span class="classifier">array-like</span></dt><dd><p>First vector.</p>
-</dd>
-<dt><strong>v2</strong><span class="classifier">array-like</span></dt><dd><p>Second vector.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle in degrees between the two input vectors.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.mesh.background_mesh">
 <span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.background_mesh" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a voxel background mesh.</p>
@@ -847,7 +818,7 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.mesh.label_mask">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">label_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_background</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_tri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#label_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.label_mask" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">label_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_background</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_tri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#label_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.label_mask" title="Permalink to this definition"></a></dt>
 <dd><p>Store the label of each fiber tow for intersection detection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -977,26 +948,6 @@ at the end of each radial direction point list.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>mesh</strong><span class="classifier">points on the tubular mesh</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.mesh.mesh.unit_vector">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.unit_vector" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the unit vector of the input vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>vector</strong><span class="classifier">array-like</span></dt><dd><p>Input vector.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>unit_vector</strong><span class="classifier">array-like</span></dt><dd><p>Unit vector of the input vector.</p>
-</dd>
 </dl>
 </dd>
 </dl>

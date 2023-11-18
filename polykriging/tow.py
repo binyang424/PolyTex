@@ -1,5 +1,5 @@
 from .io import pk_save, pk_load, save_ply
-from .io import save as save_tow
+from .io import pk_save as save_tow
 
 from .geometry import geom_tow, Curve, Polygon, Plane, Tube, ParamCurve, area_signed
 from .geometry import transform as tf
@@ -661,7 +661,7 @@ class Tow:
 
         return win_interp, win_result
 
-    def save(cls, save_path):
+    def save(self, save_path):
         """
         Save the fiber tow data.
 
@@ -677,7 +677,7 @@ class Tow:
         if not os.path.exists(path):
             os.makedirs(path)
 
-        save_tow(save_path, cls)
+        save_tow(save_path, self)
 
     def axial_lines(self, save_path=None, plot=True):
         """

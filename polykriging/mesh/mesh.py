@@ -112,7 +112,7 @@ def find_cells_within_bounds(mesh, bounds):
     return vtk_id_list_to_array(id_list)
 
 
-def label_mask(mesh_background, mesh_tri, tolerance=0.0000001):
+def label_mask(mesh_background, mesh_tri, tolerance=0.0000001, check_surface=False):
     """
     Store the label of each fiber tow for intersection detection.
 
@@ -135,7 +135,7 @@ def label_mask(mesh_background, mesh_tri, tolerance=0.0000001):
     cellCenters = mesh_background.cell_centers().points
     points_poly = pv.PolyData(cellCenters)
     # find the cells that are within the tubular surface of the fiber tow
-    select = points_poly.select_enclosed_points(mesh_tri, tolerance=0.0000001, check_surface=True)
+    select = points_poly.select_enclosed_points(mesh_tri, tolerance=0.0000001, check_surface=check_surface)
     mask = select['SelectedPoints'] == 1
     label_yarn = select['SelectedPoints']
     return mask, label_yarn

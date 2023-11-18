@@ -270,6 +270,9 @@ class Vector(Point):
         """
         Return the angle between 2 vectors.
 
+        .. math::
+            \\theta = \\arccos \\frac{v_1 \\cdot v_2}{\\|v_1\\| \\|v_2\\|}
+
         Parameters
         ----------
         other : Vector object

@@ -300,6 +300,7 @@
             <span class="n">pk</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span>
                         <span class="n">point_data</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
 
+
 <div class="viewcode-block" id="Vector"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector">[docs]</a><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A vector class inheriting from Point. This class is used to represent</span>
@@ -347,9 +348,22 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Vector.angle_between"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector.angle_between">[docs]</a>    <span class="k">def</span> <span class="nf">angle_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<div class="viewcode-block" id="Vector.angle_between"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector.angle_between">[docs]</a>    <span class="k">def</span> <span class="nf">angle_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">radian</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the angle between 2 vectors in radians.</span>
+<span class="sd">        Return the angle between 2 vectors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : Vector object</span>
+<span class="sd">            The other vector to which the angle is calculated.</span>
+<span class="sd">        radian : bool, optional</span>
+<span class="sd">            If True, return the angle in radians. The default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        angle : float</span>
+<span class="sd">            The angle between the 2 vectors. If radian is True, the angle is in radians.</span>
+<span class="sd">            Otherwise, the angle is in degrees.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Vector</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -357,7 +371,10 @@
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The other object must be a Vector&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">norm</span><span class="p">))</span></div></div>
+        <span class="k">if</span> <span class="n">radian</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">norm</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">norm</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="Line"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Line">[docs]</a><span class="k">class</span> <span class="nc">Line</span><span class="p">(</span><span class="n">symLine</span><span class="o">.</span><span class="n">Line</span><span class="p">):</span>
@@ -439,6 +456,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cell_from_points</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__type__</span> <span class="o">=</span> <span class="s2">&quot;Curve&quot;</span>
@@ -481,14 +499,48 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the tangent vector of the curve at each point.</span>
 
-<span class="sd">        TODO : check and improve the tangent vector calculation.</span>
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        tangent : Vector object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># return np.diff(self.points, axis=0)</span>
-        <span class="k">return</span> <span class="ne">NotImplementedError</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">tang</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
+
+            <span class="n">x_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-15</span>
+
+            <span class="n">x_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
+            <span class="n">y_prime</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_dist</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_dist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">y_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">y_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">y_prime</span><span class="p">,</span> <span class="p">[</span><span class="n">y_prime</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+
+            <span class="n">tang</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_prime</span>
+            <span class="n">tang</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_prime</span>
+
+            <span class="n">tang</span> <span class="o">=</span> <span class="n">tang</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">tang</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">tang</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>
+
+            <span class="n">x_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-15</span>
+
+            <span class="n">x_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
+            <span class="c1"># get y_prime with central difference</span>
+            <span class="n">y_prime</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_dist</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_dist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">y_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">y_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">y_prime</span><span class="p">,</span> <span class="p">[</span><span class="n">y_prime</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+
+            <span class="c1"># get z_prime with central difference</span>
+            <span class="n">z_prime</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_dist</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_dist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">z_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">z_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">z_prime</span><span class="p">,</span> <span class="p">[</span><span class="n">z_prime</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+
+            <span class="n">tang</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_prime</span>
+            <span class="n">tang</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_prime</span>
+            <span class="n">tang</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_prime</span>
+
+            <span class="n">tang</span> <span class="o">=</span> <span class="n">tang</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">tang</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">tang</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -583,6 +635,7 @@
 <span class="sd">    &gt;&gt;&gt; e = Ellipse2D(20, 1, 0.5, [0, 0])</span>
 <span class="sd">    &gt;&gt;&gt; e.__repr__()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -738,7 +791,7 @@
 <span class="sd">        b : Point object, optional</span>
 <span class="sd">            A point on the plane. The default is None.</span>
 <span class="sd">        **kwargs : dict, optional</span>
-<span class="sd">            normal_vector can be passed as a keyword argument when leaving</span>
+<span class="sd">            `normal_vector` can be passed as a keyword argument when leaving</span>
 <span class="sd">            a and b as None. If both a and b are not None, normal_vector will</span>
 <span class="sd">            be ignored.</span>
 
@@ -751,6 +804,9 @@
         <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
             <span class="n">p3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p3</span> <span class="o">=</span> <span class="n">p3</span>
 
             <span class="c1"># p1.tolist(): convert the point to a list for compatibility with sympy geometry</span>
             <span class="c1"># It is originally a PolyKriging Point object which is inherited from numpy.ndarray.</span>
@@ -767,19 +823,76 @@
 
             <span class="c1"># get() is used to get the normal vector from the dictionary.</span>
             <span class="n">evaluate</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                <span class="n">normal_vector</span> <span class="o">=</span> <span class="n">symPoint</span><span class="o">.</span><span class="n">Point3D</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">args</span> <span class="k">if</span> <span class="n">evaluate</span> <span class="k">else</span> <span class="n">a</span>
-            <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># check if a is a Point object</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Either provide 3 3D points or a point with a</span>
 <span class="s2">                    normal vector expressed as a sequence of length 3&quot;&quot;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">is_zero</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">normal_vector</span><span class="p">):</span>
+
+            <span class="n">normal_vector</span> <span class="o">=</span> <span class="n">a</span>
+
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Normal vector cannot be zero vector&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">normal_vector</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">normal_vector</span> <span class="o">/</span> <span class="n">normal_vector</span><span class="o">.</span><span class="n">norm</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+
+
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Plane(Point</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="si">}</span><span class="s2">, Normal</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+<div class="viewcode-block" id="Plane.distance"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.distance">[docs]</a>    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the signed distance between a point and the plane.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        point : Point object</span>
+<span class="sd">            The point to calculate the distance. shape = (n, 3), where n is the number of points.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        distance : float</span>
+<span class="sd">            The distance between the point and the plane.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Point, Plane</span>
+<span class="sd">        &gt;&gt;&gt; p1 = Point([5, 0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; normal = Point([1, 0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; plane = Plane(p1, normal_vector=normal)</span>
+<span class="sd">        &gt;&gt;&gt; plane.show()</span>
+<span class="sd">        &gt;&gt;&gt; plane.distance([[0, 0, 0], [1, 0, 0], [2, 0, 0]])</span>
+<span class="sd">        array([-5., -4., -3.])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p1</span>
+
+        <span class="c1"># check if point is a Point object</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">Point</span><span class="p">):</span>
+            <span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+        <span class="n">dist</span> <span class="o">=</span> <span class="p">(</span><span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+                <span class="o">+</span> <span class="n">normal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+                <span class="o">+</span> <span class="n">normal</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">dist</span></div>
+
+<div class="viewcode-block" id="Plane.show"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the plane.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="p">,</span>
+                  <span class="n">i_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                  <span class="n">i_resolution</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">j_resolution</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
     <span class="c1"># def __dir__(self):</span>
     <span class="c1">#     return []</span>
@@ -954,7 +1067,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
+        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
                                                  <span class="n">vertices</span><span class="o">=</span><span class="n">pts</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">pv_mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1002,7 +1115,7 @@
                 <span class="n">correction</span><span class="o">=</span><span class="n">end_closed</span><span class="p">)</span>
 
             <span class="n">pk</span><span class="o">.</span><span class="n">meshio_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
-                        <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                           <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
             <span class="n">pv</span><span class="o">.</span><span class="n">save_meshio</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1407,6 +1520,7 @@
     <span class="n">intersect</span> <span class="o">=</span> <span class="p">(</span><span class="n">curve</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">curve</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
 
     <span class="k">return</span> <span class="n">intersect</span></div>
+
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">doctest</span>

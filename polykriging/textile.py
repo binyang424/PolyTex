@@ -1,7 +1,7 @@
 from .io import pk_save, pk_load, filenames, choose_directory
 from .tow import Tow
 import numpy as np
-from .mesh import  background_mesh, label_mask,  intersection_detect
+from .mesh import background_mesh, label_mask, intersection_detect
 import pyvista as pv
 from tqdm.auto import tqdm
 from scipy.sparse import coo_matrix
@@ -24,13 +24,23 @@ class Textile:
         self.tows = {}
         self.groups = {}
 
-    def add_tow(self, tow):
+    def add_tow(self, tow, group=None):
         """
-        Add a tow to the textile using mesh merging. Each tow is a mesh object
-        and labeled with a unique integer.
+        Add a tow to the textile. If tow is already in the textile, then raise
+        a ValueError.
 
-        key - tow id, integer;
-        value - tow object
+        Parameters
+        ----------
+        tow : Tow object
+            Tow to be added to the textile. Stored in self.tows as a dictionary.
+            Tow.name is the key, and tow is the value.
+        group : str
+            Group name of the tow. If group is None, then the tow is not added
+            to any group. Stored in self.groups.
+
+        Returns
+        -------
+        None.
         """
         if not isinstance(tow, Tow):
             raise TypeError("Input tow must be a Tow object.")
@@ -38,14 +48,17 @@ class Textile:
         if tow.name in self.tows.keys():
             raise ValueError("Tow already exists. Please use"
                              "another name for the new tow.")
-        
+
         self.tows[tow.name] = tow
+
+        if group is not None:
+            self.add_group(name=group, tow=tow)
 
     def add_group(self, name="group1", tow=None):
         """
         Groups of the tows in the textile. Each is a group of Tow objects.
         if tow is None, then the group is empty.
-        
+
         Parameters
         ----------
         name : str
@@ -59,9 +72,29 @@ class Textile:
         -------
         None.
         """
-        pass
+        if tow is None:
+            if name in self.groups.keys():
+                raise ValueError("Group already exists. Please use another name for the "
+                                 "new group.")
+            else:
+                self.groups[name] = []
+                return None
 
+        if not isinstance(tow, Tow):
+            raise TypeError("Input tow must be a Tow object.")
 
+        if tow.name not in self.tows.keys():
+            self.add_tow(tow)
+
+        if name not in self.groups.keys():
+            self.groups[name] = []
+            self.groups[name].append(tow.name)
+        elif tow.name not in self.groups[name]:
+            self.groups[name].append(tow.name)
+        else:
+            raise ValueError("Tow already exists in the group.")
+
+        return None
 
     def remove(self, tow):
         """
@@ -69,22 +102,29 @@ class Textile:
 
         Parameters
         ----------
-        tow : str
-            Name of the tow to be removed.
+        tow : str or Tow object
+            The tow to be removed.
 
         Returns
         -------
         None.
         """
+        if isinstance(tow, Tow):
+            tow = tow.name
+
         if tow not in self.tows.keys():
             raise ValueError("Tow does not exist.")
-        
+
         self.tows.pop(tow)
 
+        print("Tow %s is removed." % tow)
+
         # check if the tow is in any group
-        for group in self.groups.keys():
-            if tow in groups[group]:
-                group.pop(tow)
+        if self.groups != {}:
+            for group in self.groups.keys():
+                if tow in groups[group]:
+                    group.pop(tow)
+                    print("Tow %s is removed from group %s." % (tow, group))
 
         return None
 
@@ -131,7 +171,7 @@ class Textile:
         if show:
             self.mesh.plot(show_edges=True)
 
-    def cell_labeling(self, intersection=False):
+    def cell_labeling(self, intersection=False, check_surface=False):
         """
         Label the cells of the background mesh with tow id.
 
@@ -176,7 +216,7 @@ class Textile:
 
             label_list[mask] = index
             label_set_dict[index] = coo_matrix(label_yarn)
-        
+
         self.mesh.cell_data['yarnIndex'] = label_list
 
         if intersection:

@@ -12,3 +12,6 @@ https://github.com/imagej/pyimagej/blob/master/doc/index.rst
 引用了md文档作为内容，在相同的目录下
 
 https://github.com/imagej/pyimagej/tree/master/doc
+
+
+pip install --upgrade 'nbconvert>=7' 'mistune>=2'

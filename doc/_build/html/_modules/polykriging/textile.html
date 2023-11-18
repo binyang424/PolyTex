@@ -80,29 +80,33 @@
            <div itemprop="articleBody">
              
   <h1>Source code for polykriging.textile</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">save_ply</span>
-<span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">geom_tow</span><span class="p">,</span> <span class="n">Tube</span><span class="p">,</span> <span class="n">ParamCurve</span>
-<span class="kn">from</span> <span class="nn">.kriging</span> <span class="kn">import</span> <span class="n">curve2Dinter</span><span class="p">,</span> <span class="n">surface3Dinterp</span>
-<span class="kn">from</span> <span class="nn">.stats</span> <span class="kn">import</span> <span class="n">kdeScreen</span><span class="p">,</span> <span class="n">bw_scott</span>
+<span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">filenames</span><span class="p">,</span> <span class="n">choose_directory</span>
+<span class="kn">from</span> <span class="nn">.tow</span> <span class="kn">import</span> <span class="n">Tow</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.mesh</span> <span class="kn">import</span>  <span class="n">background_mesh</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span>  <span class="n">intersection_detect</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
 
 
 <div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a class for textile geometrical analysis and numerical meshing.</span>
-<span class="sd">    定义为体素网格？</span>
 
 <span class="sd">    # TODO : analyze, design, and program the Textile class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the textile object by creating a background mesh.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">background_mesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tows</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="Textile.add"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
+<div class="viewcode-block" id="Textile.add_tow"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add_tow">[docs]</a>    <span class="k">def</span> <span class="nf">add_tow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a tow to the textile using mesh merging. Each tow is a mesh object</span>
 <span class="sd">        and labeled with a unique integer.</span>
@@ -110,11 +114,61 @@
 <span class="sd">        key - tow id, integer;</span>
 <span class="sd">        value - tow object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tow</span><span class="p">,</span> <span class="n">Tow</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input tow must be a Tow object.&quot;</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">tow</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tows</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tow already exists. Please use&quot;</span>
+                             <span class="s2">&quot;another name for the new tow.&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tows</span><span class="p">[</span><span class="n">tow</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tow</span></div>
+
+<div class="viewcode-block" id="Textile.add_group"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">tow</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Groups of the tows in the textile. Each is a group of Tow objects.</span>
+<span class="sd">        if tow is None, then the group is empty.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Name of the group.</span>
+<span class="sd">        tow : Tow object</span>
+<span class="sd">            Tow to be added to the group. If tow is None, then the group is empty.</span>
+<span class="sd">            If tow is not None, then tow is added to the group. Besides, if tow is</span>
+<span class="sd">            not in the self.tows yet, it will be added to self.tows.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
+
+
 
 <div class="viewcode-block" id="Textile.remove"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
-        <span class="k">pass</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove a tow from the textile.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tow : str</span>
+<span class="sd">            Name of the tow to be removed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">tow</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tows</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tow does not exist.&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tows</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">tow</span><span class="p">)</span>
+
+        <span class="c1"># check if the tow is in any group</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">tow</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]:</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">tow</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.triangulate"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.triangulate">[docs]</a>    <span class="k">def</span> <span class="nf">triangulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -129,11 +183,93 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Textile.background_mesh"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.background_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">background_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<div class="viewcode-block" id="Textile.mesh"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.mesh">[docs]</a>    <span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate a background mesh for the textile.</span>
+<span class="sd">        Generate a mesh for the textile.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bbox: bounding box of the background mesh specified through a numpy array</span>
+<span class="sd">            contains the minimum and maximum coordinates of the bounding box</span>
+<span class="sd">            [xmin, xmax, ymin, ymax, zmin, zmax]</span>
+<span class="sd">        voxel_size : float, or numpy.ndarray</span>
+<span class="sd">            voxel size of the background mesh.</span>
+<span class="sd">                if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</span>
+<span class="sd">                if `float`, the voxel size is set to the float value in x, y, z directions;</span>
+<span class="sd">                if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for</span>
+<span class="sd">                the x-, y- and z- directions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        grid : pyvista mesh object (UnstructuredGrid)</span>
+<span class="sd">        mesh_shape : tuple</span>
+<span class="sd">            shape of the mesh</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div></div>
+        <span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="n">voxel_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh_background</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">mesh_shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="n">mesh_background</span><span class="o">.</span><span class="n">n_cells</span>
+
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Textile.cell_labeling"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.cell_labeling">[docs]</a>    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Label the cells of the background mesh with tow id.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        intersection : bool, optional</span>
+<span class="sd">            Whether to detect the intersection of the tows. The default is False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># initialize the array of label list with -1</span>
+        <span class="n">label_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cells</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+        <span class="sd">&quot;&quot;&quot; Select the surface meshes of yarns to be labelled &quot;&quot;&quot;</span>
+        <span class="n">label_set_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">choose_directory</span><span class="p">(</span><span class="s2">&quot;Choose the surface mesh directory for fiber tow labelling&quot;</span><span class="p">)</span>
+        <span class="n">file_list</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;.stl&quot;</span><span class="p">)</span>
+        <span class="n">file_list_sort</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
+            <span class="c1"># regular expression for integer</span>
+            <span class="n">yarn_index</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="n">file_list_sort</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">yarn_index</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">file</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Labeling cells of the background mesh with tow id...&quot;</span><span class="p">)</span>
+
+        <span class="sd">&quot;&quot;&quot; Label the surface meshes of yarns &quot;&quot;&quot;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">file_list_sort</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">indices</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="c1">## `check_surface=False`</span>
+            <span class="c1"># if index in [28, 31, 57]:</span>
+            <span class="c1">#     print(&quot;Skipping yarn %d of %d: %s&quot; % (index, len(yarnIndex), file_list_sort[index]))</span>
+            <span class="c1">#     continue</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing yarn </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">),</span> <span class="n">file_list_sort</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+
+            <span class="n">mesh_tri</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file_list_sort</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>  <span class="c1"># load surface mesh</span>
+
+            <span class="c1"># find the cells that are within the tubular surface of the fiber tow</span>
+            <span class="n">mask</span><span class="p">,</span> <span class="n">label_yarn</span> <span class="o">=</span> <span class="n">label_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="n">label_list</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+            <span class="n">label_set_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">(</span><span class="n">label_yarn</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;yarnIndex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_list</span>
+
+        <span class="k">if</span> <span class="n">intersection</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot; Label the intersected cells&quot;&quot;&quot;</span>
+            <span class="n">label_list</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">label_set_dict</span><span class="p">)</span>
+
+            <span class="n">intersect_info</span><span class="p">,</span> <span class="n">intersect_info_dict</span><span class="p">,</span> <span class="n">cell_data_intersect</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;intersection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_data_intersect</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
 </pre></div>
 
            </div>

@@ -4,74 +4,74 @@ polykriging.fileio package
 Submodules
 ----------
 
-polykriging.fileio.construct\_tetra\_vtk module
+polykriging.io.construct\_tetra\_vtk module
 -----------------------------------------------
 
-.. automodule:: polykriging.fileio.construct_tetra_vtk
+.. automodule:: polykriging.io.construct_tetra_vtk
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.cwd\_chdir module
+polykriging.io.cwd\_chdir module
 ------------------------------------
 
-.. automodule:: polykriging.fileio.cwd_chdir
+.. automodule:: polykriging.io.cwd_chdir
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.file\_dialog module
+polykriging.io.file\_dialog module
 --------------------------------------
 
-.. automodule:: polykriging.fileio.file_dialog
+.. automodule:: polykriging.io.file_dialog
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.pk\_file module
+polykriging.io.pk\_file module
 ----------------------------------
 
-.. automodule:: polykriging.fileio.pk_file
+.. automodule:: polykriging.io.pk_file
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.save\_csv module
+polykriging.io.save\_csv module
 -----------------------------------
 
-.. automodule:: polykriging.fileio.save_csv
+.. automodule:: polykriging.io.save_csv
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.save\_inp module
+polykriging.io.save\_inp module
 -----------------------------------
 
-.. automodule:: polykriging.fileio.save_inp
+.. automodule:: polykriging.io.save_inp
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.save\_krig module
+polykriging.io.save\_krig module
 ------------------------------------
 
-.. automodule:: polykriging.fileio.save_krig
+.. automodule:: polykriging.io.save_krig
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.save\_nrrd module
+polykriging.io.save\_nrrd module
 ------------------------------------
 
-.. automodule:: polykriging.fileio.save_nrrd
+.. automodule:: polykriging.io.save_nrrd
    :members:
    :undoc-members:
    :show-inheritance:
 
-polykriging.fileio.save\_ply module
+polykriging.io.save\_ply module
 -----------------------------------
 
-.. automodule:: polykriging.fileio.save_ply
+.. automodule:: polykriging.io.save_ply
    :members:
    :undoc-members:
    :show-inheritance:

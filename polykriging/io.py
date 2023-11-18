@@ -4,7 +4,7 @@
 import contextlib
 import os, re
 
-import meshio
+import pickle
 import pandas as pd
 import pyvista as pv
 import sympy
@@ -212,7 +212,7 @@ def save_nrrd(cell_label, file_name, file_path='./'):
         The name of the .nrrd file.
     file_path: String
         The save path of the .nrrd file.
-        
+
     Returns
     -------
     None
@@ -329,54 +329,58 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
                            pickle_kwargs=dict(fix_imports=fix_imports))
 
 
-def pk_save(file, df):
+def pk_save(fp, data):
     """
     Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file
 
     Parameters
     ----------
-    file: str, or pathlib.Path.
-        File path and name to which the data is saved.
-    df: pandas.DataFrame or dict
-        The data to be saved.
+    fp: str
+        File path and name to which the data is saved. If the file name does not end with
+        a supported file extension, a ValueError will be raised.
+    data: Tow, Tex, or dict
+        The data to be saved. It can be several customised file formats for polykriging.
+
 
     Returns
     -------
     None
     """
-    # df is a dict
-    filename = os.path.basename(file)
-    if file.endswith('.krig'):
-        expr = save_krig(df)
-        expr.save(file)
+    filename = os.path.basename(fp)
+    # get file extension
+    ext = os.path.splitext(filename)[1]
+
+    if ext == "":
+        raise ValueError("The file extension is not given. Supported file extensions are "
+                         ".coo, .geo, .tow, .tex, and .krig.")
+    elif ext not in ['.coo', '.geo', '.tow', '.tex', '.krig']:
+        raise ValueError("The file extension is not supported. Supported file extensions are "
+                         ".coo, .geo, .tow, .tex, and .krig.")
+
+    if fp.endswith('.krig'):
+        expr = save_krig(data)
+        expr.save(fp)
         print(bcolors.ok("The Kriging function {} is saved successfully.").format(filename))
-
-    elif isinstance(df, dict) and not file.endswith('.krig'):
-        save(file, df, allow_pickle=True)
+    elif ext in ['.tow', '.tex']:
+        with open(filename, 'wb') as f:
+            pickle.dump(data, f)
+        f.close()
         print(bcolors.ok("The file {} is saved successfully.").format(filename))
-
-    elif isinstance(df, pd.DataFrame):
-        # index
-        index = df.index
-        # columns
-        columns = df.columns
-        # values
-        values = df.to_numpy()
-        pk_file = {"index": index, "columns": columns, "values": values}
-        save(file, pk_file, allow_pickle=True, fix_imports=True)
+    elif isinstance(data, pd.DataFrame):  # save as .coo or .geo file
+        data.to_pickle(fp)
         print(bcolors.ok("The file {} is saved successfully.").format(filename))
     else:
         raise TypeError("The input data type is not supported.")
 
 
-def pk_load(pk_file):
+def pk_load(file):
     """
     Load a file format defined in polykriging (.coo, .geo, or .stat) file
     and return as a pandas dataframe or a numpy.array object.
 
     Parameters
     ----------
-    pk_file:  str, or pathlib.Path.
+    file:  str, or pathlib.Path.
         File path and name to which the data is stored.
 
     Returns
@@ -386,24 +390,32 @@ def pk_load(pk_file):
         Otherwise, it is a numpy array or dict and a warning will be raised.
     """
 
-    filename = os.path.basename(pk_file)
-    if pk_file.endswith('.krig'):
-        print(bcolors.ok("The Kriging expression {} is loaded successfully.").format(filename))
-        return save_krig.load(pk_file)
-    try:
-        file = np.load(pk_file, allow_pickle=True, fix_imports=True).tolist()
-        index = file["index"]
-        columns = file["columns"]
-        values = file["values"]
+    filename = os.path.basename(file)
+    ext = os.path.splitext(filename)[1]
 
-        df = pd.DataFrame(values, index=index, columns=columns)
+    if ext == "":
+        raise ValueError("The file extension is not given. Supported file extensions are "
+                         ".pcd, .coo, .geo, .tow, .tex, and .krig.")
+    elif ext not in ['.pcd', '.coo', '.geo', '.tow', '.tex', '.krig']:
+        raise ValueError("The file extension is not supported. Supported file extensions are "
+                         ".pcd, .coo, .geo, .tow, .tex, and .krig.")
+
+    if file.endswith('.krig'):
+        print(bcolors.ok("The Kriging expression {} is loaded successfully.").format(filename))
+        return save_krig.load(file)
+
+    if ext in ['.coo', '.geo']:
+        data = pd.read_pickle(file)
         print(bcolors.ok("The file {} is loaded successfully.").format(filename))
-    except:
-        df = np.load(pk_file, allow_pickle=True, fix_imports=True)
+    elif ext in ['.tow', '.tex']:
+        with open(file, 'rb') as f:
+            data = pickle.load(f)
+        f.close()
+    else:
+        data = np.load(file, allow_pickle=True, fix_imports=True).tolist()
         print(bcolors.ok("The file {} is loaded successfully.").format(filename))
-        print(bcolors.warning("Warning: The file is not a pandas dataframe. It is loaded as a numpy array.\n "
-                              "If it is a dict originally, please use file.tolist() to convert it to a dict."))
-    return df
+
+    return data
 
 
 def pcd_to_ply(file_pcd, file_ply, binary=False):
@@ -465,7 +477,8 @@ def coo_to_ply(file_coo, file_ply, interpolate=False, threshold=0.1):
 
 
 def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False):
-    print(bcolors.warning("This function will be deprecated in the future. Please use polykriging.meshio_save() instead."))
+    print(bcolors.warning(
+        "This function will be deprecated in the future. Please use polykriging.meshio_save() instead."))
     return meshio_save(file, vertices, cells, point_data, cell_data, binary)
 
 
