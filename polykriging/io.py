@@ -362,7 +362,7 @@ def pk_save(fp, data):
         expr.save(fp)
         print(bcolors.ok("The Kriging function {} is saved successfully.").format(filename))
     elif ext in ['.tow', '.tex']:
-        with open(filename, 'wb') as f:
+        with open(fp, 'wb') as f:
             pickle.dump(data, f)
         f.close()
         print(bcolors.ok("The file {} is saved successfully.").format(filename))

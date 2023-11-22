@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_pk_io.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_pk_io.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -99,6 +99,8 @@ and return a list of filenames with a given extension.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

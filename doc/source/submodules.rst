@@ -3,7 +3,7 @@ Submodules
 .. toctree::
    :maxdepth: 2
 
-   polykriging.fileio
+   polykriging.io
    polykriging.geometry
    polykriging.kriging
    polykriging.mesh

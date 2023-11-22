@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   polykriging.fileio
+   polykriging.io
    polykriging.geometry
    polykriging.kriging
    polykriging.mesh

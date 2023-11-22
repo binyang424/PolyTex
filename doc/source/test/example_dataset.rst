@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_example_dataset.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_example_dataset.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -75,6 +75,8 @@ for ``polyKriging.io`` module.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

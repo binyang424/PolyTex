@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -37,12 +37,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>polykriging.io</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polykriging.io</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,8 +105,8 @@
 <span class="kn">from</span> <span class="nn">.thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 
 
-<div class="viewcode-block" id="construct_tetra_vtk"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.construct_tetra_vtk">[docs]</a><span class="k">def</span> <span class="nf">construct_tetra_vtk</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="construct_tetra_vtk"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.construct_tetra_vtk">[docs]</a><span class="k">def</span> <span class="nf">construct_tetra_vtk</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</span>
 
 <span class="sd">    Parameters</span>
@@ -132,8 +136,8 @@
     <span class="k">return</span> <span class="n">grid</span></div>
 
 
-<div class="viewcode-block" id="cwd_chdir"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.cwd_chdir">[docs]</a><span class="k">def</span> <span class="nf">cwd_chdir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="cwd_chdir"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.cwd_chdir">[docs]</a><span class="k">def</span> <span class="nf">cwd_chdir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set given directory or the folder where the code file is as current working directory</span>
 
 <span class="sd">    Parameters</span>
@@ -156,8 +160,8 @@
     <span class="k">return</span> <span class="n">cwd</span></div>
 
 
-<div class="viewcode-block" id="choose_directory"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.choose_directory">[docs]</a><span class="k">def</span> <span class="nf">choose_directory</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="choose_directory"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.choose_directory">[docs]</a><span class="k">def</span> <span class="nf">choose_directory</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a directory with GUI and return its path.</span>
 
 <span class="sd">    Parameters</span>
@@ -195,8 +199,8 @@
         <span class="k">return</span> <span class="n">path_work</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="filenames"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.filenames">[docs]</a><span class="k">def</span> <span class="nf">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="filenames"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.filenames">[docs]</a><span class="k">def</span> <span class="nf">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the list of files in the given folder.</span>
 
 <span class="sd">    Parameters</span>
@@ -217,8 +221,8 @@
     <span class="k">return</span> <span class="n">flst</span></div>
 
 
-<div class="viewcode-block" id="zip_files"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.zip_files">[docs]</a><span class="k">def</span> <span class="nf">zip_files</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">file_list</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="zip_files"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.zip_files">[docs]</a><span class="k">def</span> <span class="nf">zip_files</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">file_list</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add multiple files to the zip file.</span>
 
 <span class="sd">    Parameters</span>
@@ -253,8 +257,8 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="s2">&quot;Zip file saved as &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="choose_file"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.choose_file">[docs]</a><span class="k">def</span> <span class="nf">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="choose_file"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.choose_file">[docs]</a><span class="k">def</span> <span class="nf">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a file with GUI and return its path.</span>
 
 <span class="sd">    Parameters</span>
@@ -281,8 +285,8 @@
     <span class="k">return</span> <span class="n">path_work</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="save_nrrd"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_nrrd">[docs]</a><span class="k">def</span> <span class="nf">save_nrrd</span><span class="p">(</span><span class="n">cell_label</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="save_nrrd"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_nrrd">[docs]</a><span class="k">def</span> <span class="nf">save_nrrd</span><span class="p">(</span><span class="n">cell_label</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save the labels of a hexahedral mesh to a nrrd file. The labels should be</span>
 <span class="sd">    starting from 0 and increasing by 1.</span>
 
@@ -317,8 +321,8 @@
     <span class="k">return</span> <span class="n">indicator</span></div>
 
 
-<div class="viewcode-block" id="save_krig"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_krig">[docs]</a><span class="k">class</span> <span class="nc">save_krig</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="save_krig"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_krig">[docs]</a><span class="k">class</span> <span class="nc">save_krig</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class saves a dictonary of sympy expressions to a file in human</span>
 <span class="sd">    readable form and then load as sympy expressions directly without other</span>
 <span class="sd">    conversion. It is called by polykriging.fileio.pk_save to save kriging</span>
@@ -354,11 +358,11 @@
         <span class="c1"># each dict key, value pair to make it more readable</span>
         <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(: </span><span class="se">\&quot;</span><span class="s1">[^&quot;]*</span><span class="se">\&quot;</span><span class="s1">,)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1\n&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">())</span>
 
-<div class="viewcode-block" id="save_krig.save"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_krig.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="save_krig.save"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_krig.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">savefile</span><span class="p">:</span>
             <span class="n">savefile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="save_krig.load"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_krig.load">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="save_krig.load"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_krig.load">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">loadfile</span><span class="p">:</span>
             <span class="c1"># Note that the variable name temp should not be the same as the other</span>
@@ -374,8 +378,8 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="save"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save">[docs]</a><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="save"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save">[docs]</a><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an exact copy of numpy.save, except that it does not check the extensions.</span>
 
 <span class="sd">    Parameters</span>
@@ -411,8 +415,8 @@
                            <span class="n">pickle_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fix_imports</span><span class="o">=</span><span class="n">fix_imports</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="pk_save"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.pk_save">[docs]</a><span class="k">def</span> <span class="nf">pk_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="pk_save"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.pk_save">[docs]</a><span class="k">def</span> <span class="nf">pk_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</span>
 
 <span class="sd">    Parameters</span>
@@ -451,8 +455,8 @@
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The input data type is not supported.&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pk_load"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.pk_load">[docs]</a><span class="k">def</span> <span class="nf">pk_load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="pk_load"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.pk_load">[docs]</a><span class="k">def</span> <span class="nf">pk_load</span><span class="p">(</span><span class="n">pk_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load a file format defined in polykriging (.coo, .geo, or .stat) file</span>
 <span class="sd">    and return as a pandas dataframe or a numpy.array object.</span>
 
@@ -488,8 +492,8 @@
     <span class="k">return</span> <span class="n">df</span></div>
 
 
-<div class="viewcode-block" id="pcd_to_ply"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.pcd_to_ply">[docs]</a><span class="k">def</span> <span class="nf">pcd_to_ply</span><span class="p">(</span><span class="n">file_pcd</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="pcd_to_ply"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.pcd_to_ply">[docs]</a><span class="k">def</span> <span class="nf">pcd_to_ply</span><span class="p">(</span><span class="n">file_pcd</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a pcd file to ply file.</span>
 
 <span class="sd">    Parameters</span>
@@ -515,8 +519,8 @@
     <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_ply</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="coo_to_ply"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.coo_to_ply">[docs]</a><span class="k">def</span> <span class="nf">coo_to_ply</span><span class="p">(</span><span class="n">file_coo</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="coo_to_ply"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.coo_to_ply">[docs]</a><span class="k">def</span> <span class="nf">coo_to_ply</span><span class="p">(</span><span class="n">file_coo</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a pcd file to ply file.</span>
 
 <span class="sd">    Parameters</span>
@@ -546,13 +550,13 @@
     <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_ply</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="save_ply"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_ply">[docs]</a><span class="k">def</span> <span class="nf">save_ply</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="save_ply"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_ply">[docs]</a><span class="k">def</span> <span class="nf">save_ply</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This function will be deprecated in the future. Please use polykriging.meshio_save() instead.&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">meshio_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span><span class="p">,</span> <span class="n">binary</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="meshio_save"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.meshio_save">[docs]</a><span class="k">def</span> <span class="nf">meshio_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="meshio_save"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.meshio_save">[docs]</a><span class="k">def</span> <span class="nf">meshio_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.</span>
 <span class="sd">    It is a wrapper of meshio.write() function.</span>
 
@@ -618,8 +622,8 @@
     <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="get_ply_property"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.get_ply_property">[docs]</a><span class="k">def</span> <span class="nf">get_ply_property</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span><span class="p">,</span> <span class="n">save_vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="get_ply_property"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.get_ply_property">[docs]</a><span class="k">def</span> <span class="nf">get_ply_property</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span><span class="p">,</span> <span class="n">save_vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function get a vertex property or cell property from a mesh stored as .ply</span>
 <span class="sd">    format. It is intended to be used to get the user-defined properties that most of</span>
 <span class="sd">    meshing and rendering software does not support.</span>
@@ -678,8 +682,8 @@
     <span class="k">return</span> <span class="n">quality</span></div>
 
 
-<div class="viewcode-block" id="save_csv"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.io.save_csv">[docs]</a><span class="k">def</span> <span class="nf">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">csv_head</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="save_csv"><a class="viewcode-back" href="../../source/polykriging.io.html#polykriging.io.save_csv">[docs]</a><span class="k">def</span> <span class="nf">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">csv_head</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save numpy array to csv file with given info in the first row.</span>
 
 <span class="sd">    Parameters</span>

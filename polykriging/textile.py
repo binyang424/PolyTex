@@ -21,8 +21,14 @@ class Textile:
         Initialize the textile object by creating a background mesh.
         """
         self.name = name
-        self.tows = {}
+        self.__tows__ = {}
         self.groups = {}
+
+    def __getitem__(self, item):
+        """
+        Get tow by tow name.
+        """
+        return self.__tows__[item]
 
     def add_tow(self, tow, group=None):
         """
@@ -32,7 +38,7 @@ class Textile:
         Parameters
         ----------
         tow : Tow object
-            Tow to be added to the textile. Stored in self.tows as a dictionary.
+            Tow to be added to the textile. Stored in self.__tows__ as a dictionary.
             Tow.name is the key, and tow is the value.
         group : str
             Group name of the tow. If group is None, then the tow is not added
@@ -45,11 +51,11 @@ class Textile:
         if not isinstance(tow, Tow):
             raise TypeError("Input tow must be a Tow object.")
 
-        if tow.name in self.tows.keys():
+        if tow.name in self.__tows__.keys():
             raise ValueError("Tow already exists. Please use"
                              "another name for the new tow.")
 
-        self.tows[tow.name] = tow
+        self.__tows__[tow.name] = tow
 
         if group is not None:
             self.add_group(name=group, tow=tow)
@@ -66,7 +72,7 @@ class Textile:
         tow : Tow object
             Tow to be added to the group. If tow is None, then the group is empty.
             If tow is not None, then tow is added to the group. Besides, if tow is
-            not in the self.tows yet, it will be added to self.tows.
+            not in the self.__tows__ yet, it will be added to self.__tows__.
 
         Returns
         -------
@@ -83,7 +89,7 @@ class Textile:
         if not isinstance(tow, Tow):
             raise TypeError("Input tow must be a Tow object.")
 
-        if tow.name not in self.tows.keys():
+        if tow.name not in self.__tows__.keys():
             self.add_tow(tow)
 
         if name not in self.groups.keys():
@@ -112,10 +118,10 @@ class Textile:
         if isinstance(tow, Tow):
             tow = tow.name
 
-        if tow not in self.tows.keys():
+        if tow not in self.__tows__.keys():
             raise ValueError("Tow does not exist.")
 
-        self.tows.pop(tow)
+        self.__tows__.pop(tow)
 
         print("Tow %s is removed." % tow)
 
@@ -171,6 +177,20 @@ class Textile:
         if show:
             self.mesh.plot(show_edges=True)
 
+    @property
+    def n_tows(self):
+        """
+        Number of tows in the textile.
+        """
+        return len(self.__tows__)
+
+    @property
+    def items(self):
+        """
+        Return tow names as a list.
+        """
+        return list(self.__tows__.keys())
+
     def cell_labeling(self, intersection=False, check_surface=False):
         """
         Label the cells of the background mesh with tow id.
@@ -212,7 +232,7 @@ class Textile:
             mesh_tri = pv.read(path + "\\" + file_list_sort[index])  # load surface mesh
 
             # find the cells that are within the tubular surface of the fiber tow
-            mask, label_yarn = label_mask(self.mesh, mesh_tri, check_surface=False)
+            mask, label_yarn = label_mask(self.mesh, mesh_tri, tolerance=0.0000001, check_surface=False)
 
             label_list[mask] = index
             label_set_dict[index] = coo_matrix(label_yarn)

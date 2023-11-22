@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_Step 2_coo_to_ply.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_Step 2_coo_to_ply.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -61,6 +61,8 @@ will be linearly interpolated to avoid distortion in tetralization  process.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python
