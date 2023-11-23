@@ -85,7 +85,7 @@
              
   <h1>Source code for polykriging.tow</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">save_ply</span>
-<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">save</span> <span class="k">as</span> <span class="n">save_tow</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span> <span class="k">as</span> <span class="n">save_tow</span>
 
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">geom_tow</span><span class="p">,</span> <span class="n">Curve</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Plane</span><span class="p">,</span> <span class="n">Tube</span><span class="p">,</span> <span class="n">ParamCurve</span><span class="p">,</span> <span class="n">area_signed</span>
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">transform</span> <span class="k">as</span> <span class="n">tf</span>
@@ -747,7 +747,7 @@
 
         <span class="k">return</span> <span class="n">win_interp</span><span class="p">,</span> <span class="n">win_result</span></div>
 
-<div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
+<div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the fiber tow data.</span>
 
@@ -763,7 +763,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span></div>
+        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Tow.axial_lines"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.axial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">axial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

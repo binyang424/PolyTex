@@ -129,6 +129,23 @@
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Textile class example">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_Textile_class_example_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_Textile_class_example.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Textile class example</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Test">
 
 .. only:: html
@@ -329,6 +346,7 @@
    /source/test/tubular_structure_mesh
    /source/test/derivative_Kriging
    /source/test/transformation
+   /source/test/Textile_class_example
    /source/test/parametric_surface
    /source/test/mesh_from_image
    /source/test/Step 3_MW-KDE

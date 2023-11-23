@@ -190,9 +190,8 @@ def perm_rotation(permeability, orientation, inverse=False):
 
         if inverse:
             D[i, :] = np.linalg.inv(k_rot).flatten()
-            return D
 
-    return permeability_loc
+    return D if inverse else permeability_loc
 
 
 if __name__ == "__main__":

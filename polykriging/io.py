@@ -2,21 +2,701 @@
 # -*- coding: utf-8 -*-
 
 import contextlib
-import os, re
-
+import os
 import pickle
+import re
+import logging
+import shutil
+import copy
+
+from tkinter import Tk, filedialog, messagebox
+from tqdm import trange
+
+import numpy as np
 import pandas as pd
 import pyvista as pv
 import sympy
 import vtk
-
-import numpy as np
 from numpy.compat import os_fspath
 from numpy.lib import format
-from tkinter import Tk, filedialog, messagebox
 
 from .kriging.curve2D import addPoints
 from .thirdparty.bcolors import bcolors
+
+
+file_header = """/*--------------------------------*- C++ -*----------------------------------*\\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/"""
+
+top_separator = """// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+"""
+
+bottom_separator = """
+// ************************************************************************* //"""
+
+
+def write_FoamFile(ver, fmt, cls, location, obj, top_separator):
+    return """
+FoamFile
+{
+    version     %.1f;
+    format      %s;
+    class       %s;
+    location    %s;
+    object      %s;
+}
+%s
+""" % (ver, fmt, cls, location, obj, top_separator)  # 格式化输出
+
+
+## boundaryFields for vol<Type>Field
+"""
+Left: x-
+TOP : z +
+Front: y +
+"""
+bFields = """
+boundaryField
+{
+    top
+    {
+        type            zeroGradient;
+    }
+
+    bottom
+    {
+        type            zeroGradient;
+    }
+
+    left
+    {
+        type            zeroGradient;
+    }
+
+    right
+    {
+        type            zeroGradient;
+    }
+
+    back
+    {
+        type            empty;
+    }
+
+    front
+    {
+        type            empty;
+    }
+}
+"""
+
+
+# Output directory
+def mkdir(path):
+    """
+    Create the output directory if it does not exist.
+
+    Parameters
+    ----------
+    path: str
+        The path of the output directory.
+
+    Returns
+    -------
+    output_dir: str
+        The path of the output directory.
+    """
+    output_dir = path + "/constant/polyMesh"
+    cellDataDir = path + "/0"
+    try:
+        # os.mkdir(output_dir)  # 创建单层目录
+        os.makedirs(output_dir)  # 创建多层目录
+        os.makedirs(cellDataDir)
+    except FileExistsError:
+        logging.warning("Directory already exists. Aborting to be safe.")
+    return output_dir
+
+
+def write_points(points, output_dir='./constant/polyMesh/', scale=1.0):
+    """
+    Write points to OpenFOAM format
+
+    Parameters
+    ----------
+    points : array-like
+        The points to be written. The shape of the array should be (n, 3).
+    output_dir : str, optional
+        The directory to store the converted data. The default is './',
+        which means the current directory.
+    scale : float, optional
+        The scale factor to convert the unit of points. The default is 1.0.
+
+    Returns
+    -------
+     : int
+        1 if the writing is successful.
+    """
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    if not isinstance(points, np.ndarray):
+        points = np.array(points)
+
+    n_points = points.shape[0]  # np: number of points
+
+    print("Points data writing...")
+    points_file = os.path.join(output_dir, "points")
+
+    with open(points_file, "w") as f:
+        f.write(file_header)
+        f.write(write_FoamFile(2.0, "ascii", "vectorField",
+                               "\"constant/polyMesh\"", "points", top_separator))
+        f.write("%d\n(\n" % n_points)
+
+        for i in trange(n_points):
+            point = points[i] * scale
+            f.write("(%f %f %f)\n" % tuple(point))
+        f.write(")\n")
+        f.write(bottom_separator)
+        f.close()
+    print("    Points data writing finished.")
+
+    return 1
+
+
+def cellDataToOf(cellDataDict, outputDir='./0/'):
+    """
+    Write cell data to OpenFOAM format
+
+    Parameters
+    ----------
+    cellDataDict : dict
+        A dictionary to store all cell data sets in vtu file using the data set name as key.
+    outputDir : str, optional
+        The directory to store the converted data. The default is './0/',
+    """
+    if not os.path.exists(outputDir):
+        os.makedirs(outputDir)
+    else:
+        shutil.rmtree(outputDir)
+        os.makedirs(outputDir)
+
+    keys = cellDataDict.keys()
+    print("Cell data writing...")
+    for key in keys:
+        print("    - " + key)
+
+        cellData = cellDataDict[key]
+        cellDataFile = os.path.join(outputDir, key)
+        fileData = open(cellDataFile, "w")
+        fileData.write(file_header)
+
+        totalItem = cellData.shape[0]
+
+        if cellData.ndim == 1:
+            n_components = 1
+            fileData.write(write_FoamFile(2.0, "ascii", "volScalarField", "\"0\"",
+                                          key, top_separator))
+            fileData.write("dimensions [0 0 0 0 0 0 0];\n")
+            fileData.write("internalField   nonuniform List<scalar>\n ")
+            fileData.write("%d\n(\n" % totalItem)
+
+        elif cellData.ndim == 2 and cellData.shape[1] == 3:
+            n_components = 3
+            fileData.write(write_FoamFile(2.0, "ascii", "volVectorField", "\"0\"",
+                                          key, top_separator))
+            fileData.write("dimensions [0 0 0 0 0 0 0];\n")
+            fileData.write("internalField   nonuniform List<vector>\n ")
+            fileData.write("%d\n(\n" % totalItem)
+
+        elif cellData.ndim == 2 and cellData.shape[1] == 9:
+            n_components = 9
+            fileData.write(write_FoamFile(2.0, "ascii", "volTensorField", "\"0\"",
+                                          key, top_separator))
+            fileData.write("dimensions [0 2 0 0 0 0 0];\n")
+            fileData.write("internalField   nonuniform List<tensor>\n ")
+            fileData.write("%d\n(\n" % totalItem)
+
+        for j in range(totalItem):
+
+            if n_components > 1:
+                data = cellData[j]
+                fileData.write(str(tuple(data)).replace(",", ""))
+            else:
+                fileData.write(str(cellData[j]))
+
+            fileData.write("\n")
+
+        fileData.write(");\n")
+        fileData.write(bFields)
+        fileData.write(bottom_separator)
+        fileData.close()
+
+
+def cell_faces(mesh, ind, neighbor=False):
+    """
+    Get all faces of a 3D cell.
+
+    Parameters
+    ----------
+    mesh : vtkUnstructuredGrid
+        The volume mesh.
+    ind : int
+        The cell id.
+    neighbor : bool, optional
+        If True, return the neighbor cell ids. The default is False.
+
+    Returns
+    -------
+    faces : list
+        A list containing all faces of the cell.
+    neighbors : list
+        A list containing all neighbor cell ids of the cell.
+        Not returned if neighbor is False.
+    """
+    cell = mesh.GetCell(ind)
+    faces = []
+    neighbors = set()
+
+    for i in range(cell.GetNumberOfFaces()):
+        face_ = cell.GetFace(i)
+        point_ids = face_.GetPointIds()
+        face = [point_ids.GetId(j) for j in range(face_.GetNumberOfPoints())]
+        faces.append(face)
+
+        if neighbor:
+            cell_ids = vtk.vtkIdList()
+            mesh.GetCellNeighbors(ind, point_ids, cell_ids)
+            neighbors.update([cell_ids.GetId(i) for i in range(cell_ids.GetNumberOfIds())])
+    if neighbor:
+        return faces, list(neighbors)
+    else:
+        return faces
+
+
+def get_internel_faces(volume):
+    """
+    Extract internel faces from a vtkUnstructuredGrid object.
+
+    Parameters
+    ----------
+    volume : pyvista.UnstructuredGrid
+        The volume mesh.
+
+    Returns
+    -------
+    internal_faces : list
+        A list containing all internal faces.
+    owner : list
+        A list containing all owner cell ids corresponding to the internal faces.
+    neighbour : list
+        A list containing all neighbour cell ids corresponding to the internal faces.
+    """
+    print("Internal faces data extracting...")
+
+    n_cells = volume.n_cells
+    cells = volume.cells.reshape(n_cells, -1)[:, 1:]
+
+    internal_faces = []
+    owner = []
+    neighbour = []
+
+    for cell_id in trange(n_cells):
+        # print(cell_id)
+        cell = cells[cell_id]  # the point ids of the cells
+
+        cell_face_lst, neighbour_cell_ids = cell_faces(volume, cell_id, neighbor=True)
+        cell_face_lst = np.array(cell_face_lst)
+        cell_face_lst_copy = copy.deepcopy(cell_face_lst)
+        cell_face_lst.sort(axis=1)
+        neighbour_cell_ids = np.array(neighbour_cell_ids)
+        mask = neighbour_cell_ids > cell_id
+
+        for idx in neighbour_cell_ids[mask]:
+            face = np.intersect1d(cell, cells[idx, :])
+
+            # sort the row of cell_faces
+            face.sort(axis=0)
+            mask = np.all(cell_face_lst == face, axis=1)
+            face = cell_face_lst_copy[mask][0]
+
+            internal_faces.append(face.tolist())
+            owner.append(cell_id)
+            neighbour.append(idx)
+
+    print("    Internal faces data extracting finished.")
+    return internal_faces, owner, neighbour
+
+
+def get_boundary_faces(volume):
+    """
+    Extract boundary faces from a vtkUnstructuredGrid object.
+
+    Parameters
+    ----------
+    volume : pyvista.UnstructuredGrid
+        The volume mesh.
+
+    Returns
+    -------
+    boundary_faces : numpy.ndarray
+        A numpy array containing all boundary faces.
+    surf : pyvista.PolyData
+        A pyvista surface mesh object.
+    """
+    print("Boundary faces data extracting...")
+    surf = volume.extract_surface(pass_pointid=True, pass_cellid=True)
+    surf = surf.cast_to_unstructured_grid()
+    vtkOriginalPointIds = surf['vtkOriginalPointIds']
+    vtkOriginalCellIds = surf['vtkOriginalCellIds']
+
+    points = surf.points
+    cells = surf.cells.reshape(-1, 5)[:, 1:]
+
+    ncells = surf.n_cells
+    cellCenters = surf.cell_centers().points  # the centers of each cell
+
+    # Normal of the three coordinate planes
+    map = {"YZ": (1, 0, 0), "XZ": (0, 1, 0), "XY": (0, 0, 1)}
+    axis = [map.get("YZ"), map.get("XZ"), map.get("XY"), ]
+
+    bbox = surf.bounds  # the bounding box of the surface mesh
+    centroid = surf.center  # the center of the surface mesh
+
+    face_boundary = np.zeros((ncells, 4), dtype=int)
+    owner_boundary = np.zeros(ncells, dtype=int)
+
+    for i in trange(ncells):
+        originalCellId = vtkOriginalCellIds[i]
+        originalPointId = vtkOriginalPointIds[cells[i]]
+
+        cell_face_lst = np.array(cell_faces(volume, originalCellId))
+        cell_face_lst_copy = copy.deepcopy(cell_face_lst)
+
+        # sort the row of cell_faces
+        cell_face_lst.sort(axis=1)
+        originalPointId.sort(axis=0)
+
+        mask = np.all(cell_face_lst == originalPointId, axis=1)
+
+        face_boundary[i] = cell_face_lst_copy[mask]
+
+        owner_boundary[i] = originalCellId
+
+    vector_in_face = points[cells[:, 0]] - cellCenters
+
+    mask_center_x = cellCenters[:, 0] < centroid[0]
+    mask_center_y = cellCenters[:, 1] < centroid[1]
+    mask_center_z = cellCenters[:, 2] < centroid[2]
+
+    mask_yz = np.dot(vector_in_face, axis[0]) == 0
+    mask_xz = np.abs(np.dot(vector_in_face, axis[1])) == 0
+    mask_xy = np.dot(vector_in_face, axis[2]) == 0
+
+    face_boundary_left = face_boundary[mask_yz & mask_center_x]
+    face_boundary_right = face_boundary[mask_yz & ~mask_center_x]
+
+    face_boundary_back = face_boundary[mask_xz & mask_center_y]
+    face_boundary_front = face_boundary[mask_xz & ~mask_center_y]
+    face_boundary_bottom = face_boundary[mask_xy & mask_center_z]
+    face_boundary_top = face_boundary[mask_xy & ~mask_center_z]
+
+    owner_boundary_left = owner_boundary[mask_yz & mask_center_x]
+    owner_boundary_right = owner_boundary[mask_yz & ~mask_center_x]
+    owner_boundary_back = owner_boundary[mask_xz & mask_center_y]
+    owner_boundary_front = owner_boundary[mask_xz & ~mask_center_y]
+    owner_boundary_bottom = owner_boundary[mask_xy & mask_center_z]
+    owner_boundary_top = owner_boundary[mask_xy & ~mask_center_z]
+
+    face_boundary_dict = {"left": face_boundary_left, "right": face_boundary_right,
+                          "back": face_boundary_back, "front": face_boundary_front,
+                          "bottom": face_boundary_bottom, "top": face_boundary_top}
+
+    owner_boundary_dict = {"left": owner_boundary_left, "right": owner_boundary_right,
+                           "back": owner_boundary_back, "front": owner_boundary_front,
+                           "bottom": owner_boundary_bottom, "top": owner_boundary_top}
+
+    return face_boundary_dict, owner_boundary_dict
+
+
+def write_cell_zone(cell_zone, output_dir='./constant/polyMesh/', ):
+    """
+    Write the cells to a file for porous properties setting.
+
+    Parameters
+    ----------
+    cell_zone : dict
+        A dict containing all cell ids corresponding to the cell zones. The key
+        is the cell zone name and the value (a list) is the cell ids in the zone.
+    output_dir : str, optional
+        The output directory. The default is './constant/polyMesh/'.
+
+    Returns
+    -------
+    None.
+    """
+    if not isinstance(cell_zone, dict):
+        print("The type of cell_zone should be dict with key as "
+              "the zone name and value (list) as cell ids in the zone.")
+        print("Owner of faces data writing failed.")
+        return 0
+
+    num_zones = len(cell_zone)
+
+    print("Cell zone data writing...")
+    zone_file = open(os.path.join(output_dir, "cellZones"), "w")
+    zone_file.write(file_header)
+    zone_file.write(write_FoamFile(2.0, "ascii", "regIOobject", "\"constant/polyMesh\"", "cellZones", top_separator))
+    zone_file.write("%d\n(\n" % num_zones)
+
+    """ Write cell zones as dictionary """
+    for key, value in cell_zone.items():
+        zone_file.write("%s\n{\n    type cellZone; \ncellLabels      List<label>\n" % key)
+        zone_file.write(str(len(value)) + "\n( \n")
+        for cell_id in value:
+            zone_file.write(str(cell_id) + '\n')
+        zone_file.write(")\n;\n}\n")
+
+    zone_file.write(")\n")
+    zone_file.write(bottom_separator)
+    zone_file.close()
+    print("    Cell zone data writing finished.")
+    return num_zones
+
+
+def write_neighbors(neighbour, output_dir='./constant/polyMesh/'):
+    """
+    Write the neighbors file.
+
+    Parameters
+    ----------
+    neighbour : list
+        A list containing all neighbor cell ids corresponding to the internal faces.
+    output_dir : str, optional
+        The output directory. The default is './constant/polyMesh/'.
+
+    Returns
+    -------
+    None.
+    """
+    print("Neighbors data writing...")
+    neighbour_file = open(os.path.join(output_dir, "neighbour"), "w")
+    neighbour_file.write(file_header)
+    neighbour_file.write(
+        write_FoamFile(2.0, "ascii", "labelList", "\"constant/polyMesh\"", "neighbour", top_separator))
+    neighbour_file.write("%d\n(\n" % len(neighbour))
+    for i in neighbour:
+        neighbour_file.write(str(i) + '\n')
+    neighbour_file.write(")\n")
+    neighbour_file.write(bottom_separator)
+    neighbour_file.close()
+    print("    Neighbors data writing finished.")
+
+
+def write_owner(owner_internal, owner_boundary, output_dir='./constant/polyMesh/', ):
+    """
+    Write the owner file.
+
+    Parameters
+    ----------
+    owner_internal : array-like
+        A list containing all owner cell ids corresponding to the internal faces.
+    owner_boundary : dict
+        A list containing all owner cell ids corresponding to the boundary faces.
+    output_dir : str, optional
+        The output directory. The default is './constant/polyMesh/'.
+
+    Returns
+    -------
+    None.
+    """
+    if not isinstance(owner_internal, np.ndarray):
+        owner_internal = np.array(owner_internal)
+    if not isinstance(owner_boundary, dict):
+        print("The type of owner_boundary should be dict with key as "
+              "boundary patch name and value as owner cell id.")
+        print("Owner of faces data writing failed.")
+        return 0
+
+    total_faces = owner_internal.shape[0]
+    for key, value in owner_boundary.items():
+        total_faces += len(value)
+
+    print("Owner of faces data writing...")
+    owner_file = open(os.path.join(output_dir, "owner"), "w")
+    owner_file.write(file_header)
+    owner_file.write(write_FoamFile(2.0, "ascii", "labelList", "\"constant/polyMesh\"", "owner", top_separator))
+    owner_file.write("%d\n(\n" % total_faces)
+    """ Write internal face owners first """
+    for i in range(len(owner_internal)):
+        owner_file.write(str(owner_internal[i]) + '\n')
+
+    """ Write boundary face owners """
+    for key, value in owner_boundary.items():
+        for cell_id in value:
+            owner_file.write(str(cell_id) + '\n')
+
+    owner_file.write(")\n")
+    owner_file.write(bottom_separator)
+    owner_file.close()
+    print("    Owner of faces data writing finished.")
+    return total_faces
+
+
+def write_face(face_points):
+    """
+    Parameters
+    ----------
+    face_points : list
+        A list containing all face node indices.
+    """
+    return "%d(%s)\n" % (len(face_points), " ".join([str(p) for p in face_points]))
+
+
+def write_faces(internal_faces, face_boundary, output_dir='./constant/polyMesh/'):
+    """
+    Write the faces file.
+
+    Parameters
+    ----------
+    internal_faces : list
+        A list containing all internal face node indices.
+    face_boundary : dict
+        A dict containing all boundary faces. The key is the boundary patch name,
+        and the value is a numpy array containing all boundary face node indices.
+    output_dir : str, optional
+        The output directory. The default is './constant/polyMesh/'.
+
+    Returns
+    -------
+    None.
+    """
+    print("faces data writing...")
+    total_faces = len(internal_faces)
+    for key, value in face_boundary.items():
+        total_faces += len(value)
+
+    print("    Total faces: %d" % total_faces)
+
+    faces_file = open(os.path.join(output_dir, "faces"), "w")
+    faces_file.write(file_header)
+    faces_file.write(write_FoamFile(2.0, "ascii", "faceList", "\"constant/polyMesh\"", "faces", top_separator))
+    faces_file.write("%d\n(\n" % total_faces)
+
+    """ Write internal faces first """
+    for face in internal_faces:
+        faces_file.write(write_face(face[::-1]))
+
+    """ Write boundary faces """
+    for key, value in face_boundary.items():
+        for face in value:
+            faces_file.write(write_face(face[::-1]))
+
+    faces_file.write(")\n")
+    faces_file.write(bottom_separator)
+    faces_file.close()
+    print("    faces data writing finished.")
+
+    return 1
+
+
+def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMesh/'):
+    """
+    Boundary file writing.
+
+    Parameters
+    ----------
+    face_boundary_dict : dict
+        A dict contains boundary category
+    start_face : int
+        The start face index of the boundary faces. equal to the number of internal faces.
+    output_dir : str, optional
+        The output directory. The default is './constant/polyMesh/'.
+
+    Returns
+    -------
+    None.
+    """
+    print("Boundary data writing...")
+    n_boundaries = len(face_boundary_dict)
+    boundary_file = open(os.path.join(output_dir, "boundary"), "w")
+    boundary_file.write(file_header)
+    boundary_file.write(
+        write_FoamFile(2.0, "ascii", "polyBoundaryMesh", "\"constant/polyMesh\"", "boundary", top_separator))
+    boundary_file.write("%d\n(\n" % n_boundaries)
+
+    for key in list(face_boundary_dict.keys()):
+        print("    - " + key)
+        boundary_file.write("""%s
+    {
+        type patch;
+        nFaces %d;
+        startFace %d;
+    }
+    """ % (key, len(face_boundary_dict[key]), start_face))
+        start_face += len(face_boundary_dict[key])
+
+    boundary_file.write(")\n")
+    boundary_file.write(bottom_separator)
+    boundary_file.close()
+    print("    Boundary data writing finished.")
+
+    return 1
+
+
+def voxel2foam(mesh)->None:
+    """
+    Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
+    and saved in the 0 timestep folder.
+
+    Parameters
+    ----------
+    mesh : pyvista.UnstructuredGrid
+        The voxel mesh.
+    """
+
+    if not isinstance(mesh, pv.UnstructuredGrid):
+        raise TypeError("mesh must be a pyvista.UnstructuredGrid. If you have a vtu file, "
+                        "use pyvista.read('filename.vtu') to read the file.")
+
+    """ 1. Write points """
+    pts = mesh.points  # numpy.ndarray (npts, 3)
+    write_points(pts, scale=0.001)
+
+    """ 2. Write cell data """
+    cellDataDict = mesh.cell_data
+    cellDataToOf(cellDataDict)
+
+    """ 3. Write faces """
+    # Get internal faces
+    internal_faces, owner_internal, neighbour = get_internel_faces(mesh)
+
+    # Get boundary faces
+    face_boundary_dict, owner_boundary_dict = get_boundary_faces(mesh)
+
+    """ 4. Write cell zones for porous region """
+    cell_zone = {"porousLayer": np.arange(mesh.n_cells)[mesh.cell_data["porosity"] < 0.995]}
+    write_cell_zone(cell_zone, output_dir='./constant/polyMesh/')
+
+    """ 5. Write neighbor file """
+    write_neighbors(neighbour)
+
+    """ 6. Write owner file """
+    write_owner(owner_internal, owner_boundary_dict)
+
+    """ 7. Write face file """
+    write_faces(internal_faces, face_boundary_dict)
+
+    """ 8. Write boundary file """
+    write_boundary(face_boundary_dict, len(internal_faces))
+
+    print("Mesh writing finished!")
+
+    return None
 
 
 def construct_tetra_vtk(points, cells, save=None, binary=True):

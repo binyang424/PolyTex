@@ -412,13 +412,13 @@ has 2 triangles and 1 quad, namely,</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.pk_load">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pk_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_load" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_load" title="Permalink to this definition"></a></dt>
 <dd><p>Load a file format defined in polykriging (.coo, .geo, or .stat) file
 and return as a pandas dataframe or a numpy.array object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pk_file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
+<dt><strong>file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
 </dd>
 </dl>
 </dd>
@@ -434,14 +434,15 @@ Otherwise, it is a numpy array or dict and a warning will be raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.pk_save">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_save" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_save" title="Permalink to this definition"></a></dt>
 <dd><p>Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file: str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is saved.</p>
+<dt><strong>fp: str</strong></dt><dd><p>File path and name to which the data is saved. If the file name does not end with
+a supported file extension, a ValueError will be raised.</p>
 </dd>
-<dt><strong>df: pandas.DataFrame or dict</strong></dt><dd><p>The data to be saved.</p>
+<dt><strong>data: Tow, Tex, or dict</strong></dt><dd><p>The data to be saved. It can be several customised file formats for polykriging.</p>
 </dd>
 </dl>
 </dd>

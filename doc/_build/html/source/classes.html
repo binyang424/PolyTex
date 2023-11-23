@@ -28,6 +28,7 @@
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -67,6 +68,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.mesh"><code class="docutils literal notranslate"><span class="pre">Textile.mesh()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.remove"><code class="docutils literal notranslate"><span class="pre">Textile.remove()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.triangulate"><code class="docutils literal notranslate"><span class="pre">Textile.triangulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.items"><code class="docutils literal notranslate"><span class="pre">Textile.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polykriging.textile.Textile.n_tows"><code class="docutils literal notranslate"><span class="pre">Textile.n_tows</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#polykriging.tow.Tow"><code class="docutils literal notranslate"><span class="pre">Tow</span></code></a><ul>
@@ -208,19 +211,28 @@
 <dt class="sig sig-object py" id="polykriging.textile.Textile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This is a class for textile geometrical analysis and numerical meshing.
-定义为体素网格？</p>
+<p>This is a class for textile geometrical analysis and numerical meshing.</p>
 <p># TODO : analyze, design, and program the Textile class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.items" title="polykriging.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
+</dd>
+<dt><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.n_tows" title="polykriging.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.add_group" title="polykriging.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
 <td><p>Groups of the tows in the textile.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow)</p></td>
-<td><p>Add a tow to the textile using mesh merging.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
+<td><p>Add a tow to the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([intersection])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([intersection, check_surface])</p></td>
 <td><p>Label the cells of the background mesh with tow id.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="polykriging.html#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
@@ -249,7 +261,7 @@ if tow is None, then the group is empty.</p>
 </dd>
 <dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the group. If tow is None, then the group is empty.
 If tow is not None, then tow is added to the group. Besides, if tow is
-not in the self.tows yet, it will be added to self.tows.</p>
+not in the self.__tows__ yet, it will be added to self.__tows__.</p>
 </dd>
 </dl>
 </dd>
@@ -263,16 +275,31 @@ not in the self.tows yet, it will be added to self.tows.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.add_tow">
-<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
-<dd><p>Add a tow to the textile using mesh merging. Each tow is a mesh object
-and labeled with a unique integer.</p>
-<p>key - tow id, integer;
-value - tow object</p>
+<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
+<dd><p>Add a tow to the textile. If tow is already in the textile, then raise
+a ValueError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the textile. Stored in self.__tows__ as a dictionary.
+Tow.name is the key, and tow is the value.</p>
+</dd>
+<dt><strong>group</strong><span class="classifier">str</span></dt><dd><p>Group name of the tow. If group is None, then the tow is not added
+to any group. Stored in self.groups.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.cell_labeling">
-<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
 <dd><p>Label the cells of the background mesh with tow id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -327,7 +354,7 @@ the x-, y- and z- directions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>tow</strong><span class="classifier">str</span></dt><dd><p>Name of the tow to be removed.</p>
+<dt><strong>tow</strong><span class="classifier">str or Tow object</span></dt><dd><p>The tow to be removed.</p>
 </dd>
 </dl>
 </dd>
@@ -343,6 +370,18 @@ the x-, y- and z- directions.</p>
 <dt class="sig sig-object py" id="polykriging.textile.Textile.triangulate">
 <span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
 <dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#polykriging.textile.Textile.items" title="Permalink to this definition"></a></dt>
+<dd><p>Return tow names as a list.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.n_tows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#polykriging.textile.Textile.n_tows" title="Permalink to this definition"></a></dt>
+<dd><p>Number of tows in the textile.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1374,6 +1413,8 @@ vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.angle_between">
 <span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/geometry/basic.html#Vector.angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.angle_between" title="Permalink to this definition"></a></dt>
 <dd><p>Return the angle between 2 vectors.</p>
+<div class="math notranslate nohighlight">
+\[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
