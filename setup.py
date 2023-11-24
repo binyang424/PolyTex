@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='polykriging',
-    version='0.1.9',    
+    version='0.2.0',    
     description='A kriging package as a result of the course MEC 6310',
     url='https://github.com/shuds13/polykriging',
     author='Bin Yang',
@@ -28,12 +28,12 @@ setup(
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',  
         'Operating System :: POSIX :: Linux',        
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
 )

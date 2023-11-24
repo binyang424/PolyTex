@@ -19,6 +19,8 @@ import sympy
 import vtk
 from numpy.compat import os_fspath
 from numpy.lib import format
+from PIL import Image
+from scipy.interpolate import RectBivariateSpline
 
 from .kriging.curve2D import addPoints
 from .thirdparty.bcolors import bcolors
@@ -697,6 +699,102 @@ def voxel2foam(mesh)->None:
     print("Mesh writing finished!")
 
     return None
+
+
+def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/", 
+              scale=None, img_name="img", format="tif", scale_algrithm="linear"):
+        """
+        Convert a voxel mesh to a series of images.
+        Parameters
+        ----------
+        mesh : pyvista.UnstructuredGrid
+            The voxel mesh to convert.
+        mesh_shape : list
+                The number of cells in each direction of the mesh [nx, ny, nz].
+        dataset : str, optional
+                The name of the cell data to convert. The default is "YarnIndex".
+        save_path : str, optional
+                The path to save the images. The default is "./img/".
+        scale : int
+                The scale factor of the image. The default is None.
+        img_name : str, optional
+                The name of the output image. The default is "img". The slice
+                number will be added to the end of the name and separated by
+                an underscore.
+        format : str, optional
+                The format of the output image. The default is "tif".
+        scale_algrithm : str, optional
+                The algorithm used to scale the pixel numbers of the image. 
+                The default is "linear". The other option is "spline".
+
+                TODO: The "spline" algorithm is only working for x and y directions yet. 
+                      The z direction is to be implemented.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        >>> import pyvista as pv
+        >>> import polykriging as pk
+        >>> mesh = pv.read("./v2i.vtu")
+        >>> mesh_shape = [20, 20, 5]
+        >>> pk.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex", 
+                            save_path="./img/", 
+                            scale=50, img_name="img", format="tif", 
+                            scale_algrithm="linear")
+        """
+        nx, ny, nz = mesh_shape  # number of cells in each direction
+
+        yarnIndex = mesh.cell_data[dataset] + 1
+        yarnIndex = yarnIndex/np.max(yarnIndex)*255
+
+        img_sequence = np.reshape(yarnIndex, [nz, nx, ny])
+
+        # print("The shape of the mesh is: ", mesh_shape)
+
+        x = np.arange(0, ny)
+        y = np.arange(0, nx)
+
+        if scale is not None:
+                nx2 = nx * scale
+                ny2 = ny * scale
+                x2 = np.linspace(0, ny, ny2, endpoint=True)
+                y2 = np.linspace(0, nx, nx2, endpoint=True)
+
+                if scale_algrithm == "linear":
+                        for i in range(3):
+                                img_sequence = np.repeat(img_sequence, scale, axis=i)
+
+                        nx = nx * scale
+                        ny = ny * scale
+                        nz = nz * scale
+
+        if not os.path.exists(save_path):
+                os.makedirs(save_path)
+        
+        # check if the save path is empty. If not, print a warning
+        if os.listdir(save_path):
+                print(os.listdir(save_path))
+                print("Warning: The save path is not empty! The images with the "
+                      "same name will be overwritten!")
+
+        for i in range(nz):
+                img = img_sequence[i,:,:]
+                
+                # interpolate the numpy array to get a smooth image
+                if scale is not None and scale_algrithm == "spline":
+                        img = RectBivariateSpline(x, y, img, kx=3, ky=3)(x2, y2)                              
+
+                # save the image
+                img = Image.fromarray(img)
+                img = img.convert('L')
+
+                path = os.path.join(save_path, img_name + "_" + str(i) + "." + format)
+                img.save(path)
+
+        return None
 
 
 def construct_tetra_vtk(points, cells, save=None, binary=True):
