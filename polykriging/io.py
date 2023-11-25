@@ -650,7 +650,7 @@ def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMe
     return 1
 
 
-def voxel2foam(mesh)->None:
+def voxel2foam(mesh, scale=1)->None:
     """
     Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
     and saved in the 0 timestep folder.
@@ -659,6 +659,8 @@ def voxel2foam(mesh)->None:
     ----------
     mesh : pyvista.UnstructuredGrid
         The voxel mesh.
+    scale : float, optional
+        The scale factor to convert the unit of points. The default is 1.0.
     """
 
     if not isinstance(mesh, pv.UnstructuredGrid):
@@ -667,7 +669,7 @@ def voxel2foam(mesh)->None:
 
     """ 1. Write points """
     pts = mesh.points  # numpy.ndarray (npts, 3)
-    write_points(pts, scale=0.001)
+    write_points(pts, scale=scale)
 
     """ 2. Write cell data """
     cellDataDict = mesh.cell_data
