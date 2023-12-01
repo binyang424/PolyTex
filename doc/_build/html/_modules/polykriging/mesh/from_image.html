@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polykriging.mesh.from_image</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.mesh.from_image</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -94,7 +90,7 @@
 
 
 <div class="viewcode-block" id="im_to_ugrid"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.from_image.im_to_ugrid">[docs]</a><span class="k">def</span> <span class="nf">im_to_ugrid</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert image or image sequence to an unstructured grid.</span>
 
 <span class="sd">    Parameters</span>
@@ -124,7 +120,7 @@
 
 
 <div class="viewcode-block" id="mesh_extract"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.from_image.mesh_extract">[docs]</a><span class="k">def</span> <span class="nf">mesh_extract</span><span class="p">(</span><span class="n">ugrid</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="s1">&#39;Tiff Scalars&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;foreground&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract part of the mesh from the unstructured grid according to the value of point data.</span>
 
 <span class="sd">    Parameters</span>
@@ -171,7 +167,7 @@
 
 
 <div class="viewcode-block" id="mesh_separation"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.from_image.mesh_separation">[docs]</a><span class="k">def</span> <span class="nf">mesh_separation</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Separate the mesh object into different regions according to the</span>
 <span class="sd">    connectivity of the mesh. It may not work for mesh with multiple</span>
 <span class="sd">    regions that are connected.</span>
@@ -204,7 +200,7 @@
 
 
 <div class="viewcode-block" id="get_vcut_plane"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.from_image.get_vcut_plane">[docs]</a><span class="k">def</span> <span class="nf">get_vcut_plane</span><span class="p">(</span><span class="n">surf_mesh</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the vertical cut plane of the surf mesh in the direction</span>
 <span class="sd">    of x, y, or z axis through (boundary) cutting edge extraction.</span>
 
@@ -273,7 +269,7 @@
 
 
 <span class="k">def</span> <span class="nf">__node_sort_curve</span><span class="p">(</span><span class="n">curve_connectivity</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sort the nodes of the curve according to node connectivity.</span>
 
 <span class="sd">    Parameters</span>
@@ -322,7 +318,7 @@
 
 
 <div class="viewcode-block" id="slice_plot"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.from_image.slice_plot">[docs]</a><span class="k">def</span> <span class="nf">slice_plot</span><span class="p">(</span><span class="n">vcut_planes</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the vertical cut planes.</span>
 
 <span class="sd">    Parameters</span>

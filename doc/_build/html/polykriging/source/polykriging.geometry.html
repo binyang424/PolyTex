@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging.geometry package &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -39,16 +39,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,8 +70,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">polykriging.geometry package</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging.geometry package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/polykriging/source/polykriging.geometry.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -439,7 +435,7 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>Wrapper for count_ops that returns the operation count.</p></td>
+<td><p>wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code>(other)</p></td>
 <td><p>Finds the shortest distance between a line and a point.</p></td>
@@ -469,126 +465,123 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
-<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
 <td><p>Returns the intersection of 'self' and 'other'.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(other)</p></td>
 <td><p>The intersection with another geometrical entity.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code> are disjoint.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_parallel</span></code>(l2)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_parallel</span></code>(l2)</p></td>
 <td><p>Are two linear entities parallel?</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_perpendicular</span></code>(l2)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_perpendicular</span></code>(l2)</p></td>
 <td><p>Are two linear entities perpendicular?</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
 <td><p>Return True if self and other are contained in the same line.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_disjoint()</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_subset()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_superset()</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_line</span></code>(p)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_line</span></code>(p)</p></td>
 <td><p>Create a new Line parallel to this linear entity which passes through the point <cite>p</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
 <td><p>Return the parameter corresponding to the given point.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_line</span></code>(p)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_line</span></code>(p)</p></td>
 <td><p>Create a new Line perpendicular to this linear entity which passes through the point <cite>p</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_segment</span></code>(p)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_segment</span></code>(p)</p></td>
 <td><p>Create a perpendicular line segment from <cite>p</cite> to this line.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
 <td><p>The plot interval for the default geometric plot of line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
 <td><p>Find the Power set of <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection</span></code>(other)</p></td>
 <td><p>Project a point, line, ray, or segment onto this linear entity.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_point</span></code>([seed])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_point</span></code>([seed])</p></td>
 <td><p>A random point on a LinearEntity.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
 <td><p>Reflects an object across a line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smallest_angle_between</span></code>(l2)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smallest_angle_between</span></code>(l2)</p></td>
 <td><p>Return the smallest angle formed at the intersection of the lines containing the linear entities.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
 <td><p>Returns symmetric difference of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
 <td><p>Returns the union of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -802,7 +795,7 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>Wrapper for count_ops that returns the operation count.</p></td>
+<td><p>wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doit</span></code>(**hints)</p></td>
 <td><p>Evaluate objects that are not evaluated by default like limits, integrals, sums and products.</p></td>
@@ -829,102 +822,99 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
-<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
 <td><p>Returns the intersection of 'self' and 'other'.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
 <td><p>Returns a list of all of the intersections of self with o.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code> are disjoint.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
 <td><p>Is this geometrical entity similar to another geometrical entity?</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_disjoint()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_subset()</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_superset()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
 <td><p>Return the parameter corresponding to the given point.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
 <td><p>The plot interval for the default geometric plot of the curve.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
 <td><p>Find the Power set of <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
 <td><p>Reflects an object across a line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.rotate" title="polykriging.geometry.basic.ParamCurve3D.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.rotate" title="polykriging.geometry.basic.ParamCurve3D.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
 <td><p>This function is used to rotate a curve along given point <code class="docutils literal notranslate"><span class="pre">pt</span></code> at given angle(in radian).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.scale" title="polykriging.geometry.basic.ParamCurve3D.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.scale" title="polykriging.geometry.basic.ParamCurve3D.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
 <td><p>Override GeometryEntity.scale since Curve is not made up of Points.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
 <td><p>Returns symmetric difference of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.translate" title="polykriging.geometry.basic.ParamCurve3D.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.translate" title="polykriging.geometry.basic.ParamCurve3D.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
 <td><p>Translate the Curve by (x, y, z). Returns ======= Curve :     returns a translated curve. Examples ======== &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D &gt;&gt;&gt; from sympy.abc import x &gt;&gt;&gt; ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2) ParamCurve3D((x + 1, x + 2), (x, 0, 1)).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
 <td><p>Returns the union of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -1016,15 +1006,12 @@ Curve :</p>
 <blockquote>
 <div><p>returns a translated curve.</p>
 </div></blockquote>
-<section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ParamCurve3D</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">ParamCurve3D((x + 1, x + 2), (x, 0, 1))</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py property">
@@ -1147,7 +1134,7 @@ store: s,t, x,y,z</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>Wrapper for count_ops that returns the operation count.</p></td>
+<td><p>wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doit</span></code>(**hints)</p></td>
 <td><p>Evaluate objects that are not evaluated by default like limits, integrals, sums and products.</p></td>
@@ -1174,54 +1161,51 @@ store: s,t, x,y,z</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
-<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
 <td><p>Returns a list of all of the intersections of self with o.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.rotate" title="polykriging.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.scale" title="polykriging.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.translate" title="polykriging.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -2093,7 +2077,7 @@ is the same for all the-cross sections.</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>Wrapper for count_ops that returns the operation count.</p></td>
+<td><p>wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doit</span></code>(**hints)</p></td>
 <td><p>Evaluate objects that are not evaluated by default like limits, integrals, sums and products.</p></td>
@@ -2117,60 +2101,57 @@ is the same for all the-cross sections.</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
-<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
 <td><p>Returns a list of all of the intersections of self with o.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh" title="polykriging.geometry.basic.Tube.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh</span></code></a>([plot, show_edges])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh" title="polykriging.geometry.basic.Tube.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh</span></code></a>([plot, show_edges])</p></td>
 <td><p>TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.save_as_mesh" title="polykriging.geometry.basic.Tube.save_as_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_as_mesh</span></code></a>(save_path[, end_closed])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.save_as_mesh" title="polykriging.geometry.basic.Tube.save_as_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_as_mesh</span></code></a>(save_path[, end_closed])</p></td>
 <td><p>Save the tubular mesh to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -2521,8 +2502,6 @@ vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.angle_between">
 <span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/geometry/basic.html#Vector.angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.angle_between" title="Permalink to this definition"></a></dt>
 <dd><p>Return the angle between 2 vectors.</p>
-<div class="math notranslate nohighlight">
-\[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging package &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -38,16 +38,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -73,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">polykriging package</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>polykriging package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/polykriging/source/polykriging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -706,13 +702,13 @@ has 2 triangles and 1 quad, namely,</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.pk_load">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/io.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_load" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pk_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/io.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_load" title="Permalink to this definition"></a></dt>
 <dd><p>Load a file format defined in polykriging (.coo, .geo, or .stat) file
 and return as a pandas dataframe or a numpy.array object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
+<dt><strong>pk_file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
 </dd>
 </dl>
 </dd>
@@ -728,15 +724,14 @@ Otherwise, it is a numpy array or dict and a warning will be raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.pk_save">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/io.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_save" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/io.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.pk_save" title="Permalink to this definition"></a></dt>
 <dd><p>Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>fp: str</strong></dt><dd><p>File path and name to which the data is saved. If the file name does not end with
-a supported file extension, a ValueError will be raised.</p>
+<dt><strong>file: str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is saved.</p>
 </dd>
-<dt><strong>data: Tow, Tex, or dict</strong></dt><dd><p>The data to be saved. It can be several customised file formats for polykriging.</p>
+<dt><strong>df: pandas.DataFrame or dict</strong></dt><dd><p>The data to be saved.</p>
 </dd>
 </dl>
 </dd>
@@ -882,7 +877,7 @@ is False.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
+<dt><strong>k</strong><span class="classifier">list</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
 corresponding to the permeability components that parallel and
 perpendicular to the fiber tow. The units are m^2. Note that the
@@ -895,81 +890,13 @@ principal permeability components k22 and k33 are equal.</p>
 <p>Gebart BR. Permeability of Unidirectional Reinforcements for RTM. Journal of Composite Materials. 1992;26(8):1100-33.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="go">[2.02807018e-11 3.73472833e-12 3.73472833e-12]</span>
+<span class="go">[2.0280701754385963e-11, 3.734728329018035e-12, 3.734728329018035e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">[2.02807018e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="go"> 3.73472833e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="go"> 3.73472833e-12]</span>
+<span class="go">[2.0280701754385963e-11, 0, 0, 0, 3.734728329018035e-12, 0, 0, 0, 3.734728329018035e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="go">[2.18113208e-11 4.72786599e-12 4.72786599e-12]</span>
+<span class="go">[2.181132075471698e-11, 4.727865993574315e-12, 4.727865993574315e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">[2.18113208e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="go"> 4.72786599e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="go"> 4.72786599e-12]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.misc.perm_rotation">
-<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">perm_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">permeability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/misc.html#perm_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.perm_rotation" title="Permalink to this definition"></a></dt>
-<dd><p>Rotate the permeability tensor according to the yarn
-orientation in the world coordinate system.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>permeability: ndarray</strong></dt><dd><p>The principal permeability tensor of the yarn in the
-local coordinate system of the yarn. Shape: (n, 9)</p>
-</dd>
-<dt><strong>orientation: ndarray</strong></dt><dd><p>The orientation of the yarn in the world coordinate
-system. Shape: (n, 3)</p>
-</dd>
-<dt><strong>inverse: bool</strong></dt><dd><p>If True, the inverse of permeability tensor is returned.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>perm_rot: ndarray</dt><dd><p>The rotated permeability tensor. Shape: (n, 9)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polykriging.misc.porosity_tow">
-<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">porosity_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_lin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2550</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fvf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/misc.html#porosity_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.porosity_tow" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate local porosity of a tow based on its cross-sectional area and linear density.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>rho_lin: float</strong></dt><dd><p>Linear density of the tow. Unit: Tex (g/1000m)</p>
-</dd>
-<dt><strong>area_xs: array-like</strong></dt><dd><p>Cross-sectional area of the tow. Unit: m^2. Shape: (n cross-sections, 1).</p>
-</dd>
-<dt><strong>rho_fiber: float</strong></dt><dd><p>Volume density of the fiber. Unit: kg/m^3. Default: 2550 (glass fiber).</p>
-</dd>
-<dt><strong>fvf: bool</strong></dt><dd><p>Whether to return fiber volume fraction. Default: False. If True, return
-fiber volume fraction instead of porosity.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>porosity: array-like</dt><dd><p>Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.
-The fiber volume fraction is returned if fvf is True.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rho_lin</span> <span class="o">=</span> <span class="mi">275</span> <span class="c1"># 275 Tex</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">area_xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">])</span><span class="o">/</span><span class="mf">1e6</span> <span class="c1"># mm^2 to m^2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rho_fiber</span> <span class="o">=</span> <span class="mi">2550</span> <span class="c1"># kg/m^3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">porosity</span> <span class="o">=</span> <span class="n">porosity_tow</span><span class="p">(</span><span class="n">rho_lin</span><span class="p">,</span> <span class="n">area_xs</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="p">,</span> <span class="n">fvf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">porosity</span><span class="p">)</span>
-<span class="go">[0.67401961 0.49019608 0.71895425]</span>
+<span class="go">[2.181132075471698e-11, 0, 0, 0, 4.727865993574315e-12, 0, 0, 0, 4.727865993574315e-12]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -983,26 +910,16 @@ The fiber volume fraction is returned if fvf is True.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a class for textile geometrical analysis and numerical meshing.</p>
 <p># TODO : analyze, design, and program the Textile class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.items" title="polykriging.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
-</dd>
-<dt><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.n_tows" title="polykriging.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
-</dd>
-</dl>
-</dd>
-</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.add_group" title="polykriging.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
 <td><p>Groups of the tows in the textile.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
-<td><p>Add a tow to the textile.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow)</p></td>
+<td><p>Add a tow to the textile using mesh merging.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([intersection, check_surface])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([intersection])</p></td>
 <td><p>Label the cells of the background mesh with tow id.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
@@ -1031,7 +948,7 @@ if tow is None, then the group is empty.</p>
 </dd>
 <dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the group. If tow is None, then the group is empty.
 If tow is not None, then tow is added to the group. Besides, if tow is
-not in the self.__tows__ yet, it will be added to self.__tows__.</p>
+not in the self.tows yet, it will be added to self.tows.</p>
 </dd>
 </dl>
 </dd>
@@ -1045,31 +962,16 @@ not in the self.__tows__ yet, it will be added to self.__tows__.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.add_tow">
-<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
-<dd><p>Add a tow to the textile. If tow is already in the textile, then raise
-a ValueError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the textile. Stored in self.__tows__ as a dictionary.
-Tow.name is the key, and tow is the value.</p>
-</dd>
-<dt><strong>group</strong><span class="classifier">str</span></dt><dd><p>Group name of the tow. If group is None, then the tow is not added
-to any group. Stored in self.groups.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
+<dd><p>Add a tow to the textile using mesh merging. Each tow is a mesh object
+and labeled with a unique integer.</p>
+<p>key - tow id, integer;
+value - tow object</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.cell_labeling">
-<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
 <dd><p>Label the cells of the background mesh with tow id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1124,7 +1026,7 @@ the x-, y- and z- directions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>tow</strong><span class="classifier">str or Tow object</span></dt><dd><p>The tow to be removed.</p>
+<dt><strong>tow</strong><span class="classifier">str</span></dt><dd><p>Name of the tow to be removed.</p>
 </dd>
 </dl>
 </dd>
@@ -1140,18 +1042,6 @@ the x-, y- and z- directions.</p>
 <dt class="sig sig-object py" id="polykriging.textile.Textile.triangulate">
 <span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
 <dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="polykriging.textile.Textile.items">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#polykriging.textile.Textile.items" title="Permalink to this definition"></a></dt>
-<dd><p>Return tow names as a list.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="polykriging.textile.Textile.n_tows">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#polykriging.textile.Textile.n_tows" title="Permalink to this definition"></a></dt>
-<dd><p>Number of tows in the textile.</p>
 </dd></dl>
 
 </dd></dl>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polykriging.misc package &mdash; PolyKriging 0.1.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="polykriging.thirdparty" href="polykriging.thirdparty.html" />
+    <link rel="prev" title="polykriging.stats" href="polykriging.stats.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PolyKriging
+            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.misc package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.misc">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyKriging</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Submodules</a> &raquo;</li>
+      <li>polykriging.misc package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polykriging.misc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polykriging-misc-package">
+<h1>polykriging.misc package<a class="headerlink" href="#polykriging-misc-package" title="Permalink to this heading"></a></h1>
+<section id="module-polykriging.misc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.misc" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.misc.gebart">
+<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">gebart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Quad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensorial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/misc.html#gebart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.gebart" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the fiber tow permeability for a given fiber packing
+pattern according to Gebart’s model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
+</dd>
+<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p>
+</dd>
+<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
+</dd>
+<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+Otherwise, return the permeability components that parallel and
+perpendicular to the fiber tow as a list of 3 floats. The default
+is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>k</strong><span class="classifier">list</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
+elements. Otherwise, return a list of 3 floats (k11, k22, k33),
+corresponding to the permeability components that parallel and
+perpendicular to the fiber tow. The units are m^2. Note that the
+principal permeability components k22 and k33 are equal.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Gebart BR. Permeability of Unidirectional Reinforcements for RTM. Journal of Composite Materials. 1992;26(8):1100-33.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="go">[2.0280701754385963e-11, 3.734728329018035e-12, 3.734728329018035e-12]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">[2.0280701754385963e-11, 0, 0, 0, 3.734728329018035e-12, 0, 0, 0, 3.734728329018035e-12]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="go">[2.181132075471698e-11, 4.727865993574315e-12, 4.727865993574315e-12]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">[2.181132075471698e-11, 0, 0, 0, 4.727865993574315e-12, 0, 0, 0, 4.727865993574315e-12]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polykriging.stats.html" class="btn btn-neutral float-left" title="polykriging.stats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.thirdparty.html" class="btn btn-neutral float-right" title="polykriging.thirdparty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

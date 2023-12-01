@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_voxelization.py>`
+        Click :ref:`here <sphx_glr_download_source_test_voxelization.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -19,7 +19,7 @@
 
 
 Voxelization of surface mesh
-====================
+============================================================
 
 Test
 
@@ -133,8 +133,6 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

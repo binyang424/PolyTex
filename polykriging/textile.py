@@ -147,7 +147,7 @@ class Textile:
         """
         pass
 
-    def mesh(self, bbox, voxel_size=None, show=False):
+    def meshing(self, bbox, voxel_size=None, show=False):
         """
         Generate a mesh for the textile.
 
@@ -191,12 +191,16 @@ class Textile:
         """
         return list(self.__tows__.keys())
 
-    def cell_labeling(self, intersection=False, check_surface=False):
+    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False):
         """
         Label the cells of the background mesh with tow id.
 
         Parameters
         ----------
+        surface_mesh : pyvista mesh object (PolyData)
+            Surface mesh of fiber tows. If `None`, then the surface meshes is selected
+            user interactively. Otherwise, the surface mesh is loaded from the path
+            specified by `surface_mesh`.
         intersection : bool, optional
             Whether to detect the intersection of the tows. The default is False.
         """
@@ -206,8 +210,10 @@ class Textile:
 
         """ Select the surface meshes of yarns to be labelled """
         label_set_dict = dict()
-
-        path = choose_directory("Choose the surface mesh directory for fiber tow labelling")
+        if surface_mesh is None:
+            path = choose_directory("Choose the surface mesh directory for fiber tow labelling")
+        else:
+            path = surface_mesh
         file_list = filenames(path, ".stl")
         file_list_sort = {}
         for i, file in enumerate(file_list):

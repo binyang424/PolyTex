@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polykriging.stats.kde</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.stats.kde</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -95,7 +91,7 @@
 
 
 <div class="viewcode-block" id="kdeScreen"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.kdeScreen">[docs]</a><span class="k">def</span> <span class="nf">kdeScreen</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">kernels</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function estimates the probability density distribution of the input variable</span>
 <span class="sd">    with the non-parametric kernel density estimation (KDE) method. The local maxima</span>
 <span class="sd">    and minima of the probability density distribution are identified to decompose the</span>
@@ -158,7 +154,7 @@
 
 
 <div class="viewcode-block" id="movingKDE"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.movingKDE">[docs]</a><span class="k">def</span> <span class="nf">movingKDE</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">x_test</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function applies the kernel density estimation (KDE) method to the input</span>
 <span class="sd">    dataset with a moving window. Namely, the dataset is divided into a set of</span>
 <span class="sd">    windows and the KDE method is applied to each window. This allows to capture</span>
@@ -288,7 +284,7 @@
 
 
 <div class="viewcode-block" id="kdePlot"><a class="viewcode-back" href="../../../source/polykriging.stats.html#polykriging.stats.kde.kdePlot">[docs]</a><span class="k">def</span> <span class="nf">kdePlot</span><span class="p">(</span><span class="n">xkde</span><span class="p">,</span> <span class="n">ykde</span><span class="p">,</span> <span class="n">cluster_center_idx</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    xkde : Numpy array</span>

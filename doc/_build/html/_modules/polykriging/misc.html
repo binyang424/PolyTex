@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polykriging.misc</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.misc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -85,11 +81,9 @@
              
   <h1>Source code for polykriging.misc</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.transform</span> <span class="kn">import</span> <span class="n">Rotation</span> <span class="k">as</span> <span class="n">R</span>
 
 <div class="viewcode-block" id="gebart"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.misc.gebart">[docs]</a><span class="k">def</span> <span class="nf">gebart</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the fiber tow permeability for a given fiber packing</span>
 <span class="sd">    pattern according to Gebart&#39;s model.</span>
 
@@ -110,7 +104,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    k : array-like</span>
+<span class="sd">    k : list</span>
 <span class="sd">        Fiber tow permeability. If tensorial is True, return a list with 9</span>
 <span class="sd">        elements. Otherwise, return a list of 3 floats (k11, k22, k33),</span>
 <span class="sd">        corresponding to the permeability components that parallel and</span>
@@ -124,17 +118,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; print(gebart(vf=0.5, rf=1.7e-5, packing=&quot;Quad&quot;, tensorial=False))</span>
-<span class="sd">    [2.02807018e-11 3.73472833e-12 3.73472833e-12]</span>
+<span class="sd">    [2.0280701754385963e-11, 3.734728329018035e-12, 3.734728329018035e-12]</span>
 <span class="sd">    &gt;&gt;&gt; print(gebart(vf=0.5, rf=1.7e-5, packing=&quot;Quad&quot;, tensorial=True))</span>
-<span class="sd">    [2.02807018e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="sd">     3.73472833e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="sd">     3.73472833e-12]</span>
+<span class="sd">    [2.0280701754385963e-11, 0, 0, 0, 3.734728329018035e-12, 0, 0, 0, 3.734728329018035e-12]</span>
 <span class="sd">    &gt;&gt;&gt; print(gebart(vf=0.5, rf=1.7e-5, packing=&quot;Hex&quot;, tensorial=False))</span>
-<span class="sd">    [2.18113208e-11 4.72786599e-12 4.72786599e-12]</span>
+<span class="sd">    [2.181132075471698e-11, 4.727865993574315e-12, 4.727865993574315e-12]</span>
 <span class="sd">    &gt;&gt;&gt; print(gebart(vf=0.5, rf=1.7e-5, packing=&quot;Hex&quot;, tensorial=True))</span>
-<span class="sd">    [2.18113208e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="sd">     4.72786599e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
-<span class="sd">     4.72786599e-12]</span>
+<span class="sd">    [2.181132075471698e-11, 0, 0, 0, 4.727865993574315e-12, 0, 0, 0, 4.727865993574315e-12]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Check input</span>
@@ -151,16 +141,16 @@
 
     <span class="c1"># Calculate permeability</span>
     <span class="k">if</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Quad&quot;</span><span class="p">:</span>
-        <span class="n">c1</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">/</span> <span class="mi">9</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>
+        <span class="n">c1</span> <span class="o">=</span>  <span class="mi">16</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span>
         <span class="n">c</span> <span class="o">=</span> <span class="mi">57</span>
     <span class="k">elif</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Hex&quot;</span><span class="p">:</span>
-        <span class="n">c1</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">/</span> <span class="mi">9</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">c1</span> <span class="o">=</span>  <span class="mi">16</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="n">c</span> <span class="o">=</span> <span class="mi">53</span>
 
-    <span class="n">k1</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">vf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">k2</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf_max</span> <span class="o">/</span> <span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="mi">8</span><span class="o">*</span><span class="n">rf</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">vf</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="n">vf</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf_max</span><span class="o">/</span><span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">5</span> <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">tensorial</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -174,119 +164,12 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k2</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="porosity_tow"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.misc.porosity_tow">[docs]</a><span class="k">def</span> <span class="nf">porosity_tow</span><span class="p">(</span><span class="n">rho_lin</span><span class="p">,</span> <span class="n">area_xs</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="o">=</span><span class="mi">2550</span><span class="p">,</span> <span class="n">fvf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate local porosity of a tow based on its cross-sectional area and linear density.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    rho_lin: float</span>
-<span class="sd">        Linear density of the tow. Unit: Tex (g/1000m)</span>
-<span class="sd">    area_xs: array-like</span>
-<span class="sd">        Cross-sectional area of the tow. Unit: m^2. Shape: (n cross-sections, 1).</span>
-<span class="sd">    rho_fiber: float</span>
-<span class="sd">        Volume density of the fiber. Unit: kg/m^3. Default: 2550 (glass fiber).</span>
-<span class="sd">    fvf: bool</span>
-<span class="sd">        Whether to return fiber volume fraction. Default: False. If True, return</span>
-<span class="sd">        fiber volume fraction instead of porosity.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    porosity: array-like</span>
-<span class="sd">        Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.</span>
-<span class="sd">        The fiber volume fraction is returned if fvf is True.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; rho_lin = 275 # 275 Tex</span>
-<span class="sd">    &gt;&gt;&gt; area_xs = np.array([0.16, 0.22, 0.15])/1e6 # mm^2 to m^2</span>
-<span class="sd">    &gt;&gt;&gt; rho_fiber = 2550 # kg/m^3</span>
-<span class="sd">    &gt;&gt;&gt; porosity = porosity_tow(rho_lin, area_xs, rho_fiber, fvf=True)</span>
-<span class="sd">    &gt;&gt;&gt; print(porosity)</span>
-<span class="sd">    [0.67401961 0.49019608 0.71895425]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">area_xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">area_xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">area_xs</span><span class="p">)</span>
-
-    <span class="n">vf</span> <span class="o">=</span> <span class="p">(</span><span class="n">rho_lin</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="n">rho_fiber</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">area_xs</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mf">1e-22</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">):</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vf</span> <span class="o">&lt;</span> <span class="mf">0.9</span><span class="p">)</span>
-        <span class="n">percent</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">vf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: </span><span class="si">%d</span><span class="s2"> (</span><span class="si">%.2f%%</span><span class="s2">) cross-sections have fiber volume &quot;</span>
-              <span class="s2">&quot;fraction &lt; 0.1.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">percent</span><span class="p">))</span>
-
-    <span class="k">if</span> <span class="n">fvf</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vf</span>
-
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">vf</span></div>
-
-
-<div class="viewcode-block" id="perm_rotation"><a class="viewcode-back" href="../../polykriging/source/polykriging.html#polykriging.misc.perm_rotation">[docs]</a><span class="k">def</span> <span class="nf">perm_rotation</span><span class="p">(</span><span class="n">permeability</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rotate the permeability tensor according to the yarn</span>
-<span class="sd">    orientation in the world coordinate system.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    permeability: ndarray</span>
-<span class="sd">        The principal permeability tensor of the yarn in the</span>
-<span class="sd">        local coordinate system of the yarn. Shape: (n, 9)</span>
-<span class="sd">    orientation: ndarray</span>
-<span class="sd">        The orientation of the yarn in the world coordinate</span>
-<span class="sd">        system. Shape: (n, 3)</span>
-<span class="sd">    inverse: bool</span>
-<span class="sd">        If True, the inverse of permeability tensor is returned.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    perm_rot: ndarray</span>
-<span class="sd">        The rotated permeability tensor. Shape: (n, 9)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># import tqdm.auto as tqdm</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">permeability</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">permeability</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">permeability</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">permeability</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;The shape of permeability should be (n, 9).&quot;</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orientation</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">orientation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">orientation</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;The shape of orientation should be (n, 3).&quot;</span>
-
-    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">permeability</span><span class="p">)</span>
-    <span class="n">permeability_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">permeability</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">permeability</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
-        <span class="n">perm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">permeability</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="n">ori</span> <span class="o">=</span> <span class="n">orientation</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">align_vectors</span><span class="p">([</span><span class="n">ori</span><span class="p">],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
-        <span class="n">k_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">perm</span><span class="p">),</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-
-        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">k_rot</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">eigenvalues</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative eigenvalues found in cell </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues: &quot;</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">)</span>
-            <span class="k">break</span>
-
-        <span class="n">permeability_loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_rot</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="n">inverse</span><span class="p">:</span>
-            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">k_rot</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">D</span>
-
-    <span class="k">return</span> <span class="n">permeability_loc</span></div>
+    <span class="k">return</span> <span class="n">k</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">doctest</span>
-
     <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All tests done.&quot;</span><span class="p">)</span>
 </pre></div>
 
            </div>

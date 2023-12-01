@@ -63,7 +63,7 @@ def background_mesh(bbox, voxel_size=None):
         voxel_size_x, voxel_size_y, voxel_size_z = diagonal / 20, diagonal / 20, diagonal / 20
     if isinstance(voxel_size, (int, float)):
         voxel_size_x, voxel_size_y, voxel_size_z = voxel_size, voxel_size, voxel_size
-    if isinstance(voxel_size, (list, set, tuple)):
+    if isinstance(voxel_size, (list, set, tuple, np.ndarray)):
         voxel_size_x, voxel_size_y, voxel_size_z = voxel_size
 
     xrng = np.linspace(bbox[0], bbox[1], int((bbox[1] - bbox[0]) / voxel_size_x) + 1)

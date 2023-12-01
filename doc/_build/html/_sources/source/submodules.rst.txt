@@ -9,4 +9,5 @@ Submodules
    polykriging.mesh
    polykriging.plot
    polykriging.stats
+   polykriging.misc
    polykriging.thirdparty

@@ -29,11 +29,11 @@ Using as a library
 .. toctree::
    :maxdepth: 1
    
-   test/Step1_GeometricAnalysis
-   test/Step2_coo_to_ply
-   test/Step3_pdf_clusters
-   test/Step3_MW-KDE
-   test/Step4_resampling
-   test/Step6_vf
+   test/Step_1_GeometricAnalysis
+   test/Step_2_coo_to_ply
+   test/Step_3_pdf_clusters
+   test/Step_3_MW-KDE
+   test/Step_4_resampling
+   test/Step_6_vf
    test/voxelization
    test/backround_mesh_labelling_and _intersection_detection

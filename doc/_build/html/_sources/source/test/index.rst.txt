@@ -15,7 +15,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_example_dataset_thumb.png
-    :alt:
+    :alt: Example dataset
 
   :ref:`sphx_glr_source_test_example_dataset.py`
 
@@ -32,7 +32,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_pk_io_thumb.png
-    :alt:
+    :alt: File input and output
 
   :ref:`sphx_glr_source_test_pk_io.py`
 
@@ -49,7 +49,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_3d_curve_krig_thumb.png
-    :alt:
+    :alt: 3D curve kriging
 
   :ref:`sphx_glr_source_test_3d_curve_krig.py`
 
@@ -65,10 +65,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 2_coo_to_ply_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_2_coo_to_ply_thumb.png
+    :alt: Step 2: Convert .coo file to .ply for point cloud visualization
 
-  :ref:`sphx_glr_source_test_Step 2_coo_to_ply.py`
+  :ref:`sphx_glr_source_test_Step_2_coo_to_ply.py`
 
 .. raw:: html
 
@@ -83,7 +83,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_tubular_structure_mesh_thumb.png
-    :alt:
+    :alt: Tubular mesh with functions in polykriging.mesh
 
   :ref:`sphx_glr_source_test_tubular_structure_mesh.py`
 
@@ -100,7 +100,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_derivative_Kriging_thumb.png
-    :alt:
+    :alt: Derivative kriging
 
   :ref:`sphx_glr_source_test_derivative_Kriging.py`
 
@@ -117,7 +117,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_transformation_thumb.png
-    :alt:
+    :alt: Coordinate transformation
 
   :ref:`sphx_glr_source_test_transformation.py`
 
@@ -134,7 +134,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Textile_class_example_thumb.png
-    :alt:
+    :alt: Textile class example
 
   :ref:`sphx_glr_source_test_Textile_class_example.py`
 
@@ -151,7 +151,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_parametric_surface_thumb.png
-    :alt:
+    :alt: Parametric kriging of surface
 
   :ref:`sphx_glr_source_test_parametric_surface.py`
 
@@ -168,7 +168,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_mesh_from_image_thumb.png
-    :alt:
+    :alt: Extract surface mesh from image sequence
 
   :ref:`sphx_glr_source_test_mesh_from_image.py`
 
@@ -184,10 +184,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 3_MW-KDE_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_3_MW-KDE_thumb.png
+    :alt: Step 3: Moving window KDE
 
-  :ref:`sphx_glr_source_test_Step 3_MW-KDE.py`
+  :ref:`sphx_glr_source_test_Step_3_MW-KDE.py`
 
 .. raw:: html
 
@@ -201,10 +201,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 6_vf_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_6_vf_thumb.png
+    :alt: Fiber volume fraction of tow
 
-  :ref:`sphx_glr_source_test_Step 6_vf.py`
+  :ref:`sphx_glr_source_test_Step_6_vf.py`
 
 .. raw:: html
 
@@ -219,7 +219,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_curve2D_interp_with_confidence_thumb.png
-    :alt:
+    :alt: 2D curve kriging with confidence
 
   :ref:`sphx_glr_source_test_curve2D_interp_with_confidence.py`
 
@@ -236,7 +236,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Tow_Class_thumb.png
-    :alt:
+    :alt: Tow class example
 
   :ref:`sphx_glr_source_test_Tow_Class.py`
 
@@ -253,7 +253,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_backround_mesh_labelling_and _intersection_detection_thumb.png
-    :alt:
+    :alt: Mesh labelling and intersection detection
 
   :ref:`sphx_glr_source_test_backround_mesh_labelling_and _intersection_detection.py`
 
@@ -269,10 +269,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 3_pdf_clusters_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_3_pdf_clusters_thumb.png
+    :alt: Step 3: pdf cluster
 
-  :ref:`sphx_glr_source_test_Step 3_pdf_clusters.py`
+  :ref:`sphx_glr_source_test_Step_3_pdf_clusters.py`
 
 .. raw:: html
 
@@ -286,10 +286,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 4_resampling_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_4_resampling_thumb.png
+    :alt: Step 4: Resampling
 
-  :ref:`sphx_glr_source_test_Step 4_resampling.py`
+  :ref:`sphx_glr_source_test_Step_4_resampling.py`
 
 .. raw:: html
 
@@ -303,10 +303,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Step 1_GeometricAnalysis_thumb.png
-    :alt:
+  .. image:: /source/test/images/thumb/sphx_glr_Step_1_GeometricAnalysis_thumb.png
+    :alt: Step 1: GeometricAnalysis
 
-  :ref:`sphx_glr_source_test_Step 1_GeometricAnalysis.py`
+  :ref:`sphx_glr_source_test_Step_1_GeometricAnalysis.py`
 
 .. raw:: html
 
@@ -321,7 +321,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_voxelization_thumb.png
-    :alt:
+    :alt: Voxelization of surface mesh
 
   :ref:`sphx_glr_source_test_voxelization.py`
 
@@ -342,21 +342,21 @@
    /source/test/example_dataset
    /source/test/pk_io
    /source/test/3d_curve_krig
-   /source/test/Step 2_coo_to_ply
+   /source/test/Step_2_coo_to_ply
    /source/test/tubular_structure_mesh
    /source/test/derivative_Kriging
    /source/test/transformation
    /source/test/Textile_class_example
    /source/test/parametric_surface
    /source/test/mesh_from_image
-   /source/test/Step 3_MW-KDE
-   /source/test/Step 6_vf
+   /source/test/Step_3_MW-KDE
+   /source/test/Step_6_vf
    /source/test/curve2D_interp_with_confidence
    /source/test/Tow_Class
    /source/test/backround_mesh_labelling_and _intersection_detection
-   /source/test/Step 3_pdf_clusters
-   /source/test/Step 4_resampling
-   /source/test/Step 1_GeometricAnalysis
+   /source/test/Step_3_pdf_clusters
+   /source/test/Step_4_resampling
+   /source/test/Step_1_GeometricAnalysis
    /source/test/voxelization
 
 ```
@@ -376,7 +376,7 @@
 .. only:: html
 
   .. image:: /source/test/test_data/images/thumb/sphx_glr_cylinder1_thumb.png
-    :alt:
+    :alt: Test
 
   :ref:`sphx_glr_source_test_test_data_cylinder1.py`
 
@@ -394,7 +394,6 @@
 .. toctree::
    :hidden:
    :includehidden:
-
 
    /source/test/test_data/index.rst
 

@@ -8,9 +8,11 @@ import re
 import logging
 import shutil
 import copy
+import glob
 
 from tkinter import Tk, filedialog, messagebox
 from tqdm import trange
+from itertools import cycle
 
 import numpy as np
 import pandas as pd
@@ -24,7 +26,6 @@ from scipy.interpolate import RectBivariateSpline
 
 from .kriging.curve2D import addPoints
 from .thirdparty.bcolors import bcolors
-
 
 file_header = """/*--------------------------------*- C++ -*----------------------------------*\\
   =========                 |
@@ -86,12 +87,12 @@ boundaryField
 
     back
     {
-        type            empty;
+        type            zeroGradient;
     }
 
     front
     {
-        type            empty;
+        type            zeroGradient;
     }
 }
 """
@@ -170,7 +171,7 @@ def write_points(points, output_dir='./constant/polyMesh/', scale=1.0):
     return 1
 
 
-def cellDataToOf(cellDataDict, outputDir='./0/'):
+def write_cell_data(cellDataDict, outputDir='./0/', array_list=None):
     """
     Write cell data to OpenFOAM format
 
@@ -179,7 +180,9 @@ def cellDataToOf(cellDataDict, outputDir='./0/'):
     cellDataDict : dict
         A dictionary to store all cell data sets in vtu file using the data set name as key.
     outputDir : str, optional
-        The directory to store the converted data. The default is './0/',
+        The directory to store the converted data. The default is './0/'.
+    array_list : list, optional
+        A list containing the names of the cell data to be written. The default is None,
     """
     if not os.path.exists(outputDir):
         os.makedirs(outputDir)
@@ -190,6 +193,10 @@ def cellDataToOf(cellDataDict, outputDir='./0/'):
     keys = cellDataDict.keys()
     print("Cell data writing...")
     for key in keys:
+        # skip the cell data not in the array_list if array_list is not None
+        if array_list is not None and key not in array_list:
+            continue
+
         print("    - " + key)
 
         cellData = cellDataDict[key]
@@ -219,7 +226,10 @@ def cellDataToOf(cellDataDict, outputDir='./0/'):
             n_components = 9
             fileData.write(write_FoamFile(2.0, "ascii", "volTensorField", "\"0\"",
                                           key, top_separator))
-            fileData.write("dimensions [0 2 0 0 0 0 0];\n")
+            if key == "permeability" or key == "K":
+                fileData.write("dimensions [0 2 0 0 0 0 0];\n")
+            elif key == "D":
+                fileData.write("dimensions [0 -2 0 0 0 0 0];\n")
             fileData.write("internalField   nonuniform List<tensor>\n ")
             fileData.write("%d\n(\n" % totalItem)
 
@@ -606,18 +616,27 @@ def write_faces(internal_faces, face_boundary, output_dir='./constant/polyMesh/'
     return 1
 
 
-def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMesh/'):
+def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMesh/', type=None):
     """
     Boundary file writing.
 
     Parameters
     ----------
     face_boundary_dict : dict
-        A dict contains boundary category
+        A dict contains boundary category. The key is the boundary name and the value
+        is a numpy array containing all boundary face node indices. The boundary name
+        should be the same as the boundary patch name in the boundary file.
     start_face : int
         The start face index of the boundary faces. equal to the number of internal faces.
     output_dir : str, optional
         The output directory. The default is './constant/polyMesh/'.
+    type : dict, optional
+        The type of each boundary. The default is None. If None, the type of the boundary
+        is set as "patch". The key is the boundary name and the value is the boundary type.
+        The key should be the same as the face_boundary_dict.
+
+        The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
+        etc. See OpenFOAM user guide for more details.
 
     Returns
     -------
@@ -625,21 +644,32 @@ def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMe
     """
     print("Boundary data writing...")
     n_boundaries = len(face_boundary_dict)
+
+    if type is None:
+        type = {}
+        for key in face_boundary_dict.keys():
+            type[key] = "patch"
+    elif not isinstance(type, dict):
+        print("The type of type should be dict with key as "
+              "boundary patch name and value as boundary type.")
+        print("Boundary data writing failed.")
+        return 0
+
     boundary_file = open(os.path.join(output_dir, "boundary"), "w")
     boundary_file.write(file_header)
     boundary_file.write(
         write_FoamFile(2.0, "ascii", "polyBoundaryMesh", "\"constant/polyMesh\"", "boundary", top_separator))
-    boundary_file.write("%d\n(\n" % n_boundaries)
+    boundary_file.write("%d\n(\n    " % n_boundaries)
 
     for key in list(face_boundary_dict.keys()):
         print("    - " + key)
         boundary_file.write("""%s
     {
-        type patch;
+        type %s;
         nFaces %d;
         startFace %d;
     }
-    """ % (key, len(face_boundary_dict[key]), start_face))
+    """ % (key, type[key], len(face_boundary_dict[key]), start_face))
         start_face += len(face_boundary_dict[key])
 
     boundary_file.write(")\n")
@@ -650,7 +680,7 @@ def write_boundary(face_boundary_dict, start_face, output_dir='./constant/polyMe
     return 1
 
 
-def voxel2foam(mesh, scale=1)->None:
+def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list=None) -> None:
     """
     Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
     and saved in the 0 timestep folder.
@@ -661,19 +691,45 @@ def voxel2foam(mesh, scale=1)->None:
         The voxel mesh.
     scale : float, optional
         The scale factor to convert the unit of points. The default is 1.0.
+    outputDir : str, optional
+        The output directory. The default is './'.
+    boundary_type : dict, optional
+        The type of each boundary. The default is None. If None, the type of the boundary
+        is set as "patch". The key is the boundary name and the value is the boundary type.
+        The key should be the same as the face_boundary_dict.
+
+        The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
+        etc. See OpenFOAM user guide for more details.
+
+    Returns
+    -------
+    None.
     """
+    cwd = os.getcwd()
+    print("Current working directory: ", cwd)
 
     if not isinstance(mesh, pv.UnstructuredGrid):
         raise TypeError("mesh must be a pyvista.UnstructuredGrid. If you have a vtu file, "
                         "use pyvista.read('filename.vtu') to read the file.")
 
+    # Create the output directory if it does not exist.
+    if not os.path.exists(outputDir):
+        path = mkdir(outputDir)
+    else:
+        path = outputDir
+
+    os.chdir(outputDir)  # set the output directory as the current working directory
+
+    path_polyMesh = "./constant/polyMesh"
+    path_0 = "./0"
+
     """ 1. Write points """
     pts = mesh.points  # numpy.ndarray (npts, 3)
-    write_points(pts, scale=scale)
+    write_points(pts, output_dir=path_polyMesh, scale=scale)
 
     """ 2. Write cell data """
     cellDataDict = mesh.cell_data
-    cellDataToOf(cellDataDict)
+    write_cell_data(cellDataDict, outputDir=path_0, array_list=cell_data_list)
 
     """ 3. Write faces """
     # Get internal faces
@@ -684,119 +740,187 @@ def voxel2foam(mesh, scale=1)->None:
 
     """ 4. Write cell zones for porous region """
     cell_zone = {"porousLayer": np.arange(mesh.n_cells)[mesh.cell_data["porosity"] < 0.995]}
-    write_cell_zone(cell_zone, output_dir='./constant/polyMesh/')
+    write_cell_zone(cell_zone, output_dir=path_polyMesh)
 
     """ 5. Write neighbor file """
-    write_neighbors(neighbour)
+    write_neighbors(neighbour, output_dir=path_polyMesh)
 
     """ 6. Write owner file """
-    write_owner(owner_internal, owner_boundary_dict)
+    write_owner(owner_internal, owner_boundary_dict, output_dir=path_polyMesh)
 
     """ 7. Write face file """
-    write_faces(internal_faces, face_boundary_dict)
+    write_faces(internal_faces, face_boundary_dict, output_dir=path_polyMesh)
 
     """ 8. Write boundary file """
-    write_boundary(face_boundary_dict, len(internal_faces))
+    write_boundary(face_boundary_dict, len(internal_faces), output_dir=path_polyMesh, type=boundary_type)
+
+    """ 9. Write boundary conditions """
 
     print("Mesh writing finished!")
-
+    os.chdir(cwd)  # set the current working directory back to the original directory
     return None
 
 
-def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/", 
+def case_preparation(src, dst, verbose=False):
+    """
+    Copy files from the template case to the output directory
+
+    Parameters
+    ----------
+    src : str
+        The path of the template case.
+    dst : str
+        The path of the output case.
+    """
+
+    if not os.path.exists(dst + "system"):
+        os.makedirs(os.path.join(dst, "system"))
+
+    # system directory
+    files = glob.glob(src + "system/*")
+    for file in files:
+        if os.path.isdir(file):
+            continue
+        if not os.path.exists(os.path.join(dst + file.split("/")[-1])):
+            if verbose:
+                print("Copying {} ...".format(file.split("/")[-1]))
+            shutil.copy(file, dst + "system/")
+        else:
+            print("File {} already exists.".format(file.split("/")[-1]))
+
+    # constant directory
+    files = glob.glob(src + "constant/*")
+    for file in files:
+        if os.path.isdir(file):  # neglect directories such as polyMesh
+            continue
+        # if not exist in the destination directory, copy the file
+        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+            if verbose:
+                print("Copying {} ...".format(file.split("/")[-1]))
+            shutil.copy(file, dst + "constant/")
+        else:
+            print("File {} already exists.".format(file.split("/")[-1]))
+
+    # 0 directory
+    files = glob.glob(src + "0/*")
+    for file in files:
+        print(os.path.join(dst, file.split("/")[-1]))
+        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+            if verbose:
+                print("Copying {} ...".format(file.split("/")[-1]))
+            shutil.copy(file, dst + "0/")
+        else:
+            print("File {} already exists.".format(file.split("/")[-1]))
+
+    # root directory
+    files = glob.glob(src + "*")
+    # copy the files in the root directory to the destination directory and neglect directories
+    for file in files:
+        if os.path.isdir(file):
+            continue
+        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+            # this check here seems does not work, why?
+            if verbose:
+                print("Copying {} ...".format(file.split("/")[-1]))
+            shutil.copy(file, dst)
+        else:
+            print("File {} already exists.".format(file.split("/")[-1]))
+
+
+def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
               scale=None, img_name="img", format="tif", scale_algrithm="linear"):
-        """
-        Convert a voxel mesh to a series of images.
-        Parameters
-        ----------
-        mesh : pyvista.UnstructuredGrid
-            The voxel mesh to convert.
-        mesh_shape : list
-                The number of cells in each direction of the mesh [nx, ny, nz].
-        dataset : str, optional
-                The name of the cell data to convert. The default is "YarnIndex".
-        save_path : str, optional
-                The path to save the images. The default is "./img/".
-        scale : int
-                The scale factor of the image. The default is None.
-        img_name : str, optional
-                The name of the output image. The default is "img". The slice
-                number will be added to the end of the name and separated by
-                an underscore.
-        format : str, optional
-                The format of the output image. The default is "tif".
-        scale_algrithm : str, optional
-                The algorithm used to scale the pixel numbers of the image. 
-                The default is "linear". The other option is "spline".
+    """
+    Convert a voxel mesh to a series of images.
+    Parameters
+    ----------
+    mesh : pyvista.UnstructuredGrid
+        The voxel mesh to convert.
+    mesh_shape : list
+            The number of cells in each direction of the mesh [nx, ny, nz].
+    dataset : str, optional
+            The name of the cell data to convert. The default is "YarnIndex".
+    save_path : str, optional
+            The path to save the images. The default is "./img/".
+    scale : int
+            The scale factor of the image. The default is None.
+    img_name : str, optional
+            The name of the output image. The default is "img". The slice
+            number will be added to the end of the name and separated by
+            an underscore.
+    format : str, optional
+            The format of the output image. The default is "tif".
+    scale_algrithm : str, optional
+            The algorithm used to scale the pixel numbers of the image.
+            The default is "linear". The other option is "spline".
 
-                TODO: The "spline" algorithm is only working for x and y directions yet. 
-                      The z direction is to be implemented.
+            TODO: The "spline" algorithm is only working for x and y directions yet.
+                  The z direction is to be implemented.
 
-        Returns
-        -------
-        None
+    Returns
+    -------
+    None
 
-        Examples
-        --------
-        >>> import pyvista as pv
-        >>> import polykriging as pk
-        >>> mesh = pv.read("./v2i.vtu")
-        >>> mesh_shape = [20, 20, 5]
-        >>> pk.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex", 
-                            save_path="./img/", 
-                            scale=50, img_name="img", format="tif", 
-                            scale_algrithm="linear")
-        """
-        nx, ny, nz = mesh_shape  # number of cells in each direction
+    Examples
+    --------
+    >>> import pyvista as pv
+    >>> import polykriging as pk
+    >>> mesh = pv.read("./v2i.vtu")
+    >>> mesh_shape = [20, 20, 5]
+    >>> pk.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex",
+                        save_path="./img/",
+                        scale=50, img_name="img", format="tif",
+                        scale_algrithm="linear")
+    """
+    nx, ny, nz = mesh_shape  # number of cells in each direction
 
-        yarnIndex = mesh.cell_data[dataset] + 1
-        yarnIndex = yarnIndex/np.max(yarnIndex)*255
+    yarnIndex = mesh.cell_data[dataset] + 1
+    yarnIndex = yarnIndex / np.max(yarnIndex) * 255
 
-        img_sequence = np.reshape(yarnIndex, [nz, nx, ny])
+    img_sequence = np.reshape(yarnIndex, [nz, nx, ny])
 
-        # print("The shape of the mesh is: ", mesh_shape)
+    # print("The shape of the mesh is: ", mesh_shape)
 
-        x = np.arange(0, ny)
-        y = np.arange(0, nx)
+    x = np.arange(0, ny)
+    y = np.arange(0, nx)
 
-        if scale is not None:
-                nx2 = nx * scale
-                ny2 = ny * scale
-                x2 = np.linspace(0, ny, ny2, endpoint=True)
-                y2 = np.linspace(0, nx, nx2, endpoint=True)
+    if scale is not None:
+        nx2 = nx * scale
+        ny2 = ny * scale
+        x2 = np.linspace(0, ny, ny2, endpoint=True)
+        y2 = np.linspace(0, nx, nx2, endpoint=True)
 
-                if scale_algrithm == "linear":
-                        for i in range(3):
-                                img_sequence = np.repeat(img_sequence, scale, axis=i)
+        if scale_algrithm == "linear":
+            for i in range(3):
+                img_sequence = np.repeat(img_sequence, scale, axis=i)
 
-                        nx = nx * scale
-                        ny = ny * scale
-                        nz = nz * scale
+            nx = nx * scale
+            ny = ny * scale
+            nz = nz * scale
 
-        if not os.path.exists(save_path):
-                os.makedirs(save_path)
-        
-        # check if the save path is empty. If not, print a warning
-        if os.listdir(save_path):
-                print(os.listdir(save_path))
-                print("Warning: The save path is not empty! The images with the "
-                      "same name will be overwritten!")
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
-        for i in range(nz):
-                img = img_sequence[i,:,:]
-                
-                # interpolate the numpy array to get a smooth image
-                if scale is not None and scale_algrithm == "spline":
-                        img = RectBivariateSpline(x, y, img, kx=3, ky=3)(x2, y2)                              
+    # check if the save path is empty. If not, print a warning
+    if os.listdir(save_path):
+        print(os.listdir(save_path))
+        print("Warning: The save path is not empty! The images with the "
+              "same name will be overwritten!")
 
-                # save the image
-                img = Image.fromarray(img)
-                img = img.convert('L')
+    for i in range(nz):
+        img = img_sequence[i, :, :]
 
-                path = os.path.join(save_path, img_name + "_" + str(i) + "." + format)
-                img.save(path)
+        # interpolate the numpy array to get a smooth image
+        if scale is not None and scale_algrithm == "spline":
+            img = RectBivariateSpline(x, y, img, kx=3, ky=3)(x2, y2)
 
-        return None
+            # save the image
+        img = Image.fromarray(img)
+        img = img.convert('L')
+
+        path = os.path.join(save_path, img_name + "_" + str(i) + "." + format)
+        img.save(path)
+
+    return None
 
 
 def construct_tetra_vtk(points, cells, save=None, binary=True):

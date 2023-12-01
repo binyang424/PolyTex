@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> PolyKriging
+            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polykriging.kriging.tool</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polykriging.kriging.tool</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -95,7 +91,7 @@
 <span class="c1">######################################################</span>
 
 <div class="viewcode-block" id="norm"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.tool.norm">[docs]</a><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">norm_type</span><span class="o">=</span><span class="s1">&#39;axial&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This is the normalization function. After input the data of DSC test, this function</span>
 <span class="sd">    will normalize temperature, degree of cure and rate of cure.</span>
 
@@ -130,7 +126,7 @@
 <span class="c1">#              Data Compression                                     #</span>
 <span class="c1">######################################################</span>
 <div class="viewcode-block" id="data_compr"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.tool.data_compr">[docs]</a><span class="k">def</span> <span class="nf">data_compr</span><span class="p">(</span><span class="n">matXC</span><span class="p">,</span> <span class="n">data_norm</span><span class="p">,</span> <span class="n">max_err</span><span class="p">,</span> <span class="n">skip_comp</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Data compression by kriging using linear drift and linear covariance.</span>
 
 <span class="sd">    Parameters</span>
@@ -228,7 +224,7 @@
 <span class="c1">#                  Kriging &amp; Cross Validation                      #</span>
 <span class="c1">######################################################</span>
 <div class="viewcode-block" id="fun_crva"><a class="viewcode-back" href="../../../source/polykriging.kriging.html#polykriging.kriging.tool.fun_crva">[docs]</a><span class="k">def</span> <span class="nf">fun_crva</span><span class="p">(</span><span class="n">data_norm</span><span class="p">,</span> <span class="n">drift_para</span><span class="p">,</span><span class="n">cov_para</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_norm : numpy array</span>
