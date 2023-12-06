@@ -1,3 +1,6 @@
+import os
+import zipfile
+
 import numpy as np
 from tqdm.auto import tqdm
 from scipy.spatial.transform import Rotation as R
@@ -192,6 +195,54 @@ def perm_rotation(permeability, orientation, inverse=False):
             D[i, :] = np.linalg.inv(k_rot).flatten()
 
     return D if inverse else permeability_loc
+
+
+def compress_file(zipfilename, dirname):
+    """
+    Compresses all files and subdirectories in the specified directory.
+
+    Parameters
+    ----------
+    zipfilename : str
+        The name of the zip file, including the path.
+    dirname : str
+        The name of the directory to be compressed, including the path.
+
+    Returns
+    -------
+    int
+        1 if the compression is successful, otherwise 0.
+
+    Examples
+    --------
+    >>> compress_file("test.zip", "./test")
+    """
+    # Ensure the directory exists
+    if not os.path.exists(dirname):
+        print(f"Directory '{dirname}' does not exist.")
+        return
+
+    # Ensure zipfilename is not a subdirectory of dirname to avoid recursive compression
+    if zipfilename.startswith(dirname + os.path.sep):
+        print("Error: The zip file name cannot be a subdirectory of the specified directory.")
+        return
+
+    try:
+        # Create a ZipFile object for writing the compressed file
+        with zipfile.ZipFile(zipfilename, 'w') as z:
+            # Traverse all files and subdirectories in the specified directory
+            for root, dirs, files in os.walk(dirname):
+                for single_file in files:
+                    # Construct the full path of the file
+                    filepath = os.path.join(root, single_file)
+
+                    # Add the file to the zip, using a relative path
+                    z.write(filepath, os.path.relpath(filepath, dirname))
+    except Exception as e:
+        print(f"Error occurred while compressing files: {e}")
+        return 0
+
+    return 1
 
 
 if __name__ == "__main__":

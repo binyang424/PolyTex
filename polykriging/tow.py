@@ -10,6 +10,7 @@ import numpy as np
 import os
 import pyvista as pv
 import pandas as pd
+from tqdm import trange
 
 
 # pv.set_plot_theme("document")
@@ -281,7 +282,7 @@ class Tow:
         drift, cov = krig_config
         params = {"distance": 1, "angular": 2}
 
-        for i in range(n_slices):
+        for i in trange(n_slices, desc="Cross-sectional point resampling (Kriging): "):
 
             try:
                 mask = self.__coordinates["Z"] == slices[i]
@@ -298,9 +299,9 @@ class Tow:
 
                 pts_krig[i * len(interp): (i + 1) * len(interp), :] = np.vstack((x_inter, y_inter, z_)).T
 
-                if i % 10 == 0:
-                    print("Kriging cross-sections... {}%".format(round(i / n_slices * 100, 2)))
-                    print(i, "th cross-section", pts_cs.shape)
+                # if i % 10 == 0:
+                #     print("Kriging cross-sections... {}%".format(round(i / n_slices * 100, 2)))
+                #     print(i, "th cross-section", pts_cs.shape)
 
             except np.linalg.LinAlgError:
                 print("Kriging failed at slice: {} because of singular matrix error. This could be avoided "
@@ -308,7 +309,7 @@ class Tow:
                 continue
 
         expr = {self.order[0] + " kriging equation": dict_cs_x, self.order[1] + " kriging equation": dict_cs_y}
-        print("Kriging on cross-sections is finished.")
+        # print("Kriging on cross-sections is finished.")
 
         self.__kriged_vertices = pts_krig  # the columns are in the same order as the input data (surf_points)
 
@@ -388,12 +389,15 @@ class Tow:
         # normalize the first column of dataset
         # hard copy dataset[:, 0] to avoid changing the original dataset
         dataset_0_org = dataset[:, 0].copy()
+        dataset_1_org = dataset[:, 1].copy()
+        dataset_2_org = dataset[:, 2].copy()
 
         dataset[:, 0] = dataset[:, 0] / dataset[:, 0].max()
 
         if smooth != 0.0:
 
-            centerline = ParamCurve(("s", 0, 1), dataset=dataset, krig_config=krig_config, smooth=smooth)
+            centerline = ParamCurve(("s", 0, 1), dataset=dataset, krig_config=krig_config,
+                                    smooth=smooth, verbose=False)
             cen = centerline.eval(dataset[:, 0])
 
             traj = np.hstack((dataset_0_org.reshape(-1, 1),
@@ -406,9 +410,26 @@ class Tow:
 
         if plot:
             import matplotlib.pyplot as plt
-            plt.plot(dataset_0_org, cen_points[:, 0], "r")
-            plt.plot(dataset_0_org, cen_points[:, 1], "b")
-            plt.gca().set_aspect("equal")
+
+            # fig size
+            plt.figure(figsize=(8, 6), dpi=600)
+
+            if smooth != 0.0:
+                plt.plot(dataset_0_org, dataset_1_org, "--k", label=self.order[0] + " unsmoothed")
+                plt.plot(dataset_0_org, dataset_2_org, "--k", label=self.order[1] + " unsmoothed")
+
+
+            plt.plot(dataset_0_org, cen_points[:, 0], "r", label=self.order[0])
+            plt.plot(dataset_0_org, cen_points[:, 1], "b", label=self.order[1])
+            # label
+            plt.xlabel(self.order[2])
+            plt.ylabel(self.order[0] + " and " + self.order[1])
+
+            plt.gca().set_aspect('auto')
+            plt.legend()
+            plt.title("Trajectory of tow %s before and after smoothing" % self.name)
+
+            plt.show()
 
         self.__traj = traj
 
@@ -735,7 +756,9 @@ class Tow:
             poly.save(save_path)
 
         if plot:
-            poly.plot()
+            pl = pv.Plotter(title="Axial lines of tow %s" % self.name)
+            pl.add_mesh(poly, line_width=1.5)
+            pl.show()
 
         self.axial = axial
         return poly
@@ -806,7 +829,9 @@ class Tow:
             poly.save(save_path)
 
         if plot:
-            poly.plot(show_axes=None)
+            pl = pv.Plotter(title="Radial lines of tow %s" % self.name)
+            pl.add_mesh(poly, line_width=1.5)
+            pl.show()
 
         self.radial = radial
         return poly
@@ -863,7 +888,8 @@ class Tow:
             trajectory = self.__traj
             direction = self.orientation
 
-            pl = pv.Plotter()
+            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyKriging")
+
             _ = pl.add_mesh(s1, style='wireframe', color='black', opacity=0.2)
 
             for i in np.arange(0, trajectory.shape[0]):
@@ -945,7 +971,8 @@ class Tow:
 
             n_pts = 0
 
-            pl = pv.Plotter()
+            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyKriging")
+
             _ = pl.add_mesh(self.__surf_mesh, style='wireframe', color='black', opacity=0.2)
 
             for j in np.arange(orientation.shape[0]):

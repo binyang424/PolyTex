@@ -1065,7 +1065,8 @@ class ParamCurve:
     >>> curve
     """
 
-    def __new__(cls, limits, function=[], dataset=None, krig_config=("lin", "cub"), smooth=0.0):
+    def __new__(cls, limits, function=[], dataset=None, krig_config=("lin", "cub"),
+                smooth=0.0, verbose=False):
         """
         Parameters
         ----------
@@ -1079,9 +1080,17 @@ class ParamCurve:
 
             One of the function or dataset must be given. Please note that both are
             given, the dataset will be ignored.
-        kriging : tuple
-            The kriging interpolation configuration. The default value is (). The tuple
-            should be in the form of (drift_name, covariance_name, smoothing_factor).
+        krig_config : tuple
+            The kriging interpolation configuration. The default value is ("lin", "cub").
+            The tuple should be in the form of (drift_name, covariance_name).
+        smooth : float
+            The smoothing factor. The default value is 0.0.
+        verbose : bool
+            If True, print the information of the kriging process. The default value is False.
+
+        Returns
+        -------
+        curve : ParamCurve object
         """
         cls.limits = limits
 
@@ -1105,16 +1114,16 @@ class ParamCurve:
 
             for i in range(n_component):
                 data_krig = dataset[:, [0, i + 1]]
-
-                print("Creating kriging model for %s -th component" % str(i + 1))
+                if verbose:
+                    print("Creating kriging model for %s -th component" % str(i + 1))
 
                 mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
                     pk.kriging.curveKrig1D(data_krig, name_drift=drift,
                                            name_cov=cov, nuggetEffect=smoothing_factor)
 
                 cls.function.append(expr)
-
-            print("Kriging model is created successfully for all components.")
+            if verbose:
+                print("Kriging model is created successfully for all components.")
 
             return super().__new__(cls)
 

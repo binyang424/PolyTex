@@ -9,6 +9,7 @@ import logging
 import shutil
 import copy
 import glob
+import zipfile
 
 from tkinter import Tk, filedialog, messagebox
 from tqdm import trange
@@ -1233,7 +1234,7 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
                            pickle_kwargs=dict(fix_imports=fix_imports))
 
 
-def pk_save(fp, data):
+def pk_save(fp, data, check_format=True):
     """
     Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file
 
@@ -1254,12 +1255,13 @@ def pk_save(fp, data):
     # get file extension
     ext = os.path.splitext(filename)[1]
 
-    if ext == "":
-        raise ValueError("The file extension is not given. Supported file extensions are "
-                         ".coo, .geo, .tow, .tex, and .krig.")
-    elif ext not in ['.coo', '.geo', '.tow', '.tex', '.krig']:
-        raise ValueError("The file extension is not supported. Supported file extensions are "
-                         ".coo, .geo, .tow, .tex, and .krig.")
+    if check_format:
+        if ext == "":
+            raise ValueError("The file extension is not given. Supported file extensions are "
+                             ".coo, .geo, .tow, .tex, and .krig.")
+        elif ext not in ['.coo', '.geo', '.tow', '.tex', '.krig']:
+            raise ValueError("The file extension is not supported. Supported file extensions are "
+                             ".coo, .geo, .tow, .tex, and .krig.")
 
     if fp.endswith('.krig'):
         expr = save_krig(data)
@@ -1322,6 +1324,65 @@ def pk_load(file):
     return data
 
 
+def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
+    """
+    Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
+    https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.
+
+    Parameters
+    ----------
+    filename : str
+        The path of the roi file. The file should be either a zip of csv files or a directory containing
+        multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
+        see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter
+        "type" should be set accordingly ("zip" or "dir").
+    type : str, optional
+        The type of saved file. The default is "zip". The other option is "dir".
+    sort : bool, optional
+        Whether to sort the coordinates according to the slice number. The default is True. Note that
+        the coordinates on the same slice are not sorted. The sorting is only applied to the slices.
+    resolution : float, optional
+        The resolution of the image. The default is 1.0, the coordinates are not converted
+        to the physical coordinates (namely the unit is pixel).
+
+    Returns
+    -------
+    surf_points : numpy.ndarray
+        The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
+        the total number of points.
+    """
+    if type == "zip":
+        with zipfile.ZipFile(filename, 'r') as zip_ref:
+            file_lst = zip_ref.namelist()
+            for file in file_lst:
+                with zip_ref.open(file) as f:
+                    coor_slice = np.loadtxt(f, comments=file,
+                                            delimiter=",", skiprows=1)
+                    try:
+                        coor_unsort = np.vstack((coor_unsort, coor_slice))
+                    except NameError:
+                        coor_unsort = coor_slice
+    elif type == "dir":
+        print("Not implemented yet.")
+
+    # sort the coordinates according to the slice number
+    if sort:
+        index = np.unique(coor_unsort[:, -1])
+
+        for i in index:
+            mask = coor_unsort[:, -1] == i
+            try:
+                coor_sort = np.vstack((coor_sort, coor_unsort[mask]))
+            except NameError:
+                coor_sort = coor_unsort[mask]
+
+        surf_points = coor_sort[:, 1:] * resolution
+    else:
+        surf_points = coor_unsort[:, 1:] * resolution
+
+    return surf_points
+
+
 def pcd_to_ply(file_pcd, file_ply, binary=False):
     """
     Convert a pcd file to ply file.
@@ -1334,6 +1395,9 @@ def pcd_to_ply(file_pcd, file_ply, binary=False):
         The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
     :return: None
     """
+    print(bcolors.warning(
+        "This function will be deprecated in the future. Please use polykriging.read_imagej_roi() instead."))
+
     import meshio
 
     vertices = pk_load(file_pcd).to_numpy()
