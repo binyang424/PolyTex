@@ -6,11 +6,13 @@ from .geometry import transform as tf
 from .kriging import curve2Dinter, surface3Dinterp
 from .mesh import get_cells
 from .stats import kdeScreen, bw_scott
+from .thirdparty.bcolors import bcolors
 import numpy as np
 import os
 import pyvista as pv
 import pandas as pd
 from tqdm import trange
+
 
 
 # pv.set_plot_theme("document")
@@ -83,9 +85,8 @@ class Tow:
     >>> trajectory_sm = tow.trajectory(smooth=0.0015, plot=False, save_path="./trajectory.ply", orientation=True)
     """
 
-    def __init__(self, surf_points, order,
-                 tex=0, name="Tow", sort=True, resolution=None,
-                 **kwargs):
+    def __init__(self, surf_points, order, rho_fiber, radius_fiber, length_scale, tex,
+                name="Tow", packing_fiber="Hex", sort=True, resolution=None,  **kwargs):
         """
 
         Parameters
@@ -113,15 +114,42 @@ class Tow:
             Here, you can specify the order of the columns in the reordered points. Default is "xyz".
             The other options are "xzy", "yxz", "yzx", "zxy", "zyx". This function will recover the
             original order of the columns when generating the surface mesh.
+        rho_fiber : float, optional
+            The density of the fiber in kg/m^3.
+        radius_fiber : float, optional
+            The radius of the fiber in m.
         tex : float, optional
-            The linear density of the tow in tex. Default is 0.
+            The linear density of the tow in tex.
         name : str, optional
             The name or type of the tow. Default is "Tow".
+        packing_fiber : str, optional
+            The packing pattern of the fiber. Default is "Hex". The other option is "Square".
+        sort : bool, optional
+            Whether to sort the points according to the slice number. Default is True.
+        resolution : float, optional
+            The resolution of the MicroCT image used to generate the tow dataset. Default is None.
+            This is only stored as an attribute for future use. It is not used in the current version.
+        length_scale : str, optional
+            The length scale of the coordinates. Default is "mm". The other options are "m", "cm", "um".
+        kwargs : dict
+            The keyword arguments for the PolyKriging Tow class. The user can specify any keyword
+            arguments for the Tow class. The keyword arguments will be stored as attributes of the
+            Tow class. The user can access the attributes by tow.attribute_name.
         """
         self.name = name
-        self.tex = tex
         self.order = order
         self.resolution = resolution
+
+        self.tex = tex
+        self.bounds = None
+
+        self.rho_fiber = rho_fiber
+        self.radius_fiber = radius_fiber
+        self.packing_fiber = packing_fiber
+
+        if length_scale not in ["m", "cm", "mm", "um"]:
+            raise ValueError("length_scale must be one of 'm', 'cm', 'mm', 'um'.")
+        self.length_scale = length_scale
 
         if isinstance(surf_points, str):
             self.surf_points = pk_load(surf_points)
@@ -151,14 +179,24 @@ class Tow:
                                         np.hstack(([0, 1, 2], self.__column_order__+3))],
                                         columns=self.__coordinates.keys())
 
+        # bounds: [xmin, xmax, ymin, ymax, zmin, zmax]
+        self.bounds = np.array([self.coordinates["X"].min(),
+                                self.coordinates["X"].max(),
+                                self.coordinates["Y"].min(),
+                                self.coordinates["Y"].max(),
+                                self.coordinates["Z"].min(),
+                                self.coordinates["Z"].max()])
+
     def __str__(self):
         return self.name
 
     def __repr__(self):
-        tow_info = "Tow: " + self.name + "; \n" + \
-                   "Linear density: " + str(self.tex) + "; \n" + \
-                   "Number of points: " + str(self.surf_points.shape[0]) + "; \n" + \
-                   "Number of cross-sections: " + str(self.__geom_features.shape[0])
+        # num_cross_sections = np.unique(self.__coordinates["Z"]).shape[0]
+        tow_info = "Tow: " + self.name + "\n" + \
+                   "Linear density: " + str(self.tex) + "\n" + \
+                   "Number of points (input): " + str(self.coordinates.shape[0] - 2 * self.h_res) + "\n" + \
+                   "Number of points (resampled): " + str(self.resampled.shape[0]) + "\n" + \
+                   "Number of cross-sections: " + str(self.h_res)
         return tow_info
 
     @property
@@ -171,6 +209,18 @@ class Tow:
         # sort order and get the inverse permutation
         inv_order = np.argsort(order_list)
         return inv_order
+
+    @property
+    def attribute_names(self):
+        """
+        Get the attribute names of the Tow class.
+
+        Returns
+        -------
+        attribute_names : list
+            The attribute names of the Tow class.
+        """
+        return list(self.__dict__.keys())
 
     def kde(self, bw=None, save_path=None):
         """
@@ -276,8 +326,8 @@ class Tow:
         self.h_res = n_slices
 
         pts_krig = np.zeros((n_slices * len(interp), 3))
-        print("Kriging cross-sections... \n"
-              "It may take a while depending on the number of cross-sections.")
+        print(bcolors.OKBLUE + "Resampling points on cross-sections with dual Kriging ... \n"
+              "It may take a while depending on the number of cross-sections." + bcolors.ENDC)
 
         drift, cov = krig_config
         params = {"distance": 1, "angular": 2}

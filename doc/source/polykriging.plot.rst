@@ -1,10 +1,7 @@
 polykriging.plot
 ========================
 
-Submodules
-----------
-
-polykriging.plot.color\_cluster module
+polykriging.plot.color\_cluster
 --------------------------------------
 .. inheritance-diagram:: polykriging.plot.color_cluster
    :parts: 1
@@ -15,7 +12,7 @@ polykriging.plot.color\_cluster module
    :undoc-members:
    :show-inheritance:
 
-polykriging.plot.image\_plot module
+polykriging.plot.image\_plot
 -----------------------------------
 .. inheritance-diagram:: polykriging.plot.image_plot
    :parts: 1

@@ -3,6 +3,7 @@
 
 import numpy as np
 from . import basic
+from ..thirdparty.bcolors import bcolors
 from shapely.geometry import Polygon, Point
 
 
@@ -10,28 +11,28 @@ def angularSort(localCo, centroid, sort=True):
     """
     Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.
 
-    Parameters
-    ----------
-    localCo : Numpy array
-        with 2 colums. The x, y coordinate components of the vertices of the polygon (For the
-        cross-section of fiber tows, it is the coordinate in the local coordinate system with
-         its center at the centroid of the polygon).
-    centroid : Numpy array
-        with 2 colums. The x, y coordinate components of the centroid of the polygon.
-    sort : Boolean
-        If True, the vertices are sorted in angular order. If False, the vertices are
-        not sorted and returned following the original order with angular position
-        for each input vertices.
+        Parameters
+        ----------
+        localCo : Numpy array
+            with 2 colums. The x, y coordinate components of the vertices of the polygon (For the
+            cross-section of fiber tows, it is the coordinate in the local coordinate system with
+             its center at the centroid of the polygon).
+        centroid : Numpy array
+            with 2 colums. The x, y coordinate components of the centroid of the polygon.
+        sort : Boolean
+            If True, the vertices are sorted in angular order. If False, the vertices are
+            not sorted and returned following the original order with angular position
+            for each input vertices.
 
-    Returns
-    -------
-    coorSort : Numpy array
-        with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in
-        angular order. The third column is the z coordinate in 3d case.
-    angle : Numpy array
-        with 1 colums. The angular position of the vertices of the polygon in degree. The two
-        returns are sorted in the same order if sort is True. Otherwise, the two returns are
-        not sorted, and is following the original order of the input vertices.
+        Returns
+        -------
+        coorSort : Numpy array
+            with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in
+            angular order. The third column is the z coordinate in 3d case.
+        angle : Numpy array
+            with 1 colums. The angular position of the vertices of the polygon in degree. The two
+            returns are sorted in the same order if sort is True. Otherwise, the two returns are
+            not sorted, and is following the original order of the input vertices.
     """
     # Angular positions of vertices in local coordinate. The origin is the centroid
     # of the cross-section
@@ -40,7 +41,7 @@ def angularSort(localCo, centroid, sort=True):
     coordinate = localCo[:, :2] + centroid[:2]
     angle = np.mod(np.arctan2(yloc, xloc), 2 * np.pi) * 180 / np.pi  # mapping to 0-360 degree
 
-    if (np.sign(np.diff(angle))==-1).sum() / angle.shape[0] > 0.7:
+    if (np.sign(np.diff(angle)) == -1).sum() / angle.shape[0] > 0.7:
         angle = np.flip(angle)
         coordinate = np.flip(coordinate, axis=0)
         # sort = False
@@ -48,7 +49,7 @@ def angularSort(localCo, centroid, sort=True):
     minIndex = np.where(angle == np.min(angle))[0][0]
     maxIndex = np.where(angle == np.max(angle))[0][0]
 
-    if minIndex==0:
+    if minIndex == 0:
         sort = False
 
     if abs(minIndex - maxIndex) == 1:
@@ -57,7 +58,7 @@ def angularSort(localCo, centroid, sort=True):
         maxIndex = minIndex + 1
     elif maxIndex < minIndex:
         sign = np.sign(angle[maxIndex:minIndex + 1] - 180)
-        idx_sign_change = (sign==1).sum() - 1
+        idx_sign_change = (sign == 1).sum() - 1
         maxIndex += idx_sign_change
         minIndex = maxIndex + 1
 
@@ -85,9 +86,9 @@ def angularSort(localCo, centroid, sort=True):
         yp = np.squeeze(coorSort[[0, -1], 1])
         # y is known.
         ratio = (360 - angle[-1]) / (angle[0] + 360 - angle[-1])
-        origin = [ (xp[0] - xp[1])*ratio + xp[1],
-                   (yp[0] - yp[1])*ratio + yp[1],
-                   centroid[2] ]
+        origin = [(xp[0] - xp[1]) * ratio + xp[1],
+                  (yp[0] - yp[1]) * ratio + yp[1],
+                  centroid[2]]
 
         coorSort = np.vstack((origin, coorSort))
         angle = np.hstack((0, angle))
@@ -163,16 +164,16 @@ def geom_cs(coordinate, message="OFF", sort=True):
     """
     Geometry analysis and points sorting for a cross-section of a fiber tow.
 
-    Parameters
-    ----------
-    coordinate : Numpy array
-        with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
-        Note: 只使用了前两个
+        Parameters
+        ----------
+        coordinate : Numpy array
+            with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
+            Note: 只使用了前两个
 
-    Returns
-    -------
-    geometry file : x,y,z of points, and x,y,z of centerline
-    properties: area... ...
+        Returns
+        -------
+        geometry file : x,y,z of points, and x,y,z of centerline
+        properties: area... ...
 
     """
 
@@ -220,27 +221,33 @@ def geom_cs(coordinate, message="OFF", sort=True):
         print(geomFeature)
 
     return geomFeature, coordinateSorted
+
+
 #
 
 def geom_tow(surf_points, sort=True):
     """
-    The surface points for each cross-sections. the last column (z-axis) should be along the extension
+    The surface points for each cross-section. the last column (z-axis) should be along the extension
     direction of the cross-sections. It also serves as the label of each cross-section.
 
-    Parameters
-    ----------
-    surf_points : array_like
-        The surface points for each cross-sections. the last column (z-axis) should be along the extension
-        direction of the cross-sections. It also serves as the label of each cross-section.
+        Parameters
+        ----------
+        surf_points : array_like
+            The surface points for each cross-section. the last column (z-axis) should be along the extension
+            direction of the cross-sections. It also serves as the label of each cross-section.
+        sort : Boolean
+            If True, the vertices are sorted in angular order. If False, the vertices are
+            not sorted and returned following the original order with angular position
+            for each input vertices.
 
-    Returns
-    -------
-    df_geom : DataFrame
-        The geometrical features of each cross-sections. The columns are:
-        [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]
-    df_coo : DataFrame
-        The coordinates of each cross-sections. The columns are:
-        [distance, normalized distance, angular position (degree), X, Y, Z)]
+        Returns
+        -------
+        df_geom : DataFrame
+            The geometrical features of each cross-section. The columns are:
+            [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]
+        df_coo : DataFrame
+            The coordinates of each cross-section. The columns are:
+            [distance, normalized distance, angular position (degree), X, Y, Z)]
     """
     slices = np.unique(surf_points[:, -1])
     centerline = np.zeros([slices.size, 3])
@@ -304,7 +311,12 @@ def area_signed(points: np.ndarray) -> float:
     ------
     ValueError
         If the points are not 2D.
-        If there are fewer than three points.
+
+    Warning
+    -------
+    If the number of points is less than 3, a warning is raised and the area is
+    returned as 0.
+
 
     Examples
     --------
@@ -325,7 +337,9 @@ def area_signed(points: np.ndarray) -> float:
         raise ValueError("The points must be 2D.")
 
     if n_points < 3:
-        raise ValueError("There must be at least 3 points.")
+        # raise warning
+        print(bcolors.WARNING + "The number of points is less than 3. The area is returned as 0." + bcolors.ENDC)
+        return 0.0
 
     X = points[:, 0]
     Y = points[:, 1]
@@ -339,5 +353,5 @@ def area_signed(points: np.ndarray) -> float:
 if __name__ == "__main__":
     resolution = 0.022
     coordinate = np.load("arr_1.npy")[:, 1:] * resolution
-    geomFeature, coordinateSorted = geom(coordinate)
+    # geomFeature, coordinateSorted = geom(coordinate)
     # coorSort, angle = angularSort(localCo, centroid)

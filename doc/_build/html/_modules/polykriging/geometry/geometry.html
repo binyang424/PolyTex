@@ -85,6 +85,7 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">basic</span>
+<span class="kn">from</span> <span class="nn">..thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
 
 
@@ -92,28 +93,28 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    localCo : Numpy array</span>
-<span class="sd">        with 2 colums. The x, y coordinate components of the vertices of the polygon (For the</span>
-<span class="sd">        cross-section of fiber tows, it is the coordinate in the local coordinate system with</span>
-<span class="sd">         its center at the centroid of the polygon).</span>
-<span class="sd">    centroid : Numpy array</span>
-<span class="sd">        with 2 colums. The x, y coordinate components of the centroid of the polygon.</span>
-<span class="sd">    sort : Boolean</span>
-<span class="sd">        If True, the vertices are sorted in angular order. If False, the vertices are</span>
-<span class="sd">        not sorted and returned following the original order with angular position</span>
-<span class="sd">        for each input vertices.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        localCo : Numpy array</span>
+<span class="sd">            with 2 colums. The x, y coordinate components of the vertices of the polygon (For the</span>
+<span class="sd">            cross-section of fiber tows, it is the coordinate in the local coordinate system with</span>
+<span class="sd">             its center at the centroid of the polygon).</span>
+<span class="sd">        centroid : Numpy array</span>
+<span class="sd">            with 2 colums. The x, y coordinate components of the centroid of the polygon.</span>
+<span class="sd">        sort : Boolean</span>
+<span class="sd">            If True, the vertices are sorted in angular order. If False, the vertices are</span>
+<span class="sd">            not sorted and returned following the original order with angular position</span>
+<span class="sd">            for each input vertices.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    coorSort : Numpy array</span>
-<span class="sd">        with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in</span>
-<span class="sd">        angular order. The third column is the z coordinate in 3d case.</span>
-<span class="sd">    angle : Numpy array</span>
-<span class="sd">        with 1 colums. The angular position of the vertices of the polygon in degree. The two</span>
-<span class="sd">        returns are sorted in the same order if sort is True. Otherwise, the two returns are</span>
-<span class="sd">        not sorted, and is following the original order of the input vertices.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        coorSort : Numpy array</span>
+<span class="sd">            with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in</span>
+<span class="sd">            angular order. The third column is the z coordinate in 3d case.</span>
+<span class="sd">        angle : Numpy array</span>
+<span class="sd">            with 1 colums. The angular position of the vertices of the polygon in degree. The two</span>
+<span class="sd">            returns are sorted in the same order if sort is True. Otherwise, the two returns are</span>
+<span class="sd">            not sorted, and is following the original order of the input vertices.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Angular positions of vertices in local coordinate. The origin is the centroid</span>
     <span class="c1"># of the cross-section</span>
@@ -122,7 +123,7 @@
     <span class="n">coordinate</span> <span class="o">=</span> <span class="n">localCo</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">centroid</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">yloc</span><span class="p">,</span> <span class="n">xloc</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># mapping to 0-360 degree</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">:</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
         <span class="n">coordinate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># sort = False</span>
@@ -130,7 +131,7 @@
     <span class="n">minIndex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">angle</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">angle</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">angle</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">angle</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="n">minIndex</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">minIndex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">sort</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">minIndex</span> <span class="o">-</span> <span class="n">maxIndex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -139,7 +140,7 @@
         <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">minIndex</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">elif</span> <span class="n">maxIndex</span> <span class="o">&lt;</span> <span class="n">minIndex</span><span class="p">:</span>
         <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">:</span><span class="n">minIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">180</span><span class="p">)</span>
-        <span class="n">idx_sign_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">sign</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">idx_sign_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">sign</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">maxIndex</span> <span class="o">+=</span> <span class="n">idx_sign_change</span>
         <span class="n">minIndex</span> <span class="o">=</span> <span class="n">maxIndex</span> <span class="o">+</span> <span class="mi">1</span>
 
@@ -167,9 +168,9 @@
         <span class="n">yp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">coorSort</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">])</span>
         <span class="c1"># y is known.</span>
         <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="mi">360</span> <span class="o">-</span> <span class="n">angle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">360</span> <span class="o">-</span> <span class="n">angle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">origin</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">xp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">xp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">ratio</span> <span class="o">+</span> <span class="n">xp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                   <span class="p">(</span><span class="n">yp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">yp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">ratio</span> <span class="o">+</span> <span class="n">yp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                   <span class="n">centroid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">]</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">xp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">ratio</span> <span class="o">+</span> <span class="n">xp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="p">(</span><span class="n">yp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">yp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">ratio</span> <span class="o">+</span> <span class="n">yp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="n">centroid</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
         <span class="n">coorSort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">origin</span><span class="p">,</span> <span class="n">coorSort</span><span class="p">))</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
@@ -245,16 +246,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Geometry analysis and points sorting for a cross-section of a fiber tow.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    coordinate : Numpy array</span>
-<span class="sd">        with 3 colums. The x, y, z coordinate components of the vertices of the polygon.</span>
-<span class="sd">        Note: 只使用了前两个</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coordinate : Numpy array</span>
+<span class="sd">            with 3 colums. The x, y, z coordinate components of the vertices of the polygon.</span>
+<span class="sd">            Note: 只使用了前两个</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    geometry file : x,y,z of points, and x,y,z of centerline</span>
-<span class="sd">    properties: area... ...</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        geometry file : x,y,z of points, and x,y,z of centerline</span>
+<span class="sd">        properties: area... ...</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -302,27 +303,33 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">geomFeature</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">geomFeature</span><span class="p">,</span> <span class="n">coordinateSorted</span></div>
+
+
 <span class="c1">#</span>
 
 <div class="viewcode-block" id="geom_tow"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.geometry.geom_tow">[docs]</a><span class="k">def</span> <span class="nf">geom_tow</span><span class="p">(</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The surface points for each cross-sections. the last column (z-axis) should be along the extension</span>
+<span class="sd">    The surface points for each cross-section. the last column (z-axis) should be along the extension</span>
 <span class="sd">    direction of the cross-sections. It also serves as the label of each cross-section.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    surf_points : array_like</span>
-<span class="sd">        The surface points for each cross-sections. the last column (z-axis) should be along the extension</span>
-<span class="sd">        direction of the cross-sections. It also serves as the label of each cross-section.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        surf_points : array_like</span>
+<span class="sd">            The surface points for each cross-section. the last column (z-axis) should be along the extension</span>
+<span class="sd">            direction of the cross-sections. It also serves as the label of each cross-section.</span>
+<span class="sd">        sort : Boolean</span>
+<span class="sd">            If True, the vertices are sorted in angular order. If False, the vertices are</span>
+<span class="sd">            not sorted and returned following the original order with angular position</span>
+<span class="sd">            for each input vertices.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    df_geom : DataFrame</span>
-<span class="sd">        The geometrical features of each cross-sections. The columns are:</span>
-<span class="sd">        [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</span>
-<span class="sd">    df_coo : DataFrame</span>
-<span class="sd">        The coordinates of each cross-sections. The columns are:</span>
-<span class="sd">        [distance, normalized distance, angular position (degree), X, Y, Z)]</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        df_geom : DataFrame</span>
+<span class="sd">            The geometrical features of each cross-section. The columns are:</span>
+<span class="sd">            [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</span>
+<span class="sd">        df_coo : DataFrame</span>
+<span class="sd">            The coordinates of each cross-section. The columns are:</span>
+<span class="sd">            [distance, normalized distance, angular position (degree), X, Y, Z)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">surf_points</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">centerline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">slices</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -386,7 +393,10 @@
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If the points are not 2D.</span>
-<span class="sd">        If there are fewer than three points.</span>
+
+<span class="sd">    Warning</span>
+<span class="sd">    -------</span>
+
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -407,7 +417,9 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The points must be 2D.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;There must be at least 3 points.&quot;</span><span class="p">)</span>
+        <span class="c1"># raise warning</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;The number of points is less than 3. The area is returned as 0.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -421,7 +433,7 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">resolution</span> <span class="o">=</span> <span class="mf">0.022</span>
     <span class="n">coordinate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;arr_1.npy&quot;</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="n">resolution</span>
-    <span class="n">geomFeature</span><span class="p">,</span> <span class="n">coordinateSorted</span> <span class="o">=</span> <span class="n">geom</span><span class="p">(</span><span class="n">coordinate</span><span class="p">)</span>
+    <span class="c1"># geomFeature, coordinateSorted = geom(coordinate)</span>
     <span class="c1"># coorSort, angle = angularSort(localCo, centroid)</span>
 </pre></div>
 

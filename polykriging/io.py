@@ -1073,7 +1073,7 @@ def zip_files(directory, file_list, filename, remove="True"):
 
             if remove == "True":
                 os.remove(directory + file_list[i])
-    print(bcolors.ok("Zip file saved as " + filename))
+    print(bcolors.ok("Zip file saved as " + filename + bcolors.ENDC))
 
 
 def choose_file(titl='Select the target directory:', format='csv'):
@@ -1509,7 +1509,7 @@ def meshio_save(file, vertices, cells=[], point_data={}, cell_data={}, binary=Fa
     filename, file_extension = os.path.splitext(file)
     if file_extension in [".ply", ".stl", ".vtk", ".vtu"]:
         meshio.write(file, mesh, binary=binary)
-        print("The mesh is saved as " + filename + file_extension + " file successfully.")
+        print(bcolors.ok("The mesh is saved as " + filename + file_extension + " file successfully." + "\n"))
     else:
         raise ValueError("The file extension is not supported. "
                          "Please use ply, stl, vtk, or vtu.")

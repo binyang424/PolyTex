@@ -352,6 +352,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the angle between 2 vectors.</span>
 
+<span class="sd">        .. math::</span>
+<span class="sd">            \\theta = \\arccos \\frac{v_1 \\cdot v_2}{\\|v_1\\| \\|v_2\\|}</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        other : Vector object</span>
@@ -1144,7 +1147,8 @@
 <span class="sd">    &gt;&gt;&gt; curve</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="p">[],</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="p">[],</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
+                <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1158,9 +1162,17 @@
 
 <span class="sd">            One of the function or dataset must be given. Please note that both are</span>
 <span class="sd">            given, the dataset will be ignored.</span>
-<span class="sd">        kriging : tuple</span>
-<span class="sd">            The kriging interpolation configuration. The default value is (). The tuple</span>
-<span class="sd">            should be in the form of (drift_name, covariance_name, smoothing_factor).</span>
+<span class="sd">        krig_config : tuple</span>
+<span class="sd">            The kriging interpolation configuration. The default value is (&quot;lin&quot;, &quot;cub&quot;).</span>
+<span class="sd">            The tuple should be in the form of (drift_name, covariance_name).</span>
+<span class="sd">        smooth : float</span>
+<span class="sd">            The smoothing factor. The default value is 0.0.</span>
+<span class="sd">        verbose : bool</span>
+<span class="sd">            If True, print the information of the kriging process. The default value is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curve : ParamCurve object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">limits</span> <span class="o">=</span> <span class="n">limits</span>
 
@@ -1184,16 +1196,16 @@
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_component</span><span class="p">):</span>
                 <span class="n">data_krig</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
-
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating kriging model for </span><span class="si">%s</span><span class="s2"> -th component&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating kriging model for </span><span class="si">%s</span><span class="s2"> -th component&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
                 <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
                     <span class="n">pk</span><span class="o">.</span><span class="n">kriging</span><span class="o">.</span><span class="n">curveKrig1D</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">name_drift</span><span class="o">=</span><span class="n">drift</span><span class="p">,</span>
                                            <span class="n">name_cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">smoothing_factor</span><span class="p">)</span>
 
                 <span class="bp">cls</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging model is created successfully for all components.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging model is created successfully for all components.&quot;</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 

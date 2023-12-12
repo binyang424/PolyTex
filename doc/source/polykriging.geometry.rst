@@ -1,10 +1,10 @@
-polykriging.geometry package
+polykriging.geometry
 ============================
 
 Submodules
 ----------
 
-polykriging.geometry.basic module
+polykriging.geometry.basic
 ---------------------------------
 
 .. automodule:: polykriging.geometry.basic
@@ -12,7 +12,7 @@ polykriging.geometry.basic module
    :undoc-members:
    :show-inheritance:
 
-polykriging.geometry.geometry module
+polykriging.geometry.geometry
 ------------------------------------
 
 .. automodule:: polykriging.geometry.geometry
@@ -20,18 +20,10 @@ polykriging.geometry.geometry module
    :undoc-members:
    :show-inheritance:
 
-polykriging.geometry.transform module
+polykriging.geometry.transform
 -------------------------------------
 
 .. automodule:: polykriging.geometry.transform
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: polykriging.geometry
    :members:
    :undoc-members:
    :show-inheritance:

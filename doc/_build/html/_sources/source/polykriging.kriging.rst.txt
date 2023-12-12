@@ -1,10 +1,7 @@
-polykriging.kriging package
+polykriging.kriging
 ===========================
 
-Submodules
-----------
-
-polykriging.kriging.curve2D module
+polykriging.kriging.curve2D
 ----------------------------------
 
 .. automodule:: polykriging.kriging.curve2D
@@ -12,7 +9,7 @@ polykriging.kriging.curve2D module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.intersect module
+polykriging.kriging.intersect
 ------------------------------------
 
 .. automodule:: polykriging.kriging.intersect
@@ -20,7 +17,7 @@ polykriging.kriging.intersect module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.mdKrig module
+polykriging.kriging.mdKrig
 ---------------------------------
 
 .. automodule:: polykriging.kriging.mdKrig
@@ -28,7 +25,7 @@ polykriging.kriging.mdKrig module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.paraSurface module
+polykriging.kriging.paraSurface
 --------------------------------------
 
 .. automodule:: polykriging.kriging.paraSurface
@@ -36,7 +33,7 @@ polykriging.kriging.paraSurface module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.projection module
+polykriging.kriging.projection
 -------------------------------------
 
 .. automodule:: polykriging.kriging.projection
@@ -44,7 +41,7 @@ polykriging.kriging.projection module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.tool module
+polykriging.kriging.tool
 -------------------------------
 
 .. automodule:: polykriging.kriging.tool
@@ -52,18 +49,10 @@ polykriging.kriging.tool module
    :undoc-members:
    :show-inheritance:
 
-polykriging.kriging.volumeKrig module
+polykriging.kriging.volumeKrig
 -------------------------------------
 
 .. automodule:: polykriging.kriging.volumeKrig
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: polykriging.kriging
    :members:
    :undoc-members:
    :show-inheritance:

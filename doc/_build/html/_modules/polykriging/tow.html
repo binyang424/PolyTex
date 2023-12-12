@@ -81,17 +81,20 @@
              
   <h1>Source code for polykriging.tow</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">save_ply</span>
-<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">save</span> <span class="k">as</span> <span class="n">save_tow</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span> <span class="k">as</span> <span class="n">save_tow</span>
 
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">geom_tow</span><span class="p">,</span> <span class="n">Curve</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Plane</span><span class="p">,</span> <span class="n">Tube</span><span class="p">,</span> <span class="n">ParamCurve</span><span class="p">,</span> <span class="n">area_signed</span>
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">transform</span> <span class="k">as</span> <span class="n">tf</span>
 <span class="kn">from</span> <span class="nn">.kriging</span> <span class="kn">import</span> <span class="n">curve2Dinter</span><span class="p">,</span> <span class="n">surface3Dinterp</span>
 <span class="kn">from</span> <span class="nn">.mesh</span> <span class="kn">import</span> <span class="n">get_cells</span>
 <span class="kn">from</span> <span class="nn">.stats</span> <span class="kn">import</span> <span class="n">kdeScreen</span><span class="p">,</span> <span class="n">bw_scott</span>
+<span class="kn">from</span> <span class="nn">.thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">trange</span>
+
 
 
 <span class="c1"># pv.set_plot_theme(&quot;document&quot;)</span>
@@ -164,9 +167,8 @@
 <span class="sd">    &gt;&gt;&gt; trajectory_sm = tow.trajectory(smooth=0.0015, plot=False, save_path=&quot;./trajectory.ply&quot;, orientation=True)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surf_points</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
-                 <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surf_points</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="p">,</span> <span class="n">radius_fiber</span><span class="p">,</span> <span class="n">length_scale</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">,</span> <span class="n">packing_fiber</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
@@ -194,15 +196,42 @@
 <span class="sd">            Here, you can specify the order of the columns in the reordered points. Default is &quot;xyz&quot;.</span>
 <span class="sd">            The other options are &quot;xzy&quot;, &quot;yxz&quot;, &quot;yzx&quot;, &quot;zxy&quot;, &quot;zyx&quot;. This function will recover the</span>
 <span class="sd">            original order of the columns when generating the surface mesh.</span>
+<span class="sd">        rho_fiber : float, optional</span>
+<span class="sd">            The density of the fiber in kg/m^3.</span>
+<span class="sd">        radius_fiber : float, optional</span>
+<span class="sd">            The radius of the fiber in m.</span>
 <span class="sd">        tex : float, optional</span>
-<span class="sd">            The linear density of the tow in tex. Default is 0.</span>
+<span class="sd">            The linear density of the tow in tex.</span>
 <span class="sd">        name : str, optional</span>
 <span class="sd">            The name or type of the tow. Default is &quot;Tow&quot;.</span>
+<span class="sd">        packing_fiber : str, optional</span>
+<span class="sd">            The packing pattern of the fiber. Default is &quot;Hex&quot;. The other option is &quot;Square&quot;.</span>
+<span class="sd">        sort : bool, optional</span>
+<span class="sd">            Whether to sort the points according to the slice number. Default is True.</span>
+<span class="sd">        resolution : float, optional</span>
+<span class="sd">            The resolution of the MicroCT image used to generate the tow dataset. Default is None.</span>
+<span class="sd">            This is only stored as an attribute for future use. It is not used in the current version.</span>
+<span class="sd">        length_scale : str, optional</span>
+<span class="sd">            The length scale of the coordinates. Default is &quot;mm&quot;. The other options are &quot;m&quot;, &quot;cm&quot;, &quot;um&quot;.</span>
+<span class="sd">        kwargs : dict</span>
+<span class="sd">            The keyword arguments for the PolyKriging Tow class. The user can specify any keyword</span>
+<span class="sd">            arguments for the Tow class. The keyword arguments will be stored as attributes of the</span>
+<span class="sd">            Tow class. The user can access the attributes by tow.attribute_name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tex</span> <span class="o">=</span> <span class="n">tex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="n">resolution</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tex</span> <span class="o">=</span> <span class="n">tex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho_fiber</span> <span class="o">=</span> <span class="n">rho_fiber</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius_fiber</span> <span class="o">=</span> <span class="n">radius_fiber</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">packing_fiber</span> <span class="o">=</span> <span class="n">packing_fiber</span>
+
+        <span class="k">if</span> <span class="n">length_scale</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;cm&quot;</span><span class="p">,</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span> <span class="s2">&quot;um&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;length_scale must be one of &#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;um&#39;.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length_scale</span> <span class="o">=</span> <span class="n">length_scale</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">surf_points</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">surf_points</span><span class="p">)</span>
@@ -232,14 +261,24 @@
                                         <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="o">+</span><span class="mi">3</span><span class="p">))],</span>
                                         <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
+        <span class="c1"># bounds: [xmin, xmax, ymin, ymax, zmin, zmax]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">tow_info</span> <span class="o">=</span> <span class="s2">&quot;Tow: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                   <span class="s2">&quot;Linear density: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                   <span class="s2">&quot;Number of points: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;; </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                   <span class="s2">&quot;Number of cross-sections: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># num_cross_sections = np.unique(self.__coordinates[&quot;Z&quot;]).shape[0]</span>
+        <span class="n">tow_info</span> <span class="o">=</span> <span class="s2">&quot;Tow: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                   <span class="s2">&quot;Linear density: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                   <span class="s2">&quot;Number of points (input): &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                   <span class="s2">&quot;Number of points (resampled): &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resampled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                   <span class="s2">&quot;Number of cross-sections: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tow_info</span>
 
     <span class="nd">@property</span>
@@ -252,6 +291,18 @@
         <span class="c1"># sort order and get the inverse permutation</span>
         <span class="n">inv_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">order_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">inv_order</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attribute_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the attribute names of the Tow class.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        attribute_names : list</span>
+<span class="sd">            The attribute names of the Tow class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <div class="viewcode-block" id="Tow.kde"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.kde">[docs]</a>    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -357,13 +408,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">h_res</span> <span class="o">=</span> <span class="n">n_slices</span>
 
         <span class="n">pts_krig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_slices</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging cross-sections... </span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;It may take a while depending on the number of cross-sections.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Resampling points on cross-sections with dual Kriging ... </span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="s2">&quot;It may take a while depending on the number of cross-sections.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
         <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">krig_config</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;angular&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_slices</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">n_slices</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Cross-sectional point resampling (Kriging): &quot;</span><span class="p">):</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">slices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -380,9 +431,9 @@
 
                 <span class="n">pts_krig</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">):</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x_inter</span><span class="p">,</span> <span class="n">y_inter</span><span class="p">,</span> <span class="n">z_</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
 
-                <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging cross-sections... </span><span class="si">{}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="n">n_slices</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;th cross-section&quot;</span><span class="p">,</span> <span class="n">pts_cs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="c1"># if i % 10 == 0:</span>
+                <span class="c1">#     print(&quot;Kriging cross-sections... {}%&quot;.format(round(i / n_slices * 100, 2)))</span>
+                <span class="c1">#     print(i, &quot;th cross-section&quot;, pts_cs.shape)</span>
 
             <span class="k">except</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinAlgError</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging failed at slice: </span><span class="si">{}</span><span class="s2"> because of singular matrix error. This could be avoided &quot;</span>
@@ -390,7 +441,7 @@
                 <span class="k">continue</span>
 
         <span class="n">expr</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; kriging equation&quot;</span><span class="p">:</span> <span class="n">dict_cs_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; kriging equation&quot;</span><span class="p">:</span> <span class="n">dict_cs_y</span><span class="p">}</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging on cross-sections is finished.&quot;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;Kriging on cross-sections is finished.&quot;)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__kriged_vertices</span> <span class="o">=</span> <span class="n">pts_krig</span>  <span class="c1"># the columns are in the same order as the input data (surf_points)</span>
 
@@ -470,12 +521,15 @@
         <span class="c1"># normalize the first column of dataset</span>
         <span class="c1"># hard copy dataset[:, 0] to avoid changing the original dataset</span>
         <span class="n">dataset_0_org</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">dataset_1_org</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">dataset_2_org</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">smooth</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
 
-            <span class="n">centerline</span> <span class="o">=</span> <span class="n">ParamCurve</span><span class="p">((</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="n">krig_config</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="n">smooth</span><span class="p">)</span>
+            <span class="n">centerline</span> <span class="o">=</span> <span class="n">ParamCurve</span><span class="p">((</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="n">krig_config</span><span class="p">,</span>
+                                    <span class="n">smooth</span><span class="o">=</span><span class="n">smooth</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">cen</span> <span class="o">=</span> <span class="n">centerline</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">dataset</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
 
             <span class="n">traj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">dataset_0_org</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -488,9 +542,26 @@
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="c1"># fig size</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">smooth</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">dataset_1_org</span><span class="p">,</span> <span class="s2">&quot;--k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; unsmoothed&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">dataset_2_org</span><span class="p">,</span> <span class="s2">&quot;--k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; unsmoothed&quot;</span><span class="p">)</span>
+
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="c1"># label</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Trajectory of tow </span><span class="si">%s</span><span class="s2"> before and after smoothing&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__traj</span> <span class="o">=</span> <span class="n">traj</span>
 
@@ -743,7 +814,7 @@
 
         <span class="k">return</span> <span class="n">win_interp</span><span class="p">,</span> <span class="n">win_result</span></div>
 
-<div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
+<div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the fiber tow data.</span>
 
@@ -759,7 +830,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span></div>
+        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Tow.axial_lines"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.axial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">axial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -817,7 +888,9 @@
             <span class="n">poly</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
-            <span class="n">poly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Axial lines of tow </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">axial</span> <span class="o">=</span> <span class="n">axial</span>
         <span class="k">return</span> <span class="n">poly</span></div>
@@ -888,7 +961,9 @@
             <span class="n">poly</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
-            <span class="n">poly</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_axes</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Radial lines of tow </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">radial</span> <span class="o">=</span> <span class="n">radial</span>
         <span class="k">return</span> <span class="n">poly</span></div>
@@ -945,7 +1020,8 @@
             <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__traj</span>
             <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span>
 
-            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyKriging&quot;</span><span class="p">)</span>
+
             <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -1027,7 +1103,8 @@
 
             <span class="n">n_pts</span> <span class="o">=</span> <span class="mi">0</span>
 
-            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyKriging&quot;</span><span class="p">)</span>
+
             <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__surf_mesh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">orientation</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>

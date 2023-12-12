@@ -142,26 +142,28 @@ def porosity_tow(rho_lin, area_xs, rho_fiber=2550, fvf=False):
     return 1 - vf
 
 
-def perm_rotation(permeability, orientation, inverse=False):
+def perm_rotation(permeability, orientation, inverse=False, disable_tqdm=True):
     """
     Rotate the permeability tensor according to the yarn
     orientation in the world coordinate system.
 
-    Parameters
-    ----------
-    permeability: ndarray
-        The principal permeability tensor of the yarn in the
-        local coordinate system of the yarn. Shape: (n, 9)
-    orientation: ndarray
-        The orientation of the yarn in the world coordinate
-        system. Shape: (n, 3)
-    inverse: bool
-        If True, the inverse of permeability tensor is returned.
+        Parameters
+        ----------
+        permeability: ndarray
+            The principal permeability tensor of the yarn in the
+            local coordinate system of the yarn. Shape: (n, 9)
+        orientation: ndarray
+            The orientation of the yarn in the world coordinate
+            system. Shape: (n, 3)
+        inverse: bool
+            If True, the inverse of permeability tensor is returned.
 
-    Returns
-    -------
-    perm_rot: ndarray
-        The rotated permeability tensor. Shape: (n, 9)
+        Returns
+        -------
+        perm_rot: ndarray
+            The rotated permeability tensor. Shape: (n, 9)
+        D : ndarray
+            The inverse of the rotated permeability tensor. Shape: (n, 9)
     """
     # import tqdm.auto as tqdm
 
@@ -176,7 +178,7 @@ def perm_rotation(permeability, orientation, inverse=False):
     D = np.zeros_like(permeability)
     permeability_loc = np.zeros_like(permeability)
 
-    for i in tqdm(range(permeability.shape[0])):
+    for i in tqdm(range(permeability.shape[0]), disable=disable_tqdm):
         perm = np.reshape(permeability[i], (3, 3))
         ori = orientation[i]
         r = R.align_vectors([ori], [[1, 0, 0]])[0]
@@ -194,7 +196,7 @@ def perm_rotation(permeability, orientation, inverse=False):
         if inverse:
             D[i, :] = np.linalg.inv(k_rot).flatten()
 
-    return D if inverse else permeability_loc
+    return permeability_loc, D if inverse else permeability_loc
 
 
 def compress_file(zipfilename, dirname):

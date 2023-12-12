@@ -1,25 +1,77 @@
-Textile objects
+Classes
 ===============
-.. automodule:: polykriging.textile
+Textile objects
+----------------------------------
+.. currentmodule:: polykriging.textile
+.. autoclass:: Textile
    :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: polykriging.tow
+   :show-inheritance: Textile
+   
+.. currentmodule:: polykriging.tow
+.. autoclass:: Tow
    :members:
-   :undoc-members:
    :show-inheritance:
 
 Primitive geometries
-==============
-.. automodule:: polykriging.geometry.basic
-   :members: Point, Vector, Line, Curve, Polygon, Ellipse, Plane, Tube
-   :undoc-members:
+----------------------------------
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Point, Vector, Line, Curve, Polygon, Ellipse, Plane, Tube
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Point
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Vector
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Line
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Curve
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Polygon
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Ellipse
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Plane
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Ellipse2D
+   :members: 
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: Tube
+   :members: 
    :show-inheritance:
    
 Parametric geometries
-================
-.. automodule:: polykriging.geometry.basic
-   :members: ParamCurve, ParamSurface
-   :undoc-members:
+----------------------------------
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: ParamCurve
+   :members:
+   :show-inheritance:
+   
+.. currentmodule:: polykriging.geometry.basic
+.. autoclass:: ParamSurface
+   :members:
    :show-inheritance:

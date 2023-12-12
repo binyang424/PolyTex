@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.misc package &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>polykriging.misc &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -54,17 +54,15 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.misc package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.misc</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-polykriging.misc">Module contents</a></li>
 </ul>
 </li>
@@ -92,8 +90,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
-          <li><a href="submodules.html">Submodules</a> &raquo;</li>
-      <li>polykriging.misc package</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polykriging.misc</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.misc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,10 +101,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-misc-package">
-<h1>polykriging.misc package<a class="headerlink" href="#polykriging-misc-package" title="Permalink to this heading"></a></h1>
+  <section id="polykriging-misc">
+<h1>polykriging.misc<a class="headerlink" href="#polykriging-misc" title="Permalink to this heading"></a></h1>
 <section id="module-polykriging.misc">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.misc" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.misc.compress_file">
+<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">compress_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zipfilename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/misc.html#compress_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.compress_file" title="Permalink to this definition"></a></dt>
+<dd><p>Compresses all files and subdirectories in the specified directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>zipfilename</strong><span class="classifier">str</span></dt><dd><p>The name of the zip file, including the path.</p>
+</dd>
+<dt><strong>dirname</strong><span class="classifier">str</span></dt><dd><p>The name of the directory to be compressed, including the path.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>1 if the compression is successful, otherwise 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">compress_file</span><span class="p">(</span><span class="s2">&quot;test.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;./test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.misc.gebart">
 <span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">gebart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Quad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensorial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/misc.html#gebart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.gebart" title="Permalink to this definition"></a></dt>
@@ -131,7 +155,7 @@ is False.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>k</strong><span class="classifier">list</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
+<dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
 corresponding to the permeability components that parallel and
 perpendicular to the fiber tow. The units are m^2. Note that the
@@ -144,13 +168,83 @@ principal permeability components k22 and k33 are equal.</p>
 <p>Gebart BR. Permeability of Unidirectional Reinforcements for RTM. Journal of Composite Materials. 1992;26(8):1100-33.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="go">[2.0280701754385963e-11, 3.734728329018035e-12, 3.734728329018035e-12]</span>
+<span class="go">[2.02807018e-11 3.73472833e-12 3.73472833e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">[2.0280701754385963e-11, 0, 0, 0, 3.734728329018035e-12, 0, 0, 0, 3.734728329018035e-12]</span>
+<span class="go">[2.02807018e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
+<span class="go"> 3.73472833e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
+<span class="go"> 3.73472833e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="go">[2.181132075471698e-11, 4.727865993574315e-12, 4.727865993574315e-12]</span>
+<span class="go">[2.18113208e-11 4.72786599e-12 4.72786599e-12]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gebart</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="mf">1.7e-5</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">[2.181132075471698e-11, 0, 0, 0, 4.727865993574315e-12, 0, 0, 0, 4.727865993574315e-12]</span>
+<span class="go">[2.18113208e-11 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
+<span class="go"> 4.72786599e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00</span>
+<span class="go"> 4.72786599e-12]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.misc.perm_rotation">
+<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">perm_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">permeability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_tqdm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/misc.html#perm_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.perm_rotation" title="Permalink to this definition"></a></dt>
+<dd><p>Rotate the permeability tensor according to the yarn
+orientation in the world coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>permeability: ndarray</strong></dt><dd><p>The principal permeability tensor of the yarn in the
+local coordinate system of the yarn. Shape: (n, 9)</p>
+</dd>
+<dt><strong>orientation: ndarray</strong></dt><dd><p>The orientation of the yarn in the world coordinate
+system. Shape: (n, 3)</p>
+</dd>
+<dt><strong>inverse: bool</strong></dt><dd><p>If True, the inverse of permeability tensor is returned.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>perm_rot: ndarray</dt><dd><p>The rotated permeability tensor. Shape: (n, 9)</p>
+</dd>
+<dt><strong>D</strong><span class="classifier">ndarray</span></dt><dd><p>The inverse of the rotated permeability tensor. Shape: (n, 9)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.misc.porosity_tow">
+<span class="sig-prename descclassname"><span class="pre">polykriging.misc.</span></span><span class="sig-name descname"><span class="pre">porosity_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_lin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2550</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fvf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/misc.html#porosity_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.misc.porosity_tow" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate local porosity of a tow based on its cross-sectional area and linear density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>rho_lin: float</strong></dt><dd><p>Linear density of the tow. Unit: Tex (g/1000m)</p>
+</dd>
+<dt><strong>area_xs: array-like</strong></dt><dd><p>Cross-sectional area of the tow. Unit: m^2. Shape: (n cross-sections, 1).</p>
+</dd>
+<dt><strong>rho_fiber: float</strong></dt><dd><p>Volume density of the fiber. Unit: kg/m^3. Default: 2550 (glass fiber).</p>
+</dd>
+<dt><strong>fvf: bool</strong></dt><dd><p>Whether to return fiber volume fraction. Default: False. If True, return
+fiber volume fraction instead of porosity.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>porosity: array-like</dt><dd><p>Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.
+The fiber volume fraction is returned if fvf is True.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rho_lin</span> <span class="o">=</span> <span class="mi">275</span> <span class="c1"># 275 Tex</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">area_xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">])</span><span class="o">/</span><span class="mf">1e6</span> <span class="c1"># mm^2 to m^2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rho_fiber</span> <span class="o">=</span> <span class="mi">2550</span> <span class="c1"># kg/m^3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">porosity</span> <span class="o">=</span> <span class="n">porosity_tow</span><span class="p">(</span><span class="n">rho_lin</span><span class="p">,</span> <span class="n">area_xs</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="p">,</span> <span class="n">fvf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">porosity</span><span class="p">)</span>
+<span class="go">[0.67401961 0.49019608 0.71895425]</span>
 </pre></div>
 </div>
 </dd></dl>

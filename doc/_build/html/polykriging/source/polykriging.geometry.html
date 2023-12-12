@@ -608,7 +608,7 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polykriging.geometry.basic.ParamCurve">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a parametric curve. It is defined by a function and
 a parameter.</p>
@@ -2502,6 +2502,8 @@ vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <dt class="sig sig-object py" id="polykriging.geometry.basic.Vector.angle_between">
 <span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/geometry/basic.html#Vector.angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.basic.Vector.angle_between" title="Permalink to this definition"></a></dt>
 <dd><p>Return the angle between 2 vectors.</p>
+<div class="math notranslate nohighlight">
+\[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -2642,8 +2644,7 @@ non-sense.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>If the points are not 2D.
-If there are fewer than three points.</p>
+<dt>ValueError</dt><dd><p>If the points are not 2D.</p>
 </dd>
 </dl>
 </dd>
@@ -2697,22 +2698,26 @@ Note: 只使用了前两个</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.geometry.geometry.geom_tow">
 <span class="sig-prename descclassname"><span class="pre">polykriging.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">geom_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/geometry/geometry.html#geom_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.geometry.geometry.geom_tow" title="Permalink to this definition"></a></dt>
-<dd><p>The surface points for each cross-sections. the last column (z-axis) should be along the extension
+<dd><p>The surface points for each cross-section. the last column (z-axis) should be along the extension
 direction of the cross-sections. It also serves as the label of each cross-section.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>surf_points</strong><span class="classifier">array_like</span></dt><dd><p>The surface points for each cross-sections. the last column (z-axis) should be along the extension
+<dt><strong>surf_points</strong><span class="classifier">array_like</span></dt><dd><p>The surface points for each cross-section. the last column (z-axis) should be along the extension
 direction of the cross-sections. It also serves as the label of each cross-section.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
+not sorted and returned following the original order with angular position
+for each input vertices.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>df_geom</strong><span class="classifier">DataFrame</span></dt><dd><p>The geometrical features of each cross-sections. The columns are:
+<dt><strong>df_geom</strong><span class="classifier">DataFrame</span></dt><dd><p>The geometrical features of each cross-section. The columns are:
 [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</p>
 </dd>
-<dt><strong>df_coo</strong><span class="classifier">DataFrame</span></dt><dd><p>The coordinates of each cross-sections. The columns are:
+<dt><strong>df_coo</strong><span class="classifier">DataFrame</span></dt><dd><p>The coordinates of each cross-section. The columns are:
 [distance, normalized distance, angular position (degree), X, Y, Z)]</p>
 </dd>
 </dl>

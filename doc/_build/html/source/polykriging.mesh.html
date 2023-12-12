@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.mesh package &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>polykriging.mesh &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="polykriging.plot" href="polykriging.plot.html" />
-    <link rel="prev" title="polykriging.kriging package" href="polykriging.kriging.html" /> 
+    <link rel="prev" title="polykriging.kriging" href="polykriging.kriging.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,24 +54,21 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.mesh package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.from_image">polykriging.mesh.from_image module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.mesh</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.from_image">polykriging.mesh.from_image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.misc.html">polykriging.misc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
 </ul>
 </li>
@@ -96,8 +93,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
-          <li><a href="submodules.html">Submodules</a> &raquo;</li>
-      <li>polykriging.mesh package</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polykriging.mesh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.mesh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,13 +104,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-mesh-package">
-<h1>polykriging.mesh package<a class="headerlink" href="#polykriging-mesh-package" title="Permalink to this heading"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
-</section>
+  <section id="polykriging-mesh">
+<h1>polykriging.mesh<a class="headerlink" href="#polykriging-mesh" title="Permalink to this heading"></a></h1>
 <section id="module-polykriging.mesh.decimation">
-<span id="polykriging-mesh-decimation-module"></span><h2>polykriging.mesh.decimation module<a class="headerlink" href="#module-polykriging.mesh.decimation" title="Permalink to this heading"></a></h2>
+<span id="polykriging-mesh-decimation"></span><h2>polykriging.mesh.decimation<a class="headerlink" href="#module-polykriging.mesh.decimation" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.decimation.adjacent_from_edge">
 <span class="sig-prename descclassname"><span class="pre">polykriging.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">adjacent_from_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/decimation.html#adjacent_from_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.decimation.adjacent_from_edge" title="Permalink to this definition"></a></dt>
@@ -499,7 +493,7 @@ while 0 and 1 are fixed.</p>
 
 </section>
 <section id="module-polykriging.mesh.features">
-<span id="polykriging-mesh-features-module"></span><h2>polykriging.mesh.features module<a class="headerlink" href="#module-polykriging.mesh.features" title="Permalink to this heading"></a></h2>
+<span id="polykriging-mesh-features"></span><h2>polykriging.mesh.features<a class="headerlink" href="#module-polykriging.mesh.features" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.features.voxelize">
 <span class="sig-prename descclassname"><span class="pre">polykriging.mesh.features.</span></span><span class="sig-name descname"><span class="pre">voxelize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cell_number'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contained_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/features.html#voxelize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.features.voxelize" title="Permalink to this definition"></a></dt>
@@ -581,7 +575,7 @@ If False, extract the cells that contain at least one of the extracted points.</
 
 </section>
 <section id="module-polykriging.mesh.from_image">
-<span id="polykriging-mesh-from-image-module"></span><h2>polykriging.mesh.from_image module<a class="headerlink" href="#module-polykriging.mesh.from_image" title="Permalink to this heading"></a></h2>
+<span id="polykriging-mesh-from-image"></span><h2>polykriging.mesh.from_image<a class="headerlink" href="#module-polykriging.mesh.from_image" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>To check the use of this module, please refer to the example “mesh_from_image.py”</dt><dd><p>in the test folder of Polykriging.</p>
 </dd>
@@ -725,7 +719,7 @@ must be specified.</p>
 
 </section>
 <section id="module-polykriging.mesh.mesh">
-<span id="polykriging-mesh-mesh-module"></span><h2>polykriging.mesh.mesh module<a class="headerlink" href="#module-polykriging.mesh.mesh" title="Permalink to this heading"></a></h2>
+<span id="polykriging-mesh-mesh"></span><h2>polykriging.mesh.mesh<a class="headerlink" href="#module-polykriging.mesh.mesh" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.mesh.background_mesh">
 <span class="sig-prename descclassname"><span class="pre">polykriging.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/mesh.html#background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.mesh.background_mesh" title="Permalink to this definition"></a></dt>
@@ -955,18 +949,13 @@ at the end of each radial direction point list.</p>
 </dd></dl>
 
 </section>
-<section id="module-polykriging.mesh">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.mesh" title="Permalink to this heading"></a></h2>
-<p>polykriging.</p>
-<p>An implementation of dual Kriging.</p>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="polykriging.kriging.html" class="btn btn-neutral float-left" title="polykriging.kriging package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.kriging.html" class="btn btn-neutral float-left" title="polykriging.kriging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="polykriging.plot.html" class="btn btn-neutral float-right" title="polykriging.plot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

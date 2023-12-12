@@ -1,4 +1,4 @@
-Submodules
+Functions
 ===========
 .. toctree::
    :maxdepth: 2

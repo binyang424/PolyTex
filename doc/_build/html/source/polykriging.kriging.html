@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polykriging.kriging package &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>polykriging.kriging &mdash; PolyKriging 0.1.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -31,8 +31,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="polykriging.mesh package" href="polykriging.mesh.html" />
-    <link rel="prev" title="polykriging.geometry package" href="polykriging.geometry.html" /> 
+    <link rel="next" title="polykriging.mesh" href="polykriging.mesh.html" />
+    <link rel="prev" title="polykriging.geometry" href="polykriging.geometry.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,27 +54,24 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="classes.html">Textile objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#primitive-geometries">Primitive geometries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#parametric-geometries">Parametric geometries</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.kriging package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.curve2D">polykriging.kriging.curve2D module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.intersect">polykriging.kriging.intersect module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.mdKrig">polykriging.kriging.mdKrig module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.paraSurface">polykriging.kriging.paraSurface module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.projection">polykriging.kriging.projection module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.tool">polykriging.kriging.tool module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.volumeKrig">polykriging.kriging.volumeKrig module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.kriging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.curve2D">polykriging.kriging.curve2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.intersect">polykriging.kriging.intersect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.mdKrig">polykriging.kriging.mdKrig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.paraSurface">polykriging.kriging.paraSurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.projection">polykriging.kriging.projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.tool">polykriging.kriging.tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.kriging.volumeKrig">polykriging.kriging.volumeKrig</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.misc.html">polykriging.misc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
 </ul>
 </li>
@@ -99,8 +96,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
-          <li><a href="submodules.html">Submodules</a> &raquo;</li>
-      <li>polykriging.kriging package</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polykriging.kriging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.kriging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,13 +107,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-kriging-package">
-<h1>polykriging.kriging package<a class="headerlink" href="#polykriging-kriging-package" title="Permalink to this heading"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
-</section>
+  <section id="polykriging-kriging">
+<h1>polykriging.kriging<a class="headerlink" href="#polykriging-kriging" title="Permalink to this heading"></a></h1>
 <section id="module-polykriging.kriging.curve2D">
-<span id="polykriging-kriging-curve2d-module"></span><h2>polykriging.kriging.curve2D module<a class="headerlink" href="#module-polykriging.kriging.curve2D" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-curve2d"></span><h2>polykriging.kriging.curve2D<a class="headerlink" href="#module-polykriging.kriging.curve2D" title="Permalink to this heading"></a></h2>
 <p>Implementation of 2D Curve Kriging.</p>
 <p>Bin Yang  2021-9-2</p>
 <dl class="py function">
@@ -436,7 +430,7 @@ TODO: check the comments</p>
 
 </section>
 <section id="module-polykriging.kriging.intersect">
-<span id="polykriging-kriging-intersect-module"></span><h2>polykriging.kriging.intersect module<a class="headerlink" href="#module-polykriging.kriging.intersect" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-intersect"></span><h2>polykriging.kriging.intersect<a class="headerlink" href="#module-polykriging.kriging.intersect" title="Permalink to this heading"></a></h2>
 <p>1. the intersection of a curve with a plane
 def curve_plane()</p>
 <p>2. the intersection of a plane with a plane
@@ -477,7 +471,7 @@ def surf_surf()</p>
 
 </section>
 <section id="module-polykriging.kriging.mdKrig">
-<span id="polykriging-kriging-mdkrig-module"></span><h2>polykriging.kriging.mdKrig module<a class="headerlink" href="#module-polykriging.kriging.mdKrig" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-mdkrig"></span><h2>polykriging.kriging.mdKrig<a class="headerlink" href="#module-polykriging.kriging.mdKrig" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.kriging.mdKrig.buildKriging">
 <span class="sig-prename descclassname"><span class="pre">polykriging.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/mdKrig.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.mdKrig.buildKriging" title="Permalink to this definition"></a></dt>
@@ -670,7 +664,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 
 </section>
 <section id="module-polykriging.kriging.paraSurface">
-<span id="polykriging-kriging-parasurface-module"></span><h2>polykriging.kriging.paraSurface module<a class="headerlink" href="#module-polykriging.kriging.paraSurface" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-parasurface"></span><h2>polykriging.kriging.paraSurface<a class="headerlink" href="#module-polykriging.kriging.paraSurface" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.kriging.paraSurface.buildKriging">
 <span class="sig-prename descclassname"><span class="pre">polykriging.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/paraSurface.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.paraSurface.buildKriging" title="Permalink to this definition"></a></dt>
@@ -916,7 +910,7 @@ The kriging matrix. The shape is (m, 1).</p>
 
 </section>
 <section id="module-polykriging.kriging.projection">
-<span id="polykriging-kriging-projection-module"></span><h2>polykriging.kriging.projection module<a class="headerlink" href="#module-polykriging.kriging.projection" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-projection"></span><h2>polykriging.kriging.projection<a class="headerlink" href="#module-polykriging.kriging.projection" title="Permalink to this heading"></a></h2>
 <p>This will be an implementation of Kriging: Chapter 15.</p>
 <p>The following functions will be included:</p>
 <p>1. orthogonal projection of a point onto a curve
@@ -925,7 +919,7 @@ def point_curve()</p>
 def point_surf()</p>
 </section>
 <section id="module-polykriging.kriging.tool">
-<span id="polykriging-kriging-tool-module"></span><h2>polykriging.kriging.tool module<a class="headerlink" href="#module-polykriging.kriging.tool" title="Permalink to this heading"></a></h2>
+<span id="polykriging-kriging-tool"></span><h2>polykriging.kriging.tool<a class="headerlink" href="#module-polykriging.kriging.tool" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.kriging.tool.data_compr">
 <span class="sig-prename descclassname"><span class="pre">polykriging.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">data_compr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matXC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_comp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/kriging/tool.html#data_compr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.kriging.tool.data_compr" title="Permalink to this definition"></a></dt>
@@ -995,12 +989,7 @@ will normalize temperature, degree of cure and rate of cure.</p>
 
 </section>
 <section id="module-polykriging.kriging.volumeKrig">
-<span id="polykriging-kriging-volumekrig-module"></span><h2>polykriging.kriging.volumeKrig module<a class="headerlink" href="#module-polykriging.kriging.volumeKrig" title="Permalink to this heading"></a></h2>
-</section>
-<section id="module-polykriging.kriging">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polykriging.kriging" title="Permalink to this heading"></a></h2>
-<p>polykriging.</p>
-<p>An implementation of dual Kriging.</p>
+<span id="polykriging-kriging-volumekrig"></span><h2>polykriging.kriging.volumeKrig<a class="headerlink" href="#module-polykriging.kriging.volumeKrig" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -1008,8 +997,8 @@ will normalize temperature, degree of cure and rate of cure.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="polykriging.geometry.html" class="btn btn-neutral float-left" title="polykriging.geometry package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="polykriging.mesh.html" class="btn btn-neutral float-right" title="polykriging.mesh package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="polykriging.geometry.html" class="btn btn-neutral float-left" title="polykriging.geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polykriging.mesh.html" class="btn btn-neutral float-right" title="polykriging.mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

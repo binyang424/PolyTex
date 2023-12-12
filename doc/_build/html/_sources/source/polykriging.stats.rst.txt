@@ -2,7 +2,7 @@ polykriging.stats
 =========================
 
 
-polykriging.stats.bw\_opt module
+polykriging.stats.bw\_opt
 --------------------------------
 .. inheritance-diagram:: polykriging.stats.bw_opt
    :parts: 1
@@ -13,7 +13,7 @@ polykriging.stats.bw\_opt module
    :undoc-members:
    :show-inheritance:
 
-polykriging.stats.kde module
+polykriging.stats.kde
 ----------------------------
 .. inheritance-diagram:: polykriging.stats.kde
    :parts: 1

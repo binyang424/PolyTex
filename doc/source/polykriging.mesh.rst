@@ -1,10 +1,7 @@
-polykriging.mesh package
+polykriging.mesh
 ========================
 
-Submodules
-----------
-
-polykriging.mesh.decimation module
+polykriging.mesh.decimation
 ----------------------------------
 
 .. automodule:: polykriging.mesh.decimation
@@ -12,7 +9,7 @@ polykriging.mesh.decimation module
    :undoc-members:
    :show-inheritance:
 
-polykriging.mesh.features module
+polykriging.mesh.features
 --------------------------------
 
 .. automodule:: polykriging.mesh.features
@@ -20,7 +17,7 @@ polykriging.mesh.features module
    :undoc-members:
    :show-inheritance:
 
-polykriging.mesh.from\_image module
+polykriging.mesh.from\_image
 -----------------------------------
 
 .. automodule:: polykriging.mesh.from_image
@@ -28,18 +25,10 @@ polykriging.mesh.from\_image module
    :undoc-members:
    :show-inheritance:
 
-polykriging.mesh.mesh module
+polykriging.mesh.mesh
 ----------------------------
 
 .. automodule:: polykriging.mesh.mesh
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: polykriging.mesh
    :members:
    :undoc-members:
    :show-inheritance:

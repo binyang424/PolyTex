@@ -1,4 +1,4 @@
-polykriging.io package
+polykriging.io
 ==========================
 
 Module contents

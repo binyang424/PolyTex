@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='polykriging',
-    version='0.2.1',
+    version='0.3.0',
     description='A kriging package as a result of the course MEC 6310',
     url='https://github.com/shuds13/polykriging',
     author='Bin Yang',

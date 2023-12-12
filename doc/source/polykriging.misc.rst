@@ -1,4 +1,4 @@
-polykriging.misc package
+polykriging.misc
 ========================
 
 
