@@ -186,7 +186,30 @@ class Tow:
                                 self.coordinates["Y"].max(),
                                 self.coordinates["Z"].min(),
                                 self.coordinates["Z"].max()])
+    
+    # initialize the tow from a saved tow file
+    @classmethod
+    def from_file(cls, path):
+        """
+        Initialize the tow from a saved tow file.
 
+            Parameters
+            ----------
+            path : str
+                The path to the saved tow file. The file format is .tow.
+
+            Returns
+            -------
+            tow : Tow
+                The Tow object.
+        """
+
+        # check if the file extension is .tow
+        if not path.endswith(".tow"):
+            raise ValueError("The file extension must be .tow.")
+
+        return pk_load(path)
+    
     def __str__(self):
         return self.name
 

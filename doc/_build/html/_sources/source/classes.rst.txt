@@ -1,5 +1,9 @@
 Classes
 ===============
+
+
+
+
 Textile objects
 ----------------------------------
 .. currentmodule:: polykriging.textile

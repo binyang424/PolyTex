@@ -268,7 +268,30 @@
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+    
+    <span class="c1"># initialize the tow from a saved tow file</span>
+<div class="viewcode-block" id="Tow.from_file"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.from_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the tow from a saved tow file.</span>
 
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            path : str</span>
+<span class="sd">                The path to the saved tow file. The file format is .tow.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            tow : Tow</span>
+<span class="sd">                The Tow object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># check if the file extension is .tow</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tow&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file extension must be .tow.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+    
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 

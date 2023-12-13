@@ -47,12 +47,14 @@ def __data_list(data_name):
         "image": "https://www.binyang.fun/resource/test_data/binder_216_302.tif",
         "surface points": "https://www.binyang.fun/resource/test_data/binder_4.pcd",
         "cross-section": "https://www.binyang.fun/resource/test_data/boundary_of_cross-section.vtk",
-        "sorted coordinate": "https://www.binyang.fun/resource/test_data/vf57_weft_0.coo",}
+        "sorted coordinate": "https://www.binyang.fun/resource/test_data/vf57_weft_0.coo",
+        "case template": "https://www.binyang.fun/resource/test_data/CaseTemplate.zip",}
     dataset_info = {
         "image": "An image sequence of two  binder tows obtained by Micro CT scanner.",
         "surface points": "The surface points of a binder tow.",
         "cross-section": "The cross-section of the binder tow.",
-        "sorted coordinate": "This file contains the sorted coordinates of a tow and the corresponding parameters.",}
+        "sorted coordinate": "This file contains the sorted coordinates of a tow and the corresponding parameters.",
+        "case template": "A template case for OpenFOAM simulation. Use Textile.case_prepare() to setup the case."}
 
     if data_name == "all":
         print("Available datasets:" + "\n")

@@ -1442,19 +1442,22 @@ The fiber volume fraction is returned if fvf is True.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.export_as_openfoam" title="polykriging.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
 <td><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.meshing" title="polykriging.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.from_file" title="polykriging.textile.Textile.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
+<td><p>Load a textile object from a file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.meshing" title="polykriging.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
 <td><p>Generate a mesh for the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.reconstruct" title="polykriging.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.reconstruct" title="polykriging.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
 <td><p>Reconstruct the textile object from the saved file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.remove" title="polykriging.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.remove" title="polykriging.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
 <td><p>Remove a tow from the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.save" title="polykriging.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.save" title="polykriging.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
 <td><p>Save the textile object to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.triangulate" title="polykriging.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.textile.Textile.triangulate" title="polykriging.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
 <td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
 </tr>
 </tbody>
@@ -1580,6 +1583,25 @@ will be set as “wall” for all boundaries.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.from_file" title="Permalink to this definition"></a></dt>
+<dd><p>Load a textile object from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the file to be loaded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Textile object.</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1796,34 +1818,37 @@ direction. (initialized in Tow.resampling)</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.axial_lines" title="polykriging.tow.Tow.axial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code></a>([save_path, plot])</p></td>
 <td><p>Generate the axial line of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.from_file" title="polykriging.tow.Tow.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
+<td><p>Initialize the tow from a saved tow file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.kde" title="polykriging.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
 <td><p>Generate the kernel density estimation of the radial normalized distance for point cloud decomposition.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.normal_cross_section" title="polykriging.tow.Tow.normal_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code></a>([algorithm, save_path, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.normal_cross_section" title="polykriging.tow.Tow.normal_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code></a>([algorithm, save_path, ...])</p></td>
 <td><p>Generate the normal cross section of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.radial_lines" title="polykriging.tow.Tow.radial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code></a>([save_path, plot, type])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.radial_lines" title="polykriging.tow.Tow.radial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code></a>([save_path, plot, type])</p></td>
 <td><p>Generate the radial line of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.resampling" title="polykriging.tow.Tow.resampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code></a>([krig_config, skip, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.resampling" title="polykriging.tow.Tow.resampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code></a>([krig_config, skip, ...])</p></td>
 <td><p>Kriging the cross-sections of the tow to obtain the parametric equations for each cross-section (which is a closed curve).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.save" title="polykriging.tow.Tow.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(save_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.save" title="polykriging.tow.Tow.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(save_path)</p></td>
 <td><p>Save the fiber tow data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.smooth_window" title="polykriging.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
 <td><p>The window size of smoothing operation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.smoothing" title="polykriging.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
 <td><p>Smooth the tow using parametric surface kriging.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path, end_closed])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.surf_mesh" title="polykriging.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path, end_closed])</p></td>
 <td><p>Generate the surface mesh of the tow.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.trajectory" title="polykriging.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
 <td><p>Generate the trajectory of the tow and smooth it using kriging.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../source/polykriging.html#polykriging.tow.Tow.unit_vector" title="polykriging.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
 <td><p>Returns the unit vector of the input vector along the given axis.</p></td>
 </tr>
 </tbody>
@@ -1851,6 +1876,26 @@ direction. (initialized in Tow.resampling)</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>axial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The axial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polykriging.tow.Tow.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/polykriging/tow.html#Tow.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.tow.Tow.from_file" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the tow from a saved tow file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>The path to the saved tow file. The file format is .tow.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>tow</strong><span class="classifier">Tow</span></dt><dd><p>The Tow object.</p>
 </dd>
 </dl>
 </dd>

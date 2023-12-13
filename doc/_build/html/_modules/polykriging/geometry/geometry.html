@@ -396,6 +396,8 @@
 
 <span class="sd">    Warning</span>
 <span class="sd">    -------</span>
+<span class="sd">    If the number of points is less than 3, a warning is raised and the area is</span>
+<span class="sd">    returned as 0.</span>
 
 
 <span class="sd">    Examples</span>
@@ -418,7 +420,7 @@
 
     <span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
         <span class="c1"># raise warning</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;The number of points is less than 3. The area is returned as 0.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;The number of points is less than 3. The area is returned as 0.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
         <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
