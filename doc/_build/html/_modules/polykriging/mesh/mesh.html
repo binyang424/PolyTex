@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,12 +37,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>polykriging.mesh.mesh</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polykriging.mesh.mesh</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,10 +90,11 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">_vtk</span>
+<span class="kn">import</span> <span class="nn">vtk</span>
 
 
 <div class="viewcode-block" id="isInbBox"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.isInbBox">[docs]</a><span class="k">def</span> <span class="nf">isInbBox</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determine if point is within a bounding box (bbox)</span>
 <span class="sd">    that parallel to the principle axes of global Cartesian coordinate.</span>
 
@@ -113,7 +118,7 @@
 
 
 <div class="viewcode-block" id="background_mesh"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.background_mesh">[docs]</a><span class="k">def</span> <span class="nf">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a voxel background mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -162,7 +167,7 @@
 
 
 <div class="viewcode-block" id="find_cells_within_bounds"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.find_cells_within_bounds">[docs]</a><span class="k">def</span> <span class="nf">find_cells_within_bounds</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the index of cells in this mesh within bounds.</span>
 
 <span class="sd">    Parameters</span>
@@ -195,7 +200,7 @@
 
 
 <div class="viewcode-block" id="label_mask"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.label_mask">[docs]</a><span class="k">def</span> <span class="nf">label_mask</span><span class="p">(</span><span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Store the label of each fiber tow for intersection detection.</span>
 
 <span class="sd">    Parameters</span>
@@ -224,7 +229,7 @@
 
 
 <div class="viewcode-block" id="intersection_detect"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.intersection_detect">[docs]</a><span class="k">def</span> <span class="nf">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the intersection of fiber tows from implicit surface.</span>
 
 <span class="sd">    Parameters</span>
@@ -291,7 +296,7 @@
 
 
 <div class="viewcode-block" id="structured_cylinder_vertices"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.structured_cylinder_vertices">[docs]</a><span class="k">def</span> <span class="nf">structured_cylinder_vertices</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">theta_res</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate points on an ellipse.</span>
 
 <span class="sd">    Parameters</span>
@@ -327,7 +332,7 @@
 
 
 <div class="viewcode-block" id="tubular_mesh_generator"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.tubular_mesh_generator">[docs]</a><span class="k">def</span> <span class="nf">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a tubular mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -356,7 +361,7 @@
 
 
 <div class="viewcode-block" id="to_meshio_data"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.to_meshio_data">[docs]</a><span class="k">def</span> <span class="nf">to_meshio_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert PyVista flavor data structure to meshio.</span>
 
 <span class="sd">    Parameters</span>
@@ -457,7 +462,7 @@
 
 
 <div class="viewcode-block" id="mesh_correction"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.mesh_correction">[docs]</a><span class="k">def</span> <span class="nf">mesh_correction</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Close the ends of the tubular mesh with triangles.</span>
 
 <span class="sd">    Parameters</span>
@@ -522,6 +527,37 @@
         <span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;quad&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">cells_connectivity</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;triangle&#39;</span><span class="p">,</span> <span class="n">new_cells</span><span class="p">)]</span>
 
     <span class="k">return</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span></div>
+
+
+<div class="viewcode-block" id="construct_tetra_vtk"><a class="viewcode-back" href="../../../source/polykriging.mesh.html#polykriging.mesh.mesh.construct_tetra_vtk">[docs]</a><span class="k">def</span> <span class="nf">construct_tetra_vtk</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points: (n, 3) array</span>
+<span class="sd">            vertices</span>
+<span class="sd">        cells: (m, 4) array</span>
+<span class="sd">            connectivity</span>
+<span class="sd">        save: str</span>
+<span class="sd">            The path and file name of the vtk file to be saved (&quot;./tetra.vtk&quot;).</span>
+<span class="sd">            If None, the vtk file will not be saved.</span>
+<span class="sd">        binary: bool</span>
+<span class="sd">            whether to save the mesh in binary format</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        grid: pyvista.UnstructuredGrid</span>
+<span class="sd">            UnstructuredGrid tetrahedral mesh</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_cells</span> <span class="o">=</span> <span class="n">cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_cells</span><span class="p">)])</span>
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    <span class="n">cell_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vtk</span><span class="o">.</span><span class="n">VTK_TETRA</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_cells</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">cell_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">grid</span></div>
 
 
 <span class="k">if</span> <span class="s2">&quot;__name__&quot;</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -37,12 +37,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>polykriging.tow</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polykriging.tow</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,7 +105,7 @@
 
 
 <div class="viewcode-block" id="Tow"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow">[docs]</a><span class="k">class</span> <span class="nc">Tow</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class is used to store the tow information, calculate the geometry features</span>
 <span class="sd">    and parametrilize the tow.</span>
 
@@ -169,7 +173,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surf_points</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="p">,</span> <span class="n">radius_fiber</span><span class="p">,</span> <span class="n">length_scale</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">,</span> <span class="n">packing_fiber</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -272,7 +276,7 @@
     <span class="c1"># initialize the tow from a saved tow file</span>
 <div class="viewcode-block" id="Tow.from_file"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.from_file">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the tow from a saved tow file.</span>
 
 <span class="sd">            Parameters</span>
@@ -317,7 +321,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">attribute_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the attribute names of the Tow class.</span>
 
 <span class="sd">        Returns</span>
@@ -328,7 +332,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <div class="viewcode-block" id="Tow.kde"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.kde">[docs]</a>    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the kernel density estimation of the radial normalized distance for point cloud</span>
 <span class="sd">        decomposition.</span>
 
@@ -350,13 +354,13 @@
         <span class="n">t_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">bw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot; Initial bandwidth estimation by Scott&#39;s rule &quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot; Initial bandwidth estimation by Scott&#39;s rule &quot;&quot;&quot;</span>
             <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">t_norm</span><span class="p">)</span>
             <span class="n">bw</span> <span class="o">=</span> <span class="n">bw_scott</span><span class="p">(</span><span class="n">std</span><span class="p">,</span> <span class="n">t_norm</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial bandwidth: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bw</span><span class="p">))</span>
 
-        <span class="sd">&quot;&quot;&quot;  Kernel density estimation   &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;  Kernel density estimation   &quot;&quot;&quot;</span>
         <span class="n">t_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
         <span class="n">clusters</span> <span class="o">=</span> <span class="n">kdeScreen</span><span class="p">(</span><span class="n">t_norm</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">[</span><span class="s1">&#39;cluster centers&#39;</span><span class="p">])))</span>
@@ -376,7 +380,7 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Tow.resampling"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.resampling">[docs]</a>    <span class="k">def</span> <span class="nf">resampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="p">[],</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Kriging the cross-sections of the tow to obtain the parametric equations</span>
 <span class="sd">        for each cross-section (which is a closed curve).</span>
 
@@ -474,7 +478,7 @@
         <span class="k">return</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">],</span> <span class="n">expr</span></div>
 
 <div class="viewcode-block" id="Tow.surf_mesh"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.surf_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">surf_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the surface mesh of the tow.</span>
 
 <span class="sd">        Parameters</span>
@@ -513,7 +517,7 @@
         <span class="k">return</span> <span class="n">mesh</span></div>
 
 <div class="viewcode-block" id="Tow.trajectory"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the trajectory of the tow and smooth it using kriging.</span>
 
 <span class="sd">        Parameters</span>
@@ -636,7 +640,7 @@
         <span class="k">return</span> <span class="n">traj</span></div>
 
 <div class="viewcode-block" id="Tow.unit_vector"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.unit_vector">[docs]</a>    <span class="k">def</span> <span class="nf">unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the unit vector of the input vector along the given axis.</span>
 
 <span class="sd">        Parameters</span>
@@ -664,7 +668,7 @@
                   <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
                   <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Smooth the tow using parametric surface kriging.</span>
 <span class="sd">        Anisotropic smoothing is applied to the tow by using different smoothing factors</span>
 <span class="sd">        for the two directions.</span>
@@ -786,7 +790,7 @@
         <span class="k">return</span> <span class="n">vertices</span></div>
 
 <div class="viewcode-block" id="Tow.smooth_window"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.smooth_window">[docs]</a>    <span class="k">def</span> <span class="nf">smooth_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The window size of smoothing operation. The window size is the number of</span>
 <span class="sd">        slices in the axial direction of fiber tow that are smoothed per iteration.</span>
 
@@ -838,7 +842,7 @@
         <span class="k">return</span> <span class="n">win_interp</span><span class="p">,</span> <span class="n">win_result</span></div>
 
 <div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the fiber tow data.</span>
 
 <span class="sd">        Parameters</span>
@@ -856,7 +860,7 @@
         <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Tow.axial_lines"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.axial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">axial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the axial line of the fiber tow surface.</span>
 
 <span class="sd">        Parameters</span>
@@ -919,7 +923,7 @@
         <span class="k">return</span> <span class="n">poly</span></div>
 
 <div class="viewcode-block" id="Tow.radial_lines"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.radial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">radial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;resampled&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the radial line of the fiber tow surface.</span>
 
 <span class="sd">        Parameters</span>
@@ -993,7 +997,7 @@
 
 <div class="viewcode-block" id="Tow.normal_cross_section"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.normal_cross_section">[docs]</a>    <span class="k">def</span> <span class="nf">normal_cross_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kriging&quot;</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">i_size</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the normal cross section of the fiber tow surface.</span>
 
 <span class="sd">        Parameters</span>
@@ -1070,7 +1074,7 @@
 
                 <span class="n">edge_reorder</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
-                <span class="sd">&quot;&quot;&quot;Skip the calculation if the number of points on the boundary is less than 3&quot;&quot;&quot;</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;Skip the calculation if the number of points on the boundary is less than 3&quot;&quot;&quot;</span>
                 <span class="n">n_iter</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">n_iter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
                     <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>

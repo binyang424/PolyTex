@@ -4,6 +4,7 @@
 import numpy as np
 import pyvista as pv
 from pyvista import _vtk
+import vtk
 
 
 def isInbBox(bbox, point):
@@ -440,6 +441,37 @@ def mesh_correction(cells, points, theta_res):
         cells = [('quad', list(cells_connectivity)), ('triangle', new_cells)]
 
     return points, cells
+
+
+def construct_tetra_vtk(points, cells, save=None, binary=True):
+    """
+    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.
+
+        Parameters
+        ----------
+        points: (n, 3) array
+            vertices
+        cells: (m, 4) array
+            connectivity
+        save: str
+            The path and file name of the vtk file to be saved ("./tetra.vtk").
+            If None, the vtk file will not be saved.
+        binary: bool
+            whether to save the mesh in binary format
+
+        Returns
+        -------
+        grid: pyvista.UnstructuredGrid
+            UnstructuredGrid tetrahedral mesh
+    """
+    n_cells = cells.shape[0]
+    offset = np.array([4 * i for i in np.arange(n_cells)])
+    cells = np.concatenate(np.insert(cells, 0, 4, axis=1)).astype(np.int64)
+    cell_type = np.array([vtk.VTK_TETRA] * n_cells)
+    grid = pv.UnstructuredGrid(offset, cells, cell_type, np.array(points))
+    if save is not None:
+        grid.save(save, binary=binary)
+    return grid
 
 
 if "__name__" == "__main__":

@@ -1,4 +1,4 @@
-from .io import pk_save, pk_load, choose_directory, voxel2foam
+from .io import pk_save, pk_load, choose_directory, voxel2foam, voxel2inp
 from .tow import Tow
 from .mesh import background_mesh, label_mask, intersection_detect
 from .geometry import Plane
@@ -429,7 +429,7 @@ class Textile:
                 The file path of the output mesh.
             scale : float, optional
                 The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
-                should be 0.001. The default is 0.001.
+                should be 0.001. The default is 1.
             boundary_type : dict, optional
                 The boundary type of the mesh. The default is None. If None, the boundary type
                 will be set as "wall" for all boundaries.
@@ -475,6 +475,31 @@ class Textile:
 
         self.__case_root__ = outputDirMesh
         return None
+    
+    def export_as_inp(self, fp="./mesh-C3D8R.inp", scale=1, orientation=True):
+        """
+        Export the textile mesh as inp file for Abaqus simulation.
+
+            Parameters
+            ----------
+            fp : str
+                The file path and filename of the output mesh. The default is "./mesh-C3D8R.inp".
+            scale : float, optional
+                The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
+                should be 0.001. The default is 1.
+            orientation : bool, optional
+                Whether to export the orientation of the yarns. The default is True.
+
+            Returns
+            -------
+            None.
+        """
+        if self.mesh is None:
+            raise ValueError("The textile mesh is not generated yet. Please generate the textile "
+                             "mesh with `Textile.meshing()` first.")
+    
+        mesh = self.mesh
+        voxel2inp(mesh, scale=1, outputDir=fp, orientation=True)
 
     def save(self, path=None, filename=None, data_size="minimal"):
         """

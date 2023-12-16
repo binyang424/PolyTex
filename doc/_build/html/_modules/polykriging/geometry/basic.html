@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,12 +37,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>polykriging.geometry.basic</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polykriging.geometry.basic</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +103,7 @@
 
 
 <div class="viewcode-block" id="Point"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point">[docs]</a><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A point / vector class inheriting from numpy.ndarray. This class is</span>
 <span class="sd">    used to represent points in n-dimensional space. The shape of the</span>
 <span class="sd">    array is (m, n), where m is the number of points and n is the</span>
@@ -132,7 +136,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">orig_3d</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</span>
 
 <span class="sd">        Parameters</span>
@@ -175,7 +179,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">z</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return</span>
 <span class="sd">        ------</span>
 <span class="sd">        z : float</span>
@@ -205,7 +209,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bounds : array_like</span>
@@ -250,7 +254,7 @@
         <span class="k">return</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Point.dist"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.dist">[docs]</a>    <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Both points must have the same dimensions</span>
 <span class="sd">        :return: Euclidean distance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -264,7 +268,7 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span> <span class="o">-</span> <span class="n">other</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Point.direction_ratio"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.direction_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">direction_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gives the direction ratio between 2 points</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -286,7 +290,7 @@
         <span class="k">return</span> <span class="p">[(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="Point.save_as_vtk"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Point.save_as_vtk">[docs]</a>    <span class="k">def</span> <span class="nf">save_as_vtk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the point as a vtk file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -302,7 +306,7 @@
 
 
 <div class="viewcode-block" id="Vector"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector">[docs]</a><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A vector class inheriting from Point. This class is used to represent</span>
 <span class="sd">    vectors in n-dimensional space. The shape of the array is (1, n).</span>
 
@@ -340,7 +344,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return</span>
 <span class="sd">        ------</span>
 <span class="sd">        norm : float</span>
@@ -349,7 +353,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Vector.angle_between"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Vector.angle_between">[docs]</a>    <span class="k">def</span> <span class="nf">angle_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">radian</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the angle between 2 vectors.</span>
 
 <span class="sd">        .. math::</span>
@@ -381,7 +385,7 @@
 
 
 <div class="viewcode-block" id="Line"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Line">[docs]</a><span class="k">class</span> <span class="nc">Line</span><span class="p">(</span><span class="n">symLine</span><span class="o">.</span><span class="n">Line</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A line class. This class is used to represent a line in n-dimensional space.</span>
 <span class="sd">    The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.line.Line.</span>
 
@@ -403,7 +407,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        p1 : Point object</span>
@@ -430,7 +434,7 @@
 
 
 <div class="viewcode-block" id="Curve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Curve">[docs]</a><span class="k">class</span> <span class="nc">Curve</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an open curve defined by a list of points in the order of connection. It is</span>
 <span class="sd">    created by using composition instead of inheritance of PolyKriging.geometry.Point.</span>
 
@@ -449,7 +453,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
 
 <span class="sd">        Parameters</span>
@@ -466,7 +470,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the length of the curve.</span>
 
 <span class="sd">        Returns</span>
@@ -477,7 +481,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ambient_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the dimension of the curve.</span>
 
 <span class="sd">        Returns</span>
@@ -488,7 +492,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the bounds of the curve.</span>
 
 <span class="sd">        Returns</span>
@@ -499,7 +503,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">tangent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the tangent vector of the curve at each point.</span>
 
 <span class="sd">        Returns</span>
@@ -547,7 +551,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the curvature of the curve.</span>
 
 <span class="sd">        TODO: curvature of a curve</span>
@@ -559,7 +563,7 @@
         <span class="k">return</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span> <span class="nf">__cell_from_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Given an array of points, make a line set</span>
 
 <span class="sd">        Returns</span>
@@ -577,7 +581,7 @@
         <span class="k">return</span> <span class="n">cells</span>
 
 <div class="viewcode-block" id="Curve.save"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Curve.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the curve to a vtk file.</span>
 
 <span class="sd">        Parameters</span>
@@ -603,7 +607,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Curve.plot"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Curve.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot the curve.</span>
 
 <span class="sd">        Returns</span>
@@ -616,7 +620,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Curve.to_polygon"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Curve.to_polygon">[docs]</a>    <span class="k">def</span> <span class="nf">to_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the curve to a polygon.</span>
 
 <span class="sd">        Returns</span>
@@ -629,7 +633,7 @@
 
 
 <div class="viewcode-block" id="Ellipse2D"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Ellipse2D">[docs]</a><span class="k">class</span> <span class="nc">Ellipse2D</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an ellipse defined by a center point and two vectors.</span>
 
 <span class="sd">    Examples</span>
@@ -640,7 +644,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        n : int</span>
@@ -662,7 +666,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Ellipse2D.elipse_2d"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Ellipse2D.elipse_2d">[docs]</a>    <span class="k">def</span> <span class="nf">elipse_2d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate points on an ellipse.</span>
 
 <span class="sd">        Returns</span>
@@ -685,7 +689,7 @@
 
 
 <div class="viewcode-block" id="Polygon"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Polygon">[docs]</a><span class="k">class</span> <span class="nc">Polygon</span><span class="p">(</span><span class="n">Curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a closed curve in 2/3-dimensional space. The polygon is defined</span>
 <span class="sd">    by a list of points. The first and last point must be the same. if not,</span>
 <span class="sd">    the last point will be added to the list.</span>
@@ -701,7 +705,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
 
 <span class="sd">        Parameters</span>
@@ -717,7 +721,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Curve__cell_from_points</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Polygon.to_curve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Polygon.to_curve">[docs]</a>    <span class="k">def</span> <span class="nf">to_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the polygon to a curve.</span>
 
 <span class="sd">        Returns</span>
@@ -728,7 +732,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the centroid of the polygon.</span>
 
 <span class="sd">        Returns</span>
@@ -739,7 +743,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the area of the polygon.</span>
 
 <span class="sd">        Returns</span>
@@ -750,7 +754,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the perimeter of the polygon.</span>
 
 <span class="sd">        Returns</span>
@@ -761,7 +765,7 @@
 
 
 <div class="viewcode-block" id="Plane"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane">[docs]</a><span class="k">class</span> <span class="nc">Plane</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A plane in 3D space. The plane can be defined by a point and a normal vector,</span>
 <span class="sd">    or by three points.</span>
 
@@ -782,7 +786,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a plane from 3 points or a point and a normal vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -849,7 +853,7 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Plane(Point</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="si">}</span><span class="s2">, Normal</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="si">}</span><span class="s2">)&quot;</span>
 
 <div class="viewcode-block" id="Plane.distance"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.distance">[docs]</a>    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the signed distance between a point and the plane.</span>
 
 <span class="sd">        Parameters</span>
@@ -885,7 +889,7 @@
         <span class="k">return</span> <span class="n">dist</span></div>
 
 <div class="viewcode-block" id="Plane.show"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot the plane.</span>
 
 <span class="sd">        Returns</span>
@@ -901,7 +905,7 @@
     <span class="c1">#     return []</span>
 
 <div class="viewcode-block" id="Plane.function"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.function">[docs]</a>    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the equation of the plane as a function of x, y and z.</span>
 
 <span class="sd">        Note</span>
@@ -945,7 +949,7 @@
         <span class="k">return</span> <span class="n">f</span></div>
 
 <div class="viewcode-block" id="Plane.intersection"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Plane.intersection">[docs]</a>    <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">max_dist</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the intersection of the plane with a curve or a polygon.</span>
 
 <span class="sd">        Parameters</span>
@@ -984,7 +988,7 @@
 
 
 <div class="viewcode-block" id="Tube"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube">[docs]</a><span class="k">class</span> <span class="nc">Tube</span><span class="p">(</span><span class="n">GeometryEntity</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class defines a 3D tubular surface by number of points on each cross-section (theta_res)</span>
 <span class="sd">    and the number of cross-sections (h_res). Note that the number of points on the cross-section</span>
 <span class="sd">    is the same for all the-cross sections.</span>
@@ -998,7 +1002,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        theta_res : int</span>
@@ -1061,7 +1065,7 @@
         <span class="k">return</span> <span class="p">[</span><span class="nb">min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">min</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">min</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">max</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
 <div class="viewcode-block" id="Tube.mesh"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.mesh">[docs]</a>    <span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</span>
 
 <span class="sd">        Note</span>
@@ -1077,7 +1081,7 @@
         <span class="k">return</span> <span class="n">pv_mesh</span></div>
 
 <div class="viewcode-block" id="Tube.save_as_mesh"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.Tube.save_as_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">save_as_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the tubular mesh to a file. The file format is determined by the extension of the filename.</span>
 <span class="sd">        The possible file formats are: [&quot;.ply&quot;, &quot;.stl&quot;, &quot;.vtk&quot;, &quot;.vtu&quot;].</span>
 
@@ -1127,7 +1131,7 @@
 
 
 <div class="viewcode-block" id="ParamCurve"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a parametric curve. It is defined by a function and</span>
 <span class="sd">    a parameter.</span>
 
@@ -1149,7 +1153,7 @@
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="p">[],</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
                 <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        limits : 3-tuple</span>
@@ -1220,7 +1224,7 @@
         <span class="k">return</span> <span class="n">curve</span><span class="o">.</span><span class="n">bounds</span></div>
 
 <div class="viewcode-block" id="ParamCurve.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the curve at a given parameter value. The parameter value</span>
 <span class="sd">        should be within the limits. Otherwise, an error will be raised.</span>
 
@@ -1250,7 +1254,7 @@
 
 <span class="c1"># TODO : An inheritance of sympy.geometry.entity.GeometryEntity should be enough.</span>
 <div class="viewcode-block" id="ParamCurve3D"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D">[docs]</a><span class="k">class</span> <span class="nc">ParamCurve3D</span><span class="p">(</span><span class="n">symCurve</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a parametric curve defined by a function.</span>
 
 <span class="sd">    Examples</span>
@@ -1263,7 +1267,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        function : list of functions</span>
@@ -1283,7 +1287,7 @@
         <span class="k">return</span> <span class="n">GeometryEntity</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">functions</span><span class="p">),</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">limits</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParamCurve3D.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        t : float or array_like</span>
 <span class="sd">            The parameter value for evaluation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1305,7 +1309,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The length of the curve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1323,7 +1327,7 @@
         <span class="k">return</span> <span class="n">curve</span><span class="o">.</span><span class="n">bounds</span>
 
 <div class="viewcode-block" id="ParamCurve3D.translate"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamCurve3D.translate">[docs]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Translate the Curve by (x, y, z).</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translate the Curve by (x, y, z).</span>
 <span class="sd">        Returns</span>
 <span class="sd">        =======</span>
 <span class="sd">        Curve :</span>
@@ -1347,7 +1351,7 @@
 
 
 <div class="viewcode-block" id="ParamSurface"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface">[docs]</a><span class="k">class</span> <span class="nc">ParamSurface</span><span class="p">(</span><span class="n">GeometryEntity</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A parametric surface is defined by two parametric equations in the form of</span>
 <span class="sd">        x = f(s, t)</span>
 <span class="sd">        y = g(s, t)</span>
@@ -1368,7 +1372,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        functions : list of functions</span>
@@ -1393,7 +1397,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The functions specifying the surface.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The functions specifying the surface.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1412,7 +1416,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The limits of the two parameters specifying the surface.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The limits of the two parameters specifying the surface.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1429,7 +1433,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <div class="viewcode-block" id="ParamSurface.eval"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.ParamSurface.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s_value</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the surface at the given parameter values.</span>
 
 <span class="sd">        Parameters</span>
@@ -1483,7 +1487,7 @@
 
 
 <div class="viewcode-block" id="find_intersect"><a class="viewcode-back" href="../../../source/polykriging.geometry.html#polykriging.geometry.basic.find_intersect">[docs]</a><span class="k">def</span> <span class="nf">find_intersect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">curve</span><span class="p">,</span> <span class="n">niterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">mSegments</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the intersection of a curve with a plane</span>
 
 <span class="sd">    Parameters</span>

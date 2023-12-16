@@ -1,5 +1,5 @@
 import os
-import urllib
+import urllib.request as request
 
 
 def example(data_name, outdir=r"./test_data/", overwrite=False):
@@ -113,11 +113,11 @@ def __download_file(url, outdir=r"./test_data/", overwrite=True):
     # Download the file if it does not exist already
     if not os.path.exists(outfp):
         # print("Downloading", fname)
-        r = urllib.request.urlretrieve(url, outfp)
+        r = request.urlretrieve(url, outfp)
     else:
         if overwrite:
             print("Overwriting", fname)
-            r = urllib.request.urlretrieve(url, outfp)
+            r = request.urlretrieve(url, outfp)
         else:
             print("File already exists:", fname)
 

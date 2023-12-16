@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging.io &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,12 +40,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PolyKriging
-            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -88,10 +92,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
-          <li><a href="submodules.html">Functions</a> &raquo;</li>
-      <li>polykriging.io</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
+          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
+      <li class="breadcrumb-item active">polykriging.io</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.io.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -259,33 +263,6 @@ Not returned if neighbor is False.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="polykriging.io.construct_tetra_vtk">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">construct_tetra_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#construct_tetra_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.construct_tetra_vtk" title="Permalink to this definition"></a></dt>
-<dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
-</dd>
-<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
-</dd>
-<dt><strong>save: str</strong></dt><dd><p>The path and file name of the vtk file to be saved (“./tetra.vtk”).
-If None, the vtk file will not be saved.</p>
-</dd>
-<dt><strong>binary: bool</strong></dt><dd><p>whether to save the mesh in binary format</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.coo_to_ply">
 <span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">coo_to_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_coo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#coo_to_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.coo_to_ply" title="Permalink to this definition"></a></dt>
 <dd><p>Convert a pcd file to ply file.</p>
@@ -296,10 +273,48 @@ If None, the vtk file will not be saved.</p>
 </dd>
 <dt><strong>file_ply</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</p>
 </dd>
-<dt><strong>:return: None</strong></dt><dd></dd>
+<dt><strong>interpolate</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to interpolate the points. The default is False.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>The threshold of the normalized distance between the neighboring points. The default is 0.1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.create_material_data_lines">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">create_material_data_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">materials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#create_material_data_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.create_material_data_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining material data in the input file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.create_part_data_lines">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">create_part_data_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prtname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodesets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elemsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#create_part_data_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.create_part_data_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining nodes, elements, and sets in the part data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.create_solid_section_for_all_sets">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">create_solid_section_for_all_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fiber_material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#create_solid_section_for_all_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.create_solid_section_for_all_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Creates solid section lines for all fiber element sets in the mesh.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.create_solid_section_lines">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">create_solid_section_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#create_solid_section_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.create_solid_section_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining the solid section properties of a specified element set and material.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.create_yarn_element_sets">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">create_yarn_element_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#create_yarn_element_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.create_yarn_element_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Creates element sets for each unique fiber in the mesh.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -431,9 +446,9 @@ possible value is “cell” for cell property.</p>
 <span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">meshio_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#meshio_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.meshio_save" title="Permalink to this definition"></a></dt>
 <dd><p>Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.
 It is a wrapper of meshio.write() function.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is saved.</p>
 </dd>
 <dt><strong>vertices</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</p>
@@ -444,14 +459,10 @@ It is a wrapper of meshio.write() function.</p>
 </dd>
 <dt><strong>cell_data</strong><span class="classifier">dict, optional</span></dt><dd><p>The cell data of the mesh. The default is {}. Note that the cell data should be added as a
 list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
-has 2 triangles and 1 quad, namely,</p>
-<blockquote>
-<div><p>cells = [(“triangle”, [0, 1, 2], [1,2,3]), (“quad”, [3, 4, 5, 6])],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>then the cell data should be added as</dt><dd><p>cell_data = {“data”: [[1, 2], [3]}.</p>
-</dd>
-</dl>
+has 2 triangles and 1 quad, namely,
+cells = [(“triangle”, [0, 1, 2], [1,2,3]), (“quad”, [3, 4, 5, 6])],
+then the cell data should be added as
+cell_data = {“data”: [[1, 2], [3]}.</p>
 </dd>
 <dt><strong>binary</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the data is written in binary format. The default is False.</p>
 </dd>
@@ -755,6 +766,33 @@ The default is “linear”. The other option is “spline”.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.voxel2inp">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">voxel2inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/polykriging/io.html#voxel2inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.voxel2inp" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a voxel mesh to an Abaqus input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The voxel mesh.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor to convert the unit of points. The default is 1.0.</p>
+</dd>
+<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory and filename. The default is ‘./mesh-C3D8R.inp’. The file 
+extension is automatically added if not provided.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>voxel2inp is developed by Chao Yang (<a class="reference external" href="mailto:yangchaogg&#37;&#52;&#48;whut&#46;edu&#46;cn">yangchaogg<span>&#64;</span>whut<span>&#46;</span>edu<span>&#46;</span>cn</a>) &amp; Bin Yang 
+(<a class="reference external" href="mailto:bin&#46;yang&#37;&#52;&#48;polymtl&#46;ca">bin<span>&#46;</span>yang<span>&#64;</span>polymtl<span>&#46;</span>ca</a>) jointly. Please contact us if you have any questions.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.write_FoamFile">
 <span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">write_FoamFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_separator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#write_FoamFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.write_FoamFile" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -868,6 +906,12 @@ and the value is a numpy array containing all boundary face node indices.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="polykriging.io.write_fiber_orientation_to_file">
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">write_fiber_orientation_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fabrictest.ori'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#write_fiber_orientation_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.write_fiber_orientation_to_file" title="Permalink to this definition"></a></dt>
+<dd><p>Writes fiber orientation information to a file.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.write_neighbors">
 <span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">write_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#write_neighbors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.write_neighbors" title="Permalink to this definition"></a></dt>
 <dd><p>Write the neighbors file.</p>
@@ -939,7 +983,7 @@ which means the current directory.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.zip_files">
 <span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">zip_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'True'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#zip_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.zip_files" title="Permalink to this definition"></a></dt>
-<dd><p>Add multiple files to the zip file.</p>
+<dd><p>Add multiple files to a zip file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">

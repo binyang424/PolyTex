@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polykriging package &mdash; PolyKriging 0.1.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -38,12 +38,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PolyKriging
-            <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -69,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>polykriging package</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">polykriging package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polykriging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,8 +101,12 @@
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.cell_faces"><code class="docutils literal notranslate"><span class="pre">cell_faces()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.choose_directory"><code class="docutils literal notranslate"><span class="pre">choose_directory()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.choose_file"><code class="docutils literal notranslate"><span class="pre">choose_file()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.construct_tetra_vtk"><code class="docutils literal notranslate"><span class="pre">construct_tetra_vtk()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.coo_to_ply"><code class="docutils literal notranslate"><span class="pre">coo_to_ply()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.create_material_data_lines"><code class="docutils literal notranslate"><span class="pre">create_material_data_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.create_part_data_lines"><code class="docutils literal notranslate"><span class="pre">create_part_data_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.create_solid_section_for_all_sets"><code class="docutils literal notranslate"><span class="pre">create_solid_section_for_all_sets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.create_solid_section_lines"><code class="docutils literal notranslate"><span class="pre">create_solid_section_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.create_yarn_element_sets"><code class="docutils literal notranslate"><span class="pre">create_yarn_element_sets()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.cwd_chdir"><code class="docutils literal notranslate"><span class="pre">cwd_chdir()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.filenames"><code class="docutils literal notranslate"><span class="pre">filenames()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.get_boundary_faces"><code class="docutils literal notranslate"><span class="pre">get_boundary_faces()</span></code></a></li>
@@ -116,12 +124,14 @@
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.save_ply"><code class="docutils literal notranslate"><span class="pre">save_ply()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.voxel2foam"><code class="docutils literal notranslate"><span class="pre">voxel2foam()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.voxel2img"><code class="docutils literal notranslate"><span class="pre">voxel2img()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.voxel2inp"><code class="docutils literal notranslate"><span class="pre">voxel2inp()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_FoamFile"><code class="docutils literal notranslate"><span class="pre">write_FoamFile()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_boundary"><code class="docutils literal notranslate"><span class="pre">write_boundary()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_cell_data"><code class="docutils literal notranslate"><span class="pre">write_cell_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_cell_zone"><code class="docutils literal notranslate"><span class="pre">write_cell_zone()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_face"><code class="docutils literal notranslate"><span class="pre">write_face()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_faces"><code class="docutils literal notranslate"><span class="pre">write_faces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_fiber_orientation_to_file"><code class="docutils literal notranslate"><span class="pre">write_fiber_orientation_to_file()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_neighbors"><code class="docutils literal notranslate"><span class="pre">write_neighbors()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_owner"><code class="docutils literal notranslate"><span class="pre">write_owner()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.io.html#polykriging.io.write_points"><code class="docutils literal notranslate"><span class="pre">write_points()</span></code></a></li>
@@ -337,6 +347,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="polykriging.mesh.html#module-polykriging.mesh.mesh">polykriging.mesh.mesh</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.background_mesh"><code class="docutils literal notranslate"><span class="pre">background_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.construct_tetra_vtk"><code class="docutils literal notranslate"><span class="pre">construct_tetra_vtk()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.find_cells_within_bounds"><code class="docutils literal notranslate"><span class="pre">find_cells_within_bounds()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.intersection_detect"><code class="docutils literal notranslate"><span class="pre">intersection_detect()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html#polykriging.mesh.mesh.isInbBox"><code class="docutils literal notranslate"><span class="pre">isInbBox()</span></code></a></li>
@@ -449,11 +460,17 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
 <td><p>Add a tow to the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.case_prepare" title="polykriging.textile.Textile.case_prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code></a>([path])</p></td>
+<td><p>Prepare a case for OpenFOAM simulation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
 <td><p>Label the cells of the background mesh with tow id.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
 <td><p>Decimate the mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.export_as_inp" title="polykriging.textile.Textile.export_as_inp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code></a>([fp, scale, orientation])</p></td>
+<td><p>Export the textile mesh as inp file for Abaqus simulation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.export_as_openfoam" title="polykriging.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
 <td><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p></td>
@@ -527,6 +544,27 @@ to any group. Stored in self.groups.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.case_prepare">
+<span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.case_prepare" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare a case for OpenFOAM simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the case to be prepared. The default is None. If <cite>path</cite> is None,
+it is set to the root directory of the OpenFOAM mesh generated by
+<cite>Textile.export_as_openfoam()</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.cell_labeling">
 <span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
 <dd><p>Label the cells of the background mesh with tow id.</p>
@@ -562,6 +600,30 @@ specified by <cite>surface_mesh</cite>.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.export_as_inp">
+<span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.export_as_inp" title="Permalink to this definition"></a></dt>
+<dd><p>Export the textile mesh as inp file for Abaqus simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path and filename of the output mesh. The default is “./mesh-C3D8R.inp”.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
+should be 0.001. The default is 1.</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to export the orientation of the yarns. The default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="polykriging.textile.Textile.export_as_openfoam">
 <span class="sig-name descname"><span class="pre">export_as_openfoam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['yarnIndex',</span> <span class="pre">'D']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.export_as_openfoam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.export_as_openfoam" title="Permalink to this definition"></a></dt>
 <dd><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p>
@@ -587,7 +649,7 @@ specified by <cite>surface_mesh</cite>.</p>
 <dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path of the output mesh.</p>
 </dd>
 <dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
-should be 0.001. The default is 0.001.</p>
+should be 0.001. The default is 1.</p>
 </dd>
 <dt><strong>boundary_type</strong><span class="classifier">dict, optional</span></dt><dd><p>The boundary type of the mesh. The default is None. If None, the boundary type
 will be set as “wall” for all boundaries.</p>

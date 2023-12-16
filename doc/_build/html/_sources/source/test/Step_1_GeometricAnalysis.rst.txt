@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_source_test_Step_1_GeometricAnalysis.py>`
+        :ref:`Go to the end <sphx_glr_download_source_test_Step_1_GeometricAnalysis.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -128,6 +128,8 @@ Output: .geo and .coo files
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

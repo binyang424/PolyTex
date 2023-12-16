@@ -99,7 +99,6 @@ boundaryField
 """
 
 
-# Output directory
 def mkdir(path):
     """
     Create the output directory if it does not exist.
@@ -686,25 +685,25 @@ def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list
     Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
     and saved in the 0 timestep folder.
 
-    Parameters
-    ----------
-    mesh : pyvista.UnstructuredGrid
-        The voxel mesh.
-    scale : float, optional
-        The scale factor to convert the unit of points. The default is 1.0.
-    outputDir : str, optional
-        The output directory. The default is './'.
-    boundary_type : dict, optional
-        The type of each boundary. The default is None. If None, the type of the boundary
-        is set as "patch". The key is the boundary name and the value is the boundary type.
-        The key should be the same as the face_boundary_dict.
+        Parameters
+        ----------
+        mesh : pyvista.UnstructuredGrid
+            The voxel mesh.
+        scale : float, optional
+            The scale factor to convert the unit of points. The default is 1.0.
+        outputDir : str, optional
+            The output directory. The default is './'.
+        boundary_type : dict, optional
+            The type of each boundary. The default is None. If None, the type of the boundary
+            is set as "patch". The key is the boundary name and the value is the boundary type.
+            The key should be the same as the face_boundary_dict.
 
-        The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
-        etc. See OpenFOAM user guide for more details.
+            The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
+            etc. See OpenFOAM user guide for more details.
 
-    Returns
-    -------
-    None.
+        Returns
+        -------
+        None.
     """
     cwd = os.getcwd()
     print("Current working directory: ", cwd)
@@ -924,49 +923,18 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
     return None
 
 
-def construct_tetra_vtk(points, cells, save=None, binary=True):
-    """
-    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.
-
-    Parameters
-    ----------
-    points: (n, 3) array
-        vertices
-    cells: (m, 4) array
-        connectivity
-    save: str
-        The path and file name of the vtk file to be saved ("./tetra.vtk").
-        If None, the vtk file will not be saved.
-    binary: bool
-        whether to save the mesh in binary format
-
-    Returns
-    -------
-    grid: pyvista.UnstructuredGrid
-        UnstructuredGrid tetrahedral mesh
-    """
-    n_cells = cells.shape[0]
-    offset = np.array([4 * i for i in np.arange(n_cells)])
-    cells = np.concatenate(np.insert(cells, 0, 4, axis=1)).astype(np.int64)
-    cell_type = np.array([vtk.VTK_TETRA] * n_cells)
-    grid = pv.UnstructuredGrid(offset, cells, cell_type, np.array(points))
-    if save is not None:
-        grid.save(save, binary=binary)
-    return grid
-
-
 def cwd_chdir(path=""):
     """
     Set given directory or the folder where the code file is as current working directory
 
-    Parameters
-    ----------
-    path:
-        the path of current working directory. if empty, the path of the code file is used.
+        Parameters
+        ----------
+        path:
+            the path of current working directory. if empty, the path of the code file is used.
 
-    Returns
-    -------
-    cwd: the current working directory.
+        Returns
+        -------
+        cwd: the current working directory.
     """
     import sys
 
@@ -983,15 +951,15 @@ def choose_directory(titl='Select the target directory:'):
     """
     Choose a directory with GUI and return its path.
 
-    Parameters
-    ----------
-    titl: String.
-        The title of the open folder dialog window.
+        Parameters
+        ----------
+        titl: String.
+            The title of the open folder dialog window.
 
-    Returns
-    -------
-    path: String.
-        The path of the selected directory.
+        Returns
+        -------
+        path: String.
+            The path of the selected directory.
     """
 
     print(titl)
@@ -1022,16 +990,16 @@ def filenames(path, filter="csv"):
     """
     Get the list of files in the given folder.
 
-    Parameters
-    ----------
-    path:
-        the path of the folder
-    filter:
-        filter for file selection.++
+        Parameters
+        ----------
+        path:
+            the path of the folder
+        filter:
+            filter for file selection.++
 
-    Returns
-    -------
-    flst: the list of files in the given folder.
+        Returns
+        -------
+        flst: the list of files in the given folder.
     """
     filenamels = os.listdir(path)
     # filter the file list by the given filter.
@@ -1042,24 +1010,24 @@ def filenames(path, filter="csv"):
 
 def zip_files(directory, file_list, filename, remove="True"):
     """
-    Add multiple files to the zip file.
+    Add multiple files to a zip file.
 
-    Parameters
-    ----------
-    directory: String.
-        The directory of the files to be added to zip file. Therefore,
-        all the files in the file_list should be in the same directory.
-    file_list : List.
-        The list of file names to be added to the zip file (without directory).
-    filename: String.
-        The name of the zip file. The zip file is saved in the same directory
-    remove:
-        Whether to remove original files after adding to zip file.
-        Default is True. If False, the original files will not be removed.
+        Parameters
+        ----------
+        directory: String.
+            The directory of the files to be added to zip file. Therefore,
+            all the files in the file_list should be in the same directory.
+        file_list : List.
+            The list of file names to be added to the zip file (without directory).
+        filename: String.
+            The name of the zip file. The zip file is saved in the same directory
+        remove:
+            Whether to remove original files after adding to zip file.
+            Default is True. If False, the original files will not be removed.
 
-    Returns
-    -------
-    None.
+        Returns
+        -------
+        None.
     """
     from zipfile import ZipFile
 
@@ -1080,15 +1048,15 @@ def choose_file(titl='Select the target directory:', format='csv'):
     """
     Choose a file with GUI and return its path.
 
-    Parameters
-    ----------
-    titl: String.
-        The title of the window.
+        Parameters
+        ----------
+        titl: String.
+            The title of the window.
 
-    Returns
-    -------
-    path: String.
-        The path of the file.
+        Returns
+        -------
+        path: String.
+            The path of the file.
     """
 
     print(titl)
@@ -1109,18 +1077,18 @@ def save_nrrd(cell_label, file_name, file_path='./'):
     Save the labels of a hexahedral mesh to a nrrd file. The labels should be
     starting from 0 and increasing by 1.
 
-    Parameters
-    ----------
-    cell_label: numpy array(int, int, int)
-        The cell label of the mesh.
-    file_name: String
-        The name of the .nrrd file.
-    file_path: String
-        The save path of the .nrrd file.
+        Parameters
+        ----------
+        cell_label: numpy array(int, int, int)
+            The cell label of the mesh.
+        file_name: String
+            The name of the .nrrd file.
+        file_path: String
+            The save path of the .nrrd file.
 
-    Returns
-    -------
-    None
+        Returns
+        -------
+        None
     """
     import nrrd
 
@@ -1149,21 +1117,21 @@ class save_krig(dict):
     these files. Therefore, the class is not intended to be used directly by
     the user.
 
-    Note:
-    --------
-    This class is taken from: https://github.com/sympy/sympy/issues/7974.
-    A bug in exec() is fixed and some modifications are made to make it
-    fit for the purpose of this project (store the kriging expression).
+        Note:
+        --------
+        This class is taken from: https://github.com/sympy/sympy/issues/7974.
+        A bug in exec() is fixed and some modifications are made to make it
+        fit for the purpose of this project (store the kriging expression).
 
-    Example:
-    --------
-    >>> import sympy
-    >>> from polykriging.fileio.save_krig import save_krig
-    >>> a, b = sympy.symbols('a, b')
-    >>> d = save_krig({'a':a, 'b':b})
-    >>> d.save('name.krig')
-    >>> del d
-    >>> d2 = save_krig.load('name.krig')
+        Example:
+        --------
+        >>> import sympy
+        >>> from polykriging.fileio.save_krig import save_krig
+        >>> a, b = sympy.symbols('a, b')
+        >>> d = save_krig({'a':a, 'b':b})
+        >>> d.save('name.krig')
+        >>> del d
+        >>> d2 = save_krig.load('name.krig')
     """
 
     def __init__(self, *args, **kwargs):
@@ -1201,23 +1169,23 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
     """
     This is an exact copy of numpy.save, except that it does not check the extensions.
 
-    Parameters
-    ----------
-    file : file, str, or pathlib.Path. File or filename to which the data is saved.
-    arr : array_like. Array data to be saved.
-    allow_pickle : bool, optional
-        Allow saving object arrays using Python pickles. Reasons for disallowing
-        pickles include security (loading pickled data can execute arbitrary
-        code) and portability (pickled objects may not be loadable on different
-        Python installations, for example if the stored objects require libraries
-        that are not available, and not all pickled data is compatible between
-        Python 2 and Python 3).
-        Default: True
-    fix_imports : bool, optional
-        Only useful in forcing objects in object arrays on Python 3 to be
-        pickled in a Python 2 compatible way. If `fix_imports` is True, pickle
-        will try to map the new Python 3 names to the old module names used in
-        Python 2, so that the pickle data stream is readable with Python 2.
+        Parameters
+        ----------
+        file : file, str, or pathlib.Path. File or filename to which the data is saved.
+        arr : array_like. Array data to be saved.
+        allow_pickle : bool, optional
+            Allow saving object arrays using Python pickles. Reasons for disallowing
+            pickles include security (loading pickled data can execute arbitrary
+            code) and portability (pickled objects may not be loadable on different
+            Python installations, for example if the stored objects require libraries
+            that are not available, and not all pickled data is compatible between
+            Python 2 and Python 3).
+            Default: True
+        fix_imports : bool, optional
+            Only useful in forcing objects in object arrays on Python 3 to be
+            pickled in a Python 2 compatible way. If `fix_imports` is True, pickle
+            will try to map the new Python 3 names to the old module names used in
+            Python 2, so that the pickle data stream is readable with Python 2.
     """
 
     if hasattr(file, 'write'):
@@ -1238,18 +1206,18 @@ def pk_save(fp, data, check_format=True):
     """
     Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file
 
-    Parameters
-    ----------
-    fp: str
-        File path and name to which the data is saved. If the file name does not end with
-        a supported file extension, a ValueError will be raised.
-    data: Tow, Tex, or dict
-        The data to be saved. It can be several customised file formats for polykriging.
+        Parameters
+        ----------
+        fp: str
+            File path and name to which the data is saved. If the file name does not end with
+            a supported file extension, a ValueError will be raised.
+        data: Tow, Tex, or dict
+            The data to be saved. It can be several customised file formats for polykriging.
 
 
-    Returns
-    -------
-    None
+        Returns
+        -------
+        None
     """
     filename = os.path.basename(fp)
     # get file extension
@@ -1284,16 +1252,16 @@ def pk_load(file):
     Load a file format defined in polykriging (.coo, .geo, or .stat) file
     and return as a pandas dataframe or a numpy.array object.
 
-    Parameters
-    ----------
-    file:  str, or pathlib.Path.
-        File path and name to which the data is stored.
+        Parameters
+        ----------
+        file:  str, or pathlib.Path.
+            File path and name to which the data is stored.
 
-    Returns
-    -------
-    df: pandas.DataFrame or numpy.ndarray
-        The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
-        Otherwise, it is a numpy array or dict and a warning will be raised.
+        Returns
+        -------
+        df: pandas.DataFrame or numpy.ndarray
+            The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
+            Otherwise, it is a numpy array or dict and a warning will be raised.
     """
 
     filename = os.path.basename(file)
@@ -1329,27 +1297,27 @@ def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
     Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
     https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.
 
-    Parameters
-    ----------
-    filename : str
-        The path of the roi file. The file should be either a zip of csv files or a directory containing
-        multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
-        see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter
-        "type" should be set accordingly ("zip" or "dir").
-    type : str, optional
-        The type of saved file. The default is "zip". The other option is "dir".
-    sort : bool, optional
-        Whether to sort the coordinates according to the slice number. The default is True. Note that
-        the coordinates on the same slice are not sorted. The sorting is only applied to the slices.
-    resolution : float, optional
-        The resolution of the image. The default is 1.0, the coordinates are not converted
-        to the physical coordinates (namely the unit is pixel).
+        Parameters
+        ----------
+        filename : str
+            The path of the roi file. The file should be either a zip of csv files or a directory containing
+            multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
+            see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter
+            "type" should be set accordingly ("zip" or "dir").
+        type : str, optional
+            The type of saved file. The default is "zip". The other option is "dir".
+        sort : bool, optional
+            Whether to sort the coordinates according to the slice number. The default is True. Note that
+            the coordinates on the same slice are not sorted. The sorting is only applied to the slices.
+        resolution : float, optional
+            The resolution of the image. The default is 1.0, the coordinates are not converted
+            to the physical coordinates (namely the unit is pixel).
 
-    Returns
-    -------
-    surf_points : numpy.ndarray
-        The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
-        the total number of points.
+        Returns
+        -------
+        surf_points : numpy.ndarray
+            The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
+            the total number of points.
     """
     if type == "zip":
         with zipfile.ZipFile(filename, 'r') as zip_ref:
@@ -1383,47 +1351,24 @@ def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
     return surf_points
 
 
-def pcd_to_ply(file_pcd, file_ply, binary=False):
-    """
-    Convert a pcd file to ply file.
-
-    Parameters
-    ----------
-    file_pcd : str
-        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.
-    file_ply : str
-        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
-    :return: None
-    """
-    print(bcolors.warning(
-        "This function will be deprecated in the future. Please use polykriging.read_imagej_roi() instead."))
-
-    import meshio
-
-    vertices = pk_load(file_pcd).to_numpy()
-
-    mesh = meshio.Mesh(points=vertices[:, 1:],
-                       cells=[],
-                       # Optionally provide extra data on points, cells, etc.
-                       point_data={"nx": vertices[:, 0], "ny": vertices[:, 1], "nz": vertices[:, 2]},
-                       # Each item in cell data must match the cells array
-                       # cell_data={"a": [[0.1, 0.2], [0.4]]},
-                       )
-
-    meshio.write(file_ply, mesh, binary=False)
-
-
 def coo_to_ply(file_coo, file_ply, interpolate=False, threshold=0.1):
     """
     Convert a pcd file to ply file.
 
-    Parameters
-    ----------
-    file_coo : str
-        The path of the coo file or pathlib.Path. File or filename to which the data is saved.
-    file_ply : str
-        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
-    :return: None
+        Parameters
+        ----------
+        file_coo : str
+            The path of the coo file or pathlib.Path. File or filename to which the data is saved.
+        file_ply : str
+            The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
+        interpolate : bool, optional
+            Whether to interpolate the points. The default is False.
+        threshold : float, optional
+            The threshold of the normalized distance between the neighboring points. The default is 0.1.
+
+        Returns
+        -------
+        None
     """
     import meshio
     df = pk_load(file_coo)
@@ -1444,52 +1389,46 @@ def coo_to_ply(file_coo, file_ply, interpolate=False, threshold=0.1):
     meshio.write(file_ply, mesh, binary=False)
 
 
-def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False):
-    print(bcolors.warning(
-        "This function will be deprecated in the future. Please use polykriging.meshio_save() instead."))
-    return meshio_save(file, vertices, cells, point_data, cell_data, binary)
-
-
 def meshio_save(file, vertices, cells=[], point_data={}, cell_data={}, binary=False):
     """
     Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.
     It is a wrapper of meshio.write() function.
 
-    Parameters
-    ----------
-    file : str
-        The path of the ply file or pathlib.Path. File or filename to which the data is saved.
-    vertices : numpy.ndarray
-        The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.
-    cells : list, optional
-        The faces of the mesh stored as the connectivity between vertices. The default is [].
-    point_data : dict, optional
-        The point data of the mesh. The default is {}.
-    cell_data : dict, optional
-        The cell data of the mesh. The default is {}. Note that the cell data should be added as a
-        list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
-        has 2 triangles and 1 quad, namely,
-          cells = [("triangle", [0, 1, 2], [1,2,3]), ("quad", [3, 4, 5, 6])],
-        then the cell data should be added as
-          cell_data = {"data": [[1, 2], [3]}.
-    binary : bool, optional
-        If True, the data is written in binary format. The default is False.
+        Parameters
+        ----------
+        file : str
+            The path of the ply file or pathlib.Path. File or filename to which the data is saved.
+        vertices : numpy.ndarray
+            The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.
+        cells : list, optional
+            The faces of the mesh stored as the connectivity between vertices. The default is [].
+        point_data : dict, optional
+            The point data of the mesh. The default is {}.
+        cell_data : dict, optional
+            The cell data of the mesh. The default is {}. Note that the cell data should be added as a
+            list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
+            has 2 triangles and 1 quad, namely,
+            cells = [("triangle", [0, 1, 2], [1,2,3]), ("quad", [3, 4, 5, 6])],
+            then the cell data should be added as
+            cell_data = {"data": [[1, 2], [3]}.
+        binary : bool, optional
+            If True, the data is written in binary format. The default is False.
 
-    Returns
-    -------
-    None.
+        Returns
+        -------
+        None.
 
-    Examples
-    --------
-    >>> import numpy as np
-    >>> import polykriging as pk
-    >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
-    >>> point_data = {"a": np.array([0, 1, 2, 3])}
-    >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
-    >>> pk.meshio_save("test.ply", vertices, cells, point_data, cell_data)
-    >>> print("Done")
-    Done
+        Examples
+        --------
+        >>> import numpy as np
+        >>> import polykriging as pk
+        >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
+        >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
+        >>> point_data = {"a": np.array([0, 1, 2, 3])}
+        >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
+        >>> pk.meshio_save("test.ply", vertices, cells, point_data, cell_data)
+        >>> print("Done")
+        Done
 
     """
     try:
@@ -1523,35 +1462,35 @@ def get_ply_property(mesh_path, column, skip=11, type="vertex", save_vtk=False):
     format. It is intended to be used to get the user-defined properties that most of
     meshing and rendering software does not support.
 
-    Note
-    ----
-    The mesh must be saved as ASCII format.
+        Note
+        ----
+        The mesh must be saved as ASCII format.
 
-    Parameters
-    ----------
-    mesh_path : str
-        The path of the mesh file with .ply extension.
-    column : int or list of int
-        The column number of the property.
-    skip : int, optional
-        The number of lines to skip in the header. The default is 11.
-    type : str, optional
-        The type of the property. The default is "vertex" for vertex property. The other
-        possible value is "cell" for cell property.
-    save_vtk : bool, optional
-        If True, the mesh is saved as a vtk file. The default is False.
+        Parameters
+        ----------
+        mesh_path : str
+            The path of the mesh file with .ply extension.
+        column : int or list of int
+            The column number of the property.
+        skip : int, optional
+            The number of lines to skip in the header. The default is 11.
+        type : str, optional
+            The type of the property. The default is "vertex" for vertex property. The other
+            possible value is "cell" for cell property.
+        save_vtk : bool, optional
+            If True, the mesh is saved as a vtk file. The default is False.
 
-    Returns
-    -------
-    property : numpy.ndarray
-        The property of the mesh.
+        Returns
+        -------
+        property : numpy.ndarray
+            The property of the mesh.
 
-    Examples
-    --------
-    >>> import polykriging as pk
-    >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
-    >>> quality = pk.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
-    >>> quality
+        Examples
+        --------
+        >>> import polykriging as pk
+        >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
+        >>> quality = pk.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
+        >>> quality
     """
     import pyvista as pv
     import numpy as np
@@ -1581,19 +1520,19 @@ def save_csv(filename, dataset, csv_head):
     """
     Save numpy array to csv file with given info in the first row.
 
-    Parameters
-    ----------
-    filename:
-        The path and name of the csv file.
-    dataset: List or numpy.ndarray
-        The dataset to be saved in the csv file
-    csv_head:
-        A list of headers of the csv file. The length of the list
-        should be the same as the number of columns in the dataset.
+        Parameters
+        ----------
+        filename:
+            The path and name of the csv file.
+        dataset: List or numpy.ndarray
+            The dataset to be saved in the csv file
+        csv_head:
+            A list of headers of the csv file. The length of the list
+            should be the same as the number of columns in the dataset.
 
-    Returns
-    -------
-    None.
+        Returns
+        -------
+        None.
 
     """
     import csv
@@ -1610,6 +1549,528 @@ def save_csv(filename, dataset, csv_head):
         for row in dataset:
             csv_write.writerow(row)
     return 1
+
+
+#################################################################
+###             Voxel mesh to Abaqus input file               ###
+#################################################################
+import pyvista as pv
+import numpy as np
+
+inpDatabase = {
+    "Title": [
+        "*Heading",
+        "File generated by Texgen",
+        "************",
+        "*** MESH ***",
+        "************"
+    ],
+    "Orientation": [
+        "********************",
+        "*** ORIENTATIONS ***",
+        "********************",
+        "** Orientation vectors",
+        "** 1st vector represents the fibre direction",
+        "** 2nd vector is an arbitrary vector perpendicular to the first",
+        "*Distribution Table, Name=TexGenOrientationVectors",
+        "COORD3D,COORD3D",
+        "*Distribution, Location=Element, Table=TexGenOrientationVectors, Name=TexGenOrientationVectors, Input=orientation.ori",
+        "*Orientation, Name=TexGenOrientations, Definition=coordinates",
+        "TexGenOrientationVectors",
+        "1, 0"
+    ],
+    "ElementSets": [
+        "********************",
+        "*** ELEMENT SETS ***",
+        "********************",
+        "** TexGen generates a number of element sets:",
+        "** All - Contains all elements",
+        "** Matrix - Contains all elements belonging to the matrix",
+        "** YarnX - Where X represents the yarn index"
+    ],
+    "Materials": [
+        "*****************",
+        "*** MATERIALS ***",
+        "*****************"
+    ],
+    "Surfaces": [
+        "***************************",
+        "*** SURFACE DEFINITIONS ***",
+        "***************************"
+    ],
+    "Amplitudes": [
+        "**",
+        "** AMPLITUDE CURVES",
+        "**",
+        "N/A"],
+    "Steps": [
+        "************",
+        " *** STEP ***",
+        "************",
+    ],
+    "ori_header": [
+        '********************\n',
+        '*** ORIENTATIONS ***\n',
+        '********************\n',
+        '** Orientation vectors\n',
+        '** 1st vector represents the fibre direction\n',
+        '** 2nd vector is an arbitrary vector perpendicular to the first\n',
+        ', 1.0, 0.0, 0.0, 0.0, 1.0, 0.0\n']
+}
+
+
+def create_yarn_element_sets(mesh, file_handle, Indices, verbose=False):
+    """
+    Creates element sets for each unique fiber in the mesh.
+
+        Parameters:
+        ----------------
+        mesh : pyvista.PolyData
+            The input mesh.
+        file_handle : file
+            The file handle to write element set lines.
+       Indices: int
+            The indices of matrix and fiber.
+
+        Returns:
+        ----------------
+        element_sets : dict
+            Dictionary of element sets with the set name as the key and the lines as the value.
+    """
+
+    element_sets = {}
+    for yarn in np.unique(Indices):
+        fiber_cells = np.where(Indices == yarn)[0]
+        fiber_mesh = mesh.extract_cells(fiber_cells)
+        cell_ids = fiber_mesh.cell_data['vtkOriginalCellIds'] + 1
+
+        if verbose:
+            print(f"Yarn index: {yarn}, Cell IDs: {cell_ids}")
+
+        if yarn == -1:
+            continue  # skip matrix elements
+        # element_set_name = "Matrix"   # 选择是否输出基体
+
+        element_set_name = f"Yarn{int(yarn)}"
+
+        set_type = 'Elset'
+        element_set = [f"*{set_type}, {set_type.lower()}={element_set_name}"]
+
+        element_set.extend([', '.join(map(str, cell_ids[i:i + 8])) for i in range(0, len(cell_ids), 8)])
+
+        element_sets[element_set_name] = element_set
+
+        file_handle.write('\n'.join(element_set) + '\n')
+        if verbose:
+            print(f"Created element set: {element_set_name}")
+    return element_sets  # 返回后再写入文件
+
+
+def create_part_data_lines(prtname, nodes=[], elements=[], nodesets=[], elemsets=[]):
+    """
+    Creates lines for defining nodes, elements, and sets in the part data.
+
+        Parameters:
+        ----------------
+        prtname : str
+            Name of the part.
+        nodes : list
+            Node data. Each node is a list containing the node label and the x, y, and z coordinates.
+            The number of nodes can be obtained using the len() function.
+        elements : list
+            Element data. Each element is a list containing the element label and the node labels.
+        nodesets : list
+            Node sets containing the node labels.
+        elemsets : list
+            Element sets containing the element labels.
+
+        Returns:
+        ----------------
+        lines : list
+            List of lines for the part data.
+    """
+    lines = [
+        #        f"*Part, name={prtname}",  ## TODO : the first parameter is not used currently.
+        "*Node",
+        *[f"{int(nlabel) + 1}, {float(x):14.6f}, {float(y):14.6f}, {float(z):13.6f}" for nlabel, x, y, z in nodes],
+        "*Element, type=C3D8R",
+        *[f"{elabel + 1}, {', '.join(map(str, [n + 1 for n in nodelabels]))}" for [elabel, *nodelabels] in elements],
+    ]
+
+    n_pts = len(nodes)
+    n_cells = len(elements)
+
+    # Orientation
+    for line in inpDatabase["Orientation"]:
+        lines.append(line)
+
+    # append header lines for element sets
+    for line in inpDatabase["ElementSets"]:
+        lines.append(line)
+
+    for nodeset in nodesets:
+        setname, nodelabels = nodeset
+        if "Fiber" in setname:  # node sets of fiber tows
+            lines.append(f"*Nset, Nset={setname}, Generate")
+            lines.append(f"1, {n_pts}, 1")
+
+    for elemset in elemsets:
+        setname, elemlabels = elemset
+        if "Fiber" in setname:  # element sets of fiber tows
+            lines.append(f"*Elset, Elset={setname}, Generate")
+            lines.append(f"1, {n_cells}, 1")
+
+    return lines
+
+
+def create_material_data_lines(matname, rho, e, nu, sta, condition=True, materials=None):
+    """
+    Creates lines for defining material data in the input file.
+
+        Parameters:
+        ----------------
+        matname : str
+            Name of the material.
+        rho : float
+            Density of the material.
+        e : float
+            Young's modulus of the material.
+        nu : float
+            Poisson's ratio of the material.
+        sta : int
+            Material state variable.
+        condition : bool
+            Condition for material type (default is True).
+        materials: list
+            List to store material data lines (default is None).
+        Returns:
+        ----------------
+        datalines : list
+            A list of lines for material data.
+    """
+    datalines = []
+    # Define material properties lines
+    line1 = f"*Material, name={matname}"
+    line2 = "*Density"
+    line3 = f"{rho},"
+    # Check material condition and add appropriate lines
+    if condition:
+        line4 = "*Elastic"
+        line5 = f"{e}, {nu}"
+        datalines.extend([line1, line2, line3, line4, line5])
+    else:
+        line4 = "*Depvar"
+        line5 = f"{sta},"
+        line6 = "*User Material, constants=4"
+        line7 = "320.,10.,600.,0.45"
+        datalines.extend([line1, line2, line3, line4, line5, line6, line7])
+
+    # Append material data lines to the provided list if it exists
+    if materials is not None:
+        materials.extend(datalines)
+
+    return datalines
+
+
+def create_solid_section_lines(elset_name, material_name, orientation_name=None, controls=""):
+    """
+    Creates lines for defining the solid section properties of a specified element set and material.
+
+        Parameters:
+        ----------------
+        elset_name : str
+            The name of the element set.
+        material_name : str
+            The name of the material.
+        orientation_name : str
+            The name of the orientation (default is None for the matrix).
+        controls : str
+            Control parameters for the section (default is an empty string).
+
+        Returns:
+        ----------------
+        lines : list
+            A list containing lines for defining the solid section properties.
+    """
+    if controls:
+        if orientation_name:
+            lines = [
+                f"*Solid Section, ElSet={elset_name}, Material={material_name}, Orientation={orientation_name}, controls={controls}",
+            ]
+        else:
+            lines = [
+                f"*Solid Section, ElSet={elset_name}, Material={material_name}, controls={controls}",
+            ]
+    else:
+        if orientation_name:
+            lines = [
+                f"*Solid Section, ElSet={elset_name}, Material={material_name}, Orientation={orientation_name}",
+            ]
+        else:
+            lines = [
+                f"*Solid Section, ElSet={elset_name}, Material={material_name}",
+            ]
+    return lines
+
+
+def create_solid_section_for_all_sets(Indices, fiber_material_name, orientation_name=None, controls=""):
+    """
+    Creates solid section lines for all fiber element sets in the mesh.
+
+        Parameters:
+        ----------------
+        Indices: int
+            The indices of matrix and fiber.
+        fiber_material_name : str
+            The name of the fiber material.
+        orientation_name : str
+            The name of the orientation (default is None for the matrix).
+        controls : str
+            Control parameters for the section (default is an empty string).
+
+        Returns:
+        ----------------
+        lines : list
+            A list of lines for defining solid section properties for all fiber element sets.
+    """
+    lines = []
+
+    unique_yarn_indices = np.unique(Indices)
+
+    for yarn_index in unique_yarn_indices:
+        if yarn_index == -1:
+            continue
+
+        elset_name_fiber = f"Yarn{int(yarn_index)}"
+        solid_section_lines_fiber = create_solid_section_lines(elset_name_fiber,
+                                                               fiber_material_name,
+                                                               orientation_name,
+                                                               controls)
+        lines.extend(solid_section_lines_fiber)
+
+    return lines
+
+
+def write_fiber_orientation_to_file(mesh, Indices, file_header="", output_file='fabrictest.ori'):
+    """
+    Writes fiber orientation information to a file.
+
+    Parameters:
+    -------------------------
+        mesh: pyvista.PolyData
+            The input mesh.
+        Indices: int
+            The indices of matrix and fiber.
+        file_header: str
+            The header lines for the ori file (default is '').
+        output_file: str
+            The output file path for writing fiber orientation information (default is 'fabrictest.ori').
+    Returns:
+    ------------------------
+
+    """
+    # ori file header
+    ori_header = inpDatabase["ori_header"]
+    # only yarn indices
+    yarn_indices = np.unique(Indices[Indices != -1])
+
+    with open(output_file, 'w') as ori_file:
+
+        ori_file.writelines(ori_header)
+
+        # Loop through each yarn index
+        for yarn_index in yarn_indices:
+            # Get the cells corresponding to the yarn index
+            yarn_cells = np.where(Indices == yarn_index)[0]
+
+            # Extract the mesh subset for the yarn
+            yarn_mesh = mesh.extract_cells(yarn_cells)
+
+            # Get the cell IDs
+            cell_ids = yarn_mesh.cell_data['vtkOriginalCellIds']
+
+            # Read the tangent orientation vectors of the cells
+            tangent_orientation = yarn_mesh.cell_data['orientation']
+
+            # Normalize the tangent vectors
+            normalized_tangent = tangent_orientation / np.linalg.norm(tangent_orientation, axis=1)[:, np.newaxis]
+
+            # Define an arbitrary vector perpendicular to the tangent vector
+            arbitrary_vector = np.array([1, 0, 0])
+
+            # Calculate normal vectors through cross product
+            normal_vectors = np.cross(normalized_tangent, arbitrary_vector)
+
+            # Normalize the normal vectors
+            normal_vectors /= np.linalg.norm(normal_vectors, axis=1)[:, np.newaxis]
+
+            # Merge tangent and normal vectors, and format the data with commas
+            combined_matrix = np.hstack((normalized_tangent, normal_vectors))
+            combined_matrix_str = [', '.join(map(str, row)) for row in combined_matrix]
+
+            # Write to the ori file
+            ori_file.write(f'** Yarn {int(yarn_index)} **\n')
+            for i, cell_id in enumerate(cell_ids):
+                ori_file.write(f'{int(cell_id) + 1:<8}, {combined_matrix_str[i]}\n')
+
+
+def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> None:
+    """
+    Convert a voxel mesh to an Abaqus input file.
+
+        Parameters
+        ----------
+        mesh : pyvista.UnstructuredGrid
+            The voxel mesh.
+        scale : float, optional
+            The scale factor to convert the unit of points. The default is 1.0.
+        outputDir : str, optional
+            The output directory and filename. The default is './mesh-C3D8R.inp'. The file 
+            extension is automatically added if not provided.
+
+        Returns
+        -------
+        None.
+
+        Notes
+        -----
+        voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) & Bin Yang 
+        (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.
+    """
+    # check if the mesh is a pyvista.UnstructuredGrid object
+    if not isinstance(mesh, pv.UnstructuredGrid):
+        raise TypeError("The input mesh is not a pyvista.UnstructuredGrid object.")
+    
+    print(bcolors.header("Converting the voxel mesh to an Abaqus input file..."))
+
+    # coordinates of nodes
+    n_pts = mesh.n_points
+    coordinates = mesh.points * scale
+
+    connectivity = np.array(mesh.cells, copy=True).reshape(-1, 9)
+    connectivity = connectivity[:, 1:]
+    # Rearange the connectivity to match the order of the nodes required by Abaqus
+    connectivity[:, [2, 5]] = connectivity[:, [5, 2]]  # Swap columns 2 and 5
+    connectivity[:, [3, 4]] = connectivity[:, [4, 3]]  # Swap columns 3 and 4
+
+    # Rearange the nodes to match the storage style of Abaqus: [node index, x, y, z.]
+    fiber_nodes = [[i, *coord] for i, coord in enumerate(coordinates)]
+
+    fiber_elements = [[i, *nodelabels] for i, nodelabels in enumerate(connectivity) if
+                      mesh.cell_data['yarnIndex'][i] != -1]
+
+    # node and element sets for all nodes and elements
+    fiber_node_sets = [("SET-Fiber-Node-ALL", range(1, n_pts + 1))]
+    fiber_elem_sets = [("SET-Fiber-Element-ALL", range(1, len(fiber_elements) + 1))]
+
+    # Read the yarn Index
+    try:
+        yarn_Index = mesh.cell_data['yarnIndex']
+    except:
+        yarn_Index = mesh.cell_data['YarnIndex']
+
+    # Part section of inp file
+    part_name = "Part-Textile"
+
+    fiber_part_data_lines = create_part_data_lines(part_name, nodes=fiber_nodes, elements=fiber_elements,
+                                                   nodesets=fiber_node_sets, elemsets=fiber_elem_sets)
+
+    # write inp file
+    if not outputDir.endswith('.inp'):
+        outputDir += '.inp'
+
+    inp_file_path = outputDir
+    with open(inp_file_path, 'w') as f:
+        # 01 file header
+        for line in inpDatabase["Title"]:
+            f.write(line + "\n")
+
+        # 02 nodes and elements
+        for line in fiber_part_data_lines:
+            if isinstance(line, list):
+                f.write(', '.join(map(str, line)) + "\n")
+            else:
+                f.write(line + "\n")
+
+        # 03 element sets for fiber tows
+        create_yarn_element_sets(mesh, file_handle=f, Indices=yarn_Index)
+
+        # 04 material properties
+        for line in inpDatabase["Materials"]:
+            f.write(line + '\n')
+        mat_lines_fiber = create_material_data_lines("fiber", 1.0, 1.0e6, 0.3, 7, condition=False)
+        for mat_line in mat_lines_fiber:
+            f.write(mat_line + "\n")
+
+        # 05 solid sections for fiber tows
+        fiber_material_name = "fiber"
+        orientation_name = "TexGenOrientations"
+        controls = "HourglassEnhanced"  # 如果使用C3D8R 将此行改为controls = "HourglassEnhanced"
+        solid_section_lines_all_sets = create_solid_section_for_all_sets(yarn_Index, fiber_material_name, orientation_name,
+                                                                         controls)
+
+        for line in solid_section_lines_all_sets:
+            f.write(line + "\n")
+        # 06 surfaces
+        for line in inpDatabase["Surfaces"]:
+            f.write(line + '\n')
+    print(f"inp file is written to {inp_file_path}")
+
+    #  07 fiber orientation
+    if orientation:
+
+        # split outputDir to get the path
+        outputDir = outputDir.split('/')
+        outputDir = '/'.join(outputDir[:-1])
+        output_file = outputDir + '/orientation.ori'
+
+        write_fiber_orientation_to_file(mesh, Indices=yarn_Index, file_header=inpDatabase["ori_header"],
+                                         output_file=output_file)
+
+        print(f'Cell orientation is written to "{output_file}" file.')
+
+    print(bcolors.ok("The voxel mesh has been successfully converted to an Abaqus input file."))
+
+    return None
+
+
+#################################################################
+### The following functions will be deprecated in the future. ###
+#################################################################
+def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False):
+    print(bcolors.warning(
+        "This function will be deprecated in the future. Please use polykriging.meshio_save() instead."))
+    return meshio_save(file, vertices, cells, point_data, cell_data, binary)
+
+
+def pcd_to_ply(file_pcd, file_ply, binary=False):
+    """
+    Convert a pcd file to ply file.
+
+    Parameters
+    ----------
+    file_pcd : str
+        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.
+    file_ply : str
+        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
+    :return: None
+    """
+    print(bcolors.warning(
+        "This function will be deprecated in the future. Please use polykriging.read_imagej_roi() instead."))
+
+    import meshio
+
+    vertices = pk_load(file_pcd).to_numpy()
+
+    mesh = meshio.Mesh(points=vertices[:, 1:],
+                       cells=[],
+                       # Optionally provide extra data on points, cells, etc.
+                       point_data={"nx": vertices[:, 0], "ny": vertices[:, 1], "nz": vertices[:, 2]},
+                       # Each item in cell data must match the cells array
+                       # cell_data={"a": [[0.1, 0.2], [0.4]]},
+                       )
+
+    meshio.write(file_ply, mesh, binary=False)
 
 
 if "__main__" == __name__:

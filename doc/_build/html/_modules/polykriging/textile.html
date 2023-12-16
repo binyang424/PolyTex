@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -37,12 +37,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PolyKriging
-            <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyKriging
+              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>polykriging.textile</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polykriging.textile</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,13 +84,15 @@
            <div itemprop="articleBody">
              
   <h1>Source code for polykriging.textile</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">choose_directory</span><span class="p">,</span> <span class="n">voxel2foam</span>
+<span></span><span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">pk_save</span><span class="p">,</span> <span class="n">pk_load</span><span class="p">,</span> <span class="n">choose_directory</span><span class="p">,</span> <span class="n">voxel2foam</span><span class="p">,</span> <span class="n">voxel2inp</span>
 <span class="kn">from</span> <span class="nn">.tow</span> <span class="kn">import</span> <span class="n">Tow</span>
 <span class="kn">from</span> <span class="nn">.mesh</span> <span class="kn">import</span> <span class="n">background_mesh</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span> <span class="n">intersection_detect</span>
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">Plane</span>
 <span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">porosity_tow</span><span class="p">,</span> <span class="n">gebart</span><span class="p">,</span> <span class="n">perm_rotation</span>
 <span class="kn">from</span> <span class="nn">.thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
+<span class="kn">from</span> <span class="nn">.__dataset__</span> <span class="kn">import</span> <span class="n">example</span> <span class="k">as</span> <span class="n">pk_example</span>
 
+<span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -95,14 +101,14 @@
 
 
 <div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a class for textile geometrical analysis and numerical meshing.</span>
 
 <span class="sd">    # TODO : analyze, design, and program the Textile class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the textile object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -113,13 +119,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">voxel_size</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tex</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># linear density of the tows in the textile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tex</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># linear density of the tows in the textile</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="s2">&quot;full&quot;</span>  <span class="c1"># size of the data to be saved</span>
 
 <div class="viewcode-block" id="Textile.from_file"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.from_file">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load a textile object from a file.</span>
 
 <span class="sd">            Parameters</span>
@@ -138,7 +144,7 @@
         <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Representation of the textile.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tow_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__tows__</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">,</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2"> - &quot;</span><span class="p">)</span>
@@ -146,21 +152,21 @@
         <span class="k">return</span> <span class="s2">&quot;Textile(name=</span><span class="si">%s</span><span class="s2">, </span><span class="se">\n</span><span class="s2">tows=</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tow_str</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get tow by tow name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tows__</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_tows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Number of tows in the textile.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__tows__</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return tow names as a list. The tow names are reordered by the tow number if the tow</span>
 <span class="sd">        name is in the format of &quot;towType_towNumber&quot;. Otherwise, the tow names are ordered</span>
 <span class="sd">        according to the order of adding the tows to the textile.</span>
@@ -188,7 +194,7 @@
         <span class="k">return</span> <span class="n">tow_names_new</span>
 
 <div class="viewcode-block" id="Textile.add_tow"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add_tow">[docs]</a>    <span class="k">def</span> <span class="nf">add_tow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a tow to the textile. If tow is already in the textile, then raise</span>
 <span class="sd">        a ValueError.</span>
 
@@ -222,7 +228,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.add_group"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">tow</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Groups of the tows in the textile. Each is a group of Tow objects.</span>
 <span class="sd">        if tow is None, then the group is empty.</span>
 
@@ -264,7 +270,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.remove"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove a tow from the textile.</span>
 
 <span class="sd">            Parameters</span>
@@ -296,20 +302,20 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.triangulate"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.triangulate">[docs]</a>    <span class="k">def</span> <span class="nf">triangulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Hexahedral mesh to tetrahedral mesh. Conformal meshing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Textile.decimate"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.decimate">[docs]</a>    <span class="k">def</span> <span class="nf">decimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Decimate the mesh.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Textile.meshing"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.meshing">[docs]</a>    <span class="k">def</span> <span class="nf">meshing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labeling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a mesh for the textile.</span>
 
 <span class="sd">            Parameters</span>
@@ -357,7 +363,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.cell_labeling"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.cell_labeling">[docs]</a>    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Label the cells of the background mesh with tow id.</span>
 
 <span class="sd">            Parameters</span>
@@ -382,13 +388,13 @@
 <span class="sd">            Please make sure that the name of the tow (`tow.name`) is in the format of `towType_towNumber`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="sd">&quot;&quot;&quot; Select the surface meshes of yarns to be labelled &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Select the surface meshes of yarns to be labelled &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">surface_mesh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">choose_directory</span><span class="p">(</span><span class="s2">&quot;Choose the surface mesh directory for fiber tow labelling&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">surface_mesh</span>
 
-        <span class="sd">&quot;&quot;&quot; Initialize cell data arrays &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Initialize cell data arrays &quot;&quot;&quot;</span>
         <span class="n">label_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
         <span class="n">section_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
         <span class="n">area_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -416,7 +422,7 @@
             <span class="n">label_list</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">label_set_dict</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">(</span><span class="n">label_yarn</span><span class="p">)</span>
 
-            <span class="sd">&quot;&quot;&quot; Label tow cross-sections &quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot; Label tow cross-sections &quot;&quot;&quot;</span>
             <span class="n">cell_centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_centers</span><span class="p">()</span><span class="o">.</span><span class="n">points</span>
             <span class="n">yarn_centers</span> <span class="o">=</span> <span class="n">cell_centers</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 
@@ -425,7 +431,7 @@
             <span class="n">temp_section</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">([</span><span class="n">yarn_centers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">centerline</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="o">-</span><span class="mf">1.</span><span class="p">)</span>
 
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;um&quot;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="s2">&quot;mm&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="s2">&quot;cm&quot;</span><span class="p">:</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-            <span class="n">yarn_area</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">[</span><span class="n">tow</span><span class="o">.</span><span class="n">length_scale</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">yarn_area</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">[</span><span class="n">tow</span><span class="o">.</span><span class="n">length_scale</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
             <span class="n">yarn_porosity</span> <span class="o">=</span> <span class="n">porosity_tow</span><span class="p">(</span><span class="n">tow</span><span class="o">.</span><span class="n">tex</span><span class="p">,</span> <span class="n">yarn_area</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">rho_fiber</span><span class="p">)</span>
 
             <span class="n">po_</span> <span class="o">=</span> <span class="n">yarn_porosity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -433,14 +439,15 @@
                 <span class="n">yarn_porosity</span><span class="p">[</span><span class="n">yarn_porosity</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">yarn_porosity</span><span class="p">[</span><span class="n">yarn_porosity</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">])</span>
             <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">yarn_porosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The porosity of the yarn is larger than 1.&quot;</span><span class="p">)</span>
-            
+
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yarn_porosity</span><span class="p">)):</span>
                 <span class="n">yarn_porosity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yarn_porosity</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.25</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;Warning: The porosity of the yarn </span><span class="si">%s</span><span class="s2"> is nan. The porosity is set to 0.25.&quot;</span> <span class="o">%</span> <span class="n">item</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;Warning: The porosity of the yarn </span><span class="si">%s</span><span class="s2"> is nan. The porosity is set to 0.25.&quot;</span> <span class="o">%</span> <span class="n">item</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
             <span class="n">yarn_permeability_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                 <span class="n">gebart</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yarn_porosity</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">radius_fiber</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">packing_fiber</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-            
+
             <span class="c1"># check if nan exists in the permeability tensor</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yarn_permeability_local</span><span class="p">)):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The permeability tensor of yarn </span><span class="si">%s</span><span class="s2"> contains nan.&quot;</span> <span class="o">%</span> <span class="n">item</span><span class="p">)</span>
@@ -474,7 +481,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;orientation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">orientation_list</span>
 
         <span class="k">if</span> <span class="n">intersection</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot; Label the intersected cells&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot; Label the intersected cells&quot;&quot;&quot;</span>
             <span class="n">label_list</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">label_set_dict</span><span class="p">)</span>
 
             <span class="n">intersect_info</span><span class="p">,</span> <span class="n">intersect_info_dict</span><span class="p">,</span> <span class="n">cell_data_intersect</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">)</span>
@@ -483,7 +490,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.export_as_openfoam"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.export_as_openfoam">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_openfoam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yarnIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the textile mesh as polyMesh folder for OpenFOAM simulation.</span>
 
 <span class="sd">        The structure of the output case folder is:</span>
@@ -508,7 +515,7 @@
 <span class="sd">                The file path of the output mesh.</span>
 <span class="sd">            scale : float, optional</span>
 <span class="sd">                The scale factor of the mesh. To convert the mesh from mm to m, the scale factor</span>
-<span class="sd">                should be 0.001. The default is 0.001.</span>
+<span class="sd">                should be 0.001. The default is 1.</span>
 <span class="sd">            boundary_type : dict, optional</span>
 <span class="sd">                The boundary type of the mesh. The default is None. If None, the boundary type</span>
 <span class="sd">                will be set as &quot;wall&quot; for all boundaries.</span>
@@ -533,7 +540,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Exporting the textile mesh as OpenFOAM case to </span><span class="si">%s</span><span class="s2"> ...&quot;</span> <span class="o">%</span> <span class="n">outputDirMesh</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
         <span class="n">voxel2foam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">outputDirMesh</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="n">boundary_type</span><span class="p">,</span>
-                      <span class="n">cell_data_list</span><span class="o">=</span><span class="n">cell_data</span><span class="p">)</span>
+                   <span class="n">cell_data_list</span><span class="o">=</span><span class="n">cell_data</span><span class="p">)</span>
 
         <span class="c1"># Create a markdown file in the output directory to record the textile information</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outputDirMesh</span><span class="p">,</span> <span class="s2">&quot;textile_info.md&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -547,14 +554,41 @@
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="c1"># Create a OpenFOAM case file for Paraveiw post-processing</span>
-
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outputDirMesh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">suffix</span> <span class="o">+</span> <span class="s2">&quot;.OpenFOAM&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="c1"># empty file</span>
             <span class="k">pass</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__case_root__</span> <span class="o">=</span> <span class="n">outputDirMesh</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+    
+<div class="viewcode-block" id="Textile.export_as_inp"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.export_as_inp">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_inp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="s2">&quot;./mesh-C3D8R.inp&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Export the textile mesh as inp file for Abaqus simulation.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            fp : str</span>
+<span class="sd">                The file path and filename of the output mesh. The default is &quot;./mesh-C3D8R.inp&quot;.</span>
+<span class="sd">            scale : float, optional</span>
+<span class="sd">                The scale factor of the mesh. To convert the mesh from mm to m, the scale factor</span>
+<span class="sd">                should be 0.001. The default is 1.</span>
+<span class="sd">            orientation : bool, optional</span>
+<span class="sd">                Whether to export the orientation of the yarns. The default is True.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The textile mesh is not generated yet. Please generate the textile &quot;</span>
+                             <span class="s2">&quot;mesh with `Textile.meshing()` first.&quot;</span><span class="p">)</span>
+    
+        <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span>
+        <span class="n">voxel2inp</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Textile.save"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_size</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the textile object to a file.</span>
 
 <span class="sd">            Parameters</span>
@@ -605,7 +639,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Textile.reconstruct"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reconstruct the textile object from the saved file. The saved file must be</span>
 <span class="sd">        in the format of &quot;.tex&quot; and loaded by the `pk_load` function.</span>
 
@@ -624,6 +658,55 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
 
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Textile.case_prepare"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.case_prepare">[docs]</a>    <span class="k">def</span> <span class="nf">case_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare a case for OpenFOAM simulation.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            path : str</span>
+<span class="sd">                Path of the case to be prepared. The default is None. If `path` is None,</span>
+<span class="sd">                it is set to the root directory of the OpenFOAM mesh generated by</span>
+<span class="sd">                `Textile.export_as_openfoam()`.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__case_root__</span>
+
+        <span class="n">pk_example</span><span class="p">(</span><span class="s2">&quot;case template&quot;</span><span class="p">,</span> <span class="n">outdir</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/CaseTemplate.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+            <span class="n">filelist</span> <span class="o">=</span> <span class="n">zip_ref</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">filelist</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;controlDict&quot;</span><span class="p">,</span> <span class="s2">&quot;decomposeParDict&quot;</span><span class="p">,</span>
+                                           <span class="s2">&quot;flowRatePatch&quot;</span><span class="p">,</span> <span class="s2">&quot;fvSchemes&quot;</span><span class="p">,</span> <span class="s2">&quot;fvSolution&quot;</span><span class="p">]:</span>
+                    <span class="n">sys_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;system&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">sys_path</span><span class="p">):</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">sys_path</span><span class="p">)</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys_path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_ref</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Allrun&quot;</span><span class="p">,</span> <span class="s2">&quot;Allclean&quot;</span><span class="p">,</span> <span class="s2">&quot;PyFoamFileClean.py&quot;</span><span class="p">]:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_ref</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;U&quot;</span><span class="p">]:</span>
+                    <span class="n">ini_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ini_path</span><span class="p">):</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ini_path</span><span class="p">)</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ini_path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_ref</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;momentumTransport&quot;</span><span class="p">,</span> <span class="s2">&quot;transportProperties&quot;</span><span class="p">]:</span>
+                    <span class="n">const_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;constant&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">const_path</span><span class="p">):</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">const_path</span><span class="p">)</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">const_path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_ref</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/CaseTemplate.zip&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Case preparation is done.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span></div></div>
 </pre></div>
 
