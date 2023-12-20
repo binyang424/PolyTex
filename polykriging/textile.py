@@ -451,6 +451,12 @@ class Textile:
         suffix = "_".join([str(i) for i in self.mesh_shape])
         outputDirMesh = os.path.join(fp, self.name + "_" + suffix)
 
+        n_copy = 0
+        while os.path.exists(outputDirMesh):
+            suffix = suffix + "_" + str(n_copy)
+            outputDirMesh = os.path.join(fp, self.name + "_" + suffix)
+            n_copy += 1
+
         print(bcolors.OKBLUE + "Exporting the textile mesh as OpenFOAM case to %s ..." % outputDirMesh + bcolors.ENDC)
 
         voxel2foam(self.mesh, scale=scale, outputDir=outputDirMesh, boundary_type=boundary_type,
@@ -475,7 +481,7 @@ class Textile:
 
         self.__case_root__ = outputDirMesh
         return None
-    
+
     def export_as_inp(self, fp="./mesh-C3D8R.inp", scale=1, orientation=True):
         """
         Export the textile mesh as inp file for Abaqus simulation.
@@ -497,7 +503,7 @@ class Textile:
         if self.mesh is None:
             raise ValueError("The textile mesh is not generated yet. Please generate the textile "
                              "mesh with `Textile.meshing()` first.")
-    
+
         mesh = self.mesh
         voxel2inp(mesh, scale=1, outputDir=fp, orientation=True)
 

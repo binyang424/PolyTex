@@ -5,29 +5,30 @@ To check the use of this module, please refer to the example "mesh_from_image.py
 
 import numpy as np
 import pyvista as pv
+from tqdm import tqdm
 
 
 def im_to_ugrid(im):
     """
     Convert image or image sequence to an unstructured grid.
 
-    Parameters
-    ----------
-    im : image object
-        The image sequence stored as a single tif file.
+        Parameters
+        ----------
+        im : image object
+            The image sequence stored as a single tif file.
 
-    Returns
-    -------
-    ugrid : pyvista.UnstructuredGrid
-        The unstructured grid discretized from the image with voxels.
-    im_dim : numpy.ndarray
-        The image dimension.
+        Returns
+        -------
+        ugrid : pyvista.UnstructuredGrid
+            The unstructured grid discretized from the image with voxels.
+        im_dim : numpy.ndarray
+            The image dimension.
 
-    Example
-    -------
-    >>> import polykriging as pk
-    >>> im = pk.example("image")
-    >>> mesh, mesh_dim = pk.mesh.im_to_ugrid(im)
+        Example
+        -------
+        >>> import polykriging as pk
+        >>> im = pk.example("image")
+        >>> mesh, mesh_dim = pk.mesh.im_to_ugrid(im)
     """
     mesh = pv.read(im)
     ugrid = mesh.cast_to_unstructured_grid()
@@ -41,26 +42,26 @@ def mesh_extract(ugrid, threshold, pointdata='Tiff Scalars', type="foreground"):
     """
     Extract part of the mesh from the unstructured grid according to the value of point data.
 
-    Parameters
-    ----------
-    ugrid : pyvista.UnstructuredGrid
-        The unstructured grid discretized from the image with voxels.
-    threshold : float
-        The threshold value of the point data specified by the parameter 'pointdata'.
-    pointdata : str, optional
-        The point data name, by default 'Tiff Scalars'.
-    type : str, optional
-        The type of the extracted mesh, by default "forground". The type can be "forground" or
-        "background". If the type is "foreground", the extracted mesh is where the point data is
-        greater than the threshold value. If the type is "background", the extracted mesh is where
-        the point data is less than the threshold value.
+        Parameters
+        ----------
+        ugrid : pyvista.UnstructuredGrid
+            The unstructured grid discretized from the image with voxels.
+        threshold : float
+            The threshold value of the point data specified by the parameter 'pointdata'.
+        pointdata : str, optional
+            The point data name, by default 'Tiff Scalars'.
+        type : str, optional
+            The type of the extracted mesh, by default "forground". The type can be "forground" or
+            "background". If the type is "foreground", the extracted mesh is where the point data is
+            greater than the threshold value. If the type is "background", the extracted mesh is where
+            the point data is less than the threshold value.
 
-    Returns
-    -------
-    subset_final : pyvista.UnstructuredGrid
-        The extracted volume mesh.
-    surf : pyvista.PolyData
-        The extracted surface mesh.
+        Returns
+        -------
+        subset_final : pyvista.UnstructuredGrid
+            The extracted volume mesh.
+        surf : pyvista.PolyData
+            The extracted surface mesh.
     """
     if type == "foreground":
         mask = ugrid[pointdata] > threshold
@@ -90,16 +91,16 @@ def mesh_separation(mesh, plot=False):
     connectivity of the mesh. It may not work for mesh with multiple
     regions that are connected.
 
-    Parameters
-    ----------
-    mesh : pyvista.UnstructuredGrid
-        The mesh object.
+        Parameters
+        ----------
+        mesh : pyvista.UnstructuredGrid
+            The mesh object.
 
-    Returns
-    -------
-    mesh_dict : dict
-        The dictionary of the separated mesh objects. The key is the
-        region number and the value is the mesh object.
+        Returns
+        -------
+        mesh_dict : dict
+            The dictionary of the separated mesh objects. The key is the
+            region number and the value is the mesh object.
     """
     mesh_dict = {}
 
@@ -117,26 +118,29 @@ def mesh_separation(mesh, plot=False):
     return mesh_dict
 
 
-def get_vcut_plane(surf_mesh, direction='x'):
+def get_vcut_plane(surf_mesh, direction='x', skip=1):
     """
     Get the vertical cut plane of the surf mesh in the direction
     of x, y, or z axis through (boundary) cutting edge extraction.
 
-    Parameters
-    ----------
-    surf_mesh : pyvista.PolyData
-        The surface mesh.
-    direction : str, optional
-        The direction of the vertical cut plane, by default 'x'.
-        The direction can be 'x', 'y', or 'z'.
+        Parameters
+        ----------
+        surf_mesh : pyvista.PolyData
+            The surface mesh.
+        direction : str, optional
+            The direction of the vertical cut plane, by default 'x'.
+            The direction can be 'x', 'y', or 'z'.
+        skip : int, optional
+            The number of cut planes to skip. The unit is slice in the
+            direction of the vertical cut plane, by default 1.
 
-    Returns
-    -------
-    vcut_plane : numpy.ndarray
-        The vertical cut planes of the surf mesh.
-    trajectory : numpy.ndarray
-        The trajectory (centroid) of the vertical cut plane calculated
-        by averaging the coordinates of the points on the cutting edge.
+        Returns
+        -------
+        vcut_plane : numpy.ndarray
+            The vertical cut planes of the surf mesh.
+        trajectory : numpy.ndarray
+            The trajectory (centroid) of the vertical cut plane calculated
+            by averaging the coordinates of the points on the cutting edge.
     """
     surf_points = surf_mesh.points
     cell_centers = surf_mesh.cell_centers().points
@@ -151,13 +155,13 @@ def get_vcut_plane(surf_mesh, direction='x'):
         slices = np.unique(coo_direct).astype(int)
 
     num = 0
-    for iSlice in slices:
+    for iSlice in tqdm(slices[::skip]):
         mask = cell_centers[:, direct[direction]] < iSlice
         try:
             temp = surf_mesh.remove_cells(mask)
             # temp.plot(show_scalar_bar=False, show_edges=False)
-            boundary = temp.extract_feature_edges(feature_angle=100,
-                                                  boundary_edges=True, non_manifold_edges=False, manifold_edges=False)
+            boundary = temp.extract_feature_edges(feature_angle=100, boundary_edges=True,
+                                                  non_manifold_edges=False, manifold_edges=False)
             lines = boundary.lines.reshape(-1, 3)[:, 1:]
             pts_idx_sort = __node_sort_curve(lines)[1:]
 
@@ -190,20 +194,20 @@ def __node_sort_curve(curve_connectivity):
     """
     Sort the nodes of the curve according to node connectivity.
 
-    Parameters
-    ----------
-    curve_connectivity : array_like
-        The connectivity of the nodes of the curve. The array-like data stores
-        the node index of each segment of the curve with two nodes per row.
-        Therefore, the shape of the array is (n_segments, 2) like:
-        [[node 1,node 2], [node 1, node 2]  .... [node 1, node 2]].
+        Parameters
+        ----------
+        curve_connectivity : array_like
+            The connectivity of the nodes of the curve. The array-like data stores
+            the node index of each segment of the curve with two nodes per row.
+            Therefore, the shape of the array is (n_segments, 2) like:
+            [[node 1,node 2], [node 1, node 2]  .... [node 1, node 2]].
 
-    Returns
-    -------
-    numpy.ndarray
-        The returned has the same shape as the input curve_connectivity. However,
-        the nodes are sorted according to their connectivity in the following
-        order: [[1, 2], [2, 4], [4, 7] ...].
+        Returns
+        -------
+        numpy.ndarray
+            The returned has the same shape as the input curve_connectivity. However,
+            the nodes are sorted according to their connectivity in the following
+            order: [[1, 2], [2, 4], [4, 7] ...].
     """
     # tranverse the lines to get the trajectory according to the connectivity of the lines
     curve_connectivity_ordered = curve_connectivity[0, :]
@@ -239,29 +243,29 @@ def slice_plot(vcut_planes, skip=10, marker='o', marker_size=0.1, dpi=300, save=
     """
     Plot the vertical cut planes.
 
-    Parameters
-    ----------
-    vcut_planes : numpy.ndarray
-        The vertical cut planes of the surf mesh stored in a numpy array.
-        The shape of the array is (n_points, 3).
-    skip : int, optional
-        The number of cut planes to skip when plotting the vertical cut planes,
-        by default 10.
-    marker : str, optional
-        The marker type, by default 'o'.
-    marker_size : float, optional
-        The marker size, by default 0.1.
-    dpi : int, optional
-        The resolution of the figure, by default 300.
-    save : bool, optional
-        Whether to save the figure, by default False.
-    save_path : str, optional
-        The path to save the figure, by default None. If save is True, the save_path
-        must be specified.
+        Parameters
+        ----------
+        vcut_planes : numpy.ndarray
+            The vertical cut planes of the surf mesh stored in a numpy array.
+            The shape of the array is (n_points, 3).
+        skip : int, optional
+            The number of cut planes to skip when plotting the vertical cut planes,
+            by default 10.
+        marker : str, optional
+            The marker type, by default 'o'.
+        marker_size : float, optional
+            The marker size, by default 0.1.
+        dpi : int, optional
+            The resolution of the figure, by default 300.
+        save : bool, optional
+            Whether to save the figure, by default False.
+        save_path : str, optional
+            The path to save the figure, by default None. If save is True, the save_path
+            must be specified.
 
-    Returns
-    -------
-    None
+        Returns
+        -------
+        None
     """
     import matplotlib.pyplot as plt
 

@@ -1326,6 +1326,10 @@ def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
                 with zip_ref.open(file) as f:
                     coor_slice = np.loadtxt(f, comments=file,
                                             delimiter=",", skiprows=1)
+
+                    if coor_slice.shape[0] == 0:
+                        continue
+
                     try:
                         coor_unsort = np.vstack((coor_unsort, coor_slice))
                     except NameError:
@@ -1925,7 +1929,7 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
         scale : float, optional
             The scale factor to convert the unit of points. The default is 1.0.
         outputDir : str, optional
-            The output directory and filename. The default is './mesh-C3D8R.inp'. The file 
+            The output directory and filename. The default is './mesh-C3D8R.inp'. The file
             extension is automatically added if not provided.
 
         Returns
@@ -1934,13 +1938,13 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
 
         Notes
         -----
-        voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) & Bin Yang 
+        voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) & Bin Yang
         (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.
     """
     # check if the mesh is a pyvista.UnstructuredGrid object
     if not isinstance(mesh, pv.UnstructuredGrid):
         raise TypeError("The input mesh is not a pyvista.UnstructuredGrid object.")
-    
+
     print(bcolors.header("Converting the voxel mesh to an Abaqus input file..."))
 
     # coordinates of nodes

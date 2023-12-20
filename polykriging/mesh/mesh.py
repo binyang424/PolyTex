@@ -12,16 +12,16 @@ def isInbBox(bbox, point):
     Determine if point is within a bounding box (bbox)
     that parallel to the principle axes of global Cartesian coordinate.
 
-    Parameters
-    ----------
-    bbox: list
-        bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].
-    point: list
-        [x, y, z]
+        Parameters
+        ----------
+        bbox: list
+            bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].
+        point: list
+            [x, y, z]
 
-    Returns
-    -------
-    True or False
+        Returns
+        -------
+        True or False
     """
     x, y, z = point[0], point[1], point[2]
     xmin, ymin, zmin = bbox[0], bbox[1], bbox[2]
@@ -35,24 +35,24 @@ def background_mesh(bbox, voxel_size=None):
     """
     Generate a voxel background mesh.
 
-    Parameters
-    ----------
-    bbox: bounding box of the background mesh specified through a numpy array
-        contains the minimum and maximum coordinates of the bounding box
-        [xmin, xmax, ymin, ymax, zmin, zmax]
-    voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray
-        if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
+        Parameters
+        ----------
+        bbox: bounding box of the background mesh specified through a numpy array
+            contains the minimum and maximum coordinates of the bounding box
+            [xmin, xmax, ymin, ymax, zmin, zmax]
+        voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray
+            if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
 
-        if `float`, the voxel size is set to the float value in x, y, z directions;
+            if `float`, the voxel size is set to the float value in x, y, z directions;
 
-        if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for
-        the x-, y- and z- directions.
+            if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for
+            the x-, y- and z- directions.
 
-    Returns
-    -------
-    grid : pyvista mesh object (UnstructuredGrid)
-    mesh_shape : tuple
-        shape of the mesh
+        Returns
+        -------
+        grid : pyvista mesh object (UnstructuredGrid)
+        mesh_shape : tuple
+            shape of the mesh
     """
     # get the size of the bounding box
     size = np.array([bbox[1] - bbox[0], bbox[3] - bbox[2], bbox[5] - bbox[4]])
@@ -84,21 +84,21 @@ def find_cells_within_bounds(mesh, bounds):
     """
     Find the index of cells in this mesh within bounds.
 
-    Parameters
-    ----------
-    mesh: pyvista mesh
-    bounds: type:　iterable(float)
-        list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]
+        Parameters
+        ----------
+        mesh: pyvista mesh
+        bounds: type:　iterable(float)
+            list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]
 
-    Returns
-    -------
-    type: numpy.ndarray
-        array of cell indices within bounds.
+        Returns
+        -------
+        type: numpy.ndarray
+            array of cell indices within bounds.
 
-    Example
-    -------
-        >> mesh = pv.PolyData(np.random.rand(10, 3))
-        >> indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])
+        Example
+        -------
+            >> mesh = pv.PolyData(np.random.rand(10, 3))
+            >> indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])
     """
     from pyvista import _vtk
     from pyvista import vtk_id_list_to_array
@@ -117,20 +117,20 @@ def label_mask(mesh_background, mesh_tri, tolerance=0.0000001, check_surface=Fal
     """
     Store the label of each fiber tow for intersection detection.
 
-    Parameters
-    ----------
-    mesh_background: pyvista.UnstructuredGrid
-        background mesh
-    mesh_tri: pyvista.PolyData
-        tubular mesh of the fiber tows
-    tolerance: float
-        tolerance for the enclosed point detection
+        Parameters
+        ----------
+        mesh_background: pyvista.UnstructuredGrid
+            background mesh
+        mesh_tri: pyvista.PolyData
+            tubular mesh of the fiber tows
+        tolerance: float
+            tolerance for the enclosed point detection
 
-    Returns
-    -------
-    mask: type: numpy.ndarray (bool)
-        mask of the background mesh, True for the cells that are within the bounds of the tubular mesh
-    label_yarn: type: numpy.ndarray (int) (1D)
+        Returns
+        -------
+        mask: type: numpy.ndarray (bool)
+            mask of the background mesh, True for the cells that are within the bounds of the tubular mesh
+        label_yarn: type: numpy.ndarray (int) (1D)
     """
     # extract the cell centers of the background mesh
     cellCenters = mesh_background.cell_centers().points
@@ -146,16 +146,16 @@ def intersection_detect(label_set_dict):
     """
     Find the intersection of fiber tows from implicit surface.
 
-    Parameters
-    ----------
-    label_set_dict: dictioanry
-        dictionary of the label sets of the fiber tows
-        (key: yarn indices, value: sparse matrix of cell queries)
+        Parameters
+        ----------
+        label_set_dict: dictioanry
+            dictionary of the label sets of the fiber tows
+            (key: yarn indices, value: sparse matrix of cell queries)
 
-    Returns
-    -------
-    type: dictionary of the indices of intersected cell
-        key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices
+        Returns
+        -------
+        type: dictionary of the indices of intersected cell
+            key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices
     """
     import itertools
     from scipy.sparse import csr_matrix, coo_matrix
@@ -213,23 +213,23 @@ def structured_cylinder_vertices(a, b, h, theta_res=5, h_res=5):
     """
     Generate points on an ellipse.
 
-    Parameters
-    ----------
-    a : float
-        semi-major axis
-    b : float
-        semi-minor axis
-    h : float
-        height
-    theta_res : int, optional
-        number of points, by default 5.
-    h_res:  int, optional
-        number of points. by default 5.
+        Parameters
+        ----------
+        a : float
+            semi-major axis
+        b : float
+            semi-minor axis
+        h : float
+            height
+        theta_res : int, optional
+            number of points, by default 5.
+        h_res:  int, optional
+            number of points. by default 5.
 
-    Returns
-    -------
-    points: numpy.ndarray
-        vertices on the ellipse surface (x, y, z).
+        Returns
+        -------
+        points: numpy.ndarray
+            vertices on the ellipse surface (x, y, z).
     """
     theta_resolution = theta_res + 1
     theta = np.linspace(0, 2 * np.pi, theta_resolution)
@@ -249,21 +249,21 @@ def tubular_mesh_generator(theta_res, h_res, vertices, plot=True):
     """
     Generate a tubular mesh.
 
-    Parameters
-    ----------
-    theta_res: int
-        number of points
-    h_res: int
-        number of points
-    vertices: numpy.ndarray
-        vertices of the tubular mesh, shape (n, 3)
-        The vertices of the tubular mesh are sorted in the radial direction first,
-        then in the vertical direction. The first vertex is repeated
-        at the end of each radial direction point list.
+        Parameters
+        ----------
+        theta_res: int
+            number of points
+        h_res: int
+            number of points
+        vertices: numpy.ndarray
+            vertices of the tubular mesh, shape (n, 3)
+            The vertices of the tubular mesh are sorted in the radial direction first,
+            then in the vertical direction. The first vertex is repeated
+            at the end of each radial direction point list.
 
-    Returns
-    -------
-    mesh : points on the tubular mesh
+        Returns
+        -------
+        mesh : points on the tubular mesh
     """
     import pyvista as pv
     mesh = pv.CylinderStructured(theta_resolution=theta_res,
@@ -278,26 +278,26 @@ def to_meshio_data(mesh, theta_res, correction=True):
     """
     Convert PyVista flavor data structure to meshio.
 
-    Parameters
-    ----------
+        Parameters
+        ----------
 
-    mesh: PyVista.DataSet
-        Any PyVista mesh/spatial data type.
-    theta_res:
-        number of points in the radial direction
-    correction: boolean
-        if True, tubular mesh will be closed at the ends with triangles.
+        mesh: PyVista.DataSet
+            Any PyVista mesh/spatial data type.
+        theta_res:
+            number of points in the radial direction
+        correction: boolean
+            if True, tubular mesh will be closed at the ends with triangles.
 
-    Returns
-    -------
-    points: numpy.ndarray
-        vertices of the tubular mesh
-    cells: list
-        list of cells
-    point_data: numpy.ndarray
-        point data
-    cell_data: numpy.ndarray
-        cell data
+        Returns
+        -------
+        points: numpy.ndarray
+            vertices of the tubular mesh
+        cells: list
+            list of cells
+        point_data: numpy.ndarray
+            point data
+        cell_data: numpy.ndarray
+            cell data
     """
     try:
         import meshio
@@ -379,23 +379,23 @@ def mesh_correction(cells, points, theta_res):
     """
     Close the ends of the tubular mesh with triangles.
 
-    Parameters
-    ----------
-    cells: list
-        list of cells
-    points: numpy.ndarray
-        vertices of the tubular mesh
-    theta_res: int
-        number of points in the radial direction of the tubular mesh. The first and the last
-        vertex of each radial direction point list are repeated. However, they are considered
-        as two different points when considering theta resolution (theta_res).
+        Parameters
+        ----------
+        cells: list
+            list of cells
+        points: numpy.ndarray
+            vertices of the tubular mesh
+        theta_res: int
+            number of points in the radial direction of the tubular mesh. The first and the last
+            vertex of each radial direction point list are repeated. However, they are considered
+            as two different points when considering theta resolution (theta_res).
 
-    Returns
-    -------
-    points: numpy.ndarray
-        vertices of the tubular mesh
-    cells: list
-        list of cells
+        Returns
+        -------
+        points: numpy.ndarray
+            vertices of the tubular mesh
+        cells: list
+            list of cells
     """
     theta_res = theta_res - 1
     cells_connectivity = cells[0][1]

@@ -14,7 +14,6 @@ import pandas as pd
 from tqdm import trange
 
 
-
 # pv.set_plot_theme("document")
 
 
@@ -86,7 +85,7 @@ class Tow:
     """
 
     def __init__(self, surf_points, order, rho_fiber, radius_fiber, length_scale, tex,
-                name="Tow", packing_fiber="Hex", sort=True, resolution=None,  **kwargs):
+                 name="Tow", packing_fiber="Hex", sort=True, resolution=None, **kwargs):
         """
 
         Parameters
@@ -173,10 +172,10 @@ class Tow:
         self.__geom_features, self.__coordinates = geom_tow(self.surf_points, sort=sort)
 
         self.geom_features = pd.DataFrame(self.__geom_features.to_numpy()[:,
-                                          np.hstack(([0, 1, 2, 3, 4, 5], self.__column_order__+6))],
+                                          np.hstack(([0, 1, 2, 3, 4, 5], self.__column_order__ + 6))],
                                           columns=self.__geom_features.keys())
         self.coordinates = pd.DataFrame(self.__coordinates.to_numpy()[:,
-                                        np.hstack(([0, 1, 2], self.__column_order__+3))],
+                                        np.hstack(([0, 1, 2], self.__column_order__ + 3))],
                                         columns=self.__coordinates.keys())
 
         # bounds: [xmin, xmax, ymin, ymax, zmin, zmax]
@@ -186,7 +185,7 @@ class Tow:
                                 self.coordinates["Y"].max(),
                                 self.coordinates["Z"].min(),
                                 self.coordinates["Z"].max()])
-    
+
     # initialize the tow from a saved tow file
     @classmethod
     def from_file(cls, path):
@@ -209,7 +208,7 @@ class Tow:
             raise ValueError("The file extension must be .tow.")
 
         return pk_load(path)
-    
+
     def __str__(self):
         return self.name
 
@@ -334,6 +333,9 @@ class Tow:
              use the cross-section number as the key and the kriging expression as the value for
              the first two components of user input.
         """
+        print(bcolors.OKBLUE + "Resampling points on cross-sections with dual Kriging ... \n"
+                               "It may take a while depending on the number of cross-sections." + bcolors.ENDC)
+
         slices = np.unique(self.__coordinates["Z"])[::skip]
         n_slices = len(slices)
         dict_cs_x = {}
@@ -349,8 +351,6 @@ class Tow:
         self.h_res = n_slices
 
         pts_krig = np.zeros((n_slices * len(interp), 3))
-        print(bcolors.OKBLUE + "Resampling points on cross-sections with dual Kriging ... \n"
-              "It may take a while depending on the number of cross-sections." + bcolors.ENDC)
 
         drift, cov = krig_config
         params = {"distance": 1, "angular": 2}
@@ -490,7 +490,6 @@ class Tow:
             if smooth != 0.0:
                 plt.plot(dataset_0_org, dataset_1_org, "--k", label=self.order[0] + " unsmoothed")
                 plt.plot(dataset_0_org, dataset_2_org, "--k", label=self.order[1] + " unsmoothed")
-
 
             plt.plot(dataset_0_org, cen_points[:, 0], "r", label=self.order[0])
             plt.plot(dataset_0_org, cen_points[:, 1], "b", label=self.order[1])
@@ -638,8 +637,8 @@ class Tow:
         # print("wins_result: ", wins_result)
 
         x, y, z = col_0.reshape(-1, theta_res), \
-                  col_1.reshape(-1, theta_res), \
-                  col_2.reshape(-1, theta_res)
+            col_1.reshape(-1, theta_res), \
+            col_2.reshape(-1, theta_res)
 
         x, y, z = x.T, y.T, z.T
 
@@ -984,7 +983,7 @@ class Tow:
                                                       manifold_edges=False)
                 edge = np.array(get_cells(edges))
                 # remove edges with zero length
-                edge = edge[edge[:,1] != edge[:,2]]
+                edge = edge[edge[:, 1] != edge[:, 2]]
 
                 edge_reorder = edge[0, :]
 
@@ -1056,7 +1055,7 @@ class Tow:
                     n_pts += 1
                     # Plane.intersection() returns none when no intersection is found.
                     pts_intersect = plane.intersection(line, max_dist=max_dist)
-                    if pts_intersect is not None and pts_intersect.shape[0]== 1:
+                    if pts_intersect is not None and pts_intersect.shape[0] == 1:
                         # the second condition is to avoid that more than one intersection was detected.
                         # Now it is simply ignored that if more than one intersection is detected.
                         intersect[n_pts - 1, 0] = j
