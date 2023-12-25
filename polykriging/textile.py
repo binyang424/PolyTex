@@ -30,7 +30,7 @@ class Textile:
         self.groups = {}
         self.mesh = None
         self.mesh_shape = None
-        self.bounds = None
+        self.mesh_bounds = None
         self.voxel_size = None
         self.__n_cells__ = None
         self.tex = []  # linear density of the tows in the textile
@@ -107,6 +107,25 @@ class Textile:
 
         return tow_names_new
 
+    @property
+    def bounds(self):
+        """
+        Bounding box of the textile.
+        """
+        # traverse all tows to get the bounds
+        bbox = np.zeros([self.n_tows, 6])
+        n = 0
+        for tow in self.__tows__.values():
+            bbox[n, :] = tow.bounds
+            n += 1
+        mask_min = [True, False, True, False, True, False]
+        mask_max = [False, True, False, True, False, True]
+
+        x_min, y_min, z_min = np.min(bbox, axis=0)[mask_min]
+        x_max, y_max, z_max = np.max(bbox, axis=0)[mask_max]
+
+        return np.array([x_min, x_max, y_min, y_max, z_min, z_max])
+
     def add_tow(self, tow, group=None):
         """
         Add a tow to the textile. If tow is already in the textile, then raise
@@ -138,6 +157,7 @@ class Textile:
             self.add_group(name=group, tow=tow)
 
         self.tex.append(tow.tex)
+        self.bounds
 
         return None
 
@@ -262,7 +282,7 @@ class Textile:
         mesh_background, mesh_shape = background_mesh(bbox, voxel_size=voxel_size)
         self.mesh = mesh_background
         self.mesh_shape = mesh_shape
-        self.bounds = bbox
+        self.mesh_bounds = bbox
         self.voxel_size = voxel_size
         self.__n_cells__ = mesh_background.n_cells
 

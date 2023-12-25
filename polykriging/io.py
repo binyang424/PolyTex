@@ -1292,7 +1292,7 @@ def pk_load(file):
     return data
 
 
-def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
+def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0, max_pts=100, verbose=False):
     """
     Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
     https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.
@@ -1312,6 +1312,9 @@ def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
         resolution : float, optional
             The resolution of the image. The default is 1.0, the coordinates are not converted
             to the physical coordinates (namely the unit is pixel).
+        max_pts : int, optional
+            The maximum number of points on each slice. The default is 100. If the number of points
+            on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).
 
         Returns
         -------
@@ -1326,9 +1329,16 @@ def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0):
                 with zip_ref.open(file) as f:
                     coor_slice = np.loadtxt(f, comments=file,
                                             delimiter=",", skiprows=1)
-
                     if coor_slice.shape[0] == 0:
                         continue
+
+                    n_pts_org = coor_slice.shape[0]
+
+                    if coor_slice.shape[0] > max_pts:
+                        coor_slice = coor_slice[:: n_pts_org // max_pts]
+                        if verbose:
+                            print("Warning: The number of points {} on slice {} is larger than {}. It is "
+                                  "uniformly sampled to {}.".format(n_pts_org, file, max_pts, coor_slice.shape[0]))
 
                     try:
                         coor_unsort = np.vstack((coor_unsort, coor_slice))
@@ -2010,7 +2020,8 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
         fiber_material_name = "fiber"
         orientation_name = "TexGenOrientations"
         controls = "HourglassEnhanced"  # 如果使用C3D8R 将此行改为controls = "HourglassEnhanced"
-        solid_section_lines_all_sets = create_solid_section_for_all_sets(yarn_Index, fiber_material_name, orientation_name,
+        solid_section_lines_all_sets = create_solid_section_for_all_sets(yarn_Index, fiber_material_name,
+                                                                         orientation_name,
                                                                          controls)
 
         for line in solid_section_lines_all_sets:
@@ -2022,14 +2033,13 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
 
     #  07 fiber orientation
     if orientation:
-
         # split outputDir to get the path
         outputDir = outputDir.split('/')
         outputDir = '/'.join(outputDir[:-1])
         output_file = outputDir + '/orientation.ori'
 
         write_fiber_orientation_to_file(mesh, Indices=yarn_Index, file_header=inpDatabase["ori_header"],
-                                         output_file=output_file)
+                                        output_file=output_file)
 
         print(f'Cell orientation is written to "{output_file}" file.')
 

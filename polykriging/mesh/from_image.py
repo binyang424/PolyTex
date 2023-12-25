@@ -142,6 +142,8 @@ def get_vcut_plane(surf_mesh, direction='x', skip=1):
             The trajectory (centroid) of the vertical cut plane calculated
             by averaging the coordinates of the points on the cutting edge.
     """
+    print("Extracting the vertical cut planes ...")
+
     surf_points = surf_mesh.points
     cell_centers = surf_mesh.cell_centers().points
 
@@ -239,7 +241,7 @@ def __node_sort_curve(curve_connectivity):
     return curve_connectivity_ordered
 
 
-def slice_plot(vcut_planes, skip=10, marker='o', marker_size=0.1, dpi=300, save=False, save_path=None):
+def slice_plot(vcut_planes, skip=10, marker='o', marker_size=0.1, direction="z", dpi=300, save=False, save_path=None):
     """
     Plot the vertical cut planes.
 
@@ -273,16 +275,23 @@ def slice_plot(vcut_planes, skip=10, marker='o', marker_size=0.1, dpi=300, save=
     fig = plt.figure(dpi=dpi)
     ax = fig.add_subplot(111, projection='3d')
 
-    slices = np.unique(vcut_planes[:, 0])
+    direct = {"x": 0, "y": 1, "z": 2}
+    if direction not in direct.keys():
+        raise ValueError("The direction can only be 'x', 'y', or 'z'.")
+
+    slices = np.unique(vcut_planes[:, direct[direction]]).astype(int)
     for iSlice in range(slices.size):
         if iSlice % skip != 0:
             continue
-        coordinate = vcut_planes[vcut_planes[:, 0] == slices[iSlice], -3:]
-        ax.plot(coordinate[:, 0], coordinate[:, 1], coordinate[:, 2], marker, markersize=marker_size)
 
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+        coordinate = vcut_planes[vcut_planes[:, direct[direction]] == slices[iSlice], -3:]
+        coor_not_slice = [key for key in direct.keys() if key != direction]
+        ax.plot(coordinate[:, direct[direction]], coordinate[:, direct[coor_not_slice[0]]], coordinate[:, direct[coor_not_slice[1]]],
+                marker, markersize=marker_size)
+
+    ax.set_xlabel(direction.upper())
+    ax.set_ylabel(coor_not_slice[0].upper())
+    ax.set_zlabel(coor_not_slice[1].upper())
     ax.set_aspect('equal')
 
     if save:
