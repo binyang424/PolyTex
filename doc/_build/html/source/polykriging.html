@@ -439,59 +439,79 @@
 <dt class="sig sig-object py" id="polykriging.textile.Textile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polykriging.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This is a class for textile geometrical analysis and numerical meshing.</p>
-<p># TODO : analyze, design, and program the Textile class.</p>
+<p>A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and
+physical properties of a textile, providing functionalities for mesh generation, tow management,
+and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="#polykriging.textile.Textile.items" title="polykriging.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>A descriptive name for the textile.</p>
 </dd>
-<dt><a class="reference internal" href="#polykriging.textile.Textile.n_tows" title="polykriging.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
+<dt><strong>groups</strong><span class="classifier">dict</span></dt><dd><p>A dictionary containing groups of fiber tows within the textile. Tow.name serves as the key,
+and Tow object serves as the value.</p>
+</dd>
+<dt><a class="reference internal" href="#polykriging.textile.Textile.bounds" title="polykriging.textile.Textile.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></dt><dd><p>Bounding box of the textile.</p>
+</dd>
+<dt><strong>mesh</strong><span class="classifier">pyvista mesh object (UnstructuredGrid)</span></dt><dd><p>The mesh representation of the textile.</p>
+</dd>
+<dt><strong>mesh_shape</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The shape of the mesh object in the format of [nx, ny, nz].</p>
+</dd>
+<dt><strong>mesh_bounds</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The bounding box coordinates of the textile mesh. The format is [xmin, xmax, ymin, ymax, zmin, zmax].
+The bounding box is specified by the user when generating the mesh. If the bounding box is not specified,
+then the bounding box is set to the bounding box of the textile.</p>
+</dd>
+<dt><strong>voxel_size</strong><span class="classifier">float</span></dt><dd><p>The size of voxels used in mesh generation.</p>
+</dd>
+<dt><strong>tex</strong><span class="classifier">list</span></dt><dd><p>A list representing the linear density of fiber tows in the textile.</p>
+</dd>
+<dt><a class="reference internal" href="#polykriging.textile.Textile.n_tows" title="polykriging.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a><span class="classifier">int</span></dt><dd><p>Number of tows in the textile.</p>
+</dd>
+<dt><a class="reference internal" href="#polykriging.textile.Textile.items" title="polykriging.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a><span class="classifier">list</span></dt><dd><p>Return tow names as a list.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
+<table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.add_group" title="polykriging.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
-<td><p>Groups of the tows in the textile.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.add_tow" title="polykriging.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
-<td><p>Add a tow to the textile.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.case_prepare" title="polykriging.textile.Textile.case_prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code></a>([path])</p></td>
-<td><p>Prepare a case for OpenFOAM simulation.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.cell_labeling" title="polykriging.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
-<td><p>Label the cells of the background mesh with tow id.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.decimate" title="polykriging.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
-<td><p>Decimate the mesh.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.export_as_inp" title="polykriging.textile.Textile.export_as_inp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code></a>([fp, scale, orientation])</p></td>
-<td><p>Export the textile mesh as inp file for Abaqus simulation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.export_as_openfoam" title="polykriging.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
-<td><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.from_file" title="polykriging.textile.Textile.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
+<tr class="row-odd"><td><p><strong>from_file(path)</strong></p></td>
 <td><p>Load a textile object from a file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.meshing" title="polykriging.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
-<td><p>Generate a mesh for the textile.</p></td>
+<tr class="row-even"><td><p><strong>add_tow(tow, group=None)</strong></p></td>
+<td><p>Add a fiber tow to the textile, optionally assigning it to a specified group.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.reconstruct" title="polykriging.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
-<td><p>Reconstruct the textile object from the saved file.</p></td>
+<tr class="row-odd"><td><p><strong>add_group(name=”group1”, tow=None)</strong></p></td>
+<td><p>Add a group to the textile, allowing organization of fiber tows.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.remove" title="polykriging.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
-<td><p>Remove a tow from the textile.</p></td>
+<tr class="row-even"><td><p><strong>remove(tow)</strong></p></td>
+<td><p>Remove a specific fiber tow from the textile.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#polykriging.textile.Textile.save" title="polykriging.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
-<td><p>Save the textile object to a file.</p></td>
+<tr class="row-odd"><td><p><strong>triangulate()</strong></p></td>
+<td><p>Perform hexahedral to tetrahedral mesh conversion with conformal meshing.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#polykriging.textile.Textile.triangulate" title="polykriging.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
-<td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
+<tr class="row-even"><td><p><strong>decimate()</strong></p></td>
+<td><p>Reduce the complexity of the textile mesh.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>meshing(bbox, voxel_size=None, show=False, labeling=False, surface_mesh=None, verbose=False)</strong></p></td>
+<td><p>Generate a mesh for the textile, providing options for visualization and labeling.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>cell_labeling(surface_mesh=None, intersection=False, check_surface=False, verbose=False)</strong></p></td>
+<td><p>Label the cells of the background mesh with tow IDs, allowing for easy identification.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>export_as_openfoam(fp, scale=1, boundary_type=None, cell_data=[“yarnIndex”, “D”])</strong></p></td>
+<td><p>Export the textile mesh as a polyMesh folder for OpenFOAM simulations, providing options for customization.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>export_as_inp(fp=”./mesh-C3D8R.inp”, scale=1, orientation=True)</strong></p></td>
+<td><p>Export the textile mesh as an inp file for Abaqus simulations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>save(path=None, filename=None, data_size=”minimal”)</strong></p></td>
+<td><p>Save the textile object to a file, with options to control the amount of data saved.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>reconstruct()</strong></p></td>
+<td><p>Reconstruct the textile object from a saved file in the format of “.tex”. It is only used when load a textile object saved in the format of “.tex” and the data_size is “minimal”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>case_prepare(path=None)</strong></p></td>
+<td><p>Prepare a simulation case for OpenFOAM, facilitating the setup process for simulations.</p></td>
 </tr>
 </tbody>
 </table>
@@ -797,6 +817,12 @@ is saved.</p>
 <dt class="sig sig-object py" id="polykriging.textile.Textile.triangulate">
 <span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
 <dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polykriging.textile.Textile.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polykriging.textile.Textile.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Bounding box of the textile.</p>
 </dd></dl>
 
 <dl class="py property">

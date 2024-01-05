@@ -55,29 +55,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="polykriging.io.html">polykriging.io</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.mesh</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.decimation">polykriging.mesh.decimation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.features">polykriging.mesh.features</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.from_image">polykriging.mesh.from_image</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.mesh.mesh">polykriging.mesh.mesh</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.misc.html">polykriging.misc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
@@ -586,7 +566,7 @@ If False, extract the cells that contain at least one of the extracted points.</
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.from_image.get_vcut_plane">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">get_vcut_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#get_vcut_plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.get_vcut_plane" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">get_vcut_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#get_vcut_plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.get_vcut_plane" title="Permalink to this definition"></a></dt>
 <dd><p>Get the vertical cut plane of the surf mesh in the direction
 of x, y, or z axis through (boundary) cutting edge extraction.</p>
 <dl class="field-list simple">
@@ -596,6 +576,9 @@ of x, y, or z axis through (boundary) cutting edge extraction.</p>
 </dd>
 <dt><strong>direction</strong><span class="classifier">str, optional</span></dt><dd><p>The direction of the vertical cut plane, by default ‘x’.
 The direction can be ‘x’, ‘y’, or ‘z’.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cut planes to skip. The unit is slice in the
+direction of the vertical cut plane, by default 1.</p>
 </dd>
 </dl>
 </dd>
@@ -689,7 +672,7 @@ region number and the value is the mesh object.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.mesh.from_image.slice_plot">
-<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">slice_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcut_planes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#slice_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.slice_plot" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">slice_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcut_planes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'z'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/mesh/from_image.html#slice_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.mesh.from_image.slice_plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the vertical cut planes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

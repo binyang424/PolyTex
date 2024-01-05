@@ -16,9 +16,78 @@ import numpy as np
 
 class Textile:
     """
-    This is a class for textile geometrical analysis and numerical meshing.
+    A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and
+    physical properties of a textile, providing functionalities for mesh generation, tow management,
+    and export capabilities for simulation platforms such as OpenFOAM and Abaqus.
 
-    # TODO : analyze, design, and program the Textile class.
+    Attributes
+    ----------
+    name : str
+        A descriptive name for the textile.
+    groups : dict
+        A dictionary containing groups of fiber tows within the textile. Tow.name serves as the key,
+        and Tow object serves as the value.
+    bounds
+        Return the bounding box of the entire textile structure. The bounding box of the textile is
+        calculated by traversing all the fiber tows in the textile.
+    mesh : pyvista mesh object (UnstructuredGrid)
+        The mesh representation of the textile.
+    mesh_shape : numpy.ndarray
+        The shape of the mesh object in the format of [nx, ny, nz].
+    mesh_bounds : numpy.ndarray
+        The bounding box coordinates of the textile mesh. The format is [xmin, xmax, ymin, ymax, zmin, zmax].
+        The bounding box is specified by the user when generating the mesh. If the bounding box is not specified,
+        then the bounding box is set to the bounding box of the textile. 
+    voxel_size : float
+        The size of voxels used in mesh generation. 
+    tex : list
+        A list representing the linear density of fiber tows in the textile.
+    n_tows : int
+        Return the total number of fiber tows in the textile.
+    items : list
+        Return a list of tow names, optionally reordered by tow number if applicable.
+
+    Methods
+    -------
+    from_file(path)
+        Load a textile object from a file.
+
+    add_tow(tow, group=None)
+        Add a fiber tow to the textile, optionally assigning it to a specified group.
+
+    add_group(name="group1", tow=None)
+        Add a group to the textile, allowing organization of fiber tows.
+
+    remove(tow)
+        Remove a specific fiber tow from the textile.
+
+    triangulate()
+        Perform hexahedral to tetrahedral mesh conversion with conformal meshing.
+
+    decimate()
+        Reduce the complexity of the textile mesh.
+
+    meshing(bbox, voxel_size=None, show=False, labeling=False, surface_mesh=None, verbose=False)
+        Generate a mesh for the textile, providing options for visualization and labeling.
+
+    cell_labeling(surface_mesh=None, intersection=False, check_surface=False, verbose=False)
+        Label the cells of the background mesh with tow IDs, allowing for easy identification.
+
+    export_as_openfoam(fp, scale=1, boundary_type=None, cell_data=["yarnIndex", "D"])
+        Export the textile mesh as a polyMesh folder for OpenFOAM simulations, providing options for customization.
+
+    export_as_inp(fp="./mesh-C3D8R.inp", scale=1, orientation=True)
+        Export the textile mesh as an inp file for Abaqus simulations.
+
+    save(path=None, filename=None, data_size="minimal")
+        Save the textile object to a file, with options to control the amount of data saved.
+
+    reconstruct()
+        Reconstruct the textile object from a saved file in the format of ".tex". It is only used when 
+        load a textile object saved in the format of ".tex" and the data_size is "minimal".
+
+    case_prepare(path=None)
+        Prepare a simulation case for OpenFOAM, facilitating the setup process for simulations.
     """
 
     def __init__(self, name="textile"):

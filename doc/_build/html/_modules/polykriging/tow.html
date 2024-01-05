@@ -100,7 +100,6 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">trange</span>
 
 
-
 <span class="c1"># pv.set_plot_theme(&quot;document&quot;)</span>
 
 
@@ -172,7 +171,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surf_points</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">rho_fiber</span><span class="p">,</span> <span class="n">radius_fiber</span><span class="p">,</span> <span class="n">length_scale</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">,</span> <span class="n">packing_fiber</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">,</span> <span class="n">packing_fiber</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
@@ -259,10 +258,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span> <span class="o">=</span> <span class="n">geom_tow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span>
-                                          <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="o">+</span><span class="mi">6</span><span class="p">))],</span>
+                                          <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span> <span class="o">+</span> <span class="mi">6</span><span class="p">))],</span>
                                           <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__geom_features</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span>
-                                        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span><span class="o">+</span><span class="mi">3</span><span class="p">))],</span>
+                                        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))],</span>
                                         <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
         <span class="c1"># bounds: [xmin, xmax, ymin, ymax, zmin, zmax]</span>
@@ -272,7 +271,7 @@
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
-    
+
     <span class="c1"># initialize the tow from a saved tow file</span>
 <div class="viewcode-block" id="Tow.from_file"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.tow.Tow.from_file">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
@@ -295,7 +294,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file extension must be .tow.&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
-    
+
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
@@ -420,6 +419,9 @@
 <span class="sd">             use the cross-section number as the key and the kriging expression as the value for</span>
 <span class="sd">             the first two components of user input.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Resampling points on cross-sections with dual Kriging ... </span><span class="se">\n</span><span class="s2">&quot;</span>
+                               <span class="s2">&quot;It may take a while depending on the number of cross-sections.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
+
         <span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">])[::</span><span class="n">skip</span><span class="p">]</span>
         <span class="n">n_slices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span>
         <span class="n">dict_cs_x</span> <span class="o">=</span> <span class="p">{}</span>
@@ -435,8 +437,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">h_res</span> <span class="o">=</span> <span class="n">n_slices</span>
 
         <span class="n">pts_krig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_slices</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">interp</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Resampling points on cross-sections with dual Kriging ... </span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;It may take a while depending on the number of cross-sections.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
         <span class="n">drift</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">krig_config</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;angular&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
@@ -576,7 +576,6 @@
             <span class="k">if</span> <span class="n">smooth</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">dataset_1_org</span><span class="p">,</span> <span class="s2">&quot;--k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; unsmoothed&quot;</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">dataset_2_org</span><span class="p">,</span> <span class="s2">&quot;--k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; unsmoothed&quot;</span><span class="p">)</span>
-
 
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataset_0_org</span><span class="p">,</span> <span class="n">cen_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -724,8 +723,8 @@
         <span class="c1"># print(&quot;wins_result: &quot;, wins_result)</span>
 
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">col_0</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">),</span> \
-                  <span class="n">col_1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">),</span> \
-                  <span class="n">col_2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">)</span>
+            <span class="n">col_1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">),</span> \
+            <span class="n">col_2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">)</span>
 
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">T</span>
 
@@ -1070,7 +1069,7 @@
                                                       <span class="n">manifold_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="n">edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">get_cells</span><span class="p">(</span><span class="n">edges</span><span class="p">))</span>
                 <span class="c1"># remove edges with zero length</span>
-                <span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">edge</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">edge</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]]</span>
+                <span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">edge</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">edge</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]]</span>
 
                 <span class="n">edge_reorder</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
@@ -1142,7 +1141,7 @@
                     <span class="n">n_pts</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="c1"># Plane.intersection() returns none when no intersection is found.</span>
                     <span class="n">pts_intersect</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="n">max_dist</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">pts_intersect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pts_intersect</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">pts_intersect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pts_intersect</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                         <span class="c1"># the second condition is to avoid that more than one intersection was detected.</span>
                         <span class="c1"># Now it is simply ignored that if more than one intersection is detected.</span>
                         <span class="n">intersect</span><span class="p">[</span><span class="n">n_pts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>

@@ -102,9 +102,78 @@
 
 <div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This is a class for textile geometrical analysis and numerical meshing.</span>
+<span class="sd">    A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and</span>
+<span class="sd">    physical properties of a textile, providing functionalities for mesh generation, tow management,</span>
+<span class="sd">    and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</span>
 
-<span class="sd">    # TODO : analyze, design, and program the Textile class.</span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        A descriptive name for the textile.</span>
+<span class="sd">    groups : dict</span>
+<span class="sd">        A dictionary containing groups of fiber tows within the textile. Tow.name serves as the key,</span>
+<span class="sd">        and Tow object serves as the value.</span>
+<span class="sd">    bounds</span>
+<span class="sd">        Return the bounding box of the entire textile structure. The bounding box of the textile is</span>
+<span class="sd">        calculated by traversing all the fiber tows in the textile.</span>
+<span class="sd">    mesh : pyvista mesh object (UnstructuredGrid)</span>
+<span class="sd">        The mesh representation of the textile.</span>
+<span class="sd">    mesh_shape : numpy.ndarray</span>
+<span class="sd">        The shape of the mesh object in the format of [nx, ny, nz].</span>
+<span class="sd">    mesh_bounds : numpy.ndarray</span>
+<span class="sd">        The bounding box coordinates of the textile mesh. The format is [xmin, xmax, ymin, ymax, zmin, zmax].</span>
+<span class="sd">        The bounding box is specified by the user when generating the mesh. If the bounding box is not specified,</span>
+<span class="sd">        then the bounding box is set to the bounding box of the textile. </span>
+<span class="sd">    voxel_size : float</span>
+<span class="sd">        The size of voxels used in mesh generation. </span>
+<span class="sd">    tex : list</span>
+<span class="sd">        A list representing the linear density of fiber tows in the textile.</span>
+<span class="sd">    n_tows : int</span>
+<span class="sd">        Return the total number of fiber tows in the textile.</span>
+<span class="sd">    items : list</span>
+<span class="sd">        Return a list of tow names, optionally reordered by tow number if applicable.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    from_file(path)</span>
+<span class="sd">        Load a textile object from a file.</span>
+
+<span class="sd">    add_tow(tow, group=None)</span>
+<span class="sd">        Add a fiber tow to the textile, optionally assigning it to a specified group.</span>
+
+<span class="sd">    add_group(name=&quot;group1&quot;, tow=None)</span>
+<span class="sd">        Add a group to the textile, allowing organization of fiber tows.</span>
+
+<span class="sd">    remove(tow)</span>
+<span class="sd">        Remove a specific fiber tow from the textile.</span>
+
+<span class="sd">    triangulate()</span>
+<span class="sd">        Perform hexahedral to tetrahedral mesh conversion with conformal meshing.</span>
+
+<span class="sd">    decimate()</span>
+<span class="sd">        Reduce the complexity of the textile mesh.</span>
+
+<span class="sd">    meshing(bbox, voxel_size=None, show=False, labeling=False, surface_mesh=None, verbose=False)</span>
+<span class="sd">        Generate a mesh for the textile, providing options for visualization and labeling.</span>
+
+<span class="sd">    cell_labeling(surface_mesh=None, intersection=False, check_surface=False, verbose=False)</span>
+<span class="sd">        Label the cells of the background mesh with tow IDs, allowing for easy identification.</span>
+
+<span class="sd">    export_as_openfoam(fp, scale=1, boundary_type=None, cell_data=[&quot;yarnIndex&quot;, &quot;D&quot;])</span>
+<span class="sd">        Export the textile mesh as a polyMesh folder for OpenFOAM simulations, providing options for customization.</span>
+
+<span class="sd">    export_as_inp(fp=&quot;./mesh-C3D8R.inp&quot;, scale=1, orientation=True)</span>
+<span class="sd">        Export the textile mesh as an inp file for Abaqus simulations.</span>
+
+<span class="sd">    save(path=None, filename=None, data_size=&quot;minimal&quot;)</span>
+<span class="sd">        Save the textile object to a file, with options to control the amount of data saved.</span>
+
+<span class="sd">    reconstruct()</span>
+<span class="sd">        Reconstruct the textile object from a saved file in the format of &quot;.tex&quot;. It is only used when </span>
+<span class="sd">        load a textile object saved in the format of &quot;.tex&quot; and the data_size is &quot;minimal&quot;.</span>
+
+<span class="sd">    case_prepare(path=None)</span>
+<span class="sd">        Prepare a simulation case for OpenFOAM, facilitating the setup process for simulations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
@@ -116,7 +185,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh_shape</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh_bounds</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">voxel_size</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tex</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># linear density of the tows in the textile</span>
@@ -193,6 +262,25 @@
 
         <span class="k">return</span> <span class="n">tow_names_new</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bounding box of the textile.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># traverse all tows to get the bounds</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_tows</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">tow</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tows__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">bbox</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">bounds</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">mask_min</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+        <span class="n">mask_max</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+
+        <span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">z_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="n">mask_min</span><span class="p">]</span>
+        <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="n">mask_max</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">])</span>
+
 <div class="viewcode-block" id="Textile.add_tow"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.add_tow">[docs]</a>    <span class="k">def</span> <span class="nf">add_tow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a tow to the textile. If tow is already in the textile, then raise</span>
@@ -224,6 +312,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">tow</span><span class="o">=</span><span class="n">tow</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tow</span><span class="o">.</span><span class="n">tex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
 
         <span class="k">return</span> <span class="kc">None</span></div>
 
@@ -348,7 +437,7 @@
         <span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="n">voxel_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh_background</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">mesh_shape</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bbox</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh_bounds</span> <span class="o">=</span> <span class="n">bbox</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">voxel_size</span> <span class="o">=</span> <span class="n">voxel_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__n_cells__</span> <span class="o">=</span> <span class="n">mesh_background</span><span class="o">.</span><span class="n">n_cells</span>
 
@@ -537,6 +626,12 @@
         <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh_shape</span><span class="p">])</span>
         <span class="n">outputDirMesh</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">suffix</span><span class="p">)</span>
 
+        <span class="n">n_copy</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outputDirMesh</span><span class="p">):</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="n">suffix</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_copy</span><span class="p">)</span>
+            <span class="n">outputDirMesh</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">suffix</span><span class="p">)</span>
+            <span class="n">n_copy</span> <span class="o">+=</span> <span class="mi">1</span>
+
         <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Exporting the textile mesh as OpenFOAM case to </span><span class="si">%s</span><span class="s2"> ...&quot;</span> <span class="o">%</span> <span class="n">outputDirMesh</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
         <span class="n">voxel2foam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">outputDirMesh</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="n">boundary_type</span><span class="p">,</span>
@@ -561,7 +656,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__case_root__</span> <span class="o">=</span> <span class="n">outputDirMesh</span>
         <span class="k">return</span> <span class="kc">None</span></div>
-    
+
 <div class="viewcode-block" id="Textile.export_as_inp"><a class="viewcode-back" href="../../source/polykriging.html#polykriging.textile.Textile.export_as_inp">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_inp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="s2">&quot;./mesh-C3D8R.inp&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the textile mesh as inp file for Abaqus simulation.</span>
@@ -583,7 +678,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The textile mesh is not generated yet. Please generate the textile &quot;</span>
                              <span class="s2">&quot;mesh with `Textile.meshing()` first.&quot;</span><span class="p">)</span>
-    
+
         <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span>
         <span class="n">voxel2inp</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 

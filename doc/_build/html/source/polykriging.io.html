@@ -55,26 +55,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">polykriging.io</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-polykriging.io">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.geometry.html">polykriging.geometry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.kriging.html">polykriging.kriging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.mesh.html">polykriging.mesh</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.plot.html">polykriging.plot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.stats.html">polykriging.stats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.misc.html">polykriging.misc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polykriging.thirdparty.html">polykriging.thirdparty</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
@@ -571,7 +554,7 @@ a supported file extension, a ValueError will be raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polykriging.io.read_imagej_roi">
-<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">read_imagej_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#read_imagej_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.read_imagej_roi" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polykriging.io.</span></span><span class="sig-name descname"><span class="pre">read_imagej_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polykriging/io.html#read_imagej_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polykriging.io.read_imagej_roi" title="Permalink to this definition"></a></dt>
 <dd><p>Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
 <a class="reference external" href="https://www.binyang.fun/manual-segmentation-in-imagej-fiji/">https://www.binyang.fun/manual-segmentation-in-imagej-fiji/</a> for more details.</p>
 <dl class="field-list simple">
@@ -589,6 +572,9 @@ the coordinates on the same slice are not sorted. The sorting is only applied to
 </dd>
 <dt><strong>resolution</strong><span class="classifier">float, optional</span></dt><dd><p>The resolution of the image. The default is 1.0, the coordinates are not converted
 to the physical coordinates (namely the unit is pixel).</p>
+</dd>
+<dt><strong>max_pts</strong><span class="classifier">int, optional</span></dt><dd><p>The maximum number of points on each slice. The default is 100. If the number of points
+on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).</p>
 </dd>
 </dl>
 </dd>
@@ -776,7 +762,7 @@ The default is “linear”. The other option is “spline”.</p>
 </dd>
 <dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor to convert the unit of points. The default is 1.0.</p>
 </dd>
-<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory and filename. The default is ‘./mesh-C3D8R.inp’. The file 
+<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory and filename. The default is ‘./mesh-C3D8R.inp’. The file
 extension is automatically added if not provided.</p>
 </dd>
 </dl>
@@ -788,7 +774,7 @@ extension is automatically added if not provided.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>voxel2inp is developed by Chao Yang (<a class="reference external" href="mailto:yangchaogg&#37;&#52;&#48;whut&#46;edu&#46;cn">yangchaogg<span>&#64;</span>whut<span>&#46;</span>edu<span>&#46;</span>cn</a>) &amp; Bin Yang 
+<p>voxel2inp is developed by Chao Yang (<a class="reference external" href="mailto:yangchaogg&#37;&#52;&#48;whut&#46;edu&#46;cn">yangchaogg<span>&#64;</span>whut<span>&#46;</span>edu<span>&#46;</span>cn</a>) &amp; Bin Yang
 (<a class="reference external" href="mailto:bin&#46;yang&#37;&#52;&#48;polymtl&#46;ca">bin<span>&#46;</span>yang<span>&#64;</span>polymtl<span>&#46;</span>ca</a>) jointly. Please contact us if you have any questions.</p>
 </dd></dl>
 

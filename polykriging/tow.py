@@ -14,21 +14,19 @@ import pandas as pd
 from tqdm import trange
 
 
-# pv.set_plot_theme("document")
-
-
 class Tow:
     """
-    This class is used to store the tow information, calculate the geometry features
-    and parametrilize the tow.
+    The `Tow` class represents a fiber tow and store the physical properties.
+    It provides functionality for calculating the geometry features, resampling, and 
+    smoothing the fiber tow surface.
 
     Attributes
     ----------
     name : str
-        The name or type of the tow. Default is "Tow". It can be any string that helps
-        users to identify the tow. (initialized in Tow.__init__)
+        The name or identifier for the fiber tow. Default is "Tow". It can be any string that helps
+        users to identify the tow.
     tex : float
-        The linear density of the tow in tex. Default is 0. (initialized in Tow.__init__)
+        The linear density of the tow in tex.
     order : str
         It is preferred to set the last column of the surf_points as the coordinate in
         the direction that is perpendicular to the image slices for geometry analysis,
@@ -36,29 +34,26 @@ class Tow:
         Here, you can specify the order of the columns in the reordered points. Default is "xyz".
         The other options are "xzy", "yxz", "yzx", "zxy", "zyx". The output coordinate will
         be reordered in the right order (xyz) according to the order specified here.
-        (initialized in Tow.__init__)
     resolution : float
         The resolution of the MicroCT image used to generate the tow dataset. Default is None.
-        This is only stored as an attribute for future use. It is not used in the current version.
-        (initialized in Tow.__init__)
+        This is only stored as an attribute for future use.
     surf_points : ndarray
         The surface points of the tow. It stores the coordinates of the points input by the user.
-        (initialized in Tow.__init__)
     geom_features : dataframe
         The geometry features of each cross-section of the tow. The features include
-        the 'Area', 'Perimeter', 'Width', 'Height', 'AngleRotated', 'Circularity',
-       'centroidX', 'centroidY', and 'centroidZ'. (initialized in Tow.__init__)
+        the 'Area', 'Perimeter', 'Width', 'Height', 'AngleRotated', 'Circularity', 'centroidX', 
+        'centroidY', and 'centroidZ'.
     coordinates : dataframe
         The parametrilized coordinates of the tow. It includes the geodesic 'distance'
         and the normalized distance 'norm_distance' from the start point of the parametric
         plane to the current point, the 'angular position (degree)', and the corresponding
-        'X', 'Y', and 'Z' coordinates. (initialized in Tow.__init__)
+        'X', 'Y', and 'Z' coordinates.
     theta_res : float
         The number of points to describe the profile of a tow cross-section in the radial
-        direction. (initialized in Tow.resampling)
+        direction.
     h_res : float
         The number of cross-sections to describe the profile of a tow in the axial
-        direction. (initialized in Tow.resampling)
+        direction.
     orientation : ndarray
         The orientation of the tow calculated from the tangent of centerline of the tow.
         (initialized in Tow.trajectory)
@@ -117,6 +112,8 @@ class Tow:
             The density of the fiber in kg/m^3.
         radius_fiber : float, optional
             The radius of the fiber in m.
+        length_scale : str, optional
+            The length scale of the coordinates. Default is "mm". The other options are "m", "cm", "um".
         tex : float, optional
             The linear density of the tow in tex.
         name : str, optional
@@ -128,8 +125,6 @@ class Tow:
         resolution : float, optional
             The resolution of the MicroCT image used to generate the tow dataset. Default is None.
             This is only stored as an attribute for future use. It is not used in the current version.
-        length_scale : str, optional
-            The length scale of the coordinates. Default is "mm". The other options are "m", "cm", "um".
         kwargs : dict
             The keyword arguments for the PolyKriging Tow class. The user can specify any keyword
             arguments for the Tow class. The keyword arguments will be stored as attributes of the
@@ -145,6 +140,13 @@ class Tow:
         self.rho_fiber = rho_fiber
         self.radius_fiber = radius_fiber
         self.packing_fiber = packing_fiber
+
+        self.theta_res = None
+        self.h_res = None
+        self.surf_points = None
+        self.geom_features = None
+        self.coordinates = None
+        self.orientation = None
 
         if length_scale not in ["m", "cm", "mm", "um"]:
             raise ValueError("length_scale must be one of 'm', 'cm', 'mm', 'um'.")
