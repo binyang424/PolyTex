@@ -296,7 +296,7 @@ class Textile:
 
         return None
 
-    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, verbose=False):
+    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, threshold=1, verbose=False):
         """
         Label the cells of the background mesh with tow id.
 
@@ -310,6 +310,10 @@ class Textile:
                 Whether to detect the intersection of the tows. The default is False.
             check_surface : bool, optional
                 Whether to check if the surface mesh is watertight. The default is False.
+            threshold : float, optional
+                The tolerance for the fiber tow section detection. The default is 0.5. A wavy
+                fiber tow may have several intersections with the plane of a cross-section. The
+                threshold is used to determine if the cells is correctly labelled.
             verbose : bool, optional
                 Whether to print the information. The default is False.
 
@@ -393,6 +397,11 @@ class Textile:
             for i in range(centerline.shape[0]):
                 plane = Plane(p1=centerline[i, :], normal_vector=orientation[i, :])
                 dist = plane.distance(yarn_centers)
+                # calculate the distance of yarn centers to the centroid of the cross-section
+                # TODO : A safer way to determine the threshold should be developed.
+                centroid_dist = np.linalg.norm(yarn_centers - centerline[i, :], axis=1)
+                mask_centroid = centroid_dist > threshold
+                dist[mask_centroid] = 10e12
                 temp_section[:, i] = dist
 
             idx = np.argmin(np.abs(temp_section), axis=1)
