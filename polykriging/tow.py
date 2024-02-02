@@ -1102,6 +1102,9 @@ class Tow:
                                  i_size=1, j_size=1).triangulate()
                     p.point_data.clear()
 
+                    if len(points_boundary) < 3:
+                        continue
+
                     clipped = pv.PolyData(points_boundary).delaunay_2d()
 
                     cross_section = cross_section.merge(clipped)

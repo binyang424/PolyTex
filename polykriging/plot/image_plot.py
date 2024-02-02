@@ -4,8 +4,52 @@
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import matplotlib.colors as mc
+import colorsys
 
 
+def lighten_color(color, amount=0.5, alpha=1):
+    """
+    Lightens the given color by multiplying (1-luminosity) by the given amount.
+    Input can be matplotlib color string, hex string, or RGB tuple.
+
+    url : 
+    https://stackoverflow.com/questions/37765197/darken-or-lighten-a-color-in-matplotlib
+
+    Parameters
+    ----------
+    color : str or tuple
+        color to lighten
+    amount : float
+        amount to lighten the color. Value less than 1 produces a lighter color,
+        value greater than 1 produces a darker color.
+    alpha : float
+        alpha value of the color. Default is 1. The alpha value is a float
+        between 0 and 1.
+
+    Returns
+    -------
+    tuple
+        modified color in RGBA tuple (float values in the range 0-1).
+        
+    Examples:
+    >> lighten_color('g', 0.3, 1)
+    (0.5500000000000002, 0.9999999999999999, 0.5500000000000002, 1)
+    >> lighten_color('#F034A3', 0.6, 0.5)
+    (0.9647058823529411, 0.5223529411764707, 0.783529411764706, 0.5)
+    >> lighten_color((.3,.55,.1), 0.5)
+    (0.6365384615384615, 0.8961538461538462, 0.42884615384615377, 1)
+    """
+    try:
+        c = mc.cnames[color]
+    except:
+        c = color
+    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
+    color_lightened = colorsys.hls_to_rgb(c[0], 1 - amount * (1 - c[1]), c[2])
+    
+    return (*color_lightened, alpha)
+    
+    
 def para_plot():
     """
     This function is used to describe the parameters of the plot.
