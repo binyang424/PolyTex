@@ -9,8 +9,8 @@ from .__entity__ import GeometryEntity
 from sympy.utilities.iterables import is_sequence
 from sympy.core.containers import Tuple
 
-import polykriging.mesh as ms
-import polykriging as pk
+import polytex.mesh as ms
+import polytex as ptex
 import pyvista as pv
 
 import os
@@ -215,7 +215,7 @@ class Point(np.ndarray):
                 raise ValueError("Color array must have the same size as the point array.")
         else:
             filename = filename + ".vtk" if not filename.endswith(".vtk") else filename
-            pk.save_ply(filename, vertices=self.xyz,
+            ptex.save_ply(filename, vertices=self.xyz,
                         point_data=color, binary=False)
 
 
@@ -988,7 +988,7 @@ class Tube(GeometryEntity):
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
-        pv_mesh = pk.mesh.tubular_mesh_generator(theta_res=theta_res - 1, h_res=h_res,
+        pv_mesh = ptex.mesh.tubular_mesh_generator(theta_res=theta_res - 1, h_res=h_res,
                                                  vertices=pts, plot=False)
         if plot:
             pv_mesh.plot(show_edges=True)
@@ -1035,7 +1035,7 @@ class Tube(GeometryEntity):
                 int(self.theta_res),
                 correction=end_closed)
 
-            pk.meshio_save(save_path, points, cells=cells,
+            ptex.meshio_save(save_path, points, cells=cells,
                            point_data={}, cell_data={}, binary=False)
         else:
             import pyvista as pv
@@ -1118,7 +1118,7 @@ class ParamCurve:
                     print("Creating kriging model for %s -th component" % str(i + 1))
 
                 mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
-                    pk.kriging.curveKrig1D(data_krig, name_drift=drift,
+                    ptex.kriging.curveKrig1D(data_krig, name_drift=drift,
                                            name_cov=cov, nuggetEffect=smoothing_factor)
 
                 cls.function.append(expr)

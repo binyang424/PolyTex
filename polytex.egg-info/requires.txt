@@ -1,0 +1,11 @@
+numpy>=0.5
+matplotlib
+sympy
+tk
+shapely
+SciencePlots
+opencv-python
+pyvista
+meshio
+scikit-learn
+opencv-python

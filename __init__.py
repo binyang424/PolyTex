@@ -1,2 +1,0 @@
-def tow():
-    return None

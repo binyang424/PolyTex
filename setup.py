@@ -1,16 +1,16 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name='polykriging',
+    name='polytex',
     version='0.3.4',
-    description='A kriging package as a result of the course MEC 6310',
-    url='https://github.com/shuds13/polykriging',
+    description='PolyTex is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images.',
+    url='https://github.com/binyang424/polytex',
     author='Bin Yang',
     author_email='bin.yang@polymtl.ca',
-    license='GPL',
-    packages=['polykriging', 'polykriging.geometry',
-              'polykriging.kriging', 'polykriging.mesh', 'polykriging.plot',
-              'polykriging.stats', 'polykriging.thirdparty'],
+    # packages=['src', 'src.geometry',
+    #           'src.kriging', 'src.mesh', 'src.plot',
+    #           'src.stats', 'src.thirdparty'],
+    packages=find_packages(),
     install_requires=['numpy>=0.5',
                       'matplotlib',
                       'sympy',
@@ -25,9 +25,9 @@ setup(
                       ],
 
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',  
+        'License :: OSI Approved :: GNU General Public License (GPL)',  
         'Operating System :: POSIX :: Linux',        
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.7',

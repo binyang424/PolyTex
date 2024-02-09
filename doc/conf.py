@@ -7,14 +7,14 @@ import os
 import sys
 
 
-sys.path.insert(0, os.path.abspath('./../polykriging'))  # 指向src目录
+sys.path.insert(0, os.path.abspath('./../polytex'))  # 指向src目录
 
 # -- Project information -----------------------------------------------------
 # github
-project = 'PolyKriging'
-copyright = '2022, Bin Yang'
+project = 'PolyTex'
+copyright = '2022-2024, Bin Yang'
 author = 'Bin Yang'
-release = '0.1.5'
+release = '0.3.4'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
