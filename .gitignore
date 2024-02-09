@@ -1,4 +1,4 @@
 *.pyc
 /build/
-/polykriging.egg-info/
+/polytex.egg-info/
 /future/
