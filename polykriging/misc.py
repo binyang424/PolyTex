@@ -5,6 +5,8 @@ import numpy as np
 from tqdm.auto import tqdm
 from scipy.spatial.transform import Rotation as R
 
+from .thirdparty.bcolors import bcolors
+
 def gebart(vf, rf, packing="Quad", tensorial=False):
     """
     Calculate the fiber tow permeability for a given fiber packing
@@ -53,14 +55,24 @@ def gebart(vf, rf, packing="Quad", tensorial=False):
      4.72786599e-12 0.00000000e+00 0.00000000e+00 0.00000000e+00
      4.72786599e-12]
     """
-
     # Check input
     if packing not in ["Quad", "Hex"]:
         raise ValueError("Invalid packing pattern. Valid options are 'Quad' and 'Hex'.")
 
+    # Calculate the maximum fiber volume fraction
+    if packing == "Quad":
+        vf_max = np.pi / 4
+    elif packing == "Hex":
+        vf_max = np.pi / 2 / np.sqrt(3)
+
     vf = np.array(vf)
-    if np.any(vf <= 0) or np.any(vf >= 1):
-        raise ValueError("Fiber volume fraction must be between 0 and 1.")
+    k = np.zeros([vf.shape[0], 9])
+
+    if np.any(vf < 0) or np.any(vf >= vf_max):
+        raise ValueError(f"Fiber volume fraction must be between 0 and {vf_max}.")
+
+    mask = ~(vf==0)  # mask for non-zero fiber volume fraction
+    vf = vf[mask]
 
     rf = np.array(rf)
     if np.any(rf <= 0):
@@ -69,29 +81,22 @@ def gebart(vf, rf, packing="Quad", tensorial=False):
     # Calculate permeability
     if packing == "Quad":
         c1 = 16 / 9 / np.pi / np.sqrt(2)
-        vf_max = np.pi / 4
         c = 57
     elif packing == "Hex":
         c1 = 16 / 9 / np.pi / np.sqrt(6)
-        vf_max = np.pi / 2 / np.sqrt(3)
         c = 53
 
     k1 = 8 * rf ** 2 / c * (1 - vf) ** 3 / vf ** 2
     k2 = c1 * rf ** 2 * np.sqrt((np.sqrt(vf_max / vf) - 1) ** 5)
 
-    if tensorial:
-        try:
-            k = np.zeros([k1.shape[0], 9])
-            k[:, 0] = k1
-            k[:, 4] = k2
-            k[:, 8] = k2
-            k = k.tolist()
-        except:
-            k = [k1, 0, 0, 0, k2, 0, 0, 0, k2]
-    else:
-        k = [k1, k2, k2]
+    k[mask, 0] = k1
+    k[mask, 4] = k2
+    k[mask, 8] = k2
 
-    return np.array(k)
+    if tensorial:
+        return k
+    else:
+        return k[:, [0, 4, 8]]
 
 
 def porosity_tow(rho_lin, area_xs, rho_fiber=2550, fvf=False):
@@ -165,8 +170,6 @@ def perm_rotation(permeability, orientation, inverse=False, disable_tqdm=True):
         D : ndarray
             The inverse of the rotated permeability tensor. Shape: (n, 9)
     """
-    # import tqdm.auto as tqdm
-
     if not isinstance(permeability, np.ndarray):
         permeability = np.array(permeability)
         assert permeability.shape[1] == 9, "The shape of permeability should be (n, 9)."
@@ -179,6 +182,10 @@ def perm_rotation(permeability, orientation, inverse=False, disable_tqdm=True):
     permeability_loc = np.zeros_like(permeability)
 
     for i in tqdm(range(permeability.shape[0]), disable=disable_tqdm):
+
+        if np.all(permeability[i] == 0):
+            continue
+
         perm = np.reshape(permeability[i], (3, 3))
         ori = orientation[i]
         r = R.align_vectors([ori], [[1, 0, 0]])[0]
@@ -186,8 +193,12 @@ def perm_rotation(permeability, orientation, inverse=False, disable_tqdm=True):
         k_rot = np.dot(np.dot(A, perm), A.T)
 
         eigenvalues, eigenvectors = np.linalg.eig(k_rot)
-        if np.any(eigenvalues <= 0):
+        if np.any(eigenvalues < 0):
             print("Negative eigenvalues found in cell %d" % i)
+            print("Eigenvalues: ", eigenvalues)
+            break
+        elif np.any(eigenvalues == 0):
+            print("Zero eigenvalues found in cell %d" % i)
             print("Eigenvalues: ", eigenvalues)
             break
 

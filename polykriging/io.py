@@ -10,6 +10,7 @@ import shutil
 import copy
 import glob
 import zipfile
+from zipfile import ZipFile
 
 from tkinter import Tk, filedialog, messagebox
 from tqdm import trange
@@ -26,7 +27,10 @@ from PIL import Image
 from scipy.interpolate import RectBivariateSpline
 
 from .kriging.curve2D import addPoints
+from .misc import gebart, perm_rotation
 from .thirdparty.bcolors import bcolors
+from .__dataset__ import example
+
 
 file_header = """/*--------------------------------*- C++ -*----------------------------------*\\
   =========                 |
@@ -687,7 +691,7 @@ def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list
 
         Parameters
         ----------
-        mesh : pyvista.UnstructuredGrid
+        mesh : pyvista.UnstructuredGrid or pyvista.DataSet
             The voxel mesh.
         scale : float, optional
             The scale factor to convert the unit of points. The default is 1.0.
@@ -700,6 +704,8 @@ def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list
 
             The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
             etc. See OpenFOAM user guide for more details.
+        cell_data_list : list, optional
+            A list containing the names of the cell data to be written. The default is None.
 
         Returns
         -------
@@ -761,71 +767,175 @@ def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list
     return None
 
 
-def case_preparation(src, dst, verbose=False):
+# def case_preparation(src, dst, verbose=False):
+#     """
+#     Copy files from the template case to the output directory
+#
+#     Parameters
+#     ----------
+#     src : str
+#         The path of the template case.
+#     dst : str
+#         The path of the output case.
+#     """
+#
+#     if not os.path.exists(dst + "system"):
+#         os.makedirs(os.path.join(dst, "system"))
+#
+#     # system directory
+#     files = glob.glob(src + "system/*")
+#     for file in files:
+#         if os.path.isdir(file):
+#             continue
+#         if not os.path.exists(os.path.join(dst + file.split("/")[-1])):
+#             if verbose:
+#                 print("Copying {} ...".format(file.split("/")[-1]))
+#             shutil.copy(file, dst + "system/")
+#         else:
+#             print("File {} already exists.".format(file.split("/")[-1]))
+#
+#     # constant directory
+#     files = glob.glob(src + "constant/*")
+#     for file in files:
+#         if os.path.isdir(file):  # neglect directories such as polyMesh
+#             continue
+#         # if not exist in the destination directory, copy the file
+#         if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+#             if verbose:
+#                 print("Copying {} ...".format(file.split("/")[-1]))
+#             shutil.copy(file, dst + "constant/")
+#         else:
+#             print("File {} already exists.".format(file.split("/")[-1]))
+#
+#     # 0 directory
+#     files = glob.glob(src + "0/*")
+#     for file in files:
+#         print(os.path.join(dst, file.split("/")[-1]))
+#         if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+#             if verbose:
+#                 print("Copying {} ...".format(file.split("/")[-1]))
+#             shutil.copy(file, dst + "0/")
+#         else:
+#             print("File {} already exists.".format(file.split("/")[-1]))
+#
+#     # root directory
+#     files = glob.glob(src + "*")
+#     # copy the files in the root directory to the destination directory and neglect directories
+#     for file in files:
+#         if os.path.isdir(file):
+#             continue
+#         if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
+#             # this check here seems does not work, why?
+#             if verbose:
+#                 print("Copying {} ...".format(file.split("/")[-1]))
+#             shutil.copy(file, dst)
+#         else:
+#             print("File {} already exists.".format(file.split("/")[-1]))
+
+
+def texgen_voxel(mesh, rf, perm_model="Gebart", fiber_packing="Hex",
+                 plot=False, scalar="YarnIndex", progress_bar=True):
     """
-    Copy files from the template case to the output directory
+    Read the vtu voxel mesh exported from TexGen and calculate necessary information
+    for OpenFOAM polyMesh conversion.
 
     Parameters
     ----------
-    src : str
-        The path of the template case.
-    dst : str
-        The path of the output case.
+    mesh : pyvista.DataSet
+        The voxel mesh exported from TexGen.
+    rf : float
+        The fiber radius (m).
+    perm_model : str, optional
+        The yarn permeability model. The default is "Gebart".
+    fiber_packing : str, optional
+        The fiber packing pattern used for yarn permeability calculation.
+        The default is "Hex". Valid options are "Quad" and "Hex".
+    plot : bool, optional
+        If True, plot the mesh. The default is False.
+    scalar : str, optional
+        The scalar to plot. The default is "YarnIndex".
+
+    Returns
+    -------
+    mesh : pyvista.UnstructuredGrid
+        The voxel mesh with the new data.
     """
+    fvf = mesh.cell_data['VolumeFraction']
+    orientation = mesh.cell_data['Orientation']
 
-    if not os.path.exists(dst + "system"):
-        os.makedirs(os.path.join(dst, "system"))
+    if np.all(fvf == 0):
+        raise ValueError(bcolors.WARNING + "The volume fraction is zero! Set the correct "
+                                           "yarn properties before exporting the mesh from "
+                                           "TexGen." + bcolors.ENDC)
 
-    # system directory
-    files = glob.glob(src + "system/*")
-    for file in files:
-        if os.path.isdir(file):
-            continue
-        if not os.path.exists(os.path.join(dst + file.split("/")[-1])):
-            if verbose:
-                print("Copying {} ...".format(file.split("/")[-1]))
-            shutil.copy(file, dst + "system/")
-        else:
-            print("File {} already exists.".format(file.split("/")[-1]))
+    mesh.cell_data["porosity"] = 1 - fvf
 
-    # constant directory
-    files = glob.glob(src + "constant/*")
-    for file in files:
-        if os.path.isdir(file):  # neglect directories such as polyMesh
-            continue
-        # if not exist in the destination directory, copy the file
-        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
-            if verbose:
-                print("Copying {} ...".format(file.split("/")[-1]))
-            shutil.copy(file, dst + "constant/")
-        else:
-            print("File {} already exists.".format(file.split("/")[-1]))
+    # permeability tensor in local coordinates
+    if perm_model == "Gebart":
+        permeability = gebart(fvf, rf, packing=fiber_packing, tensorial=True)
 
-    # 0 directory
-    files = glob.glob(src + "0/*")
-    for file in files:
-        print(os.path.join(dst, file.split("/")[-1]))
-        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
-            if verbose:
-                print("Copying {} ...".format(file.split("/")[-1]))
-            shutil.copy(file, dst + "0/")
-        else:
-            print("File {} already exists.".format(file.split("/")[-1]))
+    # Permeability tensor in global coordinates
+    perm_inv = True  # inverse the permeability tensor
+    yarn_permeability, yarn_resistance = perm_rotation(permeability, orientation, inverse=perm_inv,
+                                                       disable_tqdm=not progress_bar)
 
-    # root directory
-    files = glob.glob(src + "*")
-    # copy the files in the root directory to the destination directory and neglect directories
-    for file in files:
-        if os.path.isdir(file):
-            continue
-        if not os.path.exists(os.path.join(dst, file.split("/")[-1])):
-            # this check here seems does not work, why?
-            if verbose:
-                print("Copying {} ...".format(file.split("/")[-1]))
-            shutil.copy(file, dst)
-        else:
-            print("File {} already exists.".format(file.split("/")[-1]))
+    yarn_resistance[yarn_resistance < 1e-15] = 0  # set small values to zero
+    yarn_permeability[yarn_permeability > 1] = 0  # set large values to zero
 
+    # add the new data to the mesh
+    mesh.cell_data['K'] = yarn_permeability
+    mesh.cell_data['D'] = yarn_resistance
+    mesh = mesh.cast_to_unstructured_grid()
+
+    if plot:
+        mesh.plot(scalars=scalar)
+
+    return mesh
+
+
+def case_prepare(output_dir):
+    """
+    Load openFoam case template and prepare the case for simulation.
+
+    Parameters
+    ----------
+    output_dir : str
+        The output directory where the 0 and constant folders are located.
+
+    Returns
+    -------
+    None.
+    """
+    example("case template", outdir=output_dir)
+    with ZipFile(output_dir + "/CaseTemplate.zip", 'r') as zip_ref:
+        filelist = zip_ref.namelist()
+        for file in filelist:
+            if file.split("/")[-1] in ["controlDict", "decomposeParDict",
+                                       "flowRatePatch", "fvSchemes", "fvSolution"]:
+                sys_path = os.path.join(output_dir, "system")
+                if not os.path.exists(sys_path):
+                    os.makedirs(sys_path)
+                with open(os.path.join(sys_path, file.split("/")[-1]), 'wb') as f:
+                    f.write(zip_ref.read(file))
+            elif file.split("/")[-1] in ["Allrun", "Allclean", "PyFoamFileClean.py"]:
+                with open(os.path.join(output_dir, file.split("/")[-1]), 'wb') as f:
+                    f.write(zip_ref.read(file))
+            elif file.split("/")[-1] in ["F", "p", "U"]:
+                ini_path = os.path.join(output_dir, "0")
+                if not os.path.exists(ini_path):
+                    os.makedirs(ini_path)
+                with open(os.path.join(ini_path, file.split("/")[-1]), 'wb') as f:
+                    f.write(zip_ref.read(file))
+            elif file.split("/")[-1] in ["momentumTransport", "transportProperties"]:
+                const_path = os.path.join(output_dir, "constant")
+                if not os.path.exists(const_path):
+                    os.makedirs(const_path)
+                with open(os.path.join(const_path, file.split("/")[-1]), 'wb') as f:
+                    f.write(zip_ref.read(file))
+    zip_ref.close()
+    os.remove(output_dir + "/CaseTemplate.zip")
+
+    # print(bcolors.OKGREEN + "Case preparation is done!" + bcolors.ENDC)
 
 def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
               scale=None, img_name="img", format="tif", scale_algrithm="linear"):
