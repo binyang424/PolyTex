@@ -81,7 +81,7 @@ nb_execution_mode = 'off'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_theme = 'sphinx_rtd_theme'
 html_static_path = []
-html_logo = "source/polykriging_logo.png"
+html_logo = "source/polytex_logo.png"
 html_theme_options = {
     'logo_only': False,
     'display_version': True,

@@ -1,7 +1,7 @@
-polykriging
+polytex
 ===========
 
 .. toctree::
    :maxdepth: 4
 
-   polykriging
+   polytex

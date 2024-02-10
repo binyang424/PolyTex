@@ -34,7 +34,7 @@ Load example dataset
 .. code-block:: default
 
     import numpy as np
-    import polykriging as pk
+    import polytex as pk
     import matplotlib.pyplot as plt
 
     # Input: parameters

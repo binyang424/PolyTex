@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tow class example &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>Tow class example &mdash; PolyTex 0.3.4 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,8 +44,8 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            PolyTex
+              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -56,7 +56,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
@@ -68,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">PolyKriging</a>
+          <a href="../../index.html">PolyTex</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -94,7 +94,7 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="tow-class-example">
 <span id="sphx-glr-source-test-tow-class-py"></span><h1>Tow class example<a class="headerlink" href="#tow-class-example" title="Permalink to this heading"></a></h1>
-<p>This example shows how to use the Tow class in PolyKriging package. It is
+<p>This example shows how to use the Tow class in polytex package. It is
 designed to handle the parametrization and geometrical analysis of a fiber tow.
 A Tow instance is created by passing the point cloud of a tow, which consists only the points</p>
 <blockquote>
@@ -102,7 +102,7 @@ A Tow instance is created by passing the point cloud of a tow, which consists on
 </div></blockquote>
 <section id="example-dataset">
 <h2>Example dataset<a class="headerlink" href="#example-dataset" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Load the surface points of fiber tow</span>
@@ -127,7 +127,7 @@ is necessary for the users.</p>
 <p>We can filtering the points to remove noise or the points that are not necessary:
 mask = abs(coordinates[:, -1] - 9.196) &gt; 0.09
 coordinates = coordinates[mask]</p>
-<p>Utilization of the PolyKriging Tow class
+<p>Utilization of the polytex Tow class
 Create a Tow instance
 ———————-</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tow</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;binder_4&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;zyx&quot;</span><span class="p">)</span>
@@ -249,7 +249,7 @@ kriging method less efficient. The kriging method is recommended for wavy tows, 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Bin Yang.</p>
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

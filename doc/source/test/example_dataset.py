@@ -15,7 +15,7 @@ below.
 ###############################################################################
 # Check the available datasets
 # -------------------------------------
-import polykriging as pk
+import polytex as pk
 pk.example(data_name="all")
 
 ###############################################################################
@@ -23,7 +23,7 @@ pk.example(data_name="all")
 # -------------------------------------
 #
 # The example datasets are hosted on a public Github repository.
-# To download the datasets, use the ``polykriging.example()`` function.
+# To download the datasets, use the ``polytex.example()`` function.
 # This function will download the datasets to the user's current working
 # directory in a folder called ``test_data``. This can be changed by specifying
 # the path using the entry ``outdir``.
@@ -32,4 +32,4 @@ pk.example("surface points", outdir="./test_data/")
 
 ###############################################################################
 # The input and output of the example datasets will be described in the examples
-# for ``polyKriging.io`` module.
+# for ``polytex.io`` module.

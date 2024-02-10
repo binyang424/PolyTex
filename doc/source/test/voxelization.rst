@@ -30,7 +30,7 @@ Test
 
     import numpy as np
     import pyvista as pv
-    from polykriging.mesh import features
+    from polytex.mesh import features
 
     # voxelize the mesh
     mesh = pv.read("./testdata/profile_0_weft.stl")

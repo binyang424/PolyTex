@@ -21,19 +21,19 @@
 File input and output
 =====================
 All the functions related to file input and output were defined in
-`polykriging.io` module. These functions allow users to read
-and write files tailored for `polykriging`. The functions in this module
-can be directly called by `polykriging.` + `function name`. For example,
-to call the function choose_file, use `polykriging.io.choose_file`
-or simply `polykriging.choose_file`.
+`polytex.io` module. These functions allow users to read
+and write files tailored for `polytex`. The functions in this module
+can be directly called by `polytex.` + `function name`. For example,
+to call the function choose_file, use `polytex.io.choose_file`
+or simply `polytex.choose_file`.
 
 For more information about these file formats, please refer to
-"https://www.binyang.fun/polykriging/".
+"https://www.binyang.fun/polytex/".
 
 1. File selection
-   In polykriging, two function were provided to facilitate file selection:
-    1.1 polykriging.choose_file
-    1.2 polykrigingchoose_directory
+   In polytex, two function were provided to facilitate file selection:
+    1.1 polytex.choose_file
+    1.2 polytexchoose_directory
 2. File reading and writing
 
 .. GENERATED FROM PYTHON SOURCE LINES 20-25
@@ -43,14 +43,14 @@ For more information about these file formats, please refer to
 
     import numpy as np
     import pandas as pd
-    import polykriging as pk
+    import polytex as pk
 
 
 .. GENERATED FROM PYTHON SOURCE LINES 26-31
 
 Select file and return the path
 -----------------------------------------------------------------------------
-The function `polykriging.choose_file()` allows users to select a file from
+The function `polytex.choose_file()` allows users to select a file from
 a directory with a GUI. The function returns the path of the selected file.
 Users can also specify the file type and the title of the GUI window as below:
 
@@ -66,7 +66,7 @@ Users can also specify the file type and the title of the GUI window as below:
 
 Traverse and return a list of filenames in the directory
 -----------------------------------------------------------------------------
-The function `polykriging.filenames()` allows users to traverse a directory
+The function `polytex.filenames()` allows users to traverse a directory
 and return a list of filenames with a given extension.
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-53

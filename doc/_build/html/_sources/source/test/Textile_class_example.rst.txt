@@ -20,7 +20,7 @@
 
 Textile class example
 =================
-This example shows how to use the Textile class in PolyKriging package. It is
+This example shows how to use the Textile class in polytex package. It is
 designed to handle the parametrization and geometrical analysis of a fiber Textile.
 A Tow instance is created by passing the point cloud of a tow, which consists only the points
  on the Textile surface, to the constructor.
@@ -32,8 +32,8 @@ A Tow instance is created by passing the point cloud of a tow, which consists on
 
     import numpy as np
     from tqdm.auto import tqdm
-    import polykriging as pk
-    from polykriging.geometry import Plane
+    import polytex as pk
+    from polytex.geometry import Plane
 
 
 .. GENERATED FROM PYTHON SOURCE LINES 16-23

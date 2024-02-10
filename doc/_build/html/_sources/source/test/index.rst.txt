@@ -27,7 +27,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="For more information about these file formats, please refer to &quot;https://www.binyang.fun/polykri...">
+    <div class="sphx-glr-thumbcontainer" tooltip="For more information about these file formats, please refer to &quot;https://www.binyang.fun/polytex...">
 
 .. only:: html
 
@@ -89,7 +89,7 @@
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Tubular mesh with functions in polykriging.mesh</div>
+      <div class="sphx-glr-thumbnail-title">Tubular mesh with functions in polytex.mesh</div>
     </div>
 
 
@@ -141,6 +141,23 @@
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Textile class example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to convert the TexGen-generated vtu file to OpenFOAM polyMesh. Th...">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_texgen_vtu_2_foam_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_texgen_vtu_2_foam.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Convert the TexGen-generated vtu file to OpenFOAM polyMesh</div>
     </div>
 
 
@@ -252,10 +269,10 @@
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_backround_mesh_labelling_and _intersection_detection_thumb.png
+  .. image:: /source/test/images/thumb/sphx_glr_backround_mesh_labelling_and_intersection_detection_thumb.png
     :alt:
 
-  :ref:`sphx_glr_source_test_backround_mesh_labelling_and _intersection_detection.py`
+  :ref:`sphx_glr_source_test_backround_mesh_labelling_and_intersection_detection.py`
 
 .. raw:: html
 
@@ -347,13 +364,14 @@
    /source/test/derivative_Kriging
    /source/test/transformation
    /source/test/Textile_class_example
+   /source/test/texgen_vtu_2_foam
    /source/test/parametric_surface
    /source/test/mesh_from_image
    /source/test/Step_3_MW-KDE
    /source/test/Step_6_vf
    /source/test/curve2D_interp_with_confidence
    /source/test/Tow_Class
-   /source/test/backround_mesh_labelling_and _intersection_detection
+   /source/test/backround_mesh_labelling_and_intersection_detection
    /source/test/Step_3_pdf_clusters
    /source/test/Step_4_resampling
    /source/test/Step_1_GeometricAnalysis

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PolyKriging: A parametric geometry modeling package &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>PolyTex: A parametric geometry modeling package &mdash; PolyTex 0.3.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -44,8 +44,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            PolyKriging
-              <img src="_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            PolyTex
+              <img src="_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -56,10 +56,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#about-this-project">About this project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contributing-to-polykriging">Contributing to <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-to-polytex">Contributing to <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-can-you-contribute">How Can You Contribute?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-style">Code Style</a></li>
@@ -80,7 +80,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PolyKriging</a>
+          <a href="index.html">PolyTex</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -88,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,56 +98,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polykriging-a-parametric-geometry-modeling-package">
-<h1><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package<a class="headerlink" href="#polykriging-a-parametric-geometry-modeling-package" title="Permalink to this heading"></a></h1>
+  <section id="polytex-a-parametric-geometry-modeling-package">
+<h1><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package<a class="headerlink" href="#polytex-a-parametric-geometry-modeling-package" title="Permalink to this heading"></a></h1>
 <section id="about-this-project">
 <h2>About this project<a class="headerlink" href="#about-this-project" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis, modeling accuracy evaluation, and interface smoothing. A meshing module was implemented to generate tetrahedral conformal meshes and voxel meshes. Local material properties are assigned to each cell, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a “Digital Material Twin”. The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis, modeling accuracy evaluation, and interface smoothing. A meshing module was implemented to generate tetrahedral conformal meshes and voxel meshes. Local material properties are assigned to each cell, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a “Digital Material Twin”. The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation.</p>
 <p>We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation).</p>
-<p>Our issue tracker is at <a class="reference external" href="https://github.com/binyang424/polykriging/issues">https://github.com/binyang424/polykriging/issues</a>. Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.</p>
+<p>Our issue tracker is at <a class="reference external" href="https://github.com/binyang424/PolyTex/issues">https://github.com/binyang424/PolyTex/issues</a>. Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
-<p><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See <a class="reference external" href="./LICENSE.html">License</a> for more details.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See <a class="reference external" href="./LICENSE.html">License</a> for more details.</p>
 </div></blockquote>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p><strong>Note: This document is only a template and will be completed when the project is released. The following information may not work at this stage</strong>.</p>
-<p>To install <code class="docutils literal notranslate"><span class="pre">polyKriging</span></code> using <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, run the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>polykriging
+<p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> using <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, run the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>PolyTex
 </pre></div>
 </div>
-<p>To install <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> from the source, begin by cloning the repository using <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/binyang424/polykriging.git
+<p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> from the source, begin by cloning the repository using <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/binyang424/PolyTex.git
 </pre></div>
 </div>
-<p>If you are unfamiliar with it, you can refer to our tutorial on <a class="reference external" href="https://github.com/binyang424/Git-for-beginners">Git for beginners</a>. Alternatively, you can download a specific branch of the source code from GitHub as a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file at <a class="reference external" href="https://github.com/binyang424/polykriging">https://github.com/binyang424/polykriging</a>.</p>
-<p>Once the repository is cloned, navigate to the root directory of the <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> repository where the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file is located, and execute the following command:</p>
+<p>If you are unfamiliar with it, you can refer to our tutorial on <a class="reference external" href="https://github.com/binyang424/Git-for-beginners">Git for beginners</a>. Alternatively, you can download a specific branch of the source code from GitHub as a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file at <a class="reference external" href="https://github.com/binyang424/PolyTex">https://github.com/binyang424/PolyTex</a>.</p>
+<p>Once the repository is cloned, navigate to the root directory of the <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository where the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file is located, and execute the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
-<p>To install <code class="docutils literal notranslate"><span class="pre">polyKriging</span></code> using the wheel file, navigate to the subdirectory <code class="docutils literal notranslate"><span class="pre">./dist/</span></code> of the downloaded <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> repository, and run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>polykriging-&lt;version&gt;.whl
+<p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> using the wheel file, navigate to the subdirectory <code class="docutils literal notranslate"><span class="pre">./dist/</span></code> of the downloaded <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository, and run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>PolyTex-&lt;version&gt;.whl
 </pre></div>
 </div>
 </section>
-<section id="contributing-to-polykriging">
-<h2>Contributing to <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code><a class="headerlink" href="#contributing-to-polykriging" title="Permalink to this heading"></a></h2>
-<p>Thank you for considering contributing to <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>! This project thrives on community contributions, and we appreciate your help.</p>
+<section id="contributing-to-polytex">
+<h2>Contributing to <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code><a class="headerlink" href="#contributing-to-polytex" title="Permalink to this heading"></a></h2>
+<p>Thank you for considering contributing to <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>! This project thrives on community contributions, and we appreciate your help.</p>
 <section id="how-can-you-contribute">
 <h3>How Can You Contribute?<a class="headerlink" href="#how-can-you-contribute" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Reporting Bugs:</strong> If you find a bug, please open an issue. Provide as much detail as possible, including your environment, steps to reproduce, and the expected vs. actual behavior.</p></li>
 <li><p><strong>Suggesting Enhancements:</strong> Have an idea for a new feature or an improvement? Feel free to open an issue and discuss it with the community.</p></li>
-<li><p><strong>Code Contributions:</strong> If you want to contribute code to <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>, fork the repository, create a new branch for your changes, and submit a pull request. Follow the coding standards and make sure your changes are well-tested.</p></li>
+<li><p><strong>Code Contributions:</strong> If you want to contribute code to <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>, fork the repository, create a new branch for your changes, and submit a pull request. Follow the coding standards and make sure your changes are well-tested.</p></li>
 </ul>
 </section>
 <section id="getting-started">
 <h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h3>
 <ol class="arabic">
-<li><p>Fork the <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> repository.</p></li>
+<li><p>Fork the <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository.</p></li>
 <li><p>Clone your forked repository to your local machine:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/polykriging.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/PolyTex.git
 </pre></div>
 </div>
 </li>
@@ -167,7 +167,7 @@ $<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </spa
 </pre></div>
 </div>
 </li>
-<li><p>Open a pull request on the <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> repository.</p></li>
+<li><p>Open a pull request on the <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository.</p></li>
 </ol>
 </section>
 <section id="code-style">
@@ -176,13 +176,13 @@ $<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </spa
 </section>
 <section id="id1">
 <h3>License<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
-<p>By contributing to <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>, you agree that your contributions will be licensed under the project’s <a class="reference external" href="https://github.com/binyang424/polykriging/blob/master/LICENSE.rst">LICENSE</a>.</p>
+<p>By contributing to <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>, you agree that your contributions will be licensed under the project’s <a class="reference external" href="https://github.com/binyang424/PolyTex/blob/master/LICENSE.rst">LICENSE</a>.</p>
 </section>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>To cite <code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code> in publications use:</p></li>
+<li><p>To cite <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> in publications use:</p></li>
 <li><p>A BibTeX entry for LaTeX users is:</p></li>
 </ul>
 </section>
@@ -199,7 +199,7 @@ $<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </spa
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Bin Yang.</p>
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

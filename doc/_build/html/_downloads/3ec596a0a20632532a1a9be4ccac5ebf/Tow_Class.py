@@ -1,7 +1,7 @@
 """
 Tow class example
 =================
-This example shows how to use the Tow class in PolyKriging package. It is
+This example shows how to use the Tow class in polytex package. It is
 designed to handle the parametrization and geometrical analysis of a fiber tow.
 A Tow instance is created by passing the point cloud of a tow, which consists only the points
  on the tow surface, to the constructor.
@@ -10,7 +10,7 @@ A Tow instance is created by passing the point cloud of a tow, which consists on
 #####################################################################
 # Example dataset
 # -----------------
-import polykriging as pk
+import polytex as pk
 import numpy as np
 
 # Load the surface points of fiber tow
@@ -37,7 +37,7 @@ coordinates = surf_points_clip[:, [2, 1, 0]]
 # coordinates = coordinates[mask]
 
 #####################################################################
-# Utilization of the PolyKriging Tow class
+# Utilization of the polytex Tow class
 # Create a Tow instance
 # ----------------------
 tow = pk.Tow(surf_points=coordinates, tex=0, name="binder_4", order="zyx")

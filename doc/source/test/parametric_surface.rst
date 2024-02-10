@@ -34,7 +34,7 @@ Test
     import numpy as np
 
     # parametric kriging of surface
-    from polykriging.kriging.paraSurface import buildKriging, interp
+    from polytex.kriging.paraSurface import buildKriging, interp
 
     if __name__ == '__main__':
         x = [[1, 1, 2],

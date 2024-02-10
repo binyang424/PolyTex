@@ -7,9 +7,9 @@ Test
 """
 
 import matplotlib.pyplot as plt
-from polykriging.kriging import curve2D
+from polytex.kriging import curve2D
 import numpy as np
-import polykriging as pk
+import polytex as pk
 
 """   Overfitting test    """
 ii = 0

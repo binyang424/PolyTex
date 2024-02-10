@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polytex.io &mdash; PolyTex 0.3.4 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="polytex.geometry" href="polytex.geometry.html" />
+    <link rel="prev" title="Functions" href="submodules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polytex.io</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-polytex.io">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html">polytex.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.kriging.html">polytex.kriging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.mesh.html">polytex.mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.plot.html">polytex.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.stats.html">polytex.stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.misc.html">polytex.misc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.thirdparty.html">polytex.thirdparty</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyTex</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
+          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
+      <li class="breadcrumb-item active">polytex.io</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polytex.io.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polytex-io">
+<h1>polytex.io<a class="headerlink" href="#polytex-io" title="Permalink to this heading"></a></h1>
+<section id="module-polytex.io">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polytex.io" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="polytex.io.save_krig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">save_krig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_krig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_krig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>This class saves a dictonary of sympy expressions to a file in human
+readable form and then load as sympy expressions directly without other
+conversion. It is called by polykriging.fileio.pk_save to save kriging
+expressions to a “.krig” file and by polykriging.fileio.pk_load to load
+these files. Therefore, the class is not intended to be used directly by
+the user.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
+<td><p>Create a new dictionary with keys from iterable and values set to value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>(key[, default])</p></td>
+<td><p>Return the value for key if key is in the dictionary, else default.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(key[, default])</p></td>
+<td><p>If the key is not found, return the default if given; otherwise, raise a KeyError.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>(/)</p></td>
+<td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>(key[, default])</p></td>
+<td><p>Insert key with a value of default if key is not in the dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E, ]**F)</p></td>
+<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>load</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>save</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.io.save_krig.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_krig.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_krig.load" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.io.save_krig.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_krig.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_krig.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.case_prepare">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.case_prepare" title="Permalink to this definition"></a></dt>
+<dd><p>Load openFoam case template and prepare the case for simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>output_dir</strong><span class="classifier">str</span></dt><dd><p>The output directory where the 0 and constant folders are located.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.cell_faces">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">cell_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#cell_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.cell_faces" title="Permalink to this definition"></a></dt>
+<dd><p>Get all faces of a 3D cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">vtkUnstructuredGrid</span></dt><dd><p>The volume mesh.</p>
+</dd>
+<dt><strong>ind</strong><span class="classifier">int</span></dt><dd><p>The cell id.</p>
+</dd>
+<dt><strong>neighbor</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, return the neighbor cell ids. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>faces</strong><span class="classifier">list</span></dt><dd><p>A list containing all faces of the cell.</p>
+</dd>
+<dt><strong>neighbors</strong><span class="classifier">list</span></dt><dd><p>A list containing all neighbor cell ids of the cell.
+Not returned if neighbor is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.choose_directory">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">choose_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Select</span> <span class="pre">the</span> <span class="pre">target</span> <span class="pre">directory:'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#choose_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.choose_directory" title="Permalink to this definition"></a></dt>
+<dd><p>Choose a directory with GUI and return its path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>titl: String.</strong></dt><dd><p>The title of the open folder dialog window.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>path: String.</dt><dd><p>The path of the selected directory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.choose_file">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">choose_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Select</span> <span class="pre">the</span> <span class="pre">target</span> <span class="pre">directory:'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#choose_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.choose_file" title="Permalink to this definition"></a></dt>
+<dd><p>Choose a file with GUI and return its path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>titl: String.</strong></dt><dd><p>The title of the window.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>path: String.</dt><dd><p>The path of the file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.coo_to_ply">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">coo_to_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_coo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#coo_to_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.coo_to_ply" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a pcd file to ply file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_coo</strong><span class="classifier">str</span></dt><dd><p>The path of the coo file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>file_ply</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</p>
+</dd>
+<dt><strong>interpolate</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to interpolate the points. The default is False.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>The threshold of the normalized distance between the neighboring points. The default is 0.1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.create_material_data_lines">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">create_material_data_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">materials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#create_material_data_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.create_material_data_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining material data in the input file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.create_part_data_lines">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">create_part_data_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prtname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodesets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elemsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#create_part_data_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.create_part_data_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining nodes, elements, and sets in the part data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.create_solid_section_for_all_sets">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">create_solid_section_for_all_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fiber_material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#create_solid_section_for_all_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.create_solid_section_for_all_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Creates solid section lines for all fiber element sets in the mesh.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.create_solid_section_lines">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">create_solid_section_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#create_solid_section_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.create_solid_section_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Creates lines for defining the solid section properties of a specified element set and material.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.create_yarn_element_sets">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">create_yarn_element_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#create_yarn_element_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.create_yarn_element_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Creates element sets for each unique fiber in the mesh.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.cwd_chdir">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">cwd_chdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#cwd_chdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.cwd_chdir" title="Permalink to this definition"></a></dt>
+<dd><p>Set given directory or the folder where the code file is as current working directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of current working directory. if empty, the path of the code file is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>cwd: the current working directory.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.filenames">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">filenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#filenames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.filenames" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of files in the given folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path:</strong></dt><dd><p>the path of the folder</p>
+</dd>
+<dt><strong>filter:</strong></dt><dd><p>filter for file selection.++</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>flst: the list of files in the given folder.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.get_boundary_faces">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">get_boundary_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#get_boundary_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.get_boundary_faces" title="Permalink to this definition"></a></dt>
+<dd><p>Extract boundary faces from a vtkUnstructuredGrid object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>volume</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The volume mesh.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>boundary_faces</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>A numpy array containing all boundary faces.</p>
+</dd>
+<dt><strong>surf</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>A pyvista surface mesh object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.get_internel_faces">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">get_internel_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#get_internel_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.get_internel_faces" title="Permalink to this definition"></a></dt>
+<dd><p>Extract internel faces from a vtkUnstructuredGrid object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>volume</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The volume mesh.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>internal_faces</strong><span class="classifier">list</span></dt><dd><p>A list containing all internal faces.</p>
+</dd>
+<dt><strong>owner</strong><span class="classifier">list</span></dt><dd><p>A list containing all owner cell ids corresponding to the internal faces.</p>
+</dd>
+<dt><strong>neighbour</strong><span class="classifier">list</span></dt><dd><p>A list containing all neighbour cell ids corresponding to the internal faces.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.get_ply_property">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">get_ply_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vertex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_vtk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#get_ply_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.get_ply_property" title="Permalink to this definition"></a></dt>
+<dd><p>This function get a vertex property or cell property from a mesh stored as .ply
+format. It is intended to be used to get the user-defined properties that most of
+meshing and rendering software does not support.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh_path</strong><span class="classifier">str</span></dt><dd><p>The path of the mesh file with .ply extension.</p>
+</dd>
+<dt><strong>column</strong><span class="classifier">int or list of int</span></dt><dd><p>The column number of the property.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of lines to skip in the header. The default is 11.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the property. The default is “vertex” for vertex property. The other
+possible value is “cell” for cell property.</p>
+</dd>
+<dt><strong>save_vtk</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the mesh is saved as a vtk file. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>property</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The property of the mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh_path</span> <span class="o">=</span> <span class="s2">&quot;./weft_0_lin_lin_krig_30pts.ply&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quality</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">get_ply_property</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span><span class="p">,</span> <span class="n">save_vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quality</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.meshio_save">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">meshio_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#meshio_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.meshio_save" title="Permalink to this definition"></a></dt>
+<dd><p>Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.
+It is a wrapper of meshio.write() function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>vertices</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</p>
+</dd>
+<dt><strong>cells</strong><span class="classifier">list, optional</span></dt><dd><p>The faces of the mesh stored as the connectivity between vertices. The default is [].</p>
+</dd>
+<dt><strong>point_data</strong><span class="classifier">dict, optional</span></dt><dd><p>The point data of the mesh. The default is {}.</p>
+</dd>
+<dt><strong>cell_data</strong><span class="classifier">dict, optional</span></dt><dd><p>The cell data of the mesh. The default is {}. Note that the cell data should be added as a
+list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
+has 2 triangles and 1 quad, namely,
+cells = [(“triangle”, [0, 1, 2], [1,2,3]), (“quad”, [3, 4, 5, 6])],
+then the cell data should be added as
+cell_data = {“data”: [[1, 2], [3]}.</p>
+</dd>
+<dt><strong>binary</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the data is written in binary format. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cell_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pk</span><span class="o">.</span><span class="n">meshio_save</span><span class="p">(</span><span class="s2">&quot;test.ply&quot;</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+<span class="go">Done</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.mkdir">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">mkdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#mkdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.mkdir" title="Permalink to this definition"></a></dt>
+<dd><p>Create the output directory if it does not exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path: str</strong></dt><dd><p>The path of the output directory.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>output_dir: str</dt><dd><p>The path of the output directory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.pcd_to_ply">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">pcd_to_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_pcd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#pcd_to_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.pcd_to_ply" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a pcd file to ply file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_pcd</strong><span class="classifier">str</span></dt><dd><p>The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</p>
+</dd>
+<dt><strong>file_ply</strong><span class="classifier">str</span></dt><dd><p>The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</p>
+</dd>
+<dt><strong>:return: None</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.pk_load">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">pk_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#pk_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.pk_load" title="Permalink to this definition"></a></dt>
+<dd><p>Load a file format defined in polykriging (.coo, .geo, or .stat) file
+and return as a pandas dataframe or a numpy.array object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file:  str, or pathlib.Path.</strong></dt><dd><p>File path and name to which the data is stored.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>df: pandas.DataFrame or numpy.ndarray</dt><dd><p>The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
+Otherwise, it is a numpy array or dict and a warning will be raised.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.pk_save">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">pk_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#pk_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.pk_save" title="Permalink to this definition"></a></dt>
+<dd><p>Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fp: str</strong></dt><dd><p>File path and name to which the data is saved. If the file name does not end with
+a supported file extension, a ValueError will be raised.</p>
+</dd>
+<dt><strong>data: Tow, Tex, or dict</strong></dt><dd><p>The data to be saved. It can be several customised file formats for polykriging.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.read_imagej_roi">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">read_imagej_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#read_imagej_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.read_imagej_roi" title="Permalink to this definition"></a></dt>
+<dd><p>Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
+<a class="reference external" href="https://www.binyang.fun/manual-segmentation-in-imagej-fiji/">https://www.binyang.fun/manual-segmentation-in-imagej-fiji/</a> for more details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>The path of the roi file. The file should be either a zip of csv files or a directory containing
+multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
+see <a class="reference external" href="https://www.binyang.fun/manual-segmentation-in-imagej-fiji/">https://www.binyang.fun/manual-segmentation-in-imagej-fiji/</a> for more details. The parameter
+“type” should be set accordingly (“zip” or “dir”).</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of saved file. The default is “zip”. The other option is “dir”.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to sort the coordinates according to the slice number. The default is True. Note that
+the coordinates on the same slice are not sorted. The sorting is only applied to the slices.</p>
+</dd>
+<dt><strong>resolution</strong><span class="classifier">float, optional</span></dt><dd><p>The resolution of the image. The default is 1.0, the coordinates are not converted
+to the physical coordinates (namely the unit is pixel).</p>
+</dd>
+<dt><strong>max_pts</strong><span class="classifier">int, optional</span></dt><dd><p>The maximum number of points on each slice. The default is 100. If the number of points
+on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>surf_points</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
+the total number of points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.save">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_imports</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save" title="Permalink to this definition"></a></dt>
+<dd><p>This is an exact copy of numpy.save, except that it does not check the extensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file</strong><span class="classifier">file, str, or pathlib.Path. File or filename to which the data is saved.</span></dt><dd></dd>
+<dt><strong>arr</strong><span class="classifier">array_like. Array data to be saved.</span></dt><dd></dd>
+<dt><strong>allow_pickle</strong><span class="classifier">bool, optional</span></dt><dd><p>Allow saving object arrays using Python pickles. Reasons for disallowing
+pickles include security (loading pickled data can execute arbitrary
+code) and portability (pickled objects may not be loadable on different
+Python installations, for example if the stored objects require libraries
+that are not available, and not all pickled data is compatible between
+Python 2 and Python 3).
+Default: True</p>
+</dd>
+<dt><strong>fix_imports</strong><span class="classifier">bool, optional</span></dt><dd><p>Only useful in forcing objects in object arrays on Python 3 to be
+pickled in a Python 2 compatible way. If <cite>fix_imports</cite> is True, pickle
+will try to map the new Python 3 names to the old module names used in
+Python 2, so that the pickle data stream is readable with Python 2.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.save_csv">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">save_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_head</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_csv" title="Permalink to this definition"></a></dt>
+<dd><p>Save numpy array to csv file with given info in the first row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename:</strong></dt><dd><p>The path and name of the csv file.</p>
+</dd>
+<dt><strong>dataset: List or numpy.ndarray</strong></dt><dd><p>The dataset to be saved in the csv file</p>
+</dd>
+<dt><strong>csv_head:</strong></dt><dd><p>A list of headers of the csv file. The length of the list
+should be the same as the number of columns in the dataset.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.save_nrrd">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">save_nrrd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_nrrd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_nrrd" title="Permalink to this definition"></a></dt>
+<dd><p>Save the labels of a hexahedral mesh to a nrrd file. The labels should be
+starting from 0 and increasing by 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cell_label: numpy array(int, int, int)</strong></dt><dd><p>The cell label of the mesh.</p>
+</dd>
+<dt><strong>file_name: String</strong></dt><dd><p>The name of the .nrrd file.</p>
+</dd>
+<dt><strong>file_path: String</strong></dt><dd><p>The save path of the .nrrd file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.save_ply">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">save_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#save_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.save_ply" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.texgen_voxel">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">texgen_voxel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perm_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fiber_packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YarnIndex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#texgen_voxel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.texgen_voxel" title="Permalink to this definition"></a></dt>
+<dd><p>Read the vtu voxel mesh exported from TexGen and calculate necessary information
+for OpenFOAM polyMesh conversion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.DataSet</span></dt><dd><p>The voxel mesh exported from TexGen.</p>
+</dd>
+<dt><strong>rf</strong><span class="classifier">float</span></dt><dd><p>The fiber radius (m).</p>
+</dd>
+<dt><strong>perm_model</strong><span class="classifier">str, optional</span></dt><dd><p>The yarn permeability model. The default is “Gebart”.</p>
+</dd>
+<dt><strong>fiber_packing</strong><span class="classifier">str, optional</span></dt><dd><p>The fiber packing pattern used for yarn permeability calculation.
+The default is “Hex”. Valid options are “Quad” and “Hex”.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, plot the mesh. The default is False.</p>
+</dd>
+<dt><strong>scalar</strong><span class="classifier">str, optional</span></dt><dd><p>The scalar to plot. The default is “YarnIndex”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The voxel mesh with the new data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.voxel2foam">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">voxel2foam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/polytex/io.html#voxel2foam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.voxel2foam" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
+and saved in the 0 timestep folder.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid or pyvista.DataSet</span></dt><dd><p>The voxel mesh.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor to convert the unit of points. The default is 1.0.</p>
+</dd>
+<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./’.</p>
+</dd>
+<dt><strong>boundary_type</strong><span class="classifier">dict, optional</span></dt><dd><p>The type of each boundary. The default is None. If None, the type of the boundary
+is set as “patch”. The key is the boundary name and the value is the boundary type.
+The key should be the same as the face_boundary_dict.</p>
+<p>The boundary type can be “patch”, “wall”, “empty”, “symmetryPlane”, “wedge”, “cyclic”,
+etc. See OpenFOAM user guide for more details.</p>
+</dd>
+<dt><strong>cell_data_list</strong><span class="classifier">list, optional</span></dt><dd><p>A list containing the names of the cell data to be written. The default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.voxel2img">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">voxel2img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YarnIndex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./img/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'img'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tif'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_algrithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#voxel2img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.voxel2img" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a voxel mesh to a series of images.
+Parameters
+———-
+mesh : pyvista.UnstructuredGrid</p>
+<blockquote>
+<div><p>The voxel mesh to convert.</p>
+</div></blockquote>
+<dl>
+<dt>mesh_shape<span class="classifier">list</span></dt><dd><p>The number of cells in each direction of the mesh [nx, ny, nz].</p>
+</dd>
+<dt>dataset<span class="classifier">str, optional</span></dt><dd><p>The name of the cell data to convert. The default is “YarnIndex”.</p>
+</dd>
+<dt>save_path<span class="classifier">str, optional</span></dt><dd><p>The path to save the images. The default is “./img/”.</p>
+</dd>
+<dt>scale<span class="classifier">int</span></dt><dd><p>The scale factor of the image. The default is None.</p>
+</dd>
+<dt>img_name<span class="classifier">str, optional</span></dt><dd><p>The name of the output image. The default is “img”. The slice
+number will be added to the end of the name and separated by
+an underscore.</p>
+</dd>
+<dt>format<span class="classifier">str, optional</span></dt><dd><p>The format of the output image. The default is “tif”.</p>
+</dd>
+<dt>scale_algrithm<span class="classifier">str, optional</span></dt><dd><p>The algorithm used to scale the pixel numbers of the image.
+The default is “linear”. The other option is “spline”.</p>
+<dl class="simple">
+<dt>TODO: The “spline” algorithm is only working for x and y directions yet.</dt><dd><p>The z direction is to be implemented.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./v2i.vtu&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pk</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">voxel2img</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_shape</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;YarnIndex&quot;</span><span class="p">,</span>
+<span class="go">                    save_path=&quot;./img/&quot;,</span>
+<span class="go">                    scale=50, img_name=&quot;img&quot;, format=&quot;tif&quot;,</span>
+<span class="go">                    scale_algrithm=&quot;linear&quot;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.voxel2inp">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">voxel2inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/polytex/io.html#voxel2inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.voxel2inp" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a voxel mesh to an Abaqus input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The voxel mesh.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor to convert the unit of points. The default is 1.0.</p>
+</dd>
+<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory and filename. The default is ‘./mesh-C3D8R.inp’. The file
+extension is automatically added if not provided.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>voxel2inp is developed by Chao Yang (<a class="reference external" href="mailto:yangchaogg&#37;&#52;&#48;whut&#46;edu&#46;cn">yangchaogg<span>&#64;</span>whut<span>&#46;</span>edu<span>&#46;</span>cn</a>) &amp; Bin Yang
+(<a class="reference external" href="mailto:bin&#46;yang&#37;&#52;&#48;polymtl&#46;ca">bin<span>&#46;</span>yang<span>&#64;</span>polymtl<span>&#46;</span>ca</a>) jointly. Please contact us if you have any questions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_FoamFile">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_FoamFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_separator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_FoamFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_FoamFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_boundary">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face_boundary_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_face</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_boundary" title="Permalink to this definition"></a></dt>
+<dd><p>Boundary file writing.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>face_boundary_dict</strong><span class="classifier">dict</span></dt><dd><p>A dict contains boundary category. The key is the boundary name and the value
+is a numpy array containing all boundary face node indices. The boundary name
+should be the same as the boundary patch name in the boundary file.</p>
+</dd>
+<dt><strong>start_face</strong><span class="classifier">int</span></dt><dd><p>The start face index of the boundary faces. equal to the number of internal faces.</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./constant/polyMesh/’.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">dict, optional</span></dt><dd><p>The type of each boundary. The default is None. If None, the type of the boundary
+is set as “patch”. The key is the boundary name and the value is the boundary type.
+The key should be the same as the face_boundary_dict.</p>
+<p>The boundary type can be “patch”, “wall”, “empty”, “symmetryPlane”, “wedge”, “cyclic”,
+etc. See OpenFOAM user guide for more details.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_cell_data">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_cell_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellDataDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./0/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_cell_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_cell_data" title="Permalink to this definition"></a></dt>
+<dd><p>Write cell data to OpenFOAM format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cellDataDict</strong><span class="classifier">dict</span></dt><dd><p>A dictionary to store all cell data sets in vtu file using the data set name as key.</p>
+</dd>
+<dt><strong>outputDir</strong><span class="classifier">str, optional</span></dt><dd><p>The directory to store the converted data. The default is ‘./0/’.</p>
+</dd>
+<dt><strong>array_list</strong><span class="classifier">list, optional</span></dt><dd><p>A list containing the names of the cell data to be written. The default is None,</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_cell_zone">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_cell_zone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_zone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_cell_zone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_cell_zone" title="Permalink to this definition"></a></dt>
+<dd><p>Write the cells to a file for porous properties setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cell_zone</strong><span class="classifier">dict</span></dt><dd><p>A dict containing all cell ids corresponding to the cell zones. The key
+is the cell zone name and the value (a list) is the cell ids in the zone.</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./constant/polyMesh/’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_face">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face_points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_face" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>face_points</strong><span class="classifier">list</span></dt><dd><p>A list containing all face node indices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_faces">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">internal_faces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_boundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_faces" title="Permalink to this definition"></a></dt>
+<dd><p>Write the faces file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>internal_faces</strong><span class="classifier">list</span></dt><dd><p>A list containing all internal face node indices.</p>
+</dd>
+<dt><strong>face_boundary</strong><span class="classifier">dict</span></dt><dd><p>A dict containing all boundary faces. The key is the boundary patch name,
+and the value is a numpy array containing all boundary face node indices.</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./constant/polyMesh/’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_fiber_orientation_to_file">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_fiber_orientation_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fabrictest.ori'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_fiber_orientation_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_fiber_orientation_to_file" title="Permalink to this definition"></a></dt>
+<dd><p>Writes fiber orientation information to a file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_neighbors">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_neighbors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_neighbors" title="Permalink to this definition"></a></dt>
+<dd><p>Write the neighbors file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>neighbour</strong><span class="classifier">list</span></dt><dd><p>A list containing all neighbor cell ids corresponding to the internal faces.</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./constant/polyMesh/’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_owner">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_owner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner_internal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner_boundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_owner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_owner" title="Permalink to this definition"></a></dt>
+<dd><p>Write the owner file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>owner_internal</strong><span class="classifier">array-like</span></dt><dd><p>A list containing all owner cell ids corresponding to the internal faces.</p>
+</dd>
+<dt><strong>owner_boundary</strong><span class="classifier">dict</span></dt><dd><p>A list containing all owner cell ids corresponding to the boundary faces.</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The output directory. The default is ‘./constant/polyMesh/’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.write_points">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">write_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./constant/polyMesh/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#write_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.write_points" title="Permalink to this definition"></a></dt>
+<dd><p>Write points to OpenFOAM format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">array-like</span></dt><dd><p>The points to be written. The shape of the array should be (n, 3).</p>
+</dd>
+<dt><strong>output_dir</strong><span class="classifier">str, optional</span></dt><dd><p>The directory to store the converted data. The default is ‘./’,
+which means the current directory.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor to convert the unit of points. The default is 1.0.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>: int</dt><dd><p>1 if the writing is successful.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.zip_files">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">zip_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'True'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#zip_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.zip_files" title="Permalink to this definition"></a></dt>
+<dd><p>Add multiple files to a zip file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>directory: String.</strong></dt><dd><p>The directory of the files to be added to zip file. Therefore,
+all the files in the file_list should be in the same directory.</p>
+</dd>
+<dt><strong>file_list</strong><span class="classifier">List.</span></dt><dd><p>The list of file names to be added to the zip file (without directory).</p>
+</dd>
+<dt><strong>filename: String.</strong></dt><dd><p>The name of the zip file. The zip file is saved in the same directory</p>
+</dd>
+<dt><strong>remove:</strong></dt><dd><p>Whether to remove original files after adding to zip file.
+Default is True. If False, the original files will not be removed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="submodules.html" class="btn btn-neutral float-left" title="Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polytex.geometry.html" class="btn btn-neutral float-right" title="polytex.geometry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

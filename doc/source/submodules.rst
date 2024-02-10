@@ -3,11 +3,11 @@ Functions
 .. toctree::
    :maxdepth: 2
 
-   polykriging.io
-   polykriging.geometry
-   polykriging.kriging
-   polykriging.mesh
-   polykriging.plot
-   polykriging.stats
-   polykriging.misc
-   polykriging.thirdparty
+   polytex.io
+   polytex.geometry
+   polytex.kriging
+   polytex.mesh
+   polytex.plot
+   polytex.stats
+   polytex.misc
+   polytex.thirdparty

@@ -30,8 +30,8 @@ Output: .geo and .coo files
 
 
     import numpy as np
-    import polykriging as pk
-    from polykriging.geometry import geom
+    import polytex as pk
+    from polytex.geometry import geom
     import matplotlib.pyplot as plt
     import pandas as pd
 
@@ -43,7 +43,7 @@ Output: .geo and .coo files
     '''
 
     # the path where the npz file is stored.
-    # ./05_polyKriging\Data\extractedData\
+    # ./05_polytex\Data\extractedData\
     path = pk.io.choose_directory(
         titl="Choose the directory that contains raw point cloud data (pcd) ...")
 

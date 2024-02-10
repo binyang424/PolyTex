@@ -32,7 +32,7 @@ will be linearly interpolated to avoid distortion in tetralization  process.
 .. code-block:: default
 
 
-    import polykriging as pk
+    import polytex as pk
 
     path = pk.io.choose_directory(titl="coo files")
     cwd = pk.io.cwd_chdir(path)

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polytex.thirdparty &mdash; PolyTex 0.3.4 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="polytex.misc" href="polytex.misc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="submodules.html">Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="polytex.io.html">polytex.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html">polytex.geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.kriging.html">polytex.kriging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.mesh.html">polytex.mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.plot.html">polytex.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.stats.html">polytex.stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polytex.misc.html">polytex.misc</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">polytex.thirdparty</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polytex-thirdparty-bcolors-module">polytex.thirdparty.bcolors module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyTex</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
+          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
+      <li class="breadcrumb-item active">polytex.thirdparty</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polytex.thirdparty.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polytex-thirdparty">
+<h1>polytex.thirdparty<a class="headerlink" href="#polytex-thirdparty" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="polytex-thirdparty-bcolors-module">
+<h2>polytex.thirdparty.bcolors module<a class="headerlink" href="#polytex-thirdparty-bcolors-module" title="Permalink to this heading"></a></h2>
+digraph inheritance9db8327bf7 {
+bgcolor=transparent;
+rankdir=TB;
+size=&quot;&quot;;
+  &quot;bcolors&quot; [URL=&quot;#polytex.thirdparty.bcolors.bcolors&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;[Simple Python class to create colored messages for command line printing]&quot;];
+}
+<span class="target" id="module-polytex.thirdparty.bcolors"></span><dl class="py class">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.thirdparty.bcolors.</span></span><span class="sig-name descname"><span class="pre">bcolors</span></span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>[Simple Python class to create colored messages for command line printing]
+(<a class="reference external" href="https://gist.github.com/tuvokki/14deb97bef6df9bc6553">https://gist.github.com/tuvokki/14deb97bef6df9bc6553</a>)</p>
+<p>Helper class to print colored output</p>
+<p>To use code like this, you can do something like</p>
+<dl class="simple">
+<dt>print bcolors.WARNING</dt><dd><ul class="simple">
+<li><p>“Warning: No active frommets remain. Continue?”</p></li>
+<li><p>bcolors.ENDC</p></li>
+</ul>
+</dd>
+</dl>
+<p>you can also use the convenience method bcolors.colored like this</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;This frumble is underlined&quot;</span><span class="p">,</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>or use one of the following convenience methods:</dt><dd><p>warning, fail, ok, okblue, header</p>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.colored" title="polytex.thirdparty.bcolors.bcolors.colored"><code class="xref py py-obj docutils literal notranslate"><span class="pre">colored</span></code></a>(message, color)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.fail" title="polytex.thirdparty.bcolors.bcolors.fail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fail</span></code></a>(message)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.header" title="polytex.thirdparty.bcolors.bcolors.header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">header</span></code></a>(message)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.ok" title="polytex.thirdparty.bcolors.bcolors.ok"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ok</span></code></a>(message)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.okblue" title="polytex.thirdparty.bcolors.bcolors.okblue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">okblue</span></code></a>(message)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.thirdparty.bcolors.bcolors.warning" title="polytex.thirdparty.bcolors.bcolors.warning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">warning</span></code></a>(message)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.colored">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colored</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.colored"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.colored" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.fail">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.fail" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.header">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.header" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.ok">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.ok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.ok" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.okblue">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">okblue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.okblue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.okblue" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.warning">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/bcolors.html#bcolors.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.warning" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.BOLD">
+<span class="sig-name descname"><span class="pre">BOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[1m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.BOLD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.ENDC">
+<span class="sig-name descname"><span class="pre">ENDC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.ENDC" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.FAIL">
+<span class="sig-name descname"><span class="pre">FAIL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[91m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.FAIL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.HEADER">
+<span class="sig-name descname"><span class="pre">HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[95m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.HEADER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.OKBLUE">
+<span class="sig-name descname"><span class="pre">OKBLUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[94m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.OKBLUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.OKCYAN">
+<span class="sig-name descname"><span class="pre">OKCYAN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[96m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.OKCYAN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.OKGREEN">
+<span class="sig-name descname"><span class="pre">OKGREEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[92m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.OKGREEN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.UNDERLINE">
+<span class="sig-name descname"><span class="pre">UNDERLINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[4m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.UNDERLINE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="polytex.thirdparty.bcolors.bcolors.WARNING">
+<span class="sig-name descname"><span class="pre">WARNING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[93m'</span></em><a class="headerlink" href="#polytex.thirdparty.bcolors.bcolors.WARNING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polytex.misc.html" class="btn btn-neutral float-left" title="polytex.misc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

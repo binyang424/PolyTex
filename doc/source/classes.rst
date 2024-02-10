@@ -6,76 +6,76 @@ Classes
 
 Textile objects
 ----------------------------------
-.. currentmodule:: polykriging.textile
+.. currentmodule:: polytex.textile
 .. autoclass:: Textile
    :members:
    :show-inheritance: Textile
    
-.. currentmodule:: polykriging.tow
+.. currentmodule:: polytex.tow
 .. autoclass:: Tow
    :members:
    :show-inheritance:
 
 Primitive geometries
 ----------------------------------
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Point, Vector, Line, Curve, Polygon, Ellipse, Plane, Tube
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Point
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Vector
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Line
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Curve
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Polygon
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Ellipse
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Plane
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Ellipse2D
    :members: 
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: Tube
    :members: 
    :show-inheritance:
    
 Parametric geometries
 ----------------------------------
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: ParamCurve
    :members:
    :show-inheritance:
    
-.. currentmodule:: polykriging.geometry.basic
+.. currentmodule:: polytex.geometry.basic
 .. autoclass:: ParamSurface
    :members:
    :show-inheritance:

@@ -10,7 +10,7 @@ points of the tow.
 # Load example dataset
 # -----------------------------------------------------------------------------
 import numpy as np
-import polykriging as pk
+import polytex as pk
 import matplotlib.pyplot as plt
 
 # Input: parameters

@@ -19,7 +19,7 @@ Note that the function name is possibly been modified in future versions.
 """
 
 import numpy as np
-from polykriging.kriging.mdKrig import buildKriging, interp
+from polytex.kriging.mdKrig import buildKriging, interp
 
 import matplotlib.pyplot as plt
 

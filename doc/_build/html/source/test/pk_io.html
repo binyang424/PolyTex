@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>File input and output &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>File input and output &mdash; PolyTex 0.3.4 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,8 +44,8 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            PolyTex
+              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -56,7 +56,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
@@ -68,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">PolyKriging</a>
+          <a href="../../index.html">PolyTex</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -95,31 +95,31 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="file-input-and-output">
 <span id="sphx-glr-source-test-pk-io-py"></span><h1>File input and output<a class="headerlink" href="#file-input-and-output" title="Permalink to this heading"></a></h1>
 <p>All the functions related to file input and output were defined in
-<cite>polykriging.io</cite> module. These functions allow users to read
-and write files tailored for <cite>polykriging</cite>. The functions in this module
-can be directly called by <cite>polykriging.</cite> + <cite>function name</cite>. For example,
-to call the function choose_file, use <cite>polykriging.io.choose_file</cite>
-or simply <cite>polykriging.choose_file</cite>.</p>
+<cite>polytex.io</cite> module. These functions allow users to read
+and write files tailored for <cite>polytex</cite>. The functions in this module
+can be directly called by <cite>polytex.</cite> + <cite>function name</cite>. For example,
+to call the function choose_file, use <cite>polytex.io.choose_file</cite>
+or simply <cite>polytex.choose_file</cite>.</p>
 <p>For more information about these file formats, please refer to
-“<a class="reference external" href="https://www.binyang.fun/polykriging/">https://www.binyang.fun/polykriging/</a>”.</p>
+“<a class="reference external" href="https://www.binyang.fun/polytex/">https://www.binyang.fun/polytex/</a>”.</p>
 <ol class="arabic">
 <li><p>File selection
-In polykriging, two function were provided to facilitate file selection:</p>
+In polytex, two function were provided to facilitate file selection:</p>
 <blockquote>
-<div><p>1.1 polykriging.choose_file
-1.2 polykrigingchoose_directory</p>
+<div><p>1.1 polytex.choose_file
+1.2 polytexchoose_directory</p>
 </div></blockquote>
 </li>
 <li><p>File reading and writing</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
 </pre></div>
 </div>
 <section id="select-file-and-return-the-path">
 <h2>Select file and return the path<a class="headerlink" href="#select-file-and-return-the-path" title="Permalink to this heading"></a></h2>
-<p>The function <cite>polykriging.choose_file()</cite> allows users to select a file from
+<p>The function <cite>polytex.choose_file()</cite> allows users to select a file from
 a directory with a GUI. The function returns the path of the selected file.
 Users can also specify the file type and the title of the GUI window as below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s2">&quot;Directory for file CoordinatesSorted file (.coo)&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;.coo&quot;</span><span class="p">)</span>
@@ -129,7 +129,7 @@ Users can also specify the file type and the title of the GUI window as below:</
 </section>
 <section id="traverse-and-return-a-list-of-filenames-in-the-directory">
 <h2>Traverse and return a list of filenames in the directory<a class="headerlink" href="#traverse-and-return-a-list-of-filenames-in-the-directory" title="Permalink to this heading"></a></h2>
-<p>The function <cite>polykriging.filenames()</cite> allows users to traverse a directory
+<p>The function <cite>polytex.filenames()</cite> allows users to traverse a directory
 and return a list of filenames with a given extension.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">label_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
 <span class="n">label_col</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCD&quot;</span><span class="p">)</span>
@@ -167,7 +167,7 @@ and return a list of filenames with a given extension.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Bin Yang.</p>
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,5 +1,5 @@
 """
-Tubular mesh with functions in polykriging.mesh
+Tubular mesh with functions in polytex.mesh
 ================================================
 The fiber tow surface can be regarded as a tubular structure. Thus, it is
 important to construct a tubular mesh for further analysis.
@@ -9,11 +9,11 @@ cross-section is defined by a set of ellipse points. The parameters of the
 ellipse are the major and minor axis, and the number of points on the ellipse.
 
 Note that we already implemented a primitive geometry generator in
-polykriging.geometry.Tube class. It is recommended to use that class to
+polytex.geometry.Tube class. It is recommended to use that class to
 generate tubular mesh. This example is only for demonstration purpose.
 """
 
-import polykriging.mesh as ms
+import polytex.mesh as ms
 import meshio
 
 theta_res = 5

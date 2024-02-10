@@ -5,7 +5,7 @@ This example shows how to extract a surface mesh from a 3D image sequence
 such as a CT scan. The image sequence should be stored as a single tif file.
 """
 
-import polykriging as pk
+import polytex as pk
 import matplotlib.pyplot as plt
 import pandas as pd
 

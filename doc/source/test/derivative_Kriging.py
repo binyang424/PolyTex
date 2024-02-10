@@ -7,7 +7,7 @@ with given derivative dy/dx = f'(x) in some position.
 """
 
 import matplotlib.pyplot as plt
-from polykriging import kriging
+from polytex import kriging
 
 #####################################################################
 # Example 1

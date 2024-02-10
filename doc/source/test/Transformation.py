@@ -4,8 +4,8 @@ Coordinate transformation
 The following code is a demonstration of coordinate transformation using direct
 cosine matrix (DCM) and Euler angles (phi, theta, psi).
 """
-import polykriging as pk
-from polykriging.geometry import transform as tf
+import polytex as pk
+from polytex.geometry import transform as tf
 import numpy as np
 import pyvista as pv
 

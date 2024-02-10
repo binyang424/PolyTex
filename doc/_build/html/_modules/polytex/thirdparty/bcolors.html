@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polytex.thirdparty.bcolors &mdash; PolyTex 0.3.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js\rtd_search_config.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PolyTex</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polytex.thirdparty.bcolors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for polytex.thirdparty.bcolors</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="bcolors"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors">[docs]</a><span></span><span class="k">class</span> <span class="nc">bcolors</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    [Simple Python class to create colored messages for command line printing]</span>
+<span class="sd">    (https://gist.github.com/tuvokki/14deb97bef6df9bc6553)</span>
+
+<span class="sd">    Helper class to print colored output</span>
+
+<span class="sd">    To use code like this, you can do something like</span>
+
+<span class="sd">    print bcolors.WARNING</span>
+<span class="sd">          + &quot;Warning: No active frommets remain. Continue?&quot;</span>
+<span class="sd">          + bcolors.ENDC</span>
+
+<span class="sd">    you can also use the convenience method bcolors.colored like this</span>
+
+<span class="sd">    &gt;&gt;&gt; print(bcolors.colored(&quot;This frumble is underlined&quot;, bcolors.UNDERLINE))</span>
+
+<span class="sd">    or use one of the following convenience methods:</span>
+<span class="sd">      warning, fail, ok, okblue, header</span>
+
+<span class="sd">    example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; print(bcolors.warning(&quot;This is dangerous&quot;))</span>
+
+<span class="sd">    Method calls can be nested too, print an underlined header do this:</span>
+
+<span class="sd">    &gt;&gt;&gt; print(bcolors.header(bcolors.colored(&quot;The line under this text is purple too ... &quot;, bcolors.UNDERLINE)))</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">HEADER</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[95m&#39;</span>
+    <span class="n">OKBLUE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[94m&#39;</span>
+    <span class="n">OKCYAN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[96m&#39;</span>
+    <span class="n">OKGREEN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[92m&#39;</span>
+    <span class="n">WARNING</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[93m&#39;</span>
+    <span class="n">FAIL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[91m&#39;</span>
+    <span class="n">ENDC</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
+    <span class="n">BOLD</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span>
+    <span class="n">UNDERLINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[4m&#39;</span>
+
+    <span class="c1"># Method that returns a message with the desired color</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#    print(bcolor.colored(&quot;My colored message&quot;, bcolor.OKBLUE))</span>
+<div class="viewcode-block" id="bcolors.colored"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.colored">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">colored</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">color</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div>
+
+    <span class="c1"># Method that returns a yellow warning</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#   print(bcolors.warning(&quot;What you are about to do is potentially dangerous. Continue?&quot;))</span>
+<div class="viewcode-block" id="bcolors.warning"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.warning">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">warning</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div>
+
+    <span class="c1"># Method that returns a red fail</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#   print(bcolors.fail(&quot;What you did just failed massively. Bummer&quot;))</span>
+    <span class="c1">#   or:</span>
+    <span class="c1">#   sys.exit(bcolors.fail(&quot;Not a valid date&quot;))</span>
+<div class="viewcode-block" id="bcolors.fail"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.fail">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">fail</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">FAIL</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div>
+
+    <span class="c1"># Method that returns a green ok</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#   print(bcolors.ok(&quot;What you did just ok-ed massively. Yay!&quot;))</span>
+<div class="viewcode-block" id="bcolors.ok"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.ok">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">ok</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">OKGREEN</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div>
+
+    <span class="c1"># Method that returns a blue ok</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#   print(bcolors.okblue(&quot;What you did just ok-ed into the blue. Wow!&quot;))</span>
+<div class="viewcode-block" id="bcolors.okblue"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.okblue">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">okblue</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div>
+
+    <span class="c1"># Method that returns a header in some purple-ish color</span>
+    <span class="c1"># usage:</span>
+    <span class="c1">#   print(bcolors.header(&quot;This is great&quot;))</span>
+<div class="viewcode-block" id="bcolors.header"><a class="viewcode-back" href="../../../source/polytex.thirdparty.html#polytex.thirdparty.bcolors.bcolors.header">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

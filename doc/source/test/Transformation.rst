@@ -27,8 +27,8 @@ cosine matrix (DCM) and Euler angles (phi, theta, psi).
 
 .. code-block:: default
 
-    import polykriging as pk
-    from polykriging.geometry import transform as tf
+    import polytex as pk
+    from polytex.geometry import transform as tf
     import numpy as np
     import pyvista as pv
 

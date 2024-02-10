@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tubular mesh with functions in polykriging.mesh &mdash; PolyKriging 0.1.5 documentation</title>
+  <title>Tubular mesh with functions in polytex.mesh &mdash; PolyTex 0.3.4 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,8 +44,8 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            PolyKriging
-              <img src="../../_static/polykriging_logo.png" class="logo" alt="Logo"/>
+            PolyTex
+              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -56,7 +56,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyKriging</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
@@ -68,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">PolyKriging</a>
+          <a href="../../index.html">PolyTex</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -77,7 +77,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Tubular mesh with functions in polykriging.mesh</li>
+      <li class="breadcrumb-item active">Tubular mesh with functions in polytex.mesh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/tubular_structure_mesh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,17 +92,17 @@
 <p><a class="reference internal" href="#sphx-glr-download-source-test-tubular-structure-mesh-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="tubular-mesh-with-functions-in-polykriging-mesh">
-<span id="sphx-glr-source-test-tubular-structure-mesh-py"></span><h1>Tubular mesh with functions in polykriging.mesh<a class="headerlink" href="#tubular-mesh-with-functions-in-polykriging-mesh" title="Permalink to this heading"></a></h1>
+<section class="sphx-glr-example-title" id="tubular-mesh-with-functions-in-polytex-mesh">
+<span id="sphx-glr-source-test-tubular-structure-mesh-py"></span><h1>Tubular mesh with functions in polytex.mesh<a class="headerlink" href="#tubular-mesh-with-functions-in-polytex-mesh" title="Permalink to this heading"></a></h1>
 <p>The fiber tow surface can be regarded as a tubular structure. Thus, it is
 important to construct a tubular mesh for further analysis.</p>
 <p>This example shows how to create a tubular mesh with constant cross-section. The
 cross-section is defined by a set of ellipse points. The parameters of the
 ellipse are the major and minor axis, and the number of points on the ellipse.</p>
 <p>Note that we already implemented a primitive geometry generator in
-polykriging.geometry.Tube class. It is recommended to use that class to
+polytex.geometry.Tube class. It is recommended to use that class to
 generate tubular mesh. This example is only for demonstration purpose.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polykriging.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
 <span class="kn">import</span> <span class="nn">meshio</span>
 
 <span class="n">theta_res</span> <span class="o">=</span> <span class="mi">5</span>
@@ -169,7 +169,7 @@ generate tubular mesh. This example is only for demonstration purpose.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Bin Yang.</p>
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -41,7 +41,7 @@ Note:
     import re
 
     import matplotlib.pyplot as plt
-    import polykriging as pk
+    import polytex as pk
 
     path = pk.io.choose_directory(titl="geo files")
     cwd = pk.io.cwd_chdir(path)  # ./transformation

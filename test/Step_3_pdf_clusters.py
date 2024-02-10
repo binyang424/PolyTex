@@ -10,7 +10,7 @@ Test
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import polykriging as pk
+import polytex as pk
 import os
 
 # Input: parameters

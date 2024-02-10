@@ -28,7 +28,7 @@ such as a CT scan. The image sequence should be stored as a single tif file.
 .. code-block:: default
 
 
-    import polykriging as pk
+    import polytex as pk
     import matplotlib.pyplot as plt
     import pandas as pd
 

@@ -29,7 +29,7 @@ where :math:`f` is a 2D curve. The curve is defined by a set of points
 :math:`(x_i, y_i)`, where :math:`i = 1, 2, ..., n`.
 
 This kriging method is the basis for fiber tow trajectory smoothing and control
-point resampling of fiber tow surface implimented in polykriging.Tow class.
+point resampling of fiber tow surface implimented in polytex.Tow class.
 
 .. GENERATED FROM PYTHON SOURCE LINES 15-36
 
@@ -37,8 +37,8 @@ point resampling of fiber tow surface implimented in polykriging.Tow class.
 
 
     import numpy as np
-    from polykriging.kriging import curve2D
-    import polykriging as pk
+    from polytex.kriging import curve2D
+    import polytex as pk
     import matplotlib.pyplot as plt
 
     # Make up some data

@@ -1,4 +1,4 @@
-sphinx-apidoc -o source ../polykriging/
+sphinx-apidoc -o source ../polytex/
 
 make html
 # mingw32-make.exe html

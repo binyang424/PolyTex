@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polytex.thirdparty.surf2stl package &mdash; PolyTex 0.3.4 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyTex</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">polytex.thirdparty.surf2stl package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/polytex.thirdparty.surf2stl.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polytex-thirdparty-surf2stl-package">
+<h1>polytex.thirdparty.surf2stl package<a class="headerlink" href="#polytex-thirdparty-surf2stl-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-polytex.thirdparty.surf2stl.surf2stl">
+<span id="polytex-thirdparty-surf2stl-surf2stl-module"></span><h2>polytex.thirdparty.surf2stl.surf2stl module<a class="headerlink" href="#module-polytex.thirdparty.surf2stl.surf2stl" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.thirdparty.surf2stl.surf2stl.local_find_normal">
+<span class="sig-prename descclassname"><span class="pre">polytex.thirdparty.surf2stl.surf2stl.</span></span><span class="sig-name descname"><span class="pre">local_find_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/surf2stl/surf2stl.html#local_find_normal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.surf2stl.surf2stl.local_find_normal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.thirdparty.surf2stl.surf2stl.local_write_facet">
+<span class="sig-prename descclassname"><span class="pre">polytex.thirdparty.surf2stl.surf2stl.</span></span><span class="sig-name descname"><span class="pre">local_write_facet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/surf2stl/surf2stl.html#local_write_facet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.surf2stl.surf2stl.local_write_facet" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.thirdparty.surf2stl.surf2stl.tri_write">
+<span class="sig-prename descclassname"><span class="pre">polytex.thirdparty.surf2stl.surf2stl.</span></span><span class="sig-name descname"><span class="pre">tri_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'binary'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/surf2stl/surf2stl.html#tri_write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.surf2stl.surf2stl.tri_write" title="Permalink to this definition"></a></dt>
+<dd><p>Write a stl file for a surface with geometry
+defined from three matrix arguments, x, y, and z
+with Delaunay Triangle parameter(tri).</p>
+<p>Meshes are triangulated with the ‘tri’ parameter
+usually made with parameters which determine
+the sequence of vertices (like [u, v]).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">string</span></dt><dd><p>output file name</p>
+</dd>
+<dt><strong>x, y, z</strong><span class="classifier">ndarray</span></dt><dd><p>Each of these arguments must be 1-dimensional.</p>
+</dd>
+<dt><strong>tri</strong><span class="classifier">scipy.spatial.Delaunay</span></dt><dd><p>Delaunay Triangulation object. 
+When xyz coordinates are determined from other parameters(like (u, v)),
+this triangle faces are basically calculated with the parameters.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">string</span></dt><dd><p>STL file format, ‘ascii’ or ‘binary’(default).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>import numpy as np
+from scipy.spatial import Delaunay
+import surf2stl</p>
+<p>u = np.linspace(0, 2.0 * np.pi, endpoint=True, num=50)
+v = np.linspace(-0.5, 0.5, endpoint=True, num=10)
+u, v = np.meshgrid(u, v)
+u, v = u.flatten(), v.flatten()</p>
+<p>x = (1 + 0.5 * v * np.cos(u / 2.0)) * np.cos(u)
+y = (1 + 0.5 * v * np.cos(u / 2.0)) * np.sin(u)
+z = 0.5 * v * np.sin(u / 2.0)</p>
+<p>delaunay_tri = Delaunay(np.array([u, v]).T)
+surf2stl.tri_write(‘mobius.stl’, x, y, z, delaunay_tri)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.thirdparty.surf2stl.surf2stl.write">
+<span class="sig-prename descclassname"><span class="pre">polytex.thirdparty.surf2stl.surf2stl.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'binary'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/thirdparty/surf2stl/surf2stl.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.thirdparty.surf2stl.surf2stl.write" title="Permalink to this definition"></a></dt>
+<dd><p>Write a stl file for a surface with geometry
+defined from three matrix arguments, x, y, and z.
+Meshes are triangulated sequencially along xyz order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">string</span></dt><dd><p>output file name</p>
+</dd>
+<dt><strong>x, y, z</strong><span class="classifier">ndarray</span></dt><dd><p>Arguments x, y can be 1-dimensional arrays or 2-dimensional grids
+(usually generated by np.meshgrid(x,y)), and z must be 2-dimensional,
+which must have len(x)=n, len(y)=m where z.shape[m,n].</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">string</span></dt><dd><p>STL file format, ‘ascii’ or ‘binary’(default).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>import numpy as np
+import surf2stl</p>
+<p>x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X ** 2 + Y ** 2))</p>
+<p>surf2stl.write(‘3d-sinusoidal.stl’, X, Y, Z)</p>
+</dd></dl>
+
+</section>
+<section id="module-polytex.thirdparty.surf2stl">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polytex.thirdparty.surf2stl" title="Permalink to this heading"></a></h2>
+<p>polykriging.</p>
+<p>An implementation of dual Kriging.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

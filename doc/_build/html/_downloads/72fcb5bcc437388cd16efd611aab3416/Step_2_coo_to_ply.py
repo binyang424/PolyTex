@@ -9,7 +9,7 @@ If interpolate is True, the points farther than the given threshold (normalzied 
 will be linearly interpolated to avoid distortion in tetralization  process.
 """
 
-import polykriging as pk
+import polytex as pk
 
 path = pk.io.choose_directory(titl="coo files")
 cwd = pk.io.cwd_chdir(path)
