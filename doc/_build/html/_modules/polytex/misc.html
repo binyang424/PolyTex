@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.misc &mdash; PolyTex 0.3.4 documentation</title>
+  <title>polytex.misc &mdash; PolyTex 0.3.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -93,10 +93,15 @@
 
 <span class="kn">from</span> <span class="nn">.thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 
+
 <div class="viewcode-block" id="gebart"><a class="viewcode-back" href="../../source/polytex.misc.html#polytex.misc.gebart">[docs]</a><span class="k">def</span> <span class="nf">gebart</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s2">&quot;Quad&quot;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the fiber tow permeability for a given fiber packing</span>
 <span class="sd">    pattern according to Gebart&#39;s model.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">            k_l &amp; = \\frac{8 r_f^2}{c} \\frac{(1 - V_f)^3}{V_f^2}  \\\\</span>
+<span class="sd">            k_t &amp; = c_1 r_f^2 \\sqrt{\\left(\\sqrt{\\frac{V_{f_{max}}}{V_f}} - 1\\right)^5}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -151,13 +156,15 @@
     <span class="k">elif</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Hex&quot;</span><span class="p">:</span>
         <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-    <span class="n">vf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">vf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">vf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">9</span><span class="p">])</span>
 
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&gt;=</span> <span class="n">vf_max</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fiber volume fraction must be between 0 and </span><span class="si">{</span><span class="n">vf_max</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
-    <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">vf</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># mask for non-zero fiber volume fraction</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">vf</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># mask for non-zero fiber volume fraction</span>
     <span class="n">vf</span> <span class="o">=</span> <span class="n">vf</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 
     <span class="n">rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rf</span><span class="p">)</span>
@@ -172,12 +179,206 @@
         <span class="n">c1</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">/</span> <span class="mi">9</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">c</span> <span class="o">=</span> <span class="mi">53</span>
 
-    <span class="n">k1</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">vf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">k2</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf_max</span> <span class="o">/</span> <span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">k_l</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">vf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">k_t</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf_max</span> <span class="o">/</span> <span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)</span>
 
-    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">k1</span>
-    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">k2</span>
-    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">k2</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_l</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
+
+    <span class="k">if</span> <span class="n">tensorial</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">k</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">k</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span></div>
+
+
+<div class="viewcode-block" id="cai_berdichevsky"><a class="viewcode-back" href="../../source/polytex.misc.html#polytex.misc.cai_berdichevsky">[docs]</a><span class="k">def</span> <span class="nf">cai_berdichevsky</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Quad&#39;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the fiber tow permeability for a given fiber packing</span>
+<span class="sd">    pattern according to cai&#39;s model.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        K_L = &amp; 0.211 r^2\\left(\\left(V_a-0.605\\right)\\left(\\frac{0.907 V_f}{V_a}\\right)^{(-0.181)} *\\left(\\frac{1-0.907 V_f}{V_a}\\right)^{(2.66)}\\right. \\\\</span>
+<span class="sd">        &amp; \\left.+0.292\\left(0.907-V_a\\right)\\left(V_f\\right)^{(-1.57)}\\left(1-V_f\\right)^{(1.55)}\\right)   \\\\</span>
+<span class="sd">        K_T = &amp; 0.229 r^2\\left(\\frac{1.814}{V_a}-1\\right)\\left(\\frac{\\left(1-\\sqrt{\\frac{V_f}{V_a}}\\right)}{\\sqrt{\\frac{V_f}{V_a}}}\\right)^{2.5}</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ------------</span>
+<span class="sd">    vf : float or array_like</span>
+<span class="sd">         Fiber volume fraction.</span>
+<span class="sd">    rf : float or array_like</span>
+<span class="sd">         Fiber radius (m). If vf and rf are arrays, they must have the same</span>
+<span class="sd">         shape.</span>
+<span class="sd">    packing : string</span>
+<span class="sd">         Fiber packing pattern. Valid options are &quot;Quad&quot; and &quot;Hex&quot;.</span>
+<span class="sd">    tensorial : bool</span>
+<span class="sd">         If True, return the permeability tensor (a list with 9 elements).</span>
+<span class="sd">         Otherwise, return the permeability components that parallel and</span>
+<span class="sd">         perpendicular to the fiber tow as a list of 3 floats. The default</span>
+<span class="sd">         is False.</span>
+
+<span class="sd">    return :</span>
+<span class="sd">    --------</span>
+<span class="sd">    k : array-like</span>
+<span class="sd">        Fiber tow permeability. If tensorial is True, return a list with 9</span>
+<span class="sd">        elements. Otherwise, return a list of 3 floats (k11, k22, k33),</span>
+<span class="sd">        corresponding to the permeability components that parallel and</span>
+<span class="sd">        perpendicular to the fiber tow. The units are m^2. Note that the</span>
+<span class="sd">        principal permeability components k22 and k33 are equal.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    --------</span>
+<span class="sd">    Cai, Z. and A. Berdichevsky, An improved self‐consistent method for estimating the permeability of a fiber assembly. Polymer composites, 1993. 14(4): p. 314-323</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; rf = 6.5e-6</span>
+<span class="sd">    &gt;&gt;&gt; k = cai_berdichevsky(vf=0.3, rf=rf, packing=&#39;Hex&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.04415829, 0.10741589, 0.10741589]])</span>
+<span class="sd">    &gt;&gt;&gt; k = cai_berdichevsky(vf=0.7, rf=rf, packing=&#39;Hex&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.00604229, 0.00162723, 0.00162723]])</span>
+<span class="sd">    &gt;&gt;&gt; k = cai_berdichevsky(vf=0.3, rf=rf, packing=&#39;Hex&#39;, tensorial=True)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.04415829, 0.        , 0.        , 0.        , 0.10741589,</span>
+<span class="sd">            0.        , 0.        , 0.        , 0.10741589]])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check input</span>
+    <span class="k">if</span> <span class="n">packing</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Quad&#39;</span><span class="p">,</span> <span class="s1">&#39;Hex&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid packing.Valid options are &quot;Quad&quot;and &quot;Hex&quot;.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the maximum fiber volume fraction</span>
+    <span class="k">if</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Quad&quot;</span><span class="p">:</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>  <span class="c1"># 0.7854</span>
+    <span class="k">elif</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Hex&quot;</span><span class="p">:</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 0.9069</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">vf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">vf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">9</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&gt;=</span> <span class="n">vf_max</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fiber volume fraction must be between 0 and </span><span class="si">{</span><span class="n">vf_max</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">vf</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># mask for non-zero fiber volume fraction</span>
+    <span class="n">vf</span> <span class="o">=</span> <span class="n">vf</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">rf</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fiber radius must be positive.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># longtudinal permeability</span>
+    <span class="n">k_l</span> <span class="o">=</span> <span class="mf">0.211</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="n">vf_max</span> <span class="o">-</span> <span class="mf">0.605</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.907</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">/</span> <span class="n">vf_max</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.181</span><span class="p">)</span> <span class="o">*</span> \
+                             <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.907</span> <span class="o">*</span> <span class="n">vf</span><span class="p">)</span> <span class="o">/</span> <span class="n">vf_max</span><span class="p">)</span> <span class="o">**</span> <span class="mf">2.66</span> <span class="o">+</span> \
+                             <span class="mf">0.292</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.907</span> <span class="o">-</span> <span class="n">vf_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.57</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">vf</span><span class="p">)</span> <span class="o">**</span> <span class="mf">1.55</span><span class="p">)</span>
+
+    <span class="c1"># transverse permeability</span>
+    <span class="n">k_t</span> <span class="o">=</span> <span class="mf">0.229</span> <span class="o">*</span> <span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.814</span> <span class="o">/</span> <span class="n">vf_max</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> \
+          <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf</span> <span class="o">/</span> <span class="n">vf_max</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vf</span> <span class="o">/</span> <span class="n">vf_max</span><span class="p">))</span> <span class="o">**</span> <span class="mi">5</span>
+
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_l</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
+
+    <span class="k">if</span> <span class="n">tensorial</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">k</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">k</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span></div>
+
+
+<div class="viewcode-block" id="drummond_tahir"><a class="viewcode-back" href="../../source/polytex.misc.html#polytex.misc.drummond_tahir">[docs]</a><span class="k">def</span> <span class="nf">drummond_tahir</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Quad&#39;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the fiber tow permeability for a given fiber packing</span>
+<span class="sd">    pattern according to Drummond and Tahir&#39;s model.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        K_l &amp; = \\frac{r^2}{4V_f}\\left(-lnV_f-1.476+2V_f-0.5V_f^2\\right)  \\\\</span>
+<span class="sd">        K_{tQuad} &amp; =\\frac{r^2}{8V_f}\\left(-lnV_f-1.476+\\frac{2V_f-0.796V_f}{1+0.489V_f-1.605{V_f}^2}\\right)  \\\\</span>
+<span class="sd">        K_{tHex} &amp; =\\frac{r^2}{8V_f}\\left(-lnV_f-1.497+2V_f-\\frac{V_f^2}{2}-0.739V_f^4+\\frac{2.534V_f^5}{1+1.2758V_f}\\right)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ------------</span>
+<span class="sd">    vf : float or array_like</span>
+<span class="sd">         Fiber volume fraction.</span>
+<span class="sd">    rf : float or array_like</span>
+<span class="sd">         Fiber radius (m). If vf and rf are arrays, they must have the same</span>
+<span class="sd">         shape.</span>
+<span class="sd">    packing : string</span>
+<span class="sd">         Fiber packing pattern. Valid options are &quot;Quad&quot; and &quot;Hex&quot;.</span>
+<span class="sd">    tensorial : bool</span>
+<span class="sd">         If True, return the permeability tensor (a list with 9 elements).</span>
+<span class="sd">         Otherwise, return the permeability components that parallel and</span>
+<span class="sd">         perpendicular to the fiber tow as a list of 3 floats. The default</span>
+<span class="sd">         is False.</span>
+
+<span class="sd">    return :</span>
+<span class="sd">    --------</span>
+<span class="sd">    k : array-like</span>
+<span class="sd">        Fiber tow permeability. If tensorial is True, return a list with 9</span>
+<span class="sd">        elements. Otherwise, return a list of 3 floats (k11, k22, k33),</span>
+<span class="sd">        corresponding to the permeability components that parallel and</span>
+<span class="sd">        perpendicular to the fiber tow. The units are m^2. Note that the</span>
+<span class="sd">        principal permeability components k22 and k33 are equal.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    --------</span>
+<span class="sd">    Drummond J E, Tahir M I. Laminar viscous flow through regular arrays of parallel solid cylinders[J]. International Journal of Multiphase Flow, 1984, 10(5): 515-540..</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; rf = 6.5e-6</span>
+<span class="sd">    &gt;&gt;&gt; k = drummond_tahir(vf=0.3, rf=rf, packing=&#39;Hex&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.23581067, 0.10851671, 0.10851671]])</span>
+<span class="sd">    &gt;&gt;&gt; k = drummond_tahir(vf=0.7, rf=rf, packing=&#39;Hex&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.01274105, 0.01110984, 0.01110984]])</span>
+<span class="sd">    &gt;&gt;&gt; k = drummond_tahir(vf=0.3, rf=rf, packing=&#39;Hex&#39;, tensorial=True)</span>
+<span class="sd">    &gt;&gt;&gt; k / rf**2</span>
+<span class="sd">    array([[0.23581067, 0.        , 0.        , 0.        , 0.10851671,</span>
+<span class="sd">            0.        , 0.        , 0.        , 0.10851671]])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check input</span>
+    <span class="k">if</span> <span class="n">packing</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Quad&#39;</span><span class="p">,</span> <span class="s1">&#39;Hex&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid packing.Valid options are &quot;Quad&quot;and &quot;Hex&quot;.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the maximum fiber volume fraction</span>
+    <span class="k">if</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Quad&quot;</span><span class="p">:</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>  <span class="c1"># 0.7854</span>
+    <span class="k">elif</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Hex&quot;</span><span class="p">:</span>
+        <span class="n">vf_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 0.9069</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">vf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">vf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">9</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">vf</span> <span class="o">&gt;=</span> <span class="n">vf_max</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fiber volume fraction must be between 0 and </span><span class="si">{</span><span class="n">vf_max</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">vf</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># mask for non-zero fiber volume fraction</span>
+    <span class="n">vf</span> <span class="o">=</span> <span class="n">vf</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">rf</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fiber radius must be positive.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># longtudinal permeability</span>
+    <span class="n">k_l</span> <span class="o">=</span> <span class="p">(</span><span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">vf</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.476</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># transverse permeability</span>
+    <span class="k">if</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Quad&quot;</span><span class="p">:</span>
+        <span class="n">k_t</span> <span class="o">=</span> <span class="p">(</span><span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">vf</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.476</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">-</span> <span class="mf">0.796</span> <span class="o">*</span> <span class="n">vf</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.489</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">-</span> <span class="mf">1.605</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">packing</span> <span class="o">==</span> <span class="s2">&quot;Hex&quot;</span><span class="p">:</span>
+        <span class="n">k_t</span> <span class="o">=</span> <span class="p">(</span><span class="n">rf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">vf</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vf</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.497</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">-</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.739</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">+</span> <span class="mf">2.534</span> <span class="o">*</span> <span class="n">vf</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">1.2758</span> <span class="o">*</span> <span class="n">vf</span><span class="p">))</span>
+
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_l</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_t</span>
 
     <span class="k">if</span> <span class="n">tensorial</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">k</span>

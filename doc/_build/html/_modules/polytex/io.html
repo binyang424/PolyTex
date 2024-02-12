@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.io &mdash; PolyTex 0.3.4 documentation</title>
+  <title>polytex.io &mdash; PolyTex 0.3.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -1489,6 +1489,12 @@
 
 
 <div class="viewcode-block" id="read_imagej_roi"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.read_imagej_roi">[docs]</a><span class="k">def</span> <span class="nf">read_imagej_roi</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_pts</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;The function read_imagej_roi is deprecated. &quot;</span>
+                            <span class="s2">&quot;Use read_explicit_data instead.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">read_explicit_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">max_pts</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="read_explicit_data"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.read_explicit_data">[docs]</a><span class="k">def</span> <span class="nf">read_explicit_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_pts</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See</span>
 <span class="sd">    https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.</span>

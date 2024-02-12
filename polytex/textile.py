@@ -2,7 +2,7 @@ from .io import pk_save, pk_load, choose_directory, voxel2foam, voxel2inp
 from .tow import Tow
 from .mesh import background_mesh, label_mask, intersection_detect
 from .geometry import Plane
-from .misc import porosity_tow, gebart, perm_rotation
+from .misc import porosity_tow, gebart, cai_berdichevsky, drummond_tahir, perm_rotation
 from .thirdparty.bcolors import bcolors
 from .__dataset__ import example as pk_example
 
@@ -317,7 +317,8 @@ class Textile:
         """
         pass
 
-    def meshing(self, bbox, voxel_size=None, show=False, labeling=False, surface_mesh=None, verbose=False):
+    def meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_permeability="Gebart",
+                surface_mesh=None, verbose=False):
         """
         Generate a mesh for the textile.
 
@@ -337,6 +338,10 @@ class Textile:
                 Whether to show the mesh. The default is False.
             labeling : bool, optional
                 Whether to label the background mesh cells with tow id. The default is True.
+            yarn_permeability : str, optional
+                The permeability model used to calculate the permeability tensor of the fiber tow.
+                The default is "Gebart". The available permeability models are "Gebart", "CaiBerdichevsky",
+                and "DrummondTahir".
             surface_mesh : str, optional
                 Path of the surface meshes of fiber tows. The default is None. If `labeling=True`,
                 then the surface meshes are loaded from the path specified by `surface_mesh`. The surface
@@ -357,7 +362,7 @@ class Textile:
 
         cell_rending = None
         if labeling:
-            self.cell_labeling(surface_mesh=surface_mesh, verbose=verbose)
+            self.cell_labeling(surface_mesh=surface_mesh, verbose=verbose, yarn_permeability=yarn_permeability)
             cell_rending = "yarnIndex"
 
         if show:
@@ -365,7 +370,8 @@ class Textile:
 
         return None
 
-    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, threshold=1, verbose=False):
+    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_permeability="Gebart",
+                      threshold=1, verbose=False):
         """
         Label the cells of the background mesh with tow id.
 
@@ -379,8 +385,12 @@ class Textile:
                 Whether to detect the intersection of the tows. The default is False.
             check_surface : bool, optional
                 Whether to check if the surface mesh is watertight. The default is False.
+            yarn_permeability : str, optional
+                The permeability model used to calculate the permeability tensor of the fiber tow.
+                The default is "Gebart". The available permeability models are "Gebart", "CaiBerdichevsky",
+                and "DrummondTahir".
             threshold : float, optional
-                The tolerance for the fiber tow section detection. The default is 0.5. A wavy
+                The tolerance for the fiber tow section detection. The default is 1. A wavy
                 fiber tow may have several intersections with the plane of a cross-section. The
                 threshold is used to determine if the cells is correctly labelled.
             verbose : bool, optional
@@ -424,7 +434,7 @@ class Textile:
             mesh_tri = pv.read(os.path.join(path, (item + ".stl")))  # load surface mesh
 
             # find the cells that are within the tubular surface of the fiber tow
-            mask, label_yarn = label_mask(self.mesh, mesh_tri, tolerance=0.0000001, check_surface=False)
+            mask, label_yarn = label_mask(self.mesh, mesh_tri, tolerance=0.0000001, check_surface=check_surface)
 
             label_list[mask] = int(item.split("_")[1])
             label_set_dict[int(item.split("_")[1])] = coo_matrix(label_yarn)
@@ -452,8 +462,15 @@ class Textile:
                 print(
                     bcolors.WARNING + "Warning: The porosity of the yarn %s is nan. The porosity is set to 0.25." % item + bcolors.ENDC)
 
-            yarn_permeability_local = np.array(
-                gebart(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
+            if yarn_permeability == "Gebart":
+                yarn_permeability_local = np.array(
+                    gebart(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
+            elif yarn_permeability == "CaiBerdichevsky":
+                yarn_permeability_local = np.array(
+                    cai_berdichevsky(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
+            elif yarn_permeability == "DrummondTahir":
+                yarn_permeability_local = np.array(
+                    drummond_tahir(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
 
             # check if nan exists in the permeability tensor
             if np.any(np.isnan(yarn_permeability_local)):
@@ -498,6 +515,29 @@ class Textile:
 
             intersect_info, intersect_info_dict, cell_data_intersect = intersection_detect(label_set_dict)
             self.mesh.cell_data['intersection'] = cell_data_intersect
+
+        return None
+
+    def export_as_vtu(self, fp, binary=True):
+        """
+        Export the textile mesh as a vtu file.
+
+            Parameters
+            ----------
+            fp : str
+                The file path of the output mesh.
+            binary : bool, optional
+                Whether to save the mesh in binary format. The default is True.
+
+            Returns
+            -------
+            None.
+        """
+        if self.mesh is None:
+            raise ValueError("The textile mesh is not generated yet. Please generate the textile "
+                             "mesh with `Textile.meshing()` first.")
+
+        self.mesh.save(fp, binary=binary)
 
         return None
 

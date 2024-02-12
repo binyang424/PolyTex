@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='polytex',
-    version='0.3.4',
+    version='0.3.5',
     description='PolyTex is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images.',
     url='https://github.com/binyang424/polytex',
     author='Bin Yang',

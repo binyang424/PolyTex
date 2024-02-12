@@ -7,10 +7,15 @@ from scipy.spatial.transform import Rotation as R
 
 from .thirdparty.bcolors import bcolors
 
+
 def gebart(vf, rf, packing="Quad", tensorial=False):
     """
     Calculate the fiber tow permeability for a given fiber packing
     pattern according to Gebart's model.
+
+    .. math::
+            k_l & = \\frac{8 r_f^2}{c} \\frac{(1 - V_f)^3}{V_f^2}  \\\\
+            k_t & = c_1 r_f^2 \\sqrt{\\left(\\sqrt{\\frac{V_{f_{max}}}{V_f}} - 1\\right)^5}
 
     Parameters
     ----------
@@ -65,13 +70,15 @@ def gebart(vf, rf, packing="Quad", tensorial=False):
     elif packing == "Hex":
         vf_max = np.pi / 2 / np.sqrt(3)
 
-    vf = np.array(vf)
+    if not isinstance(vf, np.ndarray):
+        vf = np.array(vf).flatten()
+
     k = np.zeros([vf.shape[0], 9])
 
     if np.any(vf < 0) or np.any(vf >= vf_max):
         raise ValueError(f"Fiber volume fraction must be between 0 and {vf_max}.")
 
-    mask = ~(vf==0)  # mask for non-zero fiber volume fraction
+    mask = ~(vf == 0)  # mask for non-zero fiber volume fraction
     vf = vf[mask]
 
     rf = np.array(rf)
@@ -86,12 +93,206 @@ def gebart(vf, rf, packing="Quad", tensorial=False):
         c1 = 16 / 9 / np.pi / np.sqrt(6)
         c = 53
 
-    k1 = 8 * rf ** 2 / c * (1 - vf) ** 3 / vf ** 2
-    k2 = c1 * rf ** 2 * np.sqrt((np.sqrt(vf_max / vf) - 1) ** 5)
+    k_l = 8 * rf ** 2 / c * (1 - vf) ** 3 / vf ** 2
+    k_t = c1 * rf ** 2 * np.sqrt((np.sqrt(vf_max / vf) - 1) ** 5)
 
-    k[mask, 0] = k1
-    k[mask, 4] = k2
-    k[mask, 8] = k2
+    k[mask, 0] = k_l
+    k[mask, 4] = k_t
+    k[mask, 8] = k_t
+
+    if tensorial:
+        return k
+    else:
+        return k[:, [0, 4, 8]]
+
+
+def cai_berdichevsky(vf, rf, packing='Quad', tensorial=False):
+    """
+    Calculate the fiber tow permeability for a given fiber packing
+    pattern according to cai's model.
+
+    .. math::
+        K_L = & 0.211 r^2\\left(\\left(V_a-0.605\\right)\\left(\\frac{0.907 V_f}{V_a}\\right)^{(-0.181)} *\\left(\\frac{1-0.907 V_f}{V_a}\\right)^{(2.66)}\\right. \\\\
+        & \\left.+0.292\\left(0.907-V_a\\right)\\left(V_f\\right)^{(-1.57)}\\left(1-V_f\\right)^{(1.55)}\\right)   \\\\
+        K_T = & 0.229 r^2\\left(\\frac{1.814}{V_a}-1\\right)\\left(\\frac{\\left(1-\\sqrt{\\frac{V_f}{V_a}}\\right)}{\\sqrt{\\frac{V_f}{V_a}}}\\right)^{2.5}
+
+    Parameters
+    ------------
+    vf : float or array_like
+         Fiber volume fraction.
+    rf : float or array_like
+         Fiber radius (m). If vf and rf are arrays, they must have the same
+         shape.
+    packing : string
+         Fiber packing pattern. Valid options are "Quad" and "Hex".
+    tensorial : bool
+         If True, return the permeability tensor (a list with 9 elements).
+         Otherwise, return the permeability components that parallel and
+         perpendicular to the fiber tow as a list of 3 floats. The default
+         is False.
+
+    return :
+    --------
+    k : array-like
+        Fiber tow permeability. If tensorial is True, return a list with 9
+        elements. Otherwise, return a list of 3 floats (k11, k22, k33),
+        corresponding to the permeability components that parallel and
+        perpendicular to the fiber tow. The units are m^2. Note that the
+        principal permeability components k22 and k33 are equal.
+
+    References
+    --------
+    Cai, Z. and A. Berdichevsky, An improved self‐consistent method for estimating the permeability of a fiber assembly. Polymer composites, 1993. 14(4): p. 314-323
+
+    Examples
+    --------
+    >>> rf = 6.5e-6
+    >>> k = cai_berdichevsky(vf=0.3, rf=rf, packing='Hex')
+    >>> k / rf**2
+    array([[0.04415829, 0.10741589, 0.10741589]])
+    >>> k = cai_berdichevsky(vf=0.7, rf=rf, packing='Hex')
+    >>> k / rf**2
+    array([[0.00604229, 0.00162723, 0.00162723]])
+    >>> k = cai_berdichevsky(vf=0.3, rf=rf, packing='Hex', tensorial=True)
+    >>> k / rf**2
+    array([[0.04415829, 0.        , 0.        , 0.        , 0.10741589,
+            0.        , 0.        , 0.        , 0.10741589]])
+    """
+
+    # Check input
+    if packing not in ['Quad', 'Hex']:
+        raise ValueError('Invalid packing.Valid options are "Quad"and "Hex".')
+
+    # Calculate the maximum fiber volume fraction
+    if packing == "Quad":
+        vf_max = np.pi / 4  # 0.7854
+    elif packing == "Hex":
+        vf_max = np.pi / 2 / np.sqrt(3)  # 0.9069
+
+    if not isinstance(vf, np.ndarray):
+        vf = np.array(vf).flatten()
+
+    k = np.zeros([vf.shape[0], 9])
+
+    if np.any(vf <= 0) or np.any(vf >= vf_max):
+        raise ValueError(f"Fiber volume fraction must be between 0 and {vf_max}.")
+
+    mask = ~(vf == 0)  # mask for non-zero fiber volume fraction
+    vf = vf[mask]
+
+    rf = np.array(rf)
+    if np.any(rf <= 0):
+        raise ValueError("Fiber radius must be positive.")
+
+    # longtudinal permeability
+    k_l = 0.211 * rf ** 2 * ((vf_max - 0.605) * (0.907 * vf / vf_max) ** (-0.181) * \
+                             ((1 - 0.907 * vf) / vf_max) ** 2.66 + \
+                             0.292 * (0.907 - vf_max) * vf ** (-1.57) * (1 - vf) ** 1.55)
+
+    # transverse permeability
+    k_t = 0.229 * rf ** 2 * (1.814 / vf_max - 1) * \
+          np.sqrt((1 - np.sqrt(vf / vf_max)) / np.sqrt(vf / vf_max)) ** 5
+
+    k[mask, 0] = k_l
+    k[mask, 4] = k_t
+    k[mask, 8] = k_t
+
+    if tensorial:
+        return k
+    else:
+        return k[:, [0, 4, 8]]
+
+
+def drummond_tahir(vf, rf, packing='Quad', tensorial=False):
+    """
+    Calculate the fiber tow permeability for a given fiber packing
+    pattern according to Drummond and Tahir's model.
+
+    .. math::
+        K_l & = \\frac{r^2}{4V_f}\\left(-lnV_f-1.476+2V_f-0.5V_f^2\\right)  \\\\
+        K_{tQuad} & =\\frac{r^2}{8V_f}\\left(-lnV_f-1.476+\\frac{2V_f-0.796V_f}{1+0.489V_f-1.605{V_f}^2}\\right)  \\\\
+        K_{tHex} & =\\frac{r^2}{8V_f}\\left(-lnV_f-1.497+2V_f-\\frac{V_f^2}{2}-0.739V_f^4+\\frac{2.534V_f^5}{1+1.2758V_f}\\right)
+
+    Parameters
+    ------------
+    vf : float or array_like
+         Fiber volume fraction.
+    rf : float or array_like
+         Fiber radius (m). If vf and rf are arrays, they must have the same
+         shape.
+    packing : string
+         Fiber packing pattern. Valid options are "Quad" and "Hex".
+    tensorial : bool
+         If True, return the permeability tensor (a list with 9 elements).
+         Otherwise, return the permeability components that parallel and
+         perpendicular to the fiber tow as a list of 3 floats. The default
+         is False.
+
+    return :
+    --------
+    k : array-like
+        Fiber tow permeability. If tensorial is True, return a list with 9
+        elements. Otherwise, return a list of 3 floats (k11, k22, k33),
+        corresponding to the permeability components that parallel and
+        perpendicular to the fiber tow. The units are m^2. Note that the
+        principal permeability components k22 and k33 are equal.
+
+    References
+    --------
+    Drummond J E, Tahir M I. Laminar viscous flow through regular arrays of parallel solid cylinders[J]. International Journal of Multiphase Flow, 1984, 10(5): 515-540..
+
+    Examples
+    --------
+    >>> rf = 6.5e-6
+    >>> k = drummond_tahir(vf=0.3, rf=rf, packing='Hex')
+    >>> k / rf**2
+    array([[0.23581067, 0.10851671, 0.10851671]])
+    >>> k = drummond_tahir(vf=0.7, rf=rf, packing='Hex')
+    >>> k / rf**2
+    array([[0.01274105, 0.01110984, 0.01110984]])
+    >>> k = drummond_tahir(vf=0.3, rf=rf, packing='Hex', tensorial=True)
+    >>> k / rf**2
+    array([[0.23581067, 0.        , 0.        , 0.        , 0.10851671,
+            0.        , 0.        , 0.        , 0.10851671]])
+    """
+    # Check input
+    if packing not in ['Quad', 'Hex']:
+        raise ValueError('Invalid packing.Valid options are "Quad"and "Hex".')
+
+    # Calculate the maximum fiber volume fraction
+    if packing == "Quad":
+        vf_max = np.pi / 4  # 0.7854
+    elif packing == "Hex":
+        vf_max = np.pi / 2 / np.sqrt(3)  # 0.9069
+
+    if not isinstance(vf, np.ndarray):
+        vf = np.array(vf).flatten()
+
+    k = np.zeros([vf.shape[0], 9])
+
+    if np.any(vf < 0) or np.any(vf >= vf_max):
+        raise ValueError(f"Fiber volume fraction must be between 0 and {vf_max}.")
+
+    mask = ~(vf == 0)  # mask for non-zero fiber volume fraction
+    vf = vf[mask]
+
+    rf = np.array(rf)
+    if np.any(rf <= 0):
+        raise ValueError("Fiber radius must be positive.")
+
+    # longtudinal permeability
+    k_l = (rf ** 2 / (4 * vf)) * (-np.log(vf) - 1.476 + 2 * vf - 0.5 * vf ** 2)
+
+    # transverse permeability
+    if packing == "Quad":
+        k_t = (rf ** 2 / (8 * vf)) * (-np.log(vf) - 1.476 + (2 * vf - 0.796 * vf) / (1 + 0.489 * vf - 1.605 * vf ** 2))
+    elif packing == "Hex":
+        k_t = (rf ** 2 / (8 * vf)) * (
+                    -np.log(vf) - 1.497 + 2 * vf - vf ** 2 / 2 - 0.739 * vf ** 4 + 2.534 * vf ** 5 / (1 + 1.2758 * vf))
+
+    k[mask, 0] = k_l
+    k[mask, 4] = k_t
+    k[mask, 8] = k_t
 
     if tensorial:
         return k

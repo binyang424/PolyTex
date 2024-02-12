@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.io &mdash; PolyTex 0.3.4 documentation</title>
+  <title>polytex.io &mdash; PolyTex 0.3.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -573,8 +573,8 @@ a supported file extension, a ValueError will be raised.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="polytex.io.read_imagej_roi">
-<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">read_imagej_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#read_imagej_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.read_imagej_roi" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.io.read_explicit_data">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">read_explicit_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#read_explicit_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.read_explicit_data" title="Permalink to this definition"></a></dt>
 <dd><p>Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
 <a class="reference external" href="https://www.binyang.fun/manual-segmentation-in-imagej-fiji/">https://www.binyang.fun/manual-segmentation-in-imagej-fiji/</a> for more details.</p>
 <dl class="field-list simple">
@@ -607,6 +607,11 @@ the total number of points.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polytex.io.read_imagej_roi">
+<span class="sig-prename descclassname"><span class="pre">polytex.io.</span></span><span class="sig-name descname"><span class="pre">read_imagej_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/io.html#read_imagej_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.io.read_imagej_roi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polytex.io.save">

@@ -1403,6 +1403,12 @@ def pk_load(file):
 
 
 def read_imagej_roi(filename, type="zip", sort=True, resolution=1.0, max_pts=100, verbose=False):
+    print(bcolors.WARNING + "The function read_imagej_roi is deprecated. "
+                            "Use read_explicit_data instead." + bcolors.ENDC)
+    return read_explicit_data(filename, type, sort, resolution, max_pts, verbose)
+
+
+def read_explicit_data(filename, type="zip", sort=True, resolution=1.0, max_pts=100, verbose=False):
     """
     Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
     https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.

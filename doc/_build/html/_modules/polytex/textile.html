@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.textile &mdash; PolyTex 0.3.4 documentation</title>
+  <title>polytex.textile &mdash; PolyTex 0.3.5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -88,7 +88,7 @@
 <span class="kn">from</span> <span class="nn">.tow</span> <span class="kn">import</span> <span class="n">Tow</span>
 <span class="kn">from</span> <span class="nn">.mesh</span> <span class="kn">import</span> <span class="n">background_mesh</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span> <span class="n">intersection_detect</span>
 <span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">Plane</span>
-<span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">porosity_tow</span><span class="p">,</span> <span class="n">gebart</span><span class="p">,</span> <span class="n">perm_rotation</span>
+<span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">porosity_tow</span><span class="p">,</span> <span class="n">gebart</span><span class="p">,</span> <span class="n">cai_berdichevsky</span><span class="p">,</span> <span class="n">drummond_tahir</span><span class="p">,</span> <span class="n">perm_rotation</span>
 <span class="kn">from</span> <span class="nn">.thirdparty.bcolors</span> <span class="kn">import</span> <span class="n">bcolors</span>
 <span class="kn">from</span> <span class="nn">.__dataset__</span> <span class="kn">import</span> <span class="n">example</span> <span class="k">as</span> <span class="n">pk_example</span>
 
@@ -403,7 +403,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Textile.meshing"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.meshing">[docs]</a>    <span class="k">def</span> <span class="nf">meshing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labeling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Textile.meshing"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.meshing">[docs]</a>    <span class="k">def</span> <span class="nf">meshing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labeling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
+                <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a mesh for the textile.</span>
 
@@ -423,6 +424,10 @@
 <span class="sd">                Whether to show the mesh. The default is False.</span>
 <span class="sd">            labeling : bool, optional</span>
 <span class="sd">                Whether to label the background mesh cells with tow id. The default is True.</span>
+<span class="sd">            yarn_permeability : str, optional</span>
+<span class="sd">                The permeability model used to calculate the permeability tensor of the fiber tow.</span>
+<span class="sd">                The default is &quot;Gebart&quot;. The available permeability models are &quot;Gebart&quot;, &quot;CaiBerdichevsky&quot;,</span>
+<span class="sd">                and &quot;DrummondTahir&quot;.</span>
 <span class="sd">            surface_mesh : str, optional</span>
 <span class="sd">                Path of the surface meshes of fiber tows. The default is None. If `labeling=True`,</span>
 <span class="sd">                then the surface meshes are loaded from the path specified by `surface_mesh`. The surface</span>
@@ -443,7 +448,7 @@
 
         <span class="n">cell_rending</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">labeling</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cell_labeling</span><span class="p">(</span><span class="n">surface_mesh</span><span class="o">=</span><span class="n">surface_mesh</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cell_labeling</span><span class="p">(</span><span class="n">surface_mesh</span><span class="o">=</span><span class="n">surface_mesh</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="n">yarn_permeability</span><span class="p">)</span>
             <span class="n">cell_rending</span> <span class="o">=</span> <span class="s2">&quot;yarnIndex&quot;</span>
 
         <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
@@ -451,7 +456,8 @@
 
         <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Textile.cell_labeling"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.cell_labeling">[docs]</a>    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Textile.cell_labeling"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.cell_labeling">[docs]</a>    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
+                      <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Label the cells of the background mesh with tow id.</span>
 
@@ -465,8 +471,12 @@
 <span class="sd">                Whether to detect the intersection of the tows. The default is False.</span>
 <span class="sd">            check_surface : bool, optional</span>
 <span class="sd">                Whether to check if the surface mesh is watertight. The default is False.</span>
+<span class="sd">            yarn_permeability : str, optional</span>
+<span class="sd">                The permeability model used to calculate the permeability tensor of the fiber tow.</span>
+<span class="sd">                The default is &quot;Gebart&quot;. The available permeability models are &quot;Gebart&quot;, &quot;CaiBerdichevsky&quot;,</span>
+<span class="sd">                and &quot;DrummondTahir&quot;.</span>
 <span class="sd">            threshold : float, optional</span>
-<span class="sd">                The tolerance for the fiber tow section detection. The default is 0.5. A wavy</span>
+<span class="sd">                The tolerance for the fiber tow section detection. The default is 1. A wavy</span>
 <span class="sd">                fiber tow may have several intersections with the plane of a cross-section. The</span>
 <span class="sd">                threshold is used to determine if the cells is correctly labelled.</span>
 <span class="sd">            verbose : bool, optional</span>
@@ -510,7 +520,7 @@
             <span class="n">mesh_tri</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span> <span class="o">+</span> <span class="s2">&quot;.stl&quot;</span><span class="p">)))</span>  <span class="c1"># load surface mesh</span>
 
             <span class="c1"># find the cells that are within the tubular surface of the fiber tow</span>
-            <span class="n">mask</span><span class="p">,</span> <span class="n">label_yarn</span> <span class="o">=</span> <span class="n">label_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">mask</span><span class="p">,</span> <span class="n">label_yarn</span> <span class="o">=</span> <span class="n">label_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="n">check_surface</span><span class="p">)</span>
 
             <span class="n">label_list</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">label_set_dict</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">(</span><span class="n">label_yarn</span><span class="p">)</span>
@@ -538,8 +548,15 @@
                 <span class="nb">print</span><span class="p">(</span>
                     <span class="n">bcolors</span><span class="o">.</span><span class="n">WARNING</span> <span class="o">+</span> <span class="s2">&quot;Warning: The porosity of the yarn </span><span class="si">%s</span><span class="s2"> is nan. The porosity is set to 0.25.&quot;</span> <span class="o">%</span> <span class="n">item</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
 
-            <span class="n">yarn_permeability_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-                <span class="n">gebart</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yarn_porosity</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">radius_fiber</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">packing_fiber</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">yarn_permeability</span> <span class="o">==</span> <span class="s2">&quot;Gebart&quot;</span><span class="p">:</span>
+                <span class="n">yarn_permeability_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="n">gebart</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yarn_porosity</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">radius_fiber</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">packing_fiber</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">yarn_permeability</span> <span class="o">==</span> <span class="s2">&quot;CaiBerdichevsky&quot;</span><span class="p">:</span>
+                <span class="n">yarn_permeability_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="n">cai_berdichevsky</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yarn_porosity</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">radius_fiber</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">packing_fiber</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">yarn_permeability</span> <span class="o">==</span> <span class="s2">&quot;DrummondTahir&quot;</span><span class="p">:</span>
+                <span class="n">yarn_permeability_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="n">drummond_tahir</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yarn_porosity</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">radius_fiber</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="n">tow</span><span class="o">.</span><span class="n">packing_fiber</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
             <span class="c1"># check if nan exists in the permeability tensor</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yarn_permeability_local</span><span class="p">)):</span>
@@ -584,6 +601,29 @@
 
             <span class="n">intersect_info</span><span class="p">,</span> <span class="n">intersect_info_dict</span><span class="p">,</span> <span class="n">cell_data_intersect</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;intersection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_data_intersect</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Textile.export_as_vtu"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.export_as_vtu">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_vtu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Export the textile mesh as a vtu file.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            fp : str</span>
+<span class="sd">                The file path of the output mesh.</span>
+<span class="sd">            binary : bool, optional</span>
+<span class="sd">                Whether to save the mesh in binary format. The default is True.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The textile mesh is not generated yet. Please generate the textile &quot;</span>
+                             <span class="s2">&quot;mesh with `Textile.meshing()` first.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="kc">None</span></div>
 

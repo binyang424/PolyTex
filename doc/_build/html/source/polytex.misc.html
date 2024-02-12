@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.misc &mdash; PolyTex 0.3.4 documentation</title>
+  <title>polytex.misc &mdash; PolyTex 0.3.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -28,6 +28,7 @@
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -110,6 +111,49 @@
 <section id="module-polytex.misc">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-polytex.misc" title="Permalink to this heading"></a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="polytex.misc.cai_berdichevsky">
+<span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">cai_berdichevsky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Quad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensorial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#cai_berdichevsky"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.cai_berdichevsky" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the fiber tow permeability for a given fiber packing
+pattern according to cai’s model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}K_L = &amp; 0.211 r^2\left(\left(V_a-0.605\right)\left(\frac{0.907 V_f}{V_a}\right)^{(-0.181)} *\left(\frac{1-0.907 V_f}{V_a}\right)^{(2.66)}\right. \\
+&amp; \left.+0.292\left(0.907-V_a\right)\left(V_f\right)^{(-1.57)}\left(1-V_f\right)^{(1.55)}\right)   \\
+K_T = &amp; 0.229 r^2\left(\frac{1.814}{V_a}-1\right)\left(\frac{\left(1-\sqrt{\frac{V_f}{V_a}}\right)}{\sqrt{\frac{V_f}{V_a}}}\right)^{2.5}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
+</dd>
+<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p>
+</dd>
+<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
+</dd>
+<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+Otherwise, return the permeability components that parallel and
+perpendicular to the fiber tow as a list of 3 floats. The default
+is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="mf">6.5e-6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">cai_berdichevsky</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.04415829, 0.10741589, 0.10741589]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">cai_berdichevsky</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.00604229, 0.00162723, 0.00162723]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">cai_berdichevsky</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.04415829, 0.        , 0.        , 0.        , 0.10741589,</span>
+<span class="go">        0.        , 0.        , 0.        , 0.10741589]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polytex.misc.compress_file">
 <span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">compress_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zipfilename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#compress_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.compress_file" title="Permalink to this definition"></a></dt>
 <dd><p>Compresses all files and subdirectories in the specified directory.</p>
@@ -136,10 +180,56 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="polytex.misc.drummond_tahir">
+<span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">drummond_tahir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Quad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensorial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#drummond_tahir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.drummond_tahir" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the fiber tow permeability for a given fiber packing
+pattern according to Drummond and Tahir’s model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}K_l &amp; = \frac{r^2}{4V_f}\left(-lnV_f-1.476+2V_f-0.5V_f^2\right)  \\
+K_{tQuad} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.476+\frac{2V_f-0.796V_f}{1+0.489V_f-1.605{V_f}^2}\right)  \\
+K_{tHex} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.497+2V_f-\frac{V_f^2}{2}-0.739V_f^4+\frac{2.534V_f^5}{1+1.2758V_f}\right)\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
+</dd>
+<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p>
+</dd>
+<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
+</dd>
+<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+Otherwise, return the permeability components that parallel and
+perpendicular to the fiber tow as a list of 3 floats. The default
+is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="mf">6.5e-6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">drummond_tahir</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.23581067, 0.10851671, 0.10851671]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">drummond_tahir</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.01274105, 0.01110984, 0.01110984]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">drummond_tahir</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">,</span> <span class="n">tensorial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">/</span> <span class="n">rf</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">array([[0.23581067, 0.        , 0.        , 0.        , 0.10851671,</span>
+<span class="go">        0.        , 0.        , 0.        , 0.10851671]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polytex.misc.gebart">
 <span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">gebart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Quad'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensorial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#gebart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.gebart" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the fiber tow permeability for a given fiber packing
 pattern according to Gebart’s model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}k_l &amp; = \frac{8 r_f^2}{c} \frac{(1 - V_f)^3}{V_f^2}  \\
+k_t &amp; = c_1 r_f^2 \sqrt{\left(\sqrt{\frac{V_{f_{max}}}{V_f}} - 1\right)^5}\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
