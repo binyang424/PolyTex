@@ -4,3 +4,4 @@ readthedocs-sphinx-search
 numpydoc
 sphinx-copybutton
 matplotlib
+m2r2
