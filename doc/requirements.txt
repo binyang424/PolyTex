@@ -1,15 +1,16 @@
 sphinx
 sphinx-rtd-theme
-sphinx_search
-sphinx.ext.autodoc
-sphinx.ext.mathjax
-sphinx.ext.viewcode
-sphinx_search.extension
+readthedocs-sphinx-search
+
+# sphinx.ext.autodoc
+# sphinx.ext.mathjax
+# sphinx.ext.viewcode
+
 numpydoc
-sphinx.ext.graphviz
-sphinx.ext.inheritance_diagram
-sphinx_copybutton
-matplotlib.sphinxext.plot_directive
-sphinx.ext.autosummary
-sphinx_gallery.gen_gallery
+# sphinx.ext.graphviz
+# sphinx.ext.inheritance_diagram
+# sphinx_copybutton
+# matplotlib.sphinxext.plot_directive
+# sphinx.ext.autosummary
+# sphinx_gallery.gen_gallery
 m2r2
