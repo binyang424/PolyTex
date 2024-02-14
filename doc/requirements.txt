@@ -5,3 +5,4 @@ numpydoc
 sphinx-copybutton
 matplotlib
 m2r2
+sphinx-gallery
