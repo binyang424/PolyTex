@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polytex.geometry.geometry</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polytex.geometry.geometry</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -94,7 +90,7 @@
 
 
 <div class="viewcode-block" id="angularSort"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.angularSort">[docs]</a><span class="k">def</span> <span class="nf">angularSort</span><span class="p">(</span><span class="n">localCo</span><span class="p">,</span> <span class="n">centroid</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.</span>
 
 <span class="sd">        Parameters</span>
@@ -188,7 +184,7 @@
 
 <span class="c1"># used in geom() function.</span>
 <div class="viewcode-block" id="edgeLen"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.edgeLen">[docs]</a><span class="k">def</span> <span class="nf">edgeLen</span><span class="p">(</span><span class="n">localCo</span><span class="p">,</span> <span class="n">boundType</span><span class="o">=</span><span class="s2">&quot;rotated&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    the width and height of rotated_rectangle</span>
 <span class="sd">    boundType: rotated or parallel</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -234,7 +230,7 @@
 
 
 <div class="viewcode-block" id="normDist"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.normDist">[docs]</a><span class="k">def</span> <span class="nf">normDist</span><span class="p">(</span><span class="n">localCo</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    The normalized distance of the vertices of a polygon</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">localCo</span><span class="p">)])</span>
@@ -247,7 +243,7 @@
 
 
 <div class="viewcode-block" id="geom_cs"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.geom_cs">[docs]</a><span class="k">def</span> <span class="nf">geom_cs</span><span class="p">(</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Geometry analysis and points sorting for a cross-section of a fiber tow.</span>
 
 <span class="sd">        Parameters</span>
@@ -312,7 +308,7 @@
 <span class="c1">#</span>
 
 <div class="viewcode-block" id="geom_tow"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.geom_tow">[docs]</a><span class="k">def</span> <span class="nf">geom_tow</span><span class="p">(</span><span class="n">surf_points</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The surface points for each cross-section. the last column (z-axis) should be along the extension</span>
 <span class="sd">    direction of the cross-sections. It also serves as the label of each cross-section.</span>
 
@@ -369,7 +365,7 @@
 
 
 <div class="viewcode-block" id="area_signed"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.geometry.area_signed">[docs]</a><span class="k">def</span> <span class="nf">area_signed</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the signed area of a simple polygon given the 2D coordinates of its veritces.</span>
 
 <span class="sd">    Note: This function is modified from open source Python library scikit-spatial:</span>

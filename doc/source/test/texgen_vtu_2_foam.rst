@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_texgen_vtu_2_foam.py>`
+        Click :ref:`here <sphx_glr_download_source_test_texgen_vtu_2_foam.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -78,8 +78,6 @@ provided by polytex to prepare the case for OpenFOAM.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

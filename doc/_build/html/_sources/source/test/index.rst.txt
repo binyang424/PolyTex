@@ -15,7 +15,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_example_dataset_thumb.png
-    :alt:
+    :alt: Example dataset
 
   :ref:`sphx_glr_source_test_example_dataset.py`
 
@@ -32,7 +32,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_pk_io_thumb.png
-    :alt:
+    :alt: File input and output
 
   :ref:`sphx_glr_source_test_pk_io.py`
 
@@ -49,7 +49,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_3d_curve_krig_thumb.png
-    :alt:
+    :alt: 3D curve kriging
 
   :ref:`sphx_glr_source_test_3d_curve_krig.py`
 
@@ -66,7 +66,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_2_coo_to_ply_thumb.png
-    :alt:
+    :alt: Step 2: Convert .coo file to .ply for point cloud visualization
 
   :ref:`sphx_glr_source_test_Step_2_coo_to_ply.py`
 
@@ -83,7 +83,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_tubular_structure_mesh_thumb.png
-    :alt:
+    :alt: Tubular mesh with functions in polytex.mesh
 
   :ref:`sphx_glr_source_test_tubular_structure_mesh.py`
 
@@ -100,7 +100,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_derivative_Kriging_thumb.png
-    :alt:
+    :alt: Derivative kriging
 
   :ref:`sphx_glr_source_test_derivative_Kriging.py`
 
@@ -117,7 +117,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_transformation_thumb.png
-    :alt:
+    :alt: Coordinate transformation
 
   :ref:`sphx_glr_source_test_transformation.py`
 
@@ -134,7 +134,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Textile_class_example_thumb.png
-    :alt:
+    :alt: Textile class example
 
   :ref:`sphx_glr_source_test_Textile_class_example.py`
 
@@ -151,7 +151,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_texgen_vtu_2_foam_thumb.png
-    :alt:
+    :alt: Convert the TexGen-generated vtu file to OpenFOAM polyMesh
 
   :ref:`sphx_glr_source_test_texgen_vtu_2_foam.py`
 
@@ -168,7 +168,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_parametric_surface_thumb.png
-    :alt:
+    :alt: Parametric kriging of surface
 
   :ref:`sphx_glr_source_test_parametric_surface.py`
 
@@ -185,7 +185,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_mesh_from_image_thumb.png
-    :alt:
+    :alt: Extract surface mesh from image sequence
 
   :ref:`sphx_glr_source_test_mesh_from_image.py`
 
@@ -202,7 +202,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_3_MW-KDE_thumb.png
-    :alt:
+    :alt: Step 3: Moving window KDE
 
   :ref:`sphx_glr_source_test_Step_3_MW-KDE.py`
 
@@ -219,7 +219,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_6_vf_thumb.png
-    :alt:
+    :alt: Fiber volume fraction of tow
 
   :ref:`sphx_glr_source_test_Step_6_vf.py`
 
@@ -236,13 +236,13 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_curve2D_interp_with_confidence_thumb.png
-    :alt:
+    :alt: 2D curve kriging with confidence estimation
 
   :ref:`sphx_glr_source_test_curve2D_interp_with_confidence.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">2D curve kriging with confidence</div>
+      <div class="sphx-glr-thumbnail-title">2D curve kriging with confidence estimation</div>
     </div>
 
 
@@ -253,7 +253,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Tow_Class_thumb.png
-    :alt:
+    :alt: Tow class example
 
   :ref:`sphx_glr_source_test_Tow_Class.py`
 
@@ -270,7 +270,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_backround_mesh_labelling_and_intersection_detection_thumb.png
-    :alt:
+    :alt: Mesh labelling and intersection detection
 
   :ref:`sphx_glr_source_test_backround_mesh_labelling_and_intersection_detection.py`
 
@@ -282,18 +282,18 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Test">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to estimate the probability density function (pdf) of the input data and...">
 
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_3_pdf_clusters_thumb.png
-    :alt:
+    :alt: PDF-based point clustering
 
   :ref:`sphx_glr_source_test_Step_3_pdf_clusters.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Step 3: pdf cluster</div>
+      <div class="sphx-glr-thumbnail-title">PDF-based point clustering</div>
     </div>
 
 
@@ -304,7 +304,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_4_resampling_thumb.png
-    :alt:
+    :alt: Step 4: Resampling
 
   :ref:`sphx_glr_source_test_Step_4_resampling.py`
 
@@ -321,7 +321,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_Step_1_GeometricAnalysis_thumb.png
-    :alt:
+    :alt: Step 1: GeometricAnalysis
 
   :ref:`sphx_glr_source_test_Step_1_GeometricAnalysis.py`
 
@@ -338,7 +338,7 @@
 .. only:: html
 
   .. image:: /source/test/images/thumb/sphx_glr_voxelization_thumb.png
-    :alt:
+    :alt: Voxelization of surface mesh
 
   :ref:`sphx_glr_source_test_voxelization.py`
 
@@ -394,7 +394,7 @@
 .. only:: html
 
   .. image:: /source/test/test_data/images/thumb/sphx_glr_cylinder1_thumb.png
-    :alt:
+    :alt: Test
 
   :ref:`sphx_glr_source_test_test_data_cylinder1.py`
 
@@ -412,7 +412,6 @@
 .. toctree::
    :hidden:
    :includehidden:
-
 
    /source/test/test_data/index.rst
 

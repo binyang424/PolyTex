@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PolyTex: A parametric geometry modeling package &mdash; PolyTex 0.3.5 documentation</title>
@@ -10,23 +10,23 @@
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-        <script src="_static/js\rtd_search_config.js"></script>
         <script src="_static/js\rtd_sphinx_search.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            PolyTex
-              <img src="_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> PolyTex
+            <img src="_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -87,8 +83,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,20 +110,20 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p><strong>Note: This document is only a template and will be completed when the project is released. The following information may not work at this stage</strong>.</p>
 <p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> using <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, run the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>PolyTex
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install PolyTex
 </pre></div>
 </div>
 <p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> from the source, begin by cloning the repository using <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/binyang424/PolyTex.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/binyang424/PolyTex.git
 </pre></div>
 </div>
 <p>If you are unfamiliar with it, you can refer to our tutorial on <a class="reference external" href="https://github.com/binyang424/Git-for-beginners">Git for beginners</a>. Alternatively, you can download a specific branch of the source code from GitHub as a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file at <a class="reference external" href="https://github.com/binyang424/PolyTex">https://github.com/binyang424/PolyTex</a>.</p>
 <p>Once the repository is cloned, navigate to the root directory of the <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository where the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file is located, and execute the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py install
 </pre></div>
 </div>
 <p>To install <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> using the wheel file, navigate to the subdirectory <code class="docutils literal notranslate"><span class="pre">./dist/</span></code> of the downloaded <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository, and run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>PolyTex-&lt;version&gt;.whl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install PolyTex-&lt;version&gt;.whl
 </pre></div>
 </div>
 </section>
@@ -147,23 +143,23 @@
 <ol class="arabic">
 <li><p>Fork the <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> repository.</p></li>
 <li><p>Clone your forked repository to your local machine:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/PolyTex.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/your-username/PolyTex.git
 </pre></div>
 </div>
 </li>
 <li><p>Create a new branch for your changes:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git checkout -b feature/your-feature
 </pre></div>
 </div>
 </li>
 <li><p>Make your changes and commit them:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>.
-$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add your commit message here&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s2">&quot;Add your commit message here&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>Push your changes to your fork:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git push origin feature/your-feature
 </pre></div>
 </div>
 </li>

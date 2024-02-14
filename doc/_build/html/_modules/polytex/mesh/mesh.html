@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polytex.mesh.mesh</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>polytex.mesh.mesh</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -94,7 +90,7 @@
 
 
 <div class="viewcode-block" id="isInbBox"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.isInbBox">[docs]</a><span class="k">def</span> <span class="nf">isInbBox</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determine if point is within a bounding box (bbox)</span>
 <span class="sd">    that parallel to the principle axes of global Cartesian coordinate.</span>
 
@@ -118,7 +114,7 @@
 
 
 <div class="viewcode-block" id="background_mesh"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.background_mesh">[docs]</a><span class="k">def</span> <span class="nf">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a voxel background mesh.</span>
 
 <span class="sd">        Parameters</span>
@@ -167,7 +163,7 @@
 
 
 <div class="viewcode-block" id="find_cells_within_bounds"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.find_cells_within_bounds">[docs]</a><span class="k">def</span> <span class="nf">find_cells_within_bounds</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the index of cells in this mesh within bounds.</span>
 
 <span class="sd">        Parameters</span>
@@ -200,7 +196,7 @@
 
 
 <div class="viewcode-block" id="label_mask"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.label_mask">[docs]</a><span class="k">def</span> <span class="nf">label_mask</span><span class="p">(</span><span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Store the label of each fiber tow for intersection detection.</span>
 
 <span class="sd">        Parameters</span>
@@ -229,7 +225,7 @@
 
 
 <div class="viewcode-block" id="intersection_detect"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.intersection_detect">[docs]</a><span class="k">def</span> <span class="nf">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the intersection of fiber tows from implicit surface.</span>
 
 <span class="sd">        Parameters</span>
@@ -296,7 +292,7 @@
 
 
 <div class="viewcode-block" id="structured_cylinder_vertices"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.structured_cylinder_vertices">[docs]</a><span class="k">def</span> <span class="nf">structured_cylinder_vertices</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">theta_res</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate points on an ellipse.</span>
 
 <span class="sd">        Parameters</span>
@@ -332,7 +328,7 @@
 
 
 <div class="viewcode-block" id="tubular_mesh_generator"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.tubular_mesh_generator">[docs]</a><span class="k">def</span> <span class="nf">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a tubular mesh.</span>
 
 <span class="sd">        Parameters</span>
@@ -361,7 +357,7 @@
 
 
 <div class="viewcode-block" id="to_meshio_data"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.to_meshio_data">[docs]</a><span class="k">def</span> <span class="nf">to_meshio_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert PyVista flavor data structure to meshio.</span>
 
 <span class="sd">        Parameters</span>
@@ -462,7 +458,7 @@
 
 
 <div class="viewcode-block" id="mesh_correction"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.mesh_correction">[docs]</a><span class="k">def</span> <span class="nf">mesh_correction</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Close the ends of the tubular mesh with triangles.</span>
 
 <span class="sd">        Parameters</span>
@@ -530,7 +526,7 @@
 
 
 <div class="viewcode-block" id="construct_tetra_vtk"><a class="viewcode-back" href="../../../source/polytex.mesh.html#polytex.mesh.mesh.construct_tetra_vtk">[docs]</a><span class="k">def</span> <span class="nf">construct_tetra_vtk</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</span>
 
 <span class="sd">        Parameters</span>

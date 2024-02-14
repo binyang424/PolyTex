@@ -9,23 +9,23 @@
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -37,16 +37,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,9 +68,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">polytex.io</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>polytex.io</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -118,7 +114,7 @@
 <span class="kn">from</span> <span class="nn">.__dataset__</span> <span class="kn">import</span> <span class="n">example</span>
 
 
-<span class="n">file_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;/*--------------------------------*- C++ -*----------------------------------*</span><span class="se">\\</span>
+<span class="n">file_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;/*--------------------------------*- C++ -*----------------------------------*</span><span class="se">\\</span><span class="s2"></span>
 <span class="s2">  =========                 |</span>
 <span class="s2">  </span><span class="se">\\</span><span class="s2">      /  F ield         | OpenFOAM: The Open Source CFD Toolbox</span>
 <span class="s2">   </span><span class="se">\\</span><span class="s2">    /   O peration     | Website:  https://openfoam.org</span>
@@ -143,7 +139,7 @@
 <span class="s2">    location    </span><span class="si">%s</span><span class="s2">;</span>
 <span class="s2">    object      </span><span class="si">%s</span><span class="s2">;</span>
 <span class="s2">}</span>
-<span class="si">%s</span>
+<span class="si">%s</span><span class="s2"></span>
 <span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ver</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">top_separator</span><span class="p">)</span>  <span class="c1"># 格式化输出</span></div>
 
 
@@ -190,7 +186,7 @@
 
 
 <div class="viewcode-block" id="mkdir"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.mkdir">[docs]</a><span class="k">def</span> <span class="nf">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create the output directory if it does not exist.</span>
 
 <span class="sd">    Parameters</span>
@@ -215,7 +211,7 @@
 
 
 <div class="viewcode-block" id="write_points"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_points">[docs]</a><span class="k">def</span> <span class="nf">write_points</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write points to OpenFOAM format</span>
 
 <span class="sd">    Parameters</span>
@@ -262,7 +258,7 @@
 
 
 <div class="viewcode-block" id="write_cell_data"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_cell_data">[docs]</a><span class="k">def</span> <span class="nf">write_cell_data</span><span class="p">(</span><span class="n">cellDataDict</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="s1">&#39;./0/&#39;</span><span class="p">,</span> <span class="n">array_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write cell data to OpenFOAM format</span>
 
 <span class="sd">    Parameters</span>
@@ -340,7 +336,7 @@
 
 
 <div class="viewcode-block" id="cell_faces"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.cell_faces">[docs]</a><span class="k">def</span> <span class="nf">cell_faces</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">neighbor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all faces of a 3D cell.</span>
 
 <span class="sd">    Parameters</span>
@@ -381,7 +377,7 @@
 
 
 <div class="viewcode-block" id="get_internel_faces"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.get_internel_faces">[docs]</a><span class="k">def</span> <span class="nf">get_internel_faces</span><span class="p">(</span><span class="n">volume</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract internel faces from a vtkUnstructuredGrid object.</span>
 
 <span class="sd">    Parameters</span>
@@ -435,7 +431,7 @@
 
 
 <div class="viewcode-block" id="get_boundary_faces"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.get_boundary_faces">[docs]</a><span class="k">def</span> <span class="nf">get_boundary_faces</span><span class="p">(</span><span class="n">volume</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract boundary faces from a vtkUnstructuredGrid object.</span>
 
 <span class="sd">    Parameters</span>
@@ -526,7 +522,7 @@
 
 
 <div class="viewcode-block" id="write_cell_zone"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_cell_zone">[docs]</a><span class="k">def</span> <span class="nf">write_cell_zone</span><span class="p">(</span><span class="n">cell_zone</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">,</span> <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write the cells to a file for porous properties setting.</span>
 
 <span class="sd">    Parameters</span>
@@ -555,7 +551,7 @@
     <span class="n">zone_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_FoamFile</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;ascii&quot;</span><span class="p">,</span> <span class="s2">&quot;regIOobject&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">constant/polyMesh</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;cellZones&quot;</span><span class="p">,</span> <span class="n">top_separator</span><span class="p">))</span>
     <span class="n">zone_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">(</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">num_zones</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write cell zones as dictionary &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Write cell zones as dictionary &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">cell_zone</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">zone_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">{</span><span class="se">\n</span><span class="s2">    type cellZone; </span><span class="se">\n</span><span class="s2">cellLabels      List&lt;label&gt;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
         <span class="n">zone_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">( </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -571,7 +567,7 @@
 
 
 <div class="viewcode-block" id="write_neighbors"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_neighbors">[docs]</a><span class="k">def</span> <span class="nf">write_neighbors</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write the neighbors file.</span>
 
 <span class="sd">    Parameters</span>
@@ -600,7 +596,7 @@
 
 
 <div class="viewcode-block" id="write_owner"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_owner">[docs]</a><span class="k">def</span> <span class="nf">write_owner</span><span class="p">(</span><span class="n">owner_internal</span><span class="p">,</span> <span class="n">owner_boundary</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">,</span> <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write the owner file.</span>
 
 <span class="sd">    Parameters</span>
@@ -633,11 +629,11 @@
     <span class="n">owner_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_header</span><span class="p">)</span>
     <span class="n">owner_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_FoamFile</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;ascii&quot;</span><span class="p">,</span> <span class="s2">&quot;labelList&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">constant/polyMesh</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;owner&quot;</span><span class="p">,</span> <span class="n">top_separator</span><span class="p">))</span>
     <span class="n">owner_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">(</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">total_faces</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write internal face owners first &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Write internal face owners first &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner_internal</span><span class="p">)):</span>
         <span class="n">owner_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">owner_internal</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write boundary face owners &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Write boundary face owners &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">owner_boundary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">cell_id</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
             <span class="n">owner_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cell_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -650,7 +646,7 @@
 
 
 <div class="viewcode-block" id="write_face"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_face">[docs]</a><span class="k">def</span> <span class="nf">write_face</span><span class="p">(</span><span class="n">face_points</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    face_points : list</span>
@@ -660,7 +656,7 @@
 
 
 <div class="viewcode-block" id="write_faces"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_faces">[docs]</a><span class="k">def</span> <span class="nf">write_faces</span><span class="p">(</span><span class="n">internal_faces</span><span class="p">,</span> <span class="n">face_boundary</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write the faces file.</span>
 
 <span class="sd">    Parameters</span>
@@ -689,11 +685,11 @@
     <span class="n">faces_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_FoamFile</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;ascii&quot;</span><span class="p">,</span> <span class="s2">&quot;faceList&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">constant/polyMesh</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;faces&quot;</span><span class="p">,</span> <span class="n">top_separator</span><span class="p">))</span>
     <span class="n">faces_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">(</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">total_faces</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write internal faces first &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Write internal faces first &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">internal_faces</span><span class="p">:</span>
         <span class="n">faces_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_face</span><span class="p">(</span><span class="n">face</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write boundary faces &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Write boundary faces &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">face_boundary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
             <span class="n">faces_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_face</span><span class="p">(</span><span class="n">face</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
@@ -707,7 +703,7 @@
 
 
 <div class="viewcode-block" id="write_boundary"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_boundary">[docs]</a><span class="k">def</span> <span class="nf">write_boundary</span><span class="p">(</span><span class="n">face_boundary_dict</span><span class="p">,</span> <span class="n">start_face</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./constant/polyMesh/&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Boundary file writing.</span>
 
 <span class="sd">    Parameters</span>
@@ -753,7 +749,7 @@
 
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">face_boundary_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    - &quot;</span> <span class="o">+</span> <span class="n">key</span><span class="p">)</span>
-        <span class="n">boundary_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="si">%s</span>
+        <span class="n">boundary_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="si">%s</span><span class="s2"></span>
 <span class="s2">    {</span>
 <span class="s2">        type </span><span class="si">%s</span><span class="s2">;</span>
 <span class="s2">        nFaces </span><span class="si">%d</span><span class="s2">;</span>
@@ -771,7 +767,7 @@
 
 
 <div class="viewcode-block" id="voxel2foam"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.voxel2foam">[docs]</a><span class="k">def</span> <span class="nf">voxel2foam</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_data_list</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions</span>
 <span class="sd">    and saved in the 0 timestep folder.</span>
 
@@ -815,38 +811,38 @@
     <span class="n">path_polyMesh</span> <span class="o">=</span> <span class="s2">&quot;./constant/polyMesh&quot;</span>
     <span class="n">path_0</span> <span class="o">=</span> <span class="s2">&quot;./0&quot;</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 1. Write points &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 1. Write points &quot;&quot;&quot;</span>
     <span class="n">pts</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span>  <span class="c1"># numpy.ndarray (npts, 3)</span>
     <span class="n">write_points</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 2. Write cell data &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 2. Write cell data &quot;&quot;&quot;</span>
     <span class="n">cellDataDict</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span>
     <span class="n">write_cell_data</span><span class="p">(</span><span class="n">cellDataDict</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">path_0</span><span class="p">,</span> <span class="n">array_list</span><span class="o">=</span><span class="n">cell_data_list</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 3. Write faces &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 3. Write faces &quot;&quot;&quot;</span>
     <span class="c1"># Get internal faces</span>
     <span class="n">internal_faces</span><span class="p">,</span> <span class="n">owner_internal</span><span class="p">,</span> <span class="n">neighbour</span> <span class="o">=</span> <span class="n">get_internel_faces</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
 
     <span class="c1"># Get boundary faces</span>
     <span class="n">face_boundary_dict</span><span class="p">,</span> <span class="n">owner_boundary_dict</span> <span class="o">=</span> <span class="n">get_boundary_faces</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 4. Write cell zones for porous region &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 4. Write cell zones for porous region &quot;&quot;&quot;</span>
     <span class="n">cell_zone</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;porousLayer&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_cells</span><span class="p">)[</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s2">&quot;porosity&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.995</span><span class="p">]}</span>
     <span class="n">write_cell_zone</span><span class="p">(</span><span class="n">cell_zone</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 5. Write neighbor file &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 5. Write neighbor file &quot;&quot;&quot;</span>
     <span class="n">write_neighbors</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 6. Write owner file &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 6. Write owner file &quot;&quot;&quot;</span>
     <span class="n">write_owner</span><span class="p">(</span><span class="n">owner_internal</span><span class="p">,</span> <span class="n">owner_boundary_dict</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 7. Write face file &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 7. Write face file &quot;&quot;&quot;</span>
     <span class="n">write_faces</span><span class="p">(</span><span class="n">internal_faces</span><span class="p">,</span> <span class="n">face_boundary_dict</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 8. Write boundary file &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 8. Write boundary file &quot;&quot;&quot;</span>
     <span class="n">write_boundary</span><span class="p">(</span><span class="n">face_boundary_dict</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">internal_faces</span><span class="p">),</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">path_polyMesh</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">boundary_type</span><span class="p">)</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 9. Write boundary conditions &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; 9. Write boundary conditions &quot;&quot;&quot;</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mesh writing finished!&quot;</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>  <span class="c1"># set the current working directory back to the original directory</span>
@@ -921,7 +917,7 @@
 
 <div class="viewcode-block" id="texgen_voxel"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.texgen_voxel">[docs]</a><span class="k">def</span> <span class="nf">texgen_voxel</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">perm_model</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span> <span class="n">fiber_packing</span><span class="o">=</span><span class="s2">&quot;Hex&quot;</span><span class="p">,</span>
                  <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scalar</span><span class="o">=</span><span class="s2">&quot;YarnIndex&quot;</span><span class="p">,</span> <span class="n">progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read the vtu voxel mesh exported from TexGen and calculate necessary information</span>
 <span class="sd">    for OpenFOAM polyMesh conversion.</span>
 
@@ -980,7 +976,7 @@
 
 
 <div class="viewcode-block" id="case_prepare"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.case_prepare">[docs]</a><span class="k">def</span> <span class="nf">case_prepare</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load openFoam case template and prepare the case for simulation.</span>
 
 <span class="sd">    Parameters</span>
@@ -1025,7 +1021,7 @@
 
 <div class="viewcode-block" id="voxel2img"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.voxel2img">[docs]</a><span class="k">def</span> <span class="nf">voxel2img</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_shape</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;YarnIndex&quot;</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;./img/&quot;</span><span class="p">,</span>
               <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_name</span><span class="o">=</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;tif&quot;</span><span class="p">,</span> <span class="n">scale_algrithm</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a voxel mesh to a series of images.</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1120,7 +1116,7 @@
 
 
 <div class="viewcode-block" id="cwd_chdir"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.cwd_chdir">[docs]</a><span class="k">def</span> <span class="nf">cwd_chdir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set given directory or the folder where the code file is as current working directory</span>
 
 <span class="sd">        Parameters</span>
@@ -1144,7 +1140,7 @@
 
 
 <div class="viewcode-block" id="choose_directory"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.choose_directory">[docs]</a><span class="k">def</span> <span class="nf">choose_directory</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a directory with GUI and return its path.</span>
 
 <span class="sd">        Parameters</span>
@@ -1183,7 +1179,7 @@
 
 
 <div class="viewcode-block" id="filenames"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.filenames">[docs]</a><span class="k">def</span> <span class="nf">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the list of files in the given folder.</span>
 
 <span class="sd">        Parameters</span>
@@ -1205,7 +1201,7 @@
 
 
 <div class="viewcode-block" id="zip_files"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.zip_files">[docs]</a><span class="k">def</span> <span class="nf">zip_files</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">file_list</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add multiple files to a zip file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1241,7 +1237,7 @@
 
 
 <div class="viewcode-block" id="choose_file"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.choose_file">[docs]</a><span class="k">def</span> <span class="nf">choose_file</span><span class="p">(</span><span class="n">titl</span><span class="o">=</span><span class="s1">&#39;Select the target directory:&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a file with GUI and return its path.</span>
 
 <span class="sd">        Parameters</span>
@@ -1269,7 +1265,7 @@
 
 
 <div class="viewcode-block" id="save_nrrd"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.save_nrrd">[docs]</a><span class="k">def</span> <span class="nf">save_nrrd</span><span class="p">(</span><span class="n">cell_label</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save the labels of a hexahedral mesh to a nrrd file. The labels should be</span>
 <span class="sd">    starting from 0 and increasing by 1.</span>
 
@@ -1305,7 +1301,7 @@
 
 
 <div class="viewcode-block" id="save_krig"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.save_krig">[docs]</a><span class="k">class</span> <span class="nc">save_krig</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class saves a dictonary of sympy expressions to a file in human</span>
 <span class="sd">    readable form and then load as sympy expressions directly without other</span>
 <span class="sd">    conversion. It is called by polykriging.fileio.pk_save to save kriging</span>
@@ -1362,7 +1358,7 @@
 
 
 <div class="viewcode-block" id="save"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.save">[docs]</a><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an exact copy of numpy.save, except that it does not check the extensions.</span>
 
 <span class="sd">        Parameters</span>
@@ -1399,7 +1395,7 @@
 
 
 <div class="viewcode-block" id="pk_save"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.pk_save">[docs]</a><span class="k">def</span> <span class="nf">pk_save</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">check_format</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</span>
 
 <span class="sd">        Parameters</span>
@@ -1444,7 +1440,7 @@
 
 
 <div class="viewcode-block" id="pk_load"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.pk_load">[docs]</a><span class="k">def</span> <span class="nf">pk_load</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load a file format defined in polykriging (.coo, .geo, or .stat) file</span>
 <span class="sd">    and return as a pandas dataframe or a numpy.array object.</span>
 
@@ -1495,7 +1491,7 @@
 
 
 <div class="viewcode-block" id="read_explicit_data"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.read_explicit_data">[docs]</a><span class="k">def</span> <span class="nf">read_explicit_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_pts</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See</span>
 <span class="sd">    https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.</span>
 
@@ -1568,7 +1564,7 @@
 
 
 <div class="viewcode-block" id="coo_to_ply"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.coo_to_ply">[docs]</a><span class="k">def</span> <span class="nf">coo_to_ply</span><span class="p">(</span><span class="n">file_coo</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a pcd file to ply file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1606,7 +1602,7 @@
 
 
 <div class="viewcode-block" id="meshio_save"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.meshio_save">[docs]</a><span class="k">def</span> <span class="nf">meshio_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.</span>
 <span class="sd">    It is a wrapper of meshio.write() function.</span>
 
@@ -1673,7 +1669,7 @@
 
 
 <div class="viewcode-block" id="get_ply_property"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.get_ply_property">[docs]</a><span class="k">def</span> <span class="nf">get_ply_property</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span><span class="p">,</span> <span class="n">save_vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function get a vertex property or cell property from a mesh stored as .ply</span>
 <span class="sd">    format. It is intended to be used to get the user-defined properties that most of</span>
 <span class="sd">    meshing and rendering software does not support.</span>
@@ -1733,7 +1729,7 @@
 
 
 <div class="viewcode-block" id="save_csv"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.save_csv">[docs]</a><span class="k">def</span> <span class="nf">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">csv_head</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save numpy array to csv file with given info in the first row.</span>
 
 <span class="sd">        Parameters</span>
@@ -1836,7 +1832,7 @@
 
 
 <div class="viewcode-block" id="create_yarn_element_sets"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.create_yarn_element_sets">[docs]</a><span class="k">def</span> <span class="nf">create_yarn_element_sets</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">,</span> <span class="n">Indices</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates element sets for each unique fiber in the mesh.</span>
 
 <span class="sd">        Parameters:</span>
@@ -1883,7 +1879,7 @@
 
 
 <div class="viewcode-block" id="create_part_data_lines"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.create_part_data_lines">[docs]</a><span class="k">def</span> <span class="nf">create_part_data_lines</span><span class="p">(</span><span class="n">prtname</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="p">[],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[],</span> <span class="n">nodesets</span><span class="o">=</span><span class="p">[],</span> <span class="n">elemsets</span><span class="o">=</span><span class="p">[]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining nodes, elements, and sets in the part data.</span>
 
 <span class="sd">        Parameters:</span>
@@ -1908,9 +1904,9 @@
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
         <span class="c1">#        f&quot;*Part, name={prtname}&quot;,  ## TODO : the first parameter is not used currently.</span>
         <span class="s2">&quot;*Node&quot;</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">nlabel</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s2">14.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s2">14.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">:</span><span class="s2">13.6f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">nlabel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">nlabel</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s2">14.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s2">14.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">:</span><span class="s2">13.6f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">nlabel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">],</span>
         <span class="s2">&quot;*Element, type=C3D8R&quot;</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elabel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">nodelabels</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">[</span><span class="n">elabel</span><span class="p">,</span> <span class="o">*</span><span class="n">nodelabels</span><span class="p">]</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elabel</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodelabels</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="p">[</span><span class="n">elabel</span><span class="p">,</span> <span class="o">*</span><span class="n">nodelabels</span><span class="p">]</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">],</span>
     <span class="p">]</span>
 
     <span class="n">n_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
@@ -1940,7 +1936,7 @@
 
 
 <div class="viewcode-block" id="create_material_data_lines"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.create_material_data_lines">[docs]</a><span class="k">def</span> <span class="nf">create_material_data_lines</span><span class="p">(</span><span class="n">matname</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">sta</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">materials</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining material data in the input file.</span>
 
 <span class="sd">        Parameters:</span>
@@ -1989,7 +1985,7 @@
 
 
 <div class="viewcode-block" id="create_solid_section_lines"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.create_solid_section_lines">[docs]</a><span class="k">def</span> <span class="nf">create_solid_section_lines</span><span class="p">(</span><span class="n">elset_name</span><span class="p">,</span> <span class="n">material_name</span><span class="p">,</span> <span class="n">orientation_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">controls</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining the solid section properties of a specified element set and material.</span>
 
 <span class="sd">        Parameters:</span>
@@ -2030,7 +2026,7 @@
 
 
 <div class="viewcode-block" id="create_solid_section_for_all_sets"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.create_solid_section_for_all_sets">[docs]</a><span class="k">def</span> <span class="nf">create_solid_section_for_all_sets</span><span class="p">(</span><span class="n">Indices</span><span class="p">,</span> <span class="n">fiber_material_name</span><span class="p">,</span> <span class="n">orientation_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">controls</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates solid section lines for all fiber element sets in the mesh.</span>
 
 <span class="sd">        Parameters:</span>
@@ -2068,7 +2064,7 @@
 
 
 <div class="viewcode-block" id="write_fiber_orientation_to_file"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.write_fiber_orientation_to_file">[docs]</a><span class="k">def</span> <span class="nf">write_fiber_orientation_to_file</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">Indices</span><span class="p">,</span> <span class="n">file_header</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;fabrictest.ori&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes fiber orientation information to a file.</span>
 
 <span class="sd">    Parameters:</span>
@@ -2127,11 +2123,11 @@
             <span class="c1"># Write to the ori file</span>
             <span class="n">ori_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;** Yarn </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">yarn_index</span><span class="p">)</span><span class="si">}</span><span class="s1"> **</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cell_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cell_ids</span><span class="p">):</span>
-                <span class="n">ori_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cell_id</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s1">&lt;8</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">combined_matrix_str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+                <span class="n">ori_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cell_id</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="si">:</span><span class="s1">&lt;8</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">combined_matrix_str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="voxel2inp"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.voxel2inp">[docs]</a><span class="k">def</span> <span class="nf">voxel2inp</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="s2">&quot;./mesh-C3D8R.inp&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a voxel mesh to an Abaqus input file.</span>
 
 <span class="sd">        Parameters</span>
@@ -2260,7 +2256,7 @@
 
 
 <div class="viewcode-block" id="pcd_to_ply"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.pcd_to_ply">[docs]</a><span class="k">def</span> <span class="nf">pcd_to_ply</span><span class="p">(</span><span class="n">file_pcd</span><span class="p">,</span> <span class="n">file_ply</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a pcd file to ply file.</span>
 
 <span class="sd">    Parameters</span>

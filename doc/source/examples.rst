@@ -24,7 +24,7 @@ Using as a library of Kriging for interpolations
    test/derivative_Kriging
    test/parametric_surface
    
-Using as a library
+Using as a library for fiber tow modeling
 --------------------------------------------------------
 .. toctree::
    :maxdepth: 1

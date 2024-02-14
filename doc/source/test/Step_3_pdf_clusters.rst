@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_Step_3_pdf_clusters.py>`
+        Click :ref:`here <sphx_glr_download_source_test_Step_3_pdf_clusters.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,57 +18,125 @@
 .. _sphx_glr_source_test_Step_3_pdf_clusters.py:
 
 
-Step 3: pdf cluster
-=================
+PDF-based point clustering
+==================================
 
-Test
+This example shows how to estimate the probability density function (pdf) of the
+input data and cluster the data points based on the pdf analysis.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-91
+Kernel density estimation (KDE) is a non-parametric way to estimate the probability
+density function of a random variable. The extrema of the pdf are used as the cluster
+centers. The initial bandwidth of the kernel is estimated by Scott's rule.
+
+.. GENERATED FROM PYTHON SOURCE LINES 12-24
 
 .. code-block:: default
-
 
 
     import numpy as np
     import matplotlib.pyplot as plt
     import matplotlib as mpl
-    import polytex as pk
+    import polytex as ptx
     import os
 
-    # Input: parameters
+    # Conversion factor from pixel to mm
     resolution = 0.022  # 0.022 mm
-    # number of extrema (control points) for contour description
+    # number of control points for contour description
     extremaNum, windows, nuggets = 30, 5, [1e-3]
 
-    ''' Data loading '''
-    path = pk.choose_file(titl="Directory for the file containing "
+
+.. GENERATED FROM PYTHON SOURCE LINES 25-27
+
+Data loading
+---------------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 27-32
+
+.. code-block:: default
+
+    path = ptx.choose_file(titl="Directory for the file containing "
                                "sorted coordinates (.coo)", format=".coo")
     filename = os.path.basename(path)
-    coordinatesSorted = pk.pk_load(path)
+    coordinatesSorted = ptx.pk_load(path)
 
-    ''' Initial bandwidth estimation by Scott's rule '''
+
+.. GENERATED FROM PYTHON SOURCE LINES 33-38
+
+Initial bandwidth estimation by Scott's rule
+--------------------------------------------
+Using Scott's rule, an initial bandwidth for kernel density estimation
+is calculated from the standard deviation of the normalized distances
+in coordinatesSorted.
+
+.. GENERATED FROM PYTHON SOURCE LINES 38-43
+
+.. code-block:: default
+
     t_norm = coordinatesSorted["normalized distance"]
     std = np.std(t_norm)
-    bw = pk.stats.bw_scott(std, t_norm.size) / 2
+    bw = ptx.stats.bw_scott(std, t_norm.size) / 2
     print("Initial bandwidth: {}".format(bw))
 
-    '''  Kernel density estimation   '''
+
+.. GENERATED FROM PYTHON SOURCE LINES 44-48
+
+Kernel density estimation
+--------------------------------------------
+kdeScreen method from ptx.stats is used to find the kernel density
+estimation for a linear space spanning from 0 to 1 with 1000 points.
+
+.. GENERATED FROM PYTHON SOURCE LINES 48-54
+
+.. code-block:: default
+
     t_test = np.linspace(0, 1, 1000)
-    clusters = pk.stats.kdeScreen(t_norm, t_test, bw, plot=False)
+    clusters = ptx.stats.kdeScreen(t_norm, t_test, bw, plot=False)
 
     # log-likelihood
-    LL = pk.stats.log_likelihood(clusters["pdf input"])
+    LL = ptx.stats.log_likelihood(clusters["pdf input"])
 
-    """ Save pdf analysis """
+
+.. GENERATED FROM PYTHON SOURCE LINES 55-59
+
+Save pdf analysis
+--------------------------------------------
+Results from the KDE are saved with a filename that includes cluster
+centers information and the computed bandwidth.
+
+.. GENERATED FROM PYTHON SOURCE LINES 59-63
+
+.. code-block:: default
+
     cluster_centers = clusters["cluster centers"]
-    pk.pk_save(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
+    ptx.pk_save(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
                "_bw" + str(round(bw, 3)) + ".stat", clusters)
 
-    """ Reload pdf analysis results """
-    reload = pk.pk_load(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
+
+.. GENERATED FROM PYTHON SOURCE LINES 64-67
+
+Reload pdf analysis results
+--------------------------------------------
+The previously saved statistical data can be reloaded as follows:
+
+.. GENERATED FROM PYTHON SOURCE LINES 67-70
+
+.. code-block:: default
+
+    reload = ptx.pk_load(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
                         "_bw" + str(round(bw, 3)) + ".stat")
 
-    # plot scatter plot
+
+.. GENERATED FROM PYTHON SOURCE LINES 71-75
+
+Plot pdf analysis
+--------------------------------------------
+The pdf analysis is plotted with the scatters colored by the radial
+normalized distance (ax1) and the cluster labels (ax2).
+
+.. GENERATED FROM PYTHON SOURCE LINES 75-115
+
+.. code-block:: default
+
     plt.close('all')
     fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(8, 5))
     # fig.subplots_adjust(bottom=0.5)
@@ -81,7 +149,7 @@ Test
 
     """ color the scatters with cluster labels """
     # colorize the scatter plot according to clusters
-    color = pk.color_cluster(clusters)
+    color = ptx.color_cluster(clusters)
     ax2.scatter(coordinatesSorted["X"], coordinatesSorted["Y"], s=25,
                 c=color, cmap=cmap2, alpha=1 / 2, edgecolors='none', label="bw = %.2f" % bw)
 
@@ -98,7 +166,6 @@ Test
     plt.show()
 
     """ colorbar """
-
     fig2, ax1 = plt.subplots(figsize=(6, 1))
     fig2.subplots_adjust(bottom=0.5)
 
@@ -122,8 +189,6 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

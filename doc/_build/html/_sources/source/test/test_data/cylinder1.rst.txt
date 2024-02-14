@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_test_data_cylinder1.py>`
+        Click :ref:`here <sphx_glr_download_source_test_test_data_cylinder1.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -101,8 +101,6 @@ Test
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

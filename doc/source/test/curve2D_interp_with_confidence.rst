@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_source_test_curve2D_interp_with_confidence.py>`
+        Click :ref:`here <sphx_glr_download_source_test_curve2D_interp_with_confidence.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,8 +18,8 @@
 .. _sphx_glr_source_test_curve2D_interp_with_confidence.py:
 
 
-2D curve kriging with confidence
-================================
+2D curve kriging with confidence estimation
+===========================================
 
 This example shows how to interpolate a 2D curve with confidence estimation.
 
@@ -29,7 +29,7 @@ where :math:`f` is a 2D curve. The curve is defined by a set of points
 :math:`(x_i, y_i)`, where :math:`i = 1, 2, ..., n`.
 
 This kriging method is the basis for fiber tow trajectory smoothing and control
-point resampling of fiber tow surface implimented in polytex.Tow class.
+point resampling of fiber tow surface implemented in PolyTex.Tow class.
 
 .. GENERATED FROM PYTHON SOURCE LINES 15-36
 
@@ -38,14 +38,14 @@ point resampling of fiber tow surface implimented in polytex.Tow class.
 
     import numpy as np
     from polytex.kriging import curve2D
-    import polytex as pk
+    import polytex as ptx
     import matplotlib.pyplot as plt
 
     # Make up some data
     X = np.linspace(start=0, stop=10, num=300)
     y = X * np.sin(X)
 
-    # Choose some data points randomly for training
+    # Choose some data points randomly to build the kriging model
     rng = np.random.RandomState(1)
     training_indices = rng.choice(np.arange(y.size), size=16, replace=False)
 
@@ -114,7 +114,7 @@ and the corresponding standard deviation as output.
 Save the Kriging model
 ----------------------
 You can save the Kriging model to a file for later use and load it back
-using pk.load() function. Note that the Kriging model is saved in a Python
+using ptx.load() function. Note that the Kriging model is saved in a Python
 dictionary with its name as the key.
 
 .. GENERATED FROM PYTHON SOURCE LINES 79-81
@@ -122,8 +122,8 @@ dictionary with its name as the key.
 .. code-block:: default
 
     expr_dict = {"cross": expr}
-    pk.pk_save("./test_data/FunXY.krig", expr_dict)
-    expr_load = pk.pk_load("./test_data/FunXY.krig")
+    ptx.pk_save("./test_data/FunXY.krig", expr_dict)
+    expr_load = ptx.pk_load("./test_data/FunXY.krig")
 
 .. rst-class:: sphx-glr-timing
 
@@ -135,8 +135,6 @@ dictionary with its name as the key.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
-
-
 
 
     .. container:: sphx-glr-download sphx-glr-download-python
