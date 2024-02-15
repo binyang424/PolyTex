@@ -93,8 +93,8 @@ def data_compr(matXC, data_norm, max_err, skip_comp):
     
     while merr_comp>max_err:
         
-        xmat_krig, xmat_krig_inv, xvector_ba, xexpr = curve2D.curveKrig(matXC, 'lin', 'cub',nuggetEffect=1e-2)
-        ymat_krig, ymat_krig_inv, yvector_ba, yexpr = curve2D.curveKrig(matYC, 'lin', 'cub',nuggetEffect=1e-2)
+        xmat_krig, xmat_krig_inv, xvector_ba, xexpr = curve2D.curveKrig(matXC, 'lin', 'cub',nugget_effect=1e-2)
+        ymat_krig, ymat_krig_inv, yvector_ba, yexpr = curve2D.curveKrig(matYC, 'lin', 'cub',nugget_effect=1e-2)
 
         x, y = sym.symbols('x y') 
         

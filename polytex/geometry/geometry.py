@@ -320,7 +320,7 @@ def area_signed(points: np.ndarray) -> float:
 
     Examples
     --------
-    >>> from polykriging.geometry import area_signed
+    >>> from polytex.geometry import area_signed
 
     >>> area_signed([[0, 0], [1, 0], [0, 1]])
     0.5

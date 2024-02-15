@@ -95,7 +95,7 @@ def __download_file(url, outdir=r"./test_data/", overwrite=True):
 
     Examples
     --------
-    >>> from polykriging import __download_file
+    >>> from polytex import __download_file
     >>> # File locations
     >>> url_list = ["https://www.binyang.fun/resource/Semivariogram_1D_Porosity.xlsx", \
                 "https://www.binyang.fun/resource/LICENSE"]

@@ -1,7 +1,7 @@
 """
-polykriging.
-
-An implementation of dual Kriging.
+PolyTex.
+==================
+An implementation of dual kriging.
 """
 
 __version__ = "0.1.5"

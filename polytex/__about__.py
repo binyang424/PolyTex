@@ -8,6 +8,6 @@ except ImportError:
         __version__ = "unknown"
 
 try:
-    __version__ = metadata.version("polykriging")
+    __version__ = metadata.version("polytex")
 except Exception:
     __version__ = "unknown"

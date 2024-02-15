@@ -3,10 +3,12 @@ from .io import pk_save as save_tow
 
 from .geometry import geom_tow, Curve, Polygon, Plane, Tube, ParamCurve, area_signed
 from .geometry import transform as tf
-from .kriging import curve2Dinter, surface3Dinterp
+from .kriging import curve2D
+from .kriging.paraSurface import surface3Dinterp
 from .mesh import get_cells
 from .stats import kdeScreen, bw_scott
 from .thirdparty.bcolors import bcolors
+
 import numpy as np
 import os
 import pyvista as pv
@@ -363,10 +365,10 @@ class Tow:
                 mask = self.__coordinates["Z"] == slices[i]
                 pts_cs = self.__coordinates[mask]
 
-                x_inter, x_expr = curve2Dinter(pts_cs.iloc[:, [params[type], 3]].to_numpy(),
-                                               drift, cov, nuggetEffect=smooth, interp=interp)
-                y_inter, y_expr = curve2Dinter(pts_cs.iloc[:, [params[type], 4]].to_numpy(),
-                                               drift, cov, nuggetEffect=smooth, interp=interp)
+                x_inter, x_expr = curve2D.interpolate(pts_cs.iloc[:, [params[type], 3]].to_numpy(),
+                                               drift, cov, nugget_effect=smooth, interp=interp)
+                y_inter, y_expr = curve2D.interpolate(pts_cs.iloc[:, [params[type], 4]].to_numpy(),
+                                               drift, cov, nugget_effect=smooth, interp=interp)
                 z_ = np.full(len(interp), slices[i])
 
                 dict_cs_x[slices[i]] = x_expr

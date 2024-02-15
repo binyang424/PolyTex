@@ -26,9 +26,9 @@ def im_to_ugrid(im):
 
         Example
         -------
-        >>> import polykriging as pk
-        >>> im = pk.example("image")
-        >>> mesh, mesh_dim = pk.mesh.im_to_ugrid(im)
+        >>> import polytex as ptx
+        >>> im = ptx.example("image")
+        >>> mesh, mesh_dim = ptx.mesh.im_to_ugrid(im)
     """
     mesh = pv.read(im)
     ugrid = mesh.cast_to_unstructured_grid()

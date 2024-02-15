@@ -973,10 +973,10 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
     Examples
     --------
     >>> import pyvista as pv
-    >>> import polykriging as pk
+    >>> import polytex as pk
     >>> mesh = pv.read("./v2i.vtu")
     >>> mesh_shape = [20, 20, 5]
-    >>> pk.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex",
+    >>> ptx.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex",
                         save_path="./img/",
                         scale=50, img_name="img", format="tif",
                         scale_algrithm="linear")
@@ -1222,8 +1222,8 @@ class save_krig(dict):
     """
     This class saves a dictonary of sympy expressions to a file in human
     readable form and then load as sympy expressions directly without other
-    conversion. It is called by polykriging.fileio.pk_save to save kriging
-    expressions to a ".krig" file and by polykriging.fileio.pk_load to load
+    conversion. It is called by polytex.io.pk_save to save kriging
+    expressions to a ".krig" file and by polytex.io.pk_load to load
     these files. Therefore, the class is not intended to be used directly by
     the user.
 
@@ -1236,7 +1236,7 @@ class save_krig(dict):
         Example:
         --------
         >>> import sympy
-        >>> from polykriging.fileio.save_krig import save_krig
+        >>> from polytex.io import save_krig
         >>> a, b = sympy.symbols('a, b')
         >>> d = save_krig({'a':a, 'b':b})
         >>> d.save('name.krig')
@@ -1314,7 +1314,7 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
 
 def pk_save(fp, data, check_format=True):
     """
-    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file
+    Save a Python dict or pandas dataframe as a file format defined in polytex (.coo, geo) file
 
         Parameters
         ----------
@@ -1322,7 +1322,7 @@ def pk_save(fp, data, check_format=True):
             File path and name to which the data is saved. If the file name does not end with
             a supported file extension, a ValueError will be raised.
         data: Tow, Tex, or dict
-            The data to be saved. It can be several customised file formats for polykriging.
+            The data to be saved. It can be several customised file formats for polytex.
 
 
         Returns
@@ -1359,7 +1359,7 @@ def pk_save(fp, data, check_format=True):
 
 def pk_load(file):
     """
-    Load a file format defined in polykriging (.coo, .geo, or .stat) file
+    Load a file format defined in polytex (.coo, .geo, or .stat) file
     and return as a pandas dataframe or a numpy.array object.
 
         Parameters
@@ -1380,7 +1380,7 @@ def pk_load(file):
     if ext == "":
         raise ValueError("The file extension is not given. Supported file extensions are "
                          ".pcd, .coo, .geo, .tow, .tex, and .krig.")
-    elif ext not in ['.pcd', '.coo', '.geo', '.tow', '.tex', '.krig']:
+    elif ext not in ['.pcd', '.coo', '.geo', '.tow', '.tex', '.krig', "stat"]:
         raise ValueError("The file extension is not supported. Supported file extensions are "
                          ".pcd, .coo, .geo, .tow, .tex, and .krig.")
 
@@ -1551,12 +1551,12 @@ def meshio_save(file, vertices, cells=[], point_data={}, cell_data={}, binary=Fa
         Examples
         --------
         >>> import numpy as np
-        >>> import polykriging as pk
+        >>> import polytex as pk
         >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
         >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
         >>> point_data = {"a": np.array([0, 1, 2, 3])}
         >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
-        >>> pk.meshio_save("test.ply", vertices, cells, point_data, cell_data)
+        >>> ptx.meshio_save("test.ply", vertices, cells, point_data, cell_data)
         >>> print("Done")
         Done
 
@@ -1617,9 +1617,9 @@ def get_ply_property(mesh_path, column, skip=11, type="vertex", save_vtk=False):
 
         Examples
         --------
-        >>> import polykriging as pk
+        >>> import polytex as pk
         >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
-        >>> quality = pk.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
+        >>> quality = ptx.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
         >>> quality
     """
     import pyvista as pv
@@ -2169,7 +2169,7 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
 #################################################################
 def save_ply(file, vertices, cells=[], point_data={}, cell_data={}, binary=False):
     print(bcolors.warning(
-        "This function will be deprecated in the future. Please use polykriging.meshio_save() instead."))
+        "This function will be deprecated in the future. Please use polytex.meshio_save() instead."))
     return meshio_save(file, vertices, cells, point_data, cell_data, binary)
 
 
@@ -2186,7 +2186,7 @@ def pcd_to_ply(file_pcd, file_ply, binary=False):
     :return: None
     """
     print(bcolors.warning(
-        "This function will be deprecated in the future. Please use polykriging.read_imagej_roi() instead."))
+        "This function will be deprecated in the future. Please use polytex.read_imagej_roi() instead."))
 
     import meshio
 

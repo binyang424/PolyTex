@@ -10,7 +10,7 @@ from sympy.utilities.iterables import is_sequence
 from sympy.core.containers import Tuple
 
 import polytex.mesh as ms
-import polytex as ptex
+import polytex as ptx
 import pyvista as pv
 
 import os
@@ -30,7 +30,7 @@ class Point(np.ndarray):
 
     Examples
     --------
-    >>> from polykriging.geometry import Point
+    >>> from polytex.geometry import Point
     >>> import numpy as np
     >>> p1 = Point([1, 2, 3])
     >>> p2 = Point([4, 5, 6])
@@ -215,7 +215,7 @@ class Point(np.ndarray):
                 raise ValueError("Color array must have the same size as the point array.")
         else:
             filename = filename + ".vtk" if not filename.endswith(".vtk") else filename
-            ptex.save_ply(filename, vertices=self.xyz,
+            ptx.save_ply(filename, vertices=self.xyz,
                         point_data=color, binary=False)
 
 
@@ -552,7 +552,7 @@ class Ellipse2D:
 
     Examples
     --------
-    >>> from polykriging.geometry import Ellipse2D
+    >>> from polytex.geometry import Ellipse2D
     >>> e = Ellipse2D(20, 1, 0.5, [0, 0])
     >>> e.__repr__()
     """
@@ -612,7 +612,7 @@ class Polygon(Curve):
 
     Examples
     --------
-    >>> from polykriging.geometry import Point, Polygon
+    >>> from polytex.geometry import Point, Polygon
     >>> p = Point([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 0, 0]])
     >>> poly = Polygon(p)
     >>> poly.points
@@ -620,7 +620,7 @@ class Polygon(Curve):
 
     def __init__(self, points):
         """
-        A partial inheritance of polykriging.geometry.Point class.
+        A partial inheritance of polytex.geometry.Point class.
 
         Parameters
         ----------
@@ -685,7 +685,7 @@ class Plane:
 
     Examples
     --------
-    >>> from polykriging.geometry import Point, Plane
+    >>> from polytex.geometry import Point, Plane
 
     Create a plane from 3 points
     >>> p1 = Point([1, 1, 1])
@@ -782,7 +782,7 @@ class Plane:
 
         Examples
         --------
-        >>> from polykriging.geometry import Point, Plane
+        >>> from polytex.geometry import Point, Plane
         >>> p1 = Point([5, 0, 0])
         >>> normal = Point([1, 0, 0])
         >>> plane = Plane(p1, normal_vector=normal)
@@ -843,13 +843,13 @@ class Plane:
         Example
         -------
         Create a plane from a point and a normal vector
-        >>> from polykriging.geometry import Point, Plane
+        >>> from polytex.geometry import Point, Plane
         >>> p1 = Point([1, 1, 1])
         >>> normal = Point([1, 4, 7])
         >>> plane2 = Plane(p1, normal_vector=normal)
         >>> f = plane2.function()
         >>> f
-        <function polykriging.geometry.basic.Plane.function.<locals>.<lambda>(x, y, z)>
+        <function polytex.geometry.basic.Plane.function.<locals>.<lambda>(x, y, z)>
         >>> f(1, 1, 1)
         0
         """
@@ -883,7 +883,7 @@ class Plane:
             obj_type = obj.__type__
         except AttributeError:
             raise TypeError('Object must be a Curve, ParamCurve or ParamSurface '
-                            'object defined in polykriging.geometry')
+                            'object defined in polytex.geometry')
 
         if obj_type == 'Curve':
             f = self.function()
@@ -909,7 +909,7 @@ class Tube(GeometryEntity):
 
     Examples
     --------
-    >>> from polykriging.geometry import Tube
+    >>> from polytex.geometry import Tube
     >>> tube = Tube(4,10,major=2, minor=1,h=5)
     >>> mesh = tube.mesh(plot=True)
     >>> tube.save_as_mesh('tube.vtk')
@@ -988,7 +988,7 @@ class Tube(GeometryEntity):
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
         pts = np.array(self.points, dtype=np.float32)
-        pv_mesh = ptex.mesh.tubular_mesh_generator(theta_res=theta_res - 1, h_res=h_res,
+        pv_mesh = ptx.mesh.tubular_mesh_generator(theta_res=theta_res - 1, h_res=h_res,
                                                  vertices=pts, plot=False)
         if plot:
             pv_mesh.plot(show_edges=True)
@@ -1015,7 +1015,7 @@ class Tube(GeometryEntity):
 
         Examples
         --------
-        >>> from polykriging.geometry import Tube
+        >>> from polytex.geometry import Tube
         >>> tube = Tube(5,10,major=2, minor=1,h=5)
         >>> tube.save_as_mesh('tube.vtu')
         """
@@ -1035,7 +1035,7 @@ class Tube(GeometryEntity):
                 int(self.theta_res),
                 correction=end_closed)
 
-            ptex.meshio_save(save_path, points, cells=cells,
+            ptx.meshio_save(save_path, points, cells=cells,
                            point_data={}, cell_data={}, binary=False)
         else:
             import pyvista as pv
@@ -1057,7 +1057,7 @@ class ParamCurve:
 
     Examples
     --------
-    >>> from polykriging.geometry import ParamCurve
+    >>> from polytex.geometry import ParamCurve
     >>> from sympy import sin, cos, symbols
     >>> import numpy as np
     >>> s = symbols('s')
@@ -1118,8 +1118,8 @@ class ParamCurve:
                     print("Creating kriging model for %s -th component" % str(i + 1))
 
                 mat_krig, mat_krig_inv, vector_ba, expr, func_drift, func_cov = \
-                    ptex.kriging.curveKrig1D(data_krig, name_drift=drift,
-                                           name_cov=cov, nuggetEffect=smoothing_factor)
+                    ptx.kriging.curve_krig_2D(data_krig, name_drift=drift,
+                                           name_cov=cov, nugget_effect=smoothing_factor)
 
                 cls.function.append(expr)
             if verbose:
@@ -1173,7 +1173,7 @@ class ParamCurve3D(symCurve.Curve):
 
     Examples
     --------
-    >>> from polykriging.geometry import ParamCurve3D
+    >>> from polytex.geometry import ParamCurve3D
     >>> from sympy import sin, cos, symbols
     >>> s = symbols('s')
     >>> curve = ParamCurve3D((cos(s), sin(s), s), (s, 0, 2*np.pi))
@@ -1248,7 +1248,7 @@ class ParamCurve3D(symCurve.Curve):
             returns a translated curve.
         Examples
         ========
-        >>> from polykriging.geometry import ParamCurve3D
+        >>> from polytex.geometry import ParamCurve3D
         >>> from sympy.abc import x
         >>> ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)
         ParamCurve3D((x + 1, x + 2), (x, 0, 1))
@@ -1275,7 +1275,7 @@ class ParamSurface(GeometryEntity):
 
     Examples
     --------
-    >>> from polykriging.geometry import ParamSurface
+    >>> from polytex.geometry import ParamSurface
     >>> from sympy import sin, cos, symbols
     >>> s, t = symbols('s t')
     >>> surface = ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 2*np.pi), (t, 0, np.pi)))
@@ -1321,7 +1321,7 @@ class ParamSurface(GeometryEntity):
         Examples
         --------
         >>> from sympy.abc import t
-        >>> from polykriging.geometry import ParamCurve3D
+        >>> from polytex.geometry import ParamCurve3D
         >>> surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))
         >>> surface.functions
         (t, t, t)
@@ -1339,7 +1339,7 @@ class ParamSurface(GeometryEntity):
         Examples
         --------
         >>> from sympy.abc import t
-        >>> from polykriging.geometry import ParamCurve3D
+        >>> from polytex.geometry import ParamCurve3D
         >>> surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))
         >>> surface.limits
         ((t, 0, 1), (t, 0, 1))

@@ -148,7 +148,7 @@ def e123_dcm(psi: float, theta: float, phi: float) -> np.ndarray:
 
     Examples
     --------
-    >>> import polykriging.geometry.transform as tf
+    >>> import polytex.geometry.transform as tf
 
     """
     return np.array([[__q11(psi, theta), __q12(psi, theta, phi), __q13(psi, theta, phi)],
@@ -193,7 +193,7 @@ def euler_z_noraml(normal, *args) -> list:
 
     Examples
     --------
-    >>> import polykriging.geometry.transform as tf
+    >>> import polytex.geometry.transform as tf
     >>> import numpy as np
     >>> normal = [0.43583834, -0.00777955, -0.89999134]
     >>> euler_angles = tf.euler_z_noraml(normal)
@@ -258,7 +258,7 @@ def euler_zx_coordinate(z_new, x_new) -> list:
 
     Examples
     --------
-    >>> import polykriging.geometry.transform as tf
+    >>> import polytex.geometry.transform as tf
     """
     x_basis = Vector([1, 0, 0])
 
