@@ -150,14 +150,11 @@ via cross-validation and returns the parameter value that maximizes
 the log-likelihood of data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array. The data to apply the kernel density estimation.</p>
-</dd>
-<dt><strong>x_test</strong><span class="classifier">Numpy array</span></dt><dd><p>Test data to get the density distribution.</p>
-</dd>
-<dt><strong>bw</strong><span class="classifier">list of float</span></dt><dd><p>The bandwidth of the kernels to be tested.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable</strong> (<em>Numpy array</em>) – A N x 1 dimension numpy array. The data to apply the kernel density estimation.</p></li>
+<li><p><strong>x_test</strong> (<em>Numpy array</em>) – Test data to get the density distribution.</p></li>
+<li><p><strong>bw</strong> (<em>list</em><em> of </em><em>float</em>) – The bandwidth of the kernels to be tested.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -170,19 +167,14 @@ the log-likelihood of data.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xkde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ykde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_center_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/kde.html#kdePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.kde.kdePlot" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>xkde</strong><span class="classifier">Numpy array</span></dt><dd><p>The normalized distance.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xkde</strong> (<em>Numpy array</em>) – The normalized distance.</p></li>
+<li><p><strong>ykde</strong> (<em>Numpy array</em>) – The probability density distribution corresponding to the normalized distance.</p></li>
+<li><p><strong>cluster_center_idx</strong> (<em>Numpy array</em>) – The index of the cluster centers.</p></li>
+</ul>
 </dd>
-<dt><strong>ykde</strong><span class="classifier">Numpy array</span></dt><dd><p>The probability density distribution corresponding to the normalized distance.</p>
-</dd>
-<dt><strong>cluster_center_idx</strong><span class="classifier">Numpy array</span></dt><dd><p>The index of the cluster centers.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None.</dt><dd></dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -197,27 +189,22 @@ input variable into a set of clusters. The former is used as the cluster centers
 and the latter is used as the cluster boundaries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array to apply the kernel density estimation.</p>
-</dd>
-<dt><strong>x_test</strong><span class="classifier">Numpy array</span></dt><dd><p>Test data to get the density distribution. It has the same shape as
-the given variable. It should cover the whole range of the variable.</p>
-</dd>
-<dt><strong>bw</strong><span class="classifier">float</span></dt><dd><p>The bandwidth of the kernel.</p>
-</dd>
-<dt><strong>kernel</strong><span class="classifier">string, optional</span></dt><dd><p>The kernel to use. The default is ‘gaussian’. The possible values are
-{‘gaussian’, ‘tophat’, ‘epanechnikov’, ‘exponential’, ‘linear’, ‘cosine’}.</p>
-</dd>
-<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether plot the probability density distribution. The default is False.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable</strong> (<em>Numpy array</em>) – A N x 1 dimension numpy array to apply the kernel density estimation.</p></li>
+<li><p><strong>x_test</strong> (<em>Numpy array</em>) – Test data to get the density distribution. It has the same shape as
+the given variable. It should cover the whole range of the variable.</p></li>
+<li><p><strong>bw</strong> (<em>float</em>) – The bandwidth of the kernel.</p></li>
+<li><p><strong>kernel</strong> (<em>string</em><em>, </em><em>optional</em>) – The kernel to use. The default is ‘gaussian’. The possible values are
+{‘gaussian’, ‘tophat’, ‘epanechnikov’, ‘exponential’, ‘linear’, ‘cosine’}.</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether plot the probability density distribution. The default is False.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>clusters</strong><span class="classifier">dictionary</span></dt><dd><p>The index of the cluster centers, cluster boundary and the
+<dd class="field-even"><p><strong>clusters</strong> – The index of the cluster centers, cluster boundary and the
 probability density distribution (pdf).</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary</p>
 </dd>
 </dl>
 </dd></dl>
@@ -231,35 +218,29 @@ windows and the KDE method is applied to each window. This allows to capture
 more details of geometry changes of a fiber tow.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>dataset</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 2 dimension numpy array for kernel density estimation.
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>Numpy array</em>) – A N x 2 dimension numpy array for kernel density estimation.
 The first colum should be the variable under analysis, the second
-is the label of cross-sections that the variable belongs to.</p>
-</dd>
-<dt><strong>bw</strong><span class="classifier">Numpy array or float, optional</span></dt><dd><p>A range of bandwidth values for kde operation usually generated with np.arange().
+is the label of cross-sections that the variable belongs to.</p></li>
+<li><p><strong>bw</strong> (<em>Numpy array</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – A range of bandwidth values for kde operation usually generated with np.arange().
 The optimal bandwidth will be identified within this range and be used for kernel
 density estimation. If a number is given, the number will be used as the bandwidth
-for kernel estimation.</p>
-</dd>
-<dt><strong>windows</strong><span class="classifier">int,</span></dt><dd><p>The number of windows (segmentations) for KDE analysis. The default is 1, namely,
+for kernel estimation.</p></li>
+<li><p><strong>windows</strong> (<em>int</em><em>,</em>) – The number of windows (segmentations) for KDE analysis. The default is 1, namely,
 the whole dataset is used for KDE analysis and gives the same result as using
-the function kdeScreen() directly.</p>
-</dd>
-<dt><strong>n_clusters</strong><span class="classifier">int</span></dt><dd><p>The target number of cluster_center. The default is 20.</p>
-</dd>
-<dt><strong>x_test</strong><span class="classifier">Numpy array</span></dt><dd><p>Test data to get the density distribution. The default is None.</p>
-</dd>
-</dl>
+the function kdeScreen() directly.</p></li>
+<li><p><strong>n_clusters</strong> (<em>int</em>) – The target number of cluster_center. The default is 20.</p></li>
+<li><p><strong>x_test</strong> (<em>Numpy array</em>) – Test data to get the density distribution. The default is None.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>kdeOutput</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 3 dimension numpy array. The first column is the label of the window under analysis,
-the second is normlized distance, the third is the probability density.</p>
-</dd>
-<dt><strong>cluster_center</strong><span class="classifier">Numpy array</span></dt><dd><p>A M x N dimension numpy array. M is the number of windows and N-1 is the number of cluster centers.
-The first column is the maximum index for each window, the following columns are the cluster centers.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>kdeOutput</strong> (<em>Numpy array</em>) – A N x 3 dimension numpy array. The first column is the label of the window under analysis,
+the second is normlized distance, the third is the probability density.</p></li>
+<li><p><strong>cluster_center</strong> (<em>Numpy array</em>) – A M x N dimension numpy array. M is the number of windows and N-1 is the number of cluster centers.
+The first column is the maximum index for each window, the following columns are the cluster centers.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

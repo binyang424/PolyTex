@@ -114,20 +114,17 @@
 <dd><p>Returns the adjacent cells of the edges with the index of the edge as key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
-</dd>
-<dt><strong>edges: (m, 2) array</strong></dt><dd><p>edge list to be collapsed</p>
-</dd>
-<dt><strong>cell_idx: (n,) array</strong></dt><dd><p>cell index. If None, it will be generated as np.arange(n). (default: None)</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cells</strong> (<em>(</em><em>n</em><em>, </em><em>4</em><em>) </em><em>array</em>) – cell list of the mesh expressed in node connectivity</p></li>
+<li><p><strong>edges</strong> (<em>(</em><em>m</em><em>, </em><em>2</em><em>) </em><em>array</em>) – edge list to be collapsed</p></li>
+<li><p><strong>cell_idx</strong> (<em>(</em><em>n</em><em>,</em><em>) </em><em>array</em>) – cell index. If None, it will be generated as np.arange(n). (default: None)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>return_dict: dictionary</dt><dd><p>a dictionary of adjacent cells with key as the edge</p>
+<dd class="field-even"><p><strong>return_dict</strong> – a dictionary of adjacent cells with key as the edge</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary</p>
 </dd>
 </dl>
 </dd></dl>
@@ -138,19 +135,17 @@
 <dd><p>Get the adjacent cells of the edges to be collapsed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
-</dd>
-<dt><strong>edge_collapse: (m, 2) array</strong></dt><dd><p>edge list to be collapsed</p>
-</dd>
-<dt><strong>n_cores: int</strong></dt><dd><p>number of cores to use for multiprocessing (default: 4)</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cells</strong> (<em>(</em><em>n</em><em>, </em><em>4</em><em>) </em><em>array</em>) – cell list of the mesh expressed in node connectivity</p></li>
+<li><p><strong>edge_collapse</strong> (<em>(</em><em>m</em><em>, </em><em>2</em><em>) </em><em>array</em>) – edge list to be collapsed</p></li>
+<li><p><strong>n_cores</strong> (<em>int</em>) – number of cores to use for multiprocessing (default: 4)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>return_dict: a dictionary of adjacent cells with key as the edge</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>return_dict</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a dictionary of adjacent cells with key as the edge</p>
 </dd>
 </dl>
 </dd></dl>
@@ -161,26 +156,20 @@
 <dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
-</dd>
-<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
-</dd>
-<dt><strong>save: bool</strong></dt><dd><p>whether to save the mesh</p>
-</dd>
-<dt><strong>filename: str</strong></dt><dd><p>if save=True, provide a file name</p>
-</dd>
-<dt><strong>path: str</strong></dt><dd><p>if save=True, provide a path to save the mesh</p>
-</dd>
-<dt><strong>binary: bool</strong></dt><dd><p>whether to save the mesh in binary format</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – vertices</p></li>
+<li><p><strong>cells</strong> (<em>(</em><em>m</em><em>, </em><em>4</em><em>) </em><em>array</em>) – connectivity</p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – whether to save the mesh</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – if save=True, provide a file name</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – if save=True, provide a path to save the mesh</p></li>
+<li><p><strong>binary</strong> (<em>bool</em>) – whether to save the mesh in binary format</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
+<dd class="field-even"><p><strong>grid</strong> – UnstructuredGrid tetrahedral mesh</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.UnstructuredGrid</p>
 </dd>
 </dl>
 </dd></dl>
@@ -191,25 +180,20 @@
 <dd><p>Edge collapse pipeline. Edges containing boundary and independent points will not be collapsed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
-</dd>
-<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
-</dd>
-<dt><strong>surf: a surface mesh of interfaces between materials (subdomains)</strong></dt><dd></dd>
-<dt><strong>iteration: int</strong></dt><dd><p>number of iterations for edge collapse</p>
-</dd>
-<dt><strong>threshold: float</strong></dt><dd><p>threshold for edge collapse</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – vertices</p></li>
+<li><p><strong>cells</strong> (<em>(</em><em>m</em><em>, </em><em>4</em><em>) </em><em>array</em>) – connectivity</p></li>
+<li><p><strong>surf</strong> (<em>a surface mesh</em><em> of </em><em>interfaces between materials</em><em> (</em><em>subdomains</em><em>)</em>) – </p></li>
+<li><p><strong>iteration</strong> (<em>int</em>) – number of iterations for edge collapse</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – threshold for edge collapse</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>new_points: (n’, 3) array</dt><dd><p>vertices after edge collapse</p>
-</dd>
-<dt>new_cells: (m’, 4) array</dt><dd><p>connectivity after edge collapse</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>new_points</strong> (<em>(n’, 3) array</em>) – vertices after edge collapse</p></li>
+<li><p><strong>new_cells</strong> (<em>(m’, 4) array</em>) – connectivity after edge collapse</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -220,16 +204,16 @@
 <dd><p>Returns a list of boundary points from this mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh: pyvista mesh object</strong></dt><dd></dd>
-<dt><strong>boundary_points: A list of boundary points</strong></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>pyvista mesh object</em>) – </p></li>
+<li><p><strong>boundary_points</strong> (<em>A list</em><em> of </em><em>boundary points</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>pts_boundary_idx: NumPy array</dt><dd><p>A numpy array in the shape of [n_boundary_points] containing the index of boundary points.</p>
+<dd class="field-even"><p><strong>pts_boundary_idx</strong> – A numpy array in the shape of [n_boundary_points] containing the index of boundary points.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumPy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -241,16 +225,13 @@
 This properly unpacks the VTK cells array.(safe but now so fast)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh: pyvista unstructured mesh object</strong></dt><dd><p>A pyvista mesh object.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>mesh</strong> (<em>pyvista unstructured mesh object</em>) – A pyvista mesh object.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>cells: list</dt><dd><p>A list of cells. The first element of each cell is the number of nodes in the cell.</p>
+<dd class="field-even"><p><strong>cells</strong> – A list of cells. The first element of each cell is the number of nodes in the cell.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -262,17 +243,14 @@ This properly unpacks the VTK cells array.(safe but now so fast)</p>
 The direction is determined by the indicator function of the two vertices.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>edge_indicator: (n, 2) array</strong></dt><dd><p>indicator function of the two vertices of an edge</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>edge_indicator</strong> (<em>(</em><em>n</em><em>, </em><em>2</em><em>) </em><em>array</em>) – indicator function of the two vertices of an edge</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>collapse_indicator: (n,) array</dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
+<dd class="field-even"><p><strong>collapse_indicator</strong> – direction of edge collapse. possible values are “forward”, “backward”,
 “bilateral”, and “neither”</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(n,) array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -283,32 +261,26 @@ The direction is determined by the indicator function of the two vertices.</p>
 <dd><p>Get the edge collapse list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertex list</p>
-</dd>
-<dt><strong>edges: (n’, 2) array</strong></dt><dd><p>edge list</p>
-</dd>
-<dt><strong>surf_dist: (n,) array</strong></dt><dd><p>surface distance of the vertices to interfaces</p>
-</dd>
-<dt><strong>edge_indicator: (n’, 2) array</strong></dt><dd><p>indicator function of the two vertices of an edge. possible values are
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – vertex list</p></li>
+<li><p><strong>edges</strong> (<em>(</em><em>n'</em><em>, </em><em>2</em><em>) </em><em>array</em>) – edge list</p></li>
+<li><p><strong>surf_dist</strong> (<em>(</em><em>n</em><em>,</em><em>) </em><em>array</em>) – surface distance of the vertices to interfaces</p></li>
+<li><p><strong>edge_indicator</strong> (<em>(</em><em>n'</em><em>, </em><em>2</em><em>) </em><em>array</em>) – indicator function of the two vertices of an edge. possible values are
 0, 1, and 2 for each containing boundary, independent, and free vertices
-respectively.</p>
-</dd>
-<dt><strong>threshold: float</strong></dt><dd></dd>
-<dt><strong># TODO: explain this parameter</strong></dt><dd><p>threshold for the surface distance to filter out the edges to be collapsed.
+respectively.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>TODO</strong> (<em>#</em>) – threshold for the surface distance to filter out the edges to be collapsed.
 The edges to be collapsed are the ones with edge length less than the threshold
-and surface distance of the two vertices are both greater than the threshold.</p>
-</dd>
-</dl>
+and surface distance of the two vertices are both greater than the threshold.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>edge_collapse: (n’’, 2) array</dt><dd><p>edge collapse list</p>
-</dd>
-<dt>collapse_indicator: (n’’, 2) array</dt><dd><p>indicator function of the two vertices of an edge to be collapsed. possible values are
-“forward”, “backward”, “bilateral”, and “neither”</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>edge_collapse</strong> (<em>(n’’, 2) array</em>) – edge collapse list</p></li>
+<li><p><strong>collapse_indicator</strong> (<em>(n’’, 2) array</em>) – indicator function of the two vertices of an edge to be collapsed. possible values are
+“forward”, “backward”, “bilateral”, and “neither”</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,17 +291,16 @@ and surface distance of the two vertices are both greater than the threshold.</p
 <dd><p>Returns the length of an edge given node position and the edge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: A numpy array in the shape of [n_points, 3]</strong></dt><dd><p>The points array containing node position</p>
-</dd>
-<dt><strong>edges: A numpy array in the shape of [n_edges, 2]</strong></dt><dd><p>The edges array containing node connectivity</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>A numpy array in the shape</em><em> of </em><em>[</em><em>n_points</em><em>, </em><em>3</em><em>]</em>) – The points array containing node position</p></li>
+<li><p><strong>edges</strong> (<em>A numpy array in the shape</em><em> of </em><em>[</em><em>n_edges</em><em>, </em><em>2</em><em>]</em>) – The edges array containing node connectivity</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>edge_length: A numpy array in the shape of [n_edges]</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>edge_length</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A numpy array in the shape of [n_edges]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -340,20 +311,16 @@ and surface distance of the two vertices are both greater than the threshold.</p
 <dd><p>Given cells of tetrahedral mesh, return all the edges.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>cells</strong> (<em>A numpy array in the shape</em><em> of </em><em>[</em><em>n_cells</em><em>, </em><em>4</em><em>]</em>) – The cells array containing node connectivity.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>edges_for_cell: A list of edges</dt><dd><p>The edges are sorted so that the first node is always smaller
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>edges_for_cell</strong> (<em>A list of edges</em>) – The edges are sorted so that the first node is always smaller
 than the second. This is to ensure easy searching neighbors.
-The edges of a cell can be retrieved by edges[cell_index]</p>
-</dd>
-<dt>edges: A numpy array in the shape of [n_edges, 2]</dt><dd><p>The edges array containing node connectivity.</p>
-</dd>
-</dl>
+The edges of a cell can be retrieved by edges[cell_index]</p></li>
+<li><p><strong>edges</strong> (<em>A numpy array in the shape of [n_edges, 2]</em>) – The edges array containing node connectivity.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -364,16 +331,13 @@ The edges of a cell can be retrieved by edges[cell_index]</p>
 <dd><p>Get the maximal independent node set from the edge list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>edges: (n, 2) array</strong></dt><dd><p>edge list</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>edges</strong> (<em>(</em><em>n</em><em>, </em><em>2</em><em>) </em><em>array</em>) – edge list</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>pts_independent: (m,) array</dt><dd><p>maximal independent node set</p>
+<dd class="field-even"><p><strong>pts_independent</strong> – maximal independent node set</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(m,) array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -385,19 +349,17 @@ The edges of a cell can be retrieved by edges[cell_index]</p>
 point on the surface mesh with KDTree.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>surf: A pyvista triangular mesh object</strong></dt><dd></dd>
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>points to be measured</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>surf</strong> (<em>A pyvista triangular mesh object</em>) – </p></li>
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – points to be measured</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>surf_dist: (n,) array of float</dt><dd><p>distance from the points to the surface mesh</p>
-</dd>
-<dt>idx: (n,) array of int</dt><dd><p>index of the closest point on the surface mesh</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>surf_dist</strong> (<em>(n,) array of float</em>) – distance from the points to the surface mesh</p></li>
+<li><p><strong>idx</strong> (<em>(n,) array of int</em>) – index of the closest point on the surface mesh</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -416,24 +378,19 @@ The nodes to be collapsed are the ones with indicator function equal to 2
 while 0 and 1 are fixed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>n_points: int</strong></dt><dd><p>number of vertices</p>
-</dd>
-<dt><strong>pts_boundary_idx: (m,) array</strong></dt><dd><p>indices of boundary points</p>
-</dd>
-<dt><strong>pts_independent: (n,) array</strong></dt><dd><p>indices of independent points</p>
-</dd>
-<dt><strong>edges: (n’, 2) array</strong></dt><dd><p>edge list</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_points</strong> (<em>int</em>) – number of vertices</p></li>
+<li><p><strong>pts_boundary_idx</strong> (<em>(</em><em>m</em><em>,</em><em>) </em><em>array</em>) – indices of boundary points</p></li>
+<li><p><strong>pts_independent</strong> (<em>(</em><em>n</em><em>,</em><em>) </em><em>array</em>) – indices of independent points</p></li>
+<li><p><strong>edges</strong> (<em>(</em><em>n'</em><em>, </em><em>2</em><em>) </em><em>array</em>) – edge list</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>vertex_indicator: (n_points,) array</dt><dd><p>indicator function of the vertices</p>
-</dd>
-<dt>edge_indicator: (n’, 2) array</dt><dd><p>indicator function of the two vertices of an edge</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>vertex_indicator</strong> (<em>(n_points,) array</em>) – indicator function of the vertices</p></li>
+<li><p><strong>edge_indicator</strong> (<em>(n’, 2) array</em>) – indicator function of the two vertices of an edge</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -444,19 +401,18 @@ while 0 and 1 are fixed.</p>
 <dd><p>Renumber the points in cells after some points are deleted.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>pts_del: A list of points to be deleted</strong></dt><dd></dd>
-<dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity</p>
-</dd>
-<dt><strong>proc_num: Int, the number of process for multiprocessing.</strong></dt><dd></dd>
-<dt><strong>return_dict: A dictionary to store the result of each process.</strong></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pts_del</strong> (<em>A list</em><em> of </em><em>points to be deleted</em>) – </p></li>
+<li><p><strong>cells</strong> (<em>A numpy array in the shape</em><em> of </em><em>[</em><em>n_cells</em><em>, </em><em>4</em><em>]</em>) – The cells array containing node connectivity</p></li>
+<li><p><strong>proc_num</strong> (<em>Int</em><em>, </em><em>the number</em><em> of </em><em>process for multiprocessing.</em>) – </p></li>
+<li><p><strong>return_dict</strong> (<em>A dictionary to store the result</em><em> of </em><em>each process.</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>num_diff: A numpy array in the shape of [n_cells, 4]</dt><dd><p>The difference between the original node index and the new node index</p>
+<dd class="field-even"><p><strong>num_diff</strong> – The difference between the original node index and the new node index</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A numpy array in the shape of [n_cells, 4]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -467,26 +423,21 @@ while 0 and 1 are fixed.</p>
 <dd><p>Collapse edges of tetrahedral mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>edges: (n, 2) array</strong></dt><dd></dd>
-<dt><strong>collapse_indicator: (n,) array</strong></dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
-“bilateral”, and “neither”</p>
-</dd>
-<dt><strong>edge_adjacent: dict</strong></dt><dd><p>adjacent cells of each edge</p>
-</dd>
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>node positions</p>
-</dd>
-<dt><strong>cells: (n, 4) array</strong></dt><dd><p>node connectivity</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>edges</strong> (<em>(</em><em>n</em><em>, </em><em>2</em><em>) </em><em>array</em>) – </p></li>
+<li><p><strong>collapse_indicator</strong> (<em>(</em><em>n</em><em>,</em><em>) </em><em>array</em>) – direction of edge collapse. possible values are “forward”, “backward”,
+“bilateral”, and “neither”</p></li>
+<li><p><strong>edge_adjacent</strong> (<em>dict</em>) – adjacent cells of each edge</p></li>
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – node positions</p></li>
+<li><p><strong>cells</strong> (<em>(</em><em>n</em><em>, </em><em>4</em><em>) </em><em>array</em>) – node connectivity</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>points: (n, 3) array</dt><dd><p>node positions after edge collapse</p>
-</dd>
-<dt>cells: (n, 4) array</dt><dd><p>node connectivity after edge collapse</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>points</strong> (<em>(n, 3) array</em>) – node positions after edge collapse</p></li>
+<li><p><strong>cells</strong> (<em>(n, 4) array</em>) – node connectivity after edge collapse</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -499,76 +450,41 @@ while 0 and 1 are fixed.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.features.</span></span><span class="sig-name descname"><span class="pre">voxelize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cell_number'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contained_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/features.html#voxelize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.features.voxelize" title="Permalink to this definition"></a></dt>
 <dd><p>Voxelize surface mesh to UnstructuredGrid. The bounding box of the voxelized mesh possibly smaller
 than the bounding box of the surface mesh when cell_size type of density is used.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>Surface mesh to be voxelized.</p>
-</dd>
-<dt><strong>density</strong><span class="classifier">float, int, or list of float or int</span></dt><dd><p>Uniform size of the voxels when single float passed. A list of densities along
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>pyvista.PolyData</em>) – Surface mesh to be voxelized.</p></li>
+<li><p><strong>density</strong> (<em>float</em><em>, </em><em>int</em><em>, or </em><em>list</em><em> of </em><em>float</em><em> or </em><em>int</em>) – Uniform size of the voxels when single float passed. A list of densities along
 x,y,z directions. Defaults to 1/100th of the mesh length for cell_size (float or list)
-flavor density and 50 cells in each direction for cell_number density (int or list).</p>
-</dd>
-<dt><strong>check_surface</strong><span class="classifier">bool</span></dt><dd><p>Specify whether to check the surface for closure. If on, then the algorithm
+flavor density and 50 cells in each direction for cell_number density (int or list).</p></li>
+<li><p><strong>check_surface</strong> (<em>bool</em>) – Specify whether to check the surface for closure. If on, then the algorithm
 first checks to see if the surface is closed and manifold. If the surface is
-not closed and manifold, a runtime error is raised.</p>
-</dd>
-<dt><strong>density_type</strong><span class="classifier">str</span></dt><dd><p>Specify the type of density to use. Options are ‘cell_number’ or ‘cell_size’.
+not closed and manifold, a runtime error is raised.</p></li>
+<li><p><strong>density_type</strong> (<em>str</em>) – Specify the type of density to use. Options are ‘cell_number’ or ‘cell_size’.
 When ‘cell_number’ is used, the density is the number of cells in each direction.
-When ‘cell_size’ is used, the density is the size of cells in each direction.</p>
-</dd>
-<dt><strong>contained_cells</strong><span class="classifier">bool</span></dt><dd><p>If True, only cells that fully are contained in the surface mesh will be selected.
-If False, extract the cells that contain at least one of the extracted points.</p>
-</dd>
-</dl>
+When ‘cell_size’ is used, the density is the size of cells in each direction.</p></li>
+<li><p><strong>contained_cells</strong> (<em>bool</em>) – If True, only cells that fully are contained in the surface mesh will be selected.
+If False, extract the cells that contain at least one of the extracted points.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>vox</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>Voxelized unstructured grid of the original mesh.</p>
-</dd>
-<dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The backgrond mesh for voxelization</p>
-</dd>
-<dt>Examples:</dt><dd></dd>
-<dt>Create an equal density voxelized mesh using cell_size density.</dt><dd></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">PolyData</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_uniform</span><span class="p">()</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_size&#39;</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<dl class="simple">
-<dt>Create a voxelized mesh with specified number of elements in x, y, and z dimensions.</dt><dd></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">PolyData</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_uniform</span><span class="p">()</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">voxelize</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">density_type</span><span class="o">=</span><span class="s1">&#39;cell_number&#39;</span><span class="p">,</span> <span class="n">contained_cells</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">    ..</span>
-</pre></div>
-</div>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>vox</strong> (<em>pyvista.UnstructuredGrid</em>) – Voxelized unstructured grid of the original mesh.</p></li>
+<li><p><strong>ugrid</strong> (<em>pyvista.UnstructuredGrid</em>) – The backgrond mesh for voxelization</p></li>
+<li><p><em>Examples</em></p></li>
+<li><p><em>Create an equal density voxelized mesh using cell_size density.</em></p></li>
+<li><p><em>&gt;&gt;&gt; import pyvista as pv</em></p></li>
+<li><p><em>&gt;&gt;&gt; from pyvista import examples</em></p></li>
+<li><p><em>&gt;&gt;&gt; import polykriging.mesh as ms</em></p></li>
+<li><p><em>&gt;&gt;&gt; mesh = pv.PolyData(examples.load_uniform().points)</em></p></li>
+<li><p><em>&gt;&gt;&gt; vox, _ = ms.voxelize(mesh, density=0.5, density_type=’cell_size’)</em></p></li>
+<li><p><em>&gt;&gt;&gt; vox.plot(show_edges = True)</em></p></li>
+<li><p><em>Create a voxelized mesh with specified number of elements in x, y, and z dimensions.</em></p></li>
+<li><p><em>&gt;&gt;&gt; mesh = pv.PolyData(examples.load_uniform().points)</em></p></li>
+<li><p><em>&gt;&gt;&gt; vox, _ = ms.voxelize(mesh, density=[50, 50, 50], density_type=’cell_number’, contained_cells=False)</em></p></li>
+<li><p><em>&gt;&gt;&gt; vox.plot(show_edges = True)</em></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

@@ -179,7 +179,7 @@
     <span class="k">return</span> <span class="n">drift_funcs</span><span class="p">[</span><span class="n">drift_name</span><span class="p">],</span> <span class="n">cov_funcs</span><span class="p">[</span><span class="n">cov_name</span><span class="p">],</span> <span class="n">a_len</span></div>
 
 
-<div class="viewcode-block" id="curve1Dsolve"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.curve1Dsolve">[docs]</a><span class="k">def</span> <span class="nf">curve1Dsolve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_len</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">,</span> <span class="n">inverseType</span><span class="o">=</span><span class="s2">&quot;inverse&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="solve"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.solve">[docs]</a><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_len</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">,</span> <span class="n">inverse_type</span><span class="o">=</span><span class="s2">&quot;inverse&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve the kriging equation: [Matrix_kriging] [b_a] = [u.. 0..]</span>
 
@@ -189,7 +189,7 @@
 <span class="sd">        The length of the kriging vector.</span>
 <span class="sd">    mat_krig: numpy array.</span>
 <span class="sd">        The kriging matrix.</span>
-<span class="sd">    inverseType: String.</span>
+<span class="sd">    inverse_type: String.</span>
 <span class="sd">        The type of the inverse matrix. &quot;inverse&quot; or &quot;pseudoinverse&quot;.</span>
 <span class="sd">        &quot;inverse&quot; : inverse matrix</span>
 <span class="sd">        &quot;pseudoinverse&quot; : generalized inverse/pseudoinverse</span>
@@ -207,7 +207,7 @@
     <span class="n">u</span><span class="p">[:</span><span class="n">len_b</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># Solution</span>
-    <span class="k">if</span> <span class="n">inverseType</span> <span class="o">==</span> <span class="s2">&quot;pseudoinverse&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">inverse_type</span> <span class="o">==</span> <span class="s2">&quot;pseudoinverse&quot;</span><span class="p">:</span>
         <span class="n">mat_krig_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">mat_krig</span><span class="p">)</span>  <span class="c1"># generalized inverse/pseudoinverse</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">mat_krig_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">mat_krig</span><span class="p">)</span>  <span class="c1"># inverse matrix</span>
@@ -217,7 +217,7 @@
     <span class="k">return</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span></div>
 
 
-<div class="viewcode-block" id="curve1Dexpression"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.curve1Dexpression">[docs]</a><span class="k">def</span> <span class="nf">curve1Dexpression</span><span class="p">(</span><span class="n">len_b</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">adef</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">):</span>
+<div class="viewcode-block" id="krig_expression"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.krig_expression">[docs]</a><span class="k">def</span> <span class="nf">krig_expression</span><span class="p">(</span><span class="n">len_b</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">adef</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    return the Kriging function expression.</span>
 
@@ -264,8 +264,7 @@
     <span class="k">return</span> <span class="n">expr</span></div>
 
 
-<span class="c1"># Curve Kriging</span>
-<div class="viewcode-block" id="curveKrig1D"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.curveKrig1D">[docs]</a><span class="k">def</span> <span class="nf">curveKrig1D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="curve_krig_2D"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.curve_krig_2D">[docs]</a><span class="k">def</span> <span class="nf">curve_krig_2D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -275,7 +274,7 @@
 <span class="sd">        Name of drift.</span>
 <span class="sd">    name_cov : String</span>
 <span class="sd">        Name of covariance.</span>
-<span class="sd">    nuggetEffect : Float</span>
+<span class="sd">    nugget_effect : Float</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -309,15 +308,15 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">len_a</span><span class="p">):</span>
         <span class="n">mat_krig</span><span class="p">[:</span><span class="n">len_b</span><span class="p">,</span> <span class="n">len_b</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-    <span class="n">mat_krig</span> <span class="o">=</span> <span class="n">mat_krig</span> <span class="o">+</span> <span class="n">mat_krig</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">mat_krig</span><span class="o">.</span><span class="n">diagonal</span><span class="p">())</span> <span class="o">+</span> <span class="n">nugget</span> <span class="o">*</span> <span class="n">nuggetEffect</span>
+    <span class="n">mat_krig</span> <span class="o">=</span> <span class="n">mat_krig</span> <span class="o">+</span> <span class="n">mat_krig</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">mat_krig</span><span class="o">.</span><span class="n">diagonal</span><span class="p">())</span> <span class="o">+</span> <span class="n">nugget</span> <span class="o">*</span> <span class="n">nugget_effect</span>
 
     <span class="c1">##    print(&quot;the final mat_krig:\n&quot;, mat_krig)</span>
     <span class="c1">##    print(&#39;The value of determinant is {} &#39;.format(np.linalg.det(mat_krig)))</span>
 
     <span class="c1"># solve kriging linear equation system to get the vector_ba </span>
-    <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span> <span class="o">=</span> <span class="n">curve1Dsolve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_len</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">,</span> <span class="n">inverseType</span><span class="o">=</span><span class="s2">&quot;inverse&quot;</span><span class="p">)</span>
+    <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">krig_len</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">,</span> <span class="n">inverse_type</span><span class="o">=</span><span class="s2">&quot;inverse&quot;</span><span class="p">)</span>
     <span class="c1"># get the kriging function expression </span>
-    <span class="n">expr</span> <span class="o">=</span> <span class="n">curve1Dexpression</span><span class="p">(</span><span class="n">len_b</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">adef</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">)</span>
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">krig_expression</span><span class="p">(</span><span class="n">len_b</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">adef</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span></div>
 
@@ -361,7 +360,7 @@
     <span class="k">return</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span></div>
 
 
-<div class="viewcode-block" id="func_var"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.func_var">[docs]</a><span class="k">def</span> <span class="nf">func_var</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="func_var"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.func_var">[docs]</a><span class="k">def</span> <span class="nf">func_var</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the variance of the prediction.</span>
 
@@ -374,7 +373,7 @@
 <span class="sd">    lambda_ : numpy array</span>
 <span class="sd">        The weight of gloabl combination. Note that it is different from</span>
 <span class="sd">        the vector_ba in dual Kriging formulation.</span>
-<span class="sd">    nuggetEffect : float</span>
+<span class="sd">    nugget_effect : float</span>
 <span class="sd">        The nugget effect. Default is 0.</span>
 
 <span class="sd">    Returns</span>
@@ -384,13 +383,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nuggetEffect</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K_h</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">lambda_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]))</span>
+        <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nugget_effect</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K_h</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">lambda_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]))</span>
     <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">std_prediction</span></div>
 
 
-<div class="viewcode-block" id="curve2Dinter"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.curve2Dinter">[docs]</a><span class="k">def</span> <span class="nf">curve2Dinter</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="interpolate"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.interpolate">[docs]</a><span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -400,7 +399,7 @@
 <span class="sd">        Name of drift.</span>
 <span class="sd">    name_cov : String</span>
 <span class="sd">        Name of covariance.</span>
-<span class="sd">    nuggetEffect : Float</span>
+<span class="sd">    nugget_effect : Float</span>
 <span class="sd">        smoothing strength control</span>
 <span class="sd">    interp: Numpy array</span>
 <span class="sd">        The points that need to be interpolated, 1D numpy array.</span>
@@ -413,7 +412,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
-        <span class="n">curveKrig1D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="p">)</span>
+        <span class="n">curve_krig_2D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="p">)</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 
@@ -435,7 +434,7 @@
 
     <span class="k">if</span> <span class="n">return_std</span><span class="p">:</span>
         <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span> <span class="o">=</span> <span class="n">lambda_weight</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">)</span>
-        <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">func_var</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">nuggetEffect</span><span class="p">)</span>
+        <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">func_var</span><span class="p">(</span><span class="n">X_predict</span><span class="p">,</span> <span class="n">K_h</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="n">nugget_effect</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">yinter</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">expr</span><span class="p">,</span> <span class="n">std_prediction</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
@@ -576,7 +575,7 @@
 
 <div class="viewcode-block" id="bd_Deriv_kriging_func"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.curve2D.bd_Deriv_kriging_func">[docs]</a><span class="k">def</span> <span class="nf">bd_Deriv_kriging_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xDeriv</span><span class="p">,</span> <span class="n">yDeriv</span><span class="p">,</span> <span class="n">choixDerive</span><span class="p">,</span> <span class="n">choixCov</span><span class="p">,</span> <span class="n">plot_x_pts</span><span class="p">,</span> <span class="n">nugg</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Derivative kriging function.</span>
+<span class="sd">    Derivative kriging function. </span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -659,12 +658,12 @@
 
     <span class="n">name_drift</span> <span class="o">=</span> <span class="s1">&#39;const&#39;</span>
     <span class="n">name_cov</span> <span class="o">=</span> <span class="s1">&#39;lin&#39;</span>
-    <span class="n">nuggetEffect</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">nugget_effect</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span> <span class="o">=</span> \
-        <span class="n">curveKrig1D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">curve_krig_2D</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
-    <span class="n">yinter</span> <span class="o">=</span> <span class="n">curve2Dinter</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">yinter</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the kriging matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">mat_krig</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the kriged y values:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">yinter</span><span class="p">)</span>

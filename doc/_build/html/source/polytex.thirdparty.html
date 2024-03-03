@@ -144,6 +144,14 @@ size=&quot;&quot;;
 <dt>or use one of the following convenience methods:</dt><dd><p>warning, fail, ok, okblue, header</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is dangerous&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Method calls can be nested too, print an underlined header do this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;The line under this text is purple too ... &quot;</span><span class="p">,</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">)))</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>

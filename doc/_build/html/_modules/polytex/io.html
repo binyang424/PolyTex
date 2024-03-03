@@ -1055,10 +1055,10 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import pyvista as pv</span>
-<span class="sd">    &gt;&gt;&gt; import polykriging as pk</span>
+<span class="sd">    &gt;&gt;&gt; import polytex as pk</span>
 <span class="sd">    &gt;&gt;&gt; mesh = pv.read(&quot;./v2i.vtu&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; mesh_shape = [20, 20, 5]</span>
-<span class="sd">    &gt;&gt;&gt; pk.io.voxel2img(mesh, mesh_shape, dataset=&quot;YarnIndex&quot;,</span>
+<span class="sd">    &gt;&gt;&gt; ptx.io.voxel2img(mesh, mesh_shape, dataset=&quot;YarnIndex&quot;,</span>
 <span class="sd">                        save_path=&quot;./img/&quot;,</span>
 <span class="sd">                        scale=50, img_name=&quot;img&quot;, format=&quot;tif&quot;,</span>
 <span class="sd">                        scale_algrithm=&quot;linear&quot;)</span>
@@ -1304,8 +1304,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class saves a dictonary of sympy expressions to a file in human</span>
 <span class="sd">    readable form and then load as sympy expressions directly without other</span>
-<span class="sd">    conversion. It is called by polykriging.fileio.pk_save to save kriging</span>
-<span class="sd">    expressions to a &quot;.krig&quot; file and by polykriging.fileio.pk_load to load</span>
+<span class="sd">    conversion. It is called by polytex.io.pk_save to save kriging</span>
+<span class="sd">    expressions to a &quot;.krig&quot; file and by polytex.io.pk_load to load</span>
 <span class="sd">    these files. Therefore, the class is not intended to be used directly by</span>
 <span class="sd">    the user.</span>
 
@@ -1318,7 +1318,7 @@
 <span class="sd">        Example:</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import sympy</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.fileio.save_krig import save_krig</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.io import save_krig</span>
 <span class="sd">        &gt;&gt;&gt; a, b = sympy.symbols(&#39;a, b&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; d = save_krig({&#39;a&#39;:a, &#39;b&#39;:b})</span>
 <span class="sd">        &gt;&gt;&gt; d.save(&#39;name.krig&#39;)</span>
@@ -1396,7 +1396,7 @@
 
 <div class="viewcode-block" id="pk_save"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.pk_save">[docs]</a><span class="k">def</span> <span class="nf">pk_save</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">check_format</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polykriging (.coo, geo) file</span>
+<span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polytex (.coo, geo) file</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1404,7 +1404,7 @@
 <span class="sd">            File path and name to which the data is saved. If the file name does not end with</span>
 <span class="sd">            a supported file extension, a ValueError will be raised.</span>
 <span class="sd">        data: Tow, Tex, or dict</span>
-<span class="sd">            The data to be saved. It can be several customised file formats for polykriging.</span>
+<span class="sd">            The data to be saved. It can be several customised file formats for polytex.</span>
 
 
 <span class="sd">        Returns</span>
@@ -1441,7 +1441,7 @@
 
 <div class="viewcode-block" id="pk_load"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.pk_load">[docs]</a><span class="k">def</span> <span class="nf">pk_load</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load a file format defined in polykriging (.coo, .geo, or .stat) file</span>
+<span class="sd">    Load a file format defined in polytex (.coo, .geo, or .stat) file</span>
 <span class="sd">    and return as a pandas dataframe or a numpy.array object.</span>
 
 <span class="sd">        Parameters</span>
@@ -1462,7 +1462,7 @@
     <span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file extension is not given. Supported file extensions are &quot;</span>
                          <span class="s2">&quot;.pcd, .coo, .geo, .tow, .tex, and .krig.&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.pcd&#39;</span><span class="p">,</span> <span class="s1">&#39;.coo&#39;</span><span class="p">,</span> <span class="s1">&#39;.geo&#39;</span><span class="p">,</span> <span class="s1">&#39;.tow&#39;</span><span class="p">,</span> <span class="s1">&#39;.tex&#39;</span><span class="p">,</span> <span class="s1">&#39;.krig&#39;</span><span class="p">]:</span>
+    <span class="k">elif</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.pcd&#39;</span><span class="p">,</span> <span class="s1">&#39;.coo&#39;</span><span class="p">,</span> <span class="s1">&#39;.geo&#39;</span><span class="p">,</span> <span class="s1">&#39;.tow&#39;</span><span class="p">,</span> <span class="s1">&#39;.tex&#39;</span><span class="p">,</span> <span class="s1">&#39;.krig&#39;</span><span class="p">,</span> <span class="s2">&quot;stat&quot;</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file extension is not supported. Supported file extensions are &quot;</span>
                          <span class="s2">&quot;.pcd, .coo, .geo, .tow, .tex, and .krig.&quot;</span><span class="p">)</span>
 
@@ -1633,12 +1633,12 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; import polykriging as pk</span>
+<span class="sd">        &gt;&gt;&gt; import polytex as pk</span>
 <span class="sd">        &gt;&gt;&gt; vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])</span>
 <span class="sd">        &gt;&gt;&gt; cells = [(&quot;triangle&quot;, [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]</span>
 <span class="sd">        &gt;&gt;&gt; point_data = {&quot;a&quot;: np.array([0, 1, 2, 3])}</span>
 <span class="sd">        &gt;&gt;&gt; cell_data = {&quot;b&quot;: np.array([[0, 1, 2, 3],])}</span>
-<span class="sd">        &gt;&gt;&gt; pk.meshio_save(&quot;test.ply&quot;, vertices, cells, point_data, cell_data)</span>
+<span class="sd">        &gt;&gt;&gt; ptx.meshio_save(&quot;test.ply&quot;, vertices, cells, point_data, cell_data)</span>
 <span class="sd">        &gt;&gt;&gt; print(&quot;Done&quot;)</span>
 <span class="sd">        Done</span>
 
@@ -1699,9 +1699,9 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import polykriging as pk</span>
+<span class="sd">        &gt;&gt;&gt; import polytex as pk</span>
 <span class="sd">        &gt;&gt;&gt; mesh_path = &quot;./weft_0_lin_lin_krig_30pts.ply&quot;</span>
-<span class="sd">        &gt;&gt;&gt; quality = pk.get_ply_property(mesh_path, -2, skip=11, type=&quot;vertex&quot;, save_vtk=False)</span>
+<span class="sd">        &gt;&gt;&gt; quality = ptx.get_ply_property(mesh_path, -2, skip=11, type=&quot;vertex&quot;, save_vtk=False)</span>
 <span class="sd">        &gt;&gt;&gt; quality</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -2251,7 +2251,7 @@
 <span class="c1">#################################################################</span>
 <div class="viewcode-block" id="save_ply"><a class="viewcode-back" href="../../source/polytex.io.html#polytex.io.save_ply">[docs]</a><span class="k">def</span> <span class="nf">save_ply</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="p">[],</span> <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-        <span class="s2">&quot;This function will be deprecated in the future. Please use polykriging.meshio_save() instead.&quot;</span><span class="p">))</span>
+        <span class="s2">&quot;This function will be deprecated in the future. Please use polytex.meshio_save() instead.&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">meshio_save</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">cell_data</span><span class="p">,</span> <span class="n">binary</span><span class="p">)</span></div>
 
 
@@ -2268,7 +2268,7 @@
 <span class="sd">    :return: None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-        <span class="s2">&quot;This function will be deprecated in the future. Please use polykriging.read_imagej_roi() instead.&quot;</span><span class="p">))</span>
+        <span class="s2">&quot;This function will be deprecated in the future. Please use polytex.read_imagej_roi() instead.&quot;</span><span class="p">))</span>
 
     <span class="kn">import</span> <span class="nn">meshio</span>
 

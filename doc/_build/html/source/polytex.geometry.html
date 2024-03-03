@@ -166,10 +166,8 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>None</dt><dd></dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -180,15 +178,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Save the curve to a vtk file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the vtk file.</p>
+<dd class="field-odd"><p><strong>save_path</strong> (<em>str</em>) – The path to save the vtk file.</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None</dt><dd></dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -199,9 +192,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Convert the curve to a polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>polygon</strong><span class="classifier">Polygon object</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>polygon</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Polygon object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -212,9 +206,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Return the dimension of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>ambient_dimension</strong><span class="classifier">int</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>ambient_dimension</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -225,9 +220,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Return the bounds of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>bounds</strong><span class="classifier">tuple</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>bounds</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
@@ -239,9 +235,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <p>TODO: curvature of a curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>curvature</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>curvature</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -252,9 +249,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Return the length of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>length</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>length</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -265,9 +263,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Return the tangent vector of the curve at each point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>tangent</strong><span class="classifier">Vector object</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>tangent</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Vector object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -280,7 +279,7 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is an ellipse defined by a center point and two vectors.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Ellipse2D</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Ellipse2D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">Ellipse2D</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 </pre></div>
@@ -299,10 +298,10 @@ created by using composition instead of inheritance of PolyKriging.geometry.Poin
 <dd><p>Generate points on an ellipse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>xy: array-like</dt><dd><p>Points on the ellipse with shape (n, 2).</p>
+<dd class="field-odd"><p><strong>xy</strong> – Points on the ellipse with shape (n, 2).</p>
 </dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>array-like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -645,7 +644,7 @@ a parameter.</p>
 </dl>
 <p>TODO : A detailed documentation will be added in the future.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
@@ -692,7 +691,7 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></p>
 <p>This is a parametric curve defined by a function.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">curve</span> <span class="o">=</span> <span class="n">ParamCurve3D</span><span class="p">((</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">),</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
@@ -933,7 +932,7 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <td><p>Returns symmetric difference of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.geometry.basic.ParamCurve3D.translate" title="polytex.geometry.basic.ParamCurve3D.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
-<td><p>Translate the Curve by (x, y, z). Returns ======= Curve :     returns a translated curve. Examples ======== &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D &gt;&gt;&gt; from sympy.abc import x &gt;&gt;&gt; ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2) ParamCurve3D((x + 1, x + 2), (x, 0, 1)).</p></td>
+<td><p>Translate the Curve by (x, y, z).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
 <td><p>Returns the union of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
@@ -974,20 +973,18 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <dd><p>This function is used to rotate a curve along given point <code class="docutils literal notranslate"><span class="pre">pt</span></code> at given angle(in radian).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>angle</strong></dt><dd><p>the angle at which the curve will be rotated(in radian) in counterclockwise direction.
-default value of angle is 0.</p>
-</dd>
-<dt><strong>pt</strong><span class="classifier">Point</span></dt><dd><p>the point along which the curve will be rotated.
-If no point given, the curve will be rotated around origin.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> – the angle at which the curve will be rotated(in radian) in counterclockwise direction.
+default value of angle is 0.</p></li>
+<li><p><strong>pt</strong> (<a class="reference internal" href="#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point"><em>Point</em></a>) – the point along which the curve will be rotated.
+If no point given, the curve will be rotated around origin.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>Curve</dt><dd><p>returns a curve rotated at given angle along given point.</p>
+<dd class="field-even"><p>returns a curve rotated at given angle along given point.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1005,10 +1002,10 @@ If no point given, the curve will be rotated around origin.</p>
 <dd><p>Override GeometryEntity.scale since Curve is not made up of Points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>Curve</dt><dd><p>returns scaled curve.</p>
+<dd class="field-odd"><p>returns scaled curve.</p>
 </dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1024,13 +1021,10 @@ If no point given, the curve will be rotated around origin.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve3D.translate">
 <span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve3D.translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve3D.translate" title="Permalink to this definition"></a></dt>
 <dd><p>Translate the Curve by (x, y, z).
-Returns
-=======
-Curve :</p>
-<blockquote>
-<div><p>returns a translated curve.</p>
-</div></blockquote>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+:returns: returns a translated curve.
+:rtype: Curve</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ParamCurve3D</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">ParamCurve3D((x + 1, x + 2), (x, 0, 1))</span>
@@ -1071,7 +1065,7 @@ z = h(s, t)</p>
 <p>The surface is defined by the domain of s and t.
 store: s,t, x,y,z</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamSurface</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamSurface</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s t&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">cos</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span> <span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span>
@@ -1253,22 +1247,20 @@ store: s,t, x,y,z</p>
 <dd><p>Evaluate the surface at the given parameter values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>s_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
-</dd>
-<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p></li>
+<li><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
+<dd class="field-even"><p>The surface evaluated at the given parameter values.
 the shape of the returned surface is (len(s) * len(t), 3). The
 first column is s values, the second column is t values, and the
 following columns are the coordinates of the surface at the given
 parameter values (x, y, z).</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Surface</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1280,9 +1272,7 @@ parameter values (x, y, z).</p>
 <p>The default pt is the origin, Point(0, 0)</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
-</dl>
+<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">pi</span>
@@ -1303,9 +1293,7 @@ parameter values (x, y, z).</p>
 object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
-</dl>
+<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
@@ -1326,9 +1314,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dd><p>Shift the object by adding to the x,y-coordinates the values x and y.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
-</dl>
+<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
@@ -1354,15 +1340,15 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dd><p>The functions specifying the surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
+<dd class="field-odd"><p>list of parameterized coordinate functions.</p>
 </dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>functions</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">functions</span>
 <span class="go">(t, t, t)</span>
@@ -1375,15 +1361,13 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">limits</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.limits" title="Permalink to this definition"></a></dt>
 <dd><p>The limits of the two parameters specifying the surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>list limits of the parameters.</dt><dd></dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list limits of the parameters.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">limits</span>
 <span class="go">((t, 0, 1), (t, 0, 1))</span>
@@ -1400,7 +1384,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <p>A plane in 3D space. The plane can be defined by a point and a normal vector,
 or by three points.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
 </pre></div>
 </div>
 <p>Create a plane from 3 points
@@ -1435,20 +1419,17 @@ or by three points.</p>
 <dd><p>Return the signed distance between a point and the plane.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">Point object</span></dt><dd><p>The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>point</strong> (<em>Point object</em>) – The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>The distance between the point and the plane.</p>
+<dd class="field-even"><p><strong>distance</strong> – The distance between the point and the plane.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">normal</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">normal_vector</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
@@ -1463,22 +1444,37 @@ or by three points.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Plane.function">
 <span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
 <dd><p>Return the equation of the plane as a function of x, y and z.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>normal = (a, b, c)
+point = (x0, y0, z0)
+Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane.</p>
-</dd>
-<dt><strong>point</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>normal</strong> (<em>array-like</em>) – normal vector of the plane.</p></li>
+<li><p><strong>point</strong> (<em>array-like</em>) – point on the plane.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>A lambda function of x, y and z.</dt><dd><p>function of plane.</p>
+<dd class="field-even"><p>function of plane.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A lambda function of x, y and z.</p>
 </dd>
 </dl>
-</dd>
-</dl>
+<p class="rubric">Example</p>
+<p>Create a plane from a point and a normal vector
+&gt;&gt;&gt; from polytex.geometry import Point, Plane
+&gt;&gt;&gt; p1 = Point([1, 1, 1])
+&gt;&gt;&gt; normal = Point([1, 4, 7])
+&gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)
+&gt;&gt;&gt; f = plane2.function()
+&gt;&gt;&gt; f
+&lt;function polytex.geometry.basic.Plane.function.&lt;locals&gt;.&lt;lambda&gt;(x, y, z)&gt;
+&gt;&gt;&gt; f(1, 1, 1)
+0</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1487,19 +1483,17 @@ or by three points.</p>
 <dd><p>Return the intersection of the plane with a curve or a polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>obj</strong><span class="classifier">Curve or Polygon object</span></dt><dd><p>The object to intersect with the plane.</p>
-</dd>
-<dt><strong>max_dist</strong><span class="classifier">float</span></dt><dd><p>The maximum distance of checked points from the plane.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve"><em>Curve</em></a><em> or </em><em>Polygon object</em>) – The object to intersect with the plane.</p></li>
+<li><p><strong>max_dist</strong> (<em>float</em>) – The maximum distance of checked points from the plane.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>intersection</strong><span class="classifier">list or array</span></dt><dd><p>The intersection point of the plane with the obj in the shape of
+<dd class="field-even"><p><strong>intersection</strong> – The intersection point of the plane with the obj in the shape of
 (1, 3). If the intersection is not found, none is returned.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list or array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1509,10 +1503,8 @@ or by three points.</p>
 <span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.show" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the plane.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>None</dt><dd></dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1531,7 +1523,7 @@ dimensionality of the space.</p>
 <p>Efficient Vector / Point class in Python from:
 <a class="reference external" href="https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python">https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python</a></p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
@@ -1648,7 +1640,7 @@ dimensionality of the space.</p>
 <td><p>Return specified diagonals.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#polytex.geometry.basic.Point.direction_ratio" title="polytex.geometry.basic.Point.direction_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">direction_ratio</span></code></a>(other)</p></td>
-<td><p>Gives the direction ratio between 2 points Parameters ---------- other : Point object     The other point to which the direction ratio is calculated.</p></td>
+<td><p>Gives the direction ratio between 2 points :param other: The other point to which the direction ratio is calculated.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.geometry.basic.Point.dist" title="polytex.geometry.basic.Point.dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dist</span></code></a>(other)</p></td>
 <td><p>Both points must have the same dimensions :return: Euclidean distance</p></td>
@@ -1792,18 +1784,14 @@ dimensionality of the space.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.direction_ratio">
 <span class="sig-name descname"><span class="pre">direction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.direction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.direction_ratio" title="Permalink to this definition"></a></dt>
 <dd><p>Gives the direction ratio between 2 points
-Parameters
-———-
-other : Point object</p>
-<blockquote>
-<div><p>The other point to which the direction ratio is calculated.</p>
-</div></blockquote>
+:param other: The other point to which the direction ratio is calculated.
+:type other: Point object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>direction_ratio</strong><span class="classifier">list</span></dt><dd><p>The direction ratio between the 2 points.</p>
+<dd class="field-odd"><p><strong>direction_ratio</strong> – The direction ratio between the 2 points.</p>
 </dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1846,14 +1834,14 @@ other : Point object</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.bounds">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.bounds" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>bounds</strong><span class="classifier">array_like</span></dt><dd><p>The bounding box of the point. The first row is the minimum
-values and the second row is the maximum values for each
+<dd><dl class="simple">
+<dt>returns: <strong>bounds</strong> – The bounding box of the point. The first row is the minimum</dt><dd><p>values and the second row is the maximum values for each
 dimension.</p>
 </dd>
 </dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array_like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1898,7 +1886,9 @@ calculations that may overflow a fixed size integer type.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.z">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.z" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>returns: <strong>z</strong> – 3rd dimension element. 0 if not defined
+:rtype: float</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1911,7 +1901,7 @@ by a list of points. The first and last point must be the same. if not,
 the last point will be added to the list.</p>
 <p>TODO : check if all the points are in the same plane.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span><span class="o">.</span><span class="n">points</span>
@@ -1962,9 +1952,10 @@ the last point will be added to the list.</p>
 <dd><p>Convert the polygon to a curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>curve</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Curve object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1975,9 +1966,10 @@ the last point will be added to the list.</p>
 <dd><p>Return the area of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>area</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1988,9 +1980,10 @@ the last point will be added to the list.</p>
 <dd><p>Return the centroid of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>centroid</strong><span class="classifier">Point object</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>centroid</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Point object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2001,9 +1994,10 @@ the last point will be added to the list.</p>
 <dd><p>Return the perimeter of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>perimeter</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>perimeter</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2018,7 +2012,7 @@ the last point will be added to the list.</p>
 and the number of cross-sections (h_res). Note that the number of points on the cross-section
 is the same for all the-cross sections.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtk&#39;</span><span class="p">)</span>
@@ -2197,6 +2191,10 @@ is the same for all the-cross sections.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Tube.mesh">
 <span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Tube.mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Tube.mesh" title="Permalink to this definition"></a></dt>
 <dd><p>TODO : raise TypeError(“Given points must be a sequence or an array.”)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>theta_res should be 1 less then else where. To be fixed in the future.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2207,22 +2205,20 @@ The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].
 <p>TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path and the name of the file to be saved with the extension.</p>
-</dd>
-<dt><strong>end_closed</strong><span class="classifier">bool</span></dt><dd><p>If True, the ends of the tube will be closed. The default value is True.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_path</strong> (<em>str</em>) – The path and the name of the file to be saved with the extension.</p></li>
+<li><p><strong>end_closed</strong> (<em>bool</em>) – If True, the ends of the tube will be closed. The default value is True.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The tubular mesh.</p>
+<dd class="field-even"><p><strong>mesh</strong> – The tubular mesh.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.UnstructuredGrid</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtu&#39;</span><span class="p">)</span>
 </pre></div>
@@ -2379,7 +2375,7 @@ vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <td><p>Return specified diagonals.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">direction_ratio</span></code>(other)</p></td>
-<td><p>Gives the direction ratio between 2 points Parameters ---------- other : Point object     The other point to which the direction ratio is calculated.</p></td>
+<td><p>Gives the direction ratio between 2 points :param other: The other point to which the direction ratio is calculated.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dist</span></code>(other)</p></td>
 <td><p>Both points must have the same dimensions :return: Euclidean distance</p></td>
@@ -2530,19 +2526,17 @@ vectors in n-dimensional space. The shape of the array is (1, n).</p>
 \[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>other</strong><span class="classifier">Vector object</span></dt><dd><p>The other vector to which the angle is calculated.</p>
-</dd>
-<dt><strong>radian</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, return the angle in radians. The default is False.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<em>Vector object</em>) – The other vector to which the angle is calculated.</p></li>
+<li><p><strong>radian</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return the angle in radians. The default is False.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>The angle between the 2 vectors. If radian is True, the angle is in radians.
+<dd class="field-even"><p><strong>angle</strong> – The angle between the 2 vectors. If radian is True, the angle is in radians.
 Otherwise, the angle is in degrees.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2565,7 +2559,9 @@ Otherwise, the angle is in degrees.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Vector.norm">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">norm</span></span><a class="headerlink" href="#polytex.geometry.basic.Vector.norm" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>returns: <strong>norm</strong> – The norm of the vector.
+:rtype: float</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Vector.sub">
@@ -2580,22 +2576,18 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Find the intersection of a curve with a plane</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>f</strong><span class="classifier">lambda function</span></dt><dd><p>function of plane.</p>
-</dd>
-<dt><strong>curve</strong><span class="classifier">array-like</span></dt><dd><p>points on the curve in shape of (n, 3).</p>
-</dd>
-<dt><strong>niterations: int</strong></dt><dd><p>number of iterations.</p>
-</dd>
-<dt><strong>mSegments: int</strong></dt><dd><p>number of segments for each iteration.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>lambda function</em>) – function of plane.</p></li>
+<li><p><strong>curve</strong> (<em>array-like</em>) – points on the curve in shape of (n, 3).</p></li>
+<li><p><strong>niterations</strong> (<em>int</em>) – number of iterations.</p></li>
+<li><p><strong>mSegments</strong> (<em>int</em>) – number of segments for each iteration.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>intersection: array-like</dt><dd><p>intersection points with shape (n, 3).</p>
+<dd class="field-even"><p><strong>intersection</strong> – intersection points with shape (n, 3).</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2652,29 +2644,28 @@ returned for a polygon whose vertices are given by a counter-clockwise
 sequence of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points</strong><span class="classifier">array_like</span></dt><dd><p>Input 2D points of the polygon in the shape (n, 2). If the polygon is
+<dd class="field-odd"><p><strong>points</strong> (<em>array_like</em>) – Input 2D points of the polygon in the shape (n, 2). If the polygon is
 3D, An error is raised. Note that the points have to be ordered in a
 clockwise or counter-clockwise manner. Otherwise, the area will be
 non-sense.</p>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>area_signed</strong><span class="classifier">float</span></dt><dd><p>The signed area of the polygon.</p>
+<dd class="field-even"><p><strong>area_signed</strong> – The signed area of the polygon.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the points are not 2D.</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>If the points are not 2D.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the number of points is less than 3, a warning is raised and the area is
+returned as 0.</p>
+</div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">area_signed</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">area_signed</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
@@ -2764,16 +2755,13 @@ for each input vertices.</p>
 <dd><p>Convert degrees to radians.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>degrees</strong><span class="classifier">float</span></dt><dd><p>Angle in degrees.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>degrees</strong> (<em>float</em>) – Angle in degrees.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>float</dt><dd><p>Angle in radians.</p>
+<dd class="field-even"><p>Angle in radians.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2790,24 +2778,21 @@ rotation matrix about the y-axis, and <span class="math notranslate nohighlight"
 the z-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the z-axis in radians.</p>
-</dd>
-<dt><strong>theta</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the y-axis in radians.</p>
-</dd>
-<dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the x-axis in radians.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psi</strong> (<em>float</em>) – The rotation angle about the z-axis in radians.</p></li>
+<li><p><strong>theta</strong> (<em>float</em>) – The rotation angle about the y-axis in radians.</p></li>
+<li><p><strong>phi</strong> (<em>float</em>) – The rotation angle about the x-axis in radians.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>dcm</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The direction cosine matrix for the Euler 123 sequence.</p>
+<dd class="field-even"><p><strong>dcm</strong> – The direction cosine matrix for the Euler 123 sequence.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2819,26 +2804,31 @@ the z-axis.</p>
 rotating the global coordinate system to align its z-axis with
 a normal vector from the origin to a point (namely, no translation
 is considered).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No translation is considered. The origin of the global coordinate
+system is assumed to be the origin of the local coordinate system.
+The user should translate the local coordinate system to the origin
+before calling this function and then re-translate the local
+coordinate system to the desired location.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>normal</strong><span class="classifier">list or array</span></dt><dd><p>The normal vector from the origin to a point.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>normal</strong> (<em>list</em><em> or </em><em>array</em>) – The normal vector from the origin to a point.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>euler_angles</strong><span class="classifier">list</span></dt><dd><p>The euler angles (psi, theta, phi), where psi is the rotation
+<dd class="field-even"><p><strong>euler_angles</strong> – The euler angles (psi, theta, phi), where psi is the rotation
 angle about the z-axis, theta is the rotation angle about the
 y-axis, and phi is the rotation angle about the x-axis in radians.
 Note that the rotation should be performed in the order of e123
 by pre-multiplying the rotation matrices.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">normal</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.43583834</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00777955</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.89999134</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">euler_angles</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">euler_z_noraml</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
@@ -2859,28 +2849,34 @@ by pre-multiplying the rotation matrices.</p>
 <dd><p>This function returns the euler angles (phi, theta, psi) for
 rotating the global coordinate system to align its z-axis with
 the z_new vector and its x-axis with the x_new vector.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No translation is considered. The origin of the global coordinate
+system is assumed to be the origin of the local coordinate system.
+The user should translate the local coordinate system to the origin
+before calling this function and then re-translate the local
+coordinate system to the desired location.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>z_new</strong><span class="classifier">list or array</span></dt><dd><p>The coordinate of the new z-axis in the original coordinate system.</p>
-</dd>
-<dt><strong>x_new</strong><span class="classifier">list or array</span></dt><dd><p>The coordinate of the new x-axis in the original coordinate system.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_new</strong> (<em>list</em><em> or </em><em>array</em>) – The coordinate of the new z-axis in the original coordinate system.</p></li>
+<li><p><strong>x_new</strong> (<em>list</em><em> or </em><em>array</em>) – The coordinate of the new x-axis in the original coordinate system.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>euler_angles</strong><span class="classifier">list</span></dt><dd><p>The euler angles (psi, theta, phi), where psi is the rotation
+<dd class="field-even"><p><strong>euler_angles</strong> – The euler angles (psi, theta, phi), where psi is the rotation
 angle about the z-axis, theta is the rotation angle about the
 y-axis, and phi is the rotation angle about the x-axis in radians.
 Note that the rotation should be done in e123 sequence by pre-multiplying
 the rotation matrices.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2891,18 +2887,15 @@ the rotation matrices.</p>
 <dd><p>Single axis frame rotation about the X-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>The angle between z-axis (or y-axis) of the initial and final frames in radian.
+<dd class="field-odd"><p><strong>phi</strong> (<em>float</em>) – The angle between z-axis (or y-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of x-axis.</p>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>numpy.ndarray</dt><dd><p>Rotation matrix.</p>
+<dd class="field-even"><p>Rotation matrix.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2913,12 +2906,9 @@ when viewed from the positive end of x-axis.</p>
 <dd><p>Single axis frame rotation about the Y-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>theta</strong><span class="classifier">float</span></dt><dd><p>The angle between z-axis (or x-axis) of the initial and final frames in radian.
+<dd class="field-odd"><p><strong>theta</strong> (<em>float</em>) – The angle between z-axis (or x-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of y-axis.</p>
-</dd>
-</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2929,18 +2919,15 @@ when viewed from the positive end of y-axis.</p>
 <dd><p>Single axis frame rotation about the Z-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>The angle between x-axis (or y-axis) of the initial and final frames in radian.
+<dd class="field-odd"><p><strong>psi</strong> (<em>float</em>) – The angle between x-axis (or y-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of z axis.</p>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>numpy.ndarray</dt><dd><p>Rotation matrix.</p>
+<dd class="field-even"><p>Rotation matrix.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
 </dd></dl>

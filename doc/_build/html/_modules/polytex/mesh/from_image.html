@@ -108,9 +108,9 @@
 
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
-<span class="sd">        &gt;&gt;&gt; import polykriging as pk</span>
-<span class="sd">        &gt;&gt;&gt; im = pk.example(&quot;image&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; mesh, mesh_dim = pk.mesh.im_to_ugrid(im)</span>
+<span class="sd">        &gt;&gt;&gt; import polytex as ptx</span>
+<span class="sd">        &gt;&gt;&gt; im = ptx.example(&quot;image&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; mesh, mesh_dim = ptx.mesh.im_to_ugrid(im)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
     <span class="n">ugrid</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cast_to_unstructured_grid</span><span class="p">()</span>

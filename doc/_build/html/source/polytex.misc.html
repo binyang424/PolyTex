@@ -117,22 +117,27 @@ pattern according to cai’s model.</p>
 K_T = &amp; 0.229 r^2\left(\frac{1.814}{V_a}-1\right)\left(\frac{\left(1-\sqrt{\frac{V_f}{V_a}}\right)}{\sqrt{\frac{V_f}{V_a}}}\right)^{2.5}\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
-</dd>
-<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
-shape.</p>
-</dd>
-<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
-</dd>
-<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber volume fraction.</p></li>
+<li><p><strong>rf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p></li>
+<li><p><strong>packing</strong> (<em>string</em>) – Fiber packing pattern. Valid options are “Quad” and “Hex”.</p></li>
+<li><p><strong>tensorial</strong> (<em>bool</em>) – If True, return the permeability tensor (a list with 9 elements).
 Otherwise, return the permeability components that parallel and
 perpendicular to the fiber tow as a list of 3 floats. The default
-is False.</p>
+is False.</p></li>
+<li><p><strong>return</strong> – </p></li>
+<li><p><strong>--------</strong> – </p></li>
+<li><p><strong>k</strong> (<em>array-like</em>) – Fiber tow permeability. If tensorial is True, return a list with 9
+elements. Otherwise, return a list of 3 floats (k11, k22, k33),
+corresponding to the permeability components that parallel and
+perpendicular to the fiber tow. The units are m^2. Note that the
+principal permeability components k22 and k33 are equal.</p></li>
+</ul>
 </dd>
 </dl>
-</dd>
-</dl>
+<p class="rubric">References</p>
+<p>Cai, Z. and A. Berdichevsky, An improved self‐consistent method for estimating the permeability of a fiber assembly. Polymer composites, 1993. 14(4): p. 314-323</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="mf">6.5e-6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">cai_berdichevsky</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
@@ -155,18 +160,16 @@ is False.</p>
 <dd><p>Compresses all files and subdirectories in the specified directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>zipfilename</strong><span class="classifier">str</span></dt><dd><p>The name of the zip file, including the path.</p>
-</dd>
-<dt><strong>dirname</strong><span class="classifier">str</span></dt><dd><p>The name of the directory to be compressed, including the path.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zipfilename</strong> (<em>str</em>) – The name of the zip file, including the path.</p></li>
+<li><p><strong>dirname</strong> (<em>str</em>) – The name of the directory to be compressed, including the path.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>int</dt><dd><p>1 if the compression is successful, otherwise 0.</p>
+<dd class="field-even"><p>1 if the compression is successful, otherwise 0.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -186,22 +189,27 @@ K_{tQuad} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.476+\frac{2V_f-0.796V_f}{1+0.489
 K_{tHex} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.497+2V_f-\frac{V_f^2}{2}-0.739V_f^4+\frac{2.534V_f^5}{1+1.2758V_f}\right)\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
-</dd>
-<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
-shape.</p>
-</dd>
-<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
-</dd>
-<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber volume fraction.</p></li>
+<li><p><strong>rf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p></li>
+<li><p><strong>packing</strong> (<em>string</em>) – Fiber packing pattern. Valid options are “Quad” and “Hex”.</p></li>
+<li><p><strong>tensorial</strong> (<em>bool</em>) – If True, return the permeability tensor (a list with 9 elements).
 Otherwise, return the permeability components that parallel and
 perpendicular to the fiber tow as a list of 3 floats. The default
-is False.</p>
+is False.</p></li>
+<li><p><strong>return</strong> – </p></li>
+<li><p><strong>--------</strong> – </p></li>
+<li><p><strong>k</strong> (<em>array-like</em>) – Fiber tow permeability. If tensorial is True, return a list with 9
+elements. Otherwise, return a list of 3 floats (k11, k22, k33),
+corresponding to the permeability components that parallel and
+perpendicular to the fiber tow. The units are m^2. Note that the
+principal permeability components k22 and k33 are equal.</p></li>
+</ul>
 </dd>
 </dl>
-</dd>
-</dl>
+<p class="rubric">References</p>
+<p>Drummond J E, Tahir M I. Laminar viscous flow through regular arrays of parallel solid cylinders[J]. International Journal of Multiphase Flow, 1984, 10(5): 515-540..</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="mf">6.5e-6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">drummond_tahir</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rf</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span> <span class="n">packing</span><span class="o">=</span><span class="s1">&#39;Hex&#39;</span><span class="p">)</span>
@@ -228,30 +236,26 @@ pattern according to Gebart’s model.</p>
 k_t &amp; = c_1 r_f^2 \sqrt{\left(\sqrt{\frac{V_{f_{max}}}{V_f}} - 1\right)^5}\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
-</dd>
-<dt><strong>rf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber radius (m). If vf and rf are arrays, they must have the same
-shape.</p>
-</dd>
-<dt><strong>packing</strong><span class="classifier">string</span></dt><dd><p>Fiber packing pattern. Valid options are “Quad” and “Hex”.</p>
-</dd>
-<dt><strong>tensorial</strong><span class="classifier">bool</span></dt><dd><p>If True, return the permeability tensor (a list with 9 elements).
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber volume fraction.</p></li>
+<li><p><strong>rf</strong> (<em>float</em><em> or </em><em>array_like</em>) – Fiber radius (m). If vf and rf are arrays, they must have the same
+shape.</p></li>
+<li><p><strong>packing</strong> (<em>string</em>) – Fiber packing pattern. Valid options are “Quad” and “Hex”.</p></li>
+<li><p><strong>tensorial</strong> (<em>bool</em>) – If True, return the permeability tensor (a list with 9 elements).
 Otherwise, return the permeability components that parallel and
 perpendicular to the fiber tow as a list of 3 floats. The default
-is False.</p>
-</dd>
-</dl>
+is False.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
+<dd class="field-even"><p><strong>k</strong> – Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
 corresponding to the permeability components that parallel and
 perpendicular to the fiber tow. The units are m^2. Note that the
 principal permeability components k22 and k33 are equal.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
@@ -308,24 +312,20 @@ system. Shape: (n, 3)</p>
 <dd><p>Calculate local porosity of a tow based on its cross-sectional area and linear density.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>rho_lin: float</strong></dt><dd><p>Linear density of the tow. Unit: Tex (g/1000m)</p>
-</dd>
-<dt><strong>area_xs: array-like</strong></dt><dd><p>Cross-sectional area of the tow. Unit: m^2. Shape: (n cross-sections, 1).</p>
-</dd>
-<dt><strong>rho_fiber: float</strong></dt><dd><p>Volume density of the fiber. Unit: kg/m^3. Default: 2550 (glass fiber).</p>
-</dd>
-<dt><strong>fvf: bool</strong></dt><dd><p>Whether to return fiber volume fraction. Default: False. If True, return
-fiber volume fraction instead of porosity.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rho_lin</strong> (<em>float</em>) – Linear density of the tow. Unit: Tex (g/1000m)</p></li>
+<li><p><strong>area_xs</strong> (<em>array-like</em>) – Cross-sectional area of the tow. Unit: m^2. Shape: (n cross-sections, 1).</p></li>
+<li><p><strong>rho_fiber</strong> (<em>float</em>) – Volume density of the fiber. Unit: kg/m^3. Default: 2550 (glass fiber).</p></li>
+<li><p><strong>fvf</strong> (<em>bool</em>) – Whether to return fiber volume fraction. Default: False. If True, return
+fiber volume fraction instead of porosity.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>porosity: array-like</dt><dd><p>Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.
+<dd class="field-even"><p><strong>porosity</strong> – Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.
 The fiber volume fraction is returned if fvf is True.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

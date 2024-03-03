@@ -92,7 +92,7 @@
 <span class="kn">from</span> <span class="nn">sympy.core.containers</span> <span class="kn">import</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">polytex.mesh</span> <span class="k">as</span> <span class="nn">ms</span>
-<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptex</span>
+<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -112,7 +112,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Point</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; p1 = Point([1, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; p2 = Point([4, 5, 6])</span>
@@ -297,7 +297,7 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Color array must have the same size as the point array.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.vtk&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">filename</span>
-            <span class="n">ptex</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span>
+            <span class="n">ptx</span><span class="o">.</span><span class="n">save_ply</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span>
                         <span class="n">point_data</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
 
 
@@ -634,7 +634,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Ellipse2D</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Ellipse2D</span>
 <span class="sd">    &gt;&gt;&gt; e = Ellipse2D(20, 1, 0.5, [0, 0])</span>
 <span class="sd">    &gt;&gt;&gt; e.__repr__()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -694,7 +694,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Polygon</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Point, Polygon</span>
 <span class="sd">    &gt;&gt;&gt; p = Point([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 0, 0]])</span>
 <span class="sd">    &gt;&gt;&gt; poly = Polygon(p)</span>
 <span class="sd">    &gt;&gt;&gt; poly.points</span>
@@ -702,7 +702,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
+<span class="sd">        A partial inheritance of polytex.geometry.Point class.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -767,7 +767,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Plane</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Point, Plane</span>
 
 <span class="sd">    Create a plane from 3 points</span>
 <span class="sd">    &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
@@ -864,7 +864,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Point, Plane</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import Point, Plane</span>
 <span class="sd">        &gt;&gt;&gt; p1 = Point([5, 0, 0])</span>
 <span class="sd">        &gt;&gt;&gt; normal = Point([1, 0, 0])</span>
 <span class="sd">        &gt;&gt;&gt; plane = Plane(p1, normal_vector=normal)</span>
@@ -925,13 +925,13 @@
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
 <span class="sd">        Create a plane from a point and a normal vector</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Point, Plane</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import Point, Plane</span>
 <span class="sd">        &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
 <span class="sd">        &gt;&gt;&gt; normal = Point([1, 4, 7])</span>
 <span class="sd">        &gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)</span>
 <span class="sd">        &gt;&gt;&gt; f = plane2.function()</span>
 <span class="sd">        &gt;&gt;&gt; f</span>
-<span class="sd">        &lt;function polykriging.geometry.basic.Plane.function.&lt;locals&gt;.&lt;lambda&gt;(x, y, z)&gt;</span>
+<span class="sd">        &lt;function polytex.geometry.basic.Plane.function.&lt;locals&gt;.&lt;lambda&gt;(x, y, z)&gt;</span>
 <span class="sd">        &gt;&gt;&gt; f(1, 1, 1)</span>
 <span class="sd">        0</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -965,7 +965,7 @@
             <span class="n">obj_type</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__type__</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Object must be a Curve, ParamCurve or ParamSurface &#39;</span>
-                            <span class="s1">&#39;object defined in polykriging.geometry&#39;</span><span class="p">)</span>
+                            <span class="s1">&#39;object defined in polytex.geometry&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s1">&#39;Curve&#39;</span><span class="p">:</span>
             <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">()</span>
@@ -991,7 +991,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Tube</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Tube</span>
 <span class="sd">    &gt;&gt;&gt; tube = Tube(4,10,major=2, minor=1,h=5)</span>
 <span class="sd">    &gt;&gt;&gt; mesh = tube.mesh(plot=True)</span>
 <span class="sd">    &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtk&#39;)</span>
@@ -1070,7 +1070,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">ptex</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
+        <span class="n">pv_mesh</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tubular_mesh_generator</span><span class="p">(</span><span class="n">theta_res</span><span class="o">=</span><span class="n">theta_res</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h_res</span><span class="o">=</span><span class="n">h_res</span><span class="p">,</span>
                                                  <span class="n">vertices</span><span class="o">=</span><span class="n">pts</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">pv_mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1097,7 +1097,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import Tube</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import Tube</span>
 <span class="sd">        &gt;&gt;&gt; tube = Tube(5,10,major=2, minor=1,h=5)</span>
 <span class="sd">        &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtu&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1117,7 +1117,7 @@
                 <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span>
                 <span class="n">correction</span><span class="o">=</span><span class="n">end_closed</span><span class="p">)</span>
 
-            <span class="n">ptex</span><span class="o">.</span><span class="n">meshio_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
+            <span class="n">ptx</span><span class="o">.</span><span class="n">meshio_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="o">=</span><span class="n">cells</span><span class="p">,</span>
                            <span class="n">point_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">{},</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -1139,7 +1139,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamCurve</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import ParamCurve</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; s = symbols(&#39;s&#39;)</span>
@@ -1200,8 +1200,8 @@
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating kriging model for </span><span class="si">%s</span><span class="s2"> -th component&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
                 <span class="n">mat_krig</span><span class="p">,</span> <span class="n">mat_krig_inv</span><span class="p">,</span> <span class="n">vector_ba</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">func_drift</span><span class="p">,</span> <span class="n">func_cov</span> <span class="o">=</span> \
-                    <span class="n">ptex</span><span class="o">.</span><span class="n">kriging</span><span class="o">.</span><span class="n">curveKrig1D</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">name_drift</span><span class="o">=</span><span class="n">drift</span><span class="p">,</span>
-                                           <span class="n">name_cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">nuggetEffect</span><span class="o">=</span><span class="n">smoothing_factor</span><span class="p">)</span>
+                    <span class="n">ptx</span><span class="o">.</span><span class="n">kriging</span><span class="o">.</span><span class="n">curve_krig_2D</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">name_drift</span><span class="o">=</span><span class="n">drift</span><span class="p">,</span>
+                                           <span class="n">name_cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">nugget_effect</span><span class="o">=</span><span class="n">smoothing_factor</span><span class="p">)</span>
 
                 <span class="bp">cls</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -1255,7 +1255,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import ParamCurve3D</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
 <span class="sd">    &gt;&gt;&gt; s = symbols(&#39;s&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; curve = ParamCurve3D((cos(s), sin(s), s), (s, 0, 2*np.pi))</span>
@@ -1330,7 +1330,7 @@
 <span class="sd">            returns a translated curve.</span>
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import ParamCurve3D</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
 <span class="sd">        &gt;&gt;&gt; ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)</span>
 <span class="sd">        ParamCurve3D((x + 1, x + 2), (x, 0, 1))</span>
@@ -1357,7 +1357,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import ParamSurface</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import ParamSurface</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols</span>
 <span class="sd">    &gt;&gt;&gt; s, t = symbols(&#39;s t&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; surface = ParamSurface((cos(s)*cos(t), sin(s)*cos(t), sin(t)), ((s, 0, 2*np.pi), (t, 0, np.pi)))</span>
@@ -1403,7 +1403,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import t</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import ParamCurve3D</span>
 <span class="sd">        &gt;&gt;&gt; surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))</span>
 <span class="sd">        &gt;&gt;&gt; surface.functions</span>
 <span class="sd">        (t, t, t)</span>
@@ -1421,7 +1421,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import t</span>
-<span class="sd">        &gt;&gt;&gt; from polykriging.geometry import ParamCurve3D</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import ParamCurve3D</span>
 <span class="sd">        &gt;&gt;&gt; surface = ParamSurface((t, t, t), ((t, 0, 1), (t, 0, 1)))</span>
 <span class="sd">        &gt;&gt;&gt; surface.limits</span>
 <span class="sd">        ((t, 0, 1), (t, 0, 1))</span>
