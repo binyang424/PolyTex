@@ -46,15 +46,16 @@ def log_likelihood(pdf):
     """
     Calculate the likelihood of the given probability density function.
     The likelihood is:
-    ``L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)``
+    
+    .. math::  L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)
 
     Parameters
-    ----------
+    --------------
     pdf : Numpy array
         The probability density function.
 
     Returns
-    -------
+    --------------
     LL : float
         The log-likelihood of the given probability density function.
     """
