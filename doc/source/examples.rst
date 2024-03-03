@@ -6,7 +6,7 @@ Fabric Geometry modeling and meshing
 .. toctree::
    :maxdepth: 1
 	
-   test/example_dataset
+.. test/example_dataset
    test/pk_io
    test/Tow_Class
    test/Transformation
@@ -19,7 +19,7 @@ Using as a library of Kriging for interpolations
    :maxdepth: 1
    
 
-   test/curve2D_interp_with_confidence
+.. test/curve2D_interp_with_confidence
    test/3d_curve_krig
    test/derivative_Kriging
    test/parametric_surface
@@ -29,7 +29,7 @@ Using as a library for fiber tow modeling
 .. toctree::
    :maxdepth: 1
    
-   test/Step_1_GeometricAnalysis
+.. test/Step_1_GeometricAnalysis
    test/Step_2_coo_to_ply
    test/Step_3_pdf_clusters
    test/Step_3_MW-KDE
