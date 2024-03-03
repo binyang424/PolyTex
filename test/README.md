@@ -1,0 +1,1 @@
+This is an example galley to illustrate the use of `PolyTex` package.
