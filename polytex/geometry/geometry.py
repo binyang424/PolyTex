@@ -11,28 +11,28 @@ def angularSort(localCo, centroid, sort=True):
     """
     Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.
 
-        Parameters
-        ----------
-        localCo : Numpy array
-            with 2 colums. The x, y coordinate components of the vertices of the polygon (For the
-            cross-section of fiber tows, it is the coordinate in the local coordinate system with
-             its center at the centroid of the polygon).
-        centroid : Numpy array
-            with 2 colums. The x, y coordinate components of the centroid of the polygon.
-        sort : Boolean
-            If True, the vertices are sorted in angular order. If False, the vertices are
-            not sorted and returned following the original order with angular position
-            for each input vertices.
+    Parameters
+    ----------
+    localCo : Numpy array
+        with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+        cross-section of fiber tows, it is the coordinate in the local coordinate system with
+        its center at the centroid of the polygon).
+    centroid : Numpy array
+        with 2 columns. The x, y coordinate components of the centroid of the polygon.
+    sort : Boolean
+        If True, the vertices are sorted in angular order. If False, the vertices are
+        not sorted and returned following the original order with angular position
+        for each input vertices.
 
-        Returns
-        -------
-        coorSort : Numpy array
-            with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in
-            angular order. The third column is the z coordinate in 3d case.
-        angle : Numpy array
-            with 1 colums. The angular position of the vertices of the polygon in degree. The two
-            returns are sorted in the same order if sort is True. Otherwise, the two returns are
-            not sorted, and is following the original order of the input vertices.
+    Returns
+    -------
+    coorSort : Numpy array
+        with 3 columns. The x, y coordinate components of the vertices of the polygon sorted in
+        angular order. The third column is the z coordinate in 3D case.
+    angle : Numpy array
+        with 1 column. The angular position of the vertices of the polygon in degrees. The two
+        returns are sorted in the same order if sort is True. Otherwise, the two returns are
+        not sorted, and are following the original order of the input vertices.
     """
     # Angular positions of vertices in local coordinate. The origin is the centroid
     # of the cross-section
@@ -230,24 +230,24 @@ def geom_tow(surf_points, sort=True):
     The surface points for each cross-section. the last column (z-axis) should be along the extension
     direction of the cross-sections. It also serves as the label of each cross-section.
 
-        Parameters
-        ----------
-        surf_points : array_like
-            The surface points for each cross-section. the last column (z-axis) should be along the extension
-            direction of the cross-sections. It also serves as the label of each cross-section.
-        sort : Boolean
-            If True, the vertices are sorted in angular order. If False, the vertices are
-            not sorted and returned following the original order with angular position
-            for each input vertices.
+    Parameters
+    ----------
+    surf_points : array_like
+        The surface points for each cross-section. the last column (z-axis) should be along the extension
+        direction of the cross-sections. It also serves as the label of each cross-section.
+    sort : Boolean
+        If True, the vertices are sorted in angular order. If False, the vertices are
+        not sorted and returned following the original order with angular position
+        for each input vertices.
 
-        Returns
-        -------
-        df_geom : DataFrame
-            The geometrical features of each cross-section. The columns are:
-            [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]
-        df_coo : DataFrame
-            The coordinates of each cross-section. The columns are:
-            [distance, normalized distance, angular position (degree), X, Y, Z)]
+    Returns
+    -------
+    df_geom : DataFrame
+        The geometrical features of each cross-section. The columns are:
+        [Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]
+    df_coo : DataFrame
+        The coordinates of each cross-section. The columns are:
+        [distance, normalized distance, angular position (degree), X, Y, Z)]
     """
     slices = np.unique(surf_points[:, -1])
     centerline = np.zeros([slices.size, 3])

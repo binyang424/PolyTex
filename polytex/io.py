@@ -689,27 +689,27 @@ def voxel2foam(mesh, scale=1, outputDir="./", boundary_type=None, cell_data_list
     Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions
     and saved in the 0 timestep folder.
 
-        Parameters
-        ----------
-        mesh : pyvista.UnstructuredGrid or pyvista.DataSet
-            The voxel mesh.
-        scale : float, optional
-            The scale factor to convert the unit of points. The default is 1.0.
-        outputDir : str, optional
-            The output directory. The default is './'.
-        boundary_type : dict, optional
-            The type of each boundary. The default is None. If None, the type of the boundary
-            is set as "patch". The key is the boundary name and the value is the boundary type.
-            The key should be the same as the face_boundary_dict.
+    Parameters
+    ----------
+    mesh : pyvista.UnstructuredGrid or pyvista.DataSet
+        The voxel mesh.
+    scale : float, optional
+        The scale factor to convert the unit of points. The default is 1.0.
+    outputDir : str, optional
+        The output directory. The default is './'.
+    boundary_type : dict, optional
+        The type of each boundary. The default is None. If None, the type of the boundary
+        is set as "patch". The key is the boundary name and the value is the boundary type.
+        The key should be the same as the face_boundary_dict.
 
-            The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
-            etc. See OpenFOAM user guide for more details.
-        cell_data_list : list, optional
-            A list containing the names of the cell data to be written. The default is None.
+        The boundary type can be "patch", "wall", "empty", "symmetryPlane", "wedge", "cyclic",
+        etc. See OpenFOAM user guide for more details.
+    cell_data_list : list, optional
+        A list containing the names of the cell data to be written. The default is None.
 
-        Returns
-        -------
-        None.
+    Returns
+    -------
+    None.
     """
     cwd = os.getcwd()
     print("Current working directory: ", cwd)
@@ -1037,14 +1037,14 @@ def cwd_chdir(path=""):
     """
     Set given directory or the folder where the code file is as current working directory
 
-        Parameters
-        ----------
-        path:
-            the path of current working directory. if empty, the path of the code file is used.
+    Parameters
+    ----------
+    path:
+        the path of current working directory. if empty, the path of the code file is used.
 
-        Returns
-        -------
-        cwd: the current working directory.
+    Returns
+    -------
+    cwd: the current working directory.
     """
     import sys
 
@@ -1061,15 +1061,15 @@ def choose_directory(titl='Select the target directory:'):
     """
     Choose a directory with GUI and return its path.
 
-        Parameters
-        ----------
-        titl: String.
-            The title of the open folder dialog window.
+    Parameters
+    ----------
+    titl: String.
+        The title of the open folder dialog window.
 
-        Returns
-        -------
-        path: String.
-            The path of the selected directory.
+    Returns
+    -------
+    path: String.
+        The path of the selected directory.
     """
 
     print(titl)
@@ -1100,16 +1100,16 @@ def filenames(path, filter="csv"):
     """
     Get the list of files in the given folder.
 
-        Parameters
-        ----------
-        path:
-            the path of the folder
-        filter:
-            filter for file selection.++
+    Parameters
+    ----------
+    path:
+        the path of the folder
+    filter:
+        filter for file selection.++
 
-        Returns
-        -------
-        flst: the list of files in the given folder.
+    Returns
+    -------
+    flst: the list of files in the given folder.
     """
     filenamels = os.listdir(path)
     # filter the file list by the given filter.
@@ -1122,22 +1122,22 @@ def zip_files(directory, file_list, filename, remove="True"):
     """
     Add multiple files to a zip file.
 
-        Parameters
-        ----------
-        directory: String.
-            The directory of the files to be added to zip file. Therefore,
-            all the files in the file_list should be in the same directory.
-        file_list : List.
-            The list of file names to be added to the zip file (without directory).
-        filename: String.
-            The name of the zip file. The zip file is saved in the same directory
-        remove:
-            Whether to remove original files after adding to zip file.
-            Default is True. If False, the original files will not be removed.
+    Parameters
+    ----------
+    directory: String.
+        The directory of the files to be added to zip file. Therefore,
+        all the files in the file_list should be in the same directory.
+    file_list : List.
+        The list of file names to be added to the zip file (without directory).
+    filename: String.
+        The name of the zip file. The zip file is saved in the same directory
+    remove:
+        Whether to remove original files after adding to zip file.
+        Default is True. If False, the original files will not be removed.
 
-        Returns
-        -------
-        None.
+    Returns
+    -------
+    None.
     """
     from zipfile import ZipFile
 
@@ -1158,15 +1158,15 @@ def choose_file(titl='Select the target directory:', format='csv'):
     """
     Choose a file with GUI and return its path.
 
-        Parameters
-        ----------
-        titl: String.
-            The title of the window.
+    Parameters
+    ----------
+    titl: String.
+        The title of the window.
 
-        Returns
-        -------
-        path: String.
-            The path of the file.
+    Returns
+    -------
+    path: String.
+        The path of the file.
     """
 
     print(titl)
@@ -1187,18 +1187,18 @@ def save_nrrd(cell_label, file_name, file_path='./'):
     Save the labels of a hexahedral mesh to a nrrd file. The labels should be
     starting from 0 and increasing by 1.
 
-        Parameters
-        ----------
-        cell_label: numpy array(int, int, int)
-            The cell label of the mesh.
-        file_name: String
-            The name of the .nrrd file.
-        file_path: String
-            The save path of the .nrrd file.
+    Parameters
+    ----------
+    cell_label: numpy array(int, int, int)
+        The cell label of the mesh.
+    file_name: String
+        The name of the .nrrd file.
+    file_path: String
+        The save path of the .nrrd file.
 
-        Returns
-        -------
-        None
+    Returns
+    -------
+    None
     """
     import nrrd
 
@@ -1279,23 +1279,23 @@ def save(file, arr, allow_pickle=True, fix_imports=True):
     """
     This is an exact copy of numpy.save, except that it does not check the extensions.
 
-        Parameters
-        ----------
-        file : file, str, or pathlib.Path. File or filename to which the data is saved.
-        arr : array_like. Array data to be saved.
-        allow_pickle : bool, optional
-            Allow saving object arrays using Python pickles. Reasons for disallowing
-            pickles include security (loading pickled data can execute arbitrary
-            code) and portability (pickled objects may not be loadable on different
-            Python installations, for example if the stored objects require libraries
-            that are not available, and not all pickled data is compatible between
-            Python 2 and Python 3).
-            Default: True
-        fix_imports : bool, optional
-            Only useful in forcing objects in object arrays on Python 3 to be
-            pickled in a Python 2 compatible way. If `fix_imports` is True, pickle
-            will try to map the new Python 3 names to the old module names used in
-            Python 2, so that the pickle data stream is readable with Python 2.
+    Parameters
+    ----------
+    file : file, str, or pathlib.Path. File or filename to which the data is saved.
+    arr : array_like. Array data to be saved.
+    allow_pickle : bool, optional
+        Allow saving object arrays using Python pickles. Reasons for disallowing
+        pickles include security (loading pickled data can execute arbitrary
+        code) and portability (pickled objects may not be loadable on different
+        Python installations, for example if the stored objects require libraries
+        that are not available, and not all pickled data is compatible between
+        Python 2 and Python 3).
+        Default: True
+    fix_imports : bool, optional
+        Only useful in forcing objects in object arrays on Python 3 to be
+        pickled in a Python 2 compatible way. If `fix_imports` is True, pickle
+        will try to map the new Python 3 names to the old module names used in
+        Python 2, so that the pickle data stream is readable with Python 2.
     """
 
     if hasattr(file, 'write'):
@@ -1316,18 +1316,18 @@ def pk_save(fp, data, check_format=True):
     """
     Save a Python dict or pandas dataframe as a file format defined in polytex (.coo, geo) file
 
-        Parameters
-        ----------
-        fp: str
-            File path and name to which the data is saved. If the file name does not end with
-            a supported file extension, a ValueError will be raised.
-        data: Tow, Tex, or dict
-            The data to be saved. It can be several customised file formats for polytex.
+    Parameters
+    ----------
+    fp: str
+        File path and name to which the data is saved. If the file name does not end with
+        a supported file extension, a ValueError will be raised.
+    data: Tow, Tex, or dict
+        The data to be saved. It can be several customised file formats for polytex.
 
 
-        Returns
-        -------
-        None
+    Returns
+    -------
+    None
     """
     filename = os.path.basename(fp)
     # get file extension
@@ -1362,16 +1362,16 @@ def pk_load(file):
     Load a file format defined in polytex (.coo, .geo, or .stat) file
     and return as a pandas dataframe or a numpy.array object.
 
-        Parameters
-        ----------
-        file:  str, or pathlib.Path.
-            File path and name to which the data is stored.
+    Parameters
+    ----------
+    file:  str, or pathlib.Path.
+        File path and name to which the data is stored.
 
-        Returns
-        -------
-        df: pandas.DataFrame or numpy.ndarray
-            The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
-            Otherwise, it is a numpy array or dict and a warning will be raised.
+    Returns
+    -------
+    df: pandas.DataFrame or numpy.ndarray
+        The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.
+        Otherwise, it is a numpy array or dict and a warning will be raised.
     """
 
     filename = os.path.basename(file)
@@ -1413,30 +1413,30 @@ def read_explicit_data(filename, type="zip", sort=True, resolution=1.0, max_pts=
     Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See
     https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.
 
-        Parameters
-        ----------
-        filename : str
-            The path of the roi file. The file should be either a zip of csv files or a directory containing
-            multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
-            see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter
-            "type" should be set accordingly ("zip" or "dir").
-        type : str, optional
-            The type of saved file. The default is "zip". The other option is "dir".
-        sort : bool, optional
-            Whether to sort the coordinates according to the slice number. The default is True. Note that
-            the coordinates on the same slice are not sorted. The sorting is only applied to the slices.
-        resolution : float, optional
-            The resolution of the image. The default is 1.0, the coordinates are not converted
-            to the physical coordinates (namely the unit is pixel).
-        max_pts : int, optional
-            The maximum number of points on each slice. The default is 100. If the number of points
-            on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).
+    Parameters
+    ----------
+    filename : str
+        The path of the roi file. The file should be either a zip of csv files or a directory containing
+        multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.
+        see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter
+        "type" should be set accordingly ("zip" or "dir").
+    type : str, optional
+        The type of saved file. The default is "zip". The other option is "dir".
+    sort : bool, optional
+        Whether to sort the coordinates according to the slice number. The default is True. Note that
+        the coordinates on the same slice are not sorted. The sorting is only applied to the slices.
+    resolution : float, optional
+        The resolution of the image. The default is 1.0, the coordinates are not converted
+        to the physical coordinates (namely the unit is pixel).
+    max_pts : int, optional
+        The maximum number of points on each slice. The default is 100. If the number of points
+        on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).
 
-        Returns
-        -------
-        surf_points : numpy.ndarray
-            The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
-            the total number of points.
+    Returns
+    -------
+    surf_points : numpy.ndarray
+        The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is
+        the total number of points.
     """
     if type == "zip":
         with zipfile.ZipFile(filename, 'r') as zip_ref:
@@ -1485,20 +1485,20 @@ def coo_to_ply(file_coo, file_ply, interpolate=False, threshold=0.1):
     """
     Convert a pcd file to ply file.
 
-        Parameters
-        ----------
-        file_coo : str
-            The path of the coo file or pathlib.Path. File or filename to which the data is saved.
-        file_ply : str
-            The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
-        interpolate : bool, optional
-            Whether to interpolate the points. The default is False.
-        threshold : float, optional
-            The threshold of the normalized distance between the neighboring points. The default is 0.1.
+    Parameters
+    ----------
+    file_coo : str
+        The path of the coo file or pathlib.Path. File or filename to which the data is saved.
+    file_ply : str
+        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
+    interpolate : bool, optional
+        Whether to interpolate the points. The default is False.
+    threshold : float, optional
+        The threshold of the normalized distance between the neighboring points. The default is 0.1.
 
-        Returns
-        -------
-        None
+    Returns
+    -------
+    None
     """
     import meshio
     df = pk_load(file_coo)
@@ -1524,41 +1524,41 @@ def meshio_save(file, vertices, cells=[], point_data={}, cell_data={}, binary=Fa
     Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.
     It is a wrapper of meshio.write() function.
 
-        Parameters
-        ----------
-        file : str
-            The path of the ply file or pathlib.Path. File or filename to which the data is saved.
-        vertices : numpy.ndarray
-            The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.
-        cells : list, optional
-            The faces of the mesh stored as the connectivity between vertices. The default is [].
-        point_data : dict, optional
-            The point data of the mesh. The default is {}.
-        cell_data : dict, optional
-            The cell data of the mesh. The default is {}. Note that the cell data should be added as a
-            list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
-            has 2 triangles and 1 quad, namely,
-            cells = [("triangle", [0, 1, 2], [1,2,3]), ("quad", [3, 4, 5, 6])],
-            then the cell data should be added as
-            cell_data = {"data": [[1, 2], [3]}.
-        binary : bool, optional
-            If True, the data is written in binary format. The default is False.
+    Parameters
+    ----------
+    file : str
+        The path of the ply file or pathlib.Path. File or filename to which the data is saved.
+    vertices : numpy.ndarray
+        The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.
+    cells : list, optional
+        The faces of the mesh stored as the connectivity between vertices. The default is [].
+    point_data : dict, optional
+        The point data of the mesh. The default is {}.
+    cell_data : dict, optional
+        The cell data of the mesh. The default is {}. Note that the cell data should be added as a
+        list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh
+        has 2 triangles and 1 quad, namely,
+        cells = [("triangle", [0, 1, 2], [1,2,3]), ("quad", [3, 4, 5, 6])],
+        then the cell data should be added as
+        cell_data = {"data": [[1, 2], [3]}.
+    binary : bool, optional
+        If True, the data is written in binary format. The default is False.
 
-        Returns
-        -------
-        None.
+    Returns
+    -------
+    None.
 
-        Examples
-        --------
-        >>> import numpy as np
-        >>> import polytex as pk
-        >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
-        >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
-        >>> point_data = {"a": np.array([0, 1, 2, 3])}
-        >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
-        >>> ptx.meshio_save("test.ply", vertices, cells, point_data, cell_data)
-        >>> print("Done")
-        Done
+    Examples
+    --------
+    >>> import numpy as np
+    >>> import polytex as pk
+    >>> vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> cells = [("triangle", [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]
+    >>> point_data = {"a": np.array([0, 1, 2, 3])}
+    >>> cell_data = {"b": np.array([[0, 1, 2, 3],])}
+    >>> ptx.meshio_save("test.ply", vertices, cells, point_data, cell_data)
+    >>> print("Done")
+    Done
 
     """
     try:
@@ -1592,35 +1592,35 @@ def get_ply_property(mesh_path, column, skip=11, type="vertex", save_vtk=False):
     format. It is intended to be used to get the user-defined properties that most of
     meshing and rendering software does not support.
 
-        Note
-        ----
-        The mesh must be saved as ASCII format.
+    Note
+    ----
+    The mesh must be saved as ASCII format.
 
-        Parameters
-        ----------
-        mesh_path : str
-            The path of the mesh file with .ply extension.
-        column : int or list of int
-            The column number of the property.
-        skip : int, optional
-            The number of lines to skip in the header. The default is 11.
-        type : str, optional
-            The type of the property. The default is "vertex" for vertex property. The other
-            possible value is "cell" for cell property.
-        save_vtk : bool, optional
-            If True, the mesh is saved as a vtk file. The default is False.
+    Parameters
+    ----------
+    mesh_path : str
+        The path of the mesh file with .ply extension.
+    column : int or list of int
+        The column number of the property.
+    skip : int, optional
+        The number of lines to skip in the header. The default is 11.
+    type : str, optional
+        The type of the property. The default is "vertex" for vertex property. The other
+        possible value is "cell" for cell property.
+    save_vtk : bool, optional
+        If True, the mesh is saved as a vtk file. The default is False.
 
-        Returns
-        -------
-        property : numpy.ndarray
-            The property of the mesh.
+    Returns
+    -------
+    property : numpy.ndarray
+        The property of the mesh.
 
-        Examples
-        --------
-        >>> import polytex as pk
-        >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
-        >>> quality = ptx.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
-        >>> quality
+    Examples
+    --------
+    >>> import polytex as pk
+    >>> mesh_path = "./weft_0_lin_lin_krig_30pts.ply"
+    >>> quality = ptx.get_ply_property(mesh_path, -2, skip=11, type="vertex", save_vtk=False)
+    >>> quality
     """
     import pyvista as pv
     import numpy as np
@@ -1650,19 +1650,19 @@ def save_csv(filename, dataset, csv_head):
     """
     Save numpy array to csv file with given info in the first row.
 
-        Parameters
-        ----------
-        filename:
-            The path and name of the csv file.
-        dataset: List or numpy.ndarray
-            The dataset to be saved in the csv file
-        csv_head:
-            A list of headers of the csv file. The length of the list
-            should be the same as the number of columns in the dataset.
+    Parameters
+    ----------
+    filename:
+        The path and name of the csv file.
+    dataset: List or numpy.ndarray
+        The dataset to be saved in the csv file
+    csv_head:
+        A list of headers of the csv file. The length of the list
+        should be the same as the number of columns in the dataset.
 
-        Returns
-        -------
-        None.
+    Returns
+    -------
+    None.
 
     """
     import csv
@@ -1753,19 +1753,19 @@ def create_yarn_element_sets(mesh, file_handle, Indices, verbose=False):
     """
     Creates element sets for each unique fiber in the mesh.
 
-        Parameters:
-        ----------------
-        mesh : pyvista.PolyData
-            The input mesh.
-        file_handle : file
-            The file handle to write element set lines.
-       Indices: int
-            The indices of matrix and fiber.
+    Parameters:
+    ----------------
+    mesh : pyvista.PolyData
+        The input mesh.
+    file_handle : file
+        The file handle to write element set lines.
+   Indices: int
+        The indices of matrix and fiber.
 
-        Returns:
-        ----------------
-        element_sets : dict
-            Dictionary of element sets with the set name as the key and the lines as the value.
+    Returns:
+    ----------------
+    element_sets : dict
+        Dictionary of element sets with the set name as the key and the lines as the value.
     """
 
     element_sets = {}
@@ -1800,24 +1800,24 @@ def create_part_data_lines(prtname, nodes=[], elements=[], nodesets=[], elemsets
     """
     Creates lines for defining nodes, elements, and sets in the part data.
 
-        Parameters:
-        ----------------
-        prtname : str
-            Name of the part.
-        nodes : list
-            Node data. Each node is a list containing the node label and the x, y, and z coordinates.
-            The number of nodes can be obtained using the len() function.
-        elements : list
-            Element data. Each element is a list containing the element label and the node labels.
-        nodesets : list
-            Node sets containing the node labels.
-        elemsets : list
-            Element sets containing the element labels.
+    Parameters:
+    ----------------
+    prtname : str
+        Name of the part.
+    nodes : list
+        Node data. Each node is a list containing the node label and the x, y, and z coordinates.
+        The number of nodes can be obtained using the len() function.
+    elements : list
+        Element data. Each element is a list containing the element label and the node labels.
+    nodesets : list
+        Node sets containing the node labels.
+    elemsets : list
+        Element sets containing the element labels.
 
-        Returns:
-        ----------------
-        lines : list
-            List of lines for the part data.
+    Returns:
+    ----------------
+    lines : list
+        List of lines for the part data.
     """
     lines = [
         #        f"*Part, name={prtname}",  ## TODO : the first parameter is not used currently.
@@ -1857,26 +1857,26 @@ def create_material_data_lines(matname, rho, e, nu, sta, condition=True, materia
     """
     Creates lines for defining material data in the input file.
 
-        Parameters:
-        ----------------
-        matname : str
-            Name of the material.
-        rho : float
-            Density of the material.
-        e : float
-            Young's modulus of the material.
-        nu : float
-            Poisson's ratio of the material.
-        sta : int
-            Material state variable.
-        condition : bool
-            Condition for material type (default is True).
-        materials: list
-            List to store material data lines (default is None).
-        Returns:
-        ----------------
-        datalines : list
-            A list of lines for material data.
+    Parameters:
+    ----------------
+    matname : str
+        Name of the material.
+    rho : float
+        Density of the material.
+    e : float
+        Young's modulus of the material.
+    nu : float
+        Poisson's ratio of the material.
+    sta : int
+        Material state variable.
+    condition : bool
+        Condition for material type (default is True).
+    materials: list
+        List to store material data lines (default is None).
+    Returns:
+    ----------------
+    datalines : list
+        A list of lines for material data.
     """
     datalines = []
     # Define material properties lines
@@ -1906,21 +1906,21 @@ def create_solid_section_lines(elset_name, material_name, orientation_name=None,
     """
     Creates lines for defining the solid section properties of a specified element set and material.
 
-        Parameters:
-        ----------------
-        elset_name : str
-            The name of the element set.
-        material_name : str
-            The name of the material.
-        orientation_name : str
-            The name of the orientation (default is None for the matrix).
-        controls : str
-            Control parameters for the section (default is an empty string).
+    Parameters:
+    ----------------
+    elset_name : str
+        The name of the element set.
+    material_name : str
+        The name of the material.
+    orientation_name : str
+        The name of the orientation (default is None for the matrix).
+    controls : str
+        Control parameters for the section (default is an empty string).
 
-        Returns:
-        ----------------
-        lines : list
-            A list containing lines for defining the solid section properties.
+    Returns:
+    ----------------
+    lines : list
+        A list containing lines for defining the solid section properties.
     """
     if controls:
         if orientation_name:
@@ -1947,21 +1947,21 @@ def create_solid_section_for_all_sets(Indices, fiber_material_name, orientation_
     """
     Creates solid section lines for all fiber element sets in the mesh.
 
-        Parameters:
-        ----------------
-        Indices: int
-            The indices of matrix and fiber.
-        fiber_material_name : str
-            The name of the fiber material.
-        orientation_name : str
-            The name of the orientation (default is None for the matrix).
-        controls : str
-            Control parameters for the section (default is an empty string).
+    Parameters:
+    ----------------
+    Indices: int
+        The indices of matrix and fiber.
+    fiber_material_name : str
+        The name of the fiber material.
+    orientation_name : str
+        The name of the orientation (default is None for the matrix).
+    controls : str
+        Control parameters for the section (default is an empty string).
 
-        Returns:
-        ----------------
-        lines : list
-            A list of lines for defining solid section properties for all fiber element sets.
+    Returns:
+    ----------------
+    lines : list
+        A list of lines for defining solid section properties for all fiber element sets.
     """
     lines = []
 
@@ -2048,24 +2048,24 @@ def voxel2inp(mesh, scale=1, outputDir="./mesh-C3D8R.inp", orientation=True) -> 
     """
     Convert a voxel mesh to an Abaqus input file.
 
-        Parameters
-        ----------
-        mesh : pyvista.UnstructuredGrid
-            The voxel mesh.
-        scale : float, optional
-            The scale factor to convert the unit of points. The default is 1.0.
-        outputDir : str, optional
-            The output directory and filename. The default is './mesh-C3D8R.inp'. The file
-            extension is automatically added if not provided.
+    Parameters
+    ----------
+    mesh : pyvista.UnstructuredGrid
+        The voxel mesh.
+    scale : float, optional
+        The scale factor to convert the unit of points. The default is 1.0.
+    outputDir : str, optional
+        The output directory and filename. The default is './mesh-C3D8R.inp'. The file
+        extension is automatically added if not provided.
 
-        Returns
-        -------
-        None.
+    Returns
+    -------
+    None.
 
-        Notes
-        -----
-        voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) & Bin Yang
-        (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.
+    Notes
+    -----
+    voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) & Bin Yang
+    (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.
     """
     # check if the mesh is a pyvista.UnstructuredGrid object
     if not isinstance(mesh, pv.UnstructuredGrid):

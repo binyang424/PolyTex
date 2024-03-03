@@ -47,12 +47,7 @@ Primitive geometries
 .. autoclass:: Polygon
    :members: 
    :show-inheritance:
-   
-.. currentmodule:: polytex.geometry.basic
-.. autoclass:: Ellipse
-   :members: 
-   :show-inheritance:
-   
+     
 .. currentmodule:: polytex.geometry.basic
 .. autoclass:: Plane
    :members: 
