@@ -548,20 +548,21 @@ class Textile:
         The structure of the output case folder is:
 
         :: 
-        
-            fp/ textile.name/ --|
-                                |--0 --|
-                                |      |--D       # resistance coefficient (inverse of permeability tensor)
-                                |      |--yarnIndex
-                                |      |-- ...
-                                |--constant --|
-                                |             |--polyMesh --|
-                                |                           |--boundary
-                                |                           |--faces
-                                |                           |--neighbour
-                                |                           |--owner
-                                |                           |--points
-                                |                           |-- ...
+
+             fp/ textile.name/
+            ├── 0          
+            │   ├── D
+            │   ├── yarnIndex
+            │   └── ...       
+            └── constant          
+                  ├── polyMesh
+                  │   ├── boundary
+                  │   ├── faces
+                  │   ├── neighbour
+                  │   ├── owner 
+                  │   ├── points
+                  │   ├── ... 
+                  └── ...     
 
             Parameters
             ----------
