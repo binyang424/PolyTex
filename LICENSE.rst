@@ -552,7 +552,7 @@ License would be to refrain entirely from conveying the Program.
 
   13. Use with the GNU Affero General Public License.
 
-  Notwithstanding any other provision of this License, you have
+Notwithstanding any other provision of this License, you have
 permission to link or combine any covered work with a work licensed
 under version 3 of the GNU Affero General Public License into a single
 combined work, and to convey the resulting work.  The terms of this
@@ -563,7 +563,7 @@ combination as such.
 
   14. Revised Versions of this License.
 
-  The Free Software Foundation may publish revised and/or new versions of
+The Free Software Foundation may publish revised and/or new versions of
 the GNU General Public License from time to time.  Such new versions will
 be similar in spirit to the present version, but may differ in detail to
 address new problems or concerns.
