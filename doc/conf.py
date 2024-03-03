@@ -19,7 +19,8 @@ release = '0.3.5'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 
+extensions = ["sphinx.ext.napoleon",
+              'sphinx.ext.autodoc', 
 			  'sphinx.ext.mathjax',
               'sphinx.ext.viewcode', 
 			  'sphinx_search.extension',
