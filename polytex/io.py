@@ -941,8 +941,9 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
               scale=None, img_name="img", format="tif", scale_algrithm="linear"):
     """
     Convert a voxel mesh to a series of images.
+    
     Parameters
-    ----------
+    --------------
     mesh : pyvista.UnstructuredGrid
         The voxel mesh to convert.
     mesh_shape : list
@@ -967,13 +968,13 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
                   The z direction is to be implemented.
 
     Returns
-    -------
+    --------------
     None
 
     Examples
-    --------
+    --------------
     >>> import pyvista as pv
-    >>> import polytex as pk
+    >>> import polytex as ptx
     >>> mesh = pv.read("./v2i.vtu")
     >>> mesh_shape = [20, 20, 5]
     >>> ptx.io.voxel2img(mesh, mesh_shape, dataset="YarnIndex",
