@@ -9,3 +9,4 @@ sphinx-gallery
 pandas
 pyvista
 polytex
+tqdm
