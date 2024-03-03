@@ -33,11 +33,11 @@ extensions = ["sphinx.ext.napoleon",
 			  "sphinx.ext.autosummary",
 			  "sphinx_gallery.gen_gallery",
 			  ]
-			  
-autodoc_default_flags = ["members", "inherited-members"]
 
 # autosummaries from source-files
-autosummary_generate = True
+autosummary_generate = True		  
+autodoc_default_flags = ["members", "inherited-members"]
+
 # dont show __init__ docstring
 autoclass_content = "class"
 # sort class members
