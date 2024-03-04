@@ -119,7 +119,10 @@
 <p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>points</strong> (<em>list</em><em>, </em><em>tuple</em><em> or </em><em>array_like</em>) – A list of Point objects.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">list, tuple or array_like</span></dt><dd><p>A list of Point objects.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
@@ -155,8 +158,10 @@
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -167,10 +172,15 @@
 <dd><p>Save the curve to a vtk file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>save_path</strong> (<em>str</em>) – The path to save the vtk file.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the vtk file.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -181,10 +191,9 @@
 <dd><p>Convert the curve to a polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>polygon</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Polygon object</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>polygon</strong><span class="classifier">Polygon object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -195,10 +204,9 @@
 <dd><p>Return the dimension of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ambient_dimension</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ambient_dimension</strong><span class="classifier">int</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -209,10 +217,9 @@
 <dd><p>Return the bounds of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bounds</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">tuple</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -224,10 +231,9 @@
 <p>TODO: curvature of a curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>curvature</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curvature</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -238,10 +244,9 @@
 <dd><p>Return the length of the curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>length</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>length</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -252,10 +257,9 @@
 <dd><p>Return the tangent vector of the curve at each point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tangent</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Vector object</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tangent</strong><span class="classifier">Vector object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -268,12 +272,16 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>n</strong> (<em>int</em>) – The number of points to generate.</p></li>
-<li><p><strong>a</strong> (<em>float</em>) – The length of the major axis.</p></li>
-<li><p><strong>b</strong> (<em>float</em>) – The length of the minor axis.</p></li>
-<li><p><strong>center</strong> (<em>list</em><em>, </em><em>tuple</em><em> or </em><em>array_like</em>) – The center of the ellipse.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The number of points to generate.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">float</span></dt><dd><p>The length of the major axis.</p>
+</dd>
+<dt><strong>b</strong><span class="classifier">float</span></dt><dd><p>The length of the minor axis.</p>
+</dd>
+<dt><strong>center</strong><span class="classifier">list, tuple or array_like</span></dt><dd><p>The center of the ellipse.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -290,10 +298,10 @@
 <dd><p>Generate points on an ellipse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>xy</strong> – Points on the ellipse with shape (n, 2).</p>
+<dd class="field-odd"><dl class="simple">
+<dt>xy: array-like</dt><dd><p>Points on the ellipse with shape (n, 2).</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>array-like</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -306,10 +314,12 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p1</strong> (<em>Point object</em>) – The first point of the line.</p></li>
-<li><p><strong>p2</strong> (<em>Point object</em>) – The second point of the line.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>p1</strong><span class="classifier">Point object</span></dt><dd><p>The first point of the line.</p>
+</dd>
+<dt><strong>p2</strong><span class="classifier">Point object</span></dt><dd><p>The second point of the line.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
@@ -613,27 +623,31 @@
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>limits</strong> (<em>3-tuple</em>) – Function parameter and lower and upper bounds.</p></li>
-<li><p><strong>function</strong> (<em>list</em>) – The function list for each coordinate component. The default value is [].</p></li>
-<li><p><strong>dataset</strong> (<em>array_like</em>) – <p>The dataset of the curve. The default value is None. The first column is
+<dd class="field-odd"><dl>
+<dt><strong>limits</strong><span class="classifier">3-tuple</span></dt><dd><p>Function parameter and lower and upper bounds.</p>
+</dd>
+<dt><strong>function</strong><span class="classifier">list</span></dt><dd><p>The function list for each coordinate component. The default value is [].</p>
+</dd>
+<dt><strong>dataset</strong><span class="classifier">array_like</span></dt><dd><p>The dataset of the curve. The default value is None. The first column is
 the parameter and the other columns are the value of coordinate components.</p>
 <p>One of the function or dataset must be given. Please note that both are
 given, the dataset will be ignored.</p>
-</p></li>
-<li><p><strong>krig_config</strong> (<em>tuple</em>) – The kriging interpolation configuration. The default value is (“lin”, “cub”).
-The tuple should be in the form of (drift_name, covariance_name).</p></li>
-<li><p><strong>smooth</strong> (<em>float</em>) – The smoothing factor. The default value is 0.0.</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em>) – If True, print the information of the kriging process. The default value is False.</p></li>
-</ul>
+</dd>
+<dt><strong>krig_config</strong><span class="classifier">tuple</span></dt><dd><p>The kriging interpolation configuration. The default value is (“lin”, “cub”).
+The tuple should be in the form of (drift_name, covariance_name).</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float</span></dt><dd><p>The smoothing factor. The default value is 0.0.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool</span></dt><dd><p>If True, print the information of the kriging process. The default value is False.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>curve</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ParamCurve object</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">ParamCurve object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -663,13 +677,16 @@ The tuple should be in the form of (drift_name, covariance_name).</p></li>
 should be within the limits. Otherwise, an error will be raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>curve</strong> – The evaluated curve.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd><p>The evaluated curve.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Curve object</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -682,21 +699,22 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>function</strong> (<em>list</em><em> of </em><em>functions</em>) – Function argument should be (x(t), y(t), z(t)) for a 3D curve.</p></li>
-<li><p><strong>limits</strong> (<em>3-tuple</em>) – Function parameter and lower and upper bounds. The parameter should be
+<dd class="field-odd"><dl class="simple">
+<dt><strong>function</strong><span class="classifier">list of functions</span></dt><dd><p>Function argument should be (x(t), y(t), z(t)) for a 3D curve.</p>
+</dd>
+<dt><strong>limits</strong><span class="classifier">3-tuple</span></dt><dd><p>Function parameter and lower and upper bounds. The parameter should be
 the same for all three functions. For example, (t, 0, 1) is valid but
-((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.</p></li>
-</ul>
+((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>curve</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ParamCurve3D object</p>
-</dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">ParamCurve3D object</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">ambient_dimension</span></code></dt><dd><p>The dimension of the curve.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">args</span></code></dt><dd><p>Returns a tuple of arguments of ‘self’.</p>
@@ -961,13 +979,16 @@ the same for all three functions. For example, (t, 0, 1) is valid but
 should be within the limits. Otherwise, an error will be raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>curve</strong> – The evaluated curve.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd><p>The evaluated curve.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Curve object</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -978,18 +999,20 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <dd><p>This function is used to rotate a curve along given point <code class="docutils literal notranslate"><span class="pre">pt</span></code> at given angle(in radian).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>angle</strong> – the angle at which the curve will be rotated(in radian) in counterclockwise direction.
-default value of angle is 0.</p></li>
-<li><p><strong>pt</strong> (<a class="reference internal" href="#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point"><em>Point</em></a>) – the point along which the curve will be rotated.
-If no point given, the curve will be rotated around origin.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>angle</strong></dt><dd><p>the angle at which the curve will be rotated(in radian) in counterclockwise direction.
+default value of angle is 0.</p>
+</dd>
+<dt><strong>pt</strong><span class="classifier">Point</span></dt><dd><p>the point along which the curve will be rotated.
+If no point given, the curve will be rotated around origin.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>returns a curve rotated at given angle along given point.</p>
+<dd class="field-even"><dl class="simple">
+<dt>Curve</dt><dd><p>returns a curve rotated at given angle along given point.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1007,10 +1030,10 @@ If no point given, the curve will be rotated around origin.</p></li>
 <dd><p>Override GeometryEntity.scale since Curve is not made up of Points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>returns scaled curve.</p>
+<dd class="field-odd"><dl class="simple">
+<dt>Curve</dt><dd><p>returns scaled curve.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1028,17 +1051,20 @@ If no point given, the curve will be rotated around origin.</p></li>
 <dd><p>Translate the Curve by (x, y, z).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – The translation in the x direction.</p></li>
-<li><p><strong>y</strong> (<em>float</em>) – The translation in the y direction.</p></li>
-<li><p><strong>z</strong> (<em>float</em>) – The translation in the z direction.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>The translation in the x direction.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">float</span></dt><dd><p>The translation in the y direction.</p>
+</dd>
+<dt><strong>z</strong><span class="classifier">float</span></dt><dd><p>The translation in the z direction.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>returns a translated curve.</p>
+<dd class="field-even"><dl class="simple">
+<dt>Curve</dt><dd><p>returns a translated curve.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1076,12 +1102,14 @@ rectangle for the geometric figure.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>functions</strong> (<em>list</em><em> of </em><em>functions</em>) – Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.</p></li>
-<li><p><strong>limits</strong> (<em>2-tuple</em>) – Function parameter and lower and upper bounds of the two parameters. For
+<dd class="field-odd"><dl class="simple">
+<dt><strong>functions</strong><span class="classifier">list of functions</span></dt><dd><p>Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.</p>
+</dd>
+<dt><strong>limits</strong><span class="classifier">2-tuple</span></dt><dd><p>Function parameter and lower and upper bounds of the two parameters. For
 example, ((s, 0, 1), (t, 0, 1)) is valid. The parameter should be
-the same for all three functions.</p></li>
-</ul>
+the same for all three functions.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
@@ -1255,20 +1283,22 @@ the same for all three functions.</p></li>
 <dd><p>Evaluate the surface at the given parameter values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>s_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p></li>
-<li><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The surface evaluated at the given parameter values.
+<dd class="field-even"><dl class="simple">
+<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
 the shape of the returned surface is (len(s) * len(t), 3). The
 first column is s values, the second column is t values, and the
 following columns are the coordinates of the surface at the given
 parameter values (x, y, z).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Surface</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1280,7 +1310,9 @@ parameter values (x, y, z).</p>
 <p>The default pt is the origin, Point(0, 0)</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">pi</span>
@@ -1301,7 +1333,9 @@ parameter values (x, y, z).</p>
 object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
@@ -1322,7 +1356,9 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dd><p>Shift the object by adding to the x,y-coordinates the values x and y.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
@@ -1348,10 +1384,10 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <dd><p>The functions specifying the surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of parameterized coordinate functions.</p>
+<dd class="field-odd"><dl class="simple">
+<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>functions</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1369,8 +1405,10 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">limits</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.limits" title="Permalink to this definition"></a></dt>
 <dd><p>The limits of the two parameters specifying the surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list limits of the parameters.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>list limits of the parameters.</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1392,20 +1430,23 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <p>Create a plane from 3 points or a point and a normal vector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p1</strong> (<em>Point object</em>) – A point on the plane.</p></li>
-<li><p><strong>a</strong> (<em>Point object</em><em>, </em><em>optional</em>) – A point on the plane. The default is None.</p></li>
-<li><p><strong>b</strong> (<em>Point object</em><em>, </em><em>optional</em>) – A point on the plane. The default is None.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – <cite>normal_vector</cite> can be passed as a keyword argument when leaving
+<dd class="field-odd"><dl class="simple">
+<dt><strong>p1</strong><span class="classifier">Point object</span></dt><dd><p>A point on the plane.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">Point object, optional</span></dt><dd><p>A point on the plane. The default is None.</p>
+</dd>
+<dt><strong>b</strong><span class="classifier">Point object, optional</span></dt><dd><p>A point on the plane. The default is None.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p><cite>normal_vector</cite> can be passed as a keyword argument when leaving
 a and b as None. If both a and b are not None, normal_vector will
-be ignored.</p></li>
-</ul>
+be ignored.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>plane</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plane object</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>plane</strong><span class="classifier">Plane object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -1431,13 +1472,16 @@ be ignored.</p></li>
 <dd><p>Return the signed distance between a point and the plane.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>point</strong> (<em>Point object</em>) – The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point</strong><span class="classifier">Point object</span></dt><dd><p>The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>distance</strong> – The distance between the point and the plane.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>The distance between the point and the plane.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1456,24 +1500,26 @@ be ignored.</p></li>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Plane.function">
 <span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
 <dd><p>Return the equation of the plane as a function of x, y and z.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane.</p>
+</dd>
+<dt><strong>point</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A lambda function of x, y and z.</dt><dd><p>function of plane.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>normal = (a, b, c)
 point = (x0, y0, z0)
 Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>normal</strong> (<em>array-like</em>) – normal vector of the plane.</p></li>
-<li><p><strong>point</strong> (<em>array-like</em>) – point on the plane.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>function of plane.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A lambda function of x, y and z.</p>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <p>Create a plane from a point and a normal vector
 &gt;&gt;&gt; from polytex.geometry import Point, Plane
@@ -1493,17 +1539,19 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <dd><p>Return the intersection of the plane with a curve or a polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>obj</strong> (<a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve"><em>Curve</em></a><em> or </em><em>Polygon object</em>) – The object to intersect with the plane.</p></li>
-<li><p><strong>max_dist</strong> (<em>float</em>) – The maximum distance of checked points from the plane.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">Curve or Polygon object</span></dt><dd><p>The object to intersect with the plane.</p>
+</dd>
+<dt><strong>max_dist</strong><span class="classifier">float</span></dt><dd><p>The maximum distance of checked points from the plane.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>intersection</strong> – The intersection point of the plane with the obj in the shape of
+<dd class="field-even"><dl class="simple">
+<dt><strong>intersection</strong><span class="classifier">list or array</span></dt><dd><p>The intersection point of the plane with the obj in the shape of
 (1, 3). If the intersection is not found, none is returned.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list or array</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1513,8 +1561,10 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.show" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the plane.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1528,16 +1578,18 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cls</strong> (<em>class</em>) – The class of the object.</p></li>
-<li><p><strong>orig_3d</strong> (<em>tuple</em><em>, </em><em>list</em><em>, or </em><em>array_like</em>) – Defaults to 3d origin (0, 0, 0).</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cls</strong><span class="classifier">class</span></dt><dd><p>The class of the object.</p>
+</dd>
+<dt><strong>orig_3d</strong><span class="classifier">tuple, list, or array_like</span></dt><dd><p>Defaults to 3d origin (0, 0, 0).</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>obj</strong> – The origin point of 3d space.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">Point</span></dt><dd><p>The origin point of 3d space.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point">Point</a></p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1644,7 +1696,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <td><p>Return specified diagonals.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#polytex.geometry.basic.Point.direction_ratio" title="polytex.geometry.basic.Point.direction_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">direction_ratio</span></code></a>(other)</p></td>
-<td><p>Gives the direction ratio between 2 points :param other: The other point to which the direction ratio is calculated.</p></td>
+<td><p>Gives the direction ratio between 2 points Parameters ---------- other : Point object     The other point to which the direction ratio is calculated.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.geometry.basic.Point.dist" title="polytex.geometry.basic.Point.dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dist</span></code></a>(other)</p></td>
 <td><p>Both points must have the same dimensions :return: Euclidean distance</p></td>
@@ -1788,14 +1840,18 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.direction_ratio">
 <span class="sig-name descname"><span class="pre">direction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.direction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.direction_ratio" title="Permalink to this definition"></a></dt>
 <dd><p>Gives the direction ratio between 2 points
-:param other: The other point to which the direction ratio is calculated.
-:type other: Point object</p>
+Parameters
+———-
+other : Point object</p>
+<blockquote>
+<div><p>The other point to which the direction ratio is calculated.</p>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>direction_ratio</strong> – The direction ratio between the 2 points.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>direction_ratio</strong><span class="classifier">list</span></dt><dd><p>The direction ratio between the 2 points.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1838,14 +1894,14 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.bounds">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.bounds" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>returns: <strong>bounds</strong> – The bounding box of the point. The first row is the minimum</dt><dd><p>values and the second row is the maximum values for each
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">array_like</span></dt><dd><p>The bounding box of the point. The first row is the minimum
+values and the second row is the maximum values for each
 dimension.</p>
 </dd>
 </dl>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array_like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1890,9 +1946,7 @@ calculations that may overflow a fixed size integer type.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.z">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.z" title="Permalink to this definition"></a></dt>
-<dd><p>returns: <strong>z</strong> – 3rd dimension element. 0 if not defined
-:rtype: float</p>
-</dd></dl>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1903,7 +1957,10 @@ calculations that may overflow a fixed size integer type.</p>
 <p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>points</strong> (<em>list</em><em>, </em><em>tuple</em><em> or </em><em>array_like</em>) – A list of Point objects.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">list, tuple or array_like</span></dt><dd><p>A list of Point objects.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
@@ -1949,10 +2006,9 @@ calculations that may overflow a fixed size integer type.</p>
 <dd><p>Convert the polygon to a curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>curve</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Curve object</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1963,10 +2019,9 @@ calculations that may overflow a fixed size integer type.</p>
 <dd><p>Return the area of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>area</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1977,10 +2032,9 @@ calculations that may overflow a fixed size integer type.</p>
 <dd><p>Return the centroid of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>centroid</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Point object</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>centroid</strong><span class="classifier">Point object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -1991,10 +2045,9 @@ calculations that may overflow a fixed size integer type.</p>
 <dd><p>Return the perimeter of the polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>perimeter</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>perimeter</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2008,22 +2061,24 @@ calculations that may overflow a fixed size integer type.</p>
 <p>Create a tubular surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>theta_res</strong> (<em>int</em>) – The number of points on each cross-section.</p></li>
-<li><p><strong>h_res</strong> (<em>int</em>) – The number of cross-sections.</p></li>
-<li><p><strong>vertices</strong> (<em>array_like</em>) – The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
+<dd class="field-odd"><dl class="simple">
+<dt><strong>theta_res</strong><span class="classifier">int</span></dt><dd><p>The number of points on each cross-section.</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">int</span></dt><dd><p>The number of cross-sections.</p>
+</dd>
+<dt><strong>vertices</strong><span class="classifier">array_like</span></dt><dd><p>The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
 The points should be ordered in the following way:
 [p1, p2, …, p_theta_res, p1, p2, …, p_theta_res, …, p1, p2, …, p_theta_res]
 where p1, p2, …, p_theta_res are the points on each cross-section from the top to the bottom. The
 default value is None. If the value is None, the points will be generated automatically by assigning
-the height, major and minor radius to the tube.</p></li>
-</ul>
+the height, major and minor radius to the tube.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>tube</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tube object</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>tube</strong><span class="classifier">Tube object</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2218,16 +2273,18 @@ The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].
 <p>TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>save_path</strong> (<em>str</em>) – The path and the name of the file to be saved with the extension.</p></li>
-<li><p><strong>end_closed</strong> (<em>bool</em>) – If True, the ends of the tube will be closed. The default value is True.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path and the name of the file to be saved with the extension.</p>
+</dd>
+<dt><strong>end_closed</strong><span class="classifier">bool</span></dt><dd><p>If True, the ends of the tube will be closed. The default value is True.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>mesh</strong> – The tubular mesh.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The tubular mesh.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pyvista.UnstructuredGrid</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2274,16 +2331,18 @@ rectangle for the geometric figure.</p>
 <p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cls</strong> (<em>class</em>) – The class of the object.</p></li>
-<li><p><strong>orig_3d</strong> (<em>tuple</em><em>, </em><em>list</em><em>, or </em><em>array_like</em>) – Defaults to 3d origin (0, 0, 0).</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cls</strong><span class="classifier">class</span></dt><dd><p>The class of the object.</p>
+</dd>
+<dt><strong>orig_3d</strong><span class="classifier">tuple, list, or array_like</span></dt><dd><p>Defaults to 3d origin (0, 0, 0).</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>obj</strong> – The origin point of 3d space.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">Point</span></dt><dd><p>The origin point of 3d space.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point">Point</a></p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2397,7 +2456,7 @@ rectangle for the geometric figure.</p>
 <td><p>Return specified diagonals.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">direction_ratio</span></code>(other)</p></td>
-<td><p>Gives the direction ratio between 2 points :param other: The other point to which the direction ratio is calculated.</p></td>
+<td><p>Gives the direction ratio between 2 points Parameters ---------- other : Point object     The other point to which the direction ratio is calculated.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dist</span></code>(other)</p></td>
 <td><p>Both points must have the same dimensions :return: Euclidean distance</p></td>
@@ -2548,17 +2607,19 @@ rectangle for the geometric figure.</p>
 \[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>other</strong> (<em>Vector object</em>) – The other vector to which the angle is calculated.</p></li>
-<li><p><strong>radian</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return the angle in radians. The default is False.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Vector object</span></dt><dd><p>The other vector to which the angle is calculated.</p>
+</dd>
+<dt><strong>radian</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, return the angle in radians. The default is False.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>angle</strong> – The angle between the 2 vectors. If radian is True, the angle is in radians.
+<dd class="field-even"><dl class="simple">
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>The angle between the 2 vectors. If radian is True, the angle is in radians.
 Otherwise, the angle is in degrees.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2581,9 +2642,7 @@ Otherwise, the angle is in degrees.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Vector.norm">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">norm</span></span><a class="headerlink" href="#polytex.geometry.basic.Vector.norm" title="Permalink to this definition"></a></dt>
-<dd><p>returns: <strong>norm</strong> – The norm of the vector.
-:rtype: float</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Vector.sub">
@@ -2598,18 +2657,22 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Find the intersection of a curve with a plane</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> (<em>lambda function</em>) – function of plane.</p></li>
-<li><p><strong>curve</strong> (<em>array-like</em>) – points on the curve in shape of (n, 3).</p></li>
-<li><p><strong>niterations</strong> (<em>int</em>) – number of iterations.</p></li>
-<li><p><strong>mSegments</strong> (<em>int</em>) – number of segments for each iteration.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f</strong><span class="classifier">lambda function</span></dt><dd><p>function of plane.</p>
+</dd>
+<dt><strong>curve</strong><span class="classifier">array-like</span></dt><dd><p>points on the curve in shape of (n, 3).</p>
+</dd>
+<dt><strong>niterations: int</strong></dt><dd><p>number of iterations.</p>
+</dd>
+<dt><strong>mSegments: int</strong></dt><dd><p>number of segments for each iteration.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>intersection</strong> – intersection points with shape (n, 3).</p>
+<dd class="field-even"><dl class="simple">
+<dt>intersection: array-like</dt><dd><p>intersection points with shape (n, 3).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array-like</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2623,25 +2686,29 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+<dd class="field-odd"><dl class="simple">
+<dt><strong>localCo</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
 cross-section of fiber tows, it is the coordinate in the local coordinate system with
-its center at the centroid of the polygon).</p></li>
-<li><p><strong>centroid</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the centroid of the polygon.</p></li>
-<li><p><strong>sort</strong> (<em>Boolean</em>) – If True, the vertices are sorted in angular order. If False, the vertices are
+its center at the centroid of the polygon).</p>
+</dd>
+<dt><strong>centroid</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 columns. The x, y coordinate components of the centroid of the polygon.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
 not sorted and returned following the original order with angular position
-for each input vertices.</p></li>
-</ul>
+for each input vertices.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>coorSort</strong> (<em>Numpy array</em>) – with 3 columns. The x, y coordinate components of the vertices of the polygon sorted in
-angular order. The third column is the z coordinate in 3D case.</p></li>
-<li><p><strong>angle</strong> (<em>Numpy array</em>) – with 1 column. The angular position of the vertices of the polygon in degrees. The two
+<dd class="field-even"><dl class="simple">
+<dt><strong>coorSort</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 columns. The x, y coordinate components of the vertices of the polygon sorted in
+angular order. The third column is the z coordinate in 3D case.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">Numpy array</span></dt><dd><p>with 1 column. The angular position of the vertices of the polygon in degrees. The two
 returns are sorted in the same order if sort is True. Otherwise, the two returns are
-not sorted, and are following the original order of the input vertices.</p></li>
-</ul>
-</p>
+not sorted, and are following the original order of the input vertices.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2655,19 +2722,25 @@ returned for a polygon whose vertices are given by a counter-clockwise
 sequence of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>points</strong> (<em>array_like</em>) – Input 2D points of the polygon in the shape (n, 2). If the polygon is
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">array_like</span></dt><dd><p>Input 2D points of the polygon in the shape (n, 2). If the polygon is
 3D, An error is raised. Note that the points have to be ordered in a
 clockwise or counter-clockwise manner. Otherwise, the area will be
 non-sense.</p>
 </dd>
+</dl>
+</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>area_signed</strong> – The signed area of the polygon.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>area_signed</strong><span class="classifier">float</span></dt><dd><p>The signed area of the polygon.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+</dl>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the points are not 2D.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If the points are not 2D.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2702,20 +2775,24 @@ skspatial.measurement — scikit-spatial documentation
 <dd><p>the width and height of rotated_rectangle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+<dd class="field-odd"><dl class="simple">
+<dt><strong>localCo</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
 cross-section of fiber tows, it is the coordinate in the local coordinate system with
-its center at the centroid of the polygon).</p></li>
-<li><p><strong>boundType</strong> (<em>string</em>) – rotated or parallel</p></li>
-</ul>
+its center at the centroid of the polygon).</p>
+</dd>
+<dt><strong>boundType: string</strong></dt><dd><p>rotated or parallel</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>width</strong> (<em>float</em>) – The width of the minimum rotated rectangle that contains the polygon.</p></li>
-<li><p><strong>height</strong> (<em>float</em>) – The height of the minimum rotated rectangle that contains the polygon.</p></li>
-<li><p><strong>angleRotated</strong> (<em>float</em>) – The angle of rotation of the minimum rotated rectangle that contains the polygon.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>width</strong><span class="classifier">float</span></dt><dd><p>The width of the minimum rotated rectangle that contains the polygon.</p>
+</dd>
+<dt><strong>height</strong><span class="classifier">float</span></dt><dd><p>The height of the minimum rotated rectangle that contains the polygon.</p>
+</dd>
+<dt><strong>angleRotated</strong><span class="classifier">float</span></dt><dd><p>The angle of rotation of the minimum rotated rectangle that contains the polygon.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2726,15 +2803,17 @@ its center at the centroid of the polygon).</p></li>
 <dd><p>Geometry analysis and points sorting for a cross-section of a fiber tow.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>coordinate</strong> (<em>Numpy array</em>) – with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
 Note that only the first two columns are used for the 2D polygon.</p>
 </dd>
+</dl>
+</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>geometry file</strong> (<em>x,y,z of points, and x,y,z of centerline</em>)</p></li>
-<li><p><strong>properties</strong> (<em>area… …</em>)</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>geometry file</strong><span class="classifier">x,y,z of points, and x,y,z of centerline</span></dt><dd></dd>
+<dt>properties: area… …</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2746,22 +2825,25 @@ Note that only the first two columns are used for the 2D polygon.</p>
 direction of the cross-sections. It also serves as the label of each cross-section.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>surf_points</strong> (<em>array_like</em>) – The surface points for each cross-section. the last column (z-axis) should be along the extension
-direction of the cross-sections. It also serves as the label of each cross-section.</p></li>
-<li><p><strong>sort</strong> (<em>Boolean</em>) – If True, the vertices are sorted in angular order. If False, the vertices are
+<dd class="field-odd"><dl class="simple">
+<dt><strong>surf_points</strong><span class="classifier">array_like</span></dt><dd><p>The surface points for each cross-section. the last column (z-axis) should be along the extension
+direction of the cross-sections. It also serves as the label of each cross-section.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
 not sorted and returned following the original order with angular position
-for each input vertices.</p></li>
-</ul>
+for each input vertices.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>df_geom</strong> (<em>DataFrame</em>) – The geometrical features of each cross-section. The columns are:
-[Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</p></li>
-<li><p><strong>df_coo</strong> (<em>DataFrame</em>) – The coordinates of each cross-section. The columns are:
-[distance, normalized distance, angular position (degree), X, Y, Z)]</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>df_geom</strong><span class="classifier">DataFrame</span></dt><dd><p>The geometrical features of each cross-section. The columns are:
+[Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</p>
+</dd>
+<dt><strong>df_coo</strong><span class="classifier">DataFrame</span></dt><dd><p>The coordinates of each cross-section. The columns are:
+[distance, normalized distance, angular position (degree), X, Y, Z)]</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2772,9 +2854,12 @@ for each input vertices.</p></li>
 <dd><p>The normalized distance of the vertices of a polygon</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+<dd class="field-odd"><dl class="simple">
+<dt><strong>localCo</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
 cross-section of fiber tows, it is the coordinate in the local coordinate system with
 its center at the centroid of the polygon).</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2788,13 +2873,16 @@ its center at the centroid of the polygon).</p>
 <dd><p>Convert degrees to radians.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>degrees</strong> (<em>float</em>) – Angle in degrees.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>degrees</strong><span class="classifier">float</span></dt><dd><p>Angle in degrees.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Angle in radians.</p>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Angle in radians.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2811,17 +2899,20 @@ rotation matrix about the y-axis, and <span class="math notranslate nohighlight"
 the z-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>psi</strong> (<em>float</em>) – The rotation angle about the z-axis in radians.</p></li>
-<li><p><strong>theta</strong> (<em>float</em>) – The rotation angle about the y-axis in radians.</p></li>
-<li><p><strong>phi</strong> (<em>float</em>) – The rotation angle about the x-axis in radians.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the z-axis in radians.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the y-axis in radians.</p>
+</dd>
+<dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>The rotation angle about the x-axis in radians.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>dcm</strong> – The direction cosine matrix for the Euler 123 sequence.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>dcm</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The direction cosine matrix for the Euler 123 sequence.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2837,27 +2928,30 @@ the z-axis.</p>
 rotating the global coordinate system to align its z-axis with
 a normal vector from the origin to a point (namely, no translation
 is considered).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normal</strong><span class="classifier">list or array</span></dt><dd><p>The normal vector from the origin to a point.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>euler_angles</strong><span class="classifier">list</span></dt><dd><p>The euler angles (psi, theta, phi), where psi is the rotation
+angle about the z-axis, theta is the rotation angle about the
+y-axis, and phi is the rotation angle about the x-axis in radians.
+Note that the rotation should be performed in the order of e123
+by pre-multiplying the rotation matrices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>No translation is considered. The origin of the global coordinate
 system is assumed to be the origin of the local coordinate system.
 The user should translate the local coordinate system to the origin
 before calling this function and then re-translate the local
 coordinate system to the desired location.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>normal</strong> (<em>list</em><em> or </em><em>array</em>) – The normal vector from the origin to a point.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>euler_angles</strong> – The euler angles (psi, theta, phi), where psi is the rotation
-angle about the z-axis, theta is the rotation angle about the
-y-axis, and phi is the rotation angle about the x-axis in radians.
-Note that the rotation should be performed in the order of e123
-by pre-multiplying the rotation matrices.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -2880,30 +2974,32 @@ by pre-multiplying the rotation matrices.</p>
 <dd><p>This function returns the euler angles (phi, theta, psi) for
 rotating the global coordinate system to align its z-axis with
 the z_new vector and its x-axis with the x_new vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>z_new</strong><span class="classifier">list or array</span></dt><dd><p>The coordinate of the new z-axis in the original coordinate system.</p>
+</dd>
+<dt><strong>x_new</strong><span class="classifier">list or array</span></dt><dd><p>The coordinate of the new x-axis in the original coordinate system.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>euler_angles</strong><span class="classifier">list</span></dt><dd><p>The euler angles (psi, theta, phi), where psi is the rotation
+angle about the z-axis, theta is the rotation angle about the
+y-axis, and phi is the rotation angle about the x-axis in radians.
+Note that the rotation should be done in e123 sequence by pre-multiplying
+the rotation matrices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>No translation is considered. The origin of the global coordinate
 system is assumed to be the origin of the local coordinate system.
 The user should translate the local coordinate system to the origin
 before calling this function and then re-translate the local
 coordinate system to the desired location.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>z_new</strong> (<em>list</em><em> or </em><em>array</em>) – The coordinate of the new z-axis in the original coordinate system.</p></li>
-<li><p><strong>x_new</strong> (<em>list</em><em> or </em><em>array</em>) – The coordinate of the new x-axis in the original coordinate system.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>euler_angles</strong> – The euler angles (psi, theta, phi), where psi is the rotation
-angle about the z-axis, theta is the rotation angle about the
-y-axis, and phi is the rotation angle about the x-axis in radians.
-Note that the rotation should be done in e123 sequence by pre-multiplying
-the rotation matrices.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex.geometry.transform</span> <span class="k">as</span> <span class="nn">tf</span>
 </pre></div>
@@ -2916,15 +3012,18 @@ the rotation matrices.</p>
 <dd><p>Single axis frame rotation about the X-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>phi</strong> (<em>float</em>) – The angle between z-axis (or y-axis) of the initial and final frames in radian.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>phi</strong><span class="classifier">float</span></dt><dd><p>The angle between z-axis (or y-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of x-axis.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Rotation matrix.</p>
+</dl>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2935,9 +3034,12 @@ when viewed from the positive end of x-axis.</p>
 <dd><p>Single axis frame rotation about the Y-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>theta</strong> (<em>float</em>) – The angle between z-axis (or x-axis) of the initial and final frames in radian.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>theta</strong><span class="classifier">float</span></dt><dd><p>The angle between z-axis (or x-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of y-axis.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -2948,15 +3050,18 @@ when viewed from the positive end of y-axis.</p>
 <dd><p>Single axis frame rotation about the Z-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>psi</strong> (<em>float</em>) – The angle between x-axis (or y-axis) of the initial and final frames in radian.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>The angle between x-axis (or y-axis) of the initial and final frames in radian.
 The rotation is positive if the frame rotates in the counter-clockwise direction
 when viewed from the positive end of z axis.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Rotation matrix.</p>
+</dl>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>

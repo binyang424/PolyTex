@@ -120,17 +120,19 @@
 further than the threshold.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>coordinate</strong> (<em>numpy array</em>) – The coordinates of the points. [normalized distance, X, Y, Z]</p></li>
-<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance between two points. The default is 0.03.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points. [normalized distance, X, Y, Z]</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>The distance between two points. The default is 0.03.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>coordinate</strong> – The coordinates of the points after linear interpolation.
+<dd class="field-even"><dl class="simple">
+<dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points after linear interpolation.
 [normalized distance, X, Y, Z]</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -141,23 +143,32 @@ further than the threshold.</p>
 <dd><p>Derivative kriging function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>array</em>) – x points</p></li>
-<li><p><strong>y</strong> (<em>array</em>) – y points</p></li>
-<li><p><strong>xDeriv</strong> (<em>array</em>) – x points for derivative</p></li>
-<li><p><strong>yDeriv</strong> (<em>array</em>) – the derivative of xDeriv points</p></li>
-<li><p><strong>choixDerive</strong> (<em>string</em>) – the name of the derivative function. Possible values are ‘cst’, ‘lin’ or ‘quad’.</p></li>
-<li><p><strong>choixCov</strong> (<em>string</em>) – the name of the covariance function. Possible values are ‘lin’ or ‘cub’.</p></li>
-<li><p><strong>plot_x_pts</strong> (<em>array</em>) – number of points for plot</p></li>
-<li><p><strong>nugg</strong> (<em>float</em>) – nugget effect (variance)</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">array</span></dt><dd><p>x points</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array</span></dt><dd><p>y points</p>
+</dd>
+<dt><strong>xDeriv</strong><span class="classifier">array</span></dt><dd><p>x points for derivative</p>
+</dd>
+<dt><strong>yDeriv</strong><span class="classifier">array</span></dt><dd><p>the derivative of xDeriv points</p>
+</dd>
+<dt><strong>choixDerive</strong><span class="classifier">string</span></dt><dd><p>the name of the derivative function. Possible values are ‘cst’, ‘lin’ or ‘quad’.</p>
+</dd>
+<dt><strong>choixCov</strong><span class="classifier">string</span></dt><dd><p>the name of the covariance function. Possible values are ‘lin’ or ‘cub’.</p>
+</dd>
+<dt><strong>plot_x_pts: array</strong></dt><dd><p>number of points for plot</p>
+</dd>
+<dt><strong>nugg: float</strong></dt><dd><p>nugget effect (variance)</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>kringFunctionStr</strong> (<em>string</em>) – String of the kriging function.</p></li>
-<li><p><strong>x_var_sym</strong> (<em>string</em>) – string of the x variable</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt>kringFunctionStr: string</dt><dd><p>String of the kriging function.</p>
+</dd>
+<dt>x_var_sym: string</dt><dd><p>string of the x variable</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -173,15 +184,22 @@ further than the threshold.</p>
 <dd><p>Build the matrix M for the derivative kriging system</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>array</em>) – x points</p></li>
-<li><p><strong>xDeriv</strong> (<em>array</em>) – x points for derivative</p></li>
-<li><p><strong>name_drift</strong> (<em>function</em>) – derivative functions</p></li>
-<li><p><strong>name_cov</strong> (<em>function</em>) – covariance functions</p></li>
-<li><p><strong>covFuncs_deriv</strong> (<em>function</em>) – derivative of covariance functions</p></li>
-<li><p><strong>covFuncs_deriv2</strong> (<em>function</em>) – second derivative of covariance functions</p></li>
-<li><p><strong>nugg</strong> (<em>float</em>) – nugget effect (variance)</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">array</span></dt><dd><p>x points</p>
+</dd>
+<dt><strong>xDeriv</strong><span class="classifier">array</span></dt><dd><p>x points for derivative</p>
+</dd>
+<dt><strong>name_drift</strong><span class="classifier">function</span></dt><dd><p>derivative functions</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">function</span></dt><dd><p>covariance functions</p>
+</dd>
+<dt><strong>covFuncs_deriv</strong><span class="classifier">function</span></dt><dd><p>derivative of covariance functions</p>
+</dd>
+<dt><strong>covFuncs_deriv2</strong><span class="classifier">function</span></dt><dd><p>second derivative of covariance functions</p>
+</dd>
+<dt><strong>nugg</strong><span class="classifier">float</span></dt><dd><p>nugget effect (variance)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -196,18 +214,21 @@ further than the threshold.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curve_krig_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugget_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#curve_krig_2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.curve_krig_2D" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<em>numpy array</em>) – X-Y.</p></li>
-<li><p><strong>name_drift</strong> (<em>String</em>) – Name of drift.</p></li>
-<li><p><strong>name_cov</strong> (<em>String</em>) – Name of covariance.</p></li>
-<li><p><strong>nugget_effect</strong> (<em>Float</em>) – </p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataset: numpy array</strong></dt><dd><p>X-Y.</p>
+</dd>
+<dt><strong>name_drift</strong><span class="classifier">String</span></dt><dd><p>Name of drift.</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">String</span></dt><dd><p>Name of covariance.</p>
+</dd>
+<dt><strong>nugget_effect</strong><span class="classifier">Float</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>expr</strong> – The kriging expression.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Expression</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -219,19 +240,22 @@ further than the threshold.</p>
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>drift_name</strong> (<em>string</em>) – The name of the drift function. Possible values are: “const”, “lin”, and
-“quad” for “constant”, “linear”, “quadratic”, respectively.</p></li>
-<li><p><strong>cov_name</strong> (<em>string</em>) – The name of the covariance function. Possible values are: “lin”, “cub”, and “log”
-for “linear”, “cubic”, “logarithmic”, respectively.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name</strong><span class="classifier">string</span></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, and
+“quad” for “constant”, “linear”, “quadratic”, respectively.</p>
+</dd>
+<dt><strong>cov_name</strong><span class="classifier">string</span></dt><dd><p>The name of the covariance function. Possible values are: “lin”, “cub”, and “log”
+for “linear”, “cubic”, “logarithmic”, respectively.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>drift_func</strong> (<em>function</em>) – The drift function.</p></li>
-<li><p><strong>cov_func</strong> (<em>function</em>) – The covariance function.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>drift_func</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>cov_func</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -242,19 +266,23 @@ for “linear”, “cubic”, “logarithmic”, respectively.</p></li>
 <dd><p>Calculate the variance of the prediction.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>numpy array</em>) – The locations where function values are unknown and to be predicted.</p></li>
-<li><p><strong>K_h</strong> (<em>numpy array</em>) – The kriging matrix.</p></li>
-<li><p><strong>lambda</strong> (<em>numpy array</em>) – The weight of gloabl combination. Note that it is different from
-the vector_ba in dual Kriging formulation.</p></li>
-<li><p><strong>nugget_effect</strong> (<em>float</em>) – The nugget effect. Default is 0.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
+</dd>
+<dt><strong>K_h</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>lambda_</strong><span class="classifier">numpy array</span></dt><dd><p>The weight of gloabl combination. Note that it is different from
+the vector_ba in dual Kriging formulation.</p>
+</dd>
+<dt><strong>nugget_effect</strong><span class="classifier">float</span></dt><dd><p>The nugget effect. Default is 0.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>std_prediction</strong> – the standard deviation of the prediction</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>std_prediction</strong><span class="classifier">numpy array</span></dt><dd><p>the standard deviation of the prediction</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -265,16 +293,17 @@ the vector_ba in dual Kriging formulation.</p></li>
 <dd><p>The function h(x1, x2) = abs(x1 - x2).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x1</strong> (<em>float</em>) – The first point.</p></li>
-<li><p><strong>x2</strong> (<em>float</em>) – The second point.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x1</strong><span class="classifier">float</span></dt><dd><p>The first point.</p>
+</dd>
+<dt><strong>x2</strong><span class="classifier">float</span></dt><dd><p>The second point.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>h</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>h</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -284,20 +313,25 @@ the vector_ba in dual Kriging formulation.</p></li>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugget_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#interpolate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.interpolate" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<em>numpy array</em>) – X-Y.</p></li>
-<li><p><strong>name_drift</strong> (<em>String</em>) – Name of drift.</p></li>
-<li><p><strong>name_cov</strong> (<em>String</em>) – Name of covariance.</p></li>
-<li><p><strong>nugget_effect</strong> (<em>Float</em>) – smoothing strength control</p></li>
-<li><p><strong>interp</strong> (<em>Numpy array</em>) – The points that need to be interpolated, 1D numpy array.
-If interp is not given, the x-coordinate of the sample points is used.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataset</strong><span class="classifier">numpy array</span></dt><dd><p>X-Y.</p>
+</dd>
+<dt><strong>name_drift</strong><span class="classifier">String</span></dt><dd><p>Name of drift.</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">String</span></dt><dd><p>Name of covariance.</p>
+</dd>
+<dt><strong>nugget_effect</strong><span class="classifier">Float</span></dt><dd><p>smoothing strength control</p>
+</dd>
+<dt><strong>interp: Numpy array</strong></dt><dd><p>The points that need to be interpolated, 1D numpy array.
+If interp is not given, the x-coordinate of the sample points is used.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>expr</strong> – The kriging expression.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Expression</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -308,20 +342,26 @@ If interp is not given, the x-coordinate of the sample points is used.</p></li>
 <dd><p>return the Kriging function expression.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>len_b</strong> (<em>int</em>) – The length of the b vector (the coefficient of linear combination).</p></li>
-<li><p><strong>func_drift</strong> (<em>function</em>) – The drift function.</p></li>
-<li><p><strong>func_cov</strong> (<em>function</em>) – The covariance function.</p></li>
-<li><p><strong>adef</strong> (<em>numpy array</em>) – The coefficients of the drift function.</p></li>
-<li><p><strong>dataset</strong> (<em>numpy array</em>) – The sample points. X-Y.</p></li>
-<li><p><strong>vector_ba</strong> (<em>numpy array</em>) – The kriging vector.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>len_b</strong><span class="classifier">int</span></dt><dd><p>The length of the b vector (the coefficient of linear combination).</p>
+</dd>
+<dt><strong>func_drift</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>func_cov</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+<dt><strong>adef</strong><span class="classifier">numpy array</span></dt><dd><p>The coefficients of the drift function.</p>
+</dd>
+<dt><strong>dataset</strong><span class="classifier">numpy array</span></dt><dd><p>The sample points. X-Y.</p>
+</dd>
+<dt><strong>vector_ba</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging vector.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>expr</strong> – The analytical expression of the function created by kriging.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">sympy expression</span></dt><dd><p>The analytical expression of the function created by kriging.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>sympy expression</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -332,21 +372,27 @@ If interp is not given, the x-coordinate of the sample points is used.</p></li>
 <dd><p>Calculate the weight of the lambda matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>numpy array</em>) – The locations where function values are unknown and to be predicted.</p></li>
-<li><p><strong>X_train</strong> (<em>numpy array</em>) – The training data. The locations where function values are known.</p></li>
-<li><p><strong>func_drift</strong> (<em>function</em>) – The drift function.</p></li>
-<li><p><strong>func_cov</strong> (<em>function</em>) – The covariance function.</p></li>
-<li><p><strong>mat_krig</strong> (<em>numpy array</em>) – The kriging matrix.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
+</dd>
+<dt><strong>X_train</strong><span class="classifier">numpy array</span></dt><dd><p>The training data. The locations where function values are known.</p>
+</dd>
+<dt><strong>func_drift</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
+</dd>
+<dt><strong>func_cov</strong><span class="classifier">function</span></dt><dd><p>The covariance function.</p>
+</dd>
+<dt><strong>mat_krig</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>K_h</strong> (<em>numpy array</em>) – The kriging matrix.</p></li>
-<li><p><strong>lambda_</strong> (<em>numpy array</em>) – The weight of gloabl combination. Note that it is different from
-the vector_ba in dual Kriging formulation.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>K_h</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>lambda_</strong><span class="classifier">numpy array</span></dt><dd><p>The weight of gloabl combination. Note that it is different from
+the vector_ba in dual Kriging formulation.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -369,11 +415,12 @@ the vector_ba in dual Kriging formulation.</p></li>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><strong>b_a</strong> (<em>numpy array.</em>) – The kriging vector.</p></li>
-<li><p><strong>mat_krig_inv</strong> (<em>numpy array.</em>) – The inverse matrix of the kriging matrix.</p></li>
-</ul>
-</p>
+<dd class="field-odd"><dl class="simple">
+<dt>b_a: numpy array.</dt><dd><p>The kriging vector.</p>
+</dd>
+<dt>mat_krig_inv: numpy array.</dt><dd><p>The inverse matrix of the kriging matrix.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -385,16 +432,18 @@ the vector_ba in dual Kriging formulation.</p></li>
 TODO: check the comments</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy array</em>) – The kriging matrix.</p></li>
-<li><p><strong>U</strong> (<em>numpy array</em>) – The vector of the right hand side of the linear equation system.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">numpy array</span></dt><dd><p>The vector of the right hand side of the linear equation system.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>B</strong> – The solution of the linear equation system.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>B</strong><span class="classifier">numpy array</span></dt><dd><p>The solution of the linear equation system.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -418,19 +467,24 @@ def surf_surf()</p>
 <dd><p>Find the intersection between a plane and a ray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>plane_normal</strong> (<em>array-like</em>) – normal vector of the plane for defining the plane.</p></li>
-<li><p><strong>plane_point</strong> (<em>array-like</em>) – point on the plane for defining the plane.</p></li>
-<li><p><strong>ray_direction</strong> (<em>array-like</em>) – direction of the ray.</p></li>
-<li><p><strong>ray_point</strong> (<em>array-like</em>) – The endpoint of the ray.</p></li>
-<li><p><strong>epsilon</strong> (<em>float</em>) – tolerance for determining if an intersection point exists.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>plane_normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane for defining the plane.</p>
+</dd>
+<dt><strong>plane_point</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane for defining the plane.</p>
+</dd>
+<dt><strong>ray_direction</strong><span class="classifier">array-like</span></dt><dd><p>direction of the ray.</p>
+</dd>
+<dt><strong>ray_point</strong><span class="classifier">array-like</span></dt><dd><p>The endpoint of the ray.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>tolerance for determining if an intersection point exists.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Psi</strong> – intersection point.</p>
+<dd class="field-even"><dl class="simple">
+<dt>Psi: array-like</dt><dd><p>intersection point.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array-like</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -444,16 +498,23 @@ def surf_surf()</p>
 <dd><p>Build the kriging model and return the expression in string format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>xy</strong> (<em>array like. The coordinates</em><em> of </em><em>the points. The shape is</em><em> (</em><em>m</em><em>, </em><em>2</em><em>)</em><em>.</em>) – </p></li>
-<li><p><strong>z</strong> (<em>array like. The values</em><em> of </em><em>the target function. The shape is</em><em> (</em><em>m</em><em>,</em><em>)</em><em>.</em>) – </p></li>
-<li><p><strong>drift_name</strong> (<em>str. The name</em><em> of </em><em>the drift function.</em>) – The possible values are: ‘const’, ‘lin’, ‘cub’.</p></li>
-<li><p><strong>cov_name</strong> (<em>str. The name</em><em> of </em><em>the covariance function.</em>) – The possible values are: ‘lin’, ‘cub’, ‘log’.</p></li>
-<li><p><strong>nugg</strong> (<em>float. The nugget effect</em><em> (</em><em>variance</em><em>)</em><em>.</em>) – </p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: array like. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>z: array like. The values of the target function. The shape is (m,).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>The possible values are: ‘const’, ‘lin’, ‘cub’.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>return: The expression of kriging function in string format.</p>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>The possible values are: ‘lin’, ‘cub’, ‘log’.</p>
+</dd>
+<dt><strong>nugg: float. The nugget effect (variance).</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The expression of kriging function in string format.
+..</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -464,20 +525,21 @@ def surf_surf()</p>
 <dd><p>Build the kriging matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>xy</strong> (<em>The coordinates</em><em> of </em><em>the points. The shape is</em><em> (</em><em>m</em><em>, </em><em>2</em><em>)</em><em>.</em>) – </p></li>
-<li><p><strong>drift_name</strong> (<em>str. The name</em><em> of </em><em>the drift function.</em>) – Possible values are: “const”, “lin”, “quad”.</p></li>
-<li><p><strong>cov_name</strong> (<em>str. The name</em><em> of </em><em>the covariance function.</em>) – Possible values are: “lin”, “cub”, “log”.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>drift_func</strong> (<em>The drift function.</em>)</p></li>
-<li><p><strong>cov_func</strong> (<em>The covariance function.</em>)</p></li>
-<li><p><strong>a_len</strong> (<em>The length of the drift function.</em>)</p></li>
-<li><p><strong>M</strong> (<em>The matrix of the kriging system. The shape is (n,n).</em>)</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func: The drift function.</dt><dd></dd>
+<dt>cov_func: The covariance function.</dt><dd></dd>
+<dt>a_len: The length of the drift function.</dt><dd></dd>
+<dt>M: The matrix of the kriging system. The shape is (n,n).</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -488,16 +550,17 @@ def surf_surf()</p>
 <dd><p>Build the result vector of the kriging linear system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>z</strong> – The values of the target function. The shape is (m,).</p></li>
-<li><p><strong>a_len</strong> – The length of the drift function.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>z:</strong></dt><dd><p>The values of the target function. The shape is (m,).</p>
+</dd>
+<dt><strong>a_len:</strong></dt><dd><p>The length of the drift function.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>U</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The result vector of the kriging linear system. The shape is (n,).</p>
+<dd class="field-even"><dl class="simple">
+<dt>U: The result vector of the kriging linear system. The shape is (n,).</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -508,21 +571,21 @@ def surf_surf()</p>
 <dd><p>Calculate the distance between each pair of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>xy</strong> (<em>numpy array. The coordinates</em><em> of </em><em>the points. The shape is</em><em> (</em><em>m</em><em>, </em><em>2</em><em>)</em><em>.</em>) – </p></li>
-<li><p><strong>type</strong> (<em>str. The type</em><em> of </em><em>the distance. The default is &quot;Euclidean&quot;.</em>) – <dl class="simple">
-<dt>Other possible values are:</dt><dd><p>”1-norm” : The 1-norm distance.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: numpy array. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>type: str. The type of the distance. The default is “Euclidean”.</strong></dt><dd><dl class="simple">
+<dt>Other possible values are:</dt><dd><p>“1-norm” : The 1-norm distance.
 “inf-norm” : The infinity-norm distance.</p>
 </dd>
 </dl>
-</p></li>
-</ul>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>distance</strong> – The distance between each pair of points. The shape is (m, m).</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance</strong><span class="classifier">numpy array</span></dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -534,18 +597,22 @@ def surf_surf()</p>
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>drift_name</strong> (<em>str. The name</em><em> of </em><em>the drift function.</em>) – Possible values are: “const”, “lin”, “quad”.</p></li>
-<li><p><strong>cov_name</strong> (<em>str. The name</em><em> of </em><em>the covariance function.</em>) – Possible values are: “lin”, “cub”, “log”.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>drift_func</strong> (<em>Function.</em>) – The drift function.</p></li>
-<li><p><strong>cov_func</strong> (<em>Function.</em>) – The covariance function.</p></li>
-<li><p><strong>a_len</strong> (<em>int.</em>) – The length of the drift function.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func: Function.</dt><dd><p>The drift function.</p>
+</dd>
+<dt>cov_func: Function.</dt><dd><p>The covariance function.</p>
+</dd>
+<dt>a_len: int.</dt><dd><p>The length of the drift function.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -556,16 +623,17 @@ in dictionary drif_funcs and cov_funcs.</p>
 <dd><p>TODO: add description</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>xy</strong> (<em>numpy array.</em>) – The coordinates of the points. The shape is (m, 2).</p></li>
-<li><p><strong>expr</strong> (<em>String.</em>) – The expression of the target function.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xy: numpy array.</strong></dt><dd><p>The coordinates of the points. The shape is (m, 2).</p>
+</dd>
+<dt><strong>expr: String.</strong></dt><dd><p>The expression of the target function.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>yinter</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The values of the kriging function. The shape is (m,).</p>
+<dd class="field-even"><dl class="simple">
+<dt>yinter: The values of the kriging function. The shape is (m,).</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -576,16 +644,18 @@ in dictionary drif_funcs and cov_funcs.</p>
 <dd><p>Introduce the nugget effect to the kriging matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy array.</em>) – The kriging matrix. The shape is (n,n).</p></li>
-<li><p><strong>nugg</strong> (<em>float.</em>) – The nugget effect.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix. The shape is (n,n).</p>
+</dd>
+<dt><strong>nugg</strong><span class="classifier">float.</span></dt><dd><p>The nugget effect.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>M</strong> – The kriging matrix with nugget effect.</p>
+<dd class="field-even"><dl class="simple">
+<dt>M: numpy array.</dt><dd><p>The kriging matrix with nugget effect.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -596,16 +666,18 @@ in dictionary drif_funcs and cov_funcs.</p>
 <dd><p>Solve the kriging linear system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy array.</em>) – The kriging matrix.</p></li>
-<li><p><strong>U</strong> (<em>numpy array.</em>) – The result vector of the kriging linear system.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M:  numpy array.</strong></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>U:  numpy array.</strong></dt><dd><p>The result vector of the kriging linear system.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>B</strong> – The solution of the kriging linear system (vector contains b_i and a_i).</p>
+<dd class="field-even"><dl class="simple">
+<dt>B: numpy array.</dt><dd><p>The solution of the kriging linear system (vector contains b_i and a_i).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -619,22 +691,25 @@ in dictionary drif_funcs and cov_funcs.</p>
 <dd><p>Build the kriging model and return the expression in string format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>s</strong> (<em>numpy array.</em>) – The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).</p></li>
-<li><p><strong>t</strong> (<em>numpy array.</em>) – The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).</p></li>
-<li><p><strong>x</strong> (<em>array like.</em>) – The known values of the variables in parametric space.</p></li>
-<li><p><strong>drift_names</strong> (<em>list.</em>) – The name of the drift functions for profile 1 and profile 2 in the
-following format: [drift_name1, drift_name2]. The possible values are: ‘const’, ‘lin’, ‘cub’.</p></li>
-<li><p><strong>cov_names</strong> (<em>list.</em>) – The name of the covariance functions in the following format:
-[covariance_name1, covariance_name2]. The possible values are: ‘lin’, ‘cub’, ‘log’.</p></li>
-<li><p><strong>nugg</strong> (<em>list.</em>) – The nugget effects (variance) for each profile contained in a list.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).</p>
+</dd>
+<dt><strong>x: array like.</strong></dt><dd><p>The known values of the variables in parametric space.</p>
+</dd>
+<dt><strong>drift_names: list.</strong></dt><dd><p>The name of the drift functions for profile 1 and profile 2 in the
+following format: [drift_name1, drift_name2]. The possible values are: ‘const’, ‘lin’, ‘cub’.</p>
+</dd>
+<dt><strong>cov_names: list.</strong></dt><dd><p>The name of the covariance functions in the following format:
+[covariance_name1, covariance_name2]. The possible values are: ‘lin’, ‘cub’, ‘log’.</p>
+</dd>
+<dt><strong>nugg: list.</strong></dt><dd><p>The nugget effects (variance) for each profile contained in a list.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>expr</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The expression of kriging function in string format.</p>
+<dd class="field-even"><dl class="simple">
+<dt>expr: The expression of kriging function in string format.</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -645,20 +720,33 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <dd><p>Build the kriging matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>The coordinates</em><em> of </em><em>the points. The shape is</em><em> (</em><em>m</em><em>, </em><em>2</em><em>)</em><em>.</em>) – </p></li>
-<li><p><strong>drift_name</strong> (<em>str. The name</em><em> of </em><em>the drift function.</em>) – Possible values are: “const”, “lin”, “quad”.</p></li>
-<li><p><strong>cov_name</strong> (<em>str. The name</em><em> of </em><em>the covariance function.</em>) – Possible values are: “lin”, “cub”, “log”.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
+<dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str. The name of the covariance function.</strong></dt><dd><p>Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>return drift_func: The drift function.</em></p></li>
-<li><p><em>return cov_func: The covariance function.</em></p></li>
-<li><p><em>return a_len: The length of the drift function.</em></p></li>
-<li><p><em>return M: The matrix of the kriging system. The shape is (n,n).</em></p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return drift_func<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The drift function.
+..</p>
+</dd>
+<dt class="field-even">return cov_func<span class="colon">:</span></dt>
+<dd class="field-even"><p>The covariance function.
+..</p>
+</dd>
+<dt class="field-odd">return a_len<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The length of the drift function.
+..</p>
+</dd>
+<dt class="field-even">return M<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix of the kriging system. The shape is (n,n).
+..</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -669,17 +757,20 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <dd><p>Build the result matrix of the kriging linear system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>numpy array.</em>) – The values of the target function. The shape is (m,n).</p></li>
-<li><p><strong>a_lenS</strong> (<em>int.</em>) – The size of the result matrix in S direction.</p></li>
-<li><p><strong>a_lenT</strong> (<em>int.</em>) – The length of the result matrix in T direction.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The values of the target function. The shape is (m,n).</p>
+</dd>
+<dt><strong>a_lenS: int.</strong></dt><dd><p>The size of the result matrix in S direction.</p>
+</dd>
+<dt><strong>a_lenT: int.</strong></dt><dd><p>The length of the result matrix in T direction.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>P</strong> – The result vector of the kriging linear system. The shape is (n,).</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">numpy array.</span></dt><dd><p>The result vector of the kriging linear system. The shape is (n,).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -690,13 +781,16 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <dd><p>Calculate the distance between each pair of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>numpy array.</em>) – The coordinates in parametric space of the points. The shape is (m, 1).</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The distance between each pair of points. The shape is (m, m).</p>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array.</dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -708,17 +802,20 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>drift_name</strong> (<em>str.</em>) – The name of the drift function. Possible values are: “const”, “lin”, “quad”.</p></li>
-<li><p><strong>cov_name</strong> (<em>str.</em>) – The name of the covariance function. Possible values are: “lin”, “cub”, “log”.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drift_name: str.</strong></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, “quad”.</p>
+</dd>
+<dt><strong>cov_name: str.</strong></dt><dd><p>The name of the covariance function. Possible values are: “lin”, “cub”, “log”.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>drift_func</em> – The drift function.</p></li>
-<li><p><em>cov_func</em> – The covariance function.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt>drift_func:</dt><dd><p>The drift function.</p>
+</dd>
+<dt>cov_func:</dt><dd><p>The covariance function.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -729,19 +826,19 @@ in dictionary drif_funcs and cov_funcs.</p>
 <dd><p>Interpolation (substitute the symbolic variables in the expression).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>s</strong> (<em>numpy array.</em>) – The parameters of the two profiles for surface parametric kriging (1d array).
-s has size that same as the number of rows and t the same as the number of columns.</p></li>
-<li><p><strong>t</strong> (<em>numpy array.</em>) – The parameters of the two profiles for surface parametric kriging (1d array).
-s has size that same as the number of rows and t the same as the number of columns.</p></li>
-<li><p><strong>expr</strong> (<em>String.</em>) – The expression of the target function.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging (1d array).
+s has size that same as the number of rows and t the same as the number of columns.</p>
+</dd>
+<dt><strong>expr: String.</strong></dt><dd><p>The expression of the target function.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>xinterp</strong> – The values of the kriging function. The shape is (s.size,t.size).</p>
+<dd class="field-even"><dl class="simple">
+<dt>xinterp: numpy array.</dt><dd><p>The values of the kriging function. The shape is (s.size,t.size).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -752,17 +849,22 @@ s has size that same as the number of rows and t the same as the number of colum
 <dd><p>Calculate the kriging matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>numpy array.</em>) – The coordinates in parametric space of the points. The shape is (m, 1).</p></li>
-<li><p><strong>symVar</strong> (<em>String.</em>) – The variable in parametric space.</p></li>
-<li><p><strong>cov_name</strong> (<em>String.</em>) – The name of covariance function.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
+</dd>
+<dt><strong>symVar: String.</strong></dt><dd><p>The variable in parametric space.</p>
+</dd>
+<dt><strong>cov_name: String.</strong></dt><dd><p>The name of covariance function.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The kriging matrix. The shape is (m, 1).</p>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array.
+The kriging matrix. The shape is (m, 1).</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>return: numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -773,16 +875,18 @@ s has size that same as the number of rows and t the same as the number of colum
 <dd><p>Introduce the nugget effect to the kriging matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy array.</em>) – The kriging matrix.</p></li>
-<li><p><strong>nugg</strong> (<em>float.</em>) – The nugget effect.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix.</p>
+</dd>
+<dt><strong>nugg: float.</strong></dt><dd><p>The nugget effect.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>M</strong> – The kriging matrix with nugget effect.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix with nugget effect.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy array.</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -793,24 +897,33 @@ s has size that same as the number of rows and t the same as the number of colum
 <dd><p>Build the kriging model and interpolate the results</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>numpy array.</em>) – The coordinates in parametric space of the points. The shape is (m, 1).</p></li>
-<li><p><strong>y</strong> (<em>numpy array.</em>) – The coordinates in parametric space of the points. The shape is (n, 1).</p></li>
-<li><p><strong>z</strong> (<em>numpy array.</em>) – The coordinates in parametric space of the points. The shape is (m, n).</p></li>
-<li><p><strong>name_drift</strong> (<em>String.</em>) – The name of drift function.</p></li>
-<li><p><strong>name_cov</strong> (<em>String.</em>) – The name of covariance function.</p></li>
-<li><p><strong>nug</strong> (<em>float.</em>) – The nugget effect.</p></li>
-<li><p><strong>return_dict</strong> (<em>dict.</em>) – The dictionary to store the results. It is used for multiprocessing purpose.</p></li>
-<li><p><strong>label</strong> (<em>String.</em>) – The label of the result.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
+</dd>
+<dt><strong>y: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (n, 1).</p>
+</dd>
+<dt><strong>z: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, n).</p>
+</dd>
+<dt><strong>name_drift: String.</strong></dt><dd><p>The name of drift function.</p>
+</dd>
+<dt><strong>name_cov: String.</strong></dt><dd><p>The name of covariance function.</p>
+</dd>
+<dt><strong>nug: float.</strong></dt><dd><p>The nugget effect.</p>
+</dd>
+<dt><strong>return_dict: dict.</strong></dt><dd><p>The dictionary to store the results. It is used for multiprocessing purpose.</p>
+</dd>
+<dt><strong>label: String.</strong></dt><dd><p>The label of the result.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>z_krig</strong> (<em>numpy array.</em>) – The interpolated results. The shape is (m, n). It is the return value if return_dict is None
-(namely, the function is not used in parallel).</p></li>
-<li><p><strong>return_dict</strong> (<em>dict.</em>) – The dictionary to store the results. It is used for multiprocessing purpose.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt>z_krig: numpy array.</dt><dd><p>The interpolated results. The shape is (m, n). It is the return value if return_dict is None
+(namely, the function is not used in parallel).</p>
+</dd>
+<dt>return_dict: dict.</dt><dd><p>The dictionary to store the results. It is used for multiprocessing purpose.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -833,19 +946,23 @@ def point_surf()</p>
 <dd><p>Data compression by kriging using linear drift and linear covariance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_norm</strong> (<em>numpy array</em>) – Time-Temperature-Alpha-dadt</p></li>
-<li><p><strong>max_err</strong> (<em>float</em>) – The criterion for data compression, which is the maximum local error.</p></li>
-<li><p><strong>skip_comp</strong> (<em>int</em>) – skip (skip_comp-1) data point for data compression.
-skip_comp &gt;=1.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
+</dd>
+<dt><strong>max_err</strong><span class="classifier">float</span></dt><dd><p>The criterion for data compression, which is the maximum local error.</p>
+</dd>
+<dt><strong>skip_comp</strong><span class="classifier">int</span></dt><dd><p>skip (skip_comp-1) data point for data compression.
+skip_comp &gt;=1.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>data_norm_comp</strong> (<em>TYPE</em>) – Data points .</p></li>
-<li><p><strong>extre</strong> (<em>numpy array</em>) – Index of data_norm_comp or extrema choosed according to kriging compression.</p></li>
-</ul>
-</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>data_norm_comp</strong><span class="classifier">TYPE</span></dt><dd><p>Data points .</p>
+</dd>
+<dt><strong>extre</strong><span class="classifier">numpy array</span></dt><dd><p>Index of data_norm_comp or extrema choosed according to kriging compression.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -855,17 +972,20 @@ skip_comp &gt;=1.</p></li>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">fun_crva</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_para</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_para</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/tool.html#fun_crva"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.tool.fun_crva" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_norm</strong> (<em>numpy array</em>) – Time-Temperature-Alpha-dadt.</p></li>
-<li><p><strong>drift_para</strong> (<em>list</em>) – List of string elements.</p></li>
-<li><p><strong>cov_para</strong> (<em>list</em>) – List of string elements.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt.</p>
+</dd>
+<dt><strong>drift_para</strong><span class="classifier">list</span></dt><dd><p>List of string elements.</p>
+</dd>
+<dt><strong>cov_para</strong><span class="classifier">list</span></dt><dd><p>List of string elements.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>expr</strong> – The kriging expression.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Expression</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -877,10 +997,12 @@ skip_comp &gt;=1.</p></li>
 will normalize temperature, degree of cure and rate of cure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_krig</strong> (<em>numpy array</em>) – Time-Temperature-Alpha-dadt</p></li>
-<li><p><strong>norm_type</strong> (<em>string</em><em>, </em><em>optional</em>) – The type of normalization. The default is ‘axial’. The other option is ‘global’ (TODO).</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_krig</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
+</dd>
+<dt><strong>norm_type</strong><span class="classifier">string, optional</span></dt><dd><p>The type of normalization. The default is ‘axial’. The other option is ‘global’ (TODO).</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>

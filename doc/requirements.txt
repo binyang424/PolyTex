@@ -10,3 +10,4 @@ pandas
 pyvista
 polytex
 tqdm
+pypandoc
