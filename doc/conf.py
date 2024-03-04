@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('./../polytex'))  # 指向src目录
 project = 'PolyTex'
 copyright = '2022-2024, Bin Yang'
 author = 'Bin Yang'
-release = '0.3.5'
+release = '0.3.9'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -36,10 +36,10 @@ extensions = ["sphinx.ext.napoleon",
 
 # autosummaries from source-files
 autodoc_default_flags = ["members", "inherited-members"]
-autosummary_generate = True
+autosummary_generate = False
 
 # dont show __init__ docstring
-autoclass_content = "class"
+autoclass_content = "init"
 # sort class members
 autodoc_member_order = "groupwise"
 # autodoc_member_order = 'bysource'
