@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.geometry.basic &mdash; PolyTex 0.3.8 documentation</title>
+  <title>polytex.geometry.basic &mdash; PolyTex 0.3.9 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -985,20 +985,21 @@
 
 <div class="viewcode-block" id="Tube"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.basic.Tube">[docs]</a><span class="k">class</span> <span class="nc">Tube</span><span class="p">(</span><span class="n">GeometryEntity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This class defines a 3D tubular surface by number of points on each cross-section (theta_res)</span>
+<span class="sd">    This class defines a 3D tubular surface by the number of points on each cross-section (theta_res)</span>
 <span class="sd">    and the number of cross-sections (h_res). Note that the number of points on the cross-section</span>
-<span class="sd">    is the same for all the-cross sections.</span>
+<span class="sd">    is the same for all the cross-sections.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from polytex.geometry import Tube</span>
-<span class="sd">    &gt;&gt;&gt; tube = Tube(4,10,major=2, minor=1,h=5)</span>
+<span class="sd">    &gt;&gt;&gt; tube = Tube(4, 10, major=2, minor=1, h=5)</span>
 <span class="sd">    &gt;&gt;&gt; mesh = tube.mesh(plot=True)</span>
 <span class="sd">    &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtk&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a tubular surface.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1015,12 +1016,9 @@
 <span class="sd">            the default value is None. If the value is None, the points will be generated automatically by assigning</span>
 <span class="sd">            the height, major and minor radius to the tube.</span>
 
-<span class="sd">        major : float</span>
-<span class="sd">            The major radius of the tube. Only used when the points are not given.</span>
-<span class="sd">        minor : float</span>
-<span class="sd">            The minor radius of the tube. Only used when the points are not given.</span>
-<span class="sd">        h : float</span>
-<span class="sd">            The height of the tube. Only used when the points are not given.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tube : Tube object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

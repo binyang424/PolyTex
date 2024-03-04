@@ -903,20 +903,21 @@ class Plane:
 
 class Tube(GeometryEntity):
     """
-    This class defines a 3D tubular surface by number of points on each cross-section (theta_res)
+    This class defines a 3D tubular surface by the number of points on each cross-section (theta_res)
     and the number of cross-sections (h_res). Note that the number of points on the cross-section
-    is the same for all the-cross sections.
+    is the same for all the cross-sections.
 
     Examples
     --------
     >>> from polytex.geometry import Tube
-    >>> tube = Tube(4,10,major=2, minor=1,h=5)
+    >>> tube = Tube(4, 10, major=2, minor=1, h=5)
     >>> mesh = tube.mesh(plot=True)
     >>> tube.save_as_mesh('tube.vtk')
     """
 
     def __new__(cls, theta_res, h_res, vertices=None, **kwargs):
         """
+        Create a tubular surface.
 
         Parameters
         ----------
@@ -933,12 +934,9 @@ class Tube(GeometryEntity):
             the default value is None. If the value is None, the points will be generated automatically by assigning
             the height, major and minor radius to the tube.
 
-        major : float
-            The major radius of the tube. Only used when the points are not given.
-        minor : float
-            The minor radius of the tube. Only used when the points are not given.
-        h : float
-            The height of the tube. Only used when the points are not given.
+        Returns
+        -------
+        tube : Tube object
         """
 
         if vertices is not None:

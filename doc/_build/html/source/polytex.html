@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex package &mdash; PolyTex 0.3.8 documentation</title>
+  <title>polytex package &mdash; PolyTex 0.3.9 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -440,9 +440,7 @@
 <dt class="sig sig-object py" id="polytex.textile.Textile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and
-physical properties of a textile, providing functionalities for mesh generation, tow management,
-and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</p>
+<p>Initialize the textile object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -863,32 +861,44 @@ according to the order of adding the tows to the textile.</p>
 <dt class="sig sig-object py" id="polytex.tow.Tow">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.tow.</span></span><span class="sig-name descname"><span class="pre">Tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The <cite>Tow</cite> class represents a fiber tow and store the physical properties.
-It provides functionality for calculating the geometry features, resampling, and
-smoothing the fiber tow surface.</p>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mf">0.022</span>  <span class="c1"># convert voxel to mm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tow</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">)</span> <span class="c1"># PolyKriging Tow class</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df_coord</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">coordinates</span>  <span class="c1"># parametric coordinates of the tow</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df_geom</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span>  <span class="c1"># geometrical features of the tow</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pts_krig</span><span class="p">,</span> <span class="n">expr_krig</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">resampling</span><span class="p">(</span><span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
-<span class="go">                                      skip=10, sample_position=sample_position,</span>
-<span class="go">                                      smooth=0.0001)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">surf_mesh</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;zyx&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;./216_302_binder_1.vtk&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_sm</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">trajectory</span><span class="p">(</span><span class="n">smooth</span><span class="o">=</span><span class="mf">0.0015</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;./trajectory.ply&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>surf_points</strong> (<em>str</em><em>, </em><em>ndarray</em><em> or </em><em>DataFrame</em>) – <p>The surface points of the tow should be an array of shape (n, 3)
+where n is the number of points. The points are extracted from
+volumetric images slice by slice. Please always put the column
+that indicates the slice number as the last column. It serves
+as the label for differentiate the points from different slices.</p>
+<p>If surf_points is a string, it should be the path to the file
+that stores the surface points. The file should be a .pcd file
+as defined in the PolyKriging library.</p>
+<p>If surf_points is a numpy array, it should be an array of shape
+(n, 3) where n is the number of points.</p>
+<p>If surf_points is a pandas DataFrame, it should be a DataFrame
+with 3 columns and n rows where n is the number of points.</p>
+</p></li>
+<li><p><strong>order</strong> (<em>str</em>) – It is preferred to set the last column of the surf_points as the coordinate in
+the direction that is perpendicular to the image slices for geometry analysis,
+parametrization and kriging resampling. Hence, you may have reordered the columns.
+Here, you can specify the order of the columns in the reordered points. Default is “xyz”.
+The other options are “xzy”, “yxz”, “yzx”, “zxy”, “zyx”. This function will recover the
+original order of the columns when generating the surface mesh.</p></li>
+<li><p><strong>rho_fiber</strong> (<em>float</em><em>, </em><em>optional</em>) – The density of the fiber in kg/m^3.</p></li>
+<li><p><strong>radius_fiber</strong> (<em>float</em><em>, </em><em>optional</em>) – The radius of the fiber in m.</p></li>
+<li><p><strong>length_scale</strong> (<em>str</em><em>, </em><em>optional</em>) – The length scale of the coordinates. Default is “mm”. The other options are “m”, “cm”, “um”.</p></li>
+<li><p><strong>tex</strong> (<em>float</em><em>, </em><em>optional</em>) – The linear density of the tow in tex.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name or type of the tow. Default is “Tow”.</p></li>
+<li><p><strong>packing_fiber</strong> (<em>str</em><em>, </em><em>optional</em>) – The packing pattern of the fiber. Default is “Hex”. The other option is “Square”.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to sort the points according to the slice number. Default is True.</p></li>
+<li><p><strong>resolution</strong> (<em>float</em><em>, </em><em>optional</em>) – The resolution of the MicroCT image used to generate the tow dataset. Default is None.
+This is only stored as an attribute for future use. It is not used in the current version.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – The keyword arguments for the PolyKriging Tow class. The user can specify any keyword
+arguments for the Tow class. The keyword arguments will be stored as attributes of the
+Tow class. The user can access the attributes by tow.attribute_name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt><a class="reference internal" href="#polytex.tow.Tow.attribute_names" title="polytex.tow.Tow.attribute_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attribute_names</span></code></a></dt><dd><p>Get the attribute names of the Tow class.</p>
 </dd>
 </dl>
