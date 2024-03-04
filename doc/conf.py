@@ -35,6 +35,8 @@ extensions = [
               "sphinx_gallery.gen_gallery",
               ]
 
+warning_is_error = False
+
 # autosummaries from source-files
 autodoc_default_flags = ["members", "inherited-members"]
 autosummary_generate = True
