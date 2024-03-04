@@ -2646,6 +2646,56 @@ not sorted, and are following the original order of the input vertices.</p></li>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="polytex.geometry.geometry.area_signed">
+<span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">area_signed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#area_signed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.area_signed" title="Permalink to this definition"></a></dt>
+<dd><p>Return the signed area of a simple polygon given the 2D coordinates of its veritces.</p>
+<p>The signed area is computed using the shoelace algorithm. A positive area is
+returned for a polygon whose vertices are given by a counter-clockwise
+sequence of points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> (<em>array_like</em>) – Input 2D points of the polygon in the shape (n, 2). If the polygon is
+3D, An error is raised. Note that the points have to be ordered in a
+clockwise or counter-clockwise manner. Otherwise, the area will be
+non-sense.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>area_signed</strong> – The signed area of the polygon.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the points are not 2D.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If the number of points is less than 3, a warning is raised and the area is</p></li>
+</ul>
+<p>returned as 0.
+- This function is modified from open source Python library scikit-spatial:
+skspatial.measurement — scikit-spatial documentation
+<a class="reference external" href="https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed">https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed</a>)</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">area_signed</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="go">0.5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="go">-0.5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="go">-3.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polytex.geometry.geometry.edgeLen">
 <span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">edgeLen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rotated'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#edgeLen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.edgeLen" title="Permalink to this definition"></a></dt>
 <dd><p>the width and height of rotated_rectangle</p>
