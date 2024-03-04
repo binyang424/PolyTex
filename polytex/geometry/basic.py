@@ -183,7 +183,8 @@ class Point(np.ndarray):
 
     def direction_ratio(self, other):
         """
-        Gives the direction ratio between 2 points
+        Gives the direction ratio between 2 points.
+
         Parameters
         ----------
         other : Point object
@@ -196,7 +197,7 @@ class Point(np.ndarray):
 
         Examples
         --------
-        >>> from polykriging.geometry import Point
+        >>> from polytex.geometry import Point
         >>> p1 = Point(1, 2, 3)
         >>> p1.direction_ratio(Point(2, 3, 5))
         [1, 1, 2]
