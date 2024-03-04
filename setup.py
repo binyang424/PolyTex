@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name='polytex',
-    version='0.3.14',
+    version='0.3.15',
     description='PolyTex is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images.',
     long_description=long_description,
     long_description_content_type="text/markdown",

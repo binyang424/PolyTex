@@ -19,6 +19,43 @@ class Textile:
     A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and
     physical properties of a textile, providing functionalities for mesh generation, tow management,
     and export capabilities for simulation platforms such as OpenFOAM and Abaqus.
+
+    Methods
+    -------
+    from_file(cls, path)
+        Load a textile object from a file.
+    __repr__()
+        Representation of the textile.
+    __getitem__(self, item)
+        Get tow by tow name.
+    add_tow(self, tow, group=None)
+        Add a tow to the textile.
+    add_group(self, name="group1", tow=None)
+        Groups of the tows in the textile.
+    remove(self, tow)
+        Remove a tow from the textile.
+    triangulate(self)
+        Hexahedral mesh to tetrahedral mesh. Conformal meshing.
+    decimate(self)
+        Decimate the mesh.
+    meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_permeability="Gebart",
+            surface_mesh=None, verbose=False)
+        Generate a mesh for the textile.
+    cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_permeability="Gebart",
+                threshold=1, verbose=False)
+        Label the cells of the background mesh with tow id.
+    export_as_vtu(self, fp, binary=True)
+        Export the textile mesh as a vtu file.
+    export_as_openfoam(self, fp, scale=1, boundary_type=None, cell_data=["yarnIndex", "D"])
+        Export the textile mesh as polyMesh folder for OpenFOAM simulation.
+    export_as_inp(self, fp="./mesh-C3D8R.inp", scale=1, orientation=True)
+        Export the textile mesh as inp file for Abaqus simulation.
+    save(self, path=None, filename=None, data_size="minimal")
+        Save the textile object to a file.
+    reconstruct(self)
+        Reconstruct the textile object from the saved file.
+    case_prepare(self, path=None)
+        Prepare a case for OpenFOAM simulation.
     """
 
     def __init__(self, name="textile"):

@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('./../polytex'))  # 指向src目录
 project = 'PolyTex'
 copyright = '2022-2024, Bin Yang'
 author = 'Bin Yang'
-release = '0.3.14'
+release = '0.3.15'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -22,6 +22,7 @@ extensions = [
               # "sphinx.ext.napoleon",
               'sphinx_simplepdf',
               'sphinx.ext.autodoc',
+              'sphinx.ext.autosummary', # Create neat summary tables for modules/classes/methods etc
               'sphinx.ext.mathjax',
               'sphinx.ext.viewcode',
               'sphinx_search.extension',
@@ -31,13 +32,13 @@ extensions = [
               'sphinx_copybutton',
               'matplotlib.sphinxext.plot_directive',
               "m2r2",
-              "sphinx.ext.autosummary",
               "sphinx_gallery.gen_gallery",
               ]
 
 # autosummaries from source-files
 autodoc_default_flags = ["members", "inherited-members"]
-autosummary_generate = False
+autosummary_generate = True
+autosummary_imported_members = True
 
 # dont show __init__ docstring
 autoclass_content = "init"

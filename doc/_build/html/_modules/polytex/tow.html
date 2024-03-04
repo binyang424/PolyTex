@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.tow &mdash; PolyTex 0.3.12 documentation</title>
+  <title>polytex.tow &mdash; PolyTex 0.3.14 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -98,7 +98,7 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">trange</span>
 
 
-<div class="viewcode-block" id="Tow"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow">[docs]</a><span class="k">class</span> <span class="nc">Tow</span><span class="p">:</span>
+<div class="viewcode-block" id="Tow"><a class="viewcode-back" href="../../source/classes.html#polytex.tow.Tow">[docs]</a><span class="k">class</span> <span class="nc">Tow</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The `Tow` class represents a fiber tow and store the physical properties.</span>
 <span class="sd">    It provides functionality for calculating the geometry features, resampling, and </span>
@@ -235,7 +235,7 @@
                                 <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
 
     <span class="c1"># initialize the tow from a saved tow file</span>
-<div class="viewcode-block" id="Tow.from_file"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.from_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the tow from a saved tow file.</span>
@@ -255,7 +255,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tow&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file extension must be .tow.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -292,7 +292,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-<div class="viewcode-block" id="Tow.kde"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.kde">[docs]</a>    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">kde</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the kernel density estimation of the radial normalized distance for point cloud</span>
 <span class="sd">        decomposition.</span>
@@ -335,12 +335,12 @@
             <span class="n">save_path</span> <span class="o">=</span> <span class="n">save_path</span> <span class="o">+</span> <span class="s2">&quot;.stat&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">save_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">save_path</span>
             <span class="n">pk_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">clusters</span></div>
+        <span class="k">return</span> <span class="n">clusters</span>
 
-<div class="viewcode-block" id="Tow.mw_kde"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.mw_kde">[docs]</a>    <span class="k">def</span> <span class="nf">mw_kde</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span></div>
+    <span class="k">def</span> <span class="nf">mw_kde</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Tow.resampling"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.resampling">[docs]</a>    <span class="k">def</span> <span class="nf">resampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="p">[],</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">resampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="p">[],</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Kriging the cross-sections of the tow to obtain the parametric equations</span>
 <span class="sd">        for each cross-section (which is a closed curve).</span>
@@ -437,9 +437,9 @@
         <span class="n">inv_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__column_order__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resampled</span> <span class="o">=</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">],</span> <span class="n">expr</span></div>
+        <span class="k">return</span> <span class="n">pts_krig</span><span class="p">[:,</span> <span class="n">inv_order</span><span class="p">],</span> <span class="n">expr</span>
 
-<div class="viewcode-block" id="Tow.surf_mesh"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.surf_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">surf_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">surf_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the surface mesh of the tow.</span>
 
@@ -476,9 +476,9 @@
 
         <span class="k">if</span> <span class="n">save_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">end_closed</span><span class="o">=</span><span class="n">end_closed</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">mesh</span></div>
+        <span class="k">return</span> <span class="n">mesh</span>
 
-<div class="viewcode-block" id="Tow.trajectory"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span> <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the trajectory of the tow and smooth it using kriging.</span>
 
@@ -598,9 +598,9 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The file format is not supported or the file format&quot;</span>
                       <span class="s2">&quot;can not be deduced from path </span><span class="si">{}</span><span class="s2">. Please use </span><span class="se">\&quot;</span><span class="s2">.ply.</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">save_path</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">traj</span></div>
+        <span class="k">return</span> <span class="n">traj</span>
 
-<div class="viewcode-block" id="Tow.unit_vector"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.unit_vector">[docs]</a>    <span class="k">def</span> <span class="nf">unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the unit vector of the input vector along the given axis.</span>
 
@@ -620,9 +620,9 @@
         <span class="n">norm_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">norm</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">norm_value</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">norm</span></div>
+        <span class="k">return</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">norm</span>
 
-<div class="viewcode-block" id="Tow.smoothing"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.smoothing">[docs]</a>    <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                   <span class="n">name_drift</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;lin&#39;</span><span class="p">],</span>
                   <span class="n">name_cov</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cub&#39;</span><span class="p">,</span> <span class="s1">&#39;cub&#39;</span><span class="p">],</span>
                   <span class="n">smooth_factor</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -748,9 +748,9 @@
             <span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">vertices</span></div>
+        <span class="k">return</span> <span class="n">vertices</span>
 
-<div class="viewcode-block" id="Tow.smooth_window"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.smooth_window">[docs]</a>    <span class="k">def</span> <span class="nf">smooth_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">smooth_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The window size of smoothing operation. The window size is the number of</span>
 <span class="sd">        slices in the axial direction of fiber tow that are smoothed per iteration.</span>
@@ -800,9 +800,9 @@
         <span class="n">win_result</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">extend</span><span class="p">,</span> <span class="n">extend</span> <span class="o">+</span> <span class="n">size</span><span class="p">]</span>
         <span class="n">win_result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">extend</span><span class="p">,</span> <span class="n">extend</span> <span class="o">+</span> <span class="n">h_res</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">win_interp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
 
-        <span class="k">return</span> <span class="n">win_interp</span><span class="p">,</span> <span class="n">win_result</span></div>
+        <span class="k">return</span> <span class="n">win_interp</span><span class="p">,</span> <span class="n">win_result</span>
 
-<div class="viewcode-block" id="Tow.save"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the fiber tow data.</span>
 
@@ -818,9 +818,9 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">save_tow</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Tow.axial_lines"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.axial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">axial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">axial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the axial line of the fiber tow surface.</span>
 
@@ -881,9 +881,9 @@
             <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">axial</span> <span class="o">=</span> <span class="n">axial</span>
-        <span class="k">return</span> <span class="n">poly</span></div>
+        <span class="k">return</span> <span class="n">poly</span>
 
-<div class="viewcode-block" id="Tow.radial_lines"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.radial_lines">[docs]</a>    <span class="k">def</span> <span class="nf">radial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;resampled&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">radial_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;resampled&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the radial line of the fiber tow surface.</span>
 
@@ -954,9 +954,9 @@
             <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">radial</span> <span class="o">=</span> <span class="n">radial</span>
-        <span class="k">return</span> <span class="n">poly</span></div>
+        <span class="k">return</span> <span class="n">poly</span>
 
-<div class="viewcode-block" id="Tow.normal_cross_section"><a class="viewcode-back" href="../../source/polytex.html#polytex.tow.Tow.normal_cross_section">[docs]</a>    <span class="k">def</span> <span class="nf">normal_cross_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kriging&quot;</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">normal_cross_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kriging&quot;</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">i_size</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the normal cross section of the fiber tow surface.</span>
@@ -1182,7 +1182,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geom_features</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height</span>
 
-        <span class="k">return</span> <span class="n">cross_section</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">clipped</span></div></div>
+        <span class="k">return</span> <span class="n">cross_section</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">clipped</span></div>
 </pre></div>
 
            </div>

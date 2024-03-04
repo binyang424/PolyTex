@@ -22,23 +22,16 @@ Submodules
 polytex.textile module
 --------------------------
 
-.. automodule:: polytex.textile
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 2
 
-polytex.tow module
-----------------------
+   polytex.textile
+   polytex.tow
 
-.. automodule:: polytex.tow
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. Module contents
+.. ---------------
 
-Module contents
----------------
-
-.. automodule:: polytex
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: polytex
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

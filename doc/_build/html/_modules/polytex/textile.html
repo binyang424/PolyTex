@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.textile &mdash; PolyTex 0.3.12 documentation</title>
+  <title>polytex.textile &mdash; PolyTex 0.3.14 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -96,11 +96,48 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
+<div class="viewcode-block" id="Textile"><a class="viewcode-back" href="../../source/classes.html#polytex.textile.Textile">[docs]</a><span class="k">class</span> <span class="nc">Textile</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and</span>
 <span class="sd">    physical properties of a textile, providing functionalities for mesh generation, tow management,</span>
 <span class="sd">    and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    from_file(cls, path)</span>
+<span class="sd">        Load a textile object from a file.</span>
+<span class="sd">    __repr__()</span>
+<span class="sd">        Representation of the textile.</span>
+<span class="sd">    __getitem__(self, item)</span>
+<span class="sd">        Get tow by tow name.</span>
+<span class="sd">    add_tow(self, tow, group=None)</span>
+<span class="sd">        Add a tow to the textile.</span>
+<span class="sd">    add_group(self, name=&quot;group1&quot;, tow=None)</span>
+<span class="sd">        Groups of the tows in the textile.</span>
+<span class="sd">    remove(self, tow)</span>
+<span class="sd">        Remove a tow from the textile.</span>
+<span class="sd">    triangulate(self)</span>
+<span class="sd">        Hexahedral mesh to tetrahedral mesh. Conformal meshing.</span>
+<span class="sd">    decimate(self)</span>
+<span class="sd">        Decimate the mesh.</span>
+<span class="sd">    meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_permeability=&quot;Gebart&quot;,</span>
+<span class="sd">            surface_mesh=None, verbose=False)</span>
+<span class="sd">        Generate a mesh for the textile.</span>
+<span class="sd">    cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_permeability=&quot;Gebart&quot;,</span>
+<span class="sd">                threshold=1, verbose=False)</span>
+<span class="sd">        Label the cells of the background mesh with tow id.</span>
+<span class="sd">    export_as_vtu(self, fp, binary=True)</span>
+<span class="sd">        Export the textile mesh as a vtu file.</span>
+<span class="sd">    export_as_openfoam(self, fp, scale=1, boundary_type=None, cell_data=[&quot;yarnIndex&quot;, &quot;D&quot;])</span>
+<span class="sd">        Export the textile mesh as polyMesh folder for OpenFOAM simulation.</span>
+<span class="sd">    export_as_inp(self, fp=&quot;./mesh-C3D8R.inp&quot;, scale=1, orientation=True)</span>
+<span class="sd">        Export the textile mesh as inp file for Abaqus simulation.</span>
+<span class="sd">    save(self, path=None, filename=None, data_size=&quot;minimal&quot;)</span>
+<span class="sd">        Save the textile object to a file.</span>
+<span class="sd">    reconstruct(self)</span>
+<span class="sd">        Reconstruct the textile object from the saved file.</span>
+<span class="sd">    case_prepare(self, path=None)</span>
+<span class="sd">        Prepare a case for OpenFOAM simulation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
@@ -119,7 +156,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="s2">&quot;full&quot;</span>  <span class="c1"># size of the data to be saved</span>
 
-<div class="viewcode-block" id="Textile.from_file"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.from_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load a textile object from a file.</span>
@@ -137,7 +174,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tex&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The file must be in the format of &#39;.tex&#39;.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -208,7 +245,7 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Textile.add_tow"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.add_tow">[docs]</a>    <span class="k">def</span> <span class="nf">add_tow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_tow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a tow to the textile. If tow is already in the textile, then raise</span>
 <span class="sd">        a ValueError.</span>
@@ -241,9 +278,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tow</span><span class="o">.</span><span class="n">tex</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.add_group"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">tow</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">tow</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Groups of the tows in the textile. Each is a group of Tow objects.</span>
 <span class="sd">        if tow is None, then the group is empty.</span>
@@ -283,9 +320,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Tow already exists in the group.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.remove"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tow</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove a tow from the textile.</span>
 
@@ -315,22 +352,22 @@
                     <span class="n">group</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">tow</span><span class="p">)</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tow </span><span class="si">%s</span><span class="s2"> is removed from group </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tow</span><span class="p">,</span> <span class="n">group</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.triangulate"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.triangulate">[docs]</a>    <span class="k">def</span> <span class="nf">triangulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">triangulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Hexahedral mesh to tetrahedral mesh. Conformal meshing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Textile.decimate"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.decimate">[docs]</a>    <span class="k">def</span> <span class="nf">decimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Decimate the mesh.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Textile.meshing"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.meshing">[docs]</a>    <span class="k">def</span> <span class="nf">meshing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labeling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">meshing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labeling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
                 <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a mesh for the textile.</span>
@@ -381,9 +418,9 @@
         <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scalars</span><span class="o">=</span><span class="n">cell_rending</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.cell_labeling"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.cell_labeling">[docs]</a>    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">cell_labeling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intersection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_surface</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yarn_permeability</span><span class="o">=</span><span class="s2">&quot;Gebart&quot;</span><span class="p">,</span>
                       <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Label the cells of the background mesh with tow id.</span>
@@ -529,9 +566,9 @@
             <span class="n">intersect_info</span><span class="p">,</span> <span class="n">intersect_info_dict</span><span class="p">,</span> <span class="n">cell_data_intersect</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;intersection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_data_intersect</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.export_as_vtu"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.export_as_vtu">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_vtu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">export_as_vtu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the textile mesh as a vtu file.</span>
 
@@ -552,9 +589,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.export_as_openfoam"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.export_as_openfoam">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_openfoam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yarnIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">export_as_openfoam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yarnIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the textile mesh as polyMesh folder for OpenFOAM simulation.</span>
 
@@ -634,9 +671,9 @@
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__case_root__</span> <span class="o">=</span> <span class="n">outputDirMesh</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.export_as_inp"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.export_as_inp">[docs]</a>    <span class="k">def</span> <span class="nf">export_as_inp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="s2">&quot;./mesh-C3D8R.inp&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">export_as_inp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="s2">&quot;./mesh-C3D8R.inp&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the textile mesh as inp file for Abaqus simulation.</span>
 
@@ -659,9 +696,9 @@
                              <span class="s2">&quot;mesh with `Textile.meshing()` first.&quot;</span><span class="p">)</span>
 
         <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span>
-        <span class="n">voxel2inp</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="n">voxel2inp</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Textile.save"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_size</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_size</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the textile object to a file.</span>
 
@@ -710,9 +747,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="s2">&quot;minimal&quot;</span>
         <span class="n">pk_save</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.reconstruct"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reconstruct the textile object from the saved file. The saved file must be</span>
 <span class="sd">        in the format of &quot;.tex&quot; and loaded by the `pk_load` function.</span>
@@ -734,9 +771,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Textile.case_prepare"><a class="viewcode-back" href="../../source/polytex.html#polytex.textile.Textile.case_prepare">[docs]</a>    <span class="k">def</span> <span class="nf">case_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">case_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare a case for OpenFOAM simulation.</span>
 
@@ -785,7 +822,7 @@
         <span class="n">zip_ref</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/CaseTemplate.zip&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">OKBLUE</span> <span class="o">+</span> <span class="s2">&quot;Case preparation is done.&quot;</span> <span class="o">+</span> <span class="n">bcolors</span><span class="o">.</span><span class="n">ENDC</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span></div></div>
+        <span class="k">return</span> <span class="kc">None</span></div>
 </pre></div>
 
            </div>
