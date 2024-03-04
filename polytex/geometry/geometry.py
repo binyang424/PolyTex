@@ -102,10 +102,27 @@ def angularSort(localCo, centroid, sort=True):
 
 # used in geom() function.
 def edgeLen(localCo, boundType="rotated"):
-    '''
+    """
     the width and height of rotated_rectangle
-    boundType: rotated or parallel
-    '''
+
+    Parameters
+    ----------
+    localCo : Numpy array
+        with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+        cross-section of fiber tows, it is the coordinate in the local coordinate system with
+        its center at the centroid of the polygon).
+    boundType: string
+        rotated or parallel
+
+    Returns
+    -------
+    width : float
+        The width of the minimum rotated rectangle that contains the polygon.
+    height : float
+        The height of the minimum rotated rectangle that contains the polygon.
+    angleRotated : float
+        The angle of rotation of the minimum rotated rectangle that contains the polygon.
+    """
     polygonLocal = Polygon(localCo)
     # Returns a (minx, miny, maxx, maxy) tuple that bounds the object.
     if boundType == "parallel":
@@ -148,9 +165,16 @@ def edgeLen(localCo, boundType="rotated"):
 
 
 def normDist(localCo):
-    '''
+    """
     The normalized distance of the vertices of a polygon
-    '''
+
+    Parameters
+    ----------
+    localCo : Numpy array
+        with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+        cross-section of fiber tows, it is the coordinate in the local coordinate system with
+        its center at the centroid of the polygon).
+    """
     distance = np.zeros([len(localCo)])
     for i in np.arange(localCo.shape[0] - 1):
         distance[i + 1] = np.linalg.norm(localCo[i + 1] - localCo[i]) + distance[i]
@@ -164,17 +188,16 @@ def geom_cs(coordinate, message="OFF", sort=True):
     """
     Geometry analysis and points sorting for a cross-section of a fiber tow.
 
-        Parameters
-        ----------
-        coordinate : Numpy array
-            with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
-            Note: 只使用了前两个
+    Parameters
+    ----------
+    coordinate : Numpy array
+        with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
+        Note that only the first two columns are used for the 2D polygon.
 
-        Returns
-        -------
-        geometry file : x,y,z of points, and x,y,z of centerline
-        properties: area... ...
-
+    Returns
+    -------
+    geometry file : x,y,z of points, and x,y,z of centerline
+    properties: area... ...
     """
 
     polygon = Polygon(coordinate[:, [0, 1]])
@@ -286,7 +309,9 @@ def area_signed(points: np.ndarray) -> float:
     """
     Return the signed area of a simple polygon given the 2D coordinates of its veritces.
 
-    Note: This function is modified from open source Python library scikit-spatial:
+    Notes
+    -----
+    This function is modified from open source Python library scikit-spatial:
       skspatial.measurement — scikit-spatial documentation
       https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed)
 
@@ -312,11 +337,10 @@ def area_signed(points: np.ndarray) -> float:
     ValueError
         If the points are not 2D.
 
-    Warning
-    -------
+    Notes
+    -----
     If the number of points is less than 3, a warning is raised and the area is
     returned as 0.
-
 
     Examples
     --------

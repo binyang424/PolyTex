@@ -94,16 +94,16 @@
 <span class="sd">    Determine if point is within a bounding box (bbox)</span>
 <span class="sd">    that parallel to the principle axes of global Cartesian coordinate.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        bbox: list</span>
-<span class="sd">            bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</span>
-<span class="sd">        point: list</span>
-<span class="sd">            [x, y, z]</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bbox: list</span>
+<span class="sd">        bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</span>
+<span class="sd">    point: list</span>
+<span class="sd">        [x, y, z]</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        True or False</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    True or False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">zmin</span> <span class="o">=</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -117,24 +117,24 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a voxel background mesh.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        bbox: bounding box of the background mesh specified through a numpy array</span>
-<span class="sd">            contains the minimum and maximum coordinates of the bounding box</span>
-<span class="sd">            [xmin, xmax, ymin, ymax, zmin, zmax]</span>
-<span class="sd">        voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray</span>
-<span class="sd">            if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bbox: bounding box of the background mesh specified through a numpy array</span>
+<span class="sd">        contains the minimum and maximum coordinates of the bounding box</span>
+<span class="sd">        [xmin, xmax, ymin, ymax, zmin, zmax]</span>
+<span class="sd">    voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray</span>
+<span class="sd">        if `None`, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</span>
 
-<span class="sd">            if `float`, the voxel size is set to the float value in x, y, z directions;</span>
+<span class="sd">        if `float`, the voxel size is set to the float value in x, y, z directions;</span>
 
-<span class="sd">            if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for</span>
-<span class="sd">            the x-, y- and z- directions.</span>
+<span class="sd">        if `list`, `set`, or `tuple` of size 3, the voxel size is set to the values for</span>
+<span class="sd">        the x-, y- and z- directions.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        grid : pyvista mesh object (UnstructuredGrid)</span>
-<span class="sd">        mesh_shape : tuple</span>
-<span class="sd">            shape of the mesh</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    grid : pyvista mesh object (UnstructuredGrid)</span>
+<span class="sd">    mesh_shape : tuple</span>
+<span class="sd">        shape of the mesh</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># get the size of the bounding box</span>
     <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
@@ -166,21 +166,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the index of cells in this mesh within bounds.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mesh: pyvista mesh</span>
-<span class="sd">        bounds: type:　iterable(float)</span>
-<span class="sd">            list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh: pyvista mesh</span>
+<span class="sd">    bounds: type:　iterable(float)</span>
+<span class="sd">        list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        type: numpy.ndarray</span>
-<span class="sd">            array of cell indices within bounds.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    type: numpy.ndarray</span>
+<span class="sd">        array of cell indices within bounds.</span>
 
-<span class="sd">        Example</span>
-<span class="sd">        -------</span>
-<span class="sd">            &gt;&gt; mesh = pv.PolyData(np.random.rand(10, 3))</span>
-<span class="sd">            &gt;&gt; indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">        &gt;&gt; mesh = pv.PolyData(np.random.rand(10, 3))</span>
+<span class="sd">        &gt;&gt; indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">_vtk</span>
     <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">vtk_id_list_to_array</span>
@@ -199,20 +199,20 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Store the label of each fiber tow for intersection detection.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mesh_background: pyvista.UnstructuredGrid</span>
-<span class="sd">            background mesh</span>
-<span class="sd">        mesh_tri: pyvista.PolyData</span>
-<span class="sd">            tubular mesh of the fiber tows</span>
-<span class="sd">        tolerance: float</span>
-<span class="sd">            tolerance for the enclosed point detection</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh_background: pyvista.UnstructuredGrid</span>
+<span class="sd">        background mesh</span>
+<span class="sd">    mesh_tri: pyvista.PolyData</span>
+<span class="sd">        tubular mesh of the fiber tows</span>
+<span class="sd">    tolerance: float</span>
+<span class="sd">        tolerance for the enclosed point detection</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        mask: type: numpy.ndarray (bool)</span>
-<span class="sd">            mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</span>
-<span class="sd">        label_yarn: type: numpy.ndarray (int) (1D)</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mask: type: numpy.ndarray (bool)</span>
+<span class="sd">        mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</span>
+<span class="sd">    label_yarn: type: numpy.ndarray (int) (1D)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># extract the cell centers of the background mesh</span>
     <span class="n">cellCenters</span> <span class="o">=</span> <span class="n">mesh_background</span><span class="o">.</span><span class="n">cell_centers</span><span class="p">()</span><span class="o">.</span><span class="n">points</span>
@@ -228,16 +228,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the intersection of fiber tows from implicit surface.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        label_set_dict: dictioanry</span>
-<span class="sd">            dictionary of the label sets of the fiber tows</span>
-<span class="sd">            (key: yarn indices, value: sparse matrix of cell queries)</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    label_set_dict: dictioanry</span>
+<span class="sd">        dictionary of the label sets of the fiber tows</span>
+<span class="sd">        (key: yarn indices, value: sparse matrix of cell queries)</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        type: dictionary of the indices of intersected cell</span>
-<span class="sd">            key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    type: dictionary of the indices of intersected cell</span>
+<span class="sd">        key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">itertools</span>
     <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span><span class="p">,</span> <span class="n">coo_matrix</span>
@@ -295,23 +295,23 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate points on an ellipse.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        a : float</span>
-<span class="sd">            semi-major axis</span>
-<span class="sd">        b : float</span>
-<span class="sd">            semi-minor axis</span>
-<span class="sd">        h : float</span>
-<span class="sd">            height</span>
-<span class="sd">        theta_res : int, optional</span>
-<span class="sd">            number of points, by default 5.</span>
-<span class="sd">        h_res:  int, optional</span>
-<span class="sd">            number of points. by default 5.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : float</span>
+<span class="sd">        semi-major axis</span>
+<span class="sd">    b : float</span>
+<span class="sd">        semi-minor axis</span>
+<span class="sd">    h : float</span>
+<span class="sd">        height</span>
+<span class="sd">    theta_res : int, optional</span>
+<span class="sd">        number of points, by default 5.</span>
+<span class="sd">    h_res:  int, optional</span>
+<span class="sd">        number of points. by default 5.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        points: numpy.ndarray</span>
-<span class="sd">            vertices on the ellipse surface (x, y, z).</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices on the ellipse surface (x, y, z).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">theta_resolution</span> <span class="o">=</span> <span class="n">theta_res</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">theta_resolution</span><span class="p">)</span>
@@ -331,21 +331,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a tubular mesh.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        theta_res: int</span>
-<span class="sd">            number of points</span>
-<span class="sd">        h_res: int</span>
-<span class="sd">            number of points</span>
-<span class="sd">        vertices: numpy.ndarray</span>
-<span class="sd">            vertices of the tubular mesh, shape (n, 3)</span>
-<span class="sd">            The vertices of the tubular mesh are sorted in the radial direction first,</span>
-<span class="sd">            then in the vertical direction. The first vertex is repeated</span>
-<span class="sd">            at the end of each radial direction point list.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    theta_res: int</span>
+<span class="sd">        number of points</span>
+<span class="sd">    h_res: int</span>
+<span class="sd">        number of points</span>
+<span class="sd">    vertices: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh, shape (n, 3)</span>
+<span class="sd">        The vertices of the tubular mesh are sorted in the radial direction first,</span>
+<span class="sd">        then in the vertical direction. The first vertex is repeated</span>
+<span class="sd">        at the end of each radial direction point list.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        mesh : points on the tubular mesh</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mesh : points on the tubular mesh</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
     <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">CylinderStructured</span><span class="p">(</span><span class="n">theta_resolution</span><span class="o">=</span><span class="n">theta_res</span><span class="p">,</span>
@@ -360,26 +360,26 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert PyVista flavor data structure to meshio.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 
-<span class="sd">        mesh: PyVista.DataSet</span>
-<span class="sd">            Any PyVista mesh/spatial data type.</span>
-<span class="sd">        theta_res:</span>
-<span class="sd">            number of points in the radial direction</span>
-<span class="sd">        correction: boolean</span>
-<span class="sd">            if True, tubular mesh will be closed at the ends with triangles.</span>
+<span class="sd">    mesh: PyVista.DataSet</span>
+<span class="sd">        Any PyVista mesh/spatial data type.</span>
+<span class="sd">    theta_res:</span>
+<span class="sd">        number of points in the radial direction</span>
+<span class="sd">    correction: boolean</span>
+<span class="sd">        if True, tubular mesh will be closed at the ends with triangles.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        points: numpy.ndarray</span>
-<span class="sd">            vertices of the tubular mesh</span>
-<span class="sd">        cells: list</span>
-<span class="sd">            list of cells</span>
-<span class="sd">        point_data: numpy.ndarray</span>
-<span class="sd">            point data</span>
-<span class="sd">        cell_data: numpy.ndarray</span>
-<span class="sd">            cell data</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
+<span class="sd">    point_data: numpy.ndarray</span>
+<span class="sd">        point data</span>
+<span class="sd">    cell_data: numpy.ndarray</span>
+<span class="sd">        cell data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">meshio</span>
@@ -461,23 +461,23 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Close the ends of the tubular mesh with triangles.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        cells: list</span>
-<span class="sd">            list of cells</span>
-<span class="sd">        points: numpy.ndarray</span>
-<span class="sd">            vertices of the tubular mesh</span>
-<span class="sd">        theta_res: int</span>
-<span class="sd">            number of points in the radial direction of the tubular mesh. The first and the last</span>
-<span class="sd">            vertex of each radial direction point list are repeated. However, they are considered</span>
-<span class="sd">            as two different points when considering theta resolution (theta_res).</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    theta_res: int</span>
+<span class="sd">        number of points in the radial direction of the tubular mesh. The first and the last</span>
+<span class="sd">        vertex of each radial direction point list are repeated. However, they are considered</span>
+<span class="sd">        as two different points when considering theta resolution (theta_res).</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        points: numpy.ndarray</span>
-<span class="sd">            vertices of the tubular mesh</span>
-<span class="sd">        cells: list</span>
-<span class="sd">            list of cells</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy.ndarray</span>
+<span class="sd">        vertices of the tubular mesh</span>
+<span class="sd">    cells: list</span>
+<span class="sd">        list of cells</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">theta_res</span> <span class="o">=</span> <span class="n">theta_res</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">cells_connectivity</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -529,22 +529,22 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        points: (n, 3) array</span>
-<span class="sd">            vertices</span>
-<span class="sd">        cells: (m, 4) array</span>
-<span class="sd">            connectivity</span>
-<span class="sd">        save: str</span>
-<span class="sd">            The path and file name of the vtk file to be saved (&quot;./tetra.vtk&quot;).</span>
-<span class="sd">            If None, the vtk file will not be saved.</span>
-<span class="sd">        binary: bool</span>
-<span class="sd">            whether to save the mesh in binary format</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    points: (n, 3) array</span>
+<span class="sd">        vertices</span>
+<span class="sd">    cells: (m, 4) array</span>
+<span class="sd">        connectivity</span>
+<span class="sd">    save: str</span>
+<span class="sd">        The path and file name of the vtk file to be saved (&quot;./tetra.vtk&quot;).</span>
+<span class="sd">        If None, the vtk file will not be saved.</span>
+<span class="sd">    binary: bool</span>
+<span class="sd">        whether to save the mesh in binary format</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        grid: pyvista.UnstructuredGrid</span>
-<span class="sd">            UnstructuredGrid tetrahedral mesh</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    grid: pyvista.UnstructuredGrid</span>
+<span class="sd">        UnstructuredGrid tetrahedral mesh</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_cells</span> <span class="o">=</span> <span class="n">cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">offset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_cells</span><span class="p">)])</span>

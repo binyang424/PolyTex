@@ -101,75 +101,6 @@
 <span class="sd">    A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and</span>
 <span class="sd">    physical properties of a textile, providing functionalities for mesh generation, tow management,</span>
 <span class="sd">    and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</span>
-
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
-<span class="sd">        A descriptive name for the textile.</span>
-<span class="sd">    groups : dict</span>
-<span class="sd">        A dictionary containing groups of fiber tows within the textile. Tow.name serves as the key,</span>
-<span class="sd">        and Tow object serves as the value.</span>
-<span class="sd">    bounds</span>
-<span class="sd">        Return the bounding box of the entire textile structure. The bounding box of the textile is</span>
-<span class="sd">        calculated by traversing all the fiber tows in the textile.</span>
-<span class="sd">    mesh : pyvista mesh object (UnstructuredGrid)</span>
-<span class="sd">        The mesh representation of the textile.</span>
-<span class="sd">    mesh_shape : numpy.ndarray</span>
-<span class="sd">        The shape of the mesh object in the format of [nx, ny, nz].</span>
-<span class="sd">    mesh_bounds : numpy.ndarray</span>
-<span class="sd">        The bounding box coordinates of the textile mesh. The format is [xmin, xmax, ymin, ymax, zmin, zmax].</span>
-<span class="sd">        The bounding box is specified by the user when generating the mesh. If the bounding box is not specified,</span>
-<span class="sd">        then the bounding box is set to the bounding box of the textile. </span>
-<span class="sd">    voxel_size : float</span>
-<span class="sd">        The size of voxels used in mesh generation. </span>
-<span class="sd">    tex : list</span>
-<span class="sd">        A list representing the linear density of fiber tows in the textile.</span>
-<span class="sd">    n_tows : int</span>
-<span class="sd">        Return the total number of fiber tows in the textile.</span>
-<span class="sd">    items : list</span>
-<span class="sd">        Return a list of tow names, optionally reordered by tow number if applicable.</span>
-
-<span class="sd">    Methods</span>
-<span class="sd">    -------</span>
-<span class="sd">    from_file(path)</span>
-<span class="sd">        Load a textile object from a file.</span>
-
-<span class="sd">    add_tow(tow, group=None)</span>
-<span class="sd">        Add a fiber tow to the textile, optionally assigning it to a specified group.</span>
-
-<span class="sd">    add_group(name=&quot;group1&quot;, tow=None)</span>
-<span class="sd">        Add a group to the textile, allowing organization of fiber tows.</span>
-
-<span class="sd">    remove(tow)</span>
-<span class="sd">        Remove a specific fiber tow from the textile.</span>
-
-<span class="sd">    triangulate()</span>
-<span class="sd">        Perform hexahedral to tetrahedral mesh conversion with conformal meshing.</span>
-
-<span class="sd">    decimate()</span>
-<span class="sd">        Reduce the complexity of the textile mesh.</span>
-
-<span class="sd">    meshing(bbox, voxel_size=None, show=False, labeling=False, surface_mesh=None, verbose=False)</span>
-<span class="sd">        Generate a mesh for the textile, providing options for visualization and labeling.</span>
-
-<span class="sd">    cell_labeling(surface_mesh=None, intersection=False, check_surface=False, verbose=False)</span>
-<span class="sd">        Label the cells of the background mesh with tow IDs, allowing for easy identification.</span>
-
-<span class="sd">    export_as_openfoam(fp, scale=1, boundary_type=None, cell_data=[&quot;yarnIndex&quot;, &quot;D&quot;])</span>
-<span class="sd">        Export the textile mesh as a polyMesh folder for OpenFOAM simulations, providing options for customization.</span>
-
-<span class="sd">    export_as_inp(fp=&quot;./mesh-C3D8R.inp&quot;, scale=1, orientation=True)</span>
-<span class="sd">        Export the textile mesh as an inp file for Abaqus simulations.</span>
-
-<span class="sd">    save(path=None, filename=None, data_size=&quot;minimal&quot;)</span>
-<span class="sd">        Save the textile object to a file, with options to control the amount of data saved.</span>
-
-<span class="sd">    reconstruct()</span>
-<span class="sd">        Reconstruct the textile object from a saved file in the format of &quot;.tex&quot;. It is only used when </span>
-<span class="sd">        load a textile object saved in the format of &quot;.tex&quot; and the data_size is &quot;minimal&quot;.</span>
-
-<span class="sd">    case_prepare(path=None)</span>
-<span class="sd">        Prepare a simulation case for OpenFOAM, facilitating the setup process for simulations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;textile&quot;</span><span class="p">):</span>
@@ -193,14 +124,14 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load a textile object from a file.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            path : str</span>
-<span class="sd">                Path of the file to be loaded.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path of the file to be loaded.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            Textile object.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Textile object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check if the file is in the format of &quot;.tex&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tex&quot;</span><span class="p">):</span>
@@ -629,19 +560,22 @@
 
 <span class="sd">        The structure of the output case folder is:</span>
 
-<span class="sd">        fp/ textile.name/ --|</span>
-<span class="sd">                            |--0 --|</span>
-<span class="sd">                            |      |--D       # resistance coefficient (inverse of permeability tensor)</span>
-<span class="sd">                            |      |--yarnIndex</span>
-<span class="sd">                            |      |-- ...</span>
-<span class="sd">                            |--constant --|</span>
-<span class="sd">                            |             |--polyMesh --|</span>
-<span class="sd">                            |                           |--boundary</span>
-<span class="sd">                            |                           |--faces</span>
-<span class="sd">                            |                           |--neighbour</span>
-<span class="sd">                            |                           |--owner</span>
-<span class="sd">                            |                           |--points</span>
-<span class="sd">                            |                           |-- ...</span>
+<span class="sd">        :: </span>
+
+<span class="sd">             fp/ textile.name/</span>
+<span class="sd">            ├── 0          </span>
+<span class="sd">            │   ├── D</span>
+<span class="sd">            │   ├── yarnIndex</span>
+<span class="sd">            │   └── ...       </span>
+<span class="sd">            └── constant          </span>
+<span class="sd">                  ├── polyMesh</span>
+<span class="sd">                  │   ├── boundary</span>
+<span class="sd">                  │   ├── faces</span>
+<span class="sd">                  │   ├── neighbour</span>
+<span class="sd">                  │   ├── owner </span>
+<span class="sd">                  │   ├── points</span>
+<span class="sd">                  │   ├── ... </span>
+<span class="sd">                  └── ...     </span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
@@ -783,13 +717,15 @@
 <span class="sd">        Reconstruct the textile object from the saved file. The saved file must be</span>
 <span class="sd">        in the format of &quot;.tex&quot; and loaded by the `pk_load` function.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            None.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            None.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        :noindex:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># meshing</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">==</span> <span class="s2">&quot;minimal&quot;</span><span class="p">:</span>
@@ -804,16 +740,18 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare a case for OpenFOAM simulation.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            path : str</span>
-<span class="sd">                Path of the case to be prepared. The default is None. If `path` is None,</span>
-<span class="sd">                it is set to the root directory of the OpenFOAM mesh generated by</span>
-<span class="sd">                `Textile.export_as_openfoam()`.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path of the case to be prepared. The default is None. If `path` is None,</span>
+<span class="sd">            it is set to the root directory of the OpenFOAM mesh generated by</span>
+<span class="sd">            `Textile.export_as_openfoam()`.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            None.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        :noindex:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__case_root__</span>

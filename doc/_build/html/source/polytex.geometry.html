@@ -117,9 +117,9 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is an open curve defined by a list of points in the order of connection. It is
-created by using composition instead of inheritance of PolyKriging.geometry.Point.</p>
+created by using composition instead of inheritance of polytex.geometry.Point.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Curve</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Curve</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Curve</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">points</span>
@@ -320,7 +320,7 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 </dl>
 <p>TODO : A detailed documentation will be added in the future.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Line</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Line</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">l1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
@@ -635,13 +635,9 @@ The line is defined by two points: p1 and p2. This is a wrap of sympy.geometry.l
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a parametric curve. It is defined by a function and
 a parameter.</p>
-<blockquote>
-<div><p>The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</p>
-</div></blockquote>
-<dl class="simple">
-<dt>documentation of sympy.geometry.curve.Curve for more information.</dt><dd><p><a class="reference external" href="https://docs.sympy.org/latest/modules/geometry/curves.html">https://docs.sympy.org/latest/modules/geometry/curves.html</a></p>
-</dd>
-</dl>
+<p>The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the
+documentation of sympy.geometry.curve.Curve for more information.
+<a class="reference external" href="https://docs.sympy.org/latest/modules/geometry/curves.html">https://docs.sympy.org/latest/modules/geometry/curves.html</a></p>
 <p>TODO : A detailed documentation will be added in the future.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve</span>
@@ -677,8 +673,15 @@ a parameter.</p>
 <span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve.eval" title="Permalink to this definition"></a></dt>
 <dd><p>Evaluate the curve at a given parameter value. The parameter value
 should be within the limits. Otherwise, an error will be raised.</p>
-<dl class="simple">
-<dt>t_value<span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>curve</strong> – The evaluated curve.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Curve object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -830,7 +833,7 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <td><p>Return True if o is inside (not on or outside) the boundaries of self.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.geometry.basic.ParamCurve3D.eval" title="polytex.geometry.basic.ParamCurve3D.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>(t_value)</p></td>
-<td><p>t : float or array_like</p></td>
+<td><p>Evaluate the curve at a given parameter value.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">evalf</span></code>([n, subs, maxn, chop, strict, quad, ...])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
@@ -961,8 +964,17 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve3D.eval">
 <span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve3D.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve3D.eval" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>t<span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+<dd><p>Evaluate the curve at a given parameter value. The parameter value
+should be within the limits. Otherwise, an error will be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_value</strong> (<em>float</em><em> or </em><em>array_like</em>) – The parameter value for evaluation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>curve</strong> – The evaluated curve.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Curve object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1020,9 +1032,22 @@ If no point given, the curve will be rotated around origin.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve3D.translate">
 <span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve3D.translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve3D.translate" title="Permalink to this definition"></a></dt>
-<dd><p>Translate the Curve by (x, y, z).
-:returns: returns a translated curve.
-:rtype: Curve</p>
+<dd><p>Translate the Curve by (x, y, z).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – The translation in the x direction.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – The translation in the y direction.</p></li>
+<li><p><strong>z</strong> (<em>float</em>) – The translation in the z direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>returns a translated curve.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve">Curve</a></p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
@@ -1444,12 +1469,10 @@ or by three points.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Plane.function">
 <span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
 <dd><p>Return the equation of the plane as a function of x, y and z.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="rubric">Notes</p>
 <p>normal = (a, b, c)
 point = (x0, y0, z0)
 Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1464,7 +1487,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <dd class="field-odd"><p>A lambda function of x, y and z.</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
+<p class="rubric">Examples</p>
 <p>Create a plane from a point and a normal vector
 &gt;&gt;&gt; from polytex.geometry import Point, Plane
 &gt;&gt;&gt; p1 = Point([1, 1, 1])
@@ -2191,10 +2214,8 @@ is the same for all the-cross sections.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Tube.mesh">
 <span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Tube.mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Tube.mesh" title="Permalink to this definition"></a></dt>
 <dd><p>TODO : raise TypeError(“Given points must be a sequence or an array.”)</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="rubric">Notes</p>
 <p>theta_res should be 1 less then else where. To be fixed in the future.</p>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2261,7 +2282,7 @@ rectangle for the geometric figure.</p>
 <p>A vector class inheriting from Point. This class is used to represent
 vectors in n-dimensional space. The shape of the array is (1, n).</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polykriging.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sum12</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -2599,94 +2620,53 @@ Otherwise, the angle is in degrees.</p>
 <dt class="sig sig-object py" id="polytex.geometry.geometry.angularSort">
 <span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">angularSort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centroid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#angularSort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.angularSort" title="Permalink to this definition"></a></dt>
 <dd><p>Sort the vertices of a 2D polygon in angular order. It can be a convex or concave polygon.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>localCo</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 colums. The x, y coordinate components of the vertices of the polygon (For the
-cross-section of fiber tows, it is the coordinate in the local coordinate system with</p>
-<blockquote>
-<div><p>its center at the centroid of the polygon).</p>
-</div></blockquote>
-</dd>
-<dt><strong>centroid</strong><span class="classifier">Numpy array</span></dt><dd><p>with 2 colums. The x, y coordinate components of the centroid of the polygon.</p>
-</dd>
-<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
-not sorted and returned following the original order with angular position
-for each input vertices.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>coorSort</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 colums. The x, y coordinate components of the vertices of the polygon sorted in
-angular order. The third column is the z coordinate in 3d case.</p>
-</dd>
-<dt><strong>angle</strong><span class="classifier">Numpy array</span></dt><dd><p>with 1 colums. The angular position of the vertices of the polygon in degree. The two
-returns are sorted in the same order if sort is True. Otherwise, the two returns are
-not sorted, and is following the original order of the input vertices.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="polytex.geometry.geometry.area_signed">
-<span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">area_signed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#area_signed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.area_signed" title="Permalink to this definition"></a></dt>
-<dd><p>Return the signed area of a simple polygon given the 2D coordinates of its veritces.</p>
-<dl class="simple">
-<dt>Note: This function is modified from open source Python library scikit-spatial:</dt><dd><p>skspatial.measurement — scikit-spatial documentation
-<a class="reference external" href="https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed">https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed</a>)</p>
-</dd>
-</dl>
-<p>The signed area is computed using the shoelace algorithm. A positive area is
-returned for a polygon whose vertices are given by a counter-clockwise
-sequence of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>points</strong> (<em>array_like</em>) – Input 2D points of the polygon in the shape (n, 2). If the polygon is
-3D, An error is raised. Note that the points have to be ordered in a
-clockwise or counter-clockwise manner. Otherwise, the area will be
-non-sense.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+cross-section of fiber tows, it is the coordinate in the local coordinate system with
+its center at the centroid of the polygon).</p></li>
+<li><p><strong>centroid</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the centroid of the polygon.</p></li>
+<li><p><strong>sort</strong> (<em>Boolean</em>) – If True, the vertices are sorted in angular order. If False, the vertices are
+not sorted and returned following the original order with angular position
+for each input vertices.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>area_signed</strong> – The signed area of the polygon.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the points are not 2D.</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>coorSort</strong> (<em>Numpy array</em>) – with 3 columns. The x, y coordinate components of the vertices of the polygon sorted in
+angular order. The third column is the z coordinate in 3D case.</p></li>
+<li><p><strong>angle</strong> (<em>Numpy array</em>) – with 1 column. The angular position of the vertices of the polygon in degrees. The two
+returns are sorted in the same order if sort is True. Otherwise, the two returns are
+not sorted, and are following the original order of the input vertices.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If the number of points is less than 3, a warning is raised and the area is
-returned as 0.</p>
-</div>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">area_signed</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="go">0.5</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="go">-0.5</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area_signed</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="go">-3.0</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polytex.geometry.geometry.edgeLen">
 <span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">edgeLen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rotated'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#edgeLen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.edgeLen" title="Permalink to this definition"></a></dt>
-<dd><p>the width and height of rotated_rectangle
-boundType: rotated or parallel</p>
+<dd><p>the width and height of rotated_rectangle</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+cross-section of fiber tows, it is the coordinate in the local coordinate system with
+its center at the centroid of the polygon).</p></li>
+<li><p><strong>boundType</strong> (<em>string</em>) – rotated or parallel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>width</strong> (<em>float</em>) – The width of the minimum rotated rectangle that contains the polygon.</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – The height of the minimum rotated rectangle that contains the polygon.</p></li>
+<li><p><strong>angleRotated</strong> (<em>float</em>) – The angle of rotation of the minimum rotated rectangle that contains the polygon.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -2695,17 +2675,15 @@ boundType: rotated or parallel</p>
 <dd><p>Geometry analysis and points sorting for a cross-section of a fiber tow.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>coordinate</strong><span class="classifier">Numpy array</span></dt><dd><p>with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
-Note: 只使用了前两个</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>coordinate</strong> (<em>Numpy array</em>) – with 3 colums. The x, y, z coordinate components of the vertices of the polygon.
+Note that only the first two columns are used for the 2D polygon.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>geometry file</strong><span class="classifier">x,y,z of points, and x,y,z of centerline</span></dt><dd></dd>
-<dt>properties: area… …</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>geometry file</strong> (<em>x,y,z of points, and x,y,z of centerline</em>)</p></li>
+<li><p><strong>properties</strong> (<em>area… …</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2717,25 +2695,22 @@ Note: 只使用了前两个</p>
 direction of the cross-sections. It also serves as the label of each cross-section.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>surf_points</strong><span class="classifier">array_like</span></dt><dd><p>The surface points for each cross-section. the last column (z-axis) should be along the extension
-direction of the cross-sections. It also serves as the label of each cross-section.</p>
-</dd>
-<dt><strong>sort</strong><span class="classifier">Boolean</span></dt><dd><p>If True, the vertices are sorted in angular order. If False, the vertices are
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>surf_points</strong> (<em>array_like</em>) – The surface points for each cross-section. the last column (z-axis) should be along the extension
+direction of the cross-sections. It also serves as the label of each cross-section.</p></li>
+<li><p><strong>sort</strong> (<em>Boolean</em>) – If True, the vertices are sorted in angular order. If False, the vertices are
 not sorted and returned following the original order with angular position
-for each input vertices.</p>
-</dd>
-</dl>
+for each input vertices.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>df_geom</strong><span class="classifier">DataFrame</span></dt><dd><p>The geometrical features of each cross-section. The columns are:
-[Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</p>
-</dd>
-<dt><strong>df_coo</strong><span class="classifier">DataFrame</span></dt><dd><p>The coordinates of each cross-section. The columns are:
-[distance, normalized distance, angular position (degree), X, Y, Z)]</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_geom</strong> (<em>DataFrame</em>) – The geometrical features of each cross-section. The columns are:
+[Area, Perimeter, Width, Height, AngleRotated, Circularity, centroidX, centroidY, centroidZ]</p></li>
+<li><p><strong>df_coo</strong> (<em>DataFrame</em>) – The coordinates of each cross-section. The columns are:
+[distance, normalized distance, angular position (degree), X, Y, Z)]</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2744,6 +2719,13 @@ for each input vertices.</p>
 <dt class="sig sig-object py" id="polytex.geometry.geometry.normDist">
 <span class="sig-prename descclassname"><span class="pre">polytex.geometry.geometry.</span></span><span class="sig-name descname"><span class="pre">normDist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localCo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/geometry.html#normDist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.geometry.normDist" title="Permalink to this definition"></a></dt>
 <dd><p>The normalized distance of the vertices of a polygon</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>localCo</strong> (<em>Numpy array</em>) – with 2 columns. The x, y coordinate components of the vertices of the polygon (For the
+cross-section of fiber tows, it is the coordinate in the local coordinate system with
+its center at the centroid of the polygon).</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -2804,14 +2786,12 @@ the z-axis.</p>
 rotating the global coordinate system to align its z-axis with
 a normal vector from the origin to a point (namely, no translation
 is considered).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="rubric">Notes</p>
 <p>No translation is considered. The origin of the global coordinate
 system is assumed to be the origin of the local coordinate system.
 The user should translate the local coordinate system to the origin
 before calling this function and then re-translate the local
 coordinate system to the desired location.</p>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>normal</strong> (<em>list</em><em> or </em><em>array</em>) – The normal vector from the origin to a point.</p>
@@ -2849,14 +2829,12 @@ by pre-multiplying the rotation matrices.</p>
 <dd><p>This function returns the euler angles (phi, theta, psi) for
 rotating the global coordinate system to align its z-axis with
 the z_new vector and its x-axis with the x_new vector.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="rubric">Notes</p>
 <p>No translation is considered. The origin of the global coordinate
 system is assumed to be the origin of the local coordinate system.
 The user should translate the local coordinate system to the origin
 before calling this function and then re-translate the local
 coordinate system to the desired location.</p>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

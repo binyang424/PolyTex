@@ -19,7 +19,7 @@ Textile objects
 Primitive geometries
 ----------------------------------
 .. currentmodule:: polytex.geometry.basic
-.. autoclass:: Point, Vector, Line, Curve, Polygon, Ellipse, Plane, Tube
+.. autoclass:: Point, Vector, Line, Curve, Polygon, Plane, Tube
    :members: 
    :show-inheritance:
    

@@ -22,53 +22,15 @@ class Tow:
     It provides functionality for calculating the geometry features, resampling, and 
     smoothing the fiber tow surface.
 
-    Attributes
-    ----------
-    name : str
-        The name or identifier for the fiber tow. Default is "Tow". It can be any string that helps
-        users to identify the tow.
-    tex : float
-        The linear density of the tow in tex.
-    order : str
-        It is preferred to set the last column of the surf_points as the coordinate in
-        the direction that is perpendicular to the image slices for geometry analysis,
-        parametrization and kriging resampling. Hence, you may have reordered the columns.
-        Here, you can specify the order of the columns in the reordered points. Default is "xyz".
-        The other options are "xzy", "yxz", "yzx", "zxy", "zyx". The output coordinate will
-        be reordered in the right order (xyz) according to the order specified here.
-    resolution : float
-        The resolution of the MicroCT image used to generate the tow dataset. Default is None.
-        This is only stored as an attribute for future use.
-    surf_points : ndarray
-        The surface points of the tow. It stores the coordinates of the points input by the user.
-    geom_features : dataframe
-        The geometry features of each cross-section of the tow. The features include
-        the 'Area', 'Perimeter', 'Width', 'Height', 'AngleRotated', 'Circularity', 'centroidX', 
-        'centroidY', and 'centroidZ'.
-    coordinates : dataframe
-        The parametrilized coordinates of the tow. It includes the geodesic 'distance'
-        and the normalized distance 'norm_distance' from the start point of the parametric
-        plane to the current point, the 'angular position (degree)', and the corresponding
-        'X', 'Y', and 'Z' coordinates.
-    theta_res : float
-        The number of points to describe the profile of a tow cross-section in the radial
-        direction.
-    h_res : float
-        The number of cross-sections to describe the profile of a tow in the axial
-        direction.
-    orientation : ndarray
-        The orientation of the tow calculated from the tangent of centerline of the tow.
-        (initialized in Tow.trajectory)
-
     Examples
     --------
-    >>> import polykriging as pk
+    >>> import polytex as ptx
     >>> import numpy as np
     >>>
-    >>> path = pk.example("surface points")
-    >>> surf_points = pk.pk_load(path).to_numpy()
+    >>> path = ptx.example("surface points")
+    >>> surf_points = ptx.pk_load(path).to_numpy()
     >>> coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm
-    >>> tow = pk.Tow(surf_points=coordinates, tex=0, name="Tow") # PolyKriging Tow class
+    >>> tow = ptx.Tow(surf_points=coordinates, tex=0, name="Tow") # PolyKriging Tow class
     >>> df_coord = tow.coordinates  # parametric coordinates of the tow
     >>> df_geom = tow.geom_features  # geometrical features of the tow
     >>>
@@ -196,15 +158,15 @@ class Tow:
         """
         Initialize the tow from a saved tow file.
 
-            Parameters
-            ----------
-            path : str
-                The path to the saved tow file. The file format is .tow.
+        Parameters
+        ----------
+        path : str
+            The path to the saved tow file. The file format is .tow.
 
-            Returns
-            -------
-            tow : Tow
-                The Tow object.
+        Returns
+        -------
+        tow : Tow
+            The Tow object.
         """
 
         # check if the file extension is .tow
@@ -261,7 +223,7 @@ class Tow:
         save_path : str, optional
             The path to save the kernel density estimation. Default is None. If None, the
             kernel density estimation will not be saved. The file format is .stat and can be
-            loaded by the function `polykriging.pk_load`.
+            loaded by the function `polytex.pk_load`.
 
         Returns
         -------
@@ -844,7 +806,7 @@ class Tow:
         Generate the radial line of the fiber tow surface.
 
         Parameters
-        -----------
+        ----------
         save_path : str, optional
             The path to save the radial line data as a vtk mesh file.
         plot : bool, optional

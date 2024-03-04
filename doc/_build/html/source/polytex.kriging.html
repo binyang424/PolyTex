@@ -171,6 +171,19 @@ further than the threshold.</p>
 <dt class="sig sig-object py" id="polytex.kriging.curve2D.buildM_deriv">
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">buildM_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#buildM_deriv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.buildM_deriv" title="Permalink to this definition"></a></dt>
 <dd><p>Build the matrix M for the derivative kriging system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array</em>) – x points</p></li>
+<li><p><strong>xDeriv</strong> (<em>array</em>) – x points for derivative</p></li>
+<li><p><strong>name_drift</strong> (<em>function</em>) – derivative functions</p></li>
+<li><p><strong>name_cov</strong> (<em>function</em>) – covariance functions</p></li>
+<li><p><strong>covFuncs_deriv</strong> (<em>function</em>) – derivative of covariance functions</p></li>
+<li><p><strong>covFuncs_deriv2</strong> (<em>function</em>) – second derivative of covariance functions</p></li>
+<li><p><strong>nugg</strong> (<em>float</em>) – nugget effect (variance)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

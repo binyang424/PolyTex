@@ -35,8 +35,8 @@ extensions = ["sphinx.ext.napoleon",
 			  ]
 
 # autosummaries from source-files
-autosummary_generate = True		  
 autodoc_default_flags = ["members", "inherited-members"]
+autosummary_generate = True
 
 # dont show __init__ docstring
 autoclass_content = "class"

@@ -39,7 +39,7 @@ def write(filename, x, y, z, mode='binary'):
         STL file format, 'ascii' or 'binary'(default).
 
     Examples
-    ----------
+    --------
     import numpy as np
     import surf2stl
 
@@ -143,7 +143,7 @@ def tri_write(filename, x, y, z, tri, mode='binary'):
         STL file format, 'ascii' or 'binary'(default).
 
     Examples
-    ----------
+    --------
     import numpy as np
     from scipy.spatial import Delaunay
     import surf2stl

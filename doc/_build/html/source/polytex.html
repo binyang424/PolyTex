@@ -238,7 +238,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="polytex.geometry.html#module-polytex.geometry.geometry">polytex.geometry.geometry</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html#polytex.geometry.geometry.angularSort"><code class="docutils literal notranslate"><span class="pre">angularSort()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html#polytex.geometry.geometry.area_signed"><code class="docutils literal notranslate"><span class="pre">area_signed()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html#polytex.geometry.geometry.edgeLen"><code class="docutils literal notranslate"><span class="pre">edgeLen()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html#polytex.geometry.geometry.geom_cs"><code class="docutils literal notranslate"><span class="pre">geom_cs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="polytex.geometry.html#polytex.geometry.geometry.geom_tow"><code class="docutils literal notranslate"><span class="pre">geom_tow()</span></code></a></li>
@@ -443,202 +442,14 @@
 <p>A class representing a textile composed of multiple fiber tows. This class encapsulates the geometric and
 physical properties of a textile, providing functionalities for mesh generation, tow management,
 and export capabilities for simulation platforms such as OpenFOAM and Abaqus.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#polytex.textile.Textile.name" title="Permalink to this definition"></a></dt>
-<dd><p>A descriptive name for the textile.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.groups">
-<span class="sig-name descname"><span class="pre">groups</span></span><a class="headerlink" href="#polytex.textile.Textile.groups" title="Permalink to this definition"></a></dt>
-<dd><p>A dictionary containing groups of fiber tows within the textile. Tow.name serves as the key,
-and Tow object serves as the value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.bounds">
-<span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.textile.Textile.bounds" title="Permalink to this definition"></a></dt>
-<dd><p>Return the bounding box of the entire textile structure. The bounding box of the textile is
-calculated by traversing all the fiber tows in the textile.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.mesh">
-<span class="sig-name descname"><span class="pre">mesh</span></span><a class="headerlink" href="#polytex.textile.Textile.mesh" title="Permalink to this definition"></a></dt>
-<dd><p>The mesh representation of the textile.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pyvista mesh object (UnstructuredGrid)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.mesh_shape">
-<span class="sig-name descname"><span class="pre">mesh_shape</span></span><a class="headerlink" href="#polytex.textile.Textile.mesh_shape" title="Permalink to this definition"></a></dt>
-<dd><p>The shape of the mesh object in the format of [nx, ny, nz].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.mesh_bounds">
-<span class="sig-name descname"><span class="pre">mesh_bounds</span></span><a class="headerlink" href="#polytex.textile.Textile.mesh_bounds" title="Permalink to this definition"></a></dt>
-<dd><p>The bounding box coordinates of the textile mesh. The format is [xmin, xmax, ymin, ymax, zmin, zmax].
-The bounding box is specified by the user when generating the mesh. If the bounding box is not specified,
-then the bounding box is set to the bounding box of the textile.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.voxel_size">
-<span class="sig-name descname"><span class="pre">voxel_size</span></span><a class="headerlink" href="#polytex.textile.Textile.voxel_size" title="Permalink to this definition"></a></dt>
-<dd><p>The size of voxels used in mesh generation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.tex">
-<span class="sig-name descname"><span class="pre">tex</span></span><a class="headerlink" href="#polytex.textile.Textile.tex" title="Permalink to this definition"></a></dt>
-<dd><p>A list representing the linear density of fiber tows in the textile.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.n_tows">
-<span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#polytex.textile.Textile.n_tows" title="Permalink to this definition"></a></dt>
-<dd><p>Return the total number of fiber tows in the textile.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.textile.Textile.items">
-<span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#polytex.textile.Textile.items" title="Permalink to this definition"></a></dt>
-<dd><p>Return a list of tow names, optionally reordered by tow number if applicable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.from_file">
-<span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.from_file" title="Permalink to this definition"></a></dt>
-<dd><p>Load a textile object from a file.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.add_tow">
-<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
-<dd><p>Add a fiber tow to the textile, optionally assigning it to a specified group.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.add_group">
-<span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'group1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_group" title="Permalink to this definition"></a></dt>
-<dd><p>Add a group to the textile, allowing organization of fiber tows.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.remove" title="Permalink to this definition"></a></dt>
-<dd><p>Remove a specific fiber tow from the textile.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.triangulate">
-<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
-<dd><p>Perform hexahedral to tetrahedral mesh conversion with conformal meshing.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.decimate">
-<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.decimate" title="Permalink to this definition"></a></dt>
-<dd><p>Reduce the complexity of the textile mesh.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.meshing">
-<span class="sig-name descname"><span class="pre">meshing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labeling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.meshing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.meshing" title="Permalink to this definition"></a></dt>
-<dd><p>Generate a mesh for the textile, providing options for visualization and labeling.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.cell_labeling">
-<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
-<dd><p>Label the cells of the background mesh with tow IDs, allowing for easy identification.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_openfoam">
-<span class="sig-name descname"><span class="pre">export_as_openfoam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['yarnIndex',</span> <span class="pre">'D']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_openfoam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_openfoam" title="Permalink to this definition"></a></dt>
-<dd><p>Export the textile mesh as a polyMesh folder for OpenFOAM simulations, providing options for customization.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_inp">
-<span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_inp" title="Permalink to this definition"></a></dt>
-<dd><p>Export the textile mesh as an inp file for Abaqus simulations.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.save" title="Permalink to this definition"></a></dt>
-<dd><p>Save the textile object to a file, with options to control the amount of data saved.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.reconstruct">
-<span class="sig-name descname"><span class="pre">reconstruct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.reconstruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.reconstruct" title="Permalink to this definition"></a></dt>
-<dd><p>Reconstruct the textile object from a saved file in the format of “.tex”. It is only used when
-load a textile object saved in the format of “.tex” and the data_size is “minimal”.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="polytex.textile.Textile.case_prepare">
-<span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.case_prepare" title="Permalink to this definition"></a></dt>
-<dd><p>Prepare a simulation case for OpenFOAM, facilitating the setup process for simulations.</p>
-</dd></dl>
-
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="#id25" title="polytex.textile.Textile.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></dt><dd><p>Bounding box of the textile.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.bounds" title="polytex.textile.Textile.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></dt><dd><p>Bounding box of the textile.</p>
 </dd>
-<dt><a class="reference internal" href="#id26" title="polytex.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.items" title="polytex.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
 </dd>
-<dt><a class="reference internal" href="#id27" title="polytex.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.n_tows" title="polytex.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
 </dd>
 </dl>
 </dd>
@@ -646,53 +457,53 @@ load a textile object saved in the format of “.tex” and the data_size is “
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id0" title="polytex.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.add_group" title="polytex.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
 <td><p>Groups of the tows in the textile.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id1" title="polytex.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.add_tow" title="polytex.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
 <td><p>Add a tow to the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id2" title="polytex.textile.Textile.case_prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code></a>([path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.case_prepare" title="polytex.textile.Textile.case_prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code></a>([path])</p></td>
 <td><p>Prepare a case for OpenFOAM simulation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id3" title="polytex.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.cell_labeling" title="polytex.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
 <td><p>Label the cells of the background mesh with tow id.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id4" title="polytex.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.decimate" title="polytex.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
 <td><p>Decimate the mesh.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id5" title="polytex.textile.Textile.export_as_inp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code></a>([fp, scale, orientation])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_inp" title="polytex.textile.Textile.export_as_inp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code></a>([fp, scale, orientation])</p></td>
 <td><p>Export the textile mesh as inp file for Abaqus simulation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id6" title="polytex.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_openfoam" title="polytex.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
 <td><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_vtu" title="polytex.textile.Textile.export_as_vtu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_vtu</span></code></a>(fp[, binary])</p></td>
 <td><p>Export the textile mesh as a vtu file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id19" title="polytex.textile.Textile.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.from_file" title="polytex.textile.Textile.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
 <td><p>Load a textile object from a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id20" title="polytex.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.meshing" title="polytex.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
 <td><p>Generate a mesh for the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id21" title="polytex.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.reconstruct" title="polytex.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
 <td><p>Reconstruct the textile object from the saved file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id22" title="polytex.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.remove" title="polytex.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
 <td><p>Remove a tow from the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id23" title="polytex.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.save" title="polytex.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
 <td><p>Save the textile object to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id24" title="polytex.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.triangulate" title="polytex.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
 <td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'group1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.add_group">
+<span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'group1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_group" title="Permalink to this definition"></a></dt>
 <dd><p>Groups of the tows in the textile. Each is a group of Tow objects.
 if tow is None, then the group is empty.</p>
 <dl class="field-list simple">
@@ -715,8 +526,8 @@ not in the self.__tows__ yet, it will be added to self.__tows__.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.add_tow">
+<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
 <dd><p>Add a tow to the textile. If tow is already in the textile, then raise
 a ValueError.</p>
 <dl class="field-list simple">
@@ -739,29 +550,28 @@ to any group. Stored in self.groups.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.case_prepare">
+<span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.case_prepare" title="Permalink to this definition"></a></dt>
 <dd><p>Prepare a case for OpenFOAM simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the case to be prepared. The default is None. If <cite>path</cite> is None,
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the case to be prepared. The default is None. If <cite>path</cite> is None,
 it is set to the root directory of the OpenFOAM mesh generated by
 <cite>Textile.export_as_openfoam()</cite>.</p>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None.</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>None.</em></p></li>
+<li><p><em>noindex:</em></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.cell_labeling">
+<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
 <dd><p>Label the cells of the background mesh with tow id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -797,14 +607,14 @@ threshold is used to determine if the cells is correctly labelled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.decimate">
+<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.decimate" title="Permalink to this definition"></a></dt>
 <dd><p>Decimate the mesh.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_inp">
+<span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_inp" title="Permalink to this definition"></a></dt>
 <dd><p>Export the textile mesh as inp file for Abaqus simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -827,25 +637,26 @@ should be 0.001. The default is 1.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">export_as_openfoam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['yarnIndex',</span> <span class="pre">'D']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_openfoam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_openfoam">
+<span class="sig-name descname"><span class="pre">export_as_openfoam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['yarnIndex',</span> <span class="pre">'D']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_openfoam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_openfoam" title="Permalink to this definition"></a></dt>
 <dd><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p>
 <p>The structure of the output case folder is:</p>
-<dl class="simple">
-<dt>fp/ textile.name/ –|</dt><dd><p><a href="#id28"><span class="problematic" id="id29">|--0 --|</span></a>
-|      <a href="#id30"><span class="problematic" id="id31">|--D       # resistance coefficient (inverse of permeability tensor)
-|      |--yarnIndex
-|      |-- ...
-|--constant --|</span></a>
-|             <a href="#id32"><span class="problematic" id="id33">|--polyMesh --|</span></a>
-|                           <a href="#id7"><span class="problematic" id="id8">|</span></a>–boundary
-|                           <a href="#id9"><span class="problematic" id="id10">|</span></a>–faces
-|                           <a href="#id11"><span class="problematic" id="id12">|</span></a>–neighbour
-|                           <a href="#id13"><span class="problematic" id="id14">|</span></a>–owner
-|                           <a href="#id15"><span class="problematic" id="id16">|</span></a>–points
-|                           <a href="#id17"><span class="problematic" id="id18">|</span></a>– …</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> fp/ textile.name/
+├── 0
+│   ├── D
+│   ├── yarnIndex
+│   └── ...
+└── constant
+      ├── polyMesh
+      │   ├── boundary
+      │   ├── faces
+      │   ├── neighbour
+      │   ├── owner
+      │   ├── points
+      │   ├── ...
+      └── ...
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -891,27 +702,22 @@ will be set as “wall” for all boundaries.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id19">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id19" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.from_file" title="Permalink to this definition"></a></dt>
 <dd><p>Load a textile object from a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the file to be loaded.</p>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the file to be loaded.</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>Textile object.</dt><dd></dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Textile object.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id20">
-<span class="sig-name descname"><span class="pre">meshing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labeling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.meshing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id20" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.meshing">
+<span class="sig-name descname"><span class="pre">meshing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labeling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.meshing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.meshing" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a mesh for the textile.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -951,27 +757,27 @@ TODO : Use the surface mesh generated by the tow object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id21">
-<span class="sig-name descname"><span class="pre">reconstruct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.reconstruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id21" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.reconstruct">
+<span class="sig-name descname"><span class="pre">reconstruct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.reconstruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.reconstruct" title="Permalink to this definition"></a></dt>
 <dd><p>Reconstruct the textile object from the saved file. The saved file must be
 in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>None.</strong></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>None.</strong> – </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None.</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>None.</em></p></li>
+<li><p><em>noindex:</em></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id22">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id22" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.remove" title="Permalink to this definition"></a></dt>
 <dd><p>Remove a tow from the textile.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -989,8 +795,8 @@ in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id23">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id23" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the textile object to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1022,28 +828,28 @@ is saved.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id24">
-<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id24" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.triangulate">
+<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
 <dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id25">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#id25" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.textile.Textile.bounds" title="Permalink to this definition"></a></dt>
 <dd><p>Bounding box of the textile.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id26">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#id26" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#polytex.textile.Textile.items" title="Permalink to this definition"></a></dt>
 <dd><p>Return tow names as a list. The tow names are reordered by the tow number if the tow
 name is in the format of “towType_towNumber”. Otherwise, the tow names are ordered
 according to the order of adding the tows to the textile.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id27">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#id27" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="polytex.textile.Textile.n_tows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#polytex.textile.Textile.n_tows" title="Permalink to this definition"></a></dt>
 <dd><p>Number of tows in the textile.</p>
 </dd></dl>
 
@@ -1059,139 +865,14 @@ according to the order of adding the tows to the textile.</p>
 <p>The <cite>Tow</cite> class represents a fiber tow and store the physical properties.
 It provides functionality for calculating the geometry features, resampling, and
 smoothing the fiber tow surface.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#polytex.tow.Tow.name" title="Permalink to this definition"></a></dt>
-<dd><p>The name or identifier for the fiber tow. Default is “Tow”. It can be any string that helps
-users to identify the tow.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.tex">
-<span class="sig-name descname"><span class="pre">tex</span></span><a class="headerlink" href="#polytex.tow.Tow.tex" title="Permalink to this definition"></a></dt>
-<dd><p>The linear density of the tow in tex.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.order">
-<span class="sig-name descname"><span class="pre">order</span></span><a class="headerlink" href="#polytex.tow.Tow.order" title="Permalink to this definition"></a></dt>
-<dd><p>It is preferred to set the last column of the surf_points as the coordinate in
-the direction that is perpendicular to the image slices for geometry analysis,
-parametrization and kriging resampling. Hence, you may have reordered the columns.
-Here, you can specify the order of the columns in the reordered points. Default is “xyz”.
-The other options are “xzy”, “yxz”, “yzx”, “zxy”, “zyx”. The output coordinate will
-be reordered in the right order (xyz) according to the order specified here.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.resolution">
-<span class="sig-name descname"><span class="pre">resolution</span></span><a class="headerlink" href="#polytex.tow.Tow.resolution" title="Permalink to this definition"></a></dt>
-<dd><p>The resolution of the MicroCT image used to generate the tow dataset. Default is None.
-This is only stored as an attribute for future use.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.surf_points">
-<span class="sig-name descname"><span class="pre">surf_points</span></span><a class="headerlink" href="#polytex.tow.Tow.surf_points" title="Permalink to this definition"></a></dt>
-<dd><p>The surface points of the tow. It stores the coordinates of the points input by the user.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.geom_features">
-<span class="sig-name descname"><span class="pre">geom_features</span></span><a class="headerlink" href="#polytex.tow.Tow.geom_features" title="Permalink to this definition"></a></dt>
-<dd><p>The geometry features of each cross-section of the tow. The features include
-the ‘Area’, ‘Perimeter’, ‘Width’, ‘Height’, ‘AngleRotated’, ‘Circularity’, ‘centroidX’,
-‘centroidY’, and ‘centroidZ’.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dataframe</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.coordinates">
-<span class="sig-name descname"><span class="pre">coordinates</span></span><a class="headerlink" href="#polytex.tow.Tow.coordinates" title="Permalink to this definition"></a></dt>
-<dd><p>The parametrilized coordinates of the tow. It includes the geodesic ‘distance’
-and the normalized distance ‘norm_distance’ from the start point of the parametric
-plane to the current point, the ‘angular position (degree)’, and the corresponding
-‘X’, ‘Y’, and ‘Z’ coordinates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dataframe</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.theta_res">
-<span class="sig-name descname"><span class="pre">theta_res</span></span><a class="headerlink" href="#polytex.tow.Tow.theta_res" title="Permalink to this definition"></a></dt>
-<dd><p>The number of points to describe the profile of a tow cross-section in the radial
-direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.h_res">
-<span class="sig-name descname"><span class="pre">h_res</span></span><a class="headerlink" href="#polytex.tow.Tow.h_res" title="Permalink to this definition"></a></dt>
-<dd><p>The number of cross-sections to describe the profile of a tow in the axial
-direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="polytex.tow.Tow.orientation">
-<span class="sig-name descname"><span class="pre">orientation</span></span><a class="headerlink" href="#polytex.tow.Tow.orientation" title="Permalink to this definition"></a></dt>
-<dd><p>The orientation of the tow calculated from the tangent of centerline of the tow.
-(initialized in Tow.trajectory)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polykriging</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf_points</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mf">0.022</span>  <span class="c1"># convert voxel to mm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tow</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">)</span> <span class="c1"># PolyKriging Tow class</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tow</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tow&quot;</span><span class="p">)</span> <span class="c1"># PolyKriging Tow class</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df_coord</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">coordinates</span>  <span class="c1"># parametric coordinates of the tow</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df_geom</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span>  <span class="c1"># geometrical features of the tow</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -1286,16 +967,13 @@ direction.</p>
 <dd><p>Initialize the tow from a saved tow file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>The path to the saved tow file. The file format is .tow.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to the saved tow file. The file format is .tow.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tow</strong><span class="classifier">Tow</span></dt><dd><p>The Tow object.</p>
+<dd class="field-even"><p><strong>tow</strong> – The Tow object.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#polytex.tow.Tow" title="polytex.tow.Tow">Tow</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1312,7 +990,7 @@ decomposition.</p>
 will be estimated using the Scott’s rule of thumb (one-fifth of the estimated value).</p></li>
 <li><p><strong>save_path</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to save the kernel density estimation. Default is None. If None, the
 kernel density estimation will not be saved. The file format is .stat and can be
-loaded by the function <cite>polykriging.pk_load</cite>.</p></li>
+loaded by the function <cite>polytex.pk_load</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

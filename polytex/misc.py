@@ -117,7 +117,7 @@ def cai_berdichevsky(vf, rf, packing='Quad', tensorial=False):
         K_T = & 0.229 r^2\\left(\\frac{1.814}{V_a}-1\\right)\\left(\\frac{\\left(1-\\sqrt{\\frac{V_f}{V_a}}\\right)}{\\sqrt{\\frac{V_f}{V_a}}}\\right)^{2.5}
 
     Parameters
-    ------------
+    ----------
     vf : float or array_like
          Fiber volume fraction.
     rf : float or array_like
@@ -131,8 +131,8 @@ def cai_berdichevsky(vf, rf, packing='Quad', tensorial=False):
          perpendicular to the fiber tow as a list of 3 floats. The default
          is False.
 
-    return :
-    --------
+    Returns
+    -------
     k : array-like
         Fiber tow permeability. If tensorial is True, return a list with 9
         elements. Otherwise, return a list of 3 floats (k11, k22, k33),
@@ -141,7 +141,7 @@ def cai_berdichevsky(vf, rf, packing='Quad', tensorial=False):
         principal permeability components k22 and k33 are equal.
 
     References
-    --------
+    ----------
     Cai, Z. and A. Berdichevsky, An improved self‐consistent method for estimating the permeability of a fiber assembly. Polymer composites, 1993. 14(4): p. 314-323
 
     Examples
@@ -214,7 +214,7 @@ def drummond_tahir(vf, rf, packing='Quad', tensorial=False):
         K_{tHex} & =\\frac{r^2}{8V_f}\\left(-lnV_f-1.497+2V_f-\\frac{V_f^2}{2}-0.739V_f^4+\\frac{2.534V_f^5}{1+1.2758V_f}\\right)
 
     Parameters
-    ------------
+    ----------
     vf : float or array_like
          Fiber volume fraction.
     rf : float or array_like
@@ -228,8 +228,8 @@ def drummond_tahir(vf, rf, packing='Quad', tensorial=False):
          perpendicular to the fiber tow as a list of 3 floats. The default
          is False.
 
-    return :
-    --------
+    Returns
+    -------
     k : array-like
         Fiber tow permeability. If tensorial is True, return a list with 9
         elements. Otherwise, return a list of 3 floats (k11, k22, k33),
@@ -238,7 +238,7 @@ def drummond_tahir(vf, rf, packing='Quad', tensorial=False):
         principal permeability components k22 and k33 are equal.
 
     References
-    --------
+    ----------
     Drummond J E, Tahir M I. Laminar viscous flow through regular arrays of parallel solid cylinders[J]. International Journal of Multiphase Flow, 1984, 10(5): 515-540..
 
     Examples

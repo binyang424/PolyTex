@@ -943,7 +943,7 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
     Convert a voxel mesh to a series of images.
     
     Parameters
-    --------------
+    ----------
     mesh : pyvista.UnstructuredGrid
         The voxel mesh to convert.
     mesh_shape : list
@@ -968,11 +968,11 @@ def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
                   The z direction is to be implemented.
 
     Returns
-    --------------
+    -------
     None
 
     Examples
-    --------------
+    --------
     >>> import pyvista as pv
     >>> import polytex as ptx
     >>> mesh = pv.read("./v2i.vtu")
@@ -1228,21 +1228,21 @@ class save_krig(dict):
     these files. Therefore, the class is not intended to be used directly by
     the user.
 
-        Note:
-        --------
-        This class is taken from: https://github.com/sympy/sympy/issues/7974.
-        A bug in exec() is fixed and some modifications are made to make it
-        fit for the purpose of this project (store the kriging expression).
+    Notes
+    -----
+    This class is taken from: https://github.com/sympy/sympy/issues/7974.
+    A bug in exec() is fixed and some modifications are made to make it
+    fit for the purpose of this project (store the kriging expression).
 
-        Example:
-        --------
-        >>> import sympy
-        >>> from polytex.io import save_krig
-        >>> a, b = sympy.symbols('a, b')
-        >>> d = save_krig({'a':a, 'b':b})
-        >>> d.save('name.krig')
-        >>> del d
-        >>> d2 = save_krig.load('name.krig')
+    Examples
+    --------
+    >>> import sympy
+    >>> from polytex.io import save_krig
+    >>> a, b = sympy.symbols('a, b')
+    >>> d = save_krig({'a':a, 'b':b})
+    >>> d.save('name.krig')
+    >>> del d
+    >>> d2 = save_krig.load('name.krig')
     """
 
     def __init__(self, *args, **kwargs):
@@ -1593,8 +1593,8 @@ def get_ply_property(mesh_path, column, skip=11, type="vertex", save_vtk=False):
     format. It is intended to be used to get the user-defined properties that most of
     meshing and rendering software does not support.
 
-    Note
-    ----
+    Notes
+    -----
     The mesh must be saved as ASCII format.
 
     Parameters
@@ -1754,8 +1754,8 @@ def create_yarn_element_sets(mesh, file_handle, Indices, verbose=False):
     """
     Creates element sets for each unique fiber in the mesh.
 
-    Parameters:
-    ----------------
+    Parameters
+    ----------
     mesh : pyvista.PolyData
         The input mesh.
     file_handle : file
@@ -1763,8 +1763,8 @@ def create_yarn_element_sets(mesh, file_handle, Indices, verbose=False):
    Indices: int
         The indices of matrix and fiber.
 
-    Returns:
-    ----------------
+    Returns
+    -------
     element_sets : dict
         Dictionary of element sets with the set name as the key and the lines as the value.
     """
@@ -1801,8 +1801,8 @@ def create_part_data_lines(prtname, nodes=[], elements=[], nodesets=[], elemsets
     """
     Creates lines for defining nodes, elements, and sets in the part data.
 
-    Parameters:
-    ----------------
+    Parameters
+    ----------
     prtname : str
         Name of the part.
     nodes : list
@@ -1815,8 +1815,8 @@ def create_part_data_lines(prtname, nodes=[], elements=[], nodesets=[], elemsets
     elemsets : list
         Element sets containing the element labels.
 
-    Returns:
-    ----------------
+    Returns
+    -------
     lines : list
         List of lines for the part data.
     """
@@ -1858,8 +1858,8 @@ def create_material_data_lines(matname, rho, e, nu, sta, condition=True, materia
     """
     Creates lines for defining material data in the input file.
 
-    Parameters:
-    ----------------
+    Parameters
+    ----------
     matname : str
         Name of the material.
     rho : float
@@ -1874,8 +1874,9 @@ def create_material_data_lines(matname, rho, e, nu, sta, condition=True, materia
         Condition for material type (default is True).
     materials: list
         List to store material data lines (default is None).
-    Returns:
-    ----------------
+
+    Returns
+    -------
     datalines : list
         A list of lines for material data.
     """
@@ -1907,8 +1908,8 @@ def create_solid_section_lines(elset_name, material_name, orientation_name=None,
     """
     Creates lines for defining the solid section properties of a specified element set and material.
 
-    Parameters:
-    ----------------
+    Parameters
+    ----------
     elset_name : str
         The name of the element set.
     material_name : str
@@ -1918,8 +1919,8 @@ def create_solid_section_lines(elset_name, material_name, orientation_name=None,
     controls : str
         Control parameters for the section (default is an empty string).
 
-    Returns:
-    ----------------
+    Returns
+    -------
     lines : list
         A list containing lines for defining the solid section properties.
     """
@@ -1948,8 +1949,8 @@ def create_solid_section_for_all_sets(Indices, fiber_material_name, orientation_
     """
     Creates solid section lines for all fiber element sets in the mesh.
 
-    Parameters:
-    ----------------
+    Parameters
+    ----------
     Indices: int
         The indices of matrix and fiber.
     fiber_material_name : str
@@ -1959,8 +1960,8 @@ def create_solid_section_for_all_sets(Indices, fiber_material_name, orientation_
     controls : str
         Control parameters for the section (default is an empty string).
 
-    Returns:
-    ----------------
+    Returns
+    -------
     lines : list
         A list of lines for defining solid section properties for all fiber element sets.
     """
@@ -1986,8 +1987,8 @@ def write_fiber_orientation_to_file(mesh, Indices, file_header="", output_file='
     """
     Writes fiber orientation information to a file.
 
-    Parameters:
-    -------------------------
+    Parameters
+    ----------
         mesh: pyvista.PolyData
             The input mesh.
         Indices: int
@@ -1996,8 +1997,10 @@ def write_fiber_orientation_to_file(mesh, Indices, file_header="", output_file='
             The header lines for the ori file (default is '').
         output_file: str
             The output file path for writing fiber orientation information (default is 'fabrictest.ori').
-    Returns:
-    ------------------------
+
+    Returns
+    -------
+    None
 
     """
     # ori file header
@@ -2184,7 +2187,12 @@ def pcd_to_ply(file_pcd, file_ply, binary=False):
         The path of the pcd file or pathlib.Path. File or filename to which the data is saved.
     file_ply : str
         The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.
-    :return: None
+    binary : bool, optional
+        TODO
+
+    Returns
+    -------
+    None
     """
     print(bcolors.warning(
         "This function will be deprecated in the future. Please use polytex.read_imagej_roi() instead."))

@@ -104,53 +104,15 @@
 <span class="sd">    It provides functionality for calculating the geometry features, resampling, and </span>
 <span class="sd">    smoothing the fiber tow surface.</span>
 
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
-<span class="sd">        The name or identifier for the fiber tow. Default is &quot;Tow&quot;. It can be any string that helps</span>
-<span class="sd">        users to identify the tow.</span>
-<span class="sd">    tex : float</span>
-<span class="sd">        The linear density of the tow in tex.</span>
-<span class="sd">    order : str</span>
-<span class="sd">        It is preferred to set the last column of the surf_points as the coordinate in</span>
-<span class="sd">        the direction that is perpendicular to the image slices for geometry analysis,</span>
-<span class="sd">        parametrization and kriging resampling. Hence, you may have reordered the columns.</span>
-<span class="sd">        Here, you can specify the order of the columns in the reordered points. Default is &quot;xyz&quot;.</span>
-<span class="sd">        The other options are &quot;xzy&quot;, &quot;yxz&quot;, &quot;yzx&quot;, &quot;zxy&quot;, &quot;zyx&quot;. The output coordinate will</span>
-<span class="sd">        be reordered in the right order (xyz) according to the order specified here.</span>
-<span class="sd">    resolution : float</span>
-<span class="sd">        The resolution of the MicroCT image used to generate the tow dataset. Default is None.</span>
-<span class="sd">        This is only stored as an attribute for future use.</span>
-<span class="sd">    surf_points : ndarray</span>
-<span class="sd">        The surface points of the tow. It stores the coordinates of the points input by the user.</span>
-<span class="sd">    geom_features : dataframe</span>
-<span class="sd">        The geometry features of each cross-section of the tow. The features include</span>
-<span class="sd">        the &#39;Area&#39;, &#39;Perimeter&#39;, &#39;Width&#39;, &#39;Height&#39;, &#39;AngleRotated&#39;, &#39;Circularity&#39;, &#39;centroidX&#39;, </span>
-<span class="sd">        &#39;centroidY&#39;, and &#39;centroidZ&#39;.</span>
-<span class="sd">    coordinates : dataframe</span>
-<span class="sd">        The parametrilized coordinates of the tow. It includes the geodesic &#39;distance&#39;</span>
-<span class="sd">        and the normalized distance &#39;norm_distance&#39; from the start point of the parametric</span>
-<span class="sd">        plane to the current point, the &#39;angular position (degree)&#39;, and the corresponding</span>
-<span class="sd">        &#39;X&#39;, &#39;Y&#39;, and &#39;Z&#39; coordinates.</span>
-<span class="sd">    theta_res : float</span>
-<span class="sd">        The number of points to describe the profile of a tow cross-section in the radial</span>
-<span class="sd">        direction.</span>
-<span class="sd">    h_res : float</span>
-<span class="sd">        The number of cross-sections to describe the profile of a tow in the axial</span>
-<span class="sd">        direction.</span>
-<span class="sd">    orientation : ndarray</span>
-<span class="sd">        The orientation of the tow calculated from the tangent of centerline of the tow.</span>
-<span class="sd">        (initialized in Tow.trajectory)</span>
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import polykriging as pk</span>
+<span class="sd">    &gt;&gt;&gt; import polytex as ptx</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; path = pk.example(&quot;surface points&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; surf_points = pk.pk_load(path).to_numpy()</span>
+<span class="sd">    &gt;&gt;&gt; path = ptx.example(&quot;surface points&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; surf_points = ptx.pk_load(path).to_numpy()</span>
 <span class="sd">    &gt;&gt;&gt; coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm</span>
-<span class="sd">    &gt;&gt;&gt; tow = pk.Tow(surf_points=coordinates, tex=0, name=&quot;Tow&quot;) # PolyKriging Tow class</span>
+<span class="sd">    &gt;&gt;&gt; tow = ptx.Tow(surf_points=coordinates, tex=0, name=&quot;Tow&quot;) # PolyKriging Tow class</span>
 <span class="sd">    &gt;&gt;&gt; df_coord = tow.coordinates  # parametric coordinates of the tow</span>
 <span class="sd">    &gt;&gt;&gt; df_geom = tow.geom_features  # geometrical features of the tow</span>
 <span class="sd">    &gt;&gt;&gt;</span>
@@ -278,15 +240,15 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the tow from a saved tow file.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            path : str</span>
-<span class="sd">                The path to the saved tow file. The file format is .tow.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The path to the saved tow file. The file format is .tow.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            tow : Tow</span>
-<span class="sd">                The Tow object.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tow : Tow</span>
+<span class="sd">            The Tow object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># check if the file extension is .tow</span>
@@ -343,7 +305,7 @@
 <span class="sd">        save_path : str, optional</span>
 <span class="sd">            The path to save the kernel density estimation. Default is None. If None, the</span>
 <span class="sd">            kernel density estimation will not be saved. The file format is .stat and can be</span>
-<span class="sd">            loaded by the function `polykriging.pk_load`.</span>
+<span class="sd">            loaded by the function `polytex.pk_load`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -926,7 +888,7 @@
 <span class="sd">        Generate the radial line of the fiber tow surface.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        -----------</span>
+<span class="sd">        ----------</span>
 <span class="sd">        save_path : str, optional</span>
 <span class="sd">            The path to save the radial line data as a vtk mesh file.</span>
 <span class="sd">        plot : bool, optional</span>

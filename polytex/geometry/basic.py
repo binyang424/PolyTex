@@ -24,7 +24,7 @@ class Point(np.ndarray):
     dimensionality of the space.
 
     Notes
-    ----------
+    -----
     Efficient Vector / Point class in Python from:
     https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python
 
@@ -226,7 +226,7 @@ class Vector(Point):
 
     Examples
     --------
-    >>> from polykriging.geometry import Vector
+    >>> from polytex.geometry import Vector
     >>> v1 = Vector((1, 2, 3))
     >>> v2 = Vector((4, 5, 7))
     >>> sum12 = Vector((5, 7, 10))
@@ -310,7 +310,7 @@ class Line(symLine.Line):
 
     Examples
     --------
-    >>> from polykriging.geometry import Point, Line
+    >>> from polytex.geometry import Point, Line
     >>> p1 = Point([1, 1, 1])
     >>> p2 = Point([2, 3, 4])
     >>> l1 = Line(p1, p2)
@@ -350,11 +350,11 @@ class Line(symLine.Line):
 class Curve:
     """
     This is an open curve defined by a list of points in the order of connection. It is
-    created by using composition instead of inheritance of PolyKriging.geometry.Point.
+    created by using composition instead of inheritance of polytex.geometry.Point.
 
     Examples
     --------
-    >>> from polykriging.geometry import Point, Curve
+    >>> from polytex.geometry import Point, Curve
     >>> p = [[2, 4, 6], [2, 4, 5]]
     >>> c = Curve(p)
     >>> c.points
@@ -368,7 +368,7 @@ class Curve:
 
     def __init__(self, points):
         """
-        A partial inheritance of polykriging.geometry.Point class.
+        A partial inheritance of polytex.geometry.Point class.
 
         Parameters
         ----------
@@ -730,7 +730,7 @@ class Plane:
             self.p3 = p3
 
             # p1.tolist(): convert the point to a list for compatibility with sympy geometry
-            # It is originally a PolyKriging Point object which is inherited from numpy.ndarray.
+            # It is originally a polytex Point object which is inherited from numpy.ndarray.
             if symPoint.Point3D.are_collinear(p1.tolist(), p2.tolist(), p3.tolist()):
                 raise ValueError('Enter three non-collinear points')
             a = p1.direction_ratio(p2)
@@ -822,8 +822,8 @@ class Plane:
         """
         Return the equation of the plane as a function of x, y and z.
 
-        Note
-        ----
+        Notes
+        -----
             normal = (a, b, c)
             point = (x0, y0, z0)
             Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0
@@ -840,8 +840,8 @@ class Plane:
         A lambda function of x, y and z.
             function of plane.
 
-        Example
-        -------
+        Examples
+        --------
         Create a plane from a point and a normal vector
         >>> from polytex.geometry import Point, Plane
         >>> p1 = Point([1, 1, 1])
@@ -917,6 +917,7 @@ class Tube(GeometryEntity):
 
     def __new__(cls, theta_res, h_res, vertices=None, **kwargs):
         """
+
         Parameters
         ----------
         theta_res : int
@@ -982,8 +983,8 @@ class Tube(GeometryEntity):
         """
         TODO : raise TypeError("Given points must be a sequence or an array.")
 
-        Note
-        ----
+        Notes
+        -----
         theta_res should be 1 less then else where. To be fixed in the future.
         """
         theta_res, h_res = int(self.theta_res), int(self.h_res)
@@ -1049,9 +1050,9 @@ class ParamCurve:
     This is a parametric curve. It is defined by a function and
     a parameter.
 
-        The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the
+    The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the
     documentation of sympy.geometry.curve.Curve for more information.
-        https://docs.sympy.org/latest/modules/geometry/curves.html
+    https://docs.sympy.org/latest/modules/geometry/curves.html
 
     TODO : A detailed documentation will be added in the future.
 
@@ -1142,8 +1143,15 @@ class ParamCurve:
         Evaluate the curve at a given parameter value. The parameter value
         should be within the limits. Otherwise, an error will be raised.
 
+        Parameters
+        ----------
         t_value : float or array_like
             The parameter value for evaluation.
+
+        Returns
+        -------
+        curve : Curve object
+            The evaluated curve.
         """
         t, tmin, tmax = self.limits
 
@@ -1190,6 +1198,10 @@ class ParamCurve3D(symCurve.Curve):
             Function parameter and lower and upper bounds. The parameter should be
             the same for all three functions. For example, (t, 0, 1) is valid but
             ((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.
+
+        Returns
+        -------
+        curve : ParamCurve3D object
         """
         if not is_sequence(functions) or len(functions) != 3:
             raise ValueError("Function argument should be (x(t), y(t), z(t)) "
@@ -1202,8 +1214,18 @@ class ParamCurve3D(symCurve.Curve):
 
     def eval(self, t_value):
         """
-        t : float or array_like
+        Evaluate the curve at a given parameter value. The parameter value
+        should be within the limits. Otherwise, an error will be raised.
+
+        Parameters
+        ----------
+        t_value : float or array_like
             The parameter value for evaluation.
+
+        Returns
+        -------
+        curve : Curve object
+            The evaluated curve.
         """
         t, tmin, tmax = self.limits
 
@@ -1242,12 +1264,23 @@ class ParamCurve3D(symCurve.Curve):
 
     def translate(self, x=0, y=0, z=0):
         """Translate the Curve by (x, y, z).
+
+        Parameters
+        ----------
+        x : float
+            The translation in the x direction.
+        y : float
+            The translation in the y direction.
+        z : float
+            The translation in the z direction.
+
         Returns
-        =======
+        -------
         Curve :
             returns a translated curve.
+
         Examples
-        ========
+        --------
         >>> from polytex.geometry import ParamCurve3D
         >>> from sympy.abc import x
         >>> ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)

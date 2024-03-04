@@ -24,8 +24,8 @@ def im_to_ugrid(im):
         im_dim : numpy.ndarray
             The image dimension.
 
-        Example
-        -------
+        Examples
+        --------
         >>> import polytex as ptx
         >>> im = ptx.example("image")
         >>> mesh, mesh_dim = ptx.mesh.im_to_ugrid(im)

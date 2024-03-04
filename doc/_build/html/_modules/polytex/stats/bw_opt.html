@@ -88,9 +88,18 @@
 <div class="viewcode-block" id="bw_scott"><a class="viewcode-back" href="../../../source/polytex.stats.html#polytex.stats.bw_opt.bw_scott">[docs]</a><span class="k">def</span> <span class="nf">bw_scott</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Scott&#39;s rule for bandwidth selection.</span>
-<span class="sd">    :param sigma: standard deviation of the data, type: float</span>
-<span class="sd">    :param n: number of data points, type: int</span>
-<span class="sd">    :return: bandwidth, type: float</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : float</span>
+<span class="sd">        The standard deviation of the data.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        The number of data points.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bw : float</span>
+<span class="sd">        The bandwidth of the kernel.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.2</span></div>
 
@@ -109,6 +118,11 @@
 <span class="sd">        Test data to get the density distribution.</span>
 <span class="sd">    bw : list of float</span>
 <span class="sd">        The bandwidth of the kernels to be tested.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    kde.bandwidth : float</span>
+<span class="sd">        The optimal bandwidth of the kernel.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
@@ -128,7 +142,9 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the likelihood of the given probability density function.</span>
 <span class="sd">    The likelihood is:</span>
-<span class="sd">       ``L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)``</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::  L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pdf : Numpy array</span>

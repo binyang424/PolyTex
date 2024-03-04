@@ -546,6 +546,12 @@ by averaging the coordinates of the points on the cutting edge.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">im</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">im_to_ugrid</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -643,25 +649,24 @@ must be specified.</p>
 <dt class="sig sig-object py" id="polytex.mesh.mesh.background_mesh">
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.background_mesh" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a voxel background mesh.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>bbox: bounding box of the background mesh specified through a numpy array</strong></dt><dd><p>contains the minimum and maximum coordinates of the bounding box
-[xmin, xmax, ymin, ymax, zmin, zmax]</p>
-</dd>
-<dt><strong>voxel_size: voxel size of the background mesh, type: None, float, or numpy.ndarray</strong></dt><dd><p>if <cite>None</cite>, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbox</strong> (<em>bounding box</em><em> of </em><em>the background mesh specified through a numpy array</em>) – contains the minimum and maximum coordinates of the bounding box
+[xmin, xmax, ymin, ymax, zmin, zmax]</p></li>
+<li><p><strong>voxel_size</strong> (<em>voxel size</em><em> of </em><em>the background mesh</em><em>, </em><em>type: None</em><em>, </em><em>float</em><em>, or </em><em>numpy.ndarray</em>) – <p>if <cite>None</cite>, the voxel size is set to the 1/20 of the diagonal length of the bounding box;</p>
 <p>if <cite>float</cite>, the voxel size is set to the float value in x, y, z directions;</p>
 <p>if <cite>list</cite>, <cite>set</cite>, or <cite>tuple</cite> of size 3, the voxel size is set to the values for
 the x-, y- and z- directions.</p>
-</dd>
-</dl>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>grid</strong><span class="classifier">pyvista mesh object (UnstructuredGrid)</span></dt><dd></dd>
-<dt><strong>mesh_shape</strong><span class="classifier">tuple</span></dt><dd><p>shape of the mesh</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>grid</strong> (<em>pyvista mesh object (UnstructuredGrid)</em>)</p></li>
+<li><p><strong>mesh_shape</strong> (<em>tuple</em>) – shape of the mesh</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -672,23 +677,19 @@ the x-, y- and z- directions.</p>
 <dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
-</dd>
-<dt><strong>cells: (m, 4) array</strong></dt><dd><p>connectivity</p>
-</dd>
-<dt><strong>save: str</strong></dt><dd><p>The path and file name of the vtk file to be saved (“./tetra.vtk”).
-If None, the vtk file will not be saved.</p>
-</dd>
-<dt><strong>binary: bool</strong></dt><dd><p>whether to save the mesh in binary format</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>(</em><em>n</em><em>, </em><em>3</em><em>) </em><em>array</em>) – vertices</p></li>
+<li><p><strong>cells</strong> (<em>(</em><em>m</em><em>, </em><em>4</em><em>) </em><em>array</em>) – connectivity</p></li>
+<li><p><strong>save</strong> (<em>str</em>) – The path and file name of the vtk file to be saved (“./tetra.vtk”).
+If None, the vtk file will not be saved.</p></li>
+<li><p><strong>binary</strong> (<em>bool</em>) – whether to save the mesh in binary format</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
+<dd class="field-even"><p><strong>grid</strong> – UnstructuredGrid tetrahedral mesh</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.UnstructuredGrid</p>
 </dd>
 </dl>
 </dd></dl>
@@ -699,19 +700,21 @@ If None, the vtk file will not be saved.</p>
 <dd><p>Find the index of cells in this mesh within bounds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh: pyvista mesh</strong></dt><dd></dd>
-<dt><strong>bounds: type:　iterable(float)</strong></dt><dd><p>list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>pyvista mesh</em>) – </p></li>
+<li><p><strong>bounds</strong> (<em>type:　iterable</em><em>(</em><em>float</em><em>)</em>) – list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>type: numpy.ndarray</dt><dd><p>array of cell indices within bounds.</p>
+<dd class="field-even"><p><strong>type</strong> – array of cell indices within bounds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
-</dd>
-</dl>
+<p class="rubric">Examples</p>
+<p>&gt;&gt; mesh = pv.PolyData(np.random.rand(10, 3))
+&gt;&gt; indices = find_cells_within_bounds(mesh, [0, 1, 0, 1, 0, 1])</p>
 </dd></dl>
 
 <dl class="py function">
@@ -720,17 +723,14 @@ If None, the vtk file will not be saved.</p>
 <dd><p>Find the intersection of fiber tows from implicit surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>label_set_dict: dictioanry</strong></dt><dd><p>dictionary of the label sets of the fiber tows
+<dd class="field-odd"><p><strong>label_set_dict</strong> (<em>dictioanry</em>) – dictionary of the label sets of the fiber tows
 (key: yarn indices, value: sparse matrix of cell queries)</p>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>type: dictionary of the indices of intersected cell</dt><dd><p>key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</p>
+<dd class="field-even"><p><strong>type</strong> – key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary of the indices of intersected cell</p>
 </dd>
 </dl>
 </dd></dl>
@@ -742,17 +742,13 @@ If None, the vtk file will not be saved.</p>
 that parallel to the principle axes of global Cartesian coordinate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>bbox: list</strong></dt><dd><p>bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbox</strong> (<em>list</em>) – bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</p></li>
+<li><p><strong>point</strong> (<em>list</em>) – [x, y, z]</p></li>
+</ul>
 </dd>
-<dt><strong>point: list</strong></dt><dd><p>[x, y, z]</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>True or False</dt><dd></dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True or False</p>
 </dd>
 </dl>
 </dd></dl>
@@ -763,21 +759,18 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 <dd><p>Store the label of each fiber tow for intersection detection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh_background: pyvista.UnstructuredGrid</strong></dt><dd><p>background mesh</p>
-</dd>
-<dt><strong>mesh_tri: pyvista.PolyData</strong></dt><dd><p>tubular mesh of the fiber tows</p>
-</dd>
-<dt><strong>tolerance: float</strong></dt><dd><p>tolerance for the enclosed point detection</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh_background</strong> (<em>pyvista.UnstructuredGrid</em>) – background mesh</p></li>
+<li><p><strong>mesh_tri</strong> (<em>pyvista.PolyData</em>) – tubular mesh of the fiber tows</p></li>
+<li><p><strong>tolerance</strong> (<em>float</em>) – tolerance for the enclosed point detection</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>mask: type: numpy.ndarray (bool)</dt><dd><p>mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</p>
-</dd>
-<dt>label_yarn: type: numpy.ndarray (int) (1D)</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mask</strong> (<em>type: numpy.ndarray (bool)</em>) – mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</p></li>
+<li><p><strong>label_yarn</strong> (<em>type: numpy.ndarray (int) (1D)</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -788,24 +781,20 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 <dd><p>Close the ends of the tubular mesh with triangles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cells: list</strong></dt><dd><p>list of cells</p>
-</dd>
-<dt><strong>points: numpy.ndarray</strong></dt><dd><p>vertices of the tubular mesh</p>
-</dd>
-<dt><strong>theta_res: int</strong></dt><dd><p>number of points in the radial direction of the tubular mesh. The first and the last
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cells</strong> (<em>list</em>) – list of cells</p></li>
+<li><p><strong>points</strong> (<em>numpy.ndarray</em>) – vertices of the tubular mesh</p></li>
+<li><p><strong>theta_res</strong> (<em>int</em>) – number of points in the radial direction of the tubular mesh. The first and the last
 vertex of each radial direction point list are repeated. However, they are considered
-as two different points when considering theta resolution (theta_res).</p>
-</dd>
-</dl>
+as two different points when considering theta resolution (theta_res).</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
-</dd>
-<dt>cells: list</dt><dd><p>list of cells</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>points</strong> (<em>numpy.ndarray</em>) – vertices of the tubular mesh</p></li>
+<li><p><strong>cells</strong> (<em>list</em>) – list of cells</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -816,24 +805,19 @@ as two different points when considering theta resolution (theta_res).</p>
 <dd><p>Generate points on an ellipse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>a</strong><span class="classifier">float</span></dt><dd><p>semi-major axis</p>
-</dd>
-<dt><strong>b</strong><span class="classifier">float</span></dt><dd><p>semi-minor axis</p>
-</dd>
-<dt><strong>h</strong><span class="classifier">float</span></dt><dd><p>height</p>
-</dd>
-<dt><strong>theta_res</strong><span class="classifier">int, optional</span></dt><dd><p>number of points, by default 5.</p>
-</dd>
-<dt><strong>h_res:  int, optional</strong></dt><dd><p>number of points. by default 5.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>float</em>) – semi-major axis</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – semi-minor axis</p></li>
+<li><p><strong>h</strong> (<em>float</em>) – height</p></li>
+<li><p><strong>theta_res</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points, by default 5.</p></li>
+<li><p><strong>h_res</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points. by default 5.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>points: numpy.ndarray</dt><dd><p>vertices on the ellipse surface (x, y, z).</p>
+<dd class="field-even"><p><strong>points</strong> – vertices on the ellipse surface (x, y, z).</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -844,26 +828,20 @@ as two different points when considering theta resolution (theta_res).</p>
 <dd><p>Convert PyVista flavor data structure to meshio.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mesh: PyVista.DataSet</strong></dt><dd><p>Any PyVista mesh/spatial data type.</p>
-</dd>
-<dt><strong>theta_res:</strong></dt><dd><p>number of points in the radial direction</p>
-</dd>
-<dt><strong>correction: boolean</strong></dt><dd><p>if True, tubular mesh will be closed at the ends with triangles.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>PyVista.DataSet</em>) – Any PyVista mesh/spatial data type.</p></li>
+<li><p><strong>theta_res</strong> – number of points in the radial direction</p></li>
+<li><p><strong>correction</strong> (<em>boolean</em>) – if True, tubular mesh will be closed at the ends with triangles.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
-</dd>
-<dt>cells: list</dt><dd><p>list of cells</p>
-</dd>
-<dt>point_data: numpy.ndarray</dt><dd><p>point data</p>
-</dd>
-<dt>cell_data: numpy.ndarray</dt><dd><p>cell data</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>points</strong> (<em>numpy.ndarray</em>) – vertices of the tubular mesh</p></li>
+<li><p><strong>cells</strong> (<em>list</em>) – list of cells</p></li>
+<li><p><strong>point_data</strong> (<em>numpy.ndarray</em>) – point data</p></li>
+<li><p><strong>cell_data</strong> (<em>numpy.ndarray</em>) – cell data</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -874,22 +852,20 @@ as two different points when considering theta resolution (theta_res).</p>
 <dd><p>Generate a tubular mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>theta_res: int</strong></dt><dd><p>number of points</p>
-</dd>
-<dt><strong>h_res: int</strong></dt><dd><p>number of points</p>
-</dd>
-<dt><strong>vertices: numpy.ndarray</strong></dt><dd><p>vertices of the tubular mesh, shape (n, 3)
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta_res</strong> (<em>int</em>) – number of points</p></li>
+<li><p><strong>h_res</strong> (<em>int</em>) – number of points</p></li>
+<li><p><strong>vertices</strong> (<em>numpy.ndarray</em>) – vertices of the tubular mesh, shape (n, 3)
 The vertices of the tubular mesh are sorted in the radial direction first,
 then in the vertical direction. The first vertex is repeated
-at the end of each radial direction point list.</p>
-</dd>
-</dl>
+at the end of each radial direction point list.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>mesh</strong><span class="classifier">points on the tubular mesh</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>mesh</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>points on the tubular mesh</p>
 </dd>
 </dl>
 </dd></dl>

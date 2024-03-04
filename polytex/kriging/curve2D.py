@@ -422,7 +422,7 @@ def buildM_deriv(x, x_deriv, name_drift, name_cov, covFuncs_deriv, covFuncs_deri
     """
     Build the matrix M for the derivative kriging system
 
-    Parameter
+    Parameters
     ----------
     x : array
         x points

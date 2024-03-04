@@ -771,27 +771,27 @@
 <span class="sd">    Convert a voxel mesh to OpenFOAM mesh. The cell data is converted to OpenFOAM initial conditions</span>
 <span class="sd">    and saved in the 0 timestep folder.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mesh : pyvista.UnstructuredGrid or pyvista.DataSet</span>
-<span class="sd">            The voxel mesh.</span>
-<span class="sd">        scale : float, optional</span>
-<span class="sd">            The scale factor to convert the unit of points. The default is 1.0.</span>
-<span class="sd">        outputDir : str, optional</span>
-<span class="sd">            The output directory. The default is &#39;./&#39;.</span>
-<span class="sd">        boundary_type : dict, optional</span>
-<span class="sd">            The type of each boundary. The default is None. If None, the type of the boundary</span>
-<span class="sd">            is set as &quot;patch&quot;. The key is the boundary name and the value is the boundary type.</span>
-<span class="sd">            The key should be the same as the face_boundary_dict.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh : pyvista.UnstructuredGrid or pyvista.DataSet</span>
+<span class="sd">        The voxel mesh.</span>
+<span class="sd">    scale : float, optional</span>
+<span class="sd">        The scale factor to convert the unit of points. The default is 1.0.</span>
+<span class="sd">    outputDir : str, optional</span>
+<span class="sd">        The output directory. The default is &#39;./&#39;.</span>
+<span class="sd">    boundary_type : dict, optional</span>
+<span class="sd">        The type of each boundary. The default is None. If None, the type of the boundary</span>
+<span class="sd">        is set as &quot;patch&quot;. The key is the boundary name and the value is the boundary type.</span>
+<span class="sd">        The key should be the same as the face_boundary_dict.</span>
 
-<span class="sd">            The boundary type can be &quot;patch&quot;, &quot;wall&quot;, &quot;empty&quot;, &quot;symmetryPlane&quot;, &quot;wedge&quot;, &quot;cyclic&quot;,</span>
-<span class="sd">            etc. See OpenFOAM user guide for more details.</span>
-<span class="sd">        cell_data_list : list, optional</span>
-<span class="sd">            A list containing the names of the cell data to be written. The default is None.</span>
+<span class="sd">        The boundary type can be &quot;patch&quot;, &quot;wall&quot;, &quot;empty&quot;, &quot;symmetryPlane&quot;, &quot;wedge&quot;, &quot;cyclic&quot;,</span>
+<span class="sd">        etc. See OpenFOAM user guide for more details.</span>
+<span class="sd">    cell_data_list : list, optional</span>
+<span class="sd">        A list containing the names of the cell data to be written. The default is None.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current working directory: &quot;</span><span class="p">,</span> <span class="n">cwd</span><span class="p">)</span>
@@ -1023,6 +1023,7 @@
               <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_name</span><span class="o">=</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;tif&quot;</span><span class="p">,</span> <span class="n">scale_algrithm</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a voxel mesh to a series of images.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    mesh : pyvista.UnstructuredGrid</span>
@@ -1055,7 +1056,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import pyvista as pv</span>
-<span class="sd">    &gt;&gt;&gt; import polytex as pk</span>
+<span class="sd">    &gt;&gt;&gt; import polytex as ptx</span>
 <span class="sd">    &gt;&gt;&gt; mesh = pv.read(&quot;./v2i.vtu&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; mesh_shape = [20, 20, 5]</span>
 <span class="sd">    &gt;&gt;&gt; ptx.io.voxel2img(mesh, mesh_shape, dataset=&quot;YarnIndex&quot;,</span>
@@ -1119,14 +1120,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set given directory or the folder where the code file is as current working directory</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        path:</span>
-<span class="sd">            the path of current working directory. if empty, the path of the code file is used.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of current working directory. if empty, the path of the code file is used.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        cwd: the current working directory.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cwd: the current working directory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -1143,15 +1144,15 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a directory with GUI and return its path.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        titl: String.</span>
-<span class="sd">            The title of the open folder dialog window.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    titl: String.</span>
+<span class="sd">        The title of the open folder dialog window.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        path: String.</span>
-<span class="sd">            The path of the selected directory.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    path: String.</span>
+<span class="sd">        The path of the selected directory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="n">titl</span><span class="p">)</span>
@@ -1182,16 +1183,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the list of files in the given folder.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        path:</span>
-<span class="sd">            the path of the folder</span>
-<span class="sd">        filter:</span>
-<span class="sd">            filter for file selection.++</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path:</span>
+<span class="sd">        the path of the folder</span>
+<span class="sd">    filter:</span>
+<span class="sd">        filter for file selection.++</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        flst: the list of files in the given folder.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flst: the list of files in the given folder.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">filenamels</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="c1"># filter the file list by the given filter.</span>
@@ -1204,22 +1205,22 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add multiple files to a zip file.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        directory: String.</span>
-<span class="sd">            The directory of the files to be added to zip file. Therefore,</span>
-<span class="sd">            all the files in the file_list should be in the same directory.</span>
-<span class="sd">        file_list : List.</span>
-<span class="sd">            The list of file names to be added to the zip file (without directory).</span>
-<span class="sd">        filename: String.</span>
-<span class="sd">            The name of the zip file. The zip file is saved in the same directory</span>
-<span class="sd">        remove:</span>
-<span class="sd">            Whether to remove original files after adding to zip file.</span>
-<span class="sd">            Default is True. If False, the original files will not be removed.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    directory: String.</span>
+<span class="sd">        The directory of the files to be added to zip file. Therefore,</span>
+<span class="sd">        all the files in the file_list should be in the same directory.</span>
+<span class="sd">    file_list : List.</span>
+<span class="sd">        The list of file names to be added to the zip file (without directory).</span>
+<span class="sd">    filename: String.</span>
+<span class="sd">        The name of the zip file. The zip file is saved in the same directory</span>
+<span class="sd">    remove:</span>
+<span class="sd">        Whether to remove original files after adding to zip file.</span>
+<span class="sd">        Default is True. If False, the original files will not be removed.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
 
@@ -1240,15 +1241,15 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Choose a file with GUI and return its path.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        titl: String.</span>
-<span class="sd">            The title of the window.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    titl: String.</span>
+<span class="sd">        The title of the window.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        path: String.</span>
-<span class="sd">            The path of the file.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    path: String.</span>
+<span class="sd">        The path of the file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="n">titl</span><span class="p">)</span>
@@ -1269,18 +1270,18 @@
 <span class="sd">    Save the labels of a hexahedral mesh to a nrrd file. The labels should be</span>
 <span class="sd">    starting from 0 and increasing by 1.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        cell_label: numpy array(int, int, int)</span>
-<span class="sd">            The cell label of the mesh.</span>
-<span class="sd">        file_name: String</span>
-<span class="sd">            The name of the .nrrd file.</span>
-<span class="sd">        file_path: String</span>
-<span class="sd">            The save path of the .nrrd file.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cell_label: numpy array(int, int, int)</span>
+<span class="sd">        The cell label of the mesh.</span>
+<span class="sd">    file_name: String</span>
+<span class="sd">        The name of the .nrrd file.</span>
+<span class="sd">    file_path: String</span>
+<span class="sd">        The save path of the .nrrd file.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">nrrd</span>
 
@@ -1309,21 +1310,21 @@
 <span class="sd">    these files. Therefore, the class is not intended to be used directly by</span>
 <span class="sd">    the user.</span>
 
-<span class="sd">        Note:</span>
-<span class="sd">        --------</span>
-<span class="sd">        This class is taken from: https://github.com/sympy/sympy/issues/7974.</span>
-<span class="sd">        A bug in exec() is fixed and some modifications are made to make it</span>
-<span class="sd">        fit for the purpose of this project (store the kriging expression).</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This class is taken from: https://github.com/sympy/sympy/issues/7974.</span>
+<span class="sd">    A bug in exec() is fixed and some modifications are made to make it</span>
+<span class="sd">    fit for the purpose of this project (store the kriging expression).</span>
 
-<span class="sd">        Example:</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import sympy</span>
-<span class="sd">        &gt;&gt;&gt; from polytex.io import save_krig</span>
-<span class="sd">        &gt;&gt;&gt; a, b = sympy.symbols(&#39;a, b&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; d = save_krig({&#39;a&#39;:a, &#39;b&#39;:b})</span>
-<span class="sd">        &gt;&gt;&gt; d.save(&#39;name.krig&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; del d</span>
-<span class="sd">        &gt;&gt;&gt; d2 = save_krig.load(&#39;name.krig&#39;)</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import sympy</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.io import save_krig</span>
+<span class="sd">    &gt;&gt;&gt; a, b = sympy.symbols(&#39;a, b&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; d = save_krig({&#39;a&#39;:a, &#39;b&#39;:b})</span>
+<span class="sd">    &gt;&gt;&gt; d.save(&#39;name.krig&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; del d</span>
+<span class="sd">    &gt;&gt;&gt; d2 = save_krig.load(&#39;name.krig&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1361,23 +1362,23 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an exact copy of numpy.save, except that it does not check the extensions.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file : file, str, or pathlib.Path. File or filename to which the data is saved.</span>
-<span class="sd">        arr : array_like. Array data to be saved.</span>
-<span class="sd">        allow_pickle : bool, optional</span>
-<span class="sd">            Allow saving object arrays using Python pickles. Reasons for disallowing</span>
-<span class="sd">            pickles include security (loading pickled data can execute arbitrary</span>
-<span class="sd">            code) and portability (pickled objects may not be loadable on different</span>
-<span class="sd">            Python installations, for example if the stored objects require libraries</span>
-<span class="sd">            that are not available, and not all pickled data is compatible between</span>
-<span class="sd">            Python 2 and Python 3).</span>
-<span class="sd">            Default: True</span>
-<span class="sd">        fix_imports : bool, optional</span>
-<span class="sd">            Only useful in forcing objects in object arrays on Python 3 to be</span>
-<span class="sd">            pickled in a Python 2 compatible way. If `fix_imports` is True, pickle</span>
-<span class="sd">            will try to map the new Python 3 names to the old module names used in</span>
-<span class="sd">            Python 2, so that the pickle data stream is readable with Python 2.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : file, str, or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    arr : array_like. Array data to be saved.</span>
+<span class="sd">    allow_pickle : bool, optional</span>
+<span class="sd">        Allow saving object arrays using Python pickles. Reasons for disallowing</span>
+<span class="sd">        pickles include security (loading pickled data can execute arbitrary</span>
+<span class="sd">        code) and portability (pickled objects may not be loadable on different</span>
+<span class="sd">        Python installations, for example if the stored objects require libraries</span>
+<span class="sd">        that are not available, and not all pickled data is compatible between</span>
+<span class="sd">        Python 2 and Python 3).</span>
+<span class="sd">        Default: True</span>
+<span class="sd">    fix_imports : bool, optional</span>
+<span class="sd">        Only useful in forcing objects in object arrays on Python 3 to be</span>
+<span class="sd">        pickled in a Python 2 compatible way. If `fix_imports` is True, pickle</span>
+<span class="sd">        will try to map the new Python 3 names to the old module names used in</span>
+<span class="sd">        Python 2, so that the pickle data stream is readable with Python 2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">):</span>
@@ -1398,18 +1399,18 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save a Python dict or pandas dataframe as a file format defined in polytex (.coo, geo) file</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        fp: str</span>
-<span class="sd">            File path and name to which the data is saved. If the file name does not end with</span>
-<span class="sd">            a supported file extension, a ValueError will be raised.</span>
-<span class="sd">        data: Tow, Tex, or dict</span>
-<span class="sd">            The data to be saved. It can be several customised file formats for polytex.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fp: str</span>
+<span class="sd">        File path and name to which the data is saved. If the file name does not end with</span>
+<span class="sd">        a supported file extension, a ValueError will be raised.</span>
+<span class="sd">    data: Tow, Tex, or dict</span>
+<span class="sd">        The data to be saved. It can be several customised file formats for polytex.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
     <span class="c1"># get file extension</span>
@@ -1444,16 +1445,16 @@
 <span class="sd">    Load a file format defined in polytex (.coo, .geo, or .stat) file</span>
 <span class="sd">    and return as a pandas dataframe or a numpy.array object.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file:  str, or pathlib.Path.</span>
-<span class="sd">            File path and name to which the data is stored.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file:  str, or pathlib.Path.</span>
+<span class="sd">        File path and name to which the data is stored.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        df: pandas.DataFrame or numpy.ndarray</span>
-<span class="sd">            The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.</span>
-<span class="sd">            Otherwise, it is a numpy array or dict and a warning will be raised.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df: pandas.DataFrame or numpy.ndarray</span>
+<span class="sd">        The data to be loaded. It is a pandas dataframe if the file is a .coo/geo file.</span>
+<span class="sd">        Otherwise, it is a numpy array or dict and a warning will be raised.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -1495,30 +1496,30 @@
 <span class="sd">    Read ROI data from csv files exported from manual segmentation in ImageJ/FIJI. See</span>
 <span class="sd">    https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        filename : str</span>
-<span class="sd">            The path of the roi file. The file should be either a zip of csv files or a directory containing</span>
-<span class="sd">            multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.</span>
-<span class="sd">            see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter</span>
-<span class="sd">            &quot;type&quot; should be set accordingly (&quot;zip&quot; or &quot;dir&quot;).</span>
-<span class="sd">        type : str, optional</span>
-<span class="sd">            The type of saved file. The default is &quot;zip&quot;. The other option is &quot;dir&quot;.</span>
-<span class="sd">        sort : bool, optional</span>
-<span class="sd">            Whether to sort the coordinates according to the slice number. The default is True. Note that</span>
-<span class="sd">            the coordinates on the same slice are not sorted. The sorting is only applied to the slices.</span>
-<span class="sd">        resolution : float, optional</span>
-<span class="sd">            The resolution of the image. The default is 1.0, the coordinates are not converted</span>
-<span class="sd">            to the physical coordinates (namely the unit is pixel).</span>
-<span class="sd">        max_pts : int, optional</span>
-<span class="sd">            The maximum number of points on each slice. The default is 100. If the number of points</span>
-<span class="sd">            on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        The path of the roi file. The file should be either a zip of csv files or a directory containing</span>
+<span class="sd">        multiple csv files. Each csv file contains the coordinates of the segmented points on a slice.</span>
+<span class="sd">        see https://www.binyang.fun/manual-segmentation-in-imagej-fiji/ for more details. The parameter</span>
+<span class="sd">        &quot;type&quot; should be set accordingly (&quot;zip&quot; or &quot;dir&quot;).</span>
+<span class="sd">    type : str, optional</span>
+<span class="sd">        The type of saved file. The default is &quot;zip&quot;. The other option is &quot;dir&quot;.</span>
+<span class="sd">    sort : bool, optional</span>
+<span class="sd">        Whether to sort the coordinates according to the slice number. The default is True. Note that</span>
+<span class="sd">        the coordinates on the same slice are not sorted. The sorting is only applied to the slices.</span>
+<span class="sd">    resolution : float, optional</span>
+<span class="sd">        The resolution of the image. The default is 1.0, the coordinates are not converted</span>
+<span class="sd">        to the physical coordinates (namely the unit is pixel).</span>
+<span class="sd">    max_pts : int, optional</span>
+<span class="sd">        The maximum number of points on each slice. The default is 100. If the number of points</span>
+<span class="sd">        on a slice is larger than max_pts, the points will be uniformly sampled to max_pts (approximately).</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        surf_points : numpy.ndarray</span>
-<span class="sd">            The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is</span>
-<span class="sd">            the total number of points.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    surf_points : numpy.ndarray</span>
+<span class="sd">        The coordinates of the segmented points on the surface of the tow in shape (N, 3), where N is</span>
+<span class="sd">        the total number of points.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;zip&quot;</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
@@ -1567,20 +1568,20 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a pcd file to ply file.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file_coo : str</span>
-<span class="sd">            The path of the coo file or pathlib.Path. File or filename to which the data is saved.</span>
-<span class="sd">        file_ply : str</span>
-<span class="sd">            The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</span>
-<span class="sd">        interpolate : bool, optional</span>
-<span class="sd">            Whether to interpolate the points. The default is False.</span>
-<span class="sd">        threshold : float, optional</span>
-<span class="sd">            The threshold of the normalized distance between the neighboring points. The default is 0.1.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_coo : str</span>
+<span class="sd">        The path of the coo file or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    file_ply : str</span>
+<span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</span>
+<span class="sd">    interpolate : bool, optional</span>
+<span class="sd">        Whether to interpolate the points. The default is False.</span>
+<span class="sd">    threshold : float, optional</span>
+<span class="sd">        The threshold of the normalized distance between the neighboring points. The default is 0.1.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">meshio</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pk_load</span><span class="p">(</span><span class="n">file_coo</span><span class="p">)</span>
@@ -1606,41 +1607,41 @@
 <span class="sd">    Save surface mesh as a mesh file by definition of vertices and faces. Point data and cell data can be added.</span>
 <span class="sd">    It is a wrapper of meshio.write() function.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file : str</span>
-<span class="sd">            The path of the ply file or pathlib.Path. File or filename to which the data is saved.</span>
-<span class="sd">        vertices : numpy.ndarray</span>
-<span class="sd">            The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</span>
-<span class="sd">        cells : list, optional</span>
-<span class="sd">            The faces of the mesh stored as the connectivity between vertices. The default is [].</span>
-<span class="sd">        point_data : dict, optional</span>
-<span class="sd">            The point data of the mesh. The default is {}.</span>
-<span class="sd">        cell_data : dict, optional</span>
-<span class="sd">            The cell data of the mesh. The default is {}. Note that the cell data should be added as a</span>
-<span class="sd">            list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh</span>
-<span class="sd">            has 2 triangles and 1 quad, namely,</span>
-<span class="sd">            cells = [(&quot;triangle&quot;, [0, 1, 2], [1,2,3]), (&quot;quad&quot;, [3, 4, 5, 6])],</span>
-<span class="sd">            then the cell data should be added as</span>
-<span class="sd">            cell_data = {&quot;data&quot;: [[1, 2], [3]}.</span>
-<span class="sd">        binary : bool, optional</span>
-<span class="sd">            If True, the data is written in binary format. The default is False.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is saved.</span>
+<span class="sd">    vertices : numpy.ndarray</span>
+<span class="sd">        The vertices of the mesh. The shape of the array is (n, 3), where n is the number of vertices.</span>
+<span class="sd">    cells : list, optional</span>
+<span class="sd">        The faces of the mesh stored as the connectivity between vertices. The default is [].</span>
+<span class="sd">    point_data : dict, optional</span>
+<span class="sd">        The point data of the mesh. The default is {}.</span>
+<span class="sd">    cell_data : dict, optional</span>
+<span class="sd">        The cell data of the mesh. The default is {}. Note that the cell data should be added as a</span>
+<span class="sd">        list of arrays. Each array in the list corresponds to a cell type. For example, if the mesh</span>
+<span class="sd">        has 2 triangles and 1 quad, namely,</span>
+<span class="sd">        cells = [(&quot;triangle&quot;, [0, 1, 2], [1,2,3]), (&quot;quad&quot;, [3, 4, 5, 6])],</span>
+<span class="sd">        then the cell data should be added as</span>
+<span class="sd">        cell_data = {&quot;data&quot;: [[1, 2], [3]}.</span>
+<span class="sd">    binary : bool, optional</span>
+<span class="sd">        If True, the data is written in binary format. The default is False.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
 
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; import polytex as pk</span>
-<span class="sd">        &gt;&gt;&gt; vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])</span>
-<span class="sd">        &gt;&gt;&gt; cells = [(&quot;triangle&quot;, [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]</span>
-<span class="sd">        &gt;&gt;&gt; point_data = {&quot;a&quot;: np.array([0, 1, 2, 3])}</span>
-<span class="sd">        &gt;&gt;&gt; cell_data = {&quot;b&quot;: np.array([[0, 1, 2, 3],])}</span>
-<span class="sd">        &gt;&gt;&gt; ptx.meshio_save(&quot;test.ply&quot;, vertices, cells, point_data, cell_data)</span>
-<span class="sd">        &gt;&gt;&gt; print(&quot;Done&quot;)</span>
-<span class="sd">        Done</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import polytex as pk</span>
+<span class="sd">    &gt;&gt;&gt; vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])</span>
+<span class="sd">    &gt;&gt;&gt; cells = [(&quot;triangle&quot;, [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]])]</span>
+<span class="sd">    &gt;&gt;&gt; point_data = {&quot;a&quot;: np.array([0, 1, 2, 3])}</span>
+<span class="sd">    &gt;&gt;&gt; cell_data = {&quot;b&quot;: np.array([[0, 1, 2, 3],])}</span>
+<span class="sd">    &gt;&gt;&gt; ptx.meshio_save(&quot;test.ply&quot;, vertices, cells, point_data, cell_data)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;Done&quot;)</span>
+<span class="sd">    Done</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -1674,35 +1675,35 @@
 <span class="sd">    format. It is intended to be used to get the user-defined properties that most of</span>
 <span class="sd">    meshing and rendering software does not support.</span>
 
-<span class="sd">        Note</span>
-<span class="sd">        ----</span>
-<span class="sd">        The mesh must be saved as ASCII format.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The mesh must be saved as ASCII format.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mesh_path : str</span>
-<span class="sd">            The path of the mesh file with .ply extension.</span>
-<span class="sd">        column : int or list of int</span>
-<span class="sd">            The column number of the property.</span>
-<span class="sd">        skip : int, optional</span>
-<span class="sd">            The number of lines to skip in the header. The default is 11.</span>
-<span class="sd">        type : str, optional</span>
-<span class="sd">            The type of the property. The default is &quot;vertex&quot; for vertex property. The other</span>
-<span class="sd">            possible value is &quot;cell&quot; for cell property.</span>
-<span class="sd">        save_vtk : bool, optional</span>
-<span class="sd">            If True, the mesh is saved as a vtk file. The default is False.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh_path : str</span>
+<span class="sd">        The path of the mesh file with .ply extension.</span>
+<span class="sd">    column : int or list of int</span>
+<span class="sd">        The column number of the property.</span>
+<span class="sd">    skip : int, optional</span>
+<span class="sd">        The number of lines to skip in the header. The default is 11.</span>
+<span class="sd">    type : str, optional</span>
+<span class="sd">        The type of the property. The default is &quot;vertex&quot; for vertex property. The other</span>
+<span class="sd">        possible value is &quot;cell&quot; for cell property.</span>
+<span class="sd">    save_vtk : bool, optional</span>
+<span class="sd">        If True, the mesh is saved as a vtk file. The default is False.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        property : numpy.ndarray</span>
-<span class="sd">            The property of the mesh.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    property : numpy.ndarray</span>
+<span class="sd">        The property of the mesh.</span>
 
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import polytex as pk</span>
-<span class="sd">        &gt;&gt;&gt; mesh_path = &quot;./weft_0_lin_lin_krig_30pts.ply&quot;</span>
-<span class="sd">        &gt;&gt;&gt; quality = ptx.get_ply_property(mesh_path, -2, skip=11, type=&quot;vertex&quot;, save_vtk=False)</span>
-<span class="sd">        &gt;&gt;&gt; quality</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import polytex as pk</span>
+<span class="sd">    &gt;&gt;&gt; mesh_path = &quot;./weft_0_lin_lin_krig_30pts.ply&quot;</span>
+<span class="sd">    &gt;&gt;&gt; quality = ptx.get_ply_property(mesh_path, -2, skip=11, type=&quot;vertex&quot;, save_vtk=False)</span>
+<span class="sd">    &gt;&gt;&gt; quality</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1732,19 +1733,19 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save numpy array to csv file with given info in the first row.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        filename:</span>
-<span class="sd">            The path and name of the csv file.</span>
-<span class="sd">        dataset: List or numpy.ndarray</span>
-<span class="sd">            The dataset to be saved in the csv file</span>
-<span class="sd">        csv_head:</span>
-<span class="sd">            A list of headers of the csv file. The length of the list</span>
-<span class="sd">            should be the same as the number of columns in the dataset.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename:</span>
+<span class="sd">        The path and name of the csv file.</span>
+<span class="sd">    dataset: List or numpy.ndarray</span>
+<span class="sd">        The dataset to be saved in the csv file</span>
+<span class="sd">    csv_head:</span>
+<span class="sd">        A list of headers of the csv file. The length of the list</span>
+<span class="sd">        should be the same as the number of columns in the dataset.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">csv</span>
@@ -1835,19 +1836,19 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates element sets for each unique fiber in the mesh.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        mesh : pyvista.PolyData</span>
-<span class="sd">            The input mesh.</span>
-<span class="sd">        file_handle : file</span>
-<span class="sd">            The file handle to write element set lines.</span>
-<span class="sd">       Indices: int</span>
-<span class="sd">            The indices of matrix and fiber.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh : pyvista.PolyData</span>
+<span class="sd">        The input mesh.</span>
+<span class="sd">    file_handle : file</span>
+<span class="sd">        The file handle to write element set lines.</span>
+<span class="sd">   Indices: int</span>
+<span class="sd">        The indices of matrix and fiber.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        element_sets : dict</span>
-<span class="sd">            Dictionary of element sets with the set name as the key and the lines as the value.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    element_sets : dict</span>
+<span class="sd">        Dictionary of element sets with the set name as the key and the lines as the value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">element_sets</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1882,24 +1883,24 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining nodes, elements, and sets in the part data.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        prtname : str</span>
-<span class="sd">            Name of the part.</span>
-<span class="sd">        nodes : list</span>
-<span class="sd">            Node data. Each node is a list containing the node label and the x, y, and z coordinates.</span>
-<span class="sd">            The number of nodes can be obtained using the len() function.</span>
-<span class="sd">        elements : list</span>
-<span class="sd">            Element data. Each element is a list containing the element label and the node labels.</span>
-<span class="sd">        nodesets : list</span>
-<span class="sd">            Node sets containing the node labels.</span>
-<span class="sd">        elemsets : list</span>
-<span class="sd">            Element sets containing the element labels.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prtname : str</span>
+<span class="sd">        Name of the part.</span>
+<span class="sd">    nodes : list</span>
+<span class="sd">        Node data. Each node is a list containing the node label and the x, y, and z coordinates.</span>
+<span class="sd">        The number of nodes can be obtained using the len() function.</span>
+<span class="sd">    elements : list</span>
+<span class="sd">        Element data. Each element is a list containing the element label and the node labels.</span>
+<span class="sd">    nodesets : list</span>
+<span class="sd">        Node sets containing the node labels.</span>
+<span class="sd">    elemsets : list</span>
+<span class="sd">        Element sets containing the element labels.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        lines : list</span>
-<span class="sd">            List of lines for the part data.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lines : list</span>
+<span class="sd">        List of lines for the part data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
         <span class="c1">#        f&quot;*Part, name={prtname}&quot;,  ## TODO : the first parameter is not used currently.</span>
@@ -1939,26 +1940,27 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining material data in the input file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        matname : str</span>
-<span class="sd">            Name of the material.</span>
-<span class="sd">        rho : float</span>
-<span class="sd">            Density of the material.</span>
-<span class="sd">        e : float</span>
-<span class="sd">            Young&#39;s modulus of the material.</span>
-<span class="sd">        nu : float</span>
-<span class="sd">            Poisson&#39;s ratio of the material.</span>
-<span class="sd">        sta : int</span>
-<span class="sd">            Material state variable.</span>
-<span class="sd">        condition : bool</span>
-<span class="sd">            Condition for material type (default is True).</span>
-<span class="sd">        materials: list</span>
-<span class="sd">            List to store material data lines (default is None).</span>
-<span class="sd">        Returns:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        datalines : list</span>
-<span class="sd">            A list of lines for material data.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    matname : str</span>
+<span class="sd">        Name of the material.</span>
+<span class="sd">    rho : float</span>
+<span class="sd">        Density of the material.</span>
+<span class="sd">    e : float</span>
+<span class="sd">        Young&#39;s modulus of the material.</span>
+<span class="sd">    nu : float</span>
+<span class="sd">        Poisson&#39;s ratio of the material.</span>
+<span class="sd">    sta : int</span>
+<span class="sd">        Material state variable.</span>
+<span class="sd">    condition : bool</span>
+<span class="sd">        Condition for material type (default is True).</span>
+<span class="sd">    materials: list</span>
+<span class="sd">        List to store material data lines (default is None).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    datalines : list</span>
+<span class="sd">        A list of lines for material data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">datalines</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># Define material properties lines</span>
@@ -1988,21 +1990,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates lines for defining the solid section properties of a specified element set and material.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        elset_name : str</span>
-<span class="sd">            The name of the element set.</span>
-<span class="sd">        material_name : str</span>
-<span class="sd">            The name of the material.</span>
-<span class="sd">        orientation_name : str</span>
-<span class="sd">            The name of the orientation (default is None for the matrix).</span>
-<span class="sd">        controls : str</span>
-<span class="sd">            Control parameters for the section (default is an empty string).</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    elset_name : str</span>
+<span class="sd">        The name of the element set.</span>
+<span class="sd">    material_name : str</span>
+<span class="sd">        The name of the material.</span>
+<span class="sd">    orientation_name : str</span>
+<span class="sd">        The name of the orientation (default is None for the matrix).</span>
+<span class="sd">    controls : str</span>
+<span class="sd">        Control parameters for the section (default is an empty string).</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        lines : list</span>
-<span class="sd">            A list containing lines for defining the solid section properties.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lines : list</span>
+<span class="sd">        A list containing lines for defining the solid section properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">controls</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">orientation_name</span><span class="p">:</span>
@@ -2029,21 +2031,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates solid section lines for all fiber element sets in the mesh.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        Indices: int</span>
-<span class="sd">            The indices of matrix and fiber.</span>
-<span class="sd">        fiber_material_name : str</span>
-<span class="sd">            The name of the fiber material.</span>
-<span class="sd">        orientation_name : str</span>
-<span class="sd">            The name of the orientation (default is None for the matrix).</span>
-<span class="sd">        controls : str</span>
-<span class="sd">            Control parameters for the section (default is an empty string).</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Indices: int</span>
+<span class="sd">        The indices of matrix and fiber.</span>
+<span class="sd">    fiber_material_name : str</span>
+<span class="sd">        The name of the fiber material.</span>
+<span class="sd">    orientation_name : str</span>
+<span class="sd">        The name of the orientation (default is None for the matrix).</span>
+<span class="sd">    controls : str</span>
+<span class="sd">        Control parameters for the section (default is an empty string).</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">        ----------------</span>
-<span class="sd">        lines : list</span>
-<span class="sd">            A list of lines for defining solid section properties for all fiber element sets.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lines : list</span>
+<span class="sd">        A list of lines for defining solid section properties for all fiber element sets.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -2067,8 +2069,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes fiber orientation information to a file.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    -------------------------</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 <span class="sd">        mesh: pyvista.PolyData</span>
 <span class="sd">            The input mesh.</span>
 <span class="sd">        Indices: int</span>
@@ -2077,8 +2079,10 @@
 <span class="sd">            The header lines for the ori file (default is &#39;&#39;).</span>
 <span class="sd">        output_file: str</span>
 <span class="sd">            The output file path for writing fiber orientation information (default is &#39;fabrictest.ori&#39;).</span>
-<span class="sd">    Returns:</span>
-<span class="sd">    ------------------------</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># ori file header</span>
@@ -2130,24 +2134,24 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a voxel mesh to an Abaqus input file.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mesh : pyvista.UnstructuredGrid</span>
-<span class="sd">            The voxel mesh.</span>
-<span class="sd">        scale : float, optional</span>
-<span class="sd">            The scale factor to convert the unit of points. The default is 1.0.</span>
-<span class="sd">        outputDir : str, optional</span>
-<span class="sd">            The output directory and filename. The default is &#39;./mesh-C3D8R.inp&#39;. The file</span>
-<span class="sd">            extension is automatically added if not provided.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh : pyvista.UnstructuredGrid</span>
+<span class="sd">        The voxel mesh.</span>
+<span class="sd">    scale : float, optional</span>
+<span class="sd">        The scale factor to convert the unit of points. The default is 1.0.</span>
+<span class="sd">    outputDir : str, optional</span>
+<span class="sd">        The output directory and filename. The default is &#39;./mesh-C3D8R.inp&#39;. The file</span>
+<span class="sd">        extension is automatically added if not provided.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) &amp; Bin Yang</span>
-<span class="sd">        (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    voxel2inp is developed by Chao Yang (yangchaogg@whut.edu.cn) &amp; Bin Yang</span>
+<span class="sd">    (bin.yang@polymtl.ca) jointly. Please contact us if you have any questions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># check if the mesh is a pyvista.UnstructuredGrid object</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">):</span>
@@ -2265,7 +2269,12 @@
 <span class="sd">        The path of the pcd file or pathlib.Path. File or filename to which the data is saved.</span>
 <span class="sd">    file_ply : str</span>
 <span class="sd">        The path of the ply file or pathlib.Path. File or filename to which the data is to be saved.</span>
-<span class="sd">    :return: None</span>
+<span class="sd">    binary : bool, optional</span>
+<span class="sd">        TODO</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bcolors</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
         <span class="s2">&quot;This function will be deprecated in the future. Please use polytex.read_imagej_roi() instead.&quot;</span><span class="p">))</span>

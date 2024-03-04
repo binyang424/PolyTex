@@ -106,7 +106,7 @@
 <span class="sd">    dimensionality of the space.</span>
 
 <span class="sd">    Notes</span>
-<span class="sd">    ----------</span>
+<span class="sd">    -----</span>
 <span class="sd">    Efficient Vector / Point class in Python from:</span>
 <span class="sd">    https://stackoverflow.com/questions/19458291/efficient-vector-point-class-in-python</span>
 
@@ -308,7 +308,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Vector</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Vector</span>
 <span class="sd">    &gt;&gt;&gt; v1 = Vector((1, 2, 3))</span>
 <span class="sd">    &gt;&gt;&gt; v2 = Vector((4, 5, 7))</span>
 <span class="sd">    &gt;&gt;&gt; sum12 = Vector((5, 7, 10))</span>
@@ -392,7 +392,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Line</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Point, Line</span>
 <span class="sd">    &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
 <span class="sd">    &gt;&gt;&gt; p2 = Point([2, 3, 4])</span>
 <span class="sd">    &gt;&gt;&gt; l1 = Line(p1, p2)</span>
@@ -432,11 +432,11 @@
 <div class="viewcode-block" id="Curve"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.basic.Curve">[docs]</a><span class="k">class</span> <span class="nc">Curve</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is an open curve defined by a list of points in the order of connection. It is</span>
-<span class="sd">    created by using composition instead of inheritance of PolyKriging.geometry.Point.</span>
+<span class="sd">    created by using composition instead of inheritance of polytex.geometry.Point.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polykriging.geometry import Point, Curve</span>
+<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Point, Curve</span>
 <span class="sd">    &gt;&gt;&gt; p = [[2, 4, 6], [2, 4, 5]]</span>
 <span class="sd">    &gt;&gt;&gt; c = Curve(p)</span>
 <span class="sd">    &gt;&gt;&gt; c.points</span>
@@ -450,7 +450,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A partial inheritance of polykriging.geometry.Point class.</span>
+<span class="sd">        A partial inheritance of polytex.geometry.Point class.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -812,7 +812,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">p3</span> <span class="o">=</span> <span class="n">p3</span>
 
             <span class="c1"># p1.tolist(): convert the point to a list for compatibility with sympy geometry</span>
-            <span class="c1"># It is originally a PolyKriging Point object which is inherited from numpy.ndarray.</span>
+            <span class="c1"># It is originally a polytex Point object which is inherited from numpy.ndarray.</span>
             <span class="k">if</span> <span class="n">symPoint</span><span class="o">.</span><span class="n">Point3D</span><span class="o">.</span><span class="n">are_collinear</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p2</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Enter three non-collinear points&#39;</span><span class="p">)</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">direction_ratio</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
@@ -904,8 +904,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the equation of the plane as a function of x, y and z.</span>
 
-<span class="sd">        Note</span>
-<span class="sd">        ----</span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">            normal = (a, b, c)</span>
 <span class="sd">            point = (x0, y0, z0)</span>
 <span class="sd">            Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</span>
@@ -922,8 +922,8 @@
 <span class="sd">        A lambda function of x, y and z.</span>
 <span class="sd">            function of plane.</span>
 
-<span class="sd">        Example</span>
-<span class="sd">        -------</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
 <span class="sd">        Create a plane from a point and a normal vector</span>
 <span class="sd">        &gt;&gt;&gt; from polytex.geometry import Point, Plane</span>
 <span class="sd">        &gt;&gt;&gt; p1 = Point([1, 1, 1])</span>
@@ -999,6 +999,7 @@
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        theta_res : int</span>
@@ -1064,8 +1065,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</span>
 
-<span class="sd">        Note</span>
-<span class="sd">        ----</span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">        theta_res should be 1 less then else where. To be fixed in the future.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_res</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_res</span><span class="p">)</span>
@@ -1131,9 +1132,9 @@
 <span class="sd">    This is a parametric curve. It is defined by a function and</span>
 <span class="sd">    a parameter.</span>
 
-<span class="sd">        The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</span>
+<span class="sd">    The class is a wrap of sympy.geometry.curve.Curve. So far, please refer to the</span>
 <span class="sd">    documentation of sympy.geometry.curve.Curve for more information.</span>
-<span class="sd">        https://docs.sympy.org/latest/modules/geometry/curves.html</span>
+<span class="sd">    https://docs.sympy.org/latest/modules/geometry/curves.html</span>
 
 <span class="sd">    TODO : A detailed documentation will be added in the future.</span>
 
@@ -1224,8 +1225,15 @@
 <span class="sd">        Evaluate the curve at a given parameter value. The parameter value</span>
 <span class="sd">        should be within the limits. Otherwise, an error will be raised.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        t_value : float or array_like</span>
 <span class="sd">            The parameter value for evaluation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curve : Curve object</span>
+<span class="sd">            The evaluated curve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
 
@@ -1272,6 +1280,10 @@
 <span class="sd">            Function parameter and lower and upper bounds. The parameter should be</span>
 <span class="sd">            the same for all three functions. For example, (t, 0, 1) is valid but</span>
 <span class="sd">            ((t, 0, 1), (s, 0, 1), (u, 0, 1)) is not.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curve : ParamCurve3D object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">functions</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Function argument should be (x(t), y(t), z(t)) &quot;</span>
@@ -1284,8 +1296,18 @@
 
 <div class="viewcode-block" id="ParamCurve3D.eval"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.basic.ParamCurve3D.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        t : float or array_like</span>
+<span class="sd">        Evaluate the curve at a given parameter value. The parameter value</span>
+<span class="sd">        should be within the limits. Otherwise, an error will be raised.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        t_value : float or array_like</span>
 <span class="sd">            The parameter value for evaluation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        curve : Curve object</span>
+<span class="sd">            The evaluated curve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
 
@@ -1324,12 +1346,23 @@
 
 <div class="viewcode-block" id="ParamCurve3D.translate"><a class="viewcode-back" href="../../../source/polytex.geometry.html#polytex.geometry.basic.ParamCurve3D.translate">[docs]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Translate the Curve by (x, y, z).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : float</span>
+<span class="sd">            The translation in the x direction.</span>
+<span class="sd">        y : float</span>
+<span class="sd">            The translation in the y direction.</span>
+<span class="sd">        z : float</span>
+<span class="sd">            The translation in the z direction.</span>
+
 <span class="sd">        Returns</span>
-<span class="sd">        =======</span>
+<span class="sd">        -------</span>
 <span class="sd">        Curve :</span>
 <span class="sd">            returns a translated curve.</span>
+
 <span class="sd">        Examples</span>
-<span class="sd">        ========</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from polytex.geometry import ParamCurve3D</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
 <span class="sd">        &gt;&gt;&gt; ParamCurve3D((x, x), (x, 0, 1)).translate(1, 2)</span>

@@ -18,8 +18,8 @@ class bcolors:
     or use one of the following convenience methods:
       warning, fail, ok, okblue, header
 
-    example
-    -------
+    Examples
+    --------
     >>> print(bcolors.warning("This is dangerous"))
 
     Method calls can be nested too, print an underlined header do this:

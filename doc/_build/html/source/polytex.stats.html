@@ -28,6 +28,7 @@
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -109,10 +110,21 @@
 <span class="target" id="module-polytex.stats.bw_opt"></span><dl class="py function">
 <dt class="sig sig-object py" id="polytex.stats.bw_opt.bw_scott">
 <span class="sig-prename descclassname"><span class="pre">polytex.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">bw_scott</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/bw_opt.html#bw_scott"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.bw_opt.bw_scott" title="Permalink to this definition"></a></dt>
-<dd><p>Scott’s rule for bandwidth selection.
-:param sigma: standard deviation of the data, type: float
-:param n: number of data points, type: int
-:return: bandwidth, type: float</p>
+<dd><p>Scott’s rule for bandwidth selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<em>float</em>) – The standard deviation of the data.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – The number of data points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>bw</strong> – The bandwidth of the kernel.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -121,20 +133,19 @@
 <dd><blockquote>
 <div><p>Calculate the likelihood of the given probability density function.
 The likelihood is:</p>
-<blockquote>
-<div><p><a href="#id1"><span class="problematic" id="id2">``</span></a>L =</p>
+<div class="math notranslate nohighlight">
+\[L =\]</div>
 </div></blockquote>
-</div></blockquote>
-<dl class="simple">
-<dt>rac{1}{N}sum_{i=1}^{N} f(x_i)``</dt><dd><dl class="simple">
-<dt>pdf<span class="classifier">Numpy array</span></dt><dd><p>The probability density function.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<p>rac{1}{N}sum_{i=1}^{N} f(x_i)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>pdf</strong><span class="classifier">Numpy array</span></dt><dd><p>The probability density function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt><strong>LL</strong><span class="classifier">float</span></dt><dd><p>The log-likelihood of the given probability density function.</p>
 </dd>
 </dl>
@@ -155,6 +166,12 @@ the log-likelihood of data.</p>
 <li><p><strong>x_test</strong> (<em>Numpy array</em>) – Test data to get the density distribution.</p></li>
 <li><p><strong>bw</strong> (<em>list</em><em> of </em><em>float</em>) – The bandwidth of the kernels to be tested.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>kde.bandwidth</strong> – The optimal bandwidth of the kernel.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>

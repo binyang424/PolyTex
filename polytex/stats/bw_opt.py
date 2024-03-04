@@ -6,9 +6,18 @@ from sklearn.model_selection import GridSearchCV
 def bw_scott(sigma, n=''):
     """
     Scott's rule for bandwidth selection.
-    :param sigma: standard deviation of the data, type: float
-    :param n: number of data points, type: int
-    :return: bandwidth, type: float
+
+    Parameters
+    ----------
+    sigma : float
+        The standard deviation of the data.
+    n : int
+        The number of data points.
+
+    Returns
+    -------
+    bw : float
+        The bandwidth of the kernel.
     """
     return sigma * (4.0 / 3.0 / n) ** 0.2
 
@@ -27,6 +36,11 @@ def opt_bandwidth(variable, x_test, bw):
         Test data to get the density distribution.
     bw : list of float
         The bandwidth of the kernels to be tested.
+
+    Returns
+    -------
+    kde.bandwidth : float
+        The optimal bandwidth of the kernel.
     """
 
     kde = KernelDensity(kernel='gaussian')
@@ -50,12 +64,12 @@ def log_likelihood(pdf):
     .. math::  L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)
 
     Parameters
-    --------------
+    ----------
     pdf : Numpy array
         The probability density function.
 
     Returns
-    --------------
+    -------
     LL : float
         The log-likelihood of the given probability density function.
     """

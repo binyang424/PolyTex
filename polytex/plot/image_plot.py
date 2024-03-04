@@ -164,7 +164,7 @@ def xy_interp(*axis_list, num=100, raw=False):
 
     TODO: check what happens if the range of x-axis is not the same for all the input axis_list.
 
-    Note:
+    Notes
     -----
     [algorithm - How to interpolate a line between two other lines in python]
     (https://stackoverflow.com/questions/49037902/how-to-interpolate-a-line-between-two-other-lines-in-python/49041142#49041142)

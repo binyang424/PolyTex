@@ -169,8 +169,8 @@ def euler_z_noraml(normal, *args) -> list:
     a normal vector from the origin to a point (namely, no translation
     is considered).
 
-    Note
-    ----
+    Notes
+    -----
     No translation is considered. The origin of the global coordinate
     system is assumed to be the origin of the local coordinate system.
     The user should translate the local coordinate system to the origin
@@ -232,8 +232,8 @@ def euler_zx_coordinate(z_new, x_new) -> list:
     rotating the global coordinate system to align its z-axis with
     the z_new vector and its x-axis with the x_new vector.
 
-    Note
-    ----
+    Notes
+    -----
     No translation is considered. The origin of the global coordinate
     system is assumed to be the origin of the local coordinate system.
     The user should translate the local coordinate system to the origin
