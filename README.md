@@ -1,8 +1,8 @@
-# `PolyTex`: A parametric geometry modeling package
+# `PolyTex`: A parametric textile geometry modeling package
 
 ## About this project
 
-`PolyTex` is an open-source toolkit for geometry modeling of woven textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis, modeling accuracy evaluation, and interface smoothing. A meshing module was implemented to generate tetrahedral conformal meshes and voxel meshes. Local material properties are assigned to each cell, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a "Digital Material Twin". The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation.
+`PolyTex` is an open-source toolkit for geometry modeling of woven textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis and textile geometry modeling. A meshing module was implemented to generate voxel meshes. Generation of tetrahedral conformal meshes will be implemented in future release. Local material properties are assigned to each cell in the generated mesh, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a "Digital Material Twin". The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation. Hence, Application programming interface (API) for `OpenFOAM` and `Abaqus` is provided.
 
 We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation). 
 
@@ -10,16 +10,14 @@ Our issue tracker is at [https://github.com/binyang424/PolyTex/issues](https://g
 
 > `PolyTex` is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 >
-> `PolyTex` is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [License](./LICENSE.html) for more details.
+> `PolyTex` is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See  [LICENSE](https://github.com/binyang424/PolyTex/blob/master/LICENSE.rst) for more details.
 
 ## Installation
-
-**Note: This document is only a template and will be completed when the project is released. The following information may not work at this stage**.
 
 To install `PolyTex` using `PyPI`, run the following command:
 
 ```shell
-$ pip install PolyTex
+$ pip install polytex
 ```
 
 To install `PolyTex` from the source, begin by cloning the repository using `git`:
@@ -28,7 +26,7 @@ To install `PolyTex` from the source, begin by cloning the repository using `git
 $ git clone https://github.com/binyang424/PolyTex.git
 ```
 
-If you are unfamiliar with it, you can refer to our tutorial on [Git for beginners](https://github.com/binyang424/Git-for-beginners). Alternatively, you can download a specific branch of the source code from GitHub as a `.zip` file at https://github.com/binyang424/PolyTex.
+> If you are unfamiliar with Git, you can refer to our tutorial [Git for beginners](https://github.com/binyang424/Git-for-beginners). Alternatively, you can download a specific branch of the source code from GitHub as a `.zip` file at https://github.com/binyang424/PolyTex.
 
 Once the repository is cloned, navigate to the root directory of the `PolyTex` repository where the `setup.py` file is located, and execute the following command:
 
@@ -39,7 +37,7 @@ $ python setup.py install
 To install `PolyTex` using the wheel file, navigate to the subdirectory `./dist/` of the downloaded `PolyTex` repository, and run:
 
 ```shell
-$ pip install PolyTex-<version>.whl
+$ pip install polytex-<version>.whl
 ```
 
 ## Contributing to `PolyTex`
@@ -48,7 +46,7 @@ Thank you for considering contributing to `PolyTex`! This project thrives on com
 
 ### How Can You Contribute?
 
--   **Reporting Bugs:** If you find a bug, please open an issue. Provide as much detail as possible, including your environment, steps to reproduce, and the expected vs. actual behavior.
+-   **Reporting Bugs:** If you find a bug, please open an issue at [https://github.com/binyang424/PolyTex/issues](https://github.com/binyang424/PolyTex/issues). Provide as much detail as possible, including your environment, steps to reproduce, and the expected vs. actual behavior.
     
 -   **Suggesting Enhancements:** Have an idea for a new feature or an improvement? Feel free to open an issue and discuss it with the community.
     
@@ -88,7 +86,7 @@ Thank you for considering contributing to `PolyTex`! This project thrives on com
 
 ### Code Style
 
-Follow the established code style in the project. Make sure your code is well-documented and includes tests when applicable.
+Follow the established code style in the project. Make sure your code is well-documented and includes tests when applicable. See [style guide](https://numpydoc.readthedocs.io/en/latest/format.html) for docstrings used with the `numpydoc` extension for [Sphinx](https://www.sphinx-doc.org/).
 
 ### License
 By contributing to `PolyTex`, you agree that your contributions will be licensed under the project's [LICENSE](https://github.com/binyang424/PolyTex/blob/master/LICENSE.rst).
@@ -98,8 +96,5 @@ By contributing to `PolyTex`, you agree that your contributions will be licensed
 
 - To cite `PolyTex` in publications use:
 
-
-
-- A BibTeX entry for LaTeX users is:
-
-  
+Bin YANG, Yuwei Feng, Cédric BÉGUIN, Philippe CAUSSE and Jihui WANG. Open Source Tool for Micro-CT Aided Meso-scale Modeling and
+Meshing of Complex Textile Composite Structures. Submitted to *Composites Science and Technology* (2024).
