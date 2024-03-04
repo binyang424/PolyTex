@@ -906,13 +906,6 @@ class Tube(GeometryEntity):
     This class defines a 3D tubular surface by the number of points on each cross-section (theta_res)
     and the number of cross-sections (h_res). Note that the number of points on the cross-section
     is the same for all the cross-sections.
-
-    Examples
-    --------
-    >>> from polytex.geometry import Tube
-    >>> tube = Tube(4, 10, major=2, minor=1, h=5)
-    >>> mesh = tube.mesh(plot=True)
-    >>> tube.save_as_mesh('tube.vtk')
     """
 
     def __new__(cls, theta_res, h_res, vertices=None, **kwargs):
@@ -925,18 +918,24 @@ class Tube(GeometryEntity):
             The number of points on each cross-section.
         h_res : int
             The number of cross-sections.
-        points : array_like
+        vertices : array_like
             The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
             The points should be ordered in the following way:
-                [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]
-            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom.
-
-            the default value is None. If the value is None, the points will be generated automatically by assigning
+            [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]
+            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom. The
+            default value is None. If the value is None, the points will be generated automatically by assigning
             the height, major and minor radius to the tube.
 
         Returns
         -------
         tube : Tube object
+
+        Examples
+        --------
+        >>> from polytex.geometry import Tube
+        >>> tube = Tube(4, 10, major=2, minor=1, h=5)
+        >>> mesh = tube.mesh(plot=True)
+        >>> tube.save_as_mesh('tube.vtk')
         """
 
         if vertices is not None:

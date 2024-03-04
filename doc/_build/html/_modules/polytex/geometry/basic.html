@@ -988,13 +988,6 @@
 <span class="sd">    This class defines a 3D tubular surface by the number of points on each cross-section (theta_res)</span>
 <span class="sd">    and the number of cross-sections (h_res). Note that the number of points on the cross-section</span>
 <span class="sd">    is the same for all the cross-sections.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from polytex.geometry import Tube</span>
-<span class="sd">    &gt;&gt;&gt; tube = Tube(4, 10, major=2, minor=1, h=5)</span>
-<span class="sd">    &gt;&gt;&gt; mesh = tube.mesh(plot=True)</span>
-<span class="sd">    &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtk&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1007,18 +1000,24 @@
 <span class="sd">            The number of points on each cross-section.</span>
 <span class="sd">        h_res : int</span>
 <span class="sd">            The number of cross-sections.</span>
-<span class="sd">        points : array_like</span>
+<span class="sd">        vertices : array_like</span>
 <span class="sd">            The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).</span>
 <span class="sd">            The points should be ordered in the following way:</span>
-<span class="sd">                [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]</span>
-<span class="sd">            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom.</span>
-
-<span class="sd">            the default value is None. If the value is None, the points will be generated automatically by assigning</span>
+<span class="sd">            [p1, p2, ..., p_theta_res, p1, p2, ..., p_theta_res, ..., p1, p2, ..., p_theta_res]</span>
+<span class="sd">            where p1, p2, ..., p_theta_res are the points on each cross-section from the top to the bottom. The</span>
+<span class="sd">            default value is None. If the value is None, the points will be generated automatically by assigning</span>
 <span class="sd">            the height, major and minor radius to the tube.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        tube : Tube object</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from polytex.geometry import Tube</span>
+<span class="sd">        &gt;&gt;&gt; tube = Tube(4, 10, major=2, minor=1, h=5)</span>
+<span class="sd">        &gt;&gt;&gt; mesh = tube.mesh(plot=True)</span>
+<span class="sd">        &gt;&gt;&gt; tube.save_as_mesh(&#39;tube.vtk&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

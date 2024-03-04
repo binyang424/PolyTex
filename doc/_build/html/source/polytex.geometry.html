@@ -2011,15 +2011,12 @@ calculations that may overflow a fixed size integer type.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>theta_res</strong> (<em>int</em>) – The number of points on each cross-section.</p></li>
 <li><p><strong>h_res</strong> (<em>int</em>) – The number of cross-sections.</p></li>
-<li><p><strong>points</strong> (<em>array_like</em>) – <p>The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
-The points should be ordered in the following way:</p>
-<blockquote>
-<div><p>[p1, p2, …, p_theta_res, p1, p2, …, p_theta_res, …, p1, p2, …, p_theta_res]</p>
-</div></blockquote>
-<p>where p1, p2, …, p_theta_res are the points on each cross-section from the top to the bottom.</p>
-<p>the default value is None. If the value is None, the points will be generated automatically by assigning
-the height, major and minor radius to the tube.</p>
-</p></li>
+<li><p><strong>vertices</strong> (<em>array_like</em>) – The points on the cross-sections. The shape of the array should be (h_res * theta_res, 3).
+The points should be ordered in the following way:
+[p1, p2, …, p_theta_res, p1, p2, …, p_theta_res, …, p1, p2, …, p_theta_res]
+where p1, p2, …, p_theta_res are the points on each cross-section from the top to the bottom. The
+default value is None. If the value is None, the points will be generated automatically by assigning
+the height, major and minor radius to the tube.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2028,8 +2025,17 @@ the height, major and minor radius to the tube.</p>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Tube object</p>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">tube</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">args</span></code></dt><dd><p>Returns a tuple of arguments of ‘self’.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">assumptions0</span></code></dt><dd><p>Return object <cite>type</cite> assumptions.</p>
