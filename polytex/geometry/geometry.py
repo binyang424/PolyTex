@@ -309,12 +309,6 @@ def area_signed(points: np.ndarray) -> float:
     """
     Return the signed area of a simple polygon given the 2D coordinates of its veritces.
 
-    Notes
-    -----
-    This function is modified from open source Python library scikit-spatial:
-      skspatial.measurement — scikit-spatial documentation
-      https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed)
-
     The signed area is computed using the shoelace algorithm. A positive area is
     returned for a polygon whose vertices are given by a counter-clockwise
     sequence of points.
@@ -339,8 +333,11 @@ def area_signed(points: np.ndarray) -> float:
 
     Notes
     -----
-    If the number of points is less than 3, a warning is raised and the area is
+    - If the number of points is less than 3, a warning is raised and the area is
     returned as 0.
+    - This function is modified from open source Python library scikit-spatial:
+    skspatial.measurement — scikit-spatial documentation
+    https://scikit-spatial.readthedocs.io/en/stable/_modules/skspatial/measurement.html#area_signed)
 
     Examples
     --------
