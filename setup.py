@@ -1,9 +1,14 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name='polytex',
-    version='0.3.12',
+    version='0.3.13',
     description='PolyTex is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images.',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url='https://github.com/binyang424/polytex',
     author='Bin Yang',
     author_email='bin.yang@polymtl.ca',

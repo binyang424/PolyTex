@@ -20,6 +20,7 @@ release = '0.3.12'
 
 extensions = [
               # "sphinx.ext.napoleon",
+              'sphinx_simplepdf',
               'sphinx.ext.autodoc',
               'sphinx.ext.mathjax',
               'sphinx.ext.viewcode',
