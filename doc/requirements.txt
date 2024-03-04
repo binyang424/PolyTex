@@ -11,3 +11,4 @@ pyvista
 polytex
 tqdm
 pypandoc
+sphinx-simplepdf
