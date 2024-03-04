@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('./../polytex'))  # 指向src目录
 project = 'PolyTex'
 copyright = '2022-2024, Bin Yang'
 author = 'Bin Yang'
-release = '0.3.10'
+release = '0.3.12'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
