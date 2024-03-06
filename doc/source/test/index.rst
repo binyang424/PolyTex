@@ -44,18 +44,52 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Textile class example">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use the 3D curve kriging method to interpolate a 3D curve:">
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Textile_class_example_thumb.png
+  .. image:: /source/test/images/thumb/sphx_glr_3d_curve_krig_thumb.png
     :alt:
 
-  :ref:`sphx_glr_source_test_Textile_class_example.py`
+  :ref:`sphx_glr_source_test_3d_curve_krig.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Textile class example</div>
+      <div class="sphx-glr-thumbnail-title">3D curve kriging</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use of derivative kriging for interpolation y = f(x) with given deriv...">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_derivative_Kriging_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_derivative_Kriging.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Derivative kriging</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Test">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_parametric_surface_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_parametric_surface.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Parametric kriging of surface</div>
     </div>
 
 
@@ -78,6 +112,23 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to interpolate a 2D curve with confidence estimation.">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_curve2D_interp_with_confidence_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_curve2D_interp_with_confidence.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">2D curve kriging with confidence estimation</div>
+    </div>
+
+
+.. raw:: html
+
     </div>
 
 
@@ -86,8 +137,11 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
    /source/test/example_dataset
    /source/test/pk_io
-   /source/test/Textile_class_example
+   /source/test/3d_curve_krig
+   /source/test/derivative_Kriging
+   /source/test/parametric_surface
    /source/test/Tow_Class
+   /source/test/curve2D_interp_with_confidence
 
 
 .. only:: html
