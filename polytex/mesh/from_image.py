@@ -1,6 +1,6 @@
 """
 To check the use of this module, please refer to the example "mesh_from_image.py"
- in the test folder of Polykriging.
+ in the test folder of PolyTex.
 """
 
 import numpy as np

@@ -30,7 +30,7 @@ class Tow:
     >>> path = ptx.example("surface points")
     >>> surf_points = ptx.pk_load(path).to_numpy()
     >>> coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm
-    >>> tow = ptx.Tow(surf_points=coordinates, tex=0, name="Tow") # PolyKriging Tow class
+    >>> tow = ptx.Tow(surf_points=coordinates, tex=0, name="Tow") # PolyTex Tow class
     >>> df_coord = tow.coordinates  # parametric coordinates of the tow
     >>> df_geom = tow.geom_features  # geometrical features of the tow
     >>>
@@ -58,7 +58,7 @@ class Tow:
 
             If surf_points is a string, it should be the path to the file
             that stores the surface points. The file should be a .pcd file
-            as defined in the PolyKriging library.
+            as defined in the PolyTex library.
 
             If surf_points is a numpy array, it should be an array of shape
             (n, 3) where n is the number of points.
@@ -90,7 +90,7 @@ class Tow:
             The resolution of the MicroCT image used to generate the tow dataset. Default is None.
             This is only stored as an attribute for future use. It is not used in the current version.
         kwargs : dict
-            The keyword arguments for the PolyKriging Tow class. The user can specify any keyword
+            The keyword arguments for the PolyTex Tow class. The user can specify any keyword
             arguments for the Tow class. The keyword arguments will be stored as attributes of the
             Tow class. The user can access the attributes by tow.attribute_name.
         """
@@ -926,7 +926,7 @@ class Tow:
             trajectory = self.__traj
             direction = self.orientation
 
-            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyKriging")
+            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyTex")
 
             _ = pl.add_mesh(s1, style='wireframe', color='black', opacity=0.2)
 
@@ -1009,7 +1009,7 @@ class Tow:
 
             n_pts = 0
 
-            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyKriging")
+            pl = pv.Plotter(title="Normal cross-sections of tow %s by %s" % (self.name, algorithm) + " -- PolyTex")
 
             _ = pl.add_mesh(self.__surf_mesh, style='wireframe', color='black', opacity=0.2)
 

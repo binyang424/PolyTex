@@ -39,7 +39,7 @@ def voxelize(mesh, density=None, check_surface=True, density_type='cell_number',
 
     >>> import pyvista as pv
     >>> from pyvista import examples
-    >>> import polykriging.mesh as ms
+    >>> import polytex.mesh as ms
     >>> mesh = pv.PolyData(examples.load_uniform().points)
     >>> vox, _ = ms.voxelize(mesh, density=0.5, density_type='cell_size')
     >>> vox.plot(show_edges = True)
