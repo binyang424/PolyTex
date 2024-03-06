@@ -34,7 +34,7 @@ For more information about these file formats, please refer to
 In polytex, two function were provided to facilitate file selection: `polytex.choose_file` and `polytexchoose_directory`.
 2. File reading and writing
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-23
+.. GENERATED FROM PYTHON SOURCE LINES 18-24
 
 .. code-block:: default
 
@@ -44,7 +44,8 @@ In polytex, two function were provided to facilitate file selection: `polytex.ch
     import polytex as pk
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-29
+
+.. GENERATED FROM PYTHON SOURCE LINES 25-30
 
 Select file and return the path
 -------------------------------
@@ -52,7 +53,7 @@ The function `polytex.choose_file()` allows users to select a file from
 a directory with a GUI. The function returns the path of the selected file.
 Users can also specify the file type and the title of the GUI window as below:
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-32
+.. GENERATED FROM PYTHON SOURCE LINES 30-33
 
 .. code-block:: default
 
@@ -60,14 +61,14 @@ Users can also specify the file type and the title of the GUI window as below:
     coordinatesSorted = pk.pk_load(path)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-37
+.. GENERATED FROM PYTHON SOURCE LINES 34-38
 
 Traverse and return a list of filenames in the directory
 --------------------------------------------------------
 The function `polytex.filenames()` allows users to traverse a directory
 and return a list of filenames with a given extension.
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-51
+.. GENERATED FROM PYTHON SOURCE LINES 38-52
 
 .. code-block:: default
 

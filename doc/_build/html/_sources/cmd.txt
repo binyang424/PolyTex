@@ -1,4 +1,4 @@
-sphinx-apidoc -o source ../polytex/
+sphinx-apidoc -o source ../polytex/; make clean; clear; python -m sphinx -T -W --keep-going -b html -d _build/doctrees -D language=en . _build/html
 
 make html
 # mingw32-make.exe html
@@ -16,4 +16,3 @@ https://github.com/imagej/pyimagej/tree/master/doc
 
 pip install --upgrade 'nbconvert>=7' 'mistune>=2'
 
-python -m sphinx -T -W --keep-going -b html -d _build/doctrees -D language=en . _build/html

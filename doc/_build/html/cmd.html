@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; PolyTex 0.3.15 documentation</title>
+  <title>&lt;no title&gt; &mdash; PolyTex 0.4.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -84,7 +84,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>sphinx-apidoc -o source ../polytex/</p>
+  <p>sphinx-apidoc -o source ../polytex/; make clean; clear; python -m sphinx -T -W –keep-going -b html -d _build/doctrees -D language=en . _build/html</p>
 <p>make html
 # mingw32-make.exe html</p>
 <p>make clean
@@ -94,7 +94,6 @@
 引用了md文档作为内容，在相同的目录下</p>
 <p><a class="reference external" href="https://github.com/imagej/pyimagej/tree/master/doc">https://github.com/imagej/pyimagej/tree/master/doc</a></p>
 <p>pip install –upgrade ‘nbconvert&gt;=7’ ‘mistune&gt;=2’</p>
-<p>python -m sphinx -T -W –keep-going -b html -d _build/doctrees -D language=en . _build/html</p>
 
 
            </div>
