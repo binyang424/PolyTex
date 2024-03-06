@@ -12,7 +12,7 @@ Fabric Geometry modeling and meshing
    test/Textile_class_example
    test/Transformation
    test/mesh_from_image
-   test/tubular_structure_mesh
+ ..  test/tubular_structure_mesh
 
 Using as a library of Kriging for interpolations
 --------------------------------------------------------
