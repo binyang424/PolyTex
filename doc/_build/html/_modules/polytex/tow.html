@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.tow &mdash; PolyTex 0.4.0 documentation</title>
+  <title>polytex.tow &mdash; PolyTex 0.4.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -55,7 +55,6 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../source/examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -116,7 +115,7 @@
 <span class="sd">    &gt;&gt;&gt; path = ptx.example(&quot;surface points&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; surf_points = ptx.pk_load(path).to_numpy()</span>
 <span class="sd">    &gt;&gt;&gt; coordinates = surf_points[:, [2, 1, 0]] * 0.022  # convert voxel to mm</span>
-<span class="sd">    &gt;&gt;&gt; tow = ptx.Tow(surf_points=coordinates, tex=0, name=&quot;Tow&quot;) # PolyKriging Tow class</span>
+<span class="sd">    &gt;&gt;&gt; tow = ptx.Tow(surf_points=coordinates, tex=0, name=&quot;Tow&quot;) # PolyTex Tow class</span>
 <span class="sd">    &gt;&gt;&gt; df_coord = tow.coordinates  # parametric coordinates of the tow</span>
 <span class="sd">    &gt;&gt;&gt; df_geom = tow.geom_features  # geometrical features of the tow</span>
 <span class="sd">    &gt;&gt;&gt;</span>
@@ -144,7 +143,7 @@
 
 <span class="sd">            If surf_points is a string, it should be the path to the file</span>
 <span class="sd">            that stores the surface points. The file should be a .pcd file</span>
-<span class="sd">            as defined in the PolyKriging library.</span>
+<span class="sd">            as defined in the PolyTex library.</span>
 
 <span class="sd">            If surf_points is a numpy array, it should be an array of shape</span>
 <span class="sd">            (n, 3) where n is the number of points.</span>
@@ -176,7 +175,7 @@
 <span class="sd">            The resolution of the MicroCT image used to generate the tow dataset. Default is None.</span>
 <span class="sd">            This is only stored as an attribute for future use. It is not used in the current version.</span>
 <span class="sd">        kwargs : dict</span>
-<span class="sd">            The keyword arguments for the PolyKriging Tow class. The user can specify any keyword</span>
+<span class="sd">            The keyword arguments for the PolyTex Tow class. The user can specify any keyword</span>
 <span class="sd">            arguments for the Tow class. The keyword arguments will be stored as attributes of the</span>
 <span class="sd">            Tow class. The user can access the attributes by tow.attribute_name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1012,7 +1011,7 @@
             <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__traj</span>
             <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span>
 
-            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyKriging&quot;</span><span class="p">)</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyTex&quot;</span><span class="p">)</span>
 
             <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
@@ -1095,7 +1094,7 @@
 
             <span class="n">n_pts</span> <span class="o">=</span> <span class="mi">0</span>
 
-            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyKriging&quot;</span><span class="p">)</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normal cross-sections of tow </span><span class="si">%s</span><span class="s2"> by </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -- PolyTex&quot;</span><span class="p">)</span>
 
             <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__surf_mesh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 

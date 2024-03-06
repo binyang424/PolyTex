@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classes &mdash; PolyTex 0.4.0 documentation</title>
+  <title>Classes &mdash; PolyTex 0.4.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -86,7 +86,6 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules.html">Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -565,7 +564,7 @@ that indicates the slice number as the last column. It serves
 as the label for differentiate the points from different slices.</p>
 <p>If surf_points is a string, it should be the path to the file
 that stores the surface points. The file should be a .pcd file
-as defined in the PolyKriging library.</p>
+as defined in the PolyTex library.</p>
 <p>If surf_points is a numpy array, it should be an array of shape
 (n, 3) where n is the number of points.</p>
 <p>If surf_points is a pandas DataFrame, it should be a DataFrame
@@ -595,7 +594,7 @@ original order of the columns when generating the surface mesh.</p>
 <dt><strong>resolution</strong><span class="classifier">float, optional</span></dt><dd><p>The resolution of the MicroCT image used to generate the tow dataset. Default is None.
 This is only stored as an attribute for future use. It is not used in the current version.</p>
 </dd>
-<dt><strong>kwargs</strong><span class="classifier">dict</span></dt><dd><p>The keyword arguments for the PolyKriging Tow class. The user can specify any keyword
+<dt><strong>kwargs</strong><span class="classifier">dict</span></dt><dd><p>The keyword arguments for the PolyTex Tow class. The user can specify any keyword
 arguments for the Tow class. The keyword arguments will be stored as attributes of the
 Tow class. The user can access the attributes by tow.attribute_name.</p>
 </dd>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.mesh.features &mdash; PolyTex 0.4.0 documentation</title>
+  <title>polytex.mesh.features &mdash; PolyTex 0.4.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -55,7 +55,6 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">License</a></li>
 </ul>
 
@@ -125,7 +124,7 @@
 
 <span class="sd">    &gt;&gt;&gt; import pyvista as pv</span>
 <span class="sd">    &gt;&gt;&gt; from pyvista import examples</span>
-<span class="sd">    &gt;&gt;&gt; import polykriging.mesh as ms</span>
+<span class="sd">    &gt;&gt;&gt; import polytex.mesh as ms</span>
 <span class="sd">    &gt;&gt;&gt; mesh = pv.PolyData(examples.load_uniform().points)</span>
 <span class="sd">    &gt;&gt;&gt; vox, _ = ms.voxelize(mesh, density=0.5, density_type=&#39;cell_size&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; vox.plot(show_edges = True)</span>

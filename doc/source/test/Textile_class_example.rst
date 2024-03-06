@@ -20,20 +20,20 @@
 
 Textile class example
 =====================
-This example shows how to use the Textile class in PolyTex package. It is designed to handle the parametrization and geometrical analysis of a fiber Textile. A Tow instance is created by passing the point cloud of a tow, which consists only the points on the Textile surface, to the constructor.
+This example shows how to use the Textile class in PolyTex package. It
+is designed to handle the parametrization and geometrical analysis of a fiber Textile. A Tow instance is created by
+passing the point cloud of a tow, which consists only the points on the Textile surface, to the constructor.
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-12
+.. GENERATED FROM PYTHON SOURCE LINES 7-11
 
 .. code-block:: default
 
 
     import numpy as np
-    from tqdm.auto import tqdm
-    import polytex as pk
-    from polytex.geometry import Plane
+    import polytex as ptx
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-20
+.. GENERATED FROM PYTHON SOURCE LINES 12-19
 
 Create a textile object
 ------------------------
@@ -43,42 +43,40 @@ Create a textile object
 4. remove tows from the textile object. The same tows in self.groups will be
    removed automatically.
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-50
+.. GENERATED FROM PYTHON SOURCE LINES 19-47
 
 .. code-block:: default
 
-    textile = pk.Textile(name="TG96N_Vf57")
+    textile = ptx.Textile(name="TG96N_Vf57")
     print(textile.name)
 
-    path = "../Data/22um_Vf57/05_processed_data/transformation/tow/weft/"
-    files = pk.filenames(path, ".tow")[1:-2]
+    path = "./sample_data/tow/"
+    files = ptx.filenames(path, ".tow")
 
-    for file in tqdm(files):
-        print(file)
-        tow = pk.pk_load(path + file)
+    for file in files:
+        print(path + file)
+        tow = ptx.pk_load(path + file)
         textile.add_tow(tow)
 
-    print(textile.tows)
-    print(textile.tows.keys())
+    print(textile.items)
 
-    textile.remove("weft_1")  # remove a tow from the textile object
-    print(textile.tows.keys())
+    textile.remove("binder_104")  # remove a tow from the textile object
+    print(textile.items)
 
-    weft_2 = textile.tows["weft_2"]
-    textile.add_group(name="weft", tow=weft_2)  # add an existing tow to the group
+    weft_128 = textile["weft_128"]
+    textile.add_group(name="weft", tow=weft_128)  # add an existing tow to the group
     print(textile.groups)
 
     # add an empty group
-    textile.add_group(name="warp")
+    textile.add_group(name="binder")
     print(textile.groups)
 
-    tow_new = pk.pk_load(path + files[-1])
-    print(tow_new.name)
-    textile.add_group(name="weft", tow=tow_new)  # add a new tow to the group
+    # add a tow to the group
+    textile.add_group(name="binder", tow=textile['binder_105'])  # add a new tow to the group
     print(textile.groups)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-56
+.. GENERATED FROM PYTHON SOURCE LINES 48-53
 
 Create a background mesh for the textile domain
 -----------------------------------------------
@@ -86,13 +84,15 @@ Create a background mesh for the textile domain
 2. define the voxel size
 3. generate the background mesh with textile.mesh()
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-58
+.. GENERATED FROM PYTHON SOURCE LINES 53-57
 
 .. code-block:: default
 
     bbox = np.array((0.6, 12, 1.07, 14.19, 0.15, 5.5))
     voxel_size = [0.132, 0.132, 0.066]
-    textile.mesh(bbox, voxel_size=voxel_size, show=False)
+
+    textile.meshing(bbox, voxel_size=voxel_size, show=True,
+                    labeling=True, surface_mesh="./stl/", verbose=False)
 
 .. rst-class:: sphx-glr-timing
 
