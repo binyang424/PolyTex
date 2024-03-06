@@ -1,7 +1,6 @@
 """
 Step 2: Convert .coo file to .ply for point cloud visualization
 ===============================================================
-
 input: .coo file
 output: .ply file
 
@@ -9,6 +8,13 @@ If interpolate is True, the points farther than the given threshold (normalzied 
 """
 
 import polytex as pk
+
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
+import matplotlib.pyplot as plt
 
 path = pk.io.choose_directory(titl="coo files")
 cwd = pk.io.cwd_chdir(path)
