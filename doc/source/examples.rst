@@ -12,28 +12,28 @@ Fabric Geometry modeling and meshing
    test/Textile_class_example
    test/Transformation
    test/mesh_from_image
- ..  test/tubular_structure_mesh
+   test/tubular_structure_mesh
 
 Using as a library of Kriging for interpolations
 --------------------------------------------------------
 .. toctree::
    :maxdepth: 1
    
-   test/curve2D_interp_with_confidence
-   test/3d_curve_krig
-   test/derivative_Kriging
-   test/parametric_surface
+   .. test/curve2D_interp_with_confidence
+   .. test/3d_curve_krig
+   .. test/derivative_Kriging
+   .. test/parametric_surface
    
 Using as a library for fiber tow modeling
 --------------------------------------------------------
 .. toctree::
    :maxdepth: 1
    
-   test/Step_1_GeometricAnalysis
-   test/Step_2_coo_to_ply
-   test/Step_3_pdf_clusters
-   test/Step_3_MW-KDE
-   test/Step_4_resampling
-   test/Step_6_vf
-   test/voxelization
-   test/backround_mesh_labelling_and _intersection_detection
+   .. test/Step_1_GeometricAnalysis
+   .. test/Step_2_coo_to_ply
+   .. test/Step_3_pdf_clusters
+   .. test/Step_3_MW-KDE
+   .. test/Step_4_resampling
+   .. test/Step_6_vf
+   .. test/voxelization
+   .. test/backround_mesh_labelling_and _intersection_detection
