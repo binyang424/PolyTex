@@ -9,10 +9,10 @@ Fabric Geometry modeling and meshing
    test/example_dataset
    test/pk_io
    test/Tow_Class
-   test/Textile_class_example
-   test/Transformation
-   test/mesh_from_image
-   test/tubular_structure_mesh
+   .. test/Textile_class_example
+   .. test/Transformation
+   .. test/mesh_from_image
+   .. test/tubular_structure_mesh
 
 Using as a library of Kriging for interpolations
 --------------------------------------------------------
