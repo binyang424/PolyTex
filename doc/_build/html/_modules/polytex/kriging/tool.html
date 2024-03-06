@@ -3,29 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.kriging.tool &mdash; PolyTex 0.3.14 documentation</title>
+  <title>polytex.kriging.tool &mdash; PolyTex 0.3.15 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js\rtd_search_config.js"></script>
         <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -37,19 +37,23 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PolyTex
-            <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../source/examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">License</a></li>
@@ -68,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>polytex.kriging.tool</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">polytex.kriging.tool</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -91,7 +95,7 @@
 <span class="c1">######################################################</span>
 
 <div class="viewcode-block" id="norm"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.tool.norm">[docs]</a><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">data_krig</span><span class="p">,</span> <span class="n">norm_type</span><span class="o">=</span><span class="s1">&#39;axial&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This is the normalization function. After input the data of DSC test, this function</span>
 <span class="sd">    will normalize temperature, degree of cure and rate of cure.</span>
 
@@ -126,7 +130,7 @@
 <span class="c1">#              Data Compression                                     #</span>
 <span class="c1">######################################################</span>
 <div class="viewcode-block" id="data_compr"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.tool.data_compr">[docs]</a><span class="k">def</span> <span class="nf">data_compr</span><span class="p">(</span><span class="n">matXC</span><span class="p">,</span> <span class="n">data_norm</span><span class="p">,</span> <span class="n">max_err</span><span class="p">,</span> <span class="n">skip_comp</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Data compression by kriging using linear drift and linear covariance.</span>
 
 <span class="sd">    Parameters</span>
@@ -224,7 +228,7 @@
 <span class="c1">#                  Kriging &amp; Cross Validation                      #</span>
 <span class="c1">######################################################</span>
 <div class="viewcode-block" id="fun_crva"><a class="viewcode-back" href="../../../source/polytex.kriging.html#polytex.kriging.tool.fun_crva">[docs]</a><span class="k">def</span> <span class="nf">fun_crva</span><span class="p">(</span><span class="n">data_norm</span><span class="p">,</span> <span class="n">drift_para</span><span class="p">,</span><span class="n">cov_para</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_norm : numpy array</span>

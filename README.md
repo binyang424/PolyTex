@@ -4,7 +4,7 @@
 
 `PolyTex` is an open-source toolkit for geometry modeling of woven textiles based on volumetric images. It provides functionality such as geometrical feature extraction, local variability analysis and textile geometry modeling. A meshing module was implemented to generate voxel meshes. Generation of tetrahedral conformal meshes will be implemented in future release. Local material properties are assigned to each cell in the generated mesh, such that the anisotropic and heterogeneity are reflected. This image-based model is commonly referred to as a "Digital Material Twin". The toolkit is designed to provide material scientists with accurate numerical models to predict composite behaviors while not requiring extensive experience in image processing and mesh generation. Hence, Application programming interface (API) for `OpenFOAM` and `Abaqus` is provided.
 
-We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation). 
+We release this toolbox as an open-source project aiming to facilitate the application of numerical simulations based on digital material twins to engineering problems. In this regard, the project is well documented ([https://polytex.readthedocs.io/](https://polytex.readthedocs.io/)) and we would appreciate any contributions from the community (e.g. comments, suggestions, and corrections aimed at improving the software and documentation). 
 
 Our issue tracker is at [https://github.com/binyang424/PolyTex/issues](https://github.com/binyang424/PolyTex/issues). Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.
 
@@ -94,7 +94,7 @@ By contributing to `PolyTex`, you agree that your contributions will be licensed
 
 ## Citation
 
-- To cite `PolyTex` in publications use:
+To cite `PolyTex` in publications use:
 
-Bin YANG, Yuwei Feng, Cédric BÉGUIN, Philippe CAUSSE and Jihui WANG. Open Source Tool for Micro-CT Aided Meso-scale Modeling and
-Meshing of Complex Textile Composite Structures. Submitted to *Composites Science and Technology* (2024).
+- Bin YANG, Yuwei Feng, Cédric BÉGUIN, Philippe CAUSSE and Jihui WANG. Open Source Tool for Micro-CT Aided Meso-scale Modeling and
+  Meshing of Complex Textile Composite Structures. Submitted to *Composites Science and Technology* (2024).

@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classes &mdash; PolyTex 0.3.14 documentation</title>
+  <title>Classes &mdash; PolyTex 0.3.15 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,19 +41,23 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PolyTex
-            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation and Usage</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Classes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#textile-objects">Textile objects</a><ul>
@@ -98,9 +103,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
-      <li>Classes</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
+      <li class="breadcrumb-item active">Classes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/classes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,15 +122,16 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.textile.Textile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.textile.</span></span><span class="sig-name descname"><span class="pre">Textile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'textile'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize the textile object.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initialize the textile object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></dt><dd><p>Bounding box of the textile.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.bounds" title="polytex.textile.Textile.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></dt><dd><p>Bounding box of the textile.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></dt><dd><p>Return tow names as a list.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.items" title="polytex.textile.Textile.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></dt><dd><p>Return tow names as a list.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></dt><dd><p>Number of tows in the textile.</p>
+<dt><a class="reference internal" href="#polytex.textile.Textile.n_tows" title="polytex.textile.Textile.n_tows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_tows</span></code></a></dt><dd><p>Number of tows in the textile.</p>
 </dd>
 </dl>
 </dd>
@@ -133,56 +139,423 @@
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code>([name, tow])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.add_group" title="polytex.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
 <td><p>Groups of the tows in the textile.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code>(tow[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.add_tow" title="polytex.textile.Textile.add_tow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_tow</span></code></a>(tow[, group])</p></td>
 <td><p>Add a tow to the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code>([path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.case_prepare" title="polytex.textile.Textile.case_prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">case_prepare</span></code></a>([path])</p></td>
 <td><p>Prepare a case for OpenFOAM simulation.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code>([surface_mesh, intersection, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.cell_labeling" title="polytex.textile.Textile.cell_labeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_labeling</span></code></a>([surface_mesh, intersection, ...])</p></td>
 <td><p>Label the cells of the background mesh with tow id.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.decimate" title="polytex.textile.Textile.decimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimate</span></code></a>()</p></td>
 <td><p>Decimate the mesh.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code>([fp, scale, orientation])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_inp" title="polytex.textile.Textile.export_as_inp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_inp</span></code></a>([fp, scale, orientation])</p></td>
 <td><p>Export the textile mesh as inp file for Abaqus simulation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code>(fp[, scale, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_openfoam" title="polytex.textile.Textile.export_as_openfoam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_openfoam</span></code></a>(fp[, scale, ...])</p></td>
 <td><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_vtu</span></code>(fp[, binary])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.export_as_vtu" title="polytex.textile.Textile.export_as_vtu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_as_vtu</span></code></a>(fp[, binary])</p></td>
 <td><p>Export the textile mesh as a vtu file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code>(path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.from_file" title="polytex.textile.Textile.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
 <td><p>Load a textile object from a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code>(bbox[, voxel_size, show, labeling, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.meshing" title="polytex.textile.Textile.meshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meshing</span></code></a>(bbox[, voxel_size, show, labeling, ...])</p></td>
 <td><p>Generate a mesh for the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.reconstruct" title="polytex.textile.Textile.reconstruct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconstruct</span></code></a>()</p></td>
 <td><p>Reconstruct the textile object from the saved file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code>(tow)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.remove" title="polytex.textile.Textile.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(tow)</p></td>
 <td><p>Remove a tow from the textile.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([path, filename, data_size])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.save" title="polytex.textile.Textile.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([path, filename, data_size])</p></td>
 <td><p>Save the textile object to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.textile.Textile.triangulate" title="polytex.textile.Textile.triangulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangulate</span></code></a>()</p></td>
 <td><p>Hexahedral mesh to tetrahedral mesh.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.add_group">
+<span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'group1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_group" title="Permalink to this definition"></a></dt>
+<dd><p>Groups of the tows in the textile. Each is a group of Tow objects.
+if tow is None, then the group is empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the group.</p>
+</dd>
+<dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the group. If tow is None, then the group is empty.
+If tow is not None, then tow is added to the group. Besides, if tow is
+not in the self.__tows__ yet, it will be added to self.__tows__.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.add_tow">
+<span class="sig-name descname"><span class="pre">add_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.add_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.add_tow" title="Permalink to this definition"></a></dt>
+<dd><p>Add a tow to the textile. If tow is already in the textile, then raise
+a ValueError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the textile. Stored in self.__tows__ as a dictionary.
+Tow.name is the key, and tow is the value.</p>
+</dd>
+<dt><strong>group</strong><span class="classifier">str</span></dt><dd><p>Group name of the tow. If group is None, then the tow is not added
+to any group. Stored in self.groups.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.case_prepare">
+<span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.case_prepare" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare a case for OpenFOAM simulation.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the case to be prepared. The default is None. If <cite>path</cite> is None,
+it is set to the root directory of the OpenFOAM mesh generated by
+<cite>Textile.export_as_openfoam()</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">noindex<span class="colon">:</span></dt>
+<dd class="field-odd"></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.cell_labeling">
+<span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
+<dd><p>Label the cells of the background mesh with tow id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>surface_mesh</strong><span class="classifier">pyvista mesh object (PolyData)</span></dt><dd><p>Surface mesh of fiber tows. If <cite>None</cite>, then the surface meshes is selected
+user interactively. Otherwise, the surface mesh is loaded from the path
+specified by <cite>surface_mesh</cite>.</p>
+</dd>
+<dt><strong>intersection</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to detect the intersection of the tows. The default is False.</p>
+</dd>
+<dt><strong>check_surface</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to check if the surface mesh is watertight. The default is False.</p>
+</dd>
+<dt><strong>yarn_permeability</strong><span class="classifier">str, optional</span></dt><dd><p>The permeability model used to calculate the permeability tensor of the fiber tow.
+The default is “Gebart”. The available permeability models are “Gebart”, “CaiBerdichevsky”,
+and “DrummondTahir”.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>The tolerance for the fiber tow section detection. The default is 1. A wavy
+fiber tow may have several intersections with the plane of a cross-section. The
+threshold is used to determine if the cells is correctly labelled.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to print the information. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Please make sure that the name of the tow (<cite>tow.name</cite>) is in the format of <cite>towType_towNumber</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.decimate">
+<span class="sig-name descname"><span class="pre">decimate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.decimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.decimate" title="Permalink to this definition"></a></dt>
+<dd><p>Decimate the mesh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_inp">
+<span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_inp" title="Permalink to this definition"></a></dt>
+<dd><p>Export the textile mesh as inp file for Abaqus simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path and filename of the output mesh. The default is “./mesh-C3D8R.inp”.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
+should be 0.001. The default is 1.</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to export the orientation of the yarns. The default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_openfoam">
+<span class="sig-name descname"><span class="pre">export_as_openfoam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['yarnIndex',</span> <span class="pre">'D']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_openfoam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_openfoam" title="Permalink to this definition"></a></dt>
+<dd><p>Export the textile mesh as polyMesh folder for OpenFOAM simulation.</p>
+<p>The structure of the output case folder is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> fp/ textile.name/
+├── 0          
+│   ├── D
+│   ├── yarnIndex
+│   └── ...       
+└── constant          
+      ├── polyMesh
+      │   ├── boundary
+      │   ├── faces
+      │   ├── neighbour
+      │   ├── owner 
+      │   ├── points
+      │   ├── ... 
+      └── ...     
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path of the output mesh.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>The scale factor of the mesh. To convert the mesh from mm to m, the scale factor
+should be 0.001. The default is 1.</p>
+</dd>
+<dt><strong>boundary_type</strong><span class="classifier">dict, optional</span></dt><dd><p>The boundary type of the mesh. The default is None. If None, the boundary type
+will be set as “wall” for all boundaries.</p>
+</dd>
+<dt><strong>cell_data</strong><span class="classifier">list, optional</span></dt><dd><p>The cell data to be written into the mesh. The default is [“yarnIndex”, “D”].</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.export_as_vtu">
+<span class="sig-name descname"><span class="pre">export_as_vtu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_vtu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_vtu" title="Permalink to this definition"></a></dt>
+<dd><p>Export the textile mesh as a vtu file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path of the output mesh.</p>
+</dd>
+<dt><strong>binary</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to save the mesh in binary format. The default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.from_file" title="Permalink to this definition"></a></dt>
+<dd><p>Load a textile object from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the file to be loaded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Textile object.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.meshing">
+<span class="sig-name descname"><span class="pre">meshing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labeling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.meshing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.meshing" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a mesh for the textile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bbox</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>bounding box of the background mesh specified through a numpy array
+contains the minimum and maximum coordinates of the bounding box
+[xmin, xmax, ymin, ymax, zmin, zmax]</p>
+</dd>
+<dt><strong>voxel_size</strong><span class="classifier">float, or numpy.ndarray</span></dt><dd><p>voxel size of the background mesh.
+if <cite>None</cite>, the voxel size is set to the 1/20 of the diagonal length of the bounding box;
+if <cite>float</cite>, the voxel size is set to the float value in x, y, z directions;
+if <cite>list</cite>, <cite>set</cite>, or <cite>tuple</cite> of size 3, the voxel size is set to the values for
+the x-, y- and z- directions.</p>
+</dd>
+<dt><strong>show</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to show the mesh. The default is False.</p>
+</dd>
+<dt><strong>labeling</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to label the background mesh cells with tow id. The default is True.</p>
+</dd>
+<dt><strong>yarn_permeability</strong><span class="classifier">str, optional</span></dt><dd><p>The permeability model used to calculate the permeability tensor of the fiber tow.
+The default is “Gebart”. The available permeability models are “Gebart”, “CaiBerdichevsky”,
+and “DrummondTahir”.</p>
+</dd>
+<dt><strong>surface_mesh</strong><span class="classifier">str, optional</span></dt><dd><p>Path of the surface meshes of fiber tows. The default is None. If <cite>labeling=True</cite>,
+then the surface meshes are loaded from the path specified by <cite>surface_mesh</cite>. The surface
+meshes are used to label the background mesh cells with tow id. If surface_mesh is <cite>None</cite>,
+then the surface meshes are selected by the user interactively.
+TODO : Use the surface mesh generated by the tow object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.reconstruct">
+<span class="sig-name descname"><span class="pre">reconstruct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.reconstruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.reconstruct" title="Permalink to this definition"></a></dt>
+<dd><p>Reconstruct the textile object from the saved file. The saved file must be
+in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>None.</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">noindex<span class="colon">:</span></dt>
+<dd class="field-odd"></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.remove" title="Permalink to this definition"></a></dt>
+<dd><p>Remove a tow from the textile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tow</strong><span class="classifier">str or Tow object</span></dt><dd><p>The tow to be removed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the textile object to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str, optional</span></dt><dd><p>Path of the file to be saved. The default is None. If <cite>path</cite> is None,
+then the user is asked to select the directory to save the file.</p>
+</dd>
+<dt><strong>filename</strong><span class="classifier">str, optional</span></dt><dd><p>Filename of the file to be saved. The default is None. If <cite>filename</cite> is None,
+then the filename is set to the textile name with extension “.tex”.</p>
+</dd>
+<dt><strong>data_size</strong><span class="classifier">str, optional</span></dt><dd><p>Size of the data to be saved. The default is “minimal”. If <cite>data_size</cite> is “minimal”,
+then only the minimal information of the textile that can be used to reconstruct the
+textile object is saved. If <cite>data_size</cite> is “full”, then all information of the textile
+is saved.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>TODO<span class="classifier">more storage can be saved. The Textile and Tow classes should be designed carefully</span></dt><dd><p>at next version.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.textile.Textile.triangulate">
+<span class="sig-name descname"><span class="pre">triangulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.triangulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.triangulate" title="Permalink to this definition"></a></dt>
+<dd><p>Hexahedral mesh to tetrahedral mesh. Conformal meshing.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.textile.Textile.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.textile.Textile.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Bounding box of the textile.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.textile.Textile.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><a class="headerlink" href="#polytex.textile.Textile.items" title="Permalink to this definition"></a></dt>
+<dd><p>Return tow names as a list. The tow names are reordered by the tow number if the tow
+name is in the format of “towType_towNumber”. Otherwise, the tow names are ordered
+according to the order of adding the tows to the textile.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.textile.Textile.n_tows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_tows</span></span><a class="headerlink" href="#polytex.textile.Textile.n_tows" title="Permalink to this definition"></a></dt>
+<dd><p>Number of tows in the textile.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.tow.Tow">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.tow.</span></span><span class="sig-name descname"><span class="pre">Tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>surf_points</strong><span class="classifier">str, ndarray or DataFrame</span></dt><dd><p>The surface points of the tow should be an array of shape (n, 3)
@@ -230,7 +603,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">attribute_names</span></code></dt><dd><p>Get the attribute names of the Tow class.</p>
+<dt><a class="reference internal" href="#polytex.tow.Tow.attribute_names" title="polytex.tow.Tow.attribute_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attribute_names</span></code></a></dt><dd><p>Get the attribute names of the Tow class.</p>
 </dd>
 </dl>
 </dd>
@@ -238,40 +611,40 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code>([save_path, plot])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.axial_lines" title="polytex.tow.Tow.axial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code></a>([save_path, plot])</p></td>
 <td><p>Generate the axial line of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.from_file" title="polytex.tow.Tow.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(path)</p></td>
 <td><p>Initialize the tow from a saved tow file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code>([bw, save_path])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.kde" title="polytex.tow.Tow.kde"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kde</span></code></a>([bw, save_path])</p></td>
 <td><p>Generate the kernel density estimation of the radial normalized distance for point cloud decomposition.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code>([algorithm, save_path, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.normal_cross_section" title="polytex.tow.Tow.normal_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_cross_section</span></code></a>([algorithm, save_path, ...])</p></td>
 <td><p>Generate the normal cross section of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code>([save_path, plot, type])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.radial_lines" title="polytex.tow.Tow.radial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radial_lines</span></code></a>([save_path, plot, type])</p></td>
 <td><p>Generate the radial line of the fiber tow surface.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code>([krig_config, skip, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.resampling" title="polytex.tow.Tow.resampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampling</span></code></a>([krig_config, skip, ...])</p></td>
 <td><p>Kriging the cross-sections of the tow to obtain the parametric equations for each cross-section (which is a closed curve).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(save_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.save" title="polytex.tow.Tow.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(save_path)</p></td>
 <td><p>Save the fiber tow data.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code>(size, h_res[, extend])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.smooth_window" title="polytex.tow.Tow.smooth_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_window</span></code></a>(size, h_res[, extend])</p></td>
 <td><p>The window size of smoothing operation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code>([name_drift, name_cov, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.smoothing" title="polytex.tow.Tow.smoothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothing</span></code></a>([name_drift, name_cov, ...])</p></td>
 <td><p>Smooth the tow using parametric surface kriging.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code>([plot, save_path, end_closed])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.surf_mesh" title="polytex.tow.Tow.surf_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surf_mesh</span></code></a>([plot, save_path, end_closed])</p></td>
 <td><p>Generate the surface mesh of the tow.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code>([krig_config, smooth, plot, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.trajectory" title="polytex.tow.Tow.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a>([krig_config, smooth, plot, ...])</p></td>
 <td><p>Generate the trajectory of the tow and smooth it using kriging.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code>(vector[, ax])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#polytex.tow.Tow.unit_vector" title="polytex.tow.Tow.unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_vector</span></code></a>(vector[, ax])</p></td>
 <td><p>Returns the unit vector of the input vector along the given axis.</p></td>
 </tr>
 </tbody>
@@ -283,6 +656,357 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.axial_lines">
+<span class="sig-name descname"><span class="pre">axial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.axial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.axial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the axial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the axial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the axial line. Default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>axial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The axial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.from_file" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the tow from a saved tow file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>The path to the saved tow file. The file format is .tow.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>tow</strong><span class="classifier">Tow</span></dt><dd><p>The Tow object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.kde">
+<span class="sig-name descname"><span class="pre">kde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.kde" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the kernel density estimation of the radial normalized distance for point cloud
+decomposition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bw</strong><span class="classifier">float, optional</span></dt><dd><p>The bandwidth of the kernel density estimation. Default is None and the bandwidth
+will be estimated using the Scott’s rule of thumb (one-fifth of the estimated value).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the kernel density estimation. Default is None. If None, the
+kernel density estimation will not be saved. The file format is .stat and can be
+loaded by the function <cite>polytex.pk_load</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>clusters</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.normal_cross_section">
+<span class="sig-name descname"><span class="pre">normal_cross_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kriging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.normal_cross_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.normal_cross_section" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the normal cross section of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>algorithm</strong><span class="classifier">str, optional</span></dt><dd><p>The algorithm to generate the cross section. Default is “kriging”. The other
+option is “pyvista” which uses pyvista’s mesh clip function (Polydata.clip_surface()).</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the normal cross sections as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the normal cross sections. Default is True.</p>
+</dd>
+<dt><strong>i_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the i direction of the noraml plane. Default is 0.7.</p>
+</dd>
+<dt><strong>j_size</strong><span class="classifier">float, optional</span></dt><dd><p>The size of the j direction of the noraml plane. Default is 1.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross sections to skip in plot. Default is 10. If skip is 1, all
+cross sections will be plotted.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>cross_section</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The normal cross section of the fiber tows stored in a pyvista.PolyData object.
+Note that only the cross sections that are plotted are stored. If one wants to
+save all the cross sections, set skip=1.</p>
+</dd>
+<dt><strong>planes</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The corresponding planes that the cross sections are generated from. Note that
+only the planes that are plotted are stored. If one wants to save all the planes,
+set skip=1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.radial_lines">
+<span class="sig-name descname"><span class="pre">radial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'resampled'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.radial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.radial_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the radial line of the fiber tow surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the radial line data as a vtk mesh file.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the radial line. Default is True.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of radial line. Default is “resampled”. The other option is
+“original”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>radial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The radial lines of the fiber tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.resampling">
+<span class="sig-name descname"><span class="pre">resampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'distance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.resampling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.resampling" title="Permalink to this definition"></a></dt>
+<dd><p>Kriging the cross-sections of the tow to obtain the parametric equations
+for each cross-section (which is a closed curve).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration. The first element is the kriging model for
+the drift and the second is the name of covariance. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">int, optional</span></dt><dd><p>The number of cross-sections to be skipped for resampling to accelerate the
+operation. Default is 5. Namely, 1 of every 5 cross-sections will be resampled.
+If skip is 1, all the cross-sections will be kriged.</p>
+</dd>
+<dt><strong>sample_position</strong><span class="classifier">array_like, optional</span></dt><dd><p>The resampling positions of each cross-sections specified by the normalized
+distance in radial direction of each cross-section. Default is [].</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the kriging resampling. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the kriging resampling. Default is “distance”. The other option
+is “angular”. If “distance”, the resampling positions are specified by the
+normalized distance (between 0 and 1) in radial direction of each cross-section.
+If “angular”, the resampling positions are specified by angular position (between
+0 and 360) of control points in radial direction of each cross-section.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>_Tow__kriged_vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The kriged points for each cross-section of the tow. It is an array of shape
+(n, 3) where n is the number of points. The kriged points is obtained according
+to the kriging configuration and the resampling positions. If the resampling
+positions are not specified, the kriged points are obtained by evenly sampling
+the cross-sections with a sampling interval of 0.05, namely, 20 points per cross-
+section.</p>
+</dd>
+<dt><strong>expr</strong><span class="classifier">dict</span></dt><dd><dl class="simple">
+<dt>The kriging expression for each cross-section. It contains two sub-dictionaries that</dt><dd><p>use the cross-section number as the key and the kriging expression as the value for
+the first two components of user input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the fiber tow data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the fiber tow data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.smooth_window">
+<span class="sig-name descname"><span class="pre">smooth_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.smooth_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.smooth_window" title="Permalink to this definition"></a></dt>
+<dd><p>The window size of smoothing operation. The window size is the number of
+slices in the axial direction of fiber tow that are smoothed per iteration.</p>
+<p>A smaller window size will significantly decrease the computation time of
+smoothing operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The window size.</p>
+</dd>
+<dt><strong>h_res</strong><span class="classifier">int</span></dt><dd><p>The number of slices in the axial direction of fiber tow.</p>
+</dd>
+<dt><strong>extend</strong><span class="classifier">int, optional</span></dt><dd><p>The number of slices that are extended to the left and right of the
+smoothing window to ensure the smoothness of the surface at the
+boundary of the windows.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>wins_interp</strong><span class="classifier">ndarray</span></dt><dd><p>The window size for interpolation (with extensions at the two ends).</p>
+</dd>
+<dt><strong>wins_result</strong><span class="classifier">ndarray</span></dt><dd><p>The index of effective smoothing results (without extensions).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.smoothing">
+<span class="sig-name descname"><span class="pre">smoothing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_drift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['lin',</span> <span class="pre">'lin']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['cub',</span> <span class="pre">'cub']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.smoothing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.smoothing" title="Permalink to this definition"></a></dt>
+<dd><p>Smooth the tow using parametric surface kriging.
+Anisotropic smoothing is applied to the tow by using different smoothing factors
+for the two directions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name_drift</strong><span class="classifier">list, optional</span></dt><dd><p>The drift function for the parametric surface kriging. Default is [‘lin’, ‘lin’].</p>
+</dd>
+<dt><strong>name_cov</strong><span class="classifier">list, optional</span></dt><dd><p>The covariance function for the parametric surface kriging. Default is [‘cub’, ‘cub’].</p>
+</dd>
+<dt><strong>smooth_factor</strong><span class="classifier">list, optional</span></dt><dd><p>The smoothing factor for the parametric surface kriging. Default is [0, 0]. Also known
+as the nugget effect in geo-statistics and kriging theory. The smoothing factor
+is applied to the two directions separately. The first element is the smoothing
+factor for the radial direction and the second element is the smoothing factor for
+the axial direction.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p># TODO : improve the description
+The size of the window for the moving average filter. Default is 25.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the smoothed tow. Default is None. If None, the smoothed tow
+will not be saved. The file format is .ply.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the smoothed tow. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The smoothed tow vertices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.surf_mesh">
+<span class="sig-name descname"><span class="pre">surf_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.surf_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.surf_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the surface mesh of the tow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the surface mesh. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the surface mesh. Default is None and the surface mesh will not be saved.
+The file format can be .ply or .vtk.</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>surf_mesh</strong></dt><dd><p>The surface mesh of the tow.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.trajectory">
+<span class="sig-name descname"><span class="pre">trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.trajectory" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the trajectory of the tow and smooth it using kriging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration for the trajectory. It is a tuple of two strings that
+specify the drift and covariance function. Default is (“lin”, “cub”).</p>
+</dd>
+<dt><strong>smooth</strong><span class="classifier">float, optional</span></dt><dd><p>The smoothing parameter for the parametric curve kriging. Default is 0. Also known
+as the nugget effect in geo-statistics and kriging theory.</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the trajectory. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the trajectory as vtk file. Default is None and the trajectory
+will not be saved.</p>
+</dd>
+<dt><strong>orientation</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to calculate the orientation of the tow. Default is False. The orientation
+is the tangent vector of the trajectory.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>traj</strong><span class="classifier">np.ndarray</span></dt><dd><p>The trajectory of the tow in the form of (n, 3) where n is the number of points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.tow.Tow.unit_vector">
+<span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.unit_vector" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the unit vector of the input vector along the given axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector</strong><span class="classifier">ndarray</span></dt><dd><p>The input vector.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">int, optional</span></dt><dd><p>The axis along which the unit vector is calculated. Default is 1 (column).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>unit_vector</strong><span class="classifier">ndarray</span></dt><dd><p>The unit vector of the input vector along the given axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.tow.Tow.attribute_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attribute_names</span></span><a class="headerlink" href="#polytex.tow.Tow.attribute_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get the attribute names of the Tow class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>attribute_names</strong><span class="classifier">list</span></dt><dd><p>The attribute names of the Tow class.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -291,7 +1015,8 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point" title="Permalink to this definition"></a></dt>
-<dd><p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+<p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -552,12 +1277,95 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.direction_ratio">
+<span class="sig-name descname"><span class="pre">direction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.direction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.direction_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Gives the direction ratio between 2 points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Point object</span></dt><dd><p>The other point to which the direction ratio is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>direction_ratio</strong><span class="classifier">list</span></dt><dd><p>The direction ratio between the 2 points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">.</span><span class="n">direction_ratio</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">[1, 1, 2]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.dist" title="Permalink to this definition"></a></dt>
+<dd><p>Both points must have the same dimensions
+:return: Euclidean distance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.save_as_vtk">
+<span class="sig-name descname"><span class="pre">save_as_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.save_as_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.save_as_vtk" title="Permalink to this definition"></a></dt>
+<dd><p>Save the point as a vtk file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.bounds" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">array_like</span></dt><dd><p>The bounding box of the point. The first row is the minimum
+values and the second row is the maximum values for each
+dimension.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.size" title="Permalink to this definition"></a></dt>
+<dd><p>Number of elements in the array.</p>
+<p>Equal to <code class="docutils literal notranslate"><span class="pre">np.prod(a.shape)</span></code>, i.e., the product of the array’s
+dimensions.</p>
+<p class="rubric">Notes</p>
+<p><cite>a.size</cite> returns a standard arbitrary precision Python integer. This
+may not be the case with other methods of obtaining the same value
+(like the suggested <code class="docutils literal notranslate"><span class="pre">np.prod(a.shape)</span></code>, which returns an instance
+of <code class="docutils literal notranslate"><span class="pre">np.int_</span></code>), and may be relevant if the value is used further in
+calculations that may overflow a fixed size integer type.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">size</span>
+<span class="go">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">30</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Point.z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Vector">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_3d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Vector" title="Permalink to this definition"></a></dt>
-<dd><p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
+<dd><p>Bases: <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p>
+<p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -828,12 +1636,43 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Vector.angle_between">
+<span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Vector.angle_between"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Vector.angle_between" title="Permalink to this definition"></a></dt>
+<dd><p>Return the angle between 2 vectors.</p>
+<div class="math notranslate nohighlight">
+\[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Vector object</span></dt><dd><p>The other vector to which the angle is calculated.</p>
+</dd>
+<dt><strong>radian</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, return the angle in radians. The default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>The angle between the 2 vectors. If radian is True, the angle is in radians.
+Otherwise, the angle is in degrees.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Vector.norm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">norm</span></span><a class="headerlink" href="#polytex.geometry.basic.Vector.norm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Line">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Line" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>p1</strong><span class="classifier">Point object</span></dt><dd><p>The first point of the line.</p>
@@ -969,7 +1808,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>wrapper for count_ops that returns the operation count.</p></td>
+<td><p>Wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code>(other)</p></td>
 <td><p>Finds the shortest distance between a line and a point.</p></td>
@@ -999,123 +1838,126 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
+<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code>(other)</p></td>
 <td><p>Returns the intersection of 'self' and 'other'.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(other)</p></td>
 <td><p>The intersection with another geometrical entity.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_disjoint</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code> are disjoint.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_parallel</span></code>(l2)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_parallel</span></code>(l2)</p></td>
 <td><p>Are two linear entities parallel?</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_perpendicular</span></code>(l2)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_perpendicular</span></code>(l2)</p></td>
 <td><p>Are two linear entities perpendicular?</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_proper_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a proper superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_similar</span></code>(other)</p></td>
 <td><p>Return True if self and other are contained in the same line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a subset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_superset</span></code>(other)</p></td>
 <td><p>Returns True if <code class="docutils literal notranslate"><span class="pre">self</span></code> is a superset of <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdisjoint</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_disjoint()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issubset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_subset()</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">issuperset</span></code>(other)</p></td>
 <td><p>Alias for <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_superset()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_line</span></code>(p)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_line</span></code>(p)</p></td>
 <td><p>Create a new Line parallel to this linear entity which passes through the point <cite>p</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_value</span></code>(other, t)</p></td>
 <td><p>Return the parameter corresponding to the given point.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_line</span></code>(p)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_line</span></code>(p)</p></td>
 <td><p>Create a new Line perpendicular to this linear entity which passes through the point <cite>p</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_segment</span></code>(p)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">perpendicular_segment</span></code>(p)</p></td>
 <td><p>Create a perpendicular line segment from <cite>p</cite> to this line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_interval</span></code>([parameter])</p></td>
 <td><p>The plot interval for the default geometric plot of line.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerset</span></code>()</p></td>
 <td><p>Find the Power set of <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection</span></code>(other)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection</span></code>(other)</p></td>
 <td><p>Project a point, line, ray, or segment onto this linear entity.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_point</span></code>([seed])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_point</span></code>([seed])</p></td>
 <td><p>A random point on a LinearEntity.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflect</span></code>(line)</p></td>
 <td><p>Reflects an object across a line.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smallest_angle_between</span></code>(l2)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smallest_angle_between</span></code>(l2)</p></td>
 <td><p>Return the smallest angle formed at the intersection of the lines containing the linear entities.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetric_difference</span></code>(other)</p></td>
 <td><p>Returns symmetric difference of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code>(other)</p></td>
 <td><p>Returns the union of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -1138,7 +1980,8 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Curve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve" title="Permalink to this definition"></a></dt>
-<dd><p>A partial inheritance of polytex.geometry.Point class.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -1175,12 +2018,124 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the curve to a vtk file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the vtk file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.to_polygon">
+<span class="sig-name descname"><span class="pre">to_polygon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.to_polygon" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the curve to a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>polygon</strong><span class="classifier">Polygon object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.ambient_dimension">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ambient_dimension</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.ambient_dimension" title="Permalink to this definition"></a></dt>
+<dd><p>Return the dimension of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ambient_dimension</strong><span class="classifier">int</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Return the bounds of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bounds</strong><span class="classifier">tuple</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.curvature">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">curvature</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.curvature" title="Permalink to this definition"></a></dt>
+<dd><p>Return the curvature of the curve.</p>
+<p>TODO: curvature of a curve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curvature</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.length" title="Permalink to this definition"></a></dt>
+<dd><p>Return the length of the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>length</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Curve.tangent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tangent</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.tangent" title="Permalink to this definition"></a></dt>
+<dd><p>Return the tangent vector of the curve at each point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tangent</strong><span class="classifier">Vector object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Polygon">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Polygon" title="Permalink to this definition"></a></dt>
-<dd><p>A partial inheritance of polytex.geometry.Point class.</p>
+<dd><p>Bases: <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a></p>
+<p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -1226,12 +2181,65 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Polygon.to_curve">
+<span class="sig-name descname"><span class="pre">to_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Polygon.to_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Polygon.to_curve" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the polygon to a curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Polygon.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.area" title="Permalink to this definition"></a></dt>
+<dd><p>Return the area of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Polygon.centroid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centroid</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Return the centroid of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>centroid</strong><span class="classifier">Point object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Polygon.perimeter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perimeter</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.perimeter" title="Permalink to this definition"></a></dt>
+<dd><p>Return the perimeter of the polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>perimeter</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Plane">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane" title="Permalink to this definition"></a></dt>
-<dd><p>Create a plane from 3 points or a point and a normal vector.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a plane from 3 points or a point and a normal vector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -1270,12 +2278,116 @@ be ignored.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Plane.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.distance" title="Permalink to this definition"></a></dt>
+<dd><p>Return the signed distance between a point and the plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point</strong><span class="classifier">Point object</span></dt><dd><p>The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>The distance between the point and the plane.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Plane</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normal</span> <span class="o">=</span> <span class="n">Point</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">normal_vector</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span><span class="o">.</span><span class="n">distance</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="go">array([-5., -4., -3.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Plane.function">
+<span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
+<dd><p>Return the equation of the plane as a function of x, y and z.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane.</p>
+</dd>
+<dt><strong>point</strong><span class="classifier">array-like</span></dt><dd><p>point on the plane.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A lambda function of x, y and z.</dt><dd><p>function of plane.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>normal = (a, b, c)
+point = (x0, y0, z0)
+Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
+<p class="rubric">Examples</p>
+<p>Create a plane from a point and a normal vector
+&gt;&gt;&gt; from polytex.geometry import Point, Plane
+&gt;&gt;&gt; p1 = Point([1, 1, 1])
+&gt;&gt;&gt; normal = Point([1, 4, 7])
+&gt;&gt;&gt; plane2 = Plane(p1, normal_vector=normal)
+&gt;&gt;&gt; f = plane2.function()
+&gt;&gt;&gt; f
+&lt;function polytex.geometry.basic.Plane.function.&lt;locals&gt;.&lt;lambda&gt;(x, y, z)&gt;
+&gt;&gt;&gt; f(1, 1, 1)
+0</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Plane.intersection">
+<span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.intersection" title="Permalink to this definition"></a></dt>
+<dd><p>Return the intersection of the plane with a curve or a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">Curve or Polygon object</span></dt><dd><p>The object to intersect with the plane.</p>
+</dd>
+<dt><strong>max_dist</strong><span class="classifier">float</span></dt><dd><p>The maximum distance of checked points from the plane.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>intersection</strong><span class="classifier">list or array</span></dt><dd><p>The intersection point of the plane with the obj in the shape of
+(1, 3). If the intersection is not found, none is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Plane.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.show" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Ellipse2D">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Ellipse2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Ellipse2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Ellipse2D" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The number of points to generate.</p>
@@ -1297,12 +2409,27 @@ be ignored.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Ellipse2D.elipse_2d">
+<span class="sig-name descname"><span class="pre">elipse_2d</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Ellipse2D.elipse_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Ellipse2D.elipse_2d" title="Permalink to this definition"></a></dt>
+<dd><p>Generate points on an ellipse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>xy: array-like</dt><dd><p>Points on the ellipse with shape (n, 2).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.Tube">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Tube"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Tube" title="Permalink to this definition"></a></dt>
-<dd><p>Create a tubular surface.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
+<p>Create a tubular surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -1409,7 +2536,7 @@ the height, major and minor radius to the tube.</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>wrapper for count_ops that returns the operation count.</p></td>
+<td><p>Wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doit</span></code>(**hints)</p></td>
 <td><p>Evaluate objects that are not evaluated by default like limits, integrals, sums and products.</p></td>
@@ -1433,57 +2560,60 @@ the height, major and minor radius to the tube.</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
+<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
 <td><p>Returns a list of all of the intersections of self with o.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Tube.mesh" title="polytex.geometry.basic.Tube.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh</span></code></a>([plot, show_edges])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Tube.mesh" title="polytex.geometry.basic.Tube.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh</span></code></a>([plot, show_edges])</p></td>
 <td><p>TODO : raise TypeError(&quot;Given points must be a sequence or an array.&quot;)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code>(angle[, pt])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Tube.save_as_mesh" title="polytex.geometry.basic.Tube.save_as_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_as_mesh</span></code></a>(save_path[, end_closed])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Tube.save_as_mesh" title="polytex.geometry.basic.Tube.save_as_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_as_mesh</span></code></a>(save_path[, end_closed])</p></td>
 <td><p>Save the tubular mesh to a file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code>([x, y, pt])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>([x, y])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -1501,6 +2631,51 @@ the height, major and minor radius to the tube.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Tube.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Tube.mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Tube.mesh" title="Permalink to this definition"></a></dt>
+<dd><p>TODO : raise TypeError(“Given points must be a sequence or an array.”)</p>
+<p class="rubric">Notes</p>
+<p>theta_res should be 1 less then else where. To be fixed in the future.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Tube.save_as_mesh">
+<span class="sig-name descname"><span class="pre">save_as_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Tube.save_as_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Tube.save_as_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Save the tubular mesh to a file. The file format is determined by the extension of the filename.
+The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].</p>
+<p>TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path and the name of the file to be saved with the extension.</p>
+</dd>
+<dt><strong>end_closed</strong><span class="classifier">bool</span></dt><dd><p>If True, the ends of the tube will be closed. The default value is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The tubular mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">Tube</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span> <span class="o">=</span> <span class="n">Tube</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">major</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tube</span><span class="o">.</span><span class="n">save_as_mesh</span><span class="p">(</span><span class="s1">&#39;tube.vtu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.Tube.bounds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Tube.bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Return a tuple (xmin, ymin, xmax, ymax) representing the bounding
+rectangle for the geometric figure.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1509,7 +2684,8 @@ the height, major and minor radius to the tube.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>limits</strong><span class="classifier">3-tuple</span></dt><dd><p>Function parameter and lower and upper bounds.</p>
@@ -1551,12 +2727,34 @@ The tuple should be in the form of (drift_name, covariance_name).</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamCurve.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve.eval" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate the curve at a given parameter value. The parameter value
+should be within the limits. Otherwise, an error will be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd><p>The evaluated curve.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>functions</strong><span class="classifier">list of functions</span></dt><dd><p>Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.</p>
@@ -1644,7 +2842,7 @@ the same for all three functions.</p>
 <td><p>Count the number of matching subexpressions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code>([visual])</p></td>
-<td><p>wrapper for count_ops that returns the operation count.</p></td>
+<td><p>Wrapper for count_ops that returns the operation count.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doit</span></code>(**hints)</p></td>
 <td><p>Evaluate objects that are not evaluated by default like limits, integrals, sums and products.</p></td>
@@ -1671,51 +2869,54 @@ the same for all three functions.</p>
 <td><p>Test whether any subexpression matches any of the patterns.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_free</span></code>(*patterns)</p></td>
-<td><p>return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
+<td><p>Return True if self has object(s) <code class="docutils literal notranslate"><span class="pre">x</span></code> as a free expression else False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_xfree</span></code>(s)</p></td>
+<td><p>Return True if self has any of the patterns in s as a free argument, else False.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection</span></code>(o)</p></td>
 <td><p>Returns a list of all of the intersections of self with o.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">match</span></code>(pattern[, old])</p></td>
 <td><p>Pattern matching.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">matches</span></code>(expr[, repl_dict, old])</p></td>
 <td><p>Helper method for match() that looks for a match between Wild symbols in self and expressions in expr.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code>([n, subs, maxn, chop, strict, quad, verbose])</p></td>
 <td><p>Evaluate the given formula to an accuracy of <em>n</em> digits.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcall</span></code>(*args)</p></td>
 <td><p>Apply on the argument recursively through the expression tree.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refine</span></code>([assumption])</p></td>
 <td><p>See the refine function in sympy.assumptions</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace</span></code>(query, value[, map, simultaneous, exact])</p></td>
 <td><p>Replace matching subexpressions of <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rewrite</span></code>(*args[, deep])</p></td>
 <td><p>Rewrite <em>self</em> using a defined rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>(angle[, axis])</p></td>
 <td><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>([x, y, z])</p></td>
 <td><p>Scale the object by multiplying the x,y-coordinates by x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">simplify</span></code>(**kwargs)</p></td>
 <td><p>See the simplify function in sympy.simplify</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_key</span></code>([order])</p></td>
 <td><p>Return a sort key.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subs</span></code>(*args, **kwargs)</p></td>
 <td><p>Substitutes old for new in an expression after sympifying args.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>([x, y, z])</p></td>
 <td><p>Shift the object by adding to the x,y-coordinates the values x and y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">xreplace</span></code>(rule)</p></td>
 <td><p>Replace occurrences of objects within the expression.</p></td>
 </tr>
 </tbody>
@@ -1733,6 +2934,145 @@ the same for all three functions.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.eval" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate the surface at the given parameter values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+<dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
+the shape of the returned surface is (len(s) * len(t), 3). The
+first column is s values, the second column is t values, and the
+following columns are the coordinates of the surface at the given
+parameter values (x, y, z).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'z'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.rotate" title="Permalink to this definition"></a></dt>
+<dd><p>Rotate <code class="docutils literal notranslate"><span class="pre">angle</span></code> radians counterclockwise about Point <code class="docutils literal notranslate"><span class="pre">pt</span></code>.</p>
+<p>The default pt is the origin, Point(0, 0)</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>, <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="c1"># vertex on x axis</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># vertex on y axis now</span>
+<span class="go">Triangle(Point2D(0, 1), Point2D(-sqrt(3)/2, -1/2), Point2D(sqrt(3)/2, -1/2))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.scale" title="Permalink to this definition"></a></dt>
+<dd><p>Scale the object by multiplying the x,y-coordinates by x and y.</p>
+<p>If pt is given, the scaling is done relative to that point; the
+object is shifted by -pt, scaled, and shifted by pt.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.translate" title="polytex.geometry.basic.ParamSurface.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)/2), Point2D(-1, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)), Point2D(-1, -sqrt(3)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface.translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.translate" title="Permalink to this definition"></a></dt>
+<dd><p>Shift the object by adding to the x,y-coordinates the values x and y.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.rotate" title="polytex.geometry.basic.ParamSurface.rotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate</span></code></a>, <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamSurface.scale" title="polytex.geometry.basic.ParamSurface.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(3, 0), Point2D(3/2, sqrt(3)/2), Point2D(3/2, -sqrt(3)/2))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">Triangle(Point2D(3, 2), Point2D(3/2, sqrt(3)/2 + 2), Point2D(3/2, 2 - sqrt(3)/2))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.functions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">functions</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.functions" title="Permalink to this definition"></a></dt>
+<dd><p>The functions specifying the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">functions</span>
+<span class="go">(t, t, t)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="polytex.geometry.basic.ParamSurface.limits">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">limits</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.limits" title="Permalink to this definition"></a></dt>
+<dd><p>The limits of the two parameters specifying the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>list limits of the parameters.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">ParamCurve3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span> <span class="o">=</span> <span class="n">ParamSurface</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surface</span><span class="o">.</span><span class="n">limits</span>
+<span class="go">((t, 0, 1), (t, 0, 1))</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </section>

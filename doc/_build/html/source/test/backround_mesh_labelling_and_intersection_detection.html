@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mesh labelling and intersection detection &mdash; PolyTex 0.3.15 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js\rtd_search_config.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyTex
+              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PolyTex</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Mesh labelling and intersection detection</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/test/backround_mesh_labelling_and_intersection_detection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-source-test-backround-mesh-labelling-and-intersection-detection-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="mesh-labelling-and-intersection-detection">
+<span id="sphx-glr-source-test-backround-mesh-labelling-and-intersection-detection-py"></span><h1>Mesh labelling and intersection detection<a class="headerlink" href="#mesh-labelling-and-intersection-detection" title="Permalink to this heading"></a></h1>
+<p>Test</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">polytex.io</span> <span class="kn">import</span> <span class="n">save_nrrd</span><span class="p">,</span> <span class="n">choose_directory</span><span class="p">,</span> <span class="n">filenames</span>
+<span class="kn">from</span> <span class="nn">polytex.mesh</span> <span class="kn">import</span> <span class="n">background_mesh</span><span class="p">,</span> <span class="n">label_mask</span><span class="p">,</span> <span class="n">intersection_detect</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span>
+
+<span class="sd">&quot;&quot;&quot; Inputs &quot;&quot;&quot;</span>
+<span class="c1"># Generate a voxel background mesh.</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">12.21</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.4</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">5.37</span><span class="p">))</span>
+<span class="n">voxel_size</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">]</span>
+<span class="n">yarnIndex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; Generate a voxel background mesh. &quot;&quot;&quot;</span>
+<span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_shape</span> <span class="o">=</span> <span class="n">background_mesh</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; Plot the background mesh. &quot;&quot;&quot;</span>
+<span class="n">mesh_background</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># mesh.save(&quot;./file/test_bbox.vtu&quot;, binary=True)</span>
+
+<span class="c1"># time labelling</span>
+<span class="n">start_labelling</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># initialize the array of label list with -1</span>
+<span class="n">label_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">mesh_background</span><span class="o">.</span><span class="n">n_cells</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; Select the surface meshes of yarns to be labelled &quot;&quot;&quot;</span>
+<span class="n">label_set_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">choose_directory</span><span class="p">(</span><span class="s2">&quot;Choose the surface mesh directory for fiber tow labelling&quot;</span><span class="p">)</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;.stl&quot;</span><span class="p">)</span>
+<span class="n">file_list_sort</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
+    <span class="c1"># regular expression for integer</span>
+    <span class="n">yarn_index</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    <span class="n">file_list_sort</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">yarn_index</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">file</span>
+
+<span class="sd">&quot;&quot;&quot; Label the surface meshes of yarns &quot;&quot;&quot;</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">file_list_sort</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">indices</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">index</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">]:</span>
+        <span class="k">continue</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing yarn </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">yarnIndex</span><span class="p">)))</span>
+
+    <span class="n">mesh_tri</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file_list_sort</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>  <span class="c1"># load surface mesh</span>
+
+    <span class="c1"># find the cells that are within the tubular surface of the fiber tow</span>
+    <span class="n">mask</span><span class="p">,</span> <span class="n">label_yarn</span> <span class="o">=</span> <span class="n">label_mask</span><span class="p">(</span><span class="n">mesh_background</span><span class="p">,</span> <span class="n">mesh_tri</span><span class="p">)</span>
+
+    <span class="n">label_list</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+    <span class="n">label_set_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">(</span><span class="n">label_yarn</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Labelling time: </span><span class="si">%.2f</span><span class="s2"> seconds&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_labelling</span><span class="p">))</span>
+
+<span class="sd">&quot;&quot;&quot; Find the intersection of fiber tows  &quot;&quot;&quot;</span>
+<span class="n">intersect_info</span><span class="p">,</span> <span class="n">intersect_info_dict</span><span class="p">,</span> <span class="n">cell_data_intersect</span> <span class="o">=</span> <span class="n">intersection_detect</span><span class="p">(</span><span class="n">label_set_dict</span><span class="p">)</span>
+
+<span class="n">mesh_background</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_list</span>
+<span class="n">mesh_background</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s1">&#39;intersection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_data_intersect</span>
+<span class="c1"># mesh_background.save(&#39;./file/test_bbox_cells.vtu&#39;, binary=True)</span>
+<span class="n">save_nrrd</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">mesh_shape</span><span class="p">,</span> <span class="s2">&quot;./file/test_bbox_cells&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-backround-mesh-labelling-and-intersection-detection-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/a85744fab6ff9ce6e0d1b365bce95bec/backround_mesh_labelling_and_intersection_detection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">backround_mesh_labelling_and_intersection_detection.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/8c1eafed49f3e2c6616a3fcda73b2449/backround_mesh_labelling_and_intersection_detection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">backround_mesh_labelling_and_intersection_detection.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Bin Yang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

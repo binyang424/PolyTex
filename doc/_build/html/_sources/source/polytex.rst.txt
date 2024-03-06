@@ -27,11 +27,3 @@ polytex.textile module
 
    polytex.textile
    polytex.tow
-
-.. Module contents
-.. ---------------
-
-.. .. automodule:: polytex
-..    :members:
-..    :undoc-members:
-..    :show-inheritance:
