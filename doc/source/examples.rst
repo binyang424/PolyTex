@@ -7,7 +7,7 @@ Fabric Geometry modeling and meshing
    :maxdepth: 1
 	
    test/example_dataset
-   .. test/pk_io
+   test/pk_io
    .. test/tubular_structure_mesh
    .. test/Transformation
    .. test/mesh_from_image
@@ -19,7 +19,7 @@ Using as a library of Kriging for interpolations
 .. toctree::
    :maxdepth: 1
 
-   .. test/3d_curve_krig
+   test/3d_curve_krig
    .. test/curve2D_interp_with_confidence
    .. test/derivative_Kriging
    .. test/parametric_surface
