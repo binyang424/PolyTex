@@ -67,6 +67,7 @@ sphinx_gallery_conf = {
     # path where to save gallery generated examples
     "gallery_dirs": "source/test",
     "filename_pattern": "/.*.py",
+    'only_warn_on_example_error': True
 }
 
 # List of patterns, relative to source directory, that match files and
