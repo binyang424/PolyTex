@@ -69,7 +69,7 @@ sphinx_gallery_conf = {
     "filename_pattern": "/.*.py",
     'only_warn_on_example_error': True,
     'capture_repr': (),
-    # 'plot_gallery': 'False',
+    'plot_gallery': 'False',
 }
 
 # List of patterns, relative to source directory, that match files and
