@@ -112,23 +112,6 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Test">
-
-.. only:: html
-
-  .. image:: /source/test/images/thumb/sphx_glr_parametric_surface_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_test_parametric_surface.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Parametric kriging of surface</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Extract surface mesh from image sequence">
 
 .. only:: html
@@ -192,7 +175,6 @@ This is an example galley to illustrate the use of `PolyTex` package.
    /source/test/tubular_structure_mesh
    /source/test/derivative_Kriging
    /source/test/transformation
-   /source/test/parametric_surface
    /source/test/mesh_from_image
    /source/test/curve2D_interp_with_confidence
    /source/test/Tow_Class
