@@ -61,6 +61,23 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to create a tubular mesh with constant cross-section. The cross-section ...">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_tubular_structure_mesh_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_tubular_structure_mesh.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Tubular mesh with functions in polytex.mesh</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use of derivative kriging for interpolation y = f(x) with given deriv...">
 
 .. only:: html
@@ -73,6 +90,23 @@ This is an example galley to illustrate the use of `PolyTex` package.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Derivative kriging</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Coordinate transformation">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_transformation_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_transformation.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Coordinate transformation</div>
     </div>
 
 
@@ -95,18 +129,18 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Tow class example">
+    <div class="sphx-glr-thumbcontainer" tooltip="Extract surface mesh from image sequence">
 
 .. only:: html
 
-  .. image:: /source/test/images/thumb/sphx_glr_Tow_Class_thumb.png
+  .. image:: /source/test/images/thumb/sphx_glr_mesh_from_image_thumb.png
     :alt:
 
-  :ref:`sphx_glr_source_test_Tow_Class.py`
+  :ref:`sphx_glr_source_test_mesh_from_image.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Tow class example</div>
+      <div class="sphx-glr-thumbnail-title">Extract surface mesh from image sequence</div>
     </div>
 
 
@@ -129,6 +163,23 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Tow class example">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_Tow_Class_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_Tow_Class.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Tow class example</div>
+    </div>
+
+
+.. raw:: html
+
     </div>
 
 
@@ -138,10 +189,13 @@ This is an example galley to illustrate the use of `PolyTex` package.
    /source/test/example_dataset
    /source/test/pk_io
    /source/test/3d_curve_krig
+   /source/test/tubular_structure_mesh
    /source/test/derivative_Kriging
+   /source/test/transformation
    /source/test/parametric_surface
-   /source/test/Tow_Class
+   /source/test/mesh_from_image
    /source/test/curve2D_interp_with_confidence
+   /source/test/Tow_Class
 
 
 .. only:: html

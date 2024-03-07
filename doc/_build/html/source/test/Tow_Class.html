@@ -93,12 +93,15 @@ to download the full example code</p>
 <p>This example shows how to use the Tow class in PolyTex package. It is designed to handle the parametrization and geometrical analysis of a fiber tow. A Tow instance is created by passing the point cloud of a tow, which consists only the points on the tow surface, to the constructor.</p>
 <section id="example-dataset">
 <h2>Example dataset<a class="headerlink" href="#example-dataset" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Load the surface points of fiber tow</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
-<span class="n">surf_points</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;surface points&quot;</span><span class="p">)</span>
+<span class="n">surf_points</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">read_explicit_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="n">resolution</span> <span class="o">=</span> <span class="mf">0.022</span>  <span class="c1"># mm/pixel</span>
+<span class="n">surf_points</span> <span class="o">=</span> <span class="n">surf_points</span> <span class="o">*</span> <span class="n">resolution</span>  <span class="c1"># convert to millimeters</span>
 </pre></div>
 </div>
 <p>We clip the coordinates to discard the part of the tow that is necessary for
@@ -112,7 +115,7 @@ the last column is deemed as the label column. Namely, the points
 with the same label are considered as belonging to the same slice and
 are parametrized in the radial direction (theta). This data reorder
 is necessary for the users.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points_clip</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">surf_points_clip</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
 </pre></div>
 </div>
 <p>We can filtering the points to remove noise or the points that are not necessary:
@@ -121,7 +124,13 @@ coordinates = coordinates[mask]</p>
 </section>
 <section id="create-a-tow-instance-with-polytex-tow-class">
 <h2>Create a Tow instance with PolyTex Tow class<a class="headerlink" href="#create-a-tow-instance-with-polytex-tow-class" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tow</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span><span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;binder_4&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;zyx&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tow</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">Tow</span><span class="p">(</span>
+        <span class="n">surf_points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="s2">&quot;xyz&quot;</span><span class="p">,</span>
+        <span class="n">rho_fiber</span><span class="o">=</span><span class="mi">2550</span><span class="p">,</span>
+        <span class="n">radius_fiber</span><span class="o">=</span><span class="mf">6.5e-6</span><span class="p">,</span>
+        <span class="n">length_scale</span><span class="o">=</span><span class="s2">&quot;mm&quot;</span><span class="p">,</span> <span class="n">tex</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;weft_0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Get the parametric coordinates of the tow: The points on the same slice
@@ -149,15 +158,14 @@ parametric representation based on dual kriging.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta_res</span> <span class="o">=</span> <span class="mi">35</span>  <span class="c1"># number of control points in the radial direction</span>
 <span class="n">sample_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">theta_res</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># equal spaced points (normalized distance)</span>
 <span class="n">pts_krig</span><span class="p">,</span> <span class="n">expr_krig</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">resampling</span><span class="p">(</span><span class="n">krig_config</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lin&quot;</span><span class="p">,</span> <span class="s2">&quot;cub&quot;</span><span class="p">),</span>
-                                     <span class="n">skip</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="n">sample_position</span><span class="p">,</span>
+                                     <span class="n">skip</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sample_position</span><span class="o">=</span><span class="n">sample_position</span><span class="p">,</span>
                                      <span class="n">smooth</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="save-and-reload-the-tow-instance">
 <h2>Save and reload the tow instance<a class="headerlink" href="#save-and-reload-the-tow-instance" title="Permalink to this heading"></a></h2>
-<p>tow.save(“./tow/binder_4.tow”)
-tow = np.load(“./tow/binder_4.tow”, allow_pickle=True).tolist()</p>
+<p>tow.save(“./tow/binder_4.tow”)</p>
 </section>
 <section id="plot-the-tow">
 <h2>Plot the tow<a class="headerlink" href="#plot-the-tow" title="Permalink to this heading"></a></h2>
@@ -189,8 +197,8 @@ the axial direction)</p>
 <p>So far, we provide two methods to get the normal cross-sections of the tow.
 The first method wraps the intersection function of plane and surface mesh
 in the pyvista package. The second method is based on the intersection of
-a parametric curve and a implicit plane.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cross_section</span><span class="p">,</span> <span class="n">plane</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">normal_cross_section</span><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;pyvista&quot;</span><span class="p">)</span>
+a parametric curve and an implicit plane.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cross_section</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">clipped</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">normal_cross_section</span><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;pyvista&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -200,10 +208,17 @@ a parametric curve and a implicit plane.</p>
 You have this information once the tow instance is created. However, that is calculated based on the vertical
 cross-sections of the tow. A more accurate geometrical analysis can be done during the identification of
 the normal cross-sections with the class method, Tow.normal_cross_section.
-Hard copy to prevent the modification by the kriging method.</p>
+Acess the updated geometry features according to the normal cross-sections.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_geom_pv</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="n">cross_section</span><span class="p">,</span> <span class="n">plane</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">normal_cross_section</span><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kriging&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Get the normal cross-sections of the tow<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>The kriging method is based on the intersection of a parametric curve and an implicit plane.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cross_section</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">clipped</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">normal_cross_section</span><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kriging&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                             <span class="n">i_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="c1"># Acess the updated geometry features according to the normal cross-sections.</span>
 <span class="n">df_geom_krig</span> <span class="o">=</span> <span class="n">tow</span><span class="o">.</span><span class="n">geom_features</span>
 </pre></div>
 </div>

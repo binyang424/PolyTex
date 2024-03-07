@@ -7,12 +7,15 @@ This example shows how to use the Tow class in PolyTex package. It is designed t
 #####################################################################
 # Example dataset
 # ---------------
-import polytex as pk
+import polytex as ptx
 import numpy as np
 
 # Load the surface points of fiber tow
-path = pk.example("surface points")
-surf_points = pk.pk_load(path).to_numpy()
+path = ptx.example("surface points")
+surf_points = ptx.read_explicit_data(path)
+
+resolution = 0.022  # mm/pixel
+surf_points = surf_points * resolution  # convert to millimeters
 
 #####################################################################
 # We clip the coordinates to discard the part of the tow that is necessary for
@@ -26,7 +29,7 @@ surf_points_clip = surf_points[mask]
 # with the same label are considered as belonging to the same slice and
 # are parametrized in the radial direction (theta). This data reorder
 # is necessary for the users.
-coordinates = surf_points_clip[:, [2, 1, 0]]
+coordinates = surf_points_clip[:, [0, 1, 2]]
 
 #####################################################################
 # We can filtering the points to remove noise or the points that are not necessary:
@@ -36,7 +39,13 @@ coordinates = surf_points_clip[:, [2, 1, 0]]
 #####################################################################
 # Create a Tow instance with PolyTex Tow class
 # --------------------------------------------
-tow = pk.Tow(surf_points=coordinates, tex=0, name="binder_4", order="zyx")
+tow = ptx.Tow(
+        surf_points=coordinates,
+        order="xyz",
+        rho_fiber=2550,
+        radius_fiber=6.5e-6,
+        length_scale="mm", tex=1100,
+        name="weft_0")
 
 #####################################################################
 # Get the parametric coordinates of the tow: The points on the same slice
@@ -63,14 +72,13 @@ df_geom = tow.geom_features  # geometrical features of the tow
 theta_res = 35  # number of control points in the radial direction
 sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
 pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
-                                     skip=2, sample_position=sample_position,
+                                     skip=10, sample_position=sample_position,
                                      smooth=0.0001)
 
 #####################################################################
 # Save and reload the tow instance
 # --------------------------------
 # tow.save("./tow/binder_4.tow")
-# tow = np.load("./tow/binder_4.tow", allow_pickle=True).tolist()
 
 #####################################################################
 # Plot the tow
@@ -100,8 +108,9 @@ line_rad = tow.radial_lines(plot=True)
 # So far, we provide two methods to get the normal cross-sections of the tow.
 # The first method wraps the intersection function of plane and surface mesh
 # in the pyvista package. The second method is based on the intersection of
-# a parametric curve and a implicit plane.
-cross_section, plane = tow.normal_cross_section(algorithm="pyvista")
+# a parametric curve and an implicit plane.
+cross_section, planes, clipped = tow.normal_cross_section(algorithm="pyvista")
+
 #####################################################################
 # Update the geometrical features of the tow
 # ------------------------------------------
@@ -109,10 +118,16 @@ cross_section, plane = tow.normal_cross_section(algorithm="pyvista")
 # You have this information once the tow instance is created. However, that is calculated based on the vertical
 # cross-sections of the tow. A more accurate geometrical analysis can be done during the identification of
 # the normal cross-sections with the class method, Tow.normal_cross_section.
-# Hard copy to prevent the modification by the kriging method.
+# Acess the updated geometry features according to the normal cross-sections.
 df_geom_pv = tow.geom_features.copy()
 
-cross_section, plane = tow.normal_cross_section(algorithm="kriging")
+################################################################################
+# Get the normal cross-sections of the tow
+# ----------------------------------------
+# The kriging method is based on the intersection of a parametric curve and an implicit plane.
+cross_section, plane, clipped = tow.normal_cross_section(algorithm="kriging", plot=True,
+                                                             i_size=2, j_size=3, skip=15)
+# Acess the updated geometry features according to the normal cross-sections.
 df_geom_krig = tow.geom_features
 
 ################################################################################
