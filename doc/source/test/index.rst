@@ -27,6 +27,40 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use the 3D curve kriging method to interpolate a 3D curve:">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_3d_curve_krig_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_3d_curve_krig.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">3D curve kriging</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to create a tubular mesh with constant cross-section. The cross-section ...">
+
+.. only:: html
+
+  .. image:: /source/test/images/thumb/sphx_glr_tubular_structure_mesh_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_test_tubular_structure_mesh.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Tubular mesh with functions in polytex.mesh</div>
+    </div>
+
+
+.. raw:: html
+
     </div>
 
 
@@ -34,6 +68,8 @@ This is an example galley to illustrate the use of `PolyTex` package.
    :hidden:
 
    /source/test/example_dataset
+   /source/test/3d_curve_krig
+   /source/test/tubular_structure_mesh
 
 
 .. only:: html
