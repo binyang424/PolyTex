@@ -7,12 +7,12 @@ Fabric Geometry modeling and meshing
    :maxdepth: 1
 	
    test/example_dataset
-   test/pk_io
-   .. test/tubular_structure_mesh
+   test/tubular_structure_mesh
    .. test/Transformation
    .. test/mesh_from_image
    .. test/Textile_class_example
    .. test/Tow_Class
+   .. test/pk_io
 
 Using as a library of Kriging for interpolations
 --------------------------------------------------------
