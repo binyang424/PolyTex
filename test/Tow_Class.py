@@ -12,7 +12,7 @@ import numpy as np
 
 # Load the surface points of fiber tow
 path = pk.example("surface points")
-surf_points = pk.pk_load(path).to_numpy()
+surf_points = pk.pk_load(path)
 
 #####################################################################
 # We clip the coordinates to discard the part of the tow that is necessary for
