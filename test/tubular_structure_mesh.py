@@ -31,7 +31,7 @@ points = ms.structured_cylinder_vertices(a=a, b=b, h=h,
 ###############################################################################
 # Generate the tubular mesh cells
 # -------------------------------
-mesh = ms.tubular_mesh_generator(theta_res=theta_res+1,
+mesh = ms.tubular_mesh_generator(theta_res=theta_res,
                                  h_res=h_res,
                                  vertices=points)
 mesh.plot(show_edges=True)
