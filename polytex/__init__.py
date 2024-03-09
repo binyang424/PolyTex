@@ -4,7 +4,7 @@ PolyTex.
 An implementation of dual kriging.
 """
 
-__version__ = "0.1.5"
+__version__ = "0.4.4"
 __author__ = 'Bin Yang'
 __credits__ = 'Polytechnique Montreal & Wuhan University of Technology'
 
