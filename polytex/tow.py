@@ -941,7 +941,10 @@ class Tow:
                 # Sometimes there are small pieces of mesh left after clipping, depending on
                 # the shape of the tow. This is to remove those small pieces. This usually
                 # happens at the beginning and end of the tow and can be generally ignored.
-                clipped = clipped.connectivity(largest=True)
+                if pv.__version__ < "0.43.0":
+                    clipped = clipped.connectivity(largest=True)
+                else:
+                    clipped = clipped.connectivity(extraction_mode="largest")
 
                 # sort the points on the boundary of clipped mesh
                 edges = clipped.extract_feature_edges(feature_angle=30,

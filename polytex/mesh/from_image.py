@@ -104,7 +104,11 @@ def mesh_separation(mesh, plot=False):
     """
     mesh_dict = {}
 
-    conn = mesh.connectivity(largest=False)
+    if pv.__version__ < "0.43.0":
+        conn = mesh.connectivity(largest=False)
+    else:
+        conn = mesh.connectivity(extraction_mode="all")
+
     mesh_dict["connectivity"] = conn
     if plot:
         conn.plot(show_edges=True)
