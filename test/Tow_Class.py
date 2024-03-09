@@ -69,8 +69,15 @@ df_geom = tow.geom_features  # geometrical features of the tow
 # Resampling the control points of the tow with a uniform spacing in the
 # normalized distance direction. The resampling is necessary to create a
 # parametric representation based on dual kriging.
-theta_res = 35  # number of control points in the radial direction
-sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
+
+# # Equidistant resampling of the tow control points in the radial direction.
+# theta_res = 35  # number of control points in the radial direction
+# sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
+
+# # Resampling according to distribution density
+cluster = tow.kde(bw=0.01)
+sample_position = cluster["cluster centers"]
+
 pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
                                      skip=10, sample_position=sample_position,
                                      smooth=0.0001)
@@ -78,12 +85,12 @@ pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
 #####################################################################
 # Save and reload the tow instance
 # --------------------------------
-# tow.save("./tow/binder_4.tow")
+# tow.save("./tow/weft_0.tow")
 
 #####################################################################
 # Plot the tow
 # ------------
-mesh = tow.surf_mesh(plot=True, save_path="./test_data/binder_4.ply", end_closed=True)
+mesh = tow.surf_mesh(plot=True, save_path="./test_data/weft_0.ply", end_closed=True)
 
 #####################################################################
 # Smooth the tow trajectory with Kriging

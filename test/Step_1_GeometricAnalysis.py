@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Step 1: GeometricAnalysis
+GeometricAnalysis
 =========================
 
 Input: pcd

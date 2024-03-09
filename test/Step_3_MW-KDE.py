@@ -1,5 +1,5 @@
 """
-Step 3: Moving window KDE
+Moving window KDE
 =========================
 
 This example shows how to use the moving window KDE to resample the control
@@ -18,16 +18,8 @@ resolution = 0.022  # 0.022 mm
 # number of extrema (control points) for contour description
 extremaNum, windows, nuggets = 10, 2, [1e-3]
 
+# Load the example dataset
 path = ptx.example("sorted coordinate")
-
-# data = np.load(path, allow_pickle=True).tolist()
-# import pandas as pd
-#
-# coordinatesSorted = pd.DataFrame(data["values"], columns=data["columns"], index=data["index"])
-#
-# #save the sorted coordinates to a file with pandas pickle
-# coordinatesSorted.to_pickle("sorted_coordinate.coo")
-
 coordinatesSorted = ptx.pk_load(path)
 
 ###############################################################################

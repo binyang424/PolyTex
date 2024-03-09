@@ -1,5 +1,5 @@
 """
-Step 2: Convert .coo file to .ply for point cloud visualization
+Convert .coo file to .ply for point cloud visualization
 ===============================================================
 input: .coo file
 output: .ply file
