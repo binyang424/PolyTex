@@ -61,7 +61,8 @@ def log_likelihood(pdf):
     Calculate the likelihood of the given probability density function.
     The likelihood is:
     
-    .. math::  L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)
+    .. math::
+        L = \\frac{1}{N}\\sum_{i=1}^{N} f(x_i)
 
     Parameters
     ----------

@@ -70,17 +70,17 @@ df_geom = tow.geom_features  # geometrical features of the tow
 # normalized distance direction. The resampling is necessary to create a
 # parametric representation based on dual kriging.
 
-# # Equidistant resampling of the tow control points in the radial direction.
-# theta_res = 35  # number of control points in the radial direction
-# sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
+# Equidistant resampling of the tow control points in the radial direction.
+theta_res = 40  # number of control points in the radial direction
+sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
 
 # # Resampling according to distribution density
-cluster = tow.kde(bw=0.01)
-sample_position = cluster["cluster centers"]
+# cluster = tow.kde(bw=0.004)
+# sample_position = cluster["cluster centers"]
 
 pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
-                                     skip=10, sample_position=sample_position,
-                                     smooth=0.0001)
+                                     skip=5, sample_position=sample_position,
+                                     smooth=0.00001)
 
 #####################################################################
 # Save and reload the tow instance
