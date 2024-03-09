@@ -8,7 +8,7 @@ from .bw_opt import opt_bandwidth
 from ..thirdparty.bcolors import bcolors
 
 
-def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
+def kdeScreen(variable, x_test, bw, kernels='gaussian', plot=False):
     """
     This function estimates the probability density distribution of the input variable
     with the non-parametric kernel density estimation (KDE) method. The local maxima
@@ -45,6 +45,7 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
     else:
         raise ValueError("The input variable should be a 1D array.")
 
+    print("Kernel density estimation ...")
     model = KernelDensity(kernel=kernels, bandwidth=bw)
     model.fit(variable)
 
@@ -53,7 +54,7 @@ def kdeScreen(variable, x_test, bw, kernels='gaussian', plot="False"):
 
     kde = plt.plot(x_test, np.exp(log_dens), c='cyan')
     _, pdf = kde[0].get_data()
-    if plot != "False":
+    if plot:
         # x label
         plt.xlabel('Normalized distance (radial)')
         # y label

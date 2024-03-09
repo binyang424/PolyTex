@@ -241,7 +241,7 @@ class Tow:
 
         """  Kernel density estimation   """
         t_test = np.linspace(0, 1, 1000)
-        clusters = kdeScreen(t_norm, t_test, bw, plot=False)
+        clusters = kdeScreen(t_norm.to_numpy(), t_test, bw, plot=False)
         print("Number of clusters: {}".format(len(clusters['cluster centers'])))
 
         clusters["cluster centers"] = t_test[clusters["cluster centers"]]
