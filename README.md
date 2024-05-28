@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11372679.svg)](https://doi.org/10.5281/zenodo.11372679)
+
 # `PolyTex`: A parametric textile geometry modeling package
 
 ## About this project
@@ -96,5 +98,26 @@ By contributing to `PolyTex`, you agree that your contributions will be licensed
 
 To cite `PolyTex` in publications use:
 
+- Yang, B., Béguin, C., Causse, P., & Wang, J. (2024). PolyTex: A parametric textile geometry modeling package. Zenodo. https://doi.org/10.5281/zenodo.11372679
+
 - Bin YANG, Yuwei Feng, Cédric BÉGUIN, Philippe CAUSSE and Jihui WANG. Open Source Tool for Micro-CT Aided Meso-scale Modeling and
   Meshing of Complex Textile Composite Structures. Submitted to *Composites Science and Technology* (2024).
+
+Or in Bibtex:
+
+```
+@software{yang_2024_11372679,
+  author       = {Yang, Bin and
+                  Béguin, Cédric and
+                  Causse, Philippe and
+                  Wang, Jihui},
+  title        = {{PolyTex: A parametric textile geometry modeling 
+                   package}},
+  month        = may,
+  year         = 2024,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.11372679},
+  url          = {https://doi.org/10.5281/zenodo.11372679}
+}
+```
+
