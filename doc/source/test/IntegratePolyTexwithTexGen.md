@@ -55,3 +55,12 @@ At this point, all functions and data in `PolyTex` can be accessed by `TexGen` t
 
 ## Convert `TexGen` voxel model to `OpenFOAM` mesh
 
+Geometrical models created by `TexGen` can be exported as a [VTU Voxel File](https://texgen.sourceforge.io/index.php/User_Guide#VTU_Voxel_File). This file format can then be converted to `OpenFOAM` meshes using `PolyTex`. An example script for this conversion process is provided below:
+
+```python
+import polytex as ptx
+import pyvista as pv
+
+
+```
+
