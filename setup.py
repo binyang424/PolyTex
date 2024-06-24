@@ -18,7 +18,7 @@ setup(
     packages=find_packages(),
     install_requires=['numpy==1.23',
                       'pyvista==0.39',
-                      'pandas'
+                      'pandas',
                       'matplotlib',
                       'sympy',
                       'tk',             #tkinter
@@ -28,7 +28,7 @@ setup(
                       'meshio',
                       'scikit-learn',
                       'opencv-python',
-                      'tqdm'
+                      'tqdm',
                       ],
 
     classifiers=[
