@@ -11,14 +11,14 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_3_MW-KDE.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_source_test_Step_3_MW-KDE.py:
 
 
-Step 3: Moving window KDE
+Moving window KDE
 =========================
 
 This example shows how to use the moving window KDE to resample the control
@@ -29,12 +29,12 @@ points of the tow.
 Load example dataset
 --------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-24
+.. GENERATED FROM PYTHON SOURCE LINES 12-25
 
-.. code-block:: default
+.. code-block:: Python
 
     import numpy as np
-    import polytex as pk
+    import polytex as ptx
     import matplotlib.pyplot as plt
 
     # Input: parameters
@@ -42,21 +42,22 @@ Load example dataset
     # number of extrema (control points) for contour description
     extremaNum, windows, nuggets = 10, 2, [1e-3]
 
-    path = pk.example("sorted coordinate")
-    coordinatesSorted = pk.pk_load(path)
+    # Load the example dataset
+    path = ptx.example("sorted coordinate")
+    coordinatesSorted = ptx.pk_load(path)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-30
+.. GENERATED FROM PYTHON SOURCE LINES 26-31
 
 Visualize the dataset (a tow contour)
 -------------------------------------
 The tow contour is described by a set of control points. The control points
-can be labeled by its z coordinate (the scaning slices) since the dataset is
+can be labeled by its z coordinate (the scanning slices) since the dataset is
 obtained from Micro CT scanning. The control points are sorted by its z coordinate.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-45
+.. GENERATED FROM PYTHON SOURCE LINES 31-46
 
-.. code-block:: default
+.. code-block:: Python
 
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
@@ -74,28 +75,28 @@ obtained from Micro CT scanning. The control points are sorted by its z coordina
     plt.show()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-48
+.. GENERATED FROM PYTHON SOURCE LINES 47-49
 
 Slice number of the tow
 -----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-52
+.. GENERATED FROM PYTHON SOURCE LINES 49-53
 
-.. code-block:: default
+.. code-block:: Python
 
     slices = np.array(coordinatesSorted["Z"] / resolution, dtype=int)
     nslices = np.unique(slices).size  # number of slices
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-55
+.. GENERATED FROM PYTHON SOURCE LINES 54-56
 
 Dataset preparation for moving window kernel density estimation
 ---------------------------------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-65
+.. GENERATED FROM PYTHON SOURCE LINES 56-66
 
-.. code-block:: default
+.. code-block:: Python
 
     t_norm = np.vstack((coordinatesSorted["normalized distance"], slices)).T
 
@@ -103,15 +104,10 @@ Dataset preparation for moving window kernel density estimation
     # initialize the bandwidth according to Scott's rule
     bw = 0.01
 
-    kdeOutput, cluster_centers = pk.stats.movingKDE(t_norm, bw, windows, extremaNum)
+    kdeOutput, cluster_centers = ptx.stats.movingKDE(t_norm, bw, windows, extremaNum)
 
     kdeOutput.plot(x="normalized distance", y="probability density")
     plt.show()
-
-
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
 
 
 .. _sphx_glr_download_source_test_Step_3_MW-KDE.py:
@@ -120,16 +116,13 @@ Dataset preparation for moving window kernel density estimation
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_3_MW-KDE.ipynb <Step_3_MW-KDE.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_3_MW-KDE.py <Step_3_MW-KDE.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_3_MW-KDE.ipynb <Step_3_MW-KDE.ipynb>`
 
 
 .. only:: html

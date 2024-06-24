@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classes &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Classes &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -41,16 +41,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -87,6 +83,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -103,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-      <li class="breadcrumb-item active">Classes</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+      <li>Classes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/classes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -125,7 +122,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Initialize the textile object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><a class="reference internal" href="#polytex.textile.Textile.bounds" title="polytex.textile.Textile.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></dt><dd><p>Bounding box of the textile.</p>
 </dd>
@@ -138,6 +135,10 @@
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.textile.Textile.add_group" title="polytex.textile.Textile.add_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_group</span></code></a>([name, tow])</p></td>
 <td><p>Groups of the tows in the textile.</p></td>
@@ -189,7 +190,7 @@
 <dd><p>Groups of the tows in the textile. Each is a group of Tow objects.
 if tow is None, then the group is empty.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the group.</p>
 </dd>
@@ -199,7 +200,7 @@ not in the self.__tows__ yet, it will be added to self.__tows__.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -213,7 +214,7 @@ not in the self.__tows__ yet, it will be added to self.__tows__.</p>
 <dd><p>Add a tow to the textile. If tow is already in the textile, then raise
 a ValueError.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tow</strong><span class="classifier">Tow object</span></dt><dd><p>Tow to be added to the textile. Stored in self.__tows__ as a dictionary.
 Tow.name is the key, and tow is the value.</p>
@@ -223,7 +224,7 @@ to any group. Stored in self.groups.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -236,7 +237,7 @@ to any group. Stored in self.groups.</p>
 <span class="sig-name descname"><span class="pre">case_prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.case_prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.case_prepare" title="Permalink to this definition"></a></dt>
 <dd><p>Prepare a case for OpenFOAM simulation.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the case to be prepared. The default is None. If <cite>path</cite> is None,
 it is set to the root directory of the OpenFOAM mesh generated by
@@ -244,12 +245,12 @@ it is set to the root directory of the OpenFOAM mesh generated by
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">noindex<span class="colon">:</span></dt>
+<dt class="field-odd">noindex</dt>
 <dd class="field-odd"></dd>
 </dl>
 </dd>
@@ -261,7 +262,7 @@ it is set to the root directory of the OpenFOAM mesh generated by
 <span class="sig-name descname"><span class="pre">cell_labeling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.cell_labeling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.cell_labeling" title="Permalink to this definition"></a></dt>
 <dd><p>Label the cells of the background mesh with tow id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>surface_mesh</strong><span class="classifier">pyvista mesh object (PolyData)</span></dt><dd><p>Surface mesh of fiber tows. If <cite>None</cite>, then the surface meshes is selected
 user interactively. Otherwise, the surface mesh is loaded from the path
@@ -283,7 +284,7 @@ threshold is used to determine if the cells is correctly labelled.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -304,7 +305,7 @@ threshold is used to determine if the cells is correctly labelled.</p>
 <span class="sig-name descname"><span class="pre">export_as_inp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./mesh-C3D8R.inp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_inp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_inp" title="Permalink to this definition"></a></dt>
 <dd><p>Export the textile mesh as inp file for Abaqus simulation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path and filename of the output mesh. The default is “./mesh-C3D8R.inp”.</p>
 </dd>
@@ -315,7 +316,7 @@ should be 0.001. The default is 1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -345,7 +346,7 @@ should be 0.001. The default is 1.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path of the output mesh.</p>
 </dd>
@@ -359,7 +360,7 @@ will be set as “wall” for all boundaries.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -372,7 +373,7 @@ will be set as “wall” for all boundaries.</p>
 <span class="sig-name descname"><span class="pre">export_as_vtu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.export_as_vtu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.export_as_vtu" title="Permalink to this definition"></a></dt>
 <dd><p>Export the textile mesh as a vtu file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fp</strong><span class="classifier">str</span></dt><dd><p>The file path of the output mesh.</p>
 </dd>
@@ -380,7 +381,7 @@ will be set as “wall” for all boundaries.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -393,13 +394,13 @@ will be set as “wall” for all boundaries.</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.from_file" title="Permalink to this definition"></a></dt>
 <dd><p>Load a textile object from a file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path of the file to be loaded.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>Textile object.</dt><dd></dd>
 </dl>
@@ -412,7 +413,7 @@ will be set as “wall” for all boundaries.</p>
 <span class="sig-name descname"><span class="pre">meshing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labeling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yarn_permeability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gebart'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.meshing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.meshing" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a mesh for the textile.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bbox</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>bounding box of the background mesh specified through a numpy array
 contains the minimum and maximum coordinates of the bounding box
@@ -440,7 +441,7 @@ TODO : Use the surface mesh generated by the tow object.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -454,17 +455,17 @@ TODO : Use the surface mesh generated by the tow object.</p>
 <dd><p>Reconstruct the textile object from the saved file. The saved file must be
 in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>None.</strong></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">noindex<span class="colon">:</span></dt>
+<dt class="field-odd">noindex</dt>
 <dd class="field-odd"></dd>
 </dl>
 </dd>
@@ -476,13 +477,13 @@ in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.remove" title="Permalink to this definition"></a></dt>
 <dd><p>Remove a tow from the textile.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tow</strong><span class="classifier">str or Tow object</span></dt><dd><p>The tow to be removed.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -495,7 +496,7 @@ in the format of “.tex” and loaded by the <cite>pk_load</cite> function.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/textile.html#Textile.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.textile.Textile.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the textile object to a file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>path</strong><span class="classifier">str, optional</span></dt><dd><p>Path of the file to be saved. The default is None. If <cite>path</cite> is None,
 then the user is asked to select the directory to save the file.</p>
@@ -510,7 +511,7 @@ is saved.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -556,7 +557,7 @@ according to the order of adding the tows to the textile.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.tow.</span></span><span class="sig-name descname"><span class="pre">Tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surf_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_fiber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
 <dt><strong>surf_points</strong><span class="classifier">str, ndarray or DataFrame</span></dt><dd><p>The surface points of the tow should be an array of shape (n, 3)
 where n is the number of points. The points are extracted from
@@ -601,7 +602,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
 <dt><a class="reference internal" href="#polytex.tow.Tow.attribute_names" title="polytex.tow.Tow.attribute_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attribute_names</span></code></a></dt><dd><p>Get the attribute names of the Tow class.</p>
 </dd>
@@ -610,6 +611,10 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#polytex.tow.Tow.axial_lines" title="polytex.tow.Tow.axial_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axial_lines</span></code></a>([save_path, plot])</p></td>
 <td><p>Generate the axial line of the fiber tow surface.</p></td>
@@ -650,6 +655,10 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>mw_kde</strong></p></td>
 <td></td>
@@ -661,7 +670,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <span class="sig-name descname"><span class="pre">axial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.axial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.axial_lines" title="Permalink to this definition"></a></dt>
 <dd><p>Generate the axial line of the fiber tow surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the axial line data as a vtk mesh file.</p>
 </dd>
@@ -669,7 +678,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>axial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The axial lines of the fiber tow.</p>
 </dd>
@@ -683,13 +692,13 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.from_file" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize the tow from a saved tow file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>The path to the saved tow file. The file format is .tow.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>tow</strong><span class="classifier">Tow</span></dt><dd><p>The Tow object.</p>
 </dd>
@@ -704,7 +713,7 @@ Tow class. The user can access the attributes by tow.attribute_name.</p>
 <dd><p>Generate the kernel density estimation of the radial normalized distance for point cloud
 decomposition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bw</strong><span class="classifier">float, optional</span></dt><dd><p>The bandwidth of the kernel density estimation. Default is None and the bandwidth
 will be estimated using the Scott’s rule of thumb (one-fifth of the estimated value).</p>
@@ -715,7 +724,7 @@ loaded by the function <cite>polytex.pk_load</cite>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>clusters</strong><span class="classifier">dict</span></dt><dd></dd>
 </dl>
@@ -728,7 +737,7 @@ loaded by the function <cite>polytex.pk_load</cite>.</p>
 <span class="sig-name descname"><span class="pre">normal_cross_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kriging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.normal_cross_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.normal_cross_section" title="Permalink to this definition"></a></dt>
 <dd><p>Generate the normal cross section of the fiber tow surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>algorithm</strong><span class="classifier">str, optional</span></dt><dd><p>The algorithm to generate the cross section. Default is “kriging”. The other
 option is “pyvista” which uses pyvista’s mesh clip function (Polydata.clip_surface()).</p>
@@ -746,7 +755,7 @@ cross sections will be plotted.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>cross_section</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The normal cross section of the fiber tows stored in a pyvista.PolyData object.
 Note that only the cross sections that are plotted are stored. If one wants to
@@ -766,7 +775,7 @@ set skip=1.</p>
 <span class="sig-name descname"><span class="pre">radial_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'resampled'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.radial_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.radial_lines" title="Permalink to this definition"></a></dt>
 <dd><p>Generate the radial line of the fiber tow surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p>The path to save the radial line data as a vtk mesh file.</p>
 </dd>
@@ -777,7 +786,7 @@ set skip=1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>radial_line</strong><span class="classifier">vtkPolyData</span></dt><dd><p>The radial lines of the fiber tow.</p>
 </dd>
@@ -792,7 +801,7 @@ set skip=1.</p>
 <dd><p>Kriging the cross-sections of the tow to obtain the parametric equations
 for each cross-section (which is a closed curve).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration. The first element is the kriging model for
 the drift and the second is the name of covariance. Default is (“lin”, “cub”).</p>
@@ -815,7 +824,7 @@ If “angular”, the resampling positions are specified by angular position (be
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>_Tow__kriged_vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The kriged points for each cross-section of the tow. It is an array of shape
 (n, 3) where n is the number of points. The kriged points is obtained according
@@ -840,7 +849,7 @@ the first two components of user input.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the fiber tow data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the fiber tow data.</p>
 </dd>
@@ -857,7 +866,7 @@ slices in the axial direction of fiber tow that are smoothed per iteration.</p>
 <p>A smaller window size will significantly decrease the computation time of
 smoothing operation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The window size.</p>
 </dd>
@@ -869,7 +878,7 @@ boundary of the windows.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>wins_interp</strong><span class="classifier">ndarray</span></dt><dd><p>The window size for interpolation (with extensions at the two ends).</p>
 </dd>
@@ -887,7 +896,7 @@ boundary of the windows.</p>
 Anisotropic smoothing is applied to the tow by using different smoothing factors
 for the two directions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>name_drift</strong><span class="classifier">list, optional</span></dt><dd><p>The drift function for the parametric surface kriging. Default is [‘lin’, ‘lin’].</p>
 </dd>
@@ -909,7 +918,7 @@ will not be saved. The file format is .ply.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>vertices</strong><span class="classifier">ndarray</span></dt><dd><p>The smoothed tow vertices.</p>
 </dd>
@@ -923,7 +932,7 @@ will not be saved. The file format is .ply.</p>
 <span class="sig-name descname"><span class="pre">surf_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.surf_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.surf_mesh" title="Permalink to this definition"></a></dt>
 <dd><p>Generate the surface mesh of the tow.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to plot the surface mesh. Default is False.</p>
 </dd>
@@ -944,7 +953,7 @@ The file format can be .ply or .vtk.</p>
 <span class="sig-name descname"><span class="pre">trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.trajectory" title="Permalink to this definition"></a></dt>
 <dd><p>Generate the trajectory of the tow and smooth it using kriging.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>krig_config</strong><span class="classifier">tuple, optional</span></dt><dd><p>The kriging configuration for the trajectory. It is a tuple of two strings that
 specify the drift and covariance function. Default is (“lin”, “cub”).</p>
@@ -962,7 +971,7 @@ is the tangent vector of the trajectory.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>traj</strong><span class="classifier">np.ndarray</span></dt><dd><p>The trajectory of the tow in the form of (n, 3) where n is the number of points.</p>
 </dd>
@@ -976,7 +985,7 @@ is the tangent vector of the trajectory.</p>
 <span class="sig-name descname"><span class="pre">unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/tow.html#Tow.unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.tow.Tow.unit_vector" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the unit vector of the input vector along the given axis.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vector</strong><span class="classifier">ndarray</span></dt><dd><p>The input vector.</p>
 </dd>
@@ -984,7 +993,7 @@ is the tangent vector of the trajectory.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>unit_vector</strong><span class="classifier">ndarray</span></dt><dd><p>The unit vector of the input vector along the given axis.</p>
 </dd>
@@ -998,7 +1007,7 @@ is the tangent vector of the trajectory.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attribute_names</span></span><a class="headerlink" href="#polytex.tow.Tow.attribute_names" title="Permalink to this definition"></a></dt>
 <dd><p>Get the attribute names of the Tow class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>attribute_names</strong><span class="classifier">list</span></dt><dd><p>The attribute names of the Tow class.</p>
 </dd>
@@ -1018,7 +1027,7 @@ is the tangent vector of the trajectory.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
 <p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cls</strong><span class="classifier">class</span></dt><dd><p>The class of the object.</p>
 </dd>
@@ -1026,7 +1035,7 @@ is the tangent vector of the trajectory.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>obj</strong><span class="classifier">Point</span></dt><dd><p>The origin point of 3d space.</p>
 </dd>
@@ -1040,9 +1049,9 @@ is the tangent vector of the trajectory.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></dt><dd><p>View of the transposed array.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></dt><dd><p>The transposed array.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">base</span></code></dt><dd><p>Base object if memory is from some other object.</p>
 </dd>
@@ -1084,6 +1093,10 @@ is the tangent vector of the trajectory.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code>([axis, out, keepdims, where])</p></td>
 <td><p>Returns True if all elements evaluate to True.</p></td>
@@ -1262,6 +1275,10 @@ is the tangent vector of the trajectory.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>dot</strong></p></td>
 <td></td>
@@ -1282,13 +1299,13 @@ is the tangent vector of the trajectory.</p>
 <span class="sig-name descname"><span class="pre">direction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Point.direction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Point.direction_ratio" title="Permalink to this definition"></a></dt>
 <dd><p>Gives the direction ratio between 2 points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>other</strong><span class="classifier">Point object</span></dt><dd><p>The other point to which the direction ratio is calculated.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>direction_ratio</strong><span class="classifier">list</span></dt><dd><p>The direction ratio between the 2 points.</p>
 </dd>
@@ -1321,7 +1338,7 @@ is the tangent vector of the trajectory.</p>
 <dt class="sig sig-object py" id="polytex.geometry.basic.Point.bounds">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Point.bounds" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bounds</strong><span class="classifier">array_like</span></dt><dd><p>The bounding box of the point. The first row is the minimum
 values and the second row is the maximum values for each
@@ -1367,7 +1384,7 @@ calculations that may overflow a fixed size integer type.</p>
 <dd><p>Bases: <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Point" title="polytex.geometry.basic.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p>
 <p>Default constructor. If no arguments are given, the point is initialized to (0, 0, 0).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cls</strong><span class="classifier">class</span></dt><dd><p>The class of the object.</p>
 </dd>
@@ -1375,7 +1392,7 @@ calculations that may overflow a fixed size integer type.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>obj</strong><span class="classifier">Point</span></dt><dd><p>The origin point of 3d space.</p>
 </dd>
@@ -1389,9 +1406,9 @@ calculations that may overflow a fixed size integer type.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></dt><dd><p>View of the transposed array.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></dt><dd><p>The transposed array.</p>
 </dd>
 <dt><strong>add</strong></dt><dd></dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">base</span></code></dt><dd><p>Base object if memory is from some other object.</p>
@@ -1437,6 +1454,10 @@ calculations that may overflow a fixed size integer type.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code>([axis, out, keepdims, where])</p></td>
 <td><p>Returns True if all elements evaluate to True.</p></td>
@@ -1618,6 +1639,10 @@ calculations that may overflow a fixed size integer type.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>cross</strong></p></td>
 <td></td>
@@ -1643,7 +1668,7 @@ calculations that may overflow a fixed size integer type.</p>
 <div class="math notranslate nohighlight">
 \[\theta = \arccos \frac{v_1 \cdot v_2}{\|v_1\| \|v_2\|}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>other</strong><span class="classifier">Vector object</span></dt><dd><p>The other vector to which the angle is calculated.</p>
 </dd>
@@ -1651,7 +1676,7 @@ calculations that may overflow a fixed size integer type.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>The angle between the 2 vectors. If radian is True, the angle is in radians.
 Otherwise, the angle is in degrees.</p>
@@ -1673,7 +1698,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Line" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>p1</strong><span class="classifier">Point object</span></dt><dd><p>The first point of the line.</p>
 </dd>
@@ -1681,7 +1706,7 @@ Otherwise, the angle is in degrees.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">ambient_dimension</span></code></dt><dd><p>A property method that returns the dimension of LinearEntity object.</p>
 </dd>
@@ -1770,6 +1795,10 @@ Otherwise, the angle is in degrees.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle_between</span></code>(l2)</p></td>
 <td><p>Return the non-reflex angle formed by rays emanating from the origin with directions the same as the direction vectors of the linear entities.</p></td>
@@ -1963,6 +1992,10 @@ Otherwise, the angle is in degrees.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>copy</strong></p></td>
 <td></td>
@@ -1983,13 +2016,13 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list, tuple or array_like</span></dt><dd><p>A list of Point objects.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
 <dt><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Curve.ambient_dimension" title="polytex.geometry.basic.Curve.ambient_dimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ambient_dimension</span></code></a></dt><dd><p>Return the dimension of the curve.</p>
 </dd>
@@ -2006,6 +2039,10 @@ Otherwise, the angle is in degrees.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Curve.plot" title="polytex.geometry.basic.Curve.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>()</p></td>
 <td><p>Plot the curve.</p></td>
@@ -2023,7 +2060,7 @@ Otherwise, the angle is in degrees.</p>
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>None</dt><dd></dd>
 </dl>
@@ -2036,13 +2073,13 @@ Otherwise, the angle is in degrees.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the curve to a vtk file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path to save the vtk file.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None</dt><dd></dd>
 </dl>
@@ -2055,7 +2092,7 @@ Otherwise, the angle is in degrees.</p>
 <span class="sig-name descname"><span class="pre">to_polygon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Curve.to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Curve.to_polygon" title="Permalink to this definition"></a></dt>
 <dd><p>Convert the curve to a polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>polygon</strong><span class="classifier">Polygon object</span></dt><dd></dd>
 </dl>
@@ -2068,7 +2105,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ambient_dimension</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.ambient_dimension" title="Permalink to this definition"></a></dt>
 <dd><p>Return the dimension of the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ambient_dimension</strong><span class="classifier">int</span></dt><dd></dd>
 </dl>
@@ -2081,7 +2118,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.bounds" title="Permalink to this definition"></a></dt>
 <dd><p>Return the bounds of the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bounds</strong><span class="classifier">tuple</span></dt><dd></dd>
 </dl>
@@ -2095,7 +2132,7 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Return the curvature of the curve.</p>
 <p>TODO: curvature of a curve</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>curvature</strong><span class="classifier">float</span></dt><dd></dd>
 </dl>
@@ -2108,7 +2145,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.length" title="Permalink to this definition"></a></dt>
 <dd><p>Return the length of the curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>length</strong><span class="classifier">float</span></dt><dd></dd>
 </dl>
@@ -2121,7 +2158,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tangent</span></span><a class="headerlink" href="#polytex.geometry.basic.Curve.tangent" title="Permalink to this definition"></a></dt>
 <dd><p>Return the tangent vector of the curve at each point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tangent</strong><span class="classifier">Vector object</span></dt><dd></dd>
 </dl>
@@ -2137,13 +2174,13 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Bases: <a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Curve" title="polytex.geometry.basic.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a></p>
 <p>A partial inheritance of polytex.geometry.Point class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list, tuple or array_like</span></dt><dd><p>A list of Point objects.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">ambient_dimension</span></code></dt><dd><p>Return the dimension of the curve.</p>
 </dd>
@@ -2166,6 +2203,10 @@ Otherwise, the angle is in degrees.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code>()</p></td>
 <td><p>Plot the curve.</p></td>
@@ -2186,7 +2227,7 @@ Otherwise, the angle is in degrees.</p>
 <span class="sig-name descname"><span class="pre">to_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Polygon.to_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Polygon.to_curve" title="Permalink to this definition"></a></dt>
 <dd><p>Convert the polygon to a curve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd></dd>
 </dl>
@@ -2199,7 +2240,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.area" title="Permalink to this definition"></a></dt>
 <dd><p>Return the area of the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
 </dl>
@@ -2212,7 +2253,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">centroid</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.centroid" title="Permalink to this definition"></a></dt>
 <dd><p>Return the centroid of the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>centroid</strong><span class="classifier">Point object</span></dt><dd></dd>
 </dl>
@@ -2225,7 +2266,7 @@ Otherwise, the angle is in degrees.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perimeter</span></span><a class="headerlink" href="#polytex.geometry.basic.Polygon.perimeter" title="Permalink to this definition"></a></dt>
 <dd><p>Return the perimeter of the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>perimeter</strong><span class="classifier">float</span></dt><dd></dd>
 </dl>
@@ -2241,7 +2282,7 @@ Otherwise, the angle is in degrees.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Create a plane from 3 points or a point and a normal vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>p1</strong><span class="classifier">Point object</span></dt><dd><p>A point on the plane.</p>
 </dd>
@@ -2255,7 +2296,7 @@ be ignored.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>plane</strong><span class="classifier">Plane object</span></dt><dd></dd>
 </dl>
@@ -2263,6 +2304,10 @@ be ignored.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Plane.distance" title="polytex.geometry.basic.Plane.distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code></a>(point)</p></td>
 <td><p>Return the signed distance between a point and the plane.</p></td>
@@ -2283,13 +2328,13 @@ be ignored.</p>
 <span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.distance" title="Permalink to this definition"></a></dt>
 <dd><p>Return the signed distance between a point and the plane.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>point</strong><span class="classifier">Point object</span></dt><dd><p>The point to calculate the distance. shape = (n, 3), where n is the number of points.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>The distance between the point and the plane.</p>
 </dd>
@@ -2313,7 +2358,7 @@ be ignored.</p>
 <span class="sig-name descname"><span class="pre">function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.function" title="Permalink to this definition"></a></dt>
 <dd><p>Return the equation of the plane as a function of x, y and z.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane.</p>
 </dd>
@@ -2321,7 +2366,7 @@ be ignored.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>A lambda function of x, y and z.</dt><dd><p>function of plane.</p>
 </dd>
@@ -2350,7 +2395,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.intersection" title="Permalink to this definition"></a></dt>
 <dd><p>Return the intersection of the plane with a curve or a polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>obj</strong><span class="classifier">Curve or Polygon object</span></dt><dd><p>The object to intersect with the plane.</p>
 </dd>
@@ -2358,7 +2403,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>intersection</strong><span class="classifier">list or array</span></dt><dd><p>The intersection point of the plane with the obj in the shape of
 (1, 3). If the intersection is not found, none is returned.</p>
@@ -2373,7 +2418,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Plane.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Plane.show" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the plane.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>None</dt><dd></dd>
 </dl>
@@ -2388,7 +2433,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">Ellipse2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Ellipse2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Ellipse2D" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The number of points to generate.</p>
 </dd>
@@ -2403,6 +2448,10 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.Ellipse2D.elipse_2d" title="polytex.geometry.basic.Ellipse2D.elipse_2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elipse_2d</span></code></a>()</p></td>
 <td><p>Generate points on an ellipse.</p></td>
@@ -2414,7 +2463,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <span class="sig-name descname"><span class="pre">elipse_2d</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#Ellipse2D.elipse_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.Ellipse2D.elipse_2d" title="Permalink to this definition"></a></dt>
 <dd><p>Generate points on an ellipse.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>xy: array-like</dt><dd><p>Points on the ellipse with shape (n, 2).</p>
 </dd>
@@ -2431,7 +2480,7 @@ Equation of a plane: a(x-x0) + b(y-y0) + c(z-z0) = 0</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
 <p>Create a tubular surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>theta_res</strong><span class="classifier">int</span></dt><dd><p>The number of points on each cross-section.</p>
 </dd>
@@ -2446,7 +2495,7 @@ the height, major and minor radius to the tube.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>tube</strong><span class="classifier">Tube object</span></dt><dd></dd>
 </dl>
@@ -2460,7 +2509,7 @@ the height, major and minor radius to the tube.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">args</span></code></dt><dd><p>Returns a tuple of arguments of ‘self’.</p>
 </dd>
@@ -2516,6 +2565,10 @@ the height, major and minor radius to the tube.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_content_primitive</span></code>([radical, clear])</p></td>
 <td><p>A stub to allow Basic args (like Tuple) to be skipped when computing the content and primitive components of an expression.</p></td>
@@ -2619,6 +2672,10 @@ the height, major and minor radius to the tube.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>copy</strong></p></td>
 <td></td>
@@ -2646,7 +2703,7 @@ the height, major and minor radius to the tube.</p>
 The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].</p>
 <p>TODO : There seems to be a bug in correction option of the to_meshio_data() method of the tubular mesh.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>save_path</strong><span class="classifier">str</span></dt><dd><p>The path and the name of the file to be saved with the extension.</p>
 </dd>
@@ -2654,7 +2711,7 @@ The possible file formats are: [“.ply”, “.stl”, “.vtk”, “.vtu”].
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The tubular mesh.</p>
 </dd>
@@ -2686,7 +2743,7 @@ rectangle for the geometric figure.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krig_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('lin',</span> <span class="pre">'cub')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamCurve" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
 <dt><strong>limits</strong><span class="classifier">3-tuple</span></dt><dd><p>Function parameter and lower and upper bounds.</p>
 </dd>
@@ -2706,7 +2763,7 @@ The tuple should be in the form of (drift_name, covariance_name).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>curve</strong><span class="classifier">ParamCurve object</span></dt><dd></dd>
 </dl>
@@ -2714,6 +2771,10 @@ The tuple should be in the form of (drift_name, covariance_name).</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="polytex.geometry.html#polytex.geometry.basic.ParamCurve.eval" title="polytex.geometry.basic.ParamCurve.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>(t_value)</p></td>
 <td><p>Evaluate the curve at a given parameter value.</p></td>
@@ -2721,6 +2782,10 @@ The tuple should be in the form of (drift_name, covariance_name).</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>bounds</strong></p></td>
 <td></td>
@@ -2733,13 +2798,13 @@ The tuple should be in the form of (drift_name, covariance_name).</p>
 <dd><p>Evaluate the curve at a given parameter value. The parameter value
 should be within the limits. Otherwise, an error will be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>t_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>curve</strong><span class="classifier">Curve object</span></dt><dd><p>The evaluated curve.</p>
 </dd>
@@ -2755,7 +2820,7 @@ should be within the limits. Otherwise, an error will be raised.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polytex.geometry.basic.</span></span><span class="sig-name descname"><span class="pre">ParamSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GeometryEntity</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>functions</strong><span class="classifier">list of functions</span></dt><dd><p>Function argument should be (x(s, t), y(s, t), z(s, t)) for a 3D surface.</p>
 </dd>
@@ -2765,7 +2830,7 @@ the same for all three functions.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">args</span></code></dt><dd><p>Returns a tuple of arguments of ‘self’.</p>
 </dd>
@@ -2822,6 +2887,10 @@ the same for all three functions.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_content_primitive</span></code>([radical, clear])</p></td>
 <td><p>A stub to allow Basic args (like Tuple) to be skipped when computing the content and primitive components of an expression.</p></td>
@@ -2922,6 +2991,10 @@ the same for all three functions.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>copy</strong></p></td>
 <td></td>
@@ -2939,7 +3012,7 @@ the same for all three functions.</p>
 <span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/geometry/basic.html#ParamSurface.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.eval" title="Permalink to this definition"></a></dt>
 <dd><p>Evaluate the surface at the given parameter values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>s_value</strong><span class="classifier">float or array_like</span></dt><dd><p>The parameter value for evaluation.</p>
 </dd>
@@ -2947,7 +3020,7 @@ the same for all three functions.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>Surface</dt><dd><p>The surface evaluated at the given parameter values.
 the shape of the returned surface is (len(s) * len(t), 3). The
@@ -3035,7 +3108,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">functions</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.functions" title="Permalink to this definition"></a></dt>
 <dd><p>The functions specifying the surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>functions</dt><dd><p>list of parameterized coordinate functions.</p>
 </dd>
@@ -3057,7 +3130,7 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">limits</span></span><a class="headerlink" href="#polytex.geometry.basic.ParamSurface.limits" title="Permalink to this definition"></a></dt>
 <dd><p>The limits of the two parameters specifying the surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>list limits of the parameters.</dt><dd></dd>
 </dl>

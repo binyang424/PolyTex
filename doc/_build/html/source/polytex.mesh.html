@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.mesh &mdash; PolyTex 0.4.1 documentation</title>
+  <title>polytex.mesh &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -79,6 +75,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -95,10 +92,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
-      <li class="breadcrumb-item active">polytex.mesh</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polytex.mesh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polytex.mesh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,7 +114,7 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">adjacent_from_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#adjacent_from_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.adjacent_from_edge" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the adjacent cells of the edges with the index of the edge as key.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
 </dd>
@@ -127,7 +124,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>return_dict: dictionary</dt><dd><p>a dictionary of adjacent cells with key as the edge</p>
 </dd>
@@ -141,7 +138,7 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">adjacent_from_edge_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_collapse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#adjacent_from_edge_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.adjacent_from_edge_parallel" title="Permalink to this definition"></a></dt>
 <dd><p>Get the adjacent cells of the edges to be collapsed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cells: (n, 4) array</strong></dt><dd><p>cell list of the mesh expressed in node connectivity</p>
 </dd>
@@ -151,7 +148,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>return_dict: a dictionary of adjacent cells with key as the edge</dt><dd></dd>
 </dl>
@@ -164,7 +161,7 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">construct_tetra_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tetra.vtk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#construct_tetra_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.construct_tetra_vtk" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
 </dd>
@@ -180,7 +177,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
 </dd>
@@ -194,7 +191,7 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">edge_collapse_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#edge_collapse_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.edge_collapse_pipeline" title="Permalink to this definition"></a></dt>
 <dd><p>Edge collapse pipeline. Edges containing boundary and independent points will not be collapsed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
 </dd>
@@ -207,7 +204,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>new_points: (n’, 3) array</dt><dd><p>vertices after edge collapse</p>
 </dd>
@@ -223,13 +220,13 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_boundary_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#get_boundary_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.get_boundary_points" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of boundary points from this mesh.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh: pyvista mesh object</strong></dt><dd></dd>
 <dt><strong>boundary_points: A list of boundary points</strong></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>pts_boundary_idx: NumPy array</dt><dd><p>A numpy array in the shape of [n_boundary_points] containing the index of boundary points.</p>
 </dd>
@@ -244,13 +241,13 @@
 <dd><p>Returns a list of the cells from this mesh with mixed cell types.
 This properly unpacks the VTK cells array.(safe but now so fast)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh: pyvista unstructured mesh object</strong></dt><dd><p>A pyvista mesh object.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>cells: list</dt><dd><p>A list of cells. The first element of each cell is the number of nodes in the cell.</p>
 </dd>
@@ -265,13 +262,13 @@ This properly unpacks the VTK cells array.(safe but now so fast)</p>
 <dd><p>Get the direction of edge collapse.
 The direction is determined by the indicator function of the two vertices.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>edge_indicator: (n, 2) array</strong></dt><dd><p>indicator function of the two vertices of an edge</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>collapse_indicator: (n,) array</dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
 “bilateral”, and “neither”</p>
@@ -286,7 +283,7 @@ The direction is determined by the indicator function of the two vertices.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edge_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf_dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#get_edge_collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.get_edge_collapse" title="Permalink to this definition"></a></dt>
 <dd><p>Get the edge collapse list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points: (n, 3) array</strong></dt><dd><p>vertex list</p>
 </dd>
@@ -305,7 +302,7 @@ and surface distance of the two vertices are both greater than the threshold.</p
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>edge_collapse: (n’’, 2) array</dt><dd><p>edge collapse list</p>
 </dd>
@@ -322,7 +319,7 @@ and surface distance of the two vertices are both greater than the threshold.</p
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edge_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#get_edge_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.get_edge_length" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the length of an edge given node position and the edge.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points: A numpy array in the shape of [n_points, 3]</strong></dt><dd><p>The points array containing node position</p>
 </dd>
@@ -330,7 +327,7 @@ and surface distance of the two vertices are both greater than the threshold.</p
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>edge_length: A numpy array in the shape of [n_edges]</dt><dd></dd>
 </dl>
@@ -343,13 +340,13 @@ and surface distance of the two vertices are both greater than the threshold.</p
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_edges_from_tetra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#get_edges_from_tetra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.get_edges_from_tetra" title="Permalink to this definition"></a></dt>
 <dd><p>Given cells of tetrahedral mesh, return all the edges.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>edges_for_cell: A list of edges</dt><dd><p>The edges are sorted so that the first node is always smaller
 than the second. This is to ensure easy searching neighbors.
@@ -367,13 +364,13 @@ The edges of a cell can be retrieved by edges[cell_index]</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">get_maximal_independent_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#get_maximal_independent_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.get_maximal_independent_node" title="Permalink to this definition"></a></dt>
 <dd><p>Get the maximal independent node set from the edge list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>edges: (n, 2) array</strong></dt><dd><p>edge list</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>pts_independent: (m,) array</dt><dd><p>maximal independent node set</p>
 </dd>
@@ -388,14 +385,14 @@ The edges of a cell can be retrieved by edges[cell_index]</p>
 <dd><p>Get the distance from a point to the surface mesh by finding the closest
 point on the surface mesh with KDTree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>surf: A pyvista triangular mesh object</strong></dt><dd></dd>
 <dt><strong>points: (n, 3) array</strong></dt><dd><p>points to be measured</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>surf_dist: (n,) array of float</dt><dd><p>distance from the points to the surface mesh</p>
 </dd>
@@ -419,7 +416,7 @@ point on the surface mesh with KDTree.</p>
 The nodes to be collapsed are the ones with indicator function equal to 2
 while 0 and 1 are fixed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n_points: int</strong></dt><dd><p>number of vertices</p>
 </dd>
@@ -431,7 +428,7 @@ while 0 and 1 are fixed.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>vertex_indicator: (n_points,) array</dt><dd><p>indicator function of the vertices</p>
 </dd>
@@ -447,7 +444,7 @@ while 0 and 1 are fixed.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">renumber_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts_del</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proc_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#renumber_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.renumber_points" title="Permalink to this definition"></a></dt>
 <dd><p>Renumber the points in cells after some points are deleted.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pts_del: A list of points to be deleted</strong></dt><dd></dd>
 <dt><strong>cells: A numpy array in the shape of [n_cells, 4]</strong></dt><dd><p>The cells array containing node connectivity</p>
@@ -456,7 +453,7 @@ while 0 and 1 are fixed.</p>
 <dt><strong>return_dict: A dictionary to store the result of each process.</strong></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>num_diff: A numpy array in the shape of [n_cells, 4]</dt><dd><p>The difference between the original node index and the new node index</p>
 </dd>
@@ -470,7 +467,7 @@ while 0 and 1 are fixed.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.decimation.</span></span><span class="sig-name descname"><span class="pre">tetra_edge_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collapse_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_adjacent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cores</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/decimation.html#tetra_edge_collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.decimation.tetra_edge_collapse" title="Permalink to this definition"></a></dt>
 <dd><p>Collapse edges of tetrahedral mesh.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>edges: (n, 2) array</strong></dt><dd></dd>
 <dt><strong>collapse_indicator: (n,) array</strong></dt><dd><p>direction of edge collapse. possible values are “forward”, “backward”,
@@ -484,7 +481,7 @@ while 0 and 1 are fixed.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>points: (n, 3) array</dt><dd><p>node positions after edge collapse</p>
 </dd>
@@ -504,7 +501,7 @@ while 0 and 1 are fixed.</p>
 <dd><p>Voxelize surface mesh to UnstructuredGrid. The bounding box of the voxelized mesh possibly smaller
 than the bounding box of the surface mesh when cell_size type of density is used.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>Surface mesh to be voxelized.</p>
 </dd>
@@ -525,7 +522,7 @@ If False, extract the cells that contain at least one of the extracted points.</
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>vox</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>Voxelized unstructured grid of the original mesh.</p>
 </dd>
@@ -590,7 +587,7 @@ If False, extract the cells that contain at least one of the extracted points.</
 <dd><p>Get the vertical cut plane of the surf mesh in the direction
 of x, y, or z axis through (boundary) cutting edge extraction.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>surf_mesh</strong><span class="classifier">pyvista.PolyData</span></dt><dd><p>The surface mesh.</p>
 </dd>
@@ -602,7 +599,7 @@ direction of the vertical cut plane, by default 1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>vcut_plane</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertical cut planes of the surf mesh.</p>
 </dd>
@@ -619,13 +616,13 @@ by averaging the coordinates of the points on the cutting edge.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">im_to_ugrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/from_image.html#im_to_ugrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.from_image.im_to_ugrid" title="Permalink to this definition"></a></dt>
 <dd><p>Convert image or image sequence to an unstructured grid.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>im</strong><span class="classifier">image object</span></dt><dd><p>The image sequence stored as a single tif file.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The unstructured grid discretized from the image with voxels.</p>
 </dd>
@@ -647,7 +644,7 @@ by averaging the coordinates of the points on the cutting edge.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">mesh_extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ugrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pointdata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tiff</span> <span class="pre">Scalars'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'foreground'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/from_image.html#mesh_extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.from_image.mesh_extract" title="Permalink to this definition"></a></dt>
 <dd><p>Extract part of the mesh from the unstructured grid according to the value of point data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ugrid</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The unstructured grid discretized from the image with voxels.</p>
 </dd>
@@ -662,7 +659,7 @@ the point data is less than the threshold value.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>subset_final</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The extracted volume mesh.</p>
 </dd>
@@ -680,13 +677,13 @@ the point data is less than the threshold value.</p>
 connectivity of the mesh. It may not work for mesh with multiple
 regions that are connected.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh</strong><span class="classifier">pyvista.UnstructuredGrid</span></dt><dd><p>The mesh object.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>mesh_dict</strong><span class="classifier">dict</span></dt><dd><p>The dictionary of the separated mesh objects. The key is the
 region number and the value is the mesh object.</p>
@@ -701,7 +698,7 @@ region number and the value is the mesh object.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.from_image.</span></span><span class="sig-name descname"><span class="pre">slice_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcut_planes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'z'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/from_image.html#slice_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.from_image.slice_plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the vertical cut planes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vcut_planes</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The vertical cut planes of the surf mesh stored in a numpy array.
 The shape of the array is (n_points, 3).</p>
@@ -722,7 +719,7 @@ must be specified.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None</dt><dd></dd>
 </dl>
@@ -738,7 +735,7 @@ must be specified.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">background_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#background_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.background_mesh" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a voxel background mesh.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
 <dt><strong>bbox: bounding box of the background mesh specified through a numpy array</strong></dt><dd><p>contains the minimum and maximum coordinates of the bounding box
 [xmin, xmax, ymin, ymax, zmin, zmax]</p>
@@ -750,7 +747,7 @@ the x-, y- and z- directions.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>grid</strong><span class="classifier">pyvista mesh object (UnstructuredGrid)</span></dt><dd></dd>
 <dt><strong>mesh_shape</strong><span class="classifier">tuple</span></dt><dd><p>shape of the mesh</p>
@@ -765,7 +762,7 @@ the x-, y- and z- directions.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">construct_tetra_vtk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#construct_tetra_vtk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.construct_tetra_vtk" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a UnstructuredGrid tetrahedral mesh from vertices and connectivity.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points: (n, 3) array</strong></dt><dd><p>vertices</p>
 </dd>
@@ -778,7 +775,7 @@ If None, the vtk file will not be saved.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>grid: pyvista.UnstructuredGrid</dt><dd><p>UnstructuredGrid tetrahedral mesh</p>
 </dd>
@@ -792,14 +789,14 @@ If None, the vtk file will not be saved.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">find_cells_within_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#find_cells_within_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.find_cells_within_bounds" title="Permalink to this definition"></a></dt>
 <dd><p>Find the index of cells in this mesh within bounds.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh: pyvista mesh</strong></dt><dd></dd>
 <dt><strong>bounds: type:　iterable(float)</strong></dt><dd><p>list of 6 values, [xmin, xmax, ymin, ymax, zmin, zmax]</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>type: numpy.ndarray</dt><dd><p>array of cell indices within bounds.</p>
 </dd>
@@ -816,14 +813,14 @@ If None, the vtk file will not be saved.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">intersection_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_set_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#intersection_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.intersection_detect" title="Permalink to this definition"></a></dt>
 <dd><p>Find the intersection of fiber tows from implicit surface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>label_set_dict: dictioanry</strong></dt><dd><p>dictionary of the label sets of the fiber tows
 (key: yarn indices, value: sparse matrix of cell queries)</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>type: dictionary of the indices of intersected cell</dt><dd><p>key: yarn indices 1_yarn indices 2, value: sparse matrix of cell indices</p>
 </dd>
@@ -838,7 +835,7 @@ If None, the vtk file will not be saved.</p>
 <dd><p>Determine if point is within a bounding box (bbox)
 that parallel to the principle axes of global Cartesian coordinate.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bbox: list</strong></dt><dd><p>bounding box, [xmin, xmax, ymin, ymax, zmin, zmax].</p>
 </dd>
@@ -846,7 +843,7 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>True or False</dt><dd></dd>
 </dl>
@@ -859,7 +856,7 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">label_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_background</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_tri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#label_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.label_mask" title="Permalink to this definition"></a></dt>
 <dd><p>Store the label of each fiber tow for intersection detection.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh_background: pyvista.UnstructuredGrid</strong></dt><dd><p>background mesh</p>
 </dd>
@@ -869,7 +866,7 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>mask: type: numpy.ndarray (bool)</dt><dd><p>mask of the background mesh, True for the cells that are within the bounds of the tubular mesh</p>
 </dd>
@@ -884,7 +881,7 @@ that parallel to the principle axes of global Cartesian coordinate.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">mesh_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#mesh_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.mesh_correction" title="Permalink to this definition"></a></dt>
 <dd><p>Close the ends of the tubular mesh with triangles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cells: list</strong></dt><dd><p>list of cells</p>
 </dd>
@@ -896,7 +893,7 @@ as two different points when considering theta resolution (theta_res).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
 </dd>
@@ -912,7 +909,7 @@ as two different points when considering theta resolution (theta_res).</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">structured_cylinder_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#structured_cylinder_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.structured_cylinder_vertices" title="Permalink to this definition"></a></dt>
 <dd><p>Generate points on an ellipse.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>a</strong><span class="classifier">float</span></dt><dd><p>semi-major axis</p>
 </dd>
@@ -926,7 +923,7 @@ as two different points when considering theta resolution (theta_res).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>points: numpy.ndarray</dt><dd><p>vertices on the ellipse surface (x, y, z).</p>
 </dd>
@@ -940,7 +937,7 @@ as two different points when considering theta resolution (theta_res).</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">to_meshio_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#to_meshio_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.to_meshio_data" title="Permalink to this definition"></a></dt>
 <dd><p>Convert PyVista flavor data structure to meshio.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mesh: PyVista.DataSet</strong></dt><dd><p>Any PyVista mesh/spatial data type.</p>
 </dd>
@@ -950,7 +947,7 @@ as two different points when considering theta resolution (theta_res).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>points: numpy.ndarray</dt><dd><p>vertices of the tubular mesh</p>
 </dd>
@@ -970,7 +967,7 @@ as two different points when considering theta resolution (theta_res).</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.mesh.mesh.</span></span><span class="sig-name descname"><span class="pre">tubular_mesh_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/mesh/mesh.html#tubular_mesh_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.mesh.mesh.tubular_mesh_generator" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a tubular mesh.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>theta_res: int</strong></dt><dd><p>number of points</p>
 </dd>
@@ -983,7 +980,7 @@ at the end of each radial direction point list.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>mesh</strong><span class="classifier">points on the tubular mesh</span></dt><dd></dd>
 </dl>

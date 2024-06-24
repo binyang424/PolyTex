@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_curve2D_interp_with_confidence.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -32,7 +32,7 @@ point resampling of fiber tow surface implemented in PolyTex.Tow class.
 
 .. GENERATED FROM PYTHON SOURCE LINES 14-20
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -48,7 +48,7 @@ Make up some data
 
 .. GENERATED FROM PYTHON SOURCE LINES 23-34
 
-.. code-block:: default
+.. code-block:: Python
 
     X = np.linspace(start=0, stop=10, num=300)
     y = X * np.sin(X)
@@ -73,7 +73,7 @@ directly.
 
 .. GENERATED FROM PYTHON SOURCE LINES 41-55
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Kriging parameters
@@ -99,7 +99,7 @@ and the corresponding standard deviation as output.
 
 .. GENERATED FROM PYTHON SOURCE LINES 60-80
 
-.. code-block:: default
+.. code-block:: Python
 
     mean_prediction, expr2, std_prediction = curve2D.interpolate(
         data_set, name_drift, name_cov,
@@ -136,7 +136,7 @@ dictionary with its name as the key.
 
 .. GENERATED FROM PYTHON SOURCE LINES 89-93
 
-.. code-block:: default
+.. code-block:: Python
 
     expr_dict = {"cross": expr2}
     ptx.pk_save("./test_data/FunXY.krig", expr_dict)
@@ -144,27 +144,19 @@ dictionary with its name as the key.
     # Reload the kriging model
     expr_load = ptx.pk_load("./test_data/FunXY.krig")
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_curve2D_interp_with_confidence.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: curve2D_interp_with_confidence.ipynb <curve2D_interp_with_confidence.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: curve2D_interp_with_confidence.py <curve2D_interp_with_confidence.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: curve2D_interp_with_confidence.ipynb <curve2D_interp_with_confidence.ipynb>`
 
 
 .. only:: html

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parametric kriging of surface &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Parametric kriging of surface &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,19 +19,19 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Step 1: GeometricAnalysis" href="Step_1_GeometricAnalysis.html" />
+    <link rel="next" title="GeometricAnalysis" href="Step_1_GeometricAnalysis.html" />
     <link rel="prev" title="Derivative kriging" href="derivative_Kriging.html" /> 
 </head>
 
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -75,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Parametric kriging of surface</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Parametric kriging of surface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/parametric_surface.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -90,12 +87,12 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-parametric-surface-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="parametric-kriging-of-surface">
 <span id="sphx-glr-source-test-parametric-surface-py"></span><h1>Parametric kriging of surface<a class="headerlink" href="#parametric-kriging-of-surface" title="Permalink to this heading"></a></h1>
 <p>Test</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ！/usr/bin/env python</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ！/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -139,13 +136,12 @@ to download the full example code</p>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;time: &#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-parametric-surface-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/41ed1c4b695eabd178c9efe3b635a904/parametric_surface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">parametric_surface.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/0903e91b35ed57f697180b2c6c06a708/parametric_surface.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">parametric_surface.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/41ed1c4b695eabd178c9efe3b635a904/parametric_surface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">parametric_surface.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -156,7 +152,7 @@ to download the full example code</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="derivative_Kriging.html" class="btn btn-neutral float-left" title="Derivative kriging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Step_1_GeometricAnalysis.html" class="btn btn-neutral float-right" title="Step 1: GeometricAnalysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Step_1_GeometricAnalysis.html" class="btn btn-neutral float-right" title="GeometricAnalysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

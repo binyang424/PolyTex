@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_example_dataset.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -34,7 +34,7 @@ Check the available datasets
 
 .. GENERATED FROM PYTHON SOURCE LINES 18-21
 
-.. code-block:: default
+.. code-block:: Python
 
     import polytex as pk
     pk.example(data_name="all")
@@ -53,7 +53,7 @@ the path using the entry ``outdir``.
 
 .. GENERATED FROM PYTHON SOURCE LINES 30-33
 
-.. code-block:: default
+.. code-block:: Python
 
 
     pk.example("surface points", outdir="./test_data/")
@@ -65,27 +65,19 @@ The input and output of the example datasets will be described in the examples
 for ``polytex.io`` module.
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_example_dataset.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: example_dataset.ipynb <example_dataset.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: example_dataset.py <example_dataset.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: example_dataset.ipynb <example_dataset.ipynb>`
 
 
 .. only:: html

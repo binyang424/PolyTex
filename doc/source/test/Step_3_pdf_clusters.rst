@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_3_pdf_clusters.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -30,7 +30,7 @@ centers. The initial bandwidth of the kernel is estimated by Scott's rule.
 
 .. GENERATED FROM PYTHON SOURCE LINES 12-24
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -52,7 +52,7 @@ Data loading
 
 .. GENERATED FROM PYTHON SOURCE LINES 27-32
 
-.. code-block:: default
+.. code-block:: Python
 
     path = ptx.choose_file(titl="Directory for the file containing "
                                "sorted coordinates (.coo)", format=".coo")
@@ -70,7 +70,7 @@ in coordinatesSorted.
 
 .. GENERATED FROM PYTHON SOURCE LINES 38-43
 
-.. code-block:: default
+.. code-block:: Python
 
     t_norm = coordinatesSorted["normalized distance"]
     std = np.std(t_norm)
@@ -87,7 +87,7 @@ estimation for a linear space spanning from 0 to 1 with 1000 points.
 
 .. GENERATED FROM PYTHON SOURCE LINES 48-54
 
-.. code-block:: default
+.. code-block:: Python
 
     t_test = np.linspace(0, 1, 1000)
     clusters = ptx.stats.kdeScreen(t_norm, t_test, bw, plot=False)
@@ -105,7 +105,7 @@ centers information and the computed bandwidth.
 
 .. GENERATED FROM PYTHON SOURCE LINES 59-63
 
-.. code-block:: default
+.. code-block:: Python
 
     cluster_centers = clusters["cluster centers"]
     ptx.pk_save(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
@@ -120,7 +120,7 @@ The previously saved statistical data can be reloaded as follows:
 
 .. GENERATED FROM PYTHON SOURCE LINES 67-70
 
-.. code-block:: default
+.. code-block:: Python
 
     reload = ptx.pk_load(filename[:-4] + "_clusters" + str(len(cluster_centers)) +
                         "_bw" + str(round(bw, 3)) + ".stat")
@@ -135,7 +135,7 @@ normalized distance (ax1) and the cluster labels (ax2).
 
 .. GENERATED FROM PYTHON SOURCE LINES 75-115
 
-.. code-block:: default
+.. code-block:: Python
 
     plt.close('all')
     fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(8, 5))
@@ -179,27 +179,19 @@ normalized distance (ax1) and the cluster labels (ax2).
     plt.show()
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Step_3_pdf_clusters.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_3_pdf_clusters.ipynb <Step_3_pdf_clusters.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_3_pdf_clusters.py <Step_3_pdf_clusters.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_3_pdf_clusters.ipynb <Step_3_pdf_clusters.ipynb>`
 
 
 .. only:: html

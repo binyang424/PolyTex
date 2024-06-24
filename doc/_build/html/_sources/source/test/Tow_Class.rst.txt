@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Tow_Class.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -29,7 +29,7 @@ Example dataset
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-20
 
-.. code-block:: default
+.. code-block:: Python
 
     import polytex as ptx
     import numpy as np
@@ -49,7 +49,7 @@ the modeling of the tow. Optional.
 
 .. GENERATED FROM PYTHON SOURCE LINES 23-26
 
-.. code-block:: default
+.. code-block:: Python
 
     mask = (surf_points[:, 0] > 1.1 - 0.2) & (surf_points[:, 0] < 11.55 + 0.2)
     surf_points_clip = surf_points[mask]
@@ -65,7 +65,7 @@ is necessary for the users.
 
 .. GENERATED FROM PYTHON SOURCE LINES 32-34
 
-.. code-block:: default
+.. code-block:: Python
 
     coordinates = surf_points_clip[:, [0, 1, 2]]
 
@@ -83,7 +83,7 @@ Create a Tow instance with PolyTex Tow class
 
 .. GENERATED FROM PYTHON SOURCE LINES 42-50
 
-.. code-block:: default
+.. code-block:: Python
 
     tow = ptx.Tow(
             surf_points=coordinates,
@@ -103,7 +103,7 @@ DataFrame.
 
 .. GENERATED FROM PYTHON SOURCE LINES 55-57
 
-.. code-block:: default
+.. code-block:: Python
 
     df_coord = tow.coordinates  # parametric coordinates of the tow
 
@@ -119,7 +119,7 @@ after identifying the normal cross-sections of the tow.
 
 .. GENERATED FROM PYTHON SOURCE LINES 64-66
 
-.. code-block:: default
+.. code-block:: Python
 
     df_geom = tow.geom_features  # geometrical features of the tow
 
@@ -132,58 +132,65 @@ Resampling the control points of the tow with a uniform spacing in the
 normalized distance direction. The resampling is necessary to create a
 parametric representation based on dual kriging.
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-78
+.. GENERATED FROM PYTHON SOURCE LINES 72-85
 
-.. code-block:: default
+.. code-block:: Python
 
-    theta_res = 35  # number of control points in the radial direction
+
+    # Equidistant resampling of the tow control points in the radial direction.
+    theta_res = 40  # number of control points in the radial direction
     sample_position = np.linspace(0, 1, theta_res, endpoint=True)  # equal spaced points (normalized distance)
+
+    # # Resampling according to distribution density
+    # cluster = tow.kde(bw=0.004)
+    # sample_position = cluster["cluster centers"]
+
     pts_krig, expr_krig = tow.resampling(krig_config=("lin", "cub"),
-                                         skip=10, sample_position=sample_position,
-                                         smooth=0.0001)
+                                         skip=5, sample_position=sample_position,
+                                         smooth=0.00001)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-82
+.. GENERATED FROM PYTHON SOURCE LINES 86-89
 
 Save and reload the tow instance
 --------------------------------
-tow.save("./tow/binder_4.tow")
+tow.save("./tow/weft_0.tow")
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-86
+.. GENERATED FROM PYTHON SOURCE LINES 91-93
 
 Plot the tow
 ------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-88
+.. GENERATED FROM PYTHON SOURCE LINES 93-95
 
-.. code-block:: default
+.. code-block:: Python
 
-    mesh = tow.surf_mesh(plot=True, save_path="./test_data/binder_4.ply", end_closed=True)
+    mesh = tow.surf_mesh(plot=True, save_path="./test_data/weft_0.ply", end_closed=True)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 89-91
+.. GENERATED FROM PYTHON SOURCE LINES 96-98
 
 Smooth the tow trajectory with Kriging
 --------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-94
+.. GENERATED FROM PYTHON SOURCE LINES 98-101
 
-.. code-block:: default
+.. code-block:: Python
 
     trajectory_sm = tow.trajectory(smooth=0.0015, plot=False,
                                    save_path="./test_data/trajectory.ply", orientation=True)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-99
+.. GENERATED FROM PYTHON SOURCE LINES 102-106
 
 Axial and radial lines
 ----------------------
 Get the axial lines of the tow (the lines connecting the parametrized control points in
 the axial direction)
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-105
+.. GENERATED FROM PYTHON SOURCE LINES 106-112
 
-.. code-block:: default
+.. code-block:: Python
 
     line_axi = tow.axial_lines(plot=True)
 
@@ -192,7 +199,7 @@ the axial direction)
     line_rad = tow.radial_lines(plot=True)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-112
+.. GENERATED FROM PYTHON SOURCE LINES 113-119
 
 Get the normal cross-sections of the tow
 ----------------------------------------
@@ -201,14 +208,14 @@ The first method wraps the intersection function of plane and surface mesh
 in the pyvista package. The second method is based on the intersection of
 a parametric curve and an implicit plane.
 
-.. GENERATED FROM PYTHON SOURCE LINES 112-114
+.. GENERATED FROM PYTHON SOURCE LINES 119-121
 
-.. code-block:: default
+.. code-block:: Python
 
     cross_section, planes, clipped = tow.normal_cross_section(algorithm="pyvista")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-122
+.. GENERATED FROM PYTHON SOURCE LINES 122-129
 
 Update the geometrical features of the tow
 ------------------------------------------
@@ -218,22 +225,22 @@ cross-sections of the tow. A more accurate geometrical analysis can be done duri
 the normal cross-sections with the class method, Tow.normal_cross_section.
 Acess the updated geometry features according to the normal cross-sections.
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-124
+.. GENERATED FROM PYTHON SOURCE LINES 129-131
 
-.. code-block:: default
+.. code-block:: Python
 
     df_geom_pv = tow.geom_features.copy()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 125-128
+.. GENERATED FROM PYTHON SOURCE LINES 132-135
 
 Get the normal cross-sections of the tow
 ----------------------------------------
 The kriging method is based on the intersection of a parametric curve and an implicit plane.
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-133
+.. GENERATED FROM PYTHON SOURCE LINES 135-140
 
-.. code-block:: default
+.. code-block:: Python
 
     cross_section, plane, clipped = tow.normal_cross_section(algorithm="kriging", plot=True,
                                                                  i_size=2, j_size=3, skip=15)
@@ -241,7 +248,7 @@ The kriging method is based on the intersection of a parametric curve and an imp
     df_geom_krig = tow.geom_features
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-142
+.. GENERATED FROM PYTHON SOURCE LINES 141-149
 
 Geometry features
 -----------------
@@ -253,27 +260,19 @@ geometry features are more accurate than the pyvista method. However, this also 
 kriging method less efficient. The kriging method is recommended for wavy tows, such as binder.
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Tow_Class.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Tow_Class.ipynb <Tow_Class.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Tow_Class.py <Tow_Class.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Tow_Class.ipynb <Tow_Class.ipynb>`
 
 
 .. only:: html

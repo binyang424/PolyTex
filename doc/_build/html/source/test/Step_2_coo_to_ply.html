@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step 2: Convert .coo file to .ply for point cloud visualization &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Convert .coo file to .ply for point cloud visualization &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,20 +19,20 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="PDF-based point clustering" href="Step_3_pdf_clusters.html" />
-    <link rel="prev" title="Step 1: GeometricAnalysis" href="Step_1_GeometricAnalysis.html" /> 
+    <link rel="prev" title="GeometricAnalysis" href="Step_1_GeometricAnalysis.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -75,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Step 2: Convert .coo file to .ply for point cloud visualization</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Convert .coo file to .ply for point cloud visualization</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/Step_2_coo_to_ply.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -90,14 +87,14 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-step-2-coo-to-ply-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
-<section class="sphx-glr-example-title" id="step-2-convert-coo-file-to-ply-for-point-cloud-visualization">
-<span id="sphx-glr-source-test-step-2-coo-to-ply-py"></span><h1>Step 2: Convert .coo file to .ply for point cloud visualization<a class="headerlink" href="#step-2-convert-coo-file-to-ply-for-point-cloud-visualization" title="Permalink to this heading"></a></h1>
+<section class="sphx-glr-example-title" id="convert-coo-file-to-ply-for-point-cloud-visualization">
+<span id="sphx-glr-source-test-step-2-coo-to-ply-py"></span><h1>Convert .coo file to .ply for point cloud visualization<a class="headerlink" href="#convert-coo-file-to-ply-for-point-cloud-visualization" title="Permalink to this heading"></a></h1>
 <p>input: .coo file
 output: .ply file</p>
 <p>If interpolate is True, the points farther than the given threshold (normalzied distance) will be linearly interpolated to avoid distortion in tetralization  process.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -123,13 +120,12 @@ output: .ply file</p>
         <span class="c1"># pk.pcd_to_ply(filename, filename.replace(&quot;pcd&quot;, &quot;ply&quot;), binary=False)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-step-2-coo-to-ply-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/72fcb5bcc437388cd16efd611aab3416/Step_2_coo_to_ply.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Step_2_coo_to_ply.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/d7884d305d23c2c5e6137b762581aec4/Step_2_coo_to_ply.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Step_2_coo_to_ply.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/72fcb5bcc437388cd16efd611aab3416/Step_2_coo_to_ply.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Step_2_coo_to_ply.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -139,7 +135,7 @@ output: .ply file</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Step_1_GeometricAnalysis.html" class="btn btn-neutral float-left" title="Step 1: GeometricAnalysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Step_1_GeometricAnalysis.html" class="btn btn-neutral float-left" title="GeometricAnalysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Step_3_pdf_clusters.html" class="btn btn-neutral float-right" title="PDF-based point clustering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

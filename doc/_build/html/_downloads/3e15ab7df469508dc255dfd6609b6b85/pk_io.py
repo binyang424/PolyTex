@@ -18,7 +18,7 @@ In polytex, two function were provided to facilitate file selection: `polytex.ch
 
 import numpy as np
 import pandas as pd
-import polytex as pk
+import polytex as ptx
 
 
 ###############################################################################
@@ -27,8 +27,8 @@ import polytex as pk
 # The function `polytex.choose_file()` allows users to select a file from
 # a directory with a GUI. The function returns the path of the selected file.
 # Users can also specify the file type and the title of the GUI window as below:
-path = pk.choose_file(titl="Directory for file CoordinatesSorted file (.coo)", format=".coo")
-coordinatesSorted = pk.pk_load(path)
+path = ptx.choose_file(titl="Directory for file CoordinatesSorted file (.coo)", format=".coo")
+coordinatesSorted = ptx.pk_load(path)
 
 ###############################################################################
 # Traverse and return a list of filenames in the directory
@@ -44,8 +44,8 @@ data = np.random.randn(6, 4)
 df = pd.DataFrame(data, index=label_row, columns=label_col)
 
 # save
-pk.pk_save("./test_data/test.coo", df)
+ptx.pk_save("./test_data/test.coo", df)
 
 # load
-df = pk.pk_load("./test_data/test.coo")
+df = ptx.pk_load("./test_data/test.coo")
 

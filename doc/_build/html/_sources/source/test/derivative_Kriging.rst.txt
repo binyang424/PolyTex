@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_derivative_Kriging.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -26,7 +26,7 @@ with given derivative dy/dx = f'(x) in some position.
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-12
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import matplotlib.pyplot as plt
@@ -41,7 +41,7 @@ Make up a test dataset
 
 .. GENERATED FROM PYTHON SOURCE LINES 16-36
 
-.. code-block:: default
+.. code-block:: Python
 
 
     x = [0, 2.5, 4, 4.5, 5.08]
@@ -72,7 +72,7 @@ Make up a test dataset
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-50
 
-.. code-block:: default
+.. code-block:: Python
 
     x = [0, 1]
     y = [0, 0]
@@ -86,27 +86,19 @@ Make up a test dataset
 
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_derivative_Kriging.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: derivative_Kriging.ipynb <derivative_Kriging.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: derivative_Kriging.py <derivative_Kriging.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: derivative_Kriging.ipynb <derivative_Kriging.ipynb>`
 
 
 .. only:: html

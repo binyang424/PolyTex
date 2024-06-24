@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2D curve kriging with confidence estimation &mdash; PolyTex 0.4.1 documentation</title>
+  <title>2D curve kriging with confidence estimation &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -41,16 +41,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,6 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -76,9 +73,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">2D curve kriging with confidence estimation</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>2D curve kriging with confidence estimation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/curve2D_interp_with_confidence.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,7 +88,7 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-curve2d-interp-with-confidence-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="d-curve-kriging-with-confidence-estimation">
 <span id="sphx-glr-source-test-curve2d-interp-with-confidence-py"></span><h1>2D curve kriging with confidence estimation<a class="headerlink" href="#d-curve-kriging-with-confidence-estimation" title="Permalink to this heading"></a></h1>
@@ -101,7 +98,7 @@ to download the full example code</p>
 <p>The curve is defined by a set of points <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, where <span class="math notranslate nohighlight">\(i = 1, 2, ..., n\)</span>.</p>
 <p>This kriging method is the basis for fiber tow trajectory smoothing and control
 point resampling of fiber tow surface implemented in PolyTex.Tow class.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">polytex.kriging</span> <span class="kn">import</span> <span class="n">curve2D</span>
 <span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -109,7 +106,7 @@ point resampling of fiber tow surface implemented in PolyTex.Tow class.</p>
 </div>
 <section id="make-up-some-data">
 <h2>Make up some data<a class="headerlink" href="#make-up-some-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Choose some data points randomly to build the kriging model</span>
@@ -128,7 +125,7 @@ point resampling of fiber tow surface implemented in PolyTex.Tow class.</p>
 understanding the formulation of dual kriging. In practice, the kriging
 interpolation can be used by calling the function <code class="docutils literal notranslate"><span class="pre">curve2D.interpolate</span></code>
 directly.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kriging parameters</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kriging parameters</span>
 <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span> <span class="o">=</span> <span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;cub&#39;</span>
 
 <span class="c1"># The smoothing factor is used to control the smooth strength of the parametric</span>
@@ -147,7 +144,7 @@ directly.</p>
 <h2>Kriging interpolation<a class="headerlink" href="#kriging-interpolation" title="Permalink to this heading"></a></h2>
 <p>Kriging model and prediction with mean, kriging expression
 and the corresponding standard deviation as output.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean_prediction</span><span class="p">,</span> <span class="n">expr2</span><span class="p">,</span> <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mean_prediction</span><span class="p">,</span> <span class="n">expr2</span><span class="p">,</span> <span class="n">std_prediction</span> <span class="o">=</span> <span class="n">curve2D</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
     <span class="n">data_set</span><span class="p">,</span> <span class="n">name_drift</span><span class="p">,</span> <span class="n">name_cov</span><span class="p">,</span>
     <span class="n">nugget_effect</span><span class="o">=</span><span class="n">smoothing_factor</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -175,20 +172,19 @@ and the corresponding standard deviation as output.</p>
 <p>You can save the kriging model to a file for later use and load it back
 using ptx.load() function. Note that the kriging model is saved in a Python
 dictionary with its name as the key.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cross&quot;</span><span class="p">:</span> <span class="n">expr2</span><span class="p">}</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">expr_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cross&quot;</span><span class="p">:</span> <span class="n">expr2</span><span class="p">}</span>
 <span class="n">ptx</span><span class="o">.</span><span class="n">pk_save</span><span class="p">(</span><span class="s2">&quot;./test_data/FunXY.krig&quot;</span><span class="p">,</span> <span class="n">expr_dict</span><span class="p">)</span>
 
 <span class="c1"># Reload the kriging model</span>
 <span class="n">expr_load</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="s2">&quot;./test_data/FunXY.krig&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-curve2d-interp-with-confidence-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/a6d0a9fd9d9ee29a4334c9f73a13dc16/curve2D_interp_with_confidence.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">curve2D_interp_with_confidence.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/381481ffbe09ef2da04c3c390981638e/curve2D_interp_with_confidence.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">curve2D_interp_with_confidence.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/a6d0a9fd9d9ee29a4334c9f73a13dc16/curve2D_interp_with_confidence.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">curve2D_interp_with_confidence.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

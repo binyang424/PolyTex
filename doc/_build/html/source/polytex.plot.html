@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.plot &mdash; PolyTex 0.4.1 documentation</title>
+  <title>polytex.plot &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,6 +73,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -93,10 +90,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
-      <li class="breadcrumb-item active">polytex.plot</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polytex.plot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polytex.plot.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,7 +123,7 @@ Input can be matplotlib color string, hex string, or RGB tuple.</p>
 <p>url : 
 <a class="reference external" href="https://stackoverflow.com/questions/37765197/darken-or-lighten-a-color-in-matplotlib">https://stackoverflow.com/questions/37765197/darken-or-lighten-a-color-in-matplotlib</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>color</strong><span class="classifier">str or tuple</span></dt><dd><p>color to lighten</p>
 </dd>
@@ -138,7 +135,7 @@ between 0 and 1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>tuple</dt><dd><p>modified color in RGBA tuple (float values in the range 0-1).</p>
 </dd>
@@ -161,36 +158,11 @@ between 0 and 1.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="polytex.plot.image_plot.plot_on_img">
-<span class="sig-prename descclassname"><span class="pre">polytex.plot.image_plot.</span></span><span class="sig-name descname"><span class="pre">plot_on_img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backgroundImg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/plot/image_plot.html#plot_on_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.plot.image_plot.plot_on_img" title="Permalink to this definition"></a></dt>
-<dd><p>This function is used to plot the image.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>x,y: numpy array</strong></dt><dd><p>if x.shape[1]&gt;1, 一个背景多个图</p>
-</dd>
-<dt><strong>labels: list of string</strong></dt><dd><p>, 多个图的legend</p>
-</dd>
-<dt><strong>img:</strong></dt><dd><p>a image as the background</p>
-</dd>
-<dt><strong>save: bool</strong></dt><dd><p>if True, save the image, default is False.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="polytex.plot.image_plot.vert_sub_plot">
 <span class="sig-prename descclassname"><span class="pre">polytex.plot.image_plot.</span></span><span class="sig-name descname"><span class="pre">vert_sub_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/plot/image_plot.html#vert_sub_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.plot.image_plot.vert_sub_plot" title="Permalink to this definition"></a></dt>
 <dd><p>This function is used to plot multiple subplots vertically.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>num_plots</strong><span class="classifier">int</span></dt><dd><p>The number of subplots.</p>
 </dd>
@@ -204,7 +176,7 @@ between 0 and 1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd><p>The figure object.</p>
 </dd>
@@ -220,7 +192,7 @@ between 0 and 1.</p>
 for all the input x-y pairs (midline).</p>
 <p>TODO: check what happens if the range of x-axis is not the same for all the input axis_list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>axis_list</strong><span class="classifier">list of np.ndarray</span></dt><dd><p>Each element is a 2D array with shape (n, 2), where n is the number of points.
 The first column is x-axis and the second column is y-axis.</p>
@@ -231,7 +203,7 @@ The first column is x-axis and the second column is y-axis.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>mid</strong><span class="classifier">np.ndarray</span></dt><dd><p>The interpolated midline with shape (n, 2), where n is the number of points.
 The first column is x-axis and the second column is y-axis.</p>

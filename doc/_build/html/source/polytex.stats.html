@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.stats &mdash; PolyTex 0.4.1 documentation</title>
+  <title>polytex.stats &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -41,16 +41,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,6 +74,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -94,10 +91,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
-      <li class="breadcrumb-item active">polytex.stats</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polytex.stats</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polytex.stats.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,7 +113,7 @@
 <span class="sig-prename descclassname"><span class="pre">polytex.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">bw_scott</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/bw_opt.html#bw_scott"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.bw_opt.bw_scott" title="Permalink to this definition"></a></dt>
 <dd><p>Scott’s rule for bandwidth selection.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>sigma</strong><span class="classifier">float</span></dt><dd><p>The standard deviation of the data.</p>
 </dd>
@@ -124,7 +121,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>bw</strong><span class="classifier">float</span></dt><dd><p>The bandwidth of the kernel.</p>
 </dd>
@@ -136,21 +133,18 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="polytex.stats.bw_opt.log_likelihood">
 <span class="sig-prename descclassname"><span class="pre">polytex.stats.bw_opt.</span></span><span class="sig-name descname"><span class="pre">log_likelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/bw_opt.html#log_likelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.bw_opt.log_likelihood" title="Permalink to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Calculate the likelihood of the given probability density function.
+<dd><p>Calculate the likelihood of the given probability density function.
 The likelihood is:</p>
 <div class="math notranslate nohighlight">
-\[L = \]</div>
-</div></blockquote>
-<p>rac{1}{N}sum_{i=1}^{N} f(x_i)</p>
+\[L = \frac{1}{N}\sum_{i=1}^{N} f(x_i)\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pdf</strong><span class="classifier">Numpy array</span></dt><dd><p>The probability density function.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>LL</strong><span class="classifier">float</span></dt><dd><p>The log-likelihood of the given probability density function.</p>
 </dd>
@@ -166,7 +160,7 @@ The likelihood is:</p>
 via cross-validation and returns the parameter value that maximizes
 the log-likelihood of data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array. The data to apply the kernel density estimation.</p>
 </dd>
@@ -176,7 +170,7 @@ the log-likelihood of data.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>kde.bandwidth</strong><span class="classifier">float</span></dt><dd><p>The optimal bandwidth of the kernel.</p>
 </dd>
@@ -192,7 +186,7 @@ the log-likelihood of data.</p>
 <dt class="sig sig-object py" id="polytex.stats.kde.kdePlot">
 <span class="sig-prename descclassname"><span class="pre">polytex.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xkde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ykde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_center_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/kde.html#kdePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.kde.kdePlot" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xkde</strong><span class="classifier">Numpy array</span></dt><dd><p>The normalized distance.</p>
 </dd>
@@ -202,7 +196,7 @@ the log-likelihood of data.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>None.</dt><dd></dd>
 </dl>
@@ -212,14 +206,14 @@ the log-likelihood of data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polytex.stats.kde.kdeScreen">
-<span class="sig-prename descclassname"><span class="pre">polytex.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdeScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'False'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/kde.html#kdeScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.kde.kdeScreen" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polytex.stats.kde.</span></span><span class="sig-name descname"><span class="pre">kdeScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/stats/kde.html#kdeScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.stats.kde.kdeScreen" title="Permalink to this definition"></a></dt>
 <dd><p>This function estimates the probability density distribution of the input variable
 with the non-parametric kernel density estimation (KDE) method. The local maxima
 and minima of the probability density distribution are identified to decompose the
 input variable into a set of clusters. The former is used as the cluster centers
 and the latter is used as the cluster boundaries.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>variable</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 1 dimension numpy array to apply the kernel density estimation.</p>
 </dd>
@@ -235,7 +229,7 @@ the given variable. It should cover the whole range of the variable.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>clusters</strong><span class="classifier">dictionary</span></dt><dd><p>The index of the cluster centers, cluster boundary and the
 probability density distribution (pdf).</p>
@@ -253,7 +247,7 @@ dataset with a moving window. Namely, the dataset is divided into a set of
 windows and the KDE method is applied to each window. This allows to capture
 more details of geometry changes of a fiber tow.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dataset</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 2 dimension numpy array for kernel density estimation.
 The first colum should be the variable under analysis, the second
@@ -274,7 +268,7 @@ the function kdeScreen() directly.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>kdeOutput</strong><span class="classifier">Numpy array</span></dt><dd><p>A N x 3 dimension numpy array. The first column is the label of the window under analysis,
 the second is normlized distance, the third is the probability density.</p>

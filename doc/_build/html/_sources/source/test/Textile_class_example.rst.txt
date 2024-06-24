@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Textile_class_example.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -26,7 +26,7 @@ passing the point cloud of a tow, which consists only the points on the Textile 
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-11
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -45,7 +45,7 @@ Create a textile object
 
 .. GENERATED FROM PYTHON SOURCE LINES 19-47
 
-.. code-block:: default
+.. code-block:: Python
 
     textile = ptx.Textile(name="TG96N_Vf57")
     print(textile.name)
@@ -86,7 +86,7 @@ Create a background mesh for the textile domain
 
 .. GENERATED FROM PYTHON SOURCE LINES 53-57
 
-.. code-block:: default
+.. code-block:: Python
 
     bbox = np.array((0.6, 12, 1.07, 14.19, 0.15, 5.5))
     voxel_size = [0.132, 0.132, 0.066]
@@ -94,27 +94,19 @@ Create a background mesh for the textile domain
     textile.meshing(bbox, voxel_size=voxel_size, show=True,
                     labeling=True, surface_mesh="./stl/", verbose=False)
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Textile_class_example.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Textile_class_example.ipynb <Textile_class_example.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Textile_class_example.py <Textile_class_example.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Textile_class_example.ipynb <Textile_class_example.ipynb>`
 
 
 .. only:: html

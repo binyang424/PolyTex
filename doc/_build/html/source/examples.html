@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Examples &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,15 +72,20 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#using-as-a-library-for-fiber-tow-modeling">Using as a library for fiber tow modeling</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="test/Step_1_GeometricAnalysis.html">Step 1: GeometricAnalysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="test/Step_2_coo_to_ply.html">Step 2: Convert .coo file to .ply for point cloud visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/Step_1_GeometricAnalysis.html">GeometricAnalysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/Step_2_coo_to_ply.html">Convert .coo file to .ply for point cloud visualization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test/Step_3_pdf_clusters.html">PDF-based point clustering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="test/Step_3_MW-KDE.html">Step 3: Moving window KDE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="test/Step_4_resampling.html">Step 4: Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/Step_3_MW-KDE.html">Moving window KDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/Step_4_resampling.html">Resampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test/Step_6_vf.html">Fiber volume fraction of tow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test/voxelization.html">Voxelization of surface mesh</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#integrate-polytex-with-texgen">Integrate PolyTex with TexGen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-texgen">Download <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
@@ -103,8 +104,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Examples</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Examples</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/examples.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,15 +145,61 @@
 <h2>Using as a library for fiber tow modeling<a class="headerlink" href="#using-as-a-library-for-fiber-tow-modeling" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="test/Step_1_GeometricAnalysis.html">Step 1: GeometricAnalysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test/Step_2_coo_to_ply.html">Step 2: Convert .coo file to .ply for point cloud visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test/Step_1_GeometricAnalysis.html">GeometricAnalysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test/Step_2_coo_to_ply.html">Convert .coo file to .ply for point cloud visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test/Step_3_pdf_clusters.html">PDF-based point clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test/Step_3_MW-KDE.html">Step 3: Moving window KDE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test/Step_4_resampling.html">Step 4: Resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test/Step_3_MW-KDE.html">Moving window KDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test/Step_4_resampling.html">Resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test/Step_6_vf.html">Fiber volume fraction of tow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test/voxelization.html">Voxelization of surface mesh</a></li>
 </ul>
 </div>
+</section>
+<section id="integrate-polytex-with-texgen">
+<h2>Integrate PolyTex with TexGen<a class="headerlink" href="#integrate-polytex-with-texgen" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="id1">
+<h1>Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">TexGen</span></code> software, developed at the <a class="reference external" href="https://www.nottingham.ac.uk/research/groups/composites-research-group/meet-the-team/louise.brown">University of Nottingham</a>, is an excellent tool for building mesoscale models of textile reinforcements and composites. <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> can be used as a third-party package via Python 3.9 with the latest <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> release (3.13.x). This allows data and methods provided by <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> to be directly accessed by <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> to build ideal models of woven textiles and textile composites. To do this, you should install the <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> package without Python bundled. A brief description is given below.</p>
+<section id="download-texgen">
+<h2>Download <code class="docutils literal notranslate"><span class="pre">TexGen</span></code><a class="headerlink" href="#download-texgen" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Go to the Project Webpage</strong>: Navigate to the <cite>``TexGen`</cite> download page on SourceForge.net &lt;<a class="reference external" href="https://sourceforge.net/projects/texgen/">https://sourceforge.net/projects/texgen/</a>&gt;`_ and follow the steps shown in the figure below. Note that you need to download the release without Python bundled.</p>
+<a class="reference external image-reference" href="./images/texgen-download.png"><img alt="" src="source/images/texgen-download.png" /></a>
+<p>The <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> file (<code class="docutils literal notranslate"><span class="pre">texgen-Python39-3.13.1.exe</span></code>) indicates that the current <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> package supports only Python 3.9.</p>
+</li>
+<li><p><strong>Install Python 3.9</strong>:</p>
+<p>Go to the official website of Python: <a class="reference external" href="https://www.python.org/downloads/">Download Python | Python.org</a> and select the required Python version (Python 3.9). Here is the link to <a class="reference external" href="https://www.python.org/downloads/release/python-3913/">Python Release Python 3.9.13</a>.</p>
+</li>
+<li><p><a href="#id2"><span class="problematic" id="id3">**</span></a>Install <code class="docutils literal notranslate"><span class="pre">TexGen</span></code><a href="#id4"><span class="problematic" id="id5">**</span></a>:</p>
+<p>Install the <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> package downloaded in Step 1. <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> will automatically detect the installation of Python 3.9.</p>
+</li>
+</ol>
+<a class="reference external image-reference" href="./images/image-20240624121115642.png"><img alt="image-20240624121115642" src="source/images/image-20240624121115642.png" /></a>
+<ol class="arabic">
+<li><p><strong>Install ``PolyTex`` in the Python 3.9 Environment</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> can be installed simply by executing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">polytex</span><span class="o">==</span><span class="mf">0.4.5</span>
+</pre></div>
+</div>
+<p>If multiple versions of Python are installed on your computer, specify the Python 3.9 installation directory in the pip command using the <code class="docutils literal notranslate"><span class="pre">--target=</span></code> option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">polytex</span><span class="o">==</span><span class="m">0</span>.4.5<span class="w"> </span>--target<span class="o">=</span>C:/Users/User/AppData/Local/Programs/Python/Python39/Lib/site-packages
+</pre></div>
+</div>
+<p>Once the installation is complete, import <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> in the <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> Python console:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   polytex.__author__
+   polytex.__version__
+
+This should return the developer and version information of the installed ``PolyTex``.
+</pre></div>
+</div>
+<p>At this point, all functions and data in <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> can be accessed by <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> to build models. For different fabric structures, different <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> scripts are required. Examples are provided in the <code class="docutils literal notranslate"><span class="pre">TexGen</span></code> repository <cite>louisepb/TexGenScripts: Sample scripts to demonstrate ``TexGen`</cite> scripting &lt;<a class="reference external" href="https://github.com/louisepb/TexGenScripts">https://github.com/louisepb/TexGenScripts</a>&gt;`_.</p>
 </section>
 </section>
 

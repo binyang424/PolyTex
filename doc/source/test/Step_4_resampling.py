@@ -1,5 +1,5 @@
 """
-Step 4: Resampling
+Resampling
 ==================
 
 Test
@@ -9,7 +9,6 @@ Test
 import matplotlib.pyplot as plt
 from polytex.kriging import curve2D
 import numpy as np
-import polytex as pk
 
 """   Overfitting test    """
 ii = 0

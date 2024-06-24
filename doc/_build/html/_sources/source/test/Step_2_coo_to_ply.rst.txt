@@ -11,14 +11,14 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_2_coo_to_ply.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_source_test_Step_2_coo_to_ply.py:
 
 
-Step 2: Convert .coo file to .ply for point cloud visualization
+Convert .coo file to .ply for point cloud visualization
 ===============================================================
 input: .coo file
 output: .ply file
@@ -27,7 +27,7 @@ If interpolate is True, the points farther than the given threshold (normalzied 
 
 .. GENERATED FROM PYTHON SOURCE LINES 9-34
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import polytex as pk
@@ -56,27 +56,19 @@ If interpolate is True, the points farther than the given threshold (normalzied 
             # pk.pcd_to_ply(filename, filename.replace("pcd", "ply"), binary=False)
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Step_2_coo_to_ply.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_2_coo_to_ply.ipynb <Step_2_coo_to_ply.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_2_coo_to_ply.py <Step_2_coo_to_ply.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_2_coo_to_ply.ipynb <Step_2_coo_to_ply.ipynb>`
 
 
 .. only:: html

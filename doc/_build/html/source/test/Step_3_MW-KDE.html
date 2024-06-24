@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step 3: Moving window KDE &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Moving window KDE &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,19 +19,19 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Step 4: Resampling" href="Step_4_resampling.html" />
+    <link rel="next" title="Resampling" href="Step_4_resampling.html" />
     <link rel="prev" title="PDF-based point clustering" href="Step_3_pdf_clusters.html" /> 
 </head>
 
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -75,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Step 3: Moving window KDE</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Moving window KDE</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/Step_3_MW-KDE.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -90,16 +87,16 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-step-3-mw-kde-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
-<section class="sphx-glr-example-title" id="step-3-moving-window-kde">
-<span id="sphx-glr-source-test-step-3-mw-kde-py"></span><h1>Step 3: Moving window KDE<a class="headerlink" href="#step-3-moving-window-kde" title="Permalink to this heading"></a></h1>
+<section class="sphx-glr-example-title" id="moving-window-kde">
+<span id="sphx-glr-source-test-step-3-mw-kde-py"></span><h1>Moving window KDE<a class="headerlink" href="#moving-window-kde" title="Permalink to this heading"></a></h1>
 <p>This example shows how to use the moving window KDE to resample the control
 points of the tow.</p>
 <section id="load-example-dataset">
 <h2>Load example dataset<a class="headerlink" href="#load-example-dataset" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Input: parameters</span>
@@ -107,17 +104,18 @@ points of the tow.</p>
 <span class="c1"># number of extrema (control points) for contour description</span>
 <span class="n">extremaNum</span><span class="p">,</span> <span class="n">windows</span><span class="p">,</span> <span class="n">nuggets</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">]</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;sorted coordinate&quot;</span><span class="p">)</span>
-<span class="n">coordinatesSorted</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="c1"># Load the example dataset</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="s2">&quot;sorted coordinate&quot;</span><span class="p">)</span>
+<span class="n">coordinatesSorted</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">pk_load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="visualize-the-dataset-a-tow-contour">
 <h2>Visualize the dataset (a tow contour)<a class="headerlink" href="#visualize-the-dataset-a-tow-contour" title="Permalink to this heading"></a></h2>
 <p>The tow contour is described by a set of control points. The control points
-can be labeled by its z coordinate (the scaning slices) since the dataset is
+can be labeled by its z coordinate (the scanning slices) since the dataset is
 obtained from Micro CT scanning. The control points are sorted by its z coordinate.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">coordinatesSorted</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
@@ -136,32 +134,31 @@ obtained from Micro CT scanning. The control points are sorted by its z coordina
 </section>
 <section id="slice-number-of-the-tow">
 <h2>Slice number of the tow<a class="headerlink" href="#slice-number-of-the-tow" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinatesSorted</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">slices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinatesSorted</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">nslices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>  <span class="c1"># number of slices</span>
 </pre></div>
 </div>
 </section>
 <section id="dataset-preparation-for-moving-window-kernel-density-estimation">
 <h2>Dataset preparation for moving window kernel density estimation<a class="headerlink" href="#dataset-preparation-for-moving-window-kernel-density-estimation" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">coordinatesSorted</span><span class="p">[</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">],</span> <span class="n">slices</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">t_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">coordinatesSorted</span><span class="p">[</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">],</span> <span class="n">slices</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># bw = np.arange(0.01, 0.03, 0.01)  # specify a range for bandwidth optimization</span>
 <span class="c1"># initialize the bandwidth according to Scott&#39;s rule</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="mf">0.01</span>
 
-<span class="n">kdeOutput</span><span class="p">,</span> <span class="n">cluster_centers</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">movingKDE</span><span class="p">(</span><span class="n">t_norm</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">windows</span><span class="p">,</span> <span class="n">extremaNum</span><span class="p">)</span>
+<span class="n">kdeOutput</span><span class="p">,</span> <span class="n">cluster_centers</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">movingKDE</span><span class="p">(</span><span class="n">t_norm</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">windows</span><span class="p">,</span> <span class="n">extremaNum</span><span class="p">)</span>
 
 <span class="n">kdeOutput</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;normalized distance&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;probability density&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-step-3-mw-kde-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/00a588095856c258a16d6a9e8f176e8a/Step_3_MW-KDE.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Step_3_MW-KDE.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/1ad20a0970c820f043e35bcf1d4877db/Step_3_MW-KDE.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Step_3_MW-KDE.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/00a588095856c258a16d6a9e8f176e8a/Step_3_MW-KDE.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Step_3_MW-KDE.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -173,7 +170,7 @@ obtained from Micro CT scanning. The control points are sorted by its z coordina
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Step_3_pdf_clusters.html" class="btn btn-neutral float-left" title="PDF-based point clustering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Step_4_resampling.html" class="btn btn-neutral float-right" title="Step 4: Resampling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Step_4_resampling.html" class="btn btn-neutral float-right" title="Resampling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

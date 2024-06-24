@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Textile class example &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Textile class example &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -75,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
-      <li class="breadcrumb-item active">Textile class example</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>Textile class example</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/Textile_class_example.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -90,14 +87,14 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-textile-class-example-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="textile-class-example">
 <span id="sphx-glr-source-test-textile-class-example-py"></span><h1>Textile class example<a class="headerlink" href="#textile-class-example" title="Permalink to this heading"></a></h1>
 <p>This example shows how to use the Textile class in PolyTex package. It
 is designed to handle the parametrization and geometrical analysis of a fiber Textile. A Tow instance is created by
 passing the point cloud of a tow, which consists only the points on the Textile surface, to the constructor.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 </pre></div>
 </div>
@@ -110,7 +107,7 @@ passing the point cloud of a tow, which consists only the points on the Textile 
 <li><p>remove tows from the textile object. The same tows in self.groups will be
 removed automatically.</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textile</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">Textile</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TG96N_Vf57&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">textile</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">Textile</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TG96N_Vf57&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">textile</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;./sample_data/tow/&quot;</span>
@@ -147,20 +144,19 @@ removed automatically.</p></li>
 <li><p>define the voxel size</p></li>
 <li><p>generate the background mesh with textile.mesh()</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">0.6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">,</span> <span class="mf">14.19</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">0.6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">,</span> <span class="mf">14.19</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
 <span class="n">voxel_size</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.132</span><span class="p">,</span> <span class="mf">0.132</span><span class="p">,</span> <span class="mf">0.066</span><span class="p">]</span>
 
 <span class="n">textile</span><span class="o">.</span><span class="n">meshing</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">voxel_size</span><span class="o">=</span><span class="n">voxel_size</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">labeling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">surface_mesh</span><span class="o">=</span><span class="s2">&quot;./stl/&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-textile-class-example-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/bbdaf0859fc689444945f2895d9c0c14/Textile_class_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Textile_class_example.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/25632e921933b5d7a9adcdb79911ad47/Textile_class_example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Textile_class_example.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/bbdaf0859fc689444945f2895d9c0c14/Textile_class_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Textile_class_example.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

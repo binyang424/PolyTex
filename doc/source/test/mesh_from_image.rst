@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_mesh_from_image.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -25,7 +25,7 @@ such as a CT scan. The image sequence should be stored as a single tif file.
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-12
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import polytex as pk
@@ -40,7 +40,7 @@ Load the image sequence
 
 .. GENERATED FROM PYTHON SOURCE LINES 15-20
 
-.. code-block:: default
+.. code-block:: Python
 
     im = pk.example("image")
 
@@ -59,7 +59,7 @@ a volume mesh and a surface mesh of the extracted part.
 
 .. GENERATED FROM PYTHON SOURCE LINES 27-32
 
-.. code-block:: default
+.. code-block:: Python
 
     """ Get the foreground or background mesh """
     vol_mesh, surf_mesh = pk.mesh.mesh_extract(mesh, threshold=100, type="foreground")
@@ -77,7 +77,7 @@ a dictionary of meshes with the mesh ID as the key.
 
 .. GENERATED FROM PYTHON SOURCE LINES 38-48
 
-.. code-block:: default
+.. code-block:: Python
 
     mesh_dict = pk.mesh.mesh_separation(surf_mesh, plot=False)
 
@@ -99,7 +99,7 @@ reorganize them in the order of slice (vertical cut plane) for further analysis.
 
 .. GENERATED FROM PYTHON SOURCE LINES 53-55
 
-.. code-block:: default
+.. code-block:: Python
 
     points_1_reorder, trajectory = pk.mesh.get_vcut_plane(binder_1, direction='x')
 
@@ -114,7 +114,7 @@ can be loaded by function pk.pk_load().
 
 .. GENERATED FROM PYTHON SOURCE LINES 61-66
 
-.. code-block:: default
+.. code-block:: Python
 
     points_1_df = pd.DataFrame(points_1_reorder, columns=['x', 'y', 'z'])
 
@@ -129,7 +129,7 @@ Visualize the point cloud dataset (.pcd)
 
 .. GENERATED FROM PYTHON SOURCE LINES 69-77
 
-.. code-block:: default
+.. code-block:: Python
 
     plt.plot(trajectory[:, 0], trajectory[:, 1])
     plt.xlabel('x')
@@ -141,27 +141,19 @@ Visualize the point cloud dataset (.pcd)
     pk.mesh.slice_plot(points_1_reorder, skip=10, marker='o', marker_size=0.1, dpi=300)
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_mesh_from_image.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: mesh_from_image.ipynb <mesh_from_image.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: mesh_from_image.py <mesh_from_image.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: mesh_from_image.ipynb <mesh_from_image.ipynb>`
 
 
 .. only:: html

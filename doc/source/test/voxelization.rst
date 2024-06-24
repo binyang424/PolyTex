@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_voxelization.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -25,7 +25,7 @@ Test
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-102
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -123,27 +123,19 @@ Test
     plt.savefig('./testdata/voxelization.png', dpi=600)
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_voxelization.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: voxelization.ipynb <voxelization.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: voxelization.py <voxelization.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: voxelization.ipynb <voxelization.ipynb>`
 
 
 .. only:: html

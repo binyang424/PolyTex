@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_parametric_surface.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -25,7 +25,7 @@ Test
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-51
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # ！/usr/bin/env python
@@ -72,27 +72,19 @@ Test
         print('time: ', time.time() - start)
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_parametric_surface.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: parametric_surface.ipynb <parametric_surface.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: parametric_surface.py <parametric_surface.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: parametric_surface.ipynb <parametric_surface.ipynb>`
 
 
 .. only:: html

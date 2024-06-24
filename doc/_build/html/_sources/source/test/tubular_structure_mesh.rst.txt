@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_tubular_structure_mesh.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -33,7 +33,7 @@ generate tubular mesh. This example is only for demonstration purpose.
 
 .. GENERATED FROM PYTHON SOURCE LINES 15-25
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import polytex.mesh as ms
@@ -53,7 +53,7 @@ Generate the tubular mesh vertices
 
 .. GENERATED FROM PYTHON SOURCE LINES 28-31
 
-.. code-block:: default
+.. code-block:: Python
 
     points = ms.structured_cylinder_vertices(a=a, b=b, h=h,
                                              theta_res=theta_res, h_res=h_res)
@@ -66,7 +66,7 @@ Generate the tubular mesh cells
 
 .. GENERATED FROM PYTHON SOURCE LINES 34-38
 
-.. code-block:: default
+.. code-block:: Python
 
     mesh = ms.tubular_mesh_generator(theta_res=theta_res,
                                      h_res=h_res,
@@ -80,7 +80,7 @@ Extract information from the mesh object
 
 .. GENERATED FROM PYTHON SOURCE LINES 41-44
 
-.. code-block:: default
+.. code-block:: Python
 
     points, cells, point_data, cell_data = ms.to_meshio_data(mesh,
                                                              theta_res,
@@ -93,7 +93,7 @@ Write the mesh to a file with meshio
 
 .. GENERATED FROM PYTHON SOURCE LINES 47-53
 
-.. code-block:: default
+.. code-block:: Python
 
     meshio.write_points_cells(
         filename="cylinder.ply",
@@ -103,27 +103,19 @@ Write the mesh to a file with meshio
 
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_tubular_structure_mesh.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: tubular_structure_mesh.ipynb <tubular_structure_mesh.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: tubular_structure_mesh.py <tubular_structure_mesh.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: tubular_structure_mesh.ipynb <tubular_structure_mesh.ipynb>`
 
 
 .. only:: html

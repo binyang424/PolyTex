@@ -11,14 +11,14 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_1_GeometricAnalysis.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_source_test_Step_1_GeometricAnalysis.py:
 
 
-Step 1: GeometricAnalysis
+GeometricAnalysis
 =========================
 
 Input: pcd
@@ -26,7 +26,7 @@ Output: .geo and .coo files
 
 .. GENERATED FROM PYTHON SOURCE LINES 9-97
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -118,27 +118,19 @@ Output: .geo and .coo files
         del surfPoints, coordinate, geomFeature, coordinateSorted, geomFeatures, coordinatesSorted
         plt.close('all')
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Step_1_GeometricAnalysis.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_1_GeometricAnalysis.ipynb <Step_1_GeometricAnalysis.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_1_GeometricAnalysis.py <Step_1_GeometricAnalysis.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_1_GeometricAnalysis.ipynb <Step_1_GeometricAnalysis.ipynb>`
 
 
 .. only:: html

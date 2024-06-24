@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coordinate transformation &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Coordinate transformation &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -38,16 +38,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -73,8 +70,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Coordinate transformation</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Coordinate transformation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/transformation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,13 +84,13 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-transformation-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="coordinate-transformation">
 <span id="sphx-glr-source-test-transformation-py"></span><h1>Coordinate transformation<a class="headerlink" href="#coordinate-transformation" title="Permalink to this heading"></a></h1>
 <p>The following code is a demonstration of coordinate transformation using direct
 cosine matrix (DCM) and Euler angles (phi, theta, psi).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
 <span class="kn">from</span> <span class="nn">polytex.geometry</span> <span class="kn">import</span> <span class="n">transform</span> <span class="k">as</span> <span class="n">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -103,7 +100,7 @@ cosine matrix (DCM) and Euler angles (phi, theta, psi).</p>
 </div>
 <section id="load-test-data">
 <h2>Load test data<a class="headerlink" href="#load-test-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="n">data_name</span><span class="o">=</span><span class="s2">&quot;cross-section&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">example</span><span class="p">(</span><span class="n">data_name</span><span class="o">=</span><span class="s2">&quot;cross-section&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">normal</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.43583834</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00777955</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.89999134</span><span class="p">]</span>
 <span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -116,7 +113,7 @@ cosine matrix (DCM) and Euler angles (phi, theta, psi).</p>
 This can be loaded using pyvista as shown above. Now we get the points and
 the centroid of the cross-section. We will use the centroid as the origin
 of the local coordinate system.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">points</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">points</span>
 <span class="n">centroid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -127,7 +124,7 @@ of the local coordinate system.</p>
 Note that we did not import the translation function so far.
 So the user should translate the local coordinate system to
 the origin before calling the rotation functions.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span> <span class="o">-</span> <span class="n">centroid</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span> <span class="o">-</span> <span class="n">centroid</span>
 </pre></div>
 </div>
 </section>
@@ -136,21 +133,21 @@ the origin before calling the rotation functions.</p>
 <p>We want to rotate the global coordinate system to align its z-axis
 with the normal vector of the cross-section. To do this, we need to
 find the euler angles (phi, theta, psi).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angles</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">euler_z_noraml</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">angles</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">euler_z_noraml</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="direct-cosine-matrix">
 <h2>Direct cosine matrix<a class="headerlink" href="#direct-cosine-matrix" title="Permalink to this heading"></a></h2>
 <p>Now we can use the euler angles to construct the DCM:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dcm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">e123_dcm</span><span class="p">(</span><span class="o">*</span><span class="n">angles</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dcm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">e123_dcm</span><span class="p">(</span><span class="o">*</span><span class="n">angles</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="check-the-result">
 <h2>Check the result<a class="headerlink" href="#check-the-result" title="Permalink to this heading"></a></h2>
 <p>Rotate the points</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dcm</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">points1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dcm</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># Plot the rotated points</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points1</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
@@ -172,7 +169,7 @@ with a given vector but without considering the x- and y-axes.
 Now we want to align the old coordinate system with a new one
 defined by two vectors: z_new and x_new. The following code
 shows how to do this.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_new</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">x_new</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
 
 <span class="n">angles2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">euler_zx_coordinate</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">x_new</span><span class="p">)</span>
 <span class="n">dcm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">e123_dcm</span><span class="p">(</span><span class="o">*</span><span class="n">angles2</span><span class="p">)</span>
@@ -183,7 +180,7 @@ shows how to do this.</p>
 <section id="id1">
 <h2>Check the result<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Plot the rotated points</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="c1"># equal aspect ratio</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
@@ -195,18 +192,17 @@ shows how to do this.</p>
 <h2>Compare<a class="headerlink" href="#compare" title="Permalink to this heading"></a></h2>
 <p>A comparison between the direct cosine matrix and the coordinate
 the basis vectors of the original coordinate system after rotation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dcm</span><span class="p">,</span> <span class="n">basis</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dcm</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-transformation-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/b5672c685f05fbd791118291e10c55a4/transformation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">transformation.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/711ab28888f31472813f3d395cca7620/transformation.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">transformation.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/b5672c685f05fbd791118291e10c55a4/transformation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">transformation.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

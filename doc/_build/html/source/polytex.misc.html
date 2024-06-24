@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.misc &mdash; PolyTex 0.4.1 documentation</title>
+  <title>polytex.misc &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -41,16 +41,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,6 +73,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -93,10 +90,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
-      <li class="breadcrumb-item active">polytex.misc</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polytex.misc</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polytex.misc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,7 +117,7 @@ pattern according to cai’s model.</p>
 &amp; \left.+0.292\left(0.907-V_a\right)\left(V_f\right)^{(-1.57)}\left(1-V_f\right)^{(1.55)}\right)   \\
 K_T = &amp; 0.229 r^2\left(\frac{1.814}{V_a}-1\right)\left(\frac{\left(1-\sqrt{\frac{V_f}{V_a}}\right)}{\sqrt{\frac{V_f}{V_a}}}\right)^{2.5}\end{split}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
 </dd>
@@ -136,7 +133,7 @@ is False.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
@@ -170,7 +167,7 @@ principal permeability components k22 and k33 are equal.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">compress_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zipfilename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#compress_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.compress_file" title="Permalink to this definition"></a></dt>
 <dd><p>Compresses all files and subdirectories in the specified directory.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>zipfilename</strong><span class="classifier">str</span></dt><dd><p>The name of the zip file, including the path.</p>
 </dd>
@@ -178,7 +175,7 @@ principal permeability components k22 and k33 are equal.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>int</dt><dd><p>1 if the compression is successful, otherwise 0.</p>
 </dd>
@@ -201,7 +198,7 @@ pattern according to Drummond and Tahir’s model.</p>
 K_{tQuad} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.476+\frac{2V_f-0.796V_f}{1+0.489V_f-1.605{V_f}^2}\right)  \\
 K_{tHex} &amp; =\frac{r^2}{8V_f}\left(-lnV_f-1.497+2V_f-\frac{V_f^2}{2}-0.739V_f^4+\frac{2.534V_f^5}{1+1.2758V_f}\right)\end{split}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
 </dd>
@@ -217,7 +214,7 @@ is False.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
@@ -255,7 +252,7 @@ pattern according to Gebart’s model.</p>
 \[\begin{split}k_l &amp; = \frac{8 r_f^2}{c} \frac{(1 - V_f)^3}{V_f^2}  \\
 k_t &amp; = c_1 r_f^2 \sqrt{\left(\sqrt{\frac{V_{f_{max}}}{V_f}} - 1\right)^5}\end{split}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vf</strong><span class="classifier">float or array_like</span></dt><dd><p>Fiber volume fraction.</p>
 </dd>
@@ -271,7 +268,7 @@ is False.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>k</strong><span class="classifier">array-like</span></dt><dd><p>Fiber tow permeability. If tensorial is True, return a list with 9
 elements. Otherwise, return a list of 3 floats (k11, k22, k33),
@@ -307,7 +304,7 @@ principal permeability components k22 and k33 are equal.</p>
 <dd><p>Rotate the permeability tensor according to the yarn
 orientation in the world coordinate system.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>permeability: ndarray</strong></dt><dd><p>The principal permeability tensor of the yarn in the
 local coordinate system of the yarn. Shape: (n, 9)</p>
@@ -319,7 +316,7 @@ system. Shape: (n, 3)</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>perm_rot: ndarray</dt><dd><p>The rotated permeability tensor. Shape: (n, 9)</p>
 </dd>
@@ -335,7 +332,7 @@ system. Shape: (n, 3)</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.misc.</span></span><span class="sig-name descname"><span class="pre">porosity_tow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_lin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_fiber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2550</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fvf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/misc.html#porosity_tow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.misc.porosity_tow" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate local porosity of a tow based on its cross-sectional area and linear density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>rho_lin: float</strong></dt><dd><p>Linear density of the tow. Unit: Tex (g/1000m)</p>
 </dd>
@@ -348,7 +345,7 @@ fiber volume fraction instead of porosity.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>porosity: array-like</dt><dd><p>Local porosity of the tow. Shape: (n cross-sections, 1). Unit: 1.
 The fiber volume fraction is returned if fvf is True.</p>

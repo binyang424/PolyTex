@@ -7,6 +7,7 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
     <div class="sphx-glr-thumbnails">
 
+.. thumbnail-parent-div-open
 
 .. raw:: html
 
@@ -106,7 +107,7 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Step 2: Convert .coo file to .ply for point cloud visualization</div>
+      <div class="sphx-glr-thumbnail-title">Convert .coo file to .ply for point cloud visualization</div>
     </div>
 
 
@@ -191,7 +192,7 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Step 3: Moving window KDE</div>
+      <div class="sphx-glr-thumbnail-title">Moving window KDE</div>
     </div>
 
 
@@ -310,7 +311,7 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Step 4: Resampling</div>
+      <div class="sphx-glr-thumbnail-title">Resampling</div>
     </div>
 
 
@@ -327,7 +328,7 @@ This is an example galley to illustrate the use of `PolyTex` package.
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Step 1: GeometricAnalysis</div>
+      <div class="sphx-glr-thumbnail-title">GeometricAnalysis</div>
     </div>
 
 
@@ -347,6 +348,8 @@ This is an example galley to illustrate the use of `PolyTex` package.
       <div class="sphx-glr-thumbnail-title">Voxelization of surface mesh</div>
     </div>
 
+
+.. thumbnail-parent-div-close
 
 .. raw:: html
 
@@ -376,45 +379,6 @@ This is an example galley to illustrate the use of `PolyTex` package.
    /source/test/Step_4_resampling
    /source/test/Step_1_GeometricAnalysis
    /source/test/voxelization
-
-```
-# Explain the example dataset
-```
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbnails">
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Test">
-
-.. only:: html
-
-  .. image:: /source/test/test_data/images/thumb/sphx_glr_cylinder1_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_test_test_data_cylinder1.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Test</div>
-    </div>
-
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-   :includehidden:
-
-
-   /source/test/test_data/index.rst
 
 
 .. only:: html

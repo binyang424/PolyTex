@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_3d_curve_krig.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -35,7 +35,7 @@ Note that the function name is possibly been modified in future versions.
 
 .. GENERATED FROM PYTHON SOURCE LINES 20-26
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -53,7 +53,7 @@ The data for kriging interpolation should be an array of xy data in shape of
 
 .. GENERATED FROM PYTHON SOURCE LINES 31-36
 
-.. code-block:: default
+.. code-block:: Python
 
     t_rad = np.linspace(0, 2 * np.pi, 10)
 
@@ -73,7 +73,7 @@ Nugget effect (nugg) is used for the smoothing of the curve.
 
 .. GENERATED FROM PYTHON SOURCE LINES 44-49
 
-.. code-block:: default
+.. code-block:: Python
 
 
     expr = buildKriging(xy, z, 'lin', 'cub', nugg=100)
@@ -88,7 +88,7 @@ Plot the result
 
 .. GENERATED FROM PYTHON SOURCE LINES 52-61
 
-.. code-block:: default
+.. code-block:: Python
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -101,27 +101,19 @@ Plot the result
     plt.show()
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_3d_curve_krig.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: 3d_curve_krig.ipynb <3d_curve_krig.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: 3d_curve_krig.py <3d_curve_krig.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: 3d_curve_krig.ipynb <3d_curve_krig.ipynb>`
 
 
 .. only:: html

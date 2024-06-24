@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_transformation.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -25,7 +25,7 @@ cosine matrix (DCM) and Euler angles (phi, theta, psi).
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-14
 
-.. code-block:: default
+.. code-block:: Python
 
     import polytex as pk
     from polytex.geometry import transform as tf
@@ -42,7 +42,7 @@ Load test data
 
 .. GENERATED FROM PYTHON SOURCE LINES 17-22
 
-.. code-block:: default
+.. code-block:: Python
 
     path = pk.example(data_name="cross-section")
     data = pv.read(path)
@@ -61,7 +61,7 @@ of the local coordinate system.
 
 .. GENERATED FROM PYTHON SOURCE LINES 29-32
 
-.. code-block:: default
+.. code-block:: Python
 
     points = data.points
     centroid = np.mean(points, axis=0)
@@ -78,7 +78,7 @@ the origin before calling the rotation functions.
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-41
 
-.. code-block:: default
+.. code-block:: Python
 
     points = points - centroid
 
@@ -93,7 +93,7 @@ find the euler angles (phi, theta, psi).
 
 .. GENERATED FROM PYTHON SOURCE LINES 47-49
 
-.. code-block:: default
+.. code-block:: Python
 
     angles = tf.euler_z_noraml(normal)
 
@@ -106,7 +106,7 @@ Now we can use the euler angles to construct the DCM:
 
 .. GENERATED FROM PYTHON SOURCE LINES 53-55
 
-.. code-block:: default
+.. code-block:: Python
 
     dcm = tf.e123_dcm(*angles)
 
@@ -119,7 +119,7 @@ Rotate the points
 
 .. GENERATED FROM PYTHON SOURCE LINES 59-67
 
-.. code-block:: default
+.. code-block:: Python
 
     points1 = np.dot(dcm, points.T).T
 
@@ -149,7 +149,7 @@ shows how to do this.
 
 .. GENERATED FROM PYTHON SOURCE LINES 82-89
 
-.. code-block:: default
+.. code-block:: Python
 
 
     x_new = points[np.argmax(np.linalg.norm(points, axis=1))]
@@ -167,7 +167,7 @@ Plot the rotated points
 
 .. GENERATED FROM PYTHON SOURCE LINES 93-99
 
-.. code-block:: default
+.. code-block:: Python
 
     plt.plot(points2[:, 0], points2[:, 1], "o")
     plt.scatter(0, 0, c="r")
@@ -185,17 +185,12 @@ the basis vectors of the original coordinate system after rotation.
 
 .. GENERATED FROM PYTHON SOURCE LINES 104-108
 
-.. code-block:: default
+.. code-block:: Python
 
     basis = np.eye(3)
     print(np.dot(dcm, basis.T).T)
     print(dcm)
 
-
-
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
 
 
 .. _sphx_glr_download_source_test_transformation.py:
@@ -204,16 +199,13 @@ the basis vectors of the original coordinate system after rotation.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: transformation.ipynb <transformation.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: transformation.py <transformation.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: transformation.ipynb <transformation.ipynb>`
 
 
 .. only:: html

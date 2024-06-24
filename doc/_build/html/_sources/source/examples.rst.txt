@@ -37,3 +37,7 @@ Using as a library for fiber tow modeling
    test/voxelization
    test/backround_mesh_labelling_and _intersection_detection
    test/Transformation
+
+Integrate PolyTex with TexGen
+--------------------------------------------------------
+.. mdinclude:: ./test/IntegratePolyTexwithTexGen.md

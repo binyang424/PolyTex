@@ -11,27 +11,26 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_4_resampling.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_source_test_Step_4_resampling.py:
 
 
-Step 4: Resampling
+Resampling
 ==================
 
 Test
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-83
+.. GENERATED FROM PYTHON SOURCE LINES 8-82
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import matplotlib.pyplot as plt
     from polytex.kriging import curve2D
     import numpy as np
-    import polytex as pk
 
     """   Overfitting test    """
     ii = 0
@@ -104,27 +103,19 @@ Test
     # ##plt.show()
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Step_4_resampling.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_4_resampling.ipynb <Step_4_resampling.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_4_resampling.py <Step_4_resampling.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_4_resampling.ipynb <Step_4_resampling.ipynb>`
 
 
 .. only:: html

@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_backround_mesh_labelling_and_intersection_detection.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -25,7 +25,7 @@ Test
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-73
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import re
@@ -94,27 +94,19 @@ Test
     save_nrrd(label_list, mesh_shape, "./file/test_bbox_cells")
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_backround_mesh_labelling_and_intersection_detection.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: backround_mesh_labelling_and_intersection_detection.ipynb <backround_mesh_labelling_and_intersection_detection.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: backround_mesh_labelling_and_intersection_detection.py <backround_mesh_labelling_and_intersection_detection.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: backround_mesh_labelling_and_intersection_detection.ipynb <backround_mesh_labelling_and_intersection_detection.ipynb>`
 
 
 .. only:: html

@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_pk_io.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -36,12 +36,12 @@ In polytex, two function were provided to facilitate file selection: `polytex.ch
 
 .. GENERATED FROM PYTHON SOURCE LINES 18-24
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
     import pandas as pd
-    import polytex as pk
+    import polytex as ptx
 
 
 
@@ -55,10 +55,10 @@ Users can also specify the file type and the title of the GUI window as below:
 
 .. GENERATED FROM PYTHON SOURCE LINES 30-33
 
-.. code-block:: default
+.. code-block:: Python
 
-    path = pk.choose_file(titl="Directory for file CoordinatesSorted file (.coo)", format=".coo")
-    coordinatesSorted = pk.pk_load(path)
+    path = ptx.choose_file(titl="Directory for file CoordinatesSorted file (.coo)", format=".coo")
+    coordinatesSorted = ptx.pk_load(path)
 
 
 .. GENERATED FROM PYTHON SOURCE LINES 34-38
@@ -70,7 +70,7 @@ and return a list of filenames with a given extension.
 
 .. GENERATED FROM PYTHON SOURCE LINES 38-52
 
-.. code-block:: default
+.. code-block:: Python
 
 
 
@@ -81,16 +81,11 @@ and return a list of filenames with a given extension.
     df = pd.DataFrame(data, index=label_row, columns=label_col)
 
     # save
-    pk.pk_save("./test_data/test.coo", df)
+    ptx.pk_save("./test_data/test.coo", df)
 
     # load
-    df = pk.pk_load("./test_data/test.coo")
+    df = ptx.pk_load("./test_data/test.coo")
 
-
-
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
 
 
 .. _sphx_glr_download_source_test_pk_io.py:
@@ -99,16 +94,13 @@ and return a list of filenames with a given extension.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: pk_io.ipynb <pk_io.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: pk_io.py <pk_io.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: pk_io.ipynb <pk_io.ipynb>`
 
 
 .. only:: html

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convert the TexGen-generated vtu file to OpenFOAM polyMesh &mdash; PolyTex 0.4.1 documentation</title>
+  <title>Convert the TexGen-generated vtu file to OpenFOAM polyMesh &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js\rtd_search_config.js"></script>
         <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -38,16 +38,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> PolyTex
+            <img src="../../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html"><code class="docutils literal notranslate"><span class="pre">PolyTex</span></code>: A parametric textile geometry modeling package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation.html">Documentation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">License</a></li>
 </ul>
 
@@ -73,8 +70,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Convert the TexGen-generated vtu file to OpenFOAM polyMesh</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Convert the TexGen-generated vtu file to OpenFOAM polyMesh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/source/test/texgen_vtu_2_foam.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,7 +84,7 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-test-texgen-vtu-2-foam-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="convert-the-texgen-generated-vtu-file-to-openfoam-polymesh">
 <span id="sphx-glr-source-test-texgen-vtu-2-foam-py"></span><h1>Convert the TexGen-generated vtu file to OpenFOAM polyMesh<a class="headerlink" href="#convert-the-texgen-generated-vtu-file-to-openfoam-polymesh" title="Permalink to this heading"></a></h1>
@@ -95,9 +92,9 @@ to download the full example code</p>
 polyMesh. The cell data of the vtu file will be written to the OpenFOAM mesh. The
 boundary type for the OpenFOAM mesh is also defined. A OpenFOAM case template is
 provided by polytex to prepare the case for OpenFOAM.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">pk</span>
+<span class="kn">import</span> <span class="nn">polytex</span> <span class="k">as</span> <span class="nn">ptx</span>
 
 
 <span class="c1"># input parameters</span>
@@ -106,7 +103,7 @@ provided by polytex to prepare the case for OpenFOAM.</p>
 <span class="n">scale</span> <span class="o">=</span> <span class="mf">1e-3</span>  <span class="c1"># scale the mesh from mm to m</span>
 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">texgen_voxel</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">ptx</span><span class="o">.</span><span class="n">texgen_voxel</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Mesh writing</span>
@@ -119,7 +116,7 @@ provided by polytex to prepare the case for OpenFOAM.</p>
 <span class="n">boundary_type</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;wall&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;wall&quot;</span><span class="p">,</span> <span class="s2">&quot;front&quot;</span><span class="p">:</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="s2">&quot;back&quot;</span><span class="p">:</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span>
                  <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;wall&quot;</span><span class="p">,</span> <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="s2">&quot;wall&quot;</span><span class="p">}</span>
 <span class="c1"># write the mesh to OpenFOAM polyMesh</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">voxel2foam</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="n">boundary_type</span><span class="p">,</span>
+<span class="n">ptx</span><span class="o">.</span><span class="n">voxel2foam</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">outputDir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">boundary_type</span><span class="o">=</span><span class="n">boundary_type</span><span class="p">,</span>
               <span class="n">cell_data_list</span><span class="o">=</span><span class="n">cell_data</span><span class="p">)</span>
 
 <span class="sd">&quot;&quot;&quot; Create a OpenFOAM case file for Paraveiw post-processing &quot;&quot;&quot;</span>
@@ -128,17 +125,16 @@ provided by polytex to prepare the case for OpenFOAM.</p>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="sd">&quot;&quot;&quot; Prepare the case for OpenFOAM with the template provided by polytex &quot;&quot;&quot;</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">case_prepare</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+<span class="n">ptx</span><span class="o">.</span><span class="n">case_prepare</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Case preparation is done!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-test-texgen-vtu-2-foam-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/7b16e078e349608caf73e7e914eea162/texgen_vtu_2_foam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">texgen_vtu_2_foam.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/2353b618a99d9feddaa089473a9a4293/texgen_vtu_2_foam.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">texgen_vtu_2_foam.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/7b16e078e349608caf73e7e914eea162/texgen_vtu_2_foam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">texgen_vtu_2_foam.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

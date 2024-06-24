@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_Step_6_vf.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -30,7 +30,7 @@ cross-sectional area and the linear density of tow.
 
 .. GENERATED FROM PYTHON SOURCE LINES 12-56
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import pyLCM
@@ -78,27 +78,19 @@ cross-sectional area and the linear density of tow.
     plt.show()
 
 
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
-
 .. _sphx_glr_download_source_test_Step_6_vf.py:
 
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: Step_6_vf.ipynb <Step_6_vf.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: Step_6_vf.py <Step_6_vf.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: Step_6_vf.ipynb <Step_6_vf.ipynb>`
 
 
 .. only:: html

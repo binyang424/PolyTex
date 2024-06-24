@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polytex.kriging &mdash; PolyTex 0.4.1 documentation</title>
+  <title>polytex.kriging &mdash; PolyTex 0.4.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -19,14 +19,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js\rtd_search_config.js"></script>
         <script src="../_static/js\rtd_sphinx_search.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,16 +40,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            PolyTex
-              <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> PolyTex
+            <img src="../_static/polytex_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -82,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#id1">Integrate <code class="docutils literal notranslate"><span class="pre">PolyTex</span></code> with <code class="docutils literal notranslate"><span class="pre">TexGen</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
@@ -98,10 +95,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../documentation.html">Documentation and Usage</a></li>
-          <li class="breadcrumb-item"><a href="submodules.html">Functions</a></li>
-      <li class="breadcrumb-item active">polytex.kriging</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../documentation.html">Documentation and Usage</a> &raquo;</li>
+          <li><a href="submodules.html">Functions</a> &raquo;</li>
+      <li>polytex.kriging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/polytex.kriging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,7 +120,7 @@
 <dd><p>Linearly interpolate the points between each of two points that
 further than the threshold.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points. [normalized distance, X, Y, Z]</p>
 </dd>
@@ -131,7 +128,7 @@ further than the threshold.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>coordinate</strong><span class="classifier">numpy array</span></dt><dd><p>The coordinates of the points after linear interpolation.
 [normalized distance, X, Y, Z]</p>
@@ -146,7 +143,7 @@ further than the threshold.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">bd_Deriv_kriging_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xDeriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yDeriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choixDerive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choixCov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_x_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#bd_Deriv_kriging_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.bd_Deriv_kriging_func" title="Permalink to this definition"></a></dt>
 <dd><p>Derivative kriging function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">array</span></dt><dd><p>x points</p>
 </dd>
@@ -166,7 +163,7 @@ further than the threshold.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>kringFunctionStr: string</dt><dd><p>String of the kriging function.</p>
 </dd>
@@ -187,7 +184,7 @@ further than the threshold.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">buildM_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covFuncs_deriv2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#buildM_deriv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.buildM_deriv" title="Permalink to this definition"></a></dt>
 <dd><p>Build the matrix M for the derivative kriging system</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">array</span></dt><dd><p>x points</p>
 </dd>
@@ -217,7 +214,7 @@ further than the threshold.</p>
 <dt class="sig sig-object py" id="polytex.kriging.curve2D.curve_krig_2D">
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">curve_krig_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugget_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#curve_krig_2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.curve_krig_2D" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dataset: numpy array</strong></dt><dd><p>X-Y.</p>
 </dd>
@@ -228,7 +225,7 @@ further than the threshold.</p>
 <dt><strong>nugget_effect</strong><span class="classifier">Float</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
@@ -243,7 +240,7 @@ further than the threshold.</p>
 <dd><p>This is the function for definition of drift function and covariance function
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>drift_name</strong><span class="classifier">string</span></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, and
 “quad” for “constant”, “linear”, “quadratic”, respectively.</p>
@@ -253,7 +250,7 @@ for “linear”, “cubic”, “logarithmic”, respectively.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>drift_func</strong><span class="classifier">function</span></dt><dd><p>The drift function.</p>
 </dd>
@@ -269,7 +266,7 @@ for “linear”, “cubic”, “logarithmic”, respectively.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">func_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugget_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#func_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.func_var" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the variance of the prediction.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
 </dd>
@@ -282,7 +279,7 @@ the vector_ba in dual Kriging formulation.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>std_prediction</strong><span class="classifier">numpy array</span></dt><dd><p>the standard deviation of the prediction</p>
 </dd>
@@ -296,7 +293,7 @@ the vector_ba in dual Kriging formulation.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#h"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.h" title="Permalink to this definition"></a></dt>
 <dd><p>The function h(x1, x2) = abs(x1 - x2).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x1</strong><span class="classifier">float</span></dt><dd><p>The first point.</p>
 </dd>
@@ -304,7 +301,7 @@ the vector_ba in dual Kriging formulation.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>h</strong><span class="classifier">float</span></dt><dd></dd>
 </dl>
@@ -316,7 +313,7 @@ the vector_ba in dual Kriging formulation.</p>
 <dt class="sig sig-object py" id="polytex.kriging.curve2D.interpolate">
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugget_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#interpolate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.interpolate" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dataset</strong><span class="classifier">numpy array</span></dt><dd><p>X-Y.</p>
 </dd>
@@ -331,7 +328,7 @@ If interp is not given, the x-coordinate of the sample points is used.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
@@ -345,7 +342,7 @@ If interp is not given, the x-coordinate of the sample points is used.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">krig_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">len_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_ba</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#krig_expression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.krig_expression" title="Permalink to this definition"></a></dt>
 <dd><p>return the Kriging function expression.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>len_b</strong><span class="classifier">int</span></dt><dd><p>The length of the b vector (the coefficient of linear combination).</p>
 </dd>
@@ -361,7 +358,7 @@ If interp is not given, the x-coordinate of the sample points is used.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>expr</strong><span class="classifier">sympy expression</span></dt><dd><p>The analytical expression of the function created by kriging.</p>
 </dd>
@@ -375,7 +372,7 @@ If interp is not given, the x-coordinate of the sample points is used.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.curve2D.</span></span><span class="sig-name descname"><span class="pre">lambda_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_krig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/curve2D.html#lambda_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.curve2D.lambda_weight" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the weight of the lambda matrix</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">numpy array</span></dt><dd><p>The locations where function values are unknown and to be predicted.</p>
 </dd>
@@ -389,7 +386,7 @@ If interp is not given, the x-coordinate of the sample points is used.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>K_h</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
 </dd>
@@ -418,7 +415,7 @@ the vector_ba in dual Kriging formulation.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>b_a: numpy array.</dt><dd><p>The kriging vector.</p>
 </dd>
@@ -435,7 +432,7 @@ the vector_ba in dual Kriging formulation.</p>
 <dd><p>Solve the linear equation system M * B = U
 TODO: check the comments</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>M</strong><span class="classifier">numpy array</span></dt><dd><p>The kriging matrix.</p>
 </dd>
@@ -443,7 +440,7 @@ TODO: check the comments</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>B</strong><span class="classifier">numpy array</span></dt><dd><p>The solution of the linear equation system.</p>
 </dd>
@@ -470,7 +467,7 @@ def surf_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.intersect.</span></span><span class="sig-name descname"><span class="pre">ray_plane_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane_normal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray_direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/intersect.html#ray_plane_intersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.intersect.ray_plane_intersect" title="Permalink to this definition"></a></dt>
 <dd><p>Find the intersection between a plane and a ray.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>plane_normal</strong><span class="classifier">array-like</span></dt><dd><p>normal vector of the plane for defining the plane.</p>
 </dd>
@@ -484,7 +481,7 @@ def surf_surf()</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>Psi: array-like</dt><dd><p>intersection point.</p>
 </dd>
@@ -501,7 +498,7 @@ def surf_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.buildKriging" title="Permalink to this definition"></a></dt>
 <dd><p>Build the kriging model and return the expression in string format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xy: array like. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
 <dt><strong>z: array like. The values of the target function. The shape is (m,).</strong></dt><dd></dd>
@@ -512,9 +509,9 @@ def surf_surf()</p>
 <dt><strong>nugg: float. The nugget effect (variance).</strong></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">return<span class="colon">:</span></dt>
+<dt class="field-odd">return</dt>
 <dd class="field-odd"><p>The expression of kriging function in string format.
 ..</p>
 </dd>
@@ -528,7 +525,7 @@ def surf_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#buildM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.buildM" title="Permalink to this definition"></a></dt>
 <dd><p>Build the kriging matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xy: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
 <dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
@@ -537,7 +534,7 @@ def surf_surf()</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>drift_func: The drift function.</dt><dd></dd>
 <dt>cov_func: The covariance function.</dt><dd></dd>
@@ -553,7 +550,7 @@ def surf_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">buildU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#buildU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.buildU" title="Permalink to this definition"></a></dt>
 <dd><p>Build the result vector of the kriging linear system.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>z:</strong></dt><dd><p>The values of the target function. The shape is (m,).</p>
 </dd>
@@ -561,7 +558,7 @@ def surf_surf()</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>U: The result vector of the kriging linear system. The shape is (n,).</dt><dd></dd>
 </dl>
@@ -574,7 +571,7 @@ def surf_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Euclidean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.dist" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the distance between each pair of points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xy: numpy array. The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
 <dt><strong>type: str. The type of the distance. The default is “Euclidean”.</strong></dt><dd><dl class="simple">
@@ -585,7 +582,7 @@ def surf_surf()</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>distance</strong><span class="classifier">numpy array</span></dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
 </dd>
@@ -600,7 +597,7 @@ def surf_surf()</p>
 <dd><p>Function for definition of drift and covariance function
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
 </dd>
@@ -608,7 +605,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>drift_func: Function.</dt><dd><p>The drift function.</p>
 </dd>
@@ -626,7 +623,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#interp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.interp" title="Permalink to this definition"></a></dt>
 <dd><p>TODO: add description</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xy: numpy array.</strong></dt><dd><p>The coordinates of the points. The shape is (m, 2).</p>
 </dd>
@@ -634,7 +631,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>yinter: The values of the kriging function. The shape is (m,).</dt><dd></dd>
 </dl>
@@ -647,7 +644,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">nugget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#nugget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.nugget" title="Permalink to this definition"></a></dt>
 <dd><p>Introduce the nugget effect to the kriging matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix. The shape is (n,n).</p>
 </dd>
@@ -655,7 +652,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>M: numpy array.</dt><dd><p>The kriging matrix with nugget effect.</p>
 </dd>
@@ -669,7 +666,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.mdKrig.</span></span><span class="sig-name descname"><span class="pre">solveB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/mdKrig.html#solveB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.mdKrig.solveB" title="Permalink to this definition"></a></dt>
 <dd><p>Solve the kriging linear system.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>M:  numpy array.</strong></dt><dd><p>The kriging matrix.</p>
 </dd>
@@ -677,7 +674,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>B: numpy array.</dt><dd><p>The solution of the kriging linear system (vector contains b_i and a_i).</p>
 </dd>
@@ -694,7 +691,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildKriging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#buildKriging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.buildKriging" title="Permalink to this definition"></a></dt>
 <dd><p>Build the kriging model and return the expression in string format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging in S and T direction (1d array).</p>
 </dd>
@@ -710,7 +707,7 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>expr: The expression of kriging function in string format.</dt><dd></dd>
 </dl>
@@ -723,7 +720,7 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#buildM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.buildM" title="Permalink to this definition"></a></dt>
 <dd><p>Build the kriging matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x: The coordinates of the points. The shape is (m, 2).</strong></dt><dd></dd>
 <dt><strong>drift_name: str. The name of the drift function.</strong></dt><dd><p>Possible values are: “const”, “lin”, “quad”.</p>
@@ -732,21 +729,21 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">return drift_func<span class="colon">:</span></dt>
+<dt class="field-odd">return drift_func</dt>
 <dd class="field-odd"><p>The drift function.
 ..</p>
 </dd>
-<dt class="field-even">return cov_func<span class="colon">:</span></dt>
+<dt class="field-even">return cov_func</dt>
 <dd class="field-even"><p>The covariance function.
 ..</p>
 </dd>
-<dt class="field-odd">return a_len<span class="colon">:</span></dt>
+<dt class="field-odd">return a_len</dt>
 <dd class="field-odd"><p>The length of the drift function.
 ..</p>
 </dd>
-<dt class="field-even">return M<span class="colon">:</span></dt>
+<dt class="field-even">return M</dt>
 <dd class="field-even"><p>The matrix of the kriging system. The shape is (n,n).
 ..</p>
 </dd>
@@ -760,7 +757,7 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">buildP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_lenS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_lenT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#buildP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.buildP" title="Permalink to this definition"></a></dt>
 <dd><p>Build the result matrix of the kriging linear system.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x: numpy array.</strong></dt><dd><p>The values of the target function. The shape is (m,n).</p>
 </dd>
@@ -770,7 +767,7 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>P</strong><span class="classifier">numpy array.</span></dt><dd><p>The result vector of the kriging linear system. The shape is (n,).</p>
 </dd>
@@ -784,13 +781,13 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">dist1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#dist1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.dist1D" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the distance between each pair of points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>numpy array.</dt><dd><p>The distance between each pair of points. The shape is (m, m).</p>
 </dd>
@@ -805,7 +802,7 @@ following format: [drift_name1, drift_name2]. The possible values are: ‘const�
 <dd><p>This is the function for definition of drift function and covariance function
 in dictionary drif_funcs and cov_funcs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>drift_name: str.</strong></dt><dd><p>The name of the drift function. Possible values are: “const”, “lin”, “quad”.</p>
 </dd>
@@ -813,7 +810,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>drift_func:</dt><dd><p>The drift function.</p>
 </dd>
@@ -829,7 +826,7 @@ in dictionary drif_funcs and cov_funcs.</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">interp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_complexity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#interp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.interp" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolation (substitute the symbolic variables in the expression).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>s, t: numpy array.</strong></dt><dd><p>The parameters of the two profiles for surface parametric kriging (1d array).
 s has size that same as the number of rows and t the same as the number of columns.</p>
@@ -838,7 +835,7 @@ s has size that same as the number of rows and t the same as the number of colum
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>xinterp: numpy array.</dt><dd><p>The values of the kriging function. The shape is (s.size,t.size).</p>
 </dd>
@@ -852,7 +849,7 @@ s has size that same as the number of rows and t the same as the number of colum
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">kVector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symVar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#kVector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.kVector" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the kriging matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
 </dd>
@@ -862,9 +859,9 @@ s has size that same as the number of rows and t the same as the number of colum
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">return<span class="colon">:</span></dt>
+<dt class="field-odd">return</dt>
 <dd class="field-odd"><p>numpy array.
 The kriging matrix. The shape is (m, 1).</p>
 </dd>
@@ -878,7 +875,7 @@ The kriging matrix. The shape is (m, 1).</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">nugget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nugg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#nugget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.nugget" title="Permalink to this definition"></a></dt>
 <dd><p>Introduce the nugget effect to the kriging matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix.</p>
 </dd>
@@ -886,7 +883,7 @@ The kriging matrix. The shape is (m, 1).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>M</strong><span class="classifier">numpy array.</span></dt><dd><p>The kriging matrix with nugget effect.</p>
 </dd>
@@ -900,7 +897,7 @@ The kriging matrix. The shape is (m, 1).</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.paraSurface.</span></span><span class="sig-name descname"><span class="pre">surface3Dinterp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_drift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nug</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/paraSurface.html#surface3Dinterp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.paraSurface.surface3Dinterp" title="Permalink to this definition"></a></dt>
 <dd><p>Build the kriging model and interpolate the results</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x: numpy array.</strong></dt><dd><p>The coordinates in parametric space of the points. The shape is (m, 1).</p>
 </dd>
@@ -920,7 +917,7 @@ The kriging matrix. The shape is (m, 1).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>z_krig: numpy array.</dt><dd><p>The interpolated results. The shape is (m, n). It is the return value if return_dict is None
 (namely, the function is not used in parallel).</p>
@@ -949,7 +946,7 @@ def point_surf()</p>
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">data_compr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matXC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_comp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/tool.html#data_compr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.tool.data_compr" title="Permalink to this definition"></a></dt>
 <dd><p>Data compression by kriging using linear drift and linear covariance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
 </dd>
@@ -960,7 +957,7 @@ skip_comp &gt;=1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>data_norm_comp</strong><span class="classifier">TYPE</span></dt><dd><p>Data points .</p>
 </dd>
@@ -975,7 +972,7 @@ skip_comp &gt;=1.</p>
 <dt class="sig sig-object py" id="polytex.kriging.tool.fun_crva">
 <span class="sig-prename descclassname"><span class="pre">polytex.kriging.tool.</span></span><span class="sig-name descname"><span class="pre">fun_crva</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_para</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_para</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polytex/kriging/tool.html#fun_crva"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#polytex.kriging.tool.fun_crva" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data_norm</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt.</p>
 </dd>
@@ -985,7 +982,7 @@ skip_comp &gt;=1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>expr</strong><span class="classifier">Expression</span></dt><dd><p>The kriging expression.</p>
 </dd>
@@ -1000,7 +997,7 @@ skip_comp &gt;=1.</p>
 <dd><p>This is the normalization function. After input the data of DSC test, this function
 will normalize temperature, degree of cure and rate of cure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data_krig</strong><span class="classifier">numpy array</span></dt><dd><p>Time-Temperature-Alpha-dadt</p>
 </dd>

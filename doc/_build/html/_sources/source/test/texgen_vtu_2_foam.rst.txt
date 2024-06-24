@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_test_texgen_vtu_2_foam.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -28,13 +28,13 @@ provided by polytex to prepare the case for OpenFOAM.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-46
 
-.. code-block:: default
+.. code-block:: Python
 
 
 
     import os
     import pyvista as pv
-    import polytex as pk
+    import polytex as ptx
 
 
     # input parameters
@@ -43,7 +43,7 @@ provided by polytex to prepare the case for OpenFOAM.
     scale = 1e-3  # scale the mesh from mm to m
 
     mesh = pv.read(fp)
-    mesh = pk.texgen_voxel(mesh, rf, plot=True)
+    mesh = ptx.texgen_voxel(mesh, rf, plot=True)
 
     """ 
     Mesh writing 
@@ -56,7 +56,7 @@ provided by polytex to prepare the case for OpenFOAM.
     boundary_type = {"left": "wall", "right": "wall", "front": "patch", "back": "patch",
                      "bottom": "wall", "top": "wall"}
     # write the mesh to OpenFOAM polyMesh
-    pk.voxel2foam(mesh, scale=scale, outputDir=output_dir, boundary_type=boundary_type,
+    ptx.voxel2foam(mesh, scale=scale, outputDir=output_dir, boundary_type=boundary_type,
                   cell_data_list=cell_data)
 
     """ Create a OpenFOAM case file for Paraveiw post-processing """
@@ -65,13 +65,8 @@ provided by polytex to prepare the case for OpenFOAM.
     f.close()
 
     """ Prepare the case for OpenFOAM with the template provided by polytex """
-    pk.case_prepare(output_dir)
+    ptx.case_prepare(output_dir)
     print("Case preparation is done!")
-
-.. rst-class:: sphx-glr-timing
-
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
-
 
 .. _sphx_glr_download_source_test_texgen_vtu_2_foam.py:
 
@@ -79,16 +74,13 @@ provided by polytex to prepare the case for OpenFOAM.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: texgen_vtu_2_foam.ipynb <texgen_vtu_2_foam.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: texgen_vtu_2_foam.py <texgen_vtu_2_foam.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: texgen_vtu_2_foam.ipynb <texgen_vtu_2_foam.ipynb>`
 
 
 .. only:: html
