@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import cv2
+# import cv2
 from matplotlib import pyplot as plt
 import matplotlib.colors as mc
 import colorsys
@@ -116,45 +116,45 @@ def vert_sub_plot(num_plots, vspace, x, y, labels):
     return fig
 
 
-def plot_on_img(x, y, backgroundImg, labels=[], save=False):
-    """
-    This function is used to plot the image.
+# def plot_on_img(x, y, backgroundImg, labels=[], save=False):
+#     """
+#     This function is used to plot the image.
 
-    Parameters
-    ----------
-    x,y: numpy array
-        if x.shape[1]>1, 一个背景多个图
-    labels: list of string
-        , 多个图的legend
-    img:
-        a image as the background
-    save: bool
-        if True, save the image, default is False.
+#     Parameters
+#     ----------
+#     x,y: numpy array
+#         if x.shape[1]>1, 一个背景多个图
+#     labels: list of string
+#         , 多个图的legend
+#     img:
+#         a image as the background
+#     save: bool
+#         if True, save the image, default is False.
 
-    Returns
-    -------
-    None.
-    """
-    img = cv2.imread(backgroundImg)
-    imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # img_bin = cv2.threshold(imgray, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU) # cv2.threshold (源图片, 阈值, 填充色, 阈值类型)
-    fig = plt.figure(figsize=(16 / 2.54, 9.5 / 2.54))
-    ax = fig.add_axes([0.12, 0.1, 0.85, 0.83])
-    ax.imshow(imgray, cmap='gray', vmin=0, vmax=255)
-    ##ax.imshow(img_bin[1], origin='lower',  cmap='gray', vmin=0, vmax=255)
+#     Returns
+#     -------
+#     None.
+#     """
+#     img = cv2.imread(backgroundImg)
+#     imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#     # img_bin = cv2.threshold(imgray, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU) # cv2.threshold (源图片, 阈值, 填充色, 阈值类型)
+#     fig = plt.figure(figsize=(16 / 2.54, 9.5 / 2.54))
+#     ax = fig.add_axes([0.12, 0.1, 0.85, 0.83])
+#     ax.imshow(imgray, cmap='gray', vmin=0, vmax=255)
+#     ##ax.imshow(img_bin[1], origin='lower',  cmap='gray', vmin=0, vmax=255)
 
-    # TODO 一个背景图多个曲线图
-    x_shape, y_shape = len(np.shape(x)), len(np.shape(y))
-    if x_shape == 2 or y_shape == 2:
-        pass
-    elif x_col == 1 and y_col == 1:
-        # Append values to the end: np.append(arr, values, axis=None)
-        x = np.append(x, [x[0]], axis=0)
-        y = np.append(y, [y[0]], axis=0)
-        ax.plot(x, y, '-.', label=labels, color='r')
-    else:
-        print('Only 1D or 2D (for multi curve plots) numpy array is accepted for x and y.')
-    plt.show()
+#     # TODO 一个背景图多个曲线图
+#     x_shape, y_shape = len(np.shape(x)), len(np.shape(y))
+#     if x_shape == 2 or y_shape == 2:
+#         pass
+#     elif x_col == 1 and y_col == 1:
+#         # Append values to the end: np.append(arr, values, axis=None)
+#         x = np.append(x, [x[0]], axis=0)
+#         y = np.append(y, [y[0]], axis=0)
+#         ax.plot(x, y, '-.', label=labels, color='r')
+#     else:
+#         print('Only 1D or 2D (for multi curve plots) numpy array is accepted for x and y.')
+#     plt.show()
 
 
 def xy_interp(*axis_list, num=100, raw=False):

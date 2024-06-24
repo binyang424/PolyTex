@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name='polytex',
-    version='0.4.4',
+    version='0.4.5',
     description='PolyTex is an open-source toolkit for geometry modeling of fiber tow-based textiles based on volumetric images.',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -16,17 +16,19 @@ setup(
     #           'src.kriging', 'src.mesh', 'src.plot',
     #           'src.stats', 'src.thirdparty'],
     packages=find_packages(),
-    install_requires=['numpy>=0.5',
+    install_requires=['numpy==1.23',
+                      'pyvista==0.39',
+                      'pandas'
                       'matplotlib',
                       'sympy',
                       'tk',             #tkinter
                       'shapely',
                       'SciencePlots', 
                       'opencv-python',
-                      'pyvista',
                       'meshio',
                       'scikit-learn',
                       'opencv-python',
+                      'tqdm'
                       ],
 
     classifiers=[
