@@ -10,35 +10,35 @@
 
    The `TexGen` file (`texgen-Python39-3.13.1.exe`) indicates that the current `TexGen` package supports only Python 3.9.
 
-2. **Install Python 3.9**: 
+## Install Python 3.9 
 
    Go to the official website of Python: [Download Python | Python.org](https://www.python.org/downloads/) and select the required Python version (Python 3.9). Here is the link to [Python Release Python 3.9.13](https://www.python.org/downloads/release/python-3913/).
 
-3. **Install `TexGen`**:
+## Install `TexGen`
 
    Install the `TexGen` package downloaded in Step 1. `TexGen` will automatically detect the installation of Python 3.9.
 
 ![](https://github.com/binyang424/PolyTex/blob/master/doc/source/test/images/image-20240624121115642.png?raw=true)
 
-4. **Install `PolyTex` in the Python 3.9 Environment**:
+## Install `PolyTex` in the Python 3.9 Environment
 
-   `PolyTex` can be installed simply by executing:
+`PolyTex` can be installed simply by executing:
 
-   ```python
-   pip install polytex==0.4.5
-   ```
+```python
+pip install polytex==0.4.5
+```
 
-   If multiple versions of Python are installed on your computer, specify the Python 3.9 installation directory in the pip command using the `--target=` option:
+If multiple versions of Python are installed on your computer, specify the Python 3.9 installation directory in the pip command using the `--target=` option:
 
-   ```bash
-   pip install polytex==0.4.5 --target=C:/Users/User/AppData/Local/Programs/Python/Python39/Lib/site-packages
-   ```
-   
-   Once the installation is complete, import `PolyTex` in the `TexGen` Python console:
-   
-   ```python
-   import polytex
-   ```
+```bash
+pip install polytex==0.4.5 --target=C:/Users/User/AppData/Local/Programs/Python/Python39/Lib/site-packages
+```
+
+Once the installation is complete, import `PolyTex` in the `TexGen` Python console:
+
+```python
+import polytex
+```
 
 ![](https://github.com/binyang424/PolyTex/blob/master/doc/source/test/images/test_installation.png?raw=true)
 
@@ -52,3 +52,6 @@
    This should return the developer and version information of the installed `PolyTex`.
 
 At this point, all functions and data in `PolyTex` can be accessed by `TexGen` to build models. For different fabric structures, different `TexGen` scripts are required. Examples are provided in the `TexGen` repository [louisepb/TexGenScripts: Sample scripts to demonstrate `TexGen` scripting](https://github.com/louisepb/TexGenScripts).
+
+## Convert `TexGen` voxel model to `OpenFOAM` mesh
+
