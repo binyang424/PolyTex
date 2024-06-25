@@ -1,5 +1,5 @@
-Integrate ``PolyTex`` with ``TexGen``
-=====================================
+.. Integrate ``PolyTex`` with ``TexGen``
+.. =====================================
 
 ``TexGen`` software, developed at the `University of
 Nottingham <https://www.nottingham.ac.uk/research/groups/composites-research-group/meet-the-team/louise.brown>`__,
