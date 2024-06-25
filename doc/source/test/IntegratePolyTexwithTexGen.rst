@@ -19,10 +19,10 @@ on SourceForge.net <https://sourceforge.net/projects/texgen/>`__ and
 follow the steps shown in the figure below. Note that you need to
 download the release without Python bundled.
 
-.. image:: ./images/texgen-download.png
-
 The ``TexGen`` file (``texgen-Python39-3.13.1.exe``) indicates that
 the current ``TexGen`` package supports only Python 3.9.
+
+.. image:: ./images/texgen-download.png
 
 Step 2: Install Python 3.9 
 ---------------------------
