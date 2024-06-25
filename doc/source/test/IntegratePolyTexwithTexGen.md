@@ -4,11 +4,11 @@
 
 ## Step 1: Download `TexGen`
 
-1. **Go to the Project Webpage**: Navigate to the [TexGen download page on SourceForge.net](https://sourceforge.net/projects/texgen/) and follow the steps shown in the figure below. Note that you need to download the release without Python bundled.
+Navigate to the [TexGen download page on SourceForge.net](https://sourceforge.net/projects/texgen/) and follow the steps shown in the figure below. Note that you need to download the release without Python bundled.
 
-   <img src="https://github.com/binyang424/PolyTex/blob/master/doc/source/test/images/texgen-download.png?raw=true" style="zoom: 80%;" />
+<img src="./images/texgen-download.png" style="zoom: 80%;" />
 
-   The `TexGen` file (`texgen-Python39-3.13.1.exe`) indicates that the current `TexGen` package supports only Python 3.9.
+The `TexGen` file (`texgen-Python39-3.13.1.exe`) indicates that the current `TexGen` package supports only Python 3.9.
 
 ## Step 2: Install Python 3.9 
 

@@ -14,15 +14,15 @@ without Python bundled. A brief description is given below.
 Step 1: Download ``TexGen``
 ---------------------------
 
-1. **Go to the Project Webpage**: Navigate to the `TexGen download page
-   on SourceForge.net <https://sourceforge.net/projects/texgen/>`__ and
-   follow the steps shown in the figure below. Note that you need to
-   download the release without Python bundled.
+Navigate to the `TexGen download page
+on SourceForge.net <https://sourceforge.net/projects/texgen/>`__ and
+follow the steps shown in the figure below. Note that you need to
+download the release without Python bundled.
+
+.. image:: ./images/texgen-download.png
 
    The ``TexGen`` file (``texgen-Python39-3.13.1.exe``) indicates that
    the current ``TexGen`` package supports only Python 3.9.
-
-.. _step-2-install-python-39:
 
 Step 2: Install Python 3.9 
 ---------------------------
@@ -39,7 +39,7 @@ Step 3: Install ``TexGen``
 Install the ``TexGen`` package downloaded in Step 1. ``TexGen`` will
 automatically detect the installation of Python 3.9.
 
-.. _step-4-install-polytex-in-the-python-39-environment:
+.. image:: ./images/image-20240624121115642.png
 
 Step 4: Install ``PolyTex`` in the Python 3.9 Environment
 ---------------------------------------------------------
@@ -74,6 +74,8 @@ To test if the installation is successful, use the following code:
 
 This should return the developer and version information of the
 installed ``PolyTex``.
+
+.. image:: ./images/test_installation.png
 
 At this point, all functions and data in ``PolyTex`` can be accessed by
 ``TexGen`` to build models. For different fabric structures, different
