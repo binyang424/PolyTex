@@ -21,8 +21,8 @@ download the release without Python bundled.
 
 .. image:: ./images/texgen-download.png
 
-   The ``TexGen`` file (``texgen-Python39-3.13.1.exe``) indicates that
-   the current ``TexGen`` package supports only Python 3.9.
+The ``TexGen`` file (``texgen-Python39-3.13.1.exe``) indicates that
+the current ``TexGen`` package supports only Python 3.9.
 
 Step 2: Install Python 3.9 
 ---------------------------
