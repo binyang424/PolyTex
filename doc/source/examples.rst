@@ -40,4 +40,7 @@ Using as a library for fiber tow modeling
 
 Integrate PolyTex with TexGen
 --------------------------------------------------------
-   .. mdinclude:: ./test/IntegratePolyTexwithTexGen.md
+.. toctree::
+   :maxdepth: 1
+   
+   ./test/IntegratePolyTexwithTexGen
