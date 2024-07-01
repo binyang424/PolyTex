@@ -44,7 +44,7 @@ def __data_list(data_name):
     """
 
     data_list = {
-        "image": "https://www.binyang.fun/resource/test_data/binder_216_302.tif",
+        "image": "https://www.binyang.fun/resource/test_data/Example_implicit_dataset.tif",
         "surface points": "https://github.com/binyang424/PolyTex/raw/master/test/sample_data/Example_explicit_dataset.zip",
         "cross-section": "https://www.binyang.fun/resource/test_data/boundary_of_cross-section.vtk",
         "sorted coordinate": "https://github.com/binyang424/PolyTex/raw/master/test/sample_data/vf57_weft_0.coo",
