@@ -1,6 +1,6 @@
 """
 Convert a 3D image sequence (implicit) to an explicit dataset
-==============================================================
+=============================================================
 This example shows how to extract a surface mesh from a 3D image sequence
 such as a CT scan. The image sequence should be stored as a single tif file.
 """
