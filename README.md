@@ -10,6 +10,8 @@ We release this toolbox as an open-source project aiming to facilitate the appli
 
 Our issue tracker is at [https://github.com/binyang424/PolyTex/issues](https://github.com/binyang424/PolyTex/issues). Please report any bugs that you find or fork the repository on GitHub and create a pull request. We welcome all changes, big or small, and we will help you make the pull request if you are new to git.
 
+We have made the PhD thesis, which covers the theoretical foundation of the code (Chapter 5) and its application in numerical simulations (Chapter 6), available in our GitHub repository (https://github.com/binyang424/PolyTex/tree/master/doc, file name: BinYang_Thesis_PolytechniqueMontreal.pdf). This is provided for users who may need guidance in adjusting the numerical parameters of the tool. **Please note that the manuscripts detailing the development of the geometric modeling method and its application in numerical simulations have been submitted and are currently under review. The reference to the thesis will be replaced by the published articles once they are accepted, as improvements have been made based on the reviewers' comments.**
+
 > `PolyTex` is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 >
 > `PolyTex` is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See  [LICENSE](https://github.com/binyang424/PolyTex/blob/master/LICENSE.rst) for more details.

@@ -38,10 +38,10 @@ class Textile:
         Hexahedral mesh to tetrahedral mesh. Conformal meshing.
     decimate(self)
         Decimate the mesh.
-    meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_permeability="Gebart",
+    meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_perm_model="Gebart",
             surface_mesh=None, verbose=False)
         Generate a mesh for the textile.
-    cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_permeability="Gebart",
+    cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_perm_model="Gebart",
                 threshold=1, verbose=False)
         Label the cells of the background mesh with tow id.
     export_as_vtu(self, fp, binary=True)
@@ -285,7 +285,7 @@ class Textile:
         """
         pass
 
-    def meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_permeability="Gebart",
+    def meshing(self, bbox, voxel_size=None, show=False, labeling=False, yarn_perm_model="Gebart",
                 surface_mesh=None, verbose=False):
         """
         Generate a mesh for the textile.
@@ -306,7 +306,7 @@ class Textile:
                 Whether to show the mesh. The default is False.
             labeling : bool, optional
                 Whether to label the background mesh cells with tow id. The default is True.
-            yarn_permeability : str, optional
+            yarn_perm_model : str, optional
                 The permeability model used to calculate the permeability tensor of the fiber tow.
                 The default is "Gebart". The available permeability models are "Gebart", "CaiBerdichevsky",
                 and "DrummondTahir".
@@ -330,7 +330,7 @@ class Textile:
 
         cell_rending = None
         if labeling:
-            self.cell_labeling(surface_mesh=surface_mesh, verbose=verbose, yarn_permeability=yarn_permeability)
+            self.cell_labeling(surface_mesh=surface_mesh, verbose=verbose, yarn_perm_model=yarn_perm_model)
             cell_rending = "yarnIndex"
 
         if show:
@@ -338,7 +338,7 @@ class Textile:
 
         return None
 
-    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_permeability="Gebart",
+    def cell_labeling(self, surface_mesh=None, intersection=False, check_surface=False, yarn_perm_model="Gebart",
                       threshold=1, verbose=False):
         """
         Label the cells of the background mesh with tow id.
@@ -353,7 +353,7 @@ class Textile:
                 Whether to detect the intersection of the tows. The default is False.
             check_surface : bool, optional
                 Whether to check if the surface mesh is watertight. The default is False.
-            yarn_permeability : str, optional
+            yarn_perm_model : str, optional
                 The permeability model used to calculate the permeability tensor of the fiber tow.
                 The default is "Gebart". The available permeability models are "Gebart", "CaiBerdichevsky",
                 and "DrummondTahir".
@@ -420,23 +420,23 @@ class Textile:
             yarn_porosity = porosity_tow(tow.tex, yarn_area, rho_fiber=tow.rho_fiber)
 
             po_ = yarn_porosity.copy()
-            if np.any(yarn_porosity < 0.1):
-                yarn_porosity[yarn_porosity < 0.1] = np.average(yarn_porosity[yarn_porosity > 0.1])
+            if np.any(yarn_porosity < 0.15):
+                yarn_porosity[yarn_porosity < 0.15] = np.average(yarn_porosity[yarn_porosity > 0.15])
             elif np.any(yarn_porosity > 1):
                 raise ValueError("The porosity of the yarn is larger than 1.")
 
             if np.any(np.isnan(yarn_porosity)):
-                yarn_porosity[np.isnan(yarn_porosity)] = 0.25
+                yarn_porosity[np.isnan(yarn_porosity)] = 0.35
                 print(
-                    bcolors.WARNING + "Warning: The porosity of the yarn %s is nan. The porosity is set to 0.25." % item + bcolors.ENDC)
+                    bcolors.WARNING + "Warning: The porosity of the yarn %s is nan. The porosity is set to 0.35." % item + bcolors.ENDC)
 
-            if yarn_permeability == "Gebart":
+            if yarn_perm_model == "Gebart":
                 yarn_permeability_local = np.array(
                     gebart(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
-            elif yarn_permeability == "CaiBerdichevsky":
+            elif yarn_perm_model == "CaiBerdichevsky":
                 yarn_permeability_local = np.array(
                     cai_berdichevsky(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
-            elif yarn_permeability == "DrummondTahir":
+            elif yarn_perm_model == "DrummondTahir":
                 yarn_permeability_local = np.array(
                     drummond_tahir(1 - yarn_porosity, rf=tow.radius_fiber, packing=tow.packing_fiber, tensorial=True))
 
@@ -515,22 +515,22 @@ class Textile:
 
         The structure of the output case folder is:
 
-        :: 
+        ::
 
              fp/ textile.name/
-            ├── 0          
+            ├── 0
             │   ├── D
             │   ├── yarnIndex
-            │   └── ...       
-            └── constant          
+            │   └── ...
+            └── constant
                   ├── polyMesh
                   │   ├── boundary
                   │   ├── faces
                   │   ├── neighbour
-                  │   ├── owner 
+                  │   ├── owner
                   │   ├── points
-                  │   ├── ... 
-                  └── ...     
+                  │   ├── ...
+                  └── ...
 
             Parameters
             ----------
@@ -574,7 +574,7 @@ class Textile:
         # Create a markdown file in the output directory to record the textile information
         with open(os.path.join(outputDirMesh, "textile_info.md"), "w") as f:
             f.write("## Textile name \n {}\n".format(self.name))
-            f.write("## Bounding box \n {}\n".format(self.bounds))
+            f.write("## Bounding box \n {}\n".format(self.mesh_bounds))
             f.write("## Voxel size \n {}\n".format(self.voxel_size))
             f.write("## Mesh shape \n {}\n".format(self.mesh_shape))
             f.write("## Number of yarns \n {}\n".format(len(self.items)))

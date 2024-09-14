@@ -32,6 +32,7 @@ from .thirdparty.bcolors import bcolors
 from .__dataset__ import example
 
 import matplotlib as mpl
+
 # if os.environ.get('DISPLAY','') == '':
 #     print('no display found. Using non-interactive Agg backend')
 #     mpl.use('Agg')
@@ -243,10 +244,12 @@ def write_cell_data(cellDataDict, outputDir='./0/', array_list=None):
             fileData.write("%d\n(\n" % totalItem)
 
         for j in range(totalItem):
+            data = cellData[j]
 
-            if n_components > 1:
-                data = cellData[j]
-                fileData.write(str(tuple(data)).replace(",", ""))
+            if n_components == 3:
+                fileData.write("(%f %f %f)\n" % tuple(data))
+            elif n_components == 9:
+                fileData.write("(%f %f %f %f %f %f %f %f %f)\n" % tuple(data))
             else:
                 fileData.write(str(cellData[j]))
 
@@ -942,11 +945,12 @@ def case_prepare(output_dir):
 
     # print(bcolors.OKGREEN + "Case preparation is done!" + bcolors.ENDC)
 
+
 def voxel2img(mesh, mesh_shape, dataset="YarnIndex", save_path="./img/",
               scale=None, img_name="img", format="tif", scale_algrithm="linear"):
     """
     Convert a voxel mesh to a series of images.
-    
+
     Parameters
     ----------
     mesh : pyvista.UnstructuredGrid
